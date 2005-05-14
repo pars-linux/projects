@@ -1,0 +1,232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Gurer Ozen
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: imposter 0.1\n"
+"Report-Msgid-Bugs-To: imposter-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2005-04-04 01:42+0300\n"
+"PO-Revision-Date: 2003-07-03 18:50+0300\n"
+"Last-Translator: Gurer Ozen <madcat@e-kolay.net>\n"
+"Language-Team: tr <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/main.c:25
+#, fuzzy
+msgid ""
+"Usage: imposter [OPTIONS] FILE\n"
+"A viewer for your OO.org Impress presentations.\n"
+" -h, --help     Print this text and exit.\n"
+" -V, --version  Print version and exit. -s, --slave    Read commands from "
+"stdin."
+msgstr ""
+"Kullanım: imposter [SEÇENEK] DOSYA\n"
+"OO.org Impress dosyalarınız için bir gösterici.\n"
+" -h, --help     Bu yardımı gösterir ve çıkar.\n"
+" -V, --version  Sürüm bilgisini gösterir ve çıkar."
+
+#: src/main.c:31
+msgid "(long options are not supported on your system)\n"
+msgstr "(uzun seçenekler sisteminiz tarafından desteklenmiyor)\n"
+
+#: src/main.c:33
+msgid "Report bugs to <madcat@e-kolay.net>."
+msgstr "Hataları <madcat@e-kolay.net> adresine bildirin."
+
+#: src/main.c:78
+msgid "I don't have any easter eggs... or do I?"
+msgstr "Hiç sürprizim yok... yoksa var mı?"
+
+#: src/about.c:25
+msgid "About this fine product..."
+msgstr "Bu leziz ürün hakkında..."
+
+#: src/about.c:32
+#, c-format
+msgid ""
+"<span size='x-large'><b>imposter %s</b></span>\n"
+"\n"
+"Copyright (c) 2003 Gürer Özen\n"
+"<span size='small'>This program is free software; you can redistribute and/"
+"or\n"
+"modify it under the terms of the GNU General Public License.</span>\n"
+"\n"
+"http://imposter.sourceforge.net"
+msgstr ""
+"<span size='x-large'><b>imposter %s</b></span>\n"
+"\n"
+"Copyright (c) 2003 Gürer Özen\n"
+"<span size='small'>Bu bir serbest yazılımdır; GNU General Public License\n"
+"altında değiştirilebilir ve/veya yeniden dağıtılabilir.</span>\n"
+"\n"
+"http://imposter.sourceforge.net"
+
+#: src/ui.c:70
+#, c-format
+msgid ""
+"Cannot open file:\n"
+"\n"
+"'%s'\n"
+"%s."
+msgstr ""
+"Dosyayı açamadım:\n"
+"\n"
+"'%s'\n"
+"%s."
+
+#: src/ui.c:82
+msgid "Select a presentation file..."
+msgstr "Bir sunum dosyası seçin..."
+
+#: src/ui.c:147
+msgid "/_File"
+msgstr "/_Dosya"
+
+#: src/ui.c:148
+msgid "/File/_Open..."
+msgstr "/Dosya/_Aç..."
+
+#: src/ui.c:149 src/ui.c:151
+msgid "/File/separator"
+msgstr "/Dosya/separator"
+
+#: src/ui.c:150
+msgid "/File/Proper_ties"
+msgstr "/Dosya/_Özellikler"
+
+#: src/ui.c:153
+msgid "/File/_Quit"
+msgstr "/Dosya/_Çık"
+
+#: src/ui.c:154
+msgid "/_View"
+msgstr "/_Bakış"
+
+#: src/ui.c:155
+msgid "/View/_Fullscreen"
+msgstr "/Bakış/_Tam Ekran"
+
+#: src/ui.c:156
+msgid "/_Go"
+msgstr "/_Git"
+
+#: src/ui.c:157
+msgid "/Go/_Previous Page"
+msgstr "/Git/_Önceki Sayfa"
+
+#: src/ui.c:158
+msgid "/Go/_Next Page"
+msgstr "/Git/_Sonraki Sayfa"
+
+#: src/ui.c:159
+msgid "/Go/separator"
+msgstr "/Git/separator"
+
+#: src/ui.c:160
+msgid "/Go/_First Page"
+msgstr "/Git/_İlk Sayfa"
+
+#: src/ui.c:161
+msgid "/Go/_Last Page"
+msgstr "/Git/S_on Sayfa"
+
+#: src/ui.c:162
+msgid "/_Help"
+msgstr "/_Yardım"
+
+#: src/ui.c:163
+msgid "/Help/_About"
+msgstr "/Yardım/_Hakkında"
+
+#: src/properties.c:47
+msgid "Properties"
+msgstr "Özellikler"
+
+#: src/properties.c:64
+msgid "<b>Author:</b>"
+msgstr "<b>Yazar:</b>"
+
+#: src/properties.c:76
+msgid "<b>Software:</b>"
+msgstr "<b>Yazılım:</b>"
+
+#: src/properties.c:88
+msgid "<b>Date:</b>"
+msgstr "<b>Tarih:</b>"
+
+#: src/debug.c:167
+#, c-format
+msgid "<b>Tag name</b>: %s"
+msgstr "<b>Tag adı</b>: %s"
+
+#: src/debug.c:186
+msgid "<b>Character data node</b>"
+msgstr "<b>Karakter verisi</b>"
+
+#: src/debug.c:223
+msgid "XML Browser"
+msgstr "XML Tarayıcı"
+
+#: src/debug.c:242
+msgid "_Parent"
+msgstr "_Üst"
+
+#: src/debug.c:295
+msgid "_Content"
+msgstr "_İçerik"
+
+#: src/debug.c:300
+msgid "_Styles"
+msgstr "_Stiller"
+
+#: src/debug.c:305
+msgid "_Meta"
+msgstr "_Meta"
+
+#: src/debug.c:310
+msgid "S_ettings"
+msgstr "_Ayarlar"
+
+#: src/zip.c:48
+msgid "No error"
+msgstr "Hata yok"
+
+#: src/zip.c:51
+msgid "Not enough memory"
+msgstr "Bellek yetersiz"
+
+#: src/zip.c:54
+msgid "Cannot find zip signature"
+msgstr "Zip imzasını bulamadım"
+
+#: src/zip.c:57
+msgid "Invalid zip file"
+msgstr "Geçersiz zip dosyası"
+
+#: src/zip.c:60
+msgid "Multi file zips are not supported"
+msgstr "Çok dosyalı zipleri desteklemiyorum"
+
+#: src/zip.c:63
+msgid "Cannot open the file"
+msgstr "Dosyayı açamadım"
+
+#: src/zip.c:66
+msgid "Cannot read data from file"
+msgstr "Dosyadan veri okuyamadım"
+
+#: src/zip.c:69
+msgid "Cannot find file in the zip archive"
+msgstr "Dosyayı zip arşivi içinde bulamadım"
+
+#: src/zip.c:72
+msgid "Unknown error"
+msgstr "Bilinmeyen hata"
+
+#~ msgid "/File/_Close"
+#~ msgstr "/Dosya/Kapa_t"

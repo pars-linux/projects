@@ -1,0 +1,15 @@
+V0.3 (2005-04-04)
+* Upgraded to new GtkFileChooser (requires gtk 2.4).
+* Page number elements are drawn.
+* Template bug is fixed.
+* Full gradient support.
+* Remote control support.
+
+V0.2 (2004-05-30)
+* Bitmap and gradient fill support for backgrounds.
+* Text improvements (tabs, spaces, bullets)
+* Gfx improvements (line arrows, rounded rectangles)
+* iksemel is upgraded to latest cvs code (more speed, less memory)
+
+V0.1 (2003-08-04)
+* First release.

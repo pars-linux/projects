@@ -1,0 +1,6 @@
+src/main.c
+src/about.c
+src/ui.c
+src/properties.c
+src/debug.c
+src/zip.c

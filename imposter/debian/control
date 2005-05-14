@@ -1,0 +1,15 @@
+Source: imposter
+Section: text
+Priority: optional
+Maintainer: Recai Oktaş <roktas@omu.edu.tr>
+Build-Depends: cdbs, debhelper (>= 4.0.0), autotools-dev, libgtk2.0-dev, libiksemel1-dev (>= 1.2)
+Standards-Version: 3.6.1.1
+
+Package: imposter
+Architecture: any
+Depends: ${shlibs:Depends} ${misc:Depends}
+Description: standalone viewer for OpenOffice.org Impress presentations
+ Imposter is a standalone viewer for the presentations created by
+ OpenOffice.org Impress software. User interface uses GTK2 toolkit.
+ GNOME Human Interface Guidelines are followed but GNOME libraries
+ are not used to keep dependencies at minimum.

@@ -1,0 +1,133 @@
+2005-05-10  gurer
+	* src/zip.c (get_word): signedness problem fixed.
+
+2005-04-05  roktas
+	* src/ui.c (cb_key): Ignore some key modifiers (ie. Numlock, Capslock).
+
+2005-04-01  Gurer
+	* src/gtkutility.c: file selector upgraded to GtkFileChooser.
+	* src/ui.c: Open menu remembers last path.
+	* src/r_text.c: text:page-number element is rendered.
+	* src/r_page.c: templates are no longer drawn over pages.
+
+2005-03-25  Gurer
+	* src/r_gradient.c: new gradient drawing code.
+
+2005-03-12  Gurer
+	* remote control patch by pancake <pancake@phreaker.net>
+	  * slave.c: added, reads commands from stdin
+	  * main.c: new option '-s', starts slave mode
+
+2004-05-30  Gurer
+	* render.c: incremental text appearing is only used in full screen mode
+
+2004-05-22  Gurer
+	* configure.ac, iksemel.c: upgraded to iksemel 1.2
+	* r_geometry.c: line arrows
+	* r_draw.c: r_tile_pixbuf()
+
+2004-05-19  Gurer
+	* r_text.c: bullets, tabs, incremental text appearing.
+	* r_draw.c: linear gradients.
+
+2003-12-29  Gurer
+	* debian/: new directory for debian packages, contributed by Rafal Czlonka.
+
+2003-08-10  Gurer
+	* r_draw.c: new drawing stuff.
+	* r_geometry.c: rectangles with rounders corners supported.
+	* r_page.c: bitmap fill support for background.
+
+2003-08-04  Gurer
+	* 0.1 release!
+	* version bump to 0.2
+
+2003-08-03  Gurer
+	* render.c: api renamed to oo_render_*
+	* include/render_ctx.h: internal stuff in render.h moved to here.
+
+2003-08-03  Gurer
+	* render.c, ui.c: drag'n'drop support moved into ui.c
+	* render.c: render_clean() takes care of document closing.
+	* document.c: compile warnings fixed.
+	* zip.c: 'const' keywords added to api.
+
+2003-08-02  Gurer
+	* about.c: frame removed.
+	* r_page.c: background color.
+	* document.c: oo_doc_open() report errors via GError.
+
+2003-07-31  Gurer
+	* r_geometry.c: draw:rect uses fill color and renders text.
+	  draw:polygon and draw:polyline uses stroke and fill colors.
+
+2003-07-31  Gurer
+	* r_text.c: text:line-break and text:a fix.
+	* r_style.c: style search fix.
+
+2003-07-30  Gurer
+	* r_text.c: text:s and text:a elements rendered.
+
+2003-07-29  Gurer
+	* iksemel.c: updated to latest cvs.
+	* r_path.c: global variables packed into the path_ctx.
+
+2003-07-27  Gurer
+	* r_path.c: shorthand curve cmd added, bugfix for line cmd.
+	* r_text.c: still working on text size problem :(
+
+2003-07-19  Gurer
+	* document.c: converted into a GObject.
+
+2003-07-16  Gurer
+	* render.c: render_get_page(), render_set_page() funcs.
+	  current page is now an attribute of render object.
+	* ui.c: page navigation moved to here from document.c
+
+2003-07-15  Gurer
+	* render.c: converted into a GtkWidget.
+
+2003-07-04  Gurer
+	* r_page.c: background objects are rendered.
+
+2003-07-03  Gurer
+	* configure.ac, Makefile.am, main.c, po/*: i18n support.
+	* po/tr.po: Turkish translation.
+
+2003-07-03  Gurer
+	* main.c, ui.c: small i18n fixes.
+	* debug.c: navigation fixes.
+
+2003-07-03  Gurer
+	* about.c: added sf.net url.
+	* debug.c: xml browser for examining file structure. activate with 'd' key.
+	* r_style.c: style search for parent nodes fixed.
+	* r_path.c: draw_bezier moved to gtkutility.c.
+	* include/i18n.h: macros for gettext support.
+
+2003-07-02  Gurer
+	* include/iksemel.h, src/iksemel.c: lite version of iksemel library.
+	* configure.ac: lite version is compiled built-in where library isn't available.
+
+2003-06-29  Gurer
+	* r_text.c: italic, underline, bold styles.
+
+2003-06-28  Gurer
+	* r_path.c: bezier curves.
+	* geometry.c: polygon and polyline objects.
+	* r_text.c: text scaling fix.
+
+2003-06-27  Gurer
+	* render.c: grouped objects aren't ignored.
+	* ui.c: menu fixes for HIG compliance.
+	* infowin.c: renamed to properties.c
+	* properties.c: HIG compliance.
+	* about.c: about dialog.
+
+2003-06-26  Gurer
+	* r_image.c: pixbufs are cached. memory usage is greatly reduced.
+	* doc.c: hook system with open/close/page change events.
+	* render.c: actual size of the page is used for scaling.
+
+2003-06-20  Gurer
+	* project started.
