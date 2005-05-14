@@ -1,0 +1,48 @@
+
+imposter 0.3
+Copyright (c) 2003-2005 Gurer Ozen <madcat@e-kolay.net>
+
+[ introduction ]
+
+imposter is a standalone viewer for OpenOffice.org Impress presentations.
+It is released under the GNU General Public License. A copy of the license
+is included in the file 'COPYING'.
+
+[ requirements ]
+
+required:
+* gtk 2.4 (http://www.gtk.org)
+
+optional:
+* iksemel 1.2 (http://iksemel.jabberstudio.org)
+    If iksemel is not available, a built in lite version is used.
+
+[ compile & install ]
+
+./configure
+make
+make install
+
+You can find detailed information in the file 'INSTALL'.
+You may need to become root if you are installing into /usr.
+You can use compiled program directly without installation.
+
+[ usage ]
+
+Invoke imposter from shell with:
+
+imposter presentations/my_file.sxi
+
+Alternatively you can launch imposter from shell or your favorite dock or
+start menu utility and select the file with File/Open... menu. You can even
+drag the file from your file manager and drop into the imposter window.
+
+[ keys ]
+
+space: in full screen mode, shows next text line for animated texts
+cursor right, page down: turns next page
+cursor left, page up: turn previous page
+home: jumps to the first page
+end: jumps to the last page
+f: switches between window and fullscreen modes
+esc: quits from imposter

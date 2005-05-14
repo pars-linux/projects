@@ -1,0 +1,12 @@
+
+(in order of importance)
+
+* better rendering of texts
+* charts
+* text search through the pages
+* page list window
+* print page, export png, and other useful snapshot abilities
+* more gnome integration where gnome libs are available
+  (a dependency on gnome is not acceptable though)
+
+anything else? :-)
