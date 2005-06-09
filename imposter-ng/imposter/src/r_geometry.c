@@ -8,20 +8,26 @@
 #include "internal.h"
 #include <math.h>
 
-int
-r_get_color(ImpRenderCtx *ctx, iks *node, char *name, ImpColor *ic)
+void
+r_parse_color(const char *color, ImpColor *ic)
 {
-	char *color;
 	unsigned int cval;
 
-	color = r_get_style(ctx, node, "draw:fill-color");
-	if (!color) return 0;
-
-	if (1 != sscanf(color, "#%X", &cval)) return 0;
+	if (1 != sscanf(color, "#%X", &cval)) return;
 
 	ic->red = (cval & 0xFF0000) >> 8;
 	ic->green = cval & 0x00FF00;
 	ic->blue = (cval & 0xFF) << 8;
+}
+
+int
+r_get_color(ImpRenderCtx *ctx, iks *node, char *name, ImpColor *ic)
+{
+	char *color;
+
+	color = r_get_style(ctx, node, "draw:fill-color");
+	if (!color) return 0;
+	r_parse_color(color, ic);
 
 	printf("C %s, %d, %d, %d\n", color,ic->red,ic->green,ic->blue);
 	return 1;
