@@ -27,9 +27,15 @@ typedef struct ImpPointStruct {
 	int y;
 } ImpPoint;
 
+typedef struct ImpColorStruct {
+	int red;
+	int green;
+	int blue;
+} ImpColor;
+
 typedef struct ImpDrawer_struct {
 	void (*get_size)(void *drw_data, int *w, int *h);
-	void (*set_fg_color)(void *drw_data, const char *color);
+	void (*set_fg_color)(void *drw_data, ImpColor *color);
 	void (*draw_line)(void *drw_data, int x1, int y1, int x2, int y2);
 	void (*draw_rect)(void *drw_data, int fill, int x, int y, int w, int h);
 	void (*draw_polygon)(void *drw_data, int fill, ImpPoint *pts, int nr_pts);

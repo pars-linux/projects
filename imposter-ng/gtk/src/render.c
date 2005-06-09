@@ -29,13 +29,15 @@ get_size(void *drw_data, int *w, int *h)
 }
 
 static void
-set_fg_color(void *drw_data, const char *color)
+set_fg_color(void *drw_data, ImpColor *color)
 {
 	struct my_ctx *ctx = (struct my_ctx *) drw_data;
-	GdkColor col;
+	GdkColor c;
 
-	gdk_color_parse(color, &col);
-	gdk_gc_set_rgb_fg_color(ctx->gc, &col);
+	c.red = color->red;
+	c.green = color->green;
+	c.blue = color->blue;
+	gdk_gc_set_rgb_fg_color(ctx->gc, &c);
 }
 
 static void
