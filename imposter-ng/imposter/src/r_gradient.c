@@ -327,9 +327,8 @@ r_draw_gradient (ImpRenderCtx *ctx, void *drw_data, iks *node)
 		grad.offset_x = 50;
 		grad.offset_y = 50;
 
-		r_get_color(ctx, x, "draw:start-color", &grad.start);
-//		tmp = iks_find_attrib (x, "draw:start-color");
-//		if (tmp) gdk_color_parse (tmp, &grad.start);
+		tmp = iks_find_attrib (x, "draw:start-color");
+		if (tmp) r_parse_color (tmp, &grad.start);
 		tmp = iks_find_attrib (x, "draw:start-intensity");
 		if (tmp) {
 			int val = atoi (tmp);
@@ -337,9 +336,8 @@ r_draw_gradient (ImpRenderCtx *ctx, void *drw_data, iks *node)
 			grad.start.green = grad.start.green * val / 100;
 			grad.start.blue = grad.start.blue * val / 100;
 		}
-		r_get_color(ctx, x, "draw:end-color", &grad.end);
-//		tmp = iks_find_attrib (x, "draw:end-color");
-//		if (tmp) gdk_color_parse (tmp, &grad.end);
+		tmp = iks_find_attrib (x, "draw:end-color");
+		if (tmp) r_parse_color (tmp, &grad.end);
 		tmp = iks_find_attrib (x, "draw:end-intensity");
 		if (tmp) {
 			int val = atoi (tmp);
