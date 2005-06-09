@@ -8,6 +8,7 @@ OBJS = \
 	src/r_back.o \
 	src/r_style.o \
 	src/r_geometry.o \
+	src/r_gradient.o \
 	src/r_draw.o \
 	src/zip.o \
 	src/iksemel.o

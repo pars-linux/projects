@@ -40,6 +40,7 @@ struct ImpRenderCtx_struct {
 };
 
 char *r_get_style (ImpRenderCtx *ctx, iks *node, char *attr);
+int r_get_color(ImpRenderCtx *ctx, iks *node, char *name, ImpColor *ic);
 void r_draw_rect(ImpRenderCtx *ctx, void *drw_data, int fill, int x, int y, int w, int h, int roundness);
 
 int _imp_r_background(ImpRenderCtx *ctx, void *drw_data, iks *node);
@@ -48,6 +49,7 @@ void r_circle(ImpRenderCtx *ctx, void *drw_data, iks *node);
 void r_line(ImpRenderCtx *ctx, void *drw_data, iks *node);
 void r_rect(ImpRenderCtx *ctx, void *drw_data, iks *node);
 void r_polyline(ImpRenderCtx *ctx, void *drw_data, iks *node);
+void r_draw_gradient (ImpRenderCtx *ctx, void *drw_data, iks *node);
 
 
 #endif	/* INTERNAL_H */

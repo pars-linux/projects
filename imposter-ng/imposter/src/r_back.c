@@ -10,8 +10,7 @@
 int
 _imp_r_background(ImpRenderCtx *ctx, void *drw_data, iks *node)
 {
-/*
-	GdkColor col;
+	ImpColor col;
 	char *type;
 	char *stil, *gfx;
 	iks *x;
@@ -21,10 +20,10 @@ _imp_r_background(ImpRenderCtx *ctx, void *drw_data, iks *node)
 
 	if (strcmp (type, "solid") == 0) {
 		if (r_get_color (ctx, node, "draw:fill-color", &col)) {
-			gdk_gc_set_rgb_fg_color (ctx->gc, &col);
+			ctx->drw->set_fg_color(drw_data, &col);
 		}
-		gdk_draw_rectangle (ctx->d, ctx->gc, TRUE, 0, 0, ctx->pix_w, ctx->pix_h);
-	} else if (strcmp (type, "bitmap") == 0) {
+		ctx->drw->draw_rect(drw_data, 1, 0, 0, ctx->pix_w, ctx->pix_h);
+	} /* else if (strcmp (type, "bitmap") == 0) {
 		stil = r_get_style (ctx, node, "draw:fill-image-name");
 		x = iks_find_with_attrib (iks_find (ctx->styles, "office:styles"),
 			"draw:fill-image", "draw:name", stil);
@@ -36,11 +35,10 @@ _imp_r_background(ImpRenderCtx *ctx, void *drw_data, iks *node)
 				r_tile_pixbuf (ctx, gfx, 0, 0, ctx->pix_w, ctx->pix_h);
 			}
 		}
-	} else if (strcmp (type, "gradient") == 0) {
-		r_draw_gradient (ctx, node);
+	} */ else if (strcmp (type, "gradient") == 0) {
+		r_draw_gradient (ctx, drw_data, node);
 	} else {
 		return 0;
 	}
 	return 1;
-*/
 }

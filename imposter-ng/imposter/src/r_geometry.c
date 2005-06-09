@@ -9,6 +9,35 @@
 #include <math.h>
 
 int
+r_get_color(ImpRenderCtx *ctx, iks *node, char *name, ImpColor *ic)
+{
+	char *color;
+	unsigned int cval;
+
+	color = r_get_style(ctx, node, "draw:fill-color");
+	if (!color) return 0;
+
+	if (1 != sscanf(color, "#%X", &cval)) return 0;
+
+	ic->red = (cval & 0xFF0000) >> 8;
+	ic->green = cval & 0x00FF00;
+	ic->blue = (cval & 0xFF) << 8;
+
+	printf("C %s, %d, %d, %d\n", color,ic->red,ic->green,ic->blue);
+	return 1;
+}
+
+static void
+fg_color(ImpRenderCtx *ctx, void *drw_data, iks *node, char *name)
+{
+	ImpColor ic;
+
+	if (r_get_color(ctx, node, name, &ic)) {
+		ctx->drw->set_fg_color(drw_data, &ic);
+	}
+}
+
+int
 r_get_x (ImpRenderCtx *ctx, iks *node, char *name)
 {
 	char *val;
@@ -96,12 +125,8 @@ void
 r_line(ImpRenderCtx *ctx, void *drw_data, iks *node)
 {
 	int x, y, x2, y2;
-	char *color;
 
-	color = r_get_style(ctx, node, "svg:stroke-color");
-	if (color) {
-		ctx->drw->set_fg_color(drw_data, color);
-	}
+	fg_color(ctx, drw_data, node, "svg:stroke-color");
 
 	x = r_get_x (ctx, node, "svg:x1");
 	y = r_get_y (ctx, node, "svg:y1");
@@ -124,7 +149,6 @@ r_rect(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	int x, y, w, h;
 	int fill = 1;
 	int roundness = 0;
-	char *color;
 
 	tmp = r_get_style (ctx, node, "draw:fill");
 	if (!tmp || strcmp (tmp, "solid") != 0) fill = 0;
@@ -138,16 +162,10 @@ r_rect(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	if (tmp) roundness = atof (tmp) * ctx->fact_x;
 
 	if (fill) {
-		color = r_get_style(ctx, node, "draw:fill-color");
-		if (color) {
-			ctx->drw->set_fg_color(drw_data, color);
-		}
+		fg_color(ctx, drw_data, node, "draw:fill-color");
 		r_draw_rect (ctx, drw_data, 1, x, y, w, h, roundness);
 	}
-	color = r_get_style(ctx, node, "svg:stroke-color");
-	if (color) {
-		ctx->drw->set_fg_color(drw_data, color);
-	}
+	fg_color(ctx, drw_data, node, "svg:stroke-color");
 	r_draw_rect (ctx, drw_data, 0, x, y, w, h, roundness);
 
 	if (iks_child (node)) {
@@ -171,7 +189,6 @@ r_get_viewbox (iks *node)
 void
 r_polygon(ImpRenderCtx *ctx, void *drw_data, iks *node)
 {
-	char *color;
 	char *data;
 	ImpPoint *points;
 	int i, cnt, j;
@@ -222,16 +239,10 @@ r_polygon(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	}
 
 	if (fill) {
-		color = r_get_style(ctx, node, "draw:fill-color");
-		if (color) {
-			ctx->drw->set_fg_color(drw_data, color);
-		}
+		fg_color(ctx, drw_data, node, "draw:fill-color");
 		ctx->drw->draw_polygon(drw_data, 1, points, cnt);
 	}
-	color = r_get_style(ctx, node, "svg:stroke-color");
-	if (color) {
-		ctx->drw->set_fg_color(drw_data, color);
-	}
+	fg_color(ctx, drw_data, node, "svg:stroke-color");
 	ctx->drw->draw_polygon(drw_data, 0, points, cnt);
 
 	free (points);
@@ -240,7 +251,6 @@ r_polygon(ImpRenderCtx *ctx, void *drw_data, iks *node)
 void
 r_polyline(ImpRenderCtx *ctx, void *drw_data, iks *node)
 {
-	char *color;
 	char *data;
 	ImpPoint *points;
 	int i, cnt, j;
@@ -285,10 +295,7 @@ r_polyline(ImpRenderCtx *ctx, void *drw_data, iks *node)
 
 	pen_x = x + points[0].x * w /pw;
 	pen_y = y + points[0].y * h / ph;
-	color = r_get_style(ctx, node, "svg:stroke-color");
-	if (color) {
-		ctx->drw->set_fg_color(drw_data, color);
-	}
+	fg_color(ctx, drw_data, node, "svg:stroke-color");
 	for (i = 1; i < cnt; i++) {
 		int tx, ty;
 		tx = x + points[i].x * w / pw;

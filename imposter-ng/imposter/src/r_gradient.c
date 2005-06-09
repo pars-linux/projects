@@ -1,12 +1,11 @@
 /* imposter (OO.org Impress viewer)
-** Copyright (C) 2005 Gurer Ozen
+** Copyright (C) 2003-2005 Gurer Ozen
 ** This code is free software; you can redistribute it and/or
 ** modify it under the terms of GNU General Public License.
 */
 
 #include "common.h"
-#include "render_ctx.h"
-
+#include "internal.h"
 #include <math.h>
 
 #define GRAD_LINEAR 0
@@ -18,9 +17,9 @@
 
 typedef struct Gradient_s {
 	int type;
-	GdkColor start;
+	ImpColor start;
 	int start_intensity;
-	GdkColor end;
+	ImpColor end;
 	int end_intensity;
 	int angle;
 	int border;
@@ -37,7 +36,7 @@ typedef struct Rectangle_s {
 } Rectangle;
 
 void
-poly_rotate (GdkPoint *poly, int n, int cx, int cy, double fAngle)
+poly_rotate (ImpPoint *poly, int n, int cx, int cy, double fAngle)
 {
 	int i;
 	long nX, nY;
@@ -52,12 +51,12 @@ poly_rotate (GdkPoint *poly, int n, int cx, int cy, double fAngle)
 }
 
 void
-r_draw_gradient_simple (render_ctx *ctx, Gradient *grad)
+r_draw_gradient_simple (ImpRenderCtx *ctx, void *drw_data, Gradient *grad)
 {
 	Rectangle rRect = { 0, 0, ctx->pix_w - 1, ctx->pix_h - 1 };
 	Rectangle aRect, aFullRect;
-	GdkPoint poly[4], tempoly[2];
-	GdkColor gcol;
+	ImpPoint poly[4], tempoly[2];
+	ImpColor gcol;
 	double fW, fH, fDX, fDY, fAngle;
 	double fScanLine, fScanInc;
 	long redSteps, greenSteps, blueSteps;
@@ -139,8 +138,8 @@ r_draw_gradient_simple (render_ctx *ctx, Gradient *grad)
 
 	for (i = 0; i < nSteps2; i++) {
 		// draw polygon
-		gdk_gc_set_rgb_fg_color (ctx->gc, &gcol);
-		gdk_draw_polygon (ctx->d, ctx->gc, TRUE, &poly[0], 4);
+		ctx->drw->set_fg_color(drw_data, &gcol);
+		ctx->drw->draw_polygon(drw_data, 1, &poly[0], 4);
 		// calc next polygon
 		aRect.Top = (long)(fScanLine += fScanInc);
 		if (i == nSteps) {
@@ -186,12 +185,12 @@ r_draw_gradient_simple (render_ctx *ctx, Gradient *grad)
 }
 
 void
-r_draw_gradient_complex (render_ctx *ctx, Gradient *grad)
+r_draw_gradient_complex (ImpRenderCtx *ctx, void *drw_data, Gradient *grad)
 {
 	Rectangle rRect = { 0, 0, ctx->pix_w - 1, ctx->pix_h - 1 };
 	Rectangle aRect = rRect;
-	GdkColor gcol;
-	GdkPoint poly[4];
+	ImpColor gcol;
+	ImpPoint poly[4];
 	double fAngle = (((double) grad->angle) * 3.14 / 1800.0);
 	long redSteps, greenSteps, blueSteps;
 	long nZW, nZH;
@@ -276,8 +275,8 @@ r_draw_gradient_complex (render_ctx *ctx, Gradient *grad)
 	poly[2].y = rRect.Bottom;
 	poly[3].x = rRect.Left;
 	poly[3].y = rRect.Bottom;
-	gdk_gc_set_rgb_fg_color (ctx->gc, &gcol);
-	gdk_draw_polygon (ctx->d, ctx->gc, TRUE, &poly[0], 4);
+	ctx->drw->set_fg_color(drw_data, &gcol);
+	ctx->drw->draw_polygon(drw_data, 1, &poly[0], 4);
 
 	for (i = 0; i < nSteps; i++) {
 		aRect.Left = (long) (sLeft += sInc);
@@ -290,12 +289,12 @@ r_draw_gradient_complex (render_ctx *ctx, Gradient *grad)
 		gcol.red = grad->start.red + (redSteps * (i+1) / nSteps);
 		gcol.green = grad->start.green + (greenSteps * (i+1) / nSteps);
 		gcol.blue = grad->start.blue + (blueSteps * (i+1) / nSteps);
-		gdk_gc_set_rgb_fg_color (ctx->gc, &gcol);
+		ctx->drw->set_fg_color(drw_data, &gcol);
 
 		if (grad->type == GRAD_RADIAL || grad->type == GRAD_ELLIPTICAL) {
-			gdk_draw_arc (ctx->d, ctx->gc, TRUE, aRect.Left, aRect.Top,
+			ctx->drw->draw_arc(drw_data, 1, aRect.Left, aRect.Top,
 				aRect.Right - aRect.Left, aRect.Bottom - aRect.Top,
-				0, 360*64);
+				0, 360);
 		} else {
 			poly[0].x = aRect.Left;
 			poly[0].y = aRect.Top;
@@ -306,15 +305,15 @@ r_draw_gradient_complex (render_ctx *ctx, Gradient *grad)
 			poly[3].x = aRect.Left;
 			poly[3].y = aRect.Bottom;
 			poly_rotate (&poly[0], 4, cx, cy, fAngle);
-			gdk_draw_polygon (ctx->d, ctx->gc, TRUE, &poly[0], 4);
+			ctx->drw->draw_polygon(drw_data, 1, &poly[0], 4);
 		}
 	}
 }
 
 void
-r_draw_gradient (render_ctx *ctx, iks *node)
+r_draw_gradient (ImpRenderCtx *ctx, void *drw_data, iks *node)
 {
-	GdkGC *gc;
+//	GdkGC *gc;
 	Gradient grad;
 	char *stil, *tmp;
 	iks *x;
@@ -328,8 +327,9 @@ r_draw_gradient (render_ctx *ctx, iks *node)
 		grad.offset_x = 50;
 		grad.offset_y = 50;
 
-		tmp = iks_find_attrib (x, "draw:start-color");
-		if (tmp) gdk_color_parse (tmp, &grad.start);
+		r_get_color(ctx, x, "draw:start-color", &grad.start);
+//		tmp = iks_find_attrib (x, "draw:start-color");
+//		if (tmp) gdk_color_parse (tmp, &grad.start);
 		tmp = iks_find_attrib (x, "draw:start-intensity");
 		if (tmp) {
 			int val = atoi (tmp);
@@ -337,8 +337,9 @@ r_draw_gradient (render_ctx *ctx, iks *node)
 			grad.start.green = grad.start.green * val / 100;
 			grad.start.blue = grad.start.blue * val / 100;
 		}
-		tmp = iks_find_attrib (x, "draw:end-color");
-		if (tmp) gdk_color_parse (tmp, &grad.end);
+		r_get_color(ctx, x, "draw:end-color", &grad.end);
+//		tmp = iks_find_attrib (x, "draw:end-color");
+//		if (tmp) gdk_color_parse (tmp, &grad.end);
 		tmp = iks_find_attrib (x, "draw:end-intensity");
 		if (tmp) {
 			int val = atoi (tmp);
@@ -372,16 +373,16 @@ r_draw_gradient (render_ctx *ctx, iks *node)
 
 		if (grad.type == -1) return;
 
-		gc = ctx->gc;
-		ctx->gc = gdk_gc_new (ctx->d);
-		gdk_gc_copy (ctx->gc, gc);
+//		gc = ctx->gc;
+//		ctx->gc = gdk_gc_new (ctx->d);
+//		gdk_gc_copy (ctx->gc, gc);
 
 		if (grad.type == GRAD_LINEAR || grad.type == GRAD_AXIAL)
-			r_draw_gradient_simple (ctx, &grad);
+			r_draw_gradient_simple (ctx, drw_data, &grad);
 		else
-			r_draw_gradient_complex (ctx, &grad);
+			r_draw_gradient_complex (ctx, drw_data, &grad);
 
-		gdk_gc_unref (ctx->gc);
-		ctx->gc = gc;
+//		gdk_gc_unref (ctx->gc);
+//		ctx->gc = gc;
 	}
 }
