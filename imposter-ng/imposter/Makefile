@@ -4,6 +4,8 @@ CFLAGS= -O2 -Wall -Iinclude -DHAVE_CONFIG_H=1
 
 OBJS = \
 	src/document.o \
+	src/f_oo13.o \
+	src/f_oasis.o \
 	src/render.o \
 	src/r_back.o \
 	src/r_style.o \

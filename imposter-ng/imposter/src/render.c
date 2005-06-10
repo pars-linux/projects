@@ -7,26 +7,6 @@
 #include "common.h"
 #include "internal.h"
 
-static void r_group(ImpRenderCtx *ctx, void *drw_data, iks *node);
-
-struct element_s {
-	char *name;
-	void (*func)(ImpRenderCtx *ctx, void *drw_data, iks *node);
-} elements[] = {
-//	{ "draw:image", r_image },
-	{ "draw:rect", r_rect },
-//	{ "draw:text-box", r_text },
-	{ "draw:ellipse", r_circle },
-	{ "draw:circle", r_circle },
-	{ "draw:line", r_line },
-//	{ "draw:connector", r_line },
-	{ "draw:polyline", r_polyline },
-	{ "draw:polygon", r_polygon },
-//	{ "draw:path", r_path },
-	{ "draw:g", r_group },
-	{ NULL, NULL }
-};
-
 ImpRenderCtx *
 imp_create_context(const ImpDrawer *drw)
 {
@@ -55,52 +35,22 @@ imp_context_set_step(ImpRenderCtx *ctx, int step)
 static void
 find_geometry(ImpRenderCtx *ctx, void *drw_data)
 {
-	char *tmp;
-	iks *x, *y;
-
+	// find drawing area size
 	ctx->drw->get_size(drw_data, &ctx->pix_w, &ctx->pix_h);
-
-	tmp = iks_find_attrib(ctx->page->page, "draw:master-page-name");
-	x = iks_find(ctx->page->doc->styles, "office:master-styles");
-	y = iks_find_with_attrib(x, "style:master-page", "style:name", tmp);
-	x = iks_find(ctx->page->doc->styles, "office:automatic-styles");
-	y = iks_find_with_attrib(x, "style:page-master", "style:name",
-		iks_find_attrib(y, "style:page-master-name"));
-	ctx->cm_w = atof(iks_find_attrib(iks_find(y, "style:properties"), "fo:page-width"));
-	ctx->cm_h = atof(iks_find_attrib(iks_find(y, "style:properties"), "fo:page-height"));
+	// find page size
+	ctx->page->doc->get_geometry(ctx);
+	// calculate ratio
 	ctx->fact_x = ctx->pix_w / ctx->cm_w;
 	ctx->fact_y = ctx->pix_h / ctx->cm_h;
-}
-
-static void
-r_group(ImpRenderCtx *ctx, void *drw_data, iks *node)
-{
-	iks *x;
-	char *element;
-	int i;
-
-	for (x = iks_first_tag(node); x; x = iks_next_tag(x)) {
-		element = iks_name(x);
-		i = 0;
-		while (elements[i].name) {
-			if (strcmp(element, elements[i].name) == 0) {
-				elements[i].func(ctx, drw_data, x);
-				break;
-			}
-			i++;
-		}
-	}
 }
 
 void
 imp_render(ImpRenderCtx *ctx, void *drw_data)
 {
-	iks *x;
-	char *element;
-	int i;
+	struct ImpElement elm;
 
 	find_geometry(ctx, drw_data);
-
+/*
 	i = _imp_r_background(ctx, drw_data, ctx->page->page);
 
 	element = iks_find_attrib(ctx->page->page, "draw:master-page-name");
@@ -125,18 +75,31 @@ imp_render(ImpRenderCtx *ctx, void *drw_data)
 			}
 		}
 	}
-
-	for (x = iks_first_tag(ctx->page->page); x; x = iks_next_tag(x)) {
-		element = iks_name(x);
-		i = 0;
-		while (elements[i].name) {
-			if (strcmp(element, elements[i].name) == 0) {
-				elements[i].func(ctx, drw_data, x);
+*/
+	while (1) {
+		ctx->page->doc->get_next_element(ctx, &elm);
+		switch (elm.type) {
+			case IMP_ELM_LINE:
+				ctx->drw->set_fg_color(drw_data, &elm.line.fg);
+				ctx->drw->draw_line(drw_data,
+					elm.line.x1, elm.line.y1,
+					elm.line.x2, elm.line.y2
+				);
 				break;
-			}
-			i++;
+			case IMP_ELM_RECT:
+				_imp_r_rect(ctx, drw_data, &elm.rect);
+				break;
+			case IMP_ELM_CIRCLE:
+				ctx->drw->set_fg_color(drw_data, &elm.circle.fg);
+				ctx->drw->draw_arc(drw_data,
+					elm.circle.fill,
+					elm.circle.x, elm.circle.y, elm.circle.w, elm.circle.h,
+					elm.circle.sa, elm.circle.ea
+				);
+				break;
+			case IMP_ELM_END:
+				return;
 		}
-//		printf ("\nUNKNOWN %s\n%s\n\n", iks_name (x), iks_string (iks_stack (x), x));
 	}
 }
 

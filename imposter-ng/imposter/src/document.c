@@ -21,10 +21,7 @@ ImpDoc *
 imp_open(const char *filename, int *err)
 {
 	ImpDoc *doc;
-	ImpPage *page;
-	const char *class;
-	int e, i;
-	iks *x;
+	int e;
 
 	doc = calloc(1, sizeof(ImpDoc));
 	if (!doc) {
@@ -56,34 +53,21 @@ imp_open(const char *filename, int *err)
 		return NULL;
 	}
 
-	class = iks_find_attrib(doc->content, "office:class");
-	if (iks_strcmp(class, "presentation") != 0) {
-		*err = IMP_NOTIMP;
+	e = _imp_oo13_load(doc);
+	if (e && e != IMP_NOTIMP) {
+		*err = e;
 		imp_close(doc);
 		return NULL;
 	}
 
-	x = iks_find(iks_find(doc->content, "office:body"), "draw:page");
-	i = 0;
-	for (; x; x = iks_next_tag(x)) {
-		if (strcmp(iks_name(x), "draw:page") == 0) {
-			page = iks_stack_alloc(doc->stack, sizeof(ImpPage));
-			if (!page) {
-				*err = IMP_NOMEM;
-				imp_close(doc);
-				return NULL;
-			}
-			memset(page, 0, sizeof(ImpPage));
-			page->page = x;
-			page->nr = ++i;
-			page->doc = doc;
-			if (!doc->pages) doc->pages = page;
-			page->prev = doc->last_page;
-			if (doc->last_page) doc->last_page->next = page;
-			doc->last_page = page;
+	if (e == IMP_NOTIMP) {
+		e = _imp_oasis_load(doc);
+		if (e) {
+			*err = e;
+			imp_close(doc);
+			return NULL;
 		}
 	}
-	doc->nr_pages = i;
 
 	return doc;
 }
@@ -130,7 +114,7 @@ imp_get_page_no(ImpPage *page)
 const char *
 imp_get_page_name(ImpPage *page)
 {
-	return iks_find_attrib(page->page, "draw:name");
+	return page->name;
 }
 
 void
