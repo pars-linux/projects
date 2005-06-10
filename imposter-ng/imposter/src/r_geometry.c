@@ -29,7 +29,6 @@ r_get_color(ImpRenderCtx *ctx, iks *node, char *name, ImpColor *ic)
 	if (!color) return 0;
 	r_parse_color(color, ic);
 
-	printf("C %s, %d, %d, %d\n", color,ic->red,ic->green,ic->blue);
 	return 1;
 }
 
@@ -63,7 +62,7 @@ r_get_y (ImpRenderCtx *ctx, iks *node, char *name)
 	return atof (val) * ctx->fact_y;
 }
 
-static int
+int
 r_get_angle (iks *node, char *name, int def)
 {
 	char *tmp;
@@ -71,33 +70,6 @@ r_get_angle (iks *node, char *name, int def)
 	tmp = iks_find_attrib (node, name);
 	if (!tmp) return def;
 	return atof (tmp);
-}
-
-void
-r_circle(ImpRenderCtx *ctx, void *drw_data, iks *node)
-{
-	int x, y, w, h, sa, ea;
-	int fill = 1;
-	char *tmp;
-
-	x = r_get_x (ctx, node, "svg:x");
-	y = r_get_y (ctx, node, "svg:y");
-	w = r_get_x (ctx, node, "svg:width");
-	h = r_get_y (ctx, node, "svg:height");
-	sa = r_get_angle (node, "draw:start-angle", 0);
-	ea = r_get_angle (node, "draw:end-angle", 360);
-	if (ea > sa)
-		ea = ea - sa;
-	else
-		ea = 360 + ea - sa;
-
-	tmp = r_get_style (ctx, node, "draw:fill");
-	if (!tmp || strcmp (tmp, "solid") != 0) fill = 0;
-
-	tmp = iks_find_attrib (node, "draw:kind");
-	if (iks_strcmp (tmp, "arc") == 0) fill = 0;
-
-	ctx->drw->draw_arc(drw_data, fill, x, y, w, h, sa, ea);
 }
 
 void
@@ -149,34 +121,16 @@ r_line(ImpRenderCtx *ctx, void *drw_data, iks *node)
 }
 
 void
-r_rect(ImpRenderCtx *ctx, void *drw_data, iks *node)
+_imp_r_rect(ImpRenderCtx *ctx, void *drw_data, struct ImpRect *rect)
 {
-	char *tmp;
-	int x, y, w, h;
-	int fill = 1;
-	int roundness = 0;
-
-	tmp = r_get_style (ctx, node, "draw:fill");
-	if (!tmp || strcmp (tmp, "solid") != 0) fill = 0;
-
-	x = r_get_x (ctx, node, "svg:x");
-	y = r_get_y (ctx, node, "svg:y");
-	w = r_get_x (ctx, node, "svg:width");
-	h = r_get_y (ctx, node, "svg:height");
-
-	tmp = r_get_style (ctx, node, "draw:corner-radius");
-	if (tmp) roundness = atof (tmp) * ctx->fact_x;
-
-	if (fill) {
-		fg_color(ctx, drw_data, node, "draw:fill-color");
-		r_draw_rect (ctx, drw_data, 1, x, y, w, h, roundness);
+	if (rect->fill) {
+		ctx->drw->set_fg_color(drw_data, &rect->bg);
+		r_draw_rect(ctx, drw_data, 1, rect->x, rect->y, rect->w, rect->h, rect->round);
 	}
-	fg_color(ctx, drw_data, node, "svg:stroke-color");
-	r_draw_rect (ctx, drw_data, 0, x, y, w, h, roundness);
+	ctx->drw->set_fg_color(drw_data, &rect->fg);
+	r_draw_rect (ctx, drw_data, 0, rect->x, rect->y, rect->w, rect->h, rect->round);
 
-	if (iks_child (node)) {
-		//r_text (ctx, node);
-	}
+	//r_text (ctx, node);
 }
 
 static int x, y, w, h;

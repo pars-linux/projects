@@ -12,7 +12,7 @@ OBJS = \
 	src/gtkutility.o \
 	src/about.o
 
-imposter: $(OBJS)
+imposter: $(OBJS) ../imposter/libimposter.a
 	$(CC) -o $@ $(OBJS) $(GTK_LIBS) -L../imposter -limposter
 
 clean:
