@@ -8,6 +8,7 @@ OBJS = \
 	src/main.o \
 	src/render.o \
 	src/ui.o \
+	src/debug.o \
 	src/slave.o \
 	src/gtkutility.o \
 	src/about.o

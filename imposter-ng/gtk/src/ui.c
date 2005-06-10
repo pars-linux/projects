@@ -31,7 +31,7 @@ static struct {
 	{ "End", page_last },
 	{ "f", ui_toggle_fs },
 	{ "g", ui_perth },
-//	{ "d", debug_show },
+	{ "d", debug_show },
 	{ "Escape", main_quit },
 	{ NULL, NULL }
 };
@@ -83,6 +83,7 @@ ui_open(const char *filename)
 	if (doc_name) free(doc_name);
 	doc = tdoc;
 	doc_name = strdup(filename);
+	debug_update(doc);
 	page_first();
 }
 

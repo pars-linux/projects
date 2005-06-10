@@ -52,6 +52,8 @@ int imp_nr_pages(ImpDoc *doc);
 ImpPage *imp_get_page(ImpDoc *doc, int page_no);
 void imp_close(ImpDoc *doc);
 
+void *imp_get_xml(ImpDoc *doc, const char *filename);
+
 ImpPage *imp_next_page(ImpPage *page);
 ImpPage *imp_prev_page(ImpPage *page);
 int imp_get_page_no(ImpPage *page);
