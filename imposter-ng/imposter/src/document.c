@@ -117,6 +117,19 @@ imp_get_page_name(ImpPage *page)
 	return page->name;
 }
 
+void *
+imp_get_xml(ImpDoc *doc, const char *filename)
+{
+	if (strcmp(filename, "content.xml") == 0)
+		return doc->content;
+	else if (strcmp(filename, "styles.xml") == 0)
+		return doc->styles;
+	else if (strcmp(filename, "meta.xml") == 0)
+		return doc->meta;
+	else
+		return NULL;
+}
+
 void
 imp_close(ImpDoc *doc)
 {

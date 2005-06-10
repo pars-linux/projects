@@ -36,6 +36,7 @@ extern int errno;
 #include <gtk/gtk.h>
 #include <iksemel.h>
 #include "i18n.h"
+#include "imposter.h"
 
 void main_quit(void);
 
@@ -54,7 +55,9 @@ void about_show (void);
 void info_setup (void);
 void info_show (void);
 
-void debug_show (void);
+void debug_show(void);
+void debug_update(ImpDoc *doc);
+void debug_clean(void);
 
 typedef void (sf_func)(char *filename, gpointer data);
 GtkWidget *sf_new (gboolean for_save, GtkWidget *main_window, char *title, sf_func *func);
