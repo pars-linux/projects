@@ -8,47 +8,91 @@
 #include "internal.h"
 
 static void
-get_next_element(ImpRenderCtx *ctx, struct ImpElement *elm)
+render_object(ImpRenderCtx *ctx, void *drw_data, iks *x)
+{
+	char *tag, *t;
+	ImpColor fg;
+
+	tag = iks_name(x);
+	if (strcmp(tag, "draw:g") == 0) {
+		iks *y;
+		for (y = iks_first_tag(x); y; y = iks_next_tag(y)) {
+			render_object(ctx, drw_data, y);
+		}
+	} else if (strcmp(tag, "draw:line") == 0) {
+		r_get_color(ctx, x, "svg:stroke-color", &fg);
+		ctx->drw->set_fg_color(drw_data, &fg);
+		ctx->drw->draw_line(drw_data,
+			r_get_x(ctx, x, "svg:x1"), r_get_y(ctx, x, "svg:y1"),
+			r_get_x(ctx, x, "svg:x2"), r_get_y(ctx, x, "svg:y2")
+		);
+	} else if (strcmp(tag, "draw:rect") == 0) {
+		struct ImpRect rect;
+		r_get_color(ctx, x, "svg:stroke-color", &rect.fg);
+		r_get_color(ctx, x, "draw:fill-color", &rect.bg);
+		rect.x = r_get_x(ctx, x, "svg:x");
+		rect.y = r_get_y(ctx, x, "svg:y");
+		rect.w = r_get_x(ctx, x, "svg:width");
+		rect.h = r_get_y(ctx, x, "svg:height");
+		t = r_get_style(ctx, x, "draw:corner-radius");
+		rect.round = 0;
+		if (t) rect.round = atof(t) * ctx->fact_x;
+		t = r_get_style(ctx, x, "draw:fill");
+		if (t) rect.fill = 1; else rect.fill = 0;
+		_imp_r_rect(ctx, drw_data, &rect);
+	} else if (strcmp(tag, "draw:ellipse") == 0 || strcmp(tag, "draw:circle") == 0) {
+		int sa, ea, fill = 0;
+		r_get_color(ctx, x, "svg:stroke-color", &fg);
+		sa = r_get_angle(x, "draw:start-angle", 0);
+		ea = r_get_angle(x, "draw:end-angle", 360);
+		if (ea > sa) ea = ea - sa; else ea = 360 + ea - sa;
+		t = r_get_style(ctx, x, "draw:fill");
+		if (t) fill = 1;
+		ctx->drw->set_fg_color(drw_data, &fg);
+		ctx->drw->draw_arc(drw_data,
+			fill,
+			r_get_x(ctx, x, "svg:x"), r_get_y(ctx, x, "svg:y"),
+			r_get_x(ctx, x, "svg:width"), r_get_y(ctx, x, "svg:height"),
+			sa, ea
+		);
+	} else {
+		printf("Unknown element: %s\n", tag);
+	}
+}
+
+static void
+render_page(ImpRenderCtx *ctx, void *drw_data)
 {
 	iks *x;
-	char *tag, *t;
 
-	x = ctx->last_element;
-	if (x) {
-		x = iks_next_tag(x);
-	} else {
-		x = iks_first_tag(ctx->page->page);
-	}
-	for (; x; x = iks_next_tag(x)) {
-		tag = iks_name(x);
-		if (strcmp(tag, "draw:line") == 0) {
-			r_get_color(ctx, x, "svg:stroke-color", &elm->line.fg);
-			elm->type = IMP_ELM_LINE;
-			elm->line.x1 = r_get_x(ctx, x, "svg:x1");
-			elm->line.y1 = r_get_y(ctx, x, "svg:y1");
-			elm->line.x2 = r_get_x(ctx, x, "svg:x2");
-			elm->line.y2 = r_get_y(ctx, x, "svg:y2");
-			break;
-		} else if (strcmp(tag, "draw:rect") == 0) {
-			r_get_color(ctx, x, "svg:stroke-color", &elm->rect.fg);
-			r_get_color(ctx, x, "draw:fill-color", &elm->rect.bg);
-			elm->type = IMP_ELM_RECT;
-			elm->rect.x = r_get_x(ctx, x, "svg:x");
-			elm->rect.y = r_get_y(ctx, x, "svg:y");
-			elm->rect.w = r_get_x(ctx, x, "svg:width");
-			elm->rect.h = r_get_y(ctx, x, "svg:height");
-			t = r_get_style(ctx, x, "draw:corner-radius");
-			elm->rect.round = 0;
-			if (t) elm->rect.round = atof(t) * ctx->fact_x;
-			t = r_get_style(ctx, x, "draw:fill");
-			if (t) elm->rect.fill = 1; else elm->rect.fill = 0;
-			break;
-		} else {
-			printf("Unknown element: %s\n", tag);
+	/*
+	i = _imp_r_background(ctx, drw_data, ctx->page->page);
+	element = iks_find_attrib(ctx->page->page, "draw:master-page-name");
+	if (element) {
+		x = iks_find_with_attrib(
+			iks_find(ctx->page->doc->styles, "office:master-styles"),
+			"style:master-page", "style:name", element);
+		if (x) {
+			if (i == 0) _imp_r_background(ctx, drw_data, x);
+			for (x = iks_first_tag(x); x; x = iks_next_tag(x)) {
+				if (iks_find_attrib(x, "presentation:class"))
+					continue;
+				element = iks_name(x);
+				i = 0;
+				while (elements[i].name) {
+					if (strcmp(element, elements[i].name) == 0) {
+						elements[i].func(ctx, drw_data, x);
+						break;
+					}
+					i++;
+				}
+			}
 		}
 	}
-	if (!x) elm->type = IMP_ELM_END;
-	ctx->last_element = x;
+	*/
+	for (x = iks_first_tag(ctx->page->page); x; x = iks_next_tag(x)) {
+		render_object(ctx, drw_data, x);
+	}
 }
 
 static void
@@ -97,7 +141,7 @@ _imp_oasis_load(ImpDoc *doc)
 	}
 	doc->nr_pages = i;
 	doc->get_geometry = get_geometry;
-	doc->get_next_element = get_next_element;
+	doc->render_page = render_page;
 
 	return 0;
 }

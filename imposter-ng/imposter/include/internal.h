@@ -9,37 +9,13 @@
 #ifndef INTERNAL_H
 #define INTERNAL_H
 
-enum {
-	IMP_ELM_LINE,
-	IMP_ELM_RECT,
-	IMP_ELM_CIRCLE,
-	IMP_ELM_END
-};
-
-struct ImpElement {
-	int type;
-	union {
-		struct ImpRect {
-			int fill;
-			int x, y;
-			int w, h;
-			int round;
-			ImpColor fg;
-			ImpColor bg;
-		} rect ;
-		struct ImpCircle {
-			int fill;
-			int x, y;
-			int w, h;
-			int sa, ea;
-			ImpColor fg;
-		} circle;
-		struct ImpLine {
-			ImpColor fg;
-			int x1, y1;
-			int x2, y2;
-		} line;
-	};
+struct ImpRect {
+	int fill;
+	int x, y;
+	int w, h;
+	int round;
+	ImpColor fg;
+	ImpColor bg;
 };
 
 struct ImpDoc_struct {
@@ -52,7 +28,7 @@ struct ImpDoc_struct {
 	ImpPage *last_page;
 	int nr_pages;
 	void (*get_geometry)(ImpRenderCtx *ctx);
-	void (*get_next_element)(ImpRenderCtx *ctx, struct ImpElement *elm);
+	void (*render_page)(ImpRenderCtx *ctx, void *drw_data);
 };
 
 struct ImpPage_struct {
