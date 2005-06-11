@@ -25,7 +25,7 @@ r_get_color(ImpRenderCtx *ctx, iks *node, char *name, ImpColor *ic)
 {
 	char *color;
 
-	color = r_get_style(ctx, node, "draw:fill-color");
+	color = r_get_style(ctx, node, name);
 	if (!color) return 0;
 	r_parse_color(color, ic);
 
