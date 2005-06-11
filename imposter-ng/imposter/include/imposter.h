@@ -40,6 +40,11 @@ typedef struct ImpDrawer_struct {
 	void (*draw_rect)(void *drw_data, int fill, int x, int y, int w, int h);
 	void (*draw_polygon)(void *drw_data, int fill, ImpPoint *pts, int nr_pts);
 	void (*draw_arc)(void *drw_data, int fill, int x, int y, int w, int h, int sa, int ea);
+	void (*draw_bezier)(void *drw_data, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3);
+	void *(*open_image)(void *drw_data, const unsigned char *pix, size_t size);
+	void *(*scale_image)(void *drw_data, void *img_data, int w, int h);
+	void (*draw_image)(void *drw_data, void *img_data, int x, int y, int w, int h);
+	void (*close_image)(void *drw_data, void *img_data);
 } ImpDrawer;
 
 struct ImpRenderCtx_struct;

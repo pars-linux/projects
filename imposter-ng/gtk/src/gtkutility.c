@@ -52,7 +52,7 @@ sf_ask (GtkWidget *sfw, gpointer data)
 }
 
 void
-draw_bezier (GdkDrawable *d, GdkGC *gc, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3)
+gtkutil_draw_bezier (GdkDrawable *d, GdkGC *gc, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3)
 {
 	int x, y, nx, ny;
 	int ax, bx, cx, ay, by, cy;

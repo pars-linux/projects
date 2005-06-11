@@ -63,7 +63,7 @@ typedef void (sf_func)(char *filename, gpointer data);
 GtkWidget *sf_new (gboolean for_save, GtkWidget *main_window, char *title, sf_func *func);
 void sf_ask (GtkWidget *sfw, gpointer data);
 
-void draw_bezier (GdkDrawable *d, GdkGC *gc, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3);
+void gtkutil_draw_bezier (GdkDrawable *d, GdkGC *gc, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3);
 
 
 #endif	/* COMMON_H */

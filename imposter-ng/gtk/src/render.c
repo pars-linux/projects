@@ -72,13 +72,64 @@ draw_arc(void *drw_data, int fill, int x, int y, int w, int h, int sa, int ea)
 	gdk_draw_arc(ctx->d, ctx->gc, fill, x, y, w, h, sa * 64, ea * 64);
 }
 
+static void
+draw_bezier(void *drw_data, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3)
+{
+	struct my_ctx *ctx = (struct my_ctx *) drw_data;
+
+	gtkutil_draw_bezier(ctx->d, ctx->gc, x0, y0, x1, y1, x2, y2, x3, y3);
+}
+
+static void *
+open_image(void *drw_data, const unsigned char *pix, size_t size)
+{
+	GdkPixbufLoader *gpl;
+	GdkPixbuf *pb;
+
+	gpl = gdk_pixbuf_loader_new();
+	gdk_pixbuf_loader_write(gpl, pix, size, NULL);
+	gdk_pixbuf_loader_close(gpl, NULL);
+	pb = gdk_pixbuf_loader_get_pixbuf(gpl);
+	return pb;
+}
+
+static void *
+scale_image(void *drw_data, void *img_data, int w, int h)
+{
+	GdkPixbuf *pb = (GdkPixbuf *) img_data;
+
+	return gdk_pixbuf_scale_simple(pb, w, h, GDK_INTERP_BILINEAR);
+}
+
+static void
+draw_image(void *drw_data, void *img_data, int x, int y, int w, int h)
+{
+	struct my_ctx *ctx = (struct my_ctx *) drw_data;
+	GdkPixbuf *pb = (GdkPixbuf *) img_data;
+
+	gdk_draw_pixbuf(ctx->d, ctx->gc, pb, 0, 0, x, y, w, h, GDK_RGB_DITHER_NONE, 0, 0);
+}
+
+static void
+close_image(void *drw_data, void *img_data)
+{
+	GdkPixbuf *pb = (GdkPixbuf *) img_data;
+
+	g_object_unref(G_OBJECT(pb));
+}
+
 static const ImpDrawer my_drawer = {
 	get_size,
 	set_fg_color,
 	draw_line,
 	draw_rect,
 	draw_polygon,
-	draw_arc
+	draw_arc,
+	draw_bezier,
+	open_image,
+	scale_image,
+	draw_image,
+	close_image
 };
 
 static gboolean
