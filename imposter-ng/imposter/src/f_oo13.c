@@ -7,17 +7,11 @@
 #include "common.h"
 #include "internal.h"
 
-//	{ "draw:image", r_image },
-//	{ "draw:rect", r_rect },
 //	{ "draw:text-box", r_text },
-//	{ "draw:ellipse", r_circle },
-//	{ "draw:circle", r_circle },
-//	{ "draw:line", r_line },
 //	{ "draw:connector", r_line },
 //	{ "draw:polyline", r_polyline },
 //	{ "draw:polygon", r_polygon },
 //	{ "draw:path", r_path },
-//	{ "draw:g", r_group },
 
 static void
 render_object(ImpRenderCtx *ctx, void *drw_data, iks *x)
@@ -67,6 +61,39 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *x)
 			r_get_x(ctx, x, "svg:width"), r_get_y(ctx, x, "svg:height"),
 			sa, ea
 		);
+	} else if (strcmp(tag, "draw:polygon") == 0) {
+		// FIXME:
+		r_polygon(ctx, drw_data, x);
+	} else if (strcmp(tag, "draw:image") == 0) {
+		void *img1, *img2;
+		char *pix;
+		size_t len;
+		char *name;
+		int w, h;
+
+		w = r_get_x(ctx, x, "svg:width");
+		h = r_get_y(ctx, x, "svg:height");
+
+		name = iks_find_attrib(x, "xlink:href");
+		if (!name) return;
+		if (name[0] == '#') ++name;
+		len = zip_get_size(ctx->page->doc->zfile, name);
+		pix = malloc(len);
+		if (!pix) return;
+		zip_load(ctx->page->doc->zfile, name, pix);
+
+		img1 = ctx->drw->open_image(drw_data, pix, len);
+		free(pix);
+		if (!img1) return;
+		img2 = ctx->drw->scale_image(drw_data, img1, w, h);
+		if (img2) {
+			ctx->drw->draw_image(drw_data, img2,
+				r_get_x(ctx, x, "svg:x"), r_get_y(ctx, x, "svg:y"),
+				w, h
+			);
+			ctx->drw->close_image(drw_data, img2);
+		}
+		ctx->drw->close_image(drw_data, img1);
 	} else {
 		printf("Unknown element: %s\n", tag);
 	}
