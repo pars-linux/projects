@@ -8,35 +8,36 @@
 #include "internal.h"
 
 int
-_imp_r_background(ImpRenderCtx *ctx, void *drw_data, iks *node)
+_imp_fill_back(ImpRenderCtx *ctx, void *drw_data, iks *node)
 {
 	ImpColor col;
 	char *type;
 	char *stil, *gfx;
 	iks *x;
 
-	type = r_get_style (ctx, node, "draw:fill");
+	type = r_get_style(ctx, node, "draw:fill");
 	if (!type) return 0;
 
-	if (strcmp (type, "solid") == 0) {
-		if (r_get_color (ctx, node, "draw:fill-color", &col)) {
+	if (strcmp(type, "solid") == 0) {
+		if (r_get_color(ctx, node, "draw:fill-color", &col)) {
 			ctx->drw->set_fg_color(drw_data, &col);
 		}
 		ctx->drw->draw_rect(drw_data, 1, 0, 0, ctx->pix_w, ctx->pix_h);
-	} /* else if (strcmp (type, "bitmap") == 0) {
-		stil = r_get_style (ctx, node, "draw:fill-image-name");
-		x = iks_find_with_attrib (iks_find (ctx->styles, "office:styles"),
-			"draw:fill-image", "draw:name", stil);
-		gfx = iks_find_attrib (x, "xlink:href");
+	} else if (strcmp (type, "bitmap") == 0) {
+		stil = r_get_style(ctx, node, "draw:fill-image-name");
+		x = iks_find_with_attrib(iks_find(ctx->styles, "office:styles"),
+			"draw:fill-image", "draw:name", stil
+		);
+		gfx = iks_find_attrib(x, "xlink:href");
 		if (gfx) {
-			if (iks_strcmp (r_get_style (ctx, node, "style:repeat"), "stretch") == 0) {
-				r_draw_pixbuf (ctx, gfx, 0, 0, ctx->pix_w, ctx->pix_h);
+			if (iks_strcmp(r_get_style(ctx, node, "style:repeat"), "stretch") == 0) {
+				_imp_draw_image(ctx, drw_data, gfx, 0, 0, ctx->pix_w, ctx->pix_h);
 			} else {
-				r_tile_pixbuf (ctx, gfx, 0, 0, ctx->pix_w, ctx->pix_h);
+				_imp_tile_image(ctx, drw_data, gfx, 0, 0, ctx->pix_w, ctx->pix_h);
 			}
 		}
-	} */ else if (strcmp (type, "gradient") == 0) {
-		r_draw_gradient (ctx, drw_data, node);
+	} else if (strcmp(type, "gradient") == 0) {
+		r_draw_gradient(ctx, drw_data, node);
 	} else {
 		return 0;
 	}

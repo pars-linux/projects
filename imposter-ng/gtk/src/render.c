@@ -93,6 +93,15 @@ open_image(void *drw_data, const unsigned char *pix, size_t size)
 	return pb;
 }
 
+static void
+get_image_size(void *drw_data, void *img_data, int *w, int *h)
+{
+	GdkPixbuf *pb = (GdkPixbuf *) img_data;
+
+	*w = gdk_pixbuf_get_width(pb);
+	*h = gdk_pixbuf_get_height(pb);
+}
+
 static void *
 scale_image(void *drw_data, void *img_data, int w, int h)
 {
@@ -127,6 +136,7 @@ static const ImpDrawer my_drawer = {
 	draw_arc,
 	draw_bezier,
 	open_image,
+	get_image_size,
 	scale_image,
 	draw_image,
 	close_image
