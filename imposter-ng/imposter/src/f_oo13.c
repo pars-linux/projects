@@ -91,8 +91,9 @@ render_page(ImpRenderCtx *ctx, void *drw_data)
 {
 	iks *x;
 	char *element;
+	int i;
 
-//	i = _imp_r_background(ctx, drw_data, ctx->page->page);
+	i = _imp_fill_back(ctx, drw_data, ctx->page->page);
 	element = iks_find_attrib(ctx->page->page, "draw:master-page-name");
 	if (element) {
 		x = iks_find_with_attrib(
@@ -100,7 +101,7 @@ render_page(ImpRenderCtx *ctx, void *drw_data)
 			"style:master-page", "style:name", element
 		);
 		if (x) {
-//			if (i == 0) _imp_r_background(ctx, drw_data, x);
+			if (i == 0) _imp_fill_back(ctx, drw_data, x);
 			for (x = iks_first_tag(x); x; x = iks_next_tag(x)) {
 				if (iks_find_attrib(x, "presentation:class"))
 					continue;
