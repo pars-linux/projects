@@ -7,20 +7,31 @@
 #include "common.h"
 #include "internal.h"
 #include <math.h>
-/*
+
 void
-r_draw_pixbuf (render_ctx *ctx, char *name, int x, int y, int w, int h)
+_imp_draw_image(ImpRenderCtx *ctx, void *drw_data, const char *name, int x, int y, int w, int h)
 {
-	GdkPixbuf *orig_pb, *pb;
+	void *img1, *img2;
+	char *pix;
+	size_t len;
 
-	if (name[0] == '#') name++;
+	len = zip_get_size(ctx->page->doc->zfile, name);
+	pix = malloc(len);
+	if (!pix) return;
+	zip_load(ctx->page->doc->zfile, name, pix);
 
-	orig_pb = oo_doc_get_gfx (ctx->doc, name);
-	pb = gdk_pixbuf_scale_simple (orig_pb, w, h, GDK_INTERP_BILINEAR);
-	gdk_draw_pixbuf (ctx->d, ctx->gc, pb, 0, 0, ctx->start_x + x, ctx->start_y + y, w, h, GDK_RGB_DITHER_NONE, 0, 0);
-	g_object_unref (pb);
+	img1 = ctx->drw->open_image(drw_data, pix, len);
+	free(pix);
+	if (!img1) return;
+	img2 = ctx->drw->scale_image(drw_data, img1, w, h);
+	if (img2) {
+		ctx->drw->draw_image(drw_data, img2, x, y, w, h);
+		ctx->drw->close_image(drw_data, img2);
+	}
+	ctx->drw->close_image(drw_data, img1);
 }
 
+/*
 void
 r_tile_pixbuf (render_ctx *ctx, char *name, int x, int y, int w, int h)
 {
@@ -48,25 +59,25 @@ r_tile_pixbuf (render_ctx *ctx, char *name, int x, int y, int w, int h)
 */
 
 void
-r_draw_rect(ImpRenderCtx *ctx, void *drw_data, int fill, int x, int y, int w, int h, int roundness)
+_imp_draw_rect(ImpRenderCtx *ctx, void *drw_data, int fill, int x, int y, int w, int h, int round)
 {
 	int a;
 
-	if (0 == roundness) {
+	if (0 == round) {
 		ctx->drw->draw_rect(drw_data, fill, x, y, w, h);
 		return;
 	}
 
 	ctx->drw->draw_arc(drw_data, fill,
-		x, y, roundness, roundness, 90, 90);
+		x, y, round, round, 90, 90);
 	ctx->drw->draw_arc(drw_data, fill,
-		x + w - roundness, y, roundness, roundness, 0, 90);
+		x + w - round, y, round, round, 0, 90);
 	ctx->drw->draw_arc(drw_data, fill,
-		x + w - roundness, y + h - roundness, roundness, roundness, 270, 90);
+		x + w - round, y + h - round, round, round, 270, 90);
 	ctx->drw->draw_arc(drw_data, fill,
-		x, y + h - roundness, roundness, roundness, 180, 90);
+		x, y + h - round, round, round, 180, 90);
 
-	a = roundness / 2;
+	a = round / 2;
 	if (fill) {
 		ctx->drw->draw_rect(drw_data, 1, x + a, y, w - a - a, h);
 		ctx->drw->draw_rect(drw_data, 1, x, y + a, w, h - a - a);
