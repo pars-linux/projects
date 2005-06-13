@@ -9,15 +9,6 @@
 #ifndef INTERNAL_H
 #define INTERNAL_H
 
-struct ImpRect {
-	int fill;
-	int x, y;
-	int w, h;
-	int round;
-	ImpColor fg;
-	ImpColor bg;
-};
-
 struct ImpDoc_struct {
 	ikstack *stack;
 	zip *zfile;
@@ -55,12 +46,12 @@ struct ImpRenderCtx_struct {
 char *r_get_style (ImpRenderCtx *ctx, iks *node, char *attr);
 int r_get_color(ImpRenderCtx *ctx, iks *node, char *name, ImpColor *ic);
 void r_parse_color(const char *color, ImpColor *ic);
-void r_draw_rect(ImpRenderCtx *ctx, void *drw_data, int fill, int x, int y, int w, int h, int roundness);
 int r_get_x (ImpRenderCtx *ctx, iks *node, char *name);
 int r_get_y (ImpRenderCtx *ctx, iks *node, char *name);
 int r_get_angle (iks *node, char *name, int def);
 
-void _imp_r_rect(ImpRenderCtx *ctx, void *drw_data, struct ImpRect *rect);
+void _imp_draw_rect(ImpRenderCtx *ctx, void *drw_data, int fill, int x, int y, int w, int h, int roundness);
+void _imp_draw_image(ImpRenderCtx *ctx, void *drw_data, const char *name, int x, int y, int w, int h);
 
 int _imp_r_background(ImpRenderCtx *ctx, void *drw_data, iks *node);
 void r_polygon(ImpRenderCtx *ctx, void *drw_data, iks *node);

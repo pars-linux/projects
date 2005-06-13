@@ -8,51 +8,54 @@
 #include "internal.h"
 
 static void
-render_object(ImpRenderCtx *ctx, void *drw_data, iks *x)
+render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 {
 	char *tag, *t;
 	ImpColor fg;
 
-	tag = iks_name(x);
+	tag = iks_name(node);
 	if (strcmp(tag, "draw:g") == 0) {
-		iks *y;
-		for (y = iks_first_tag(x); y; y = iks_next_tag(y)) {
-			render_object(ctx, drw_data, y);
+		iks *x;
+		for (x = iks_first_tag(node); x; x = iks_next_tag(x)) {
+			render_object(ctx, drw_data, x);
 		}
 	} else if (strcmp(tag, "draw:line") == 0) {
-		r_get_color(ctx, x, "svg:stroke-color", &fg);
+		r_get_color(ctx, node, "svg:stroke-color", &fg);
 		ctx->drw->set_fg_color(drw_data, &fg);
 		ctx->drw->draw_line(drw_data,
-			r_get_x(ctx, x, "svg:x1"), r_get_y(ctx, x, "svg:y1"),
-			r_get_x(ctx, x, "svg:x2"), r_get_y(ctx, x, "svg:y2")
+			r_get_x(ctx, node, "svg:x1"), r_get_y(ctx, node, "svg:y1"),
+			r_get_x(ctx, node, "svg:x2"), r_get_y(ctx, node, "svg:y2")
 		);
 	} else if (strcmp(tag, "draw:rect") == 0) {
-		struct ImpRect rect;
-		r_get_color(ctx, x, "svg:stroke-color", &rect.fg);
-		r_get_color(ctx, x, "draw:fill-color", &rect.bg);
-		rect.x = r_get_x(ctx, x, "svg:x");
-		rect.y = r_get_y(ctx, x, "svg:y");
-		rect.w = r_get_x(ctx, x, "svg:width");
-		rect.h = r_get_y(ctx, x, "svg:height");
-		t = r_get_style(ctx, x, "draw:corner-radius");
-		rect.round = 0;
-		if (t) rect.round = atof(t) * ctx->fact_x;
-		t = r_get_style(ctx, x, "draw:fill");
-		if (t) rect.fill = 1; else rect.fill = 0;
-		_imp_r_rect(ctx, drw_data, &rect);
+		int x, y, w, h, r = 0;
+		char *t;
+		x = r_get_x(ctx, node, "svg:x");
+		y = r_get_y(ctx, node, "svg:y");
+		w = r_get_x(ctx, node, "svg:width");
+		h = r_get_y(ctx, node, "svg:height");
+		t = r_get_style(ctx, node, "draw:corner-radius");
+		if (t) r = atof(t) * ctx->fact_x;
+		if (r_get_style(ctx, node, "draw:fill")) {
+			r_get_color(ctx, node, "draw:fill-color", &fg);
+			ctx->drw->set_fg_color(drw_data, &fg);
+			_imp_draw_rect(ctx, drw_data, 1, x, y, w, h, r);
+		}
+		r_get_color(ctx, node, "svg:stroke-color", &fg);
+		ctx->drw->set_fg_color(drw_data, &fg);
+		_imp_draw_rect(ctx, drw_data, 0, x, y, w, h, r);
 	} else if (strcmp(tag, "draw:ellipse") == 0 || strcmp(tag, "draw:circle") == 0) {
 		int sa, ea, fill = 0;
-		r_get_color(ctx, x, "svg:stroke-color", &fg);
-		sa = r_get_angle(x, "draw:start-angle", 0);
-		ea = r_get_angle(x, "draw:end-angle", 360);
+		r_get_color(ctx, node, "svg:stroke-color", &fg);
+		sa = r_get_angle(node, "draw:start-angle", 0);
+		ea = r_get_angle(node, "draw:end-angle", 360);
 		if (ea > sa) ea = ea - sa; else ea = 360 + ea - sa;
-		t = r_get_style(ctx, x, "draw:fill");
+		t = r_get_style(ctx, node, "draw:fill");
 		if (t) fill = 1;
 		ctx->drw->set_fg_color(drw_data, &fg);
 		ctx->drw->draw_arc(drw_data,
 			fill,
-			r_get_x(ctx, x, "svg:x"), r_get_y(ctx, x, "svg:y"),
-			r_get_x(ctx, x, "svg:width"), r_get_y(ctx, x, "svg:height"),
+			r_get_x(ctx, node, "svg:x"), r_get_y(ctx, node, "svg:y"),
+			r_get_x(ctx, node, "svg:width"), r_get_y(ctx, node, "svg:height"),
 			sa, ea
 		);
 	} else {

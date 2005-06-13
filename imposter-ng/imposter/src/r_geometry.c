@@ -120,19 +120,6 @@ r_line(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	}
 }
 
-void
-_imp_r_rect(ImpRenderCtx *ctx, void *drw_data, struct ImpRect *rect)
-{
-	if (rect->fill) {
-		ctx->drw->set_fg_color(drw_data, &rect->bg);
-		r_draw_rect(ctx, drw_data, 1, rect->x, rect->y, rect->w, rect->h, rect->round);
-	}
-	ctx->drw->set_fg_color(drw_data, &rect->fg);
-	r_draw_rect (ctx, drw_data, 0, rect->x, rect->y, rect->w, rect->h, rect->round);
-
-	//r_text (ctx, node);
-}
-
 static int x, y, w, h;
 static int px, py, pw, ph;
 
