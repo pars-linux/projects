@@ -1,0 +1,7 @@
+# bu dosyayı eğer sunucunuz destekliyorsa
+# .htaccess adı ile blog.cgi'ın olduğu dizine kaydedin.
+
+Options +ExecCGI
+AddHandler cgi-script cgi
+
+DirectoryIndex blog.cgi

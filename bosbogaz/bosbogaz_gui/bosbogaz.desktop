@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=/usr/bin/bos
+GenericName=Boşboğaz Günlük
+GenericName[tr]=Boşboğaz Günlük
+Icon=/usr/local/bosbogaz_gui/bosbogaz.png
+Name=Boşboğaz
+Name[tr]=Boşboğaz
+StartupNotify=false
+Terminal=false
+Type=Application
