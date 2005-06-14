@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BLOG_DIR=/usr/local/bosbogaz_gui/
+BLOG_BIN=/usr/bin/bos
+
+mkdir -p $BLOG_DIR
+cp *.py *.png $BLOG_DIR
+
+echo "#!/bin/bash
+
+cd $BLOG_DIR
+python bos.py
+" > $BLOG_BIN
+
+chmod a+x $BLOG_BIN
+
+
+APPS=`kde-config --path apps|awk -F : '{print $1}'`
+cp bosbogaz.desktop $APPS
+
+echo "Bitti!"
