@@ -83,13 +83,25 @@ def main():
                 print EOE
 		print '</div>'
 
-	print menu_text
-        print "Arşiv :<br />"
-	archive.sort(comp_archive)
-        for i in archive:
-                # print month Year
-                print '<a href="?date=%d,%d">%s %d</a><br />' % (i[0], i[1], months[i[1]], i[0])
+        logs=glob(LOGS+"/*"+log_prefix)
+        logs = index.sort_filelist(logs)
+        archive.sort(comp_archive)
 
+        print menu_text
+        print "<b>Arşivler</b>:<br />"
+        t = 0
+        for i in archive:
+                fetch_for_range = (i[0], i[1])
+                logs_of_month = index.get_entries_of_date(logs, fetch_for_range)
+
+                # print month Year
+                if t == i[0]:
+                        print '<a href="?date=%d,%d">%s (%d)</a><br />' % (i[0], i[1], months[i[1]], len(logs_of_month))
+                else:
+                        print '<hr /><b>%d</b><br /><hr />' % (i[0])
+                        print '<a href="?date=%d,%d">%s (%d)</a><br />' % (i[0], i[1], months[i[1]], len(logs_of_month))
+                        t = i[0]
+        print '<hr />'
 
         print footer_text
 
