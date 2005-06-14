@@ -43,7 +43,7 @@ for i in range(entry_count):
         entry_date = ctime(mtime)
         # sacmalik, tarih RFC822 standardinda yazilmali
         t = entry_date.split()
-        entry_date = " ".join([t[0]+",", t[2], t[1], t[4], t[3]+"GMT"])
+        entry_date = " ".join([t[0]+",", t[2], t[1], t[4], t[3]+" GMT"])
         print entry_date
 
         rss_items.append(PyRSS2Gen.RSSItem(
