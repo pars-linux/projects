@@ -35,7 +35,7 @@ for i in range(entry_count):
         file = codecs.open(logs[i], encoding="utf-8")
 
         # first line is title
-        entry_title = file.readline().replace("<br>","")
+        entry_title = file.readline().replace("<br>","").strip()
         entry_link = URL+"blog.cgi?file="+basename(logs[i])
 #        entry_desc = entry_title
         entry_desc = file.read()
