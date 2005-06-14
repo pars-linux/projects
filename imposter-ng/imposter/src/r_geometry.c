@@ -72,54 +72,6 @@ r_get_angle (iks *node, char *name, int def)
 	return atof (tmp);
 }
 
-void
-r_arrow (ImpRenderCtx *ctx, void *drw_data, iks *node, int x, int y, int x2, int y2)
-{
-	ImpPoint pts[4];
-	double ia, a;
-
-	pts[0].x = x2;
-	pts[0].y = y2;
-
-	ia = 20 * 3.14 * 2 / 360;
-
-	if (x2-x == 0) {
-		if (y < y2) a = 3.14 + (3.14 / 2); else a = (3.14 / 2);
-	} else if (y2-y == 0) {
-		if (x < x2) a = 3.14; else a = 0;
-	} else
-		a = atan ((y2-y) / (x2-x)) - 3.14;
-
-	pts[1].x = x2 + 0.3 * ctx->fact_x * cos (a - ia);
-	pts[1].y = y2 + 0.3 * ctx->fact_y * sin (a - ia);
-
-	pts[2].x = x2 + 0.3 * ctx->fact_x * cos (a + ia);
-	pts[2].y = y2 + 0.3 * ctx->fact_y * sin (a + ia);
-
-	ctx->drw->draw_polygon(drw_data, 1, pts, 3);
-}
-
-void
-r_line(ImpRenderCtx *ctx, void *drw_data, iks *node)
-{
-	int x, y, x2, y2;
-
-	fg_color(ctx, drw_data, node, "svg:stroke-color");
-
-	x = r_get_x (ctx, node, "svg:x1");
-	y = r_get_y (ctx, node, "svg:y1");
-	x2 = r_get_x (ctx, node, "svg:x2");
-	y2 = r_get_y (ctx, node, "svg:y2");
-	ctx->drw->draw_line(drw_data, x, y, x2, y2);
-
-	if (r_get_style (ctx, node, "draw:marker-start")) {
-		r_arrow (ctx, drw_data, node, x2, y2, x, y);
-	}
-	if (r_get_style (ctx, node, "draw:marker-end")) {
-		r_arrow (ctx, drw_data, node, x, y, x2, y2);
-	}
-}
-
 static int x, y, w, h;
 static int px, py, pw, ph;
 

@@ -40,6 +40,35 @@ _imp_draw_rect(ImpRenderCtx *ctx, void *drw_data, int fill, int x, int y, int w,
 }
 
 void
+_imp_draw_line_end(ImpRenderCtx *ctx, void *drw_data, int type, int size, int x, int y, int x2, int y2)
+{
+	ImpPoint pts[4];
+	double ia, a;
+
+	// FIXME: different types and sizes
+
+	pts[0].x = x2;
+	pts[0].y = y2;
+
+	ia = 20 * 3.14 * 2 / 360;
+
+	if (x2-x == 0) {
+		if (y < y2) a = 3.14 + (3.14 / 2); else a = (3.14 / 2);
+	} else if (y2-y == 0) {
+		if (x < x2) a = 3.14; else a = 0;
+	} else
+		a = atan ((y2-y) / (x2-x)) - 3.14;
+
+	pts[1].x = x2 + 0.3 * ctx->fact_x * cos (a - ia);
+	pts[1].y = y2 + 0.3 * ctx->fact_y * sin (a - ia);
+
+	pts[2].x = x2 + 0.3 * ctx->fact_x * cos (a + ia);
+	pts[2].y = y2 + 0.3 * ctx->fact_y * sin (a + ia);
+
+	ctx->drw->draw_polygon(drw_data, 1, pts, 3);
+}
+
+void
 _imp_draw_image(ImpRenderCtx *ctx, void *drw_data, const char *name, int x, int y, int w, int h)
 {
 	void *img1, *img2;
