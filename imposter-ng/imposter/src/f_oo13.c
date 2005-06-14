@@ -26,12 +26,20 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 			render_object(ctx, drw_data, x);
 		}
 	} else if (strcmp(tag, "draw:line") == 0) {
+		int x1, y1, x2, y2;
 		r_get_color(ctx, node, "svg:stroke-color", &fg);
 		ctx->drw->set_fg_color(drw_data, &fg);
-		ctx->drw->draw_line(drw_data,
-			r_get_x(ctx, node, "svg:x1"), r_get_y(ctx, node, "svg:y1"),
-			r_get_x(ctx, node, "svg:x2"), r_get_y(ctx, node, "svg:y2")
-		);
+		x1 = r_get_x(ctx, node, "svg:x1");
+		y1 = r_get_y(ctx, node, "svg:y1");
+		x2 = r_get_x(ctx, node, "svg:x2");
+		y2 = r_get_y(ctx, node, "svg:y2");
+		ctx->drw->draw_line(drw_data, x1, y1, x2, y2);
+		if (r_get_style(ctx, node, "draw:marker-start")) {
+			_imp_draw_line_end(ctx, drw_data, 0, 0, x2, y2, x1, y1);
+		}
+		if (r_get_style(ctx, node, "draw:marker-end")) {
+			_imp_draw_line_end(ctx, drw_data, 0, 0, x1, y1, x2, y2);
+		}
 	} else if (strcmp(tag, "draw:rect") == 0) {
 		int x, y, w, h, r = 0;
 		char *t;
@@ -41,7 +49,8 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 		h = r_get_y(ctx, node, "svg:height");
 		t = r_get_style(ctx, node, "draw:corner-radius");
 		if (t) r = atof(t) * ctx->fact_x;
-		if (r_get_style(ctx, node, "draw:fill")) {
+		t = r_get_style(ctx, node, "draw:fill");
+		if (t && strcmp(t, "none") != 0) {
 			r_get_color(ctx, node, "draw:fill-color", &fg);
 			ctx->drw->set_fg_color(drw_data, &fg);
 			_imp_draw_rect(ctx, drw_data, 1, x, y, w, h, r);
