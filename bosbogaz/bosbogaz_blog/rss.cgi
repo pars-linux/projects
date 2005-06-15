@@ -37,10 +37,12 @@ for i in range(entry_count):
         # first line is title
         entry_title = file.readline().replace("<br>","").strip()
         entry_link = URL+"blog.cgi?file="+basename(logs[i])
-#        entry_desc = entry_title
         entry_desc = file.read()
-	for k,v in REPLACE.iteritems():
-		entry_desc = entry_desc.replace( k,v )
+	try:
+		for k, v in REPLACE.iteritems():
+			entry_desc = entry_desc.replace(k, v)
+	except:
+		pass
 	mtime = index.get_mtime(logs[i])
         entry_date = ctime(mtime)
         # sacmalik, tarih RFC822 standardinda yazilmali

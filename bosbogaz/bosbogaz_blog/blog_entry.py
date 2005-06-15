@@ -21,8 +21,11 @@ class Entry(object):
 				print TITLE % (basename(self.src), line)
 				count = 1
 				continue
-			for k,v in REPLACE.iteritems():
-				line = line.replace( k, v )
+			try:
+				for k, v in REPLACE.iteritems():
+					line = line.replace(k, v)
+			except:
+				pass
 			print line 
 
 if __name__ == "__main__":
