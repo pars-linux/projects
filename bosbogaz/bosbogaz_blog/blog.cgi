@@ -6,6 +6,8 @@ from cgi import FieldStorage
 from glob import glob
 import time
 
+import locale
+
 from blog_entry import Entry
 from blog_indexer import Index
 from blog_conf import *
@@ -30,6 +32,7 @@ def comp_archive(x, y):
         else: return 1
 
 def main():
+    locale.setlocale( locale.LC_ALL, "tr_TR.UTF-8")
 	print "Content-type: text/html"
 	print
 	print header_text
@@ -79,7 +82,7 @@ def main():
 		print '<div class="entry">'
                 Entry(logs[i]).print_entry()
                 mtime =  index.get_mtime(logs[i])
-                print DATE % time.ctime(mtime)
+                print DATE % time.strftime( "%d %B %Y, %A @ %H:%M", time.localtime( mtime ))
                 print EOE
 		print '</div>'
 
