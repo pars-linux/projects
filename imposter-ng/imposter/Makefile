@@ -12,6 +12,7 @@ OBJS = \
 	src/r_geometry.o \
 	src/r_gradient.o \
 	src/r_draw.o \
+	src/r_text.o \
 	src/zip.o \
 	src/iksemel.o
 
