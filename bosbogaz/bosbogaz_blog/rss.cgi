@@ -39,7 +39,9 @@ for i in range(entry_count):
         entry_link = URL+"blog.cgi?file="+basename(logs[i])
 #        entry_desc = entry_title
         entry_desc = file.read()
-        mtime = index.get_mtime(logs[i])
+	for k,v in REPLACE.iteritems():
+		entry_desc = entry_desc.replace( k,v )
+	mtime = index.get_mtime(logs[i])
         entry_date = ctime(mtime)
         # sacmalik, tarih RFC822 standardinda yazilmali
         t = entry_date.split()
