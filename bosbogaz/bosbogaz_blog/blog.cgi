@@ -32,7 +32,7 @@ def comp_archive(x, y):
         else: return 1
 
 def main():
-    locale.setlocale( locale.LC_ALL, "tr_TR.UTF-8")
+	locale.setlocale( locale.LC_ALL, "tr_TR.UTF-8")
 	print "Content-type: text/html"
 	print
 	print header_text
