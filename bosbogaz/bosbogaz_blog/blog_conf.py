@@ -13,6 +13,18 @@ TITLE = '<a href="?file=%s" class="title">%s</a>'
 DATE = '<span class="date">%s</span>'
 EOE = '' # end of entry
 
+REPLACE = {
+        'Pardus':'<a href="http://www.uludag.org.tr/">Pardus</a>',
+	'Çağlar':'<a href="http://cekirdek.uludag.org.tr/~caglar/blog/">Çağlar</a>',
+        'Meren':'<a href="http://cekirdek.uludag.org.tr/~meren/blog/">Meren</a>',
+        'Onur':'<a href="http://cekirdek.uludag.org.tr/~onur/blog/">Onur</a>',
+        'Barış':'<a href="http://cekirdek.uludag.org.tr/~baris/blog/">Barış</a>',
+        'Gürer':'<a href="http://6kere9.com/blog/">Gürer</a>',
+	'Umut':'<a href="http://cekirdek.uludag.org.tr/~umut/blog/">Umut</a>',
+	'Serdar':'<a href="http://cekirdek.uludag.org.tr/~serdar/blog/">Serdar</a>',
+        'Tekman':'<a href="http://cekirdek.uludag.org.tr/~tekman/blog/">Tekman</a>'
+        }
+
 entry_count = 10 # entries printed in first page
 
 header_text = '''
