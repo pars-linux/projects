@@ -72,6 +72,7 @@ void _imp_draw_image(ImpRenderCtx *ctx, void *drw_data, const char *name, int x,
 void _imp_tile_image(ImpRenderCtx *ctx, void *drw_data, const char *name, int x, int y, int w, int h);
 
 int _imp_fill_back(ImpRenderCtx *ctx, void *drw_data, iks *node);
+void r_text(ImpRenderCtx *ctx, void *drw_data, iks *node);
 void r_polygon(ImpRenderCtx *ctx, void *drw_data, iks *node);
 void r_circle(ImpRenderCtx *ctx, void *drw_data, iks *node);
 void r_polyline(ImpRenderCtx *ctx, void *drw_data, iks *node);

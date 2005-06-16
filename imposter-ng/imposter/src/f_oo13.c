@@ -76,6 +76,9 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	} else if (strcmp(tag, "draw:polygon") == 0) {
 		// FIXME:
 		r_polygon(ctx, drw_data, node);
+	} else if (strcmp(tag, "draw:text-box") == 0) {
+		// FIXME:
+		r_text(ctx, drw_data, node);
 	} else if (strcmp(tag, "draw:image") == 0) {
 		char *name;
 
