@@ -46,6 +46,7 @@ typedef struct ImpDrawer_struct {
 	void *(*scale_image)(void *drw_data, void *img_data, int w, int h);
 	void (*draw_image)(void *drw_data, void *img_data, int x, int y, int w, int h);
 	void (*close_image)(void *drw_data, void *img_data);
+	void (*get_text_size)(void *drw_data, const char *text, size_t len, int size, int styles, int *w, int *h);
 	void (*draw_text)(void *drw_data, int x, int y, const char *text, size_t len, int size, int styles);
 } ImpDrawer;
 

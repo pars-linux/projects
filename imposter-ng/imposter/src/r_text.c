@@ -19,18 +19,79 @@ struct Span {
 };
 
 struct Line {
+	ikstack *s;
 	struct Line *next;
 	struct Span *spans;
+	struct Span *last_span;
 	int x, y;
 	int w, h;
 };
 
 struct Layout {
 	ikstack *s;
-	int x, y;
-	int w, h;
+	int x, y, w, h;
+	int tw, th;
 	struct Line *lines;
+	struct Line *last_line;
 };
+
+struct Line *
+add_line(struct Layout *lay)
+{
+	struct Line *line;
+
+	line = iks_stack_alloc(lay->s, sizeof(struct Line));
+	memset(line, 0, sizeof(struct Line));
+	line->s = lay->s;
+
+	return line;
+}
+
+struct Span *
+add_span(struct Line *line, char *text, int len, int size, int styles)
+{
+	struct Span *span;
+
+	span = iks_stack_alloc(line->s, sizeof(struct Span));
+	memset(span, 0, sizeof(struct Span));
+
+	if (line->spans) {
+		span->x = line->last_span->x + line->last_span->w;
+		span->y = line->last_span->y;
+	} else {
+		span->x = line->x;
+		span->y = line->y;
+	}
+
+	return span;
+}
+
+void
+calc_sizes(ImpRenderCtx *ctx, void *drw_data, struct Layout *lay)
+{
+	struct Line *line;
+	struct Span *span;
+
+	for (line = lay->lines; line; line = line->next) {
+		for (span = line->spans; span; span = span->next) {
+			ctx->drw->get_text_size(drw_data,
+				span->text, span->len,
+				span->size, span->styles,
+				&span->w, &span->h
+			);
+			line->w += span->w;
+			if (span->h > line->h) line->h = span->h;
+			line->h += span->h;
+		}
+		if (line->w > lay->tw) lay->tw = line->w;
+		lay->th += line->h;
+	}
+}
+
+void
+calc_pos(void)
+{
+}
 
 void
 _imp_draw_layout(ImpRenderCtx *ctx, void *drw_data, struct Layout *lay)
@@ -52,28 +113,49 @@ _imp_draw_layout(ImpRenderCtx *ctx, void *drw_data, struct Layout *lay)
 }
 
 static void
-textcat (struct layout_s *lout, char *text, int len)
+text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t len)
 {
-	if (!text) return;
-	if (len == 0) len = strlen (text);
-	lout->text = iks_stack_strcat (lout->s, lout->text, lout->text_len, text, len);
-	lout->text_len += len;
+	printf("Span %d [%s]\n", len, text);
 }
 
 static void
-textcatv (struct layout_s *lout, ...)
+text_p(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
 {
-	va_list ap;
-	char *tmp;
+	iks *n, *n2;
 
-	va_start (ap, lout);
-	while (1) {
-		tmp = va_arg (ap, char*);
-		if (tmp == (char *) lout) break;
-		textcat (lout, tmp, 0);
+	for (n = iks_child(node); n; n = iks_next(n)) {
+		if (iks_type(n) == IKS_CDATA) {
+			text_span(ctx, lay, node, iks_cdata(n), iks_cdata_size(n));
+		} else if (iks_strcmp(iks_name(n), "text:span") == 0) {
+			for (n2 = iks_child(n); n2; n2 = iks_next(n2)) {
+				if (iks_type(n2) == IKS_CDATA) {
+					text_span(ctx, lay, n, iks_cdata(n2), iks_cdata_size(n2));
+				}
+			}
+		}
 	}
-	va_end (ap);
 }
+
+void
+r_text(ImpRenderCtx *ctx, void *drw_data, iks *node)
+{
+	struct Layout lay;
+	iks *n;
+
+	memset(&lay, 0, sizeof(struct Layout));
+	lay.s = iks_stack_new(sizeof(struct Span) * 16, 0);
+	lay.x = r_get_x(ctx, node, "svg:x");
+	lay.y = r_get_y(ctx, node, "svg:y");
+	lay.w = r_get_y(ctx, node, "svg:width");
+	lay.h = r_get_y(ctx, node, "svg:height");
+
+	for (n = iks_first_tag(node); n; n = iks_next_tag(n)) {
+		if (strcmp(iks_name(n), "text:p") == 0) {
+			text_p(ctx, &lay, n);
+		}
+	}
+}
+/*
 
 static int
 get_size (render_ctx *ctx, char *size)
@@ -163,21 +245,8 @@ is_animated (render_ctx *ctx, text_ctx *tc, iks *node)
 static void
 text_p (render_ctx *ctx, text_ctx *tc, iks *node)
 {
-	ikstack *s;
-	struct layout_s *lout;
-	char *attr;
-	iks *n1, *n2;
-
-	s = iks_stack_new (sizeof (struct layout_s), 2048);
-	lout = iks_stack_alloc (s, sizeof (struct layout_s));
-	memset (lout, 0, sizeof (struct layout_s));
-	lout->s = s;
-	lout->text = NULL;
-	lout->text_len = 0;
-	lout->flag = 1;
 	if (is_animated (ctx, tc, node) && ctx->step_cnt >= ctx->step) lout->flag = 0;
 	ctx->step_cnt++;
-	lout->play = pango_layout_new (ctx->pango_ctx);
 
 	attr = r_get_style (ctx, node, "text:enable-numbering");
 	if (attr && strcmp (attr, "true") == 0) {
@@ -310,22 +379,6 @@ text_list (render_ctx *ctx, text_ctx *tc, iks *node)
 void
 r_text (render_ctx *ctx, iks *node)
 {
-	GList *item;
-	struct layout_s *lout;
-	text_ctx tc;
-	iks *n;
-	int flag;
-
-	memset (&tc, 0, sizeof (text_ctx));
-	tc.x = r_get_x (ctx, node, "svg:x");
-	tc.y = r_get_y (ctx, node, "svg:y");
-	tc.w = r_get_y (ctx, node, "svg:width");
-	tc.h = r_get_y (ctx, node, "svg:height");
-	tc.layouts = NULL;
-	tc.bullet = NULL;
-	tc.bullet_flag = 0;
-	tc.last_sz = 0;
-
 	tc.id = iks_find_attrib (node, "draw:id");
 	ctx->step_cnt = 0;
 	for (n = iks_first_tag (node); n; n = iks_next_tag (n)) {
@@ -357,3 +410,4 @@ r_text (render_ctx *ctx, iks *node)
 	}
 	g_list_free (tc.layouts);
 }
+*/
