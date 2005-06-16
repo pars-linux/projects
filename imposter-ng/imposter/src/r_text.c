@@ -19,7 +19,6 @@ struct Span {
 };
 
 struct Line {
-	ikstack *s;
 	struct Line *next;
 	struct Span *spans;
 	struct Span *last_span;
@@ -42,19 +41,29 @@ add_line(struct Layout *lay)
 
 	line = iks_stack_alloc(lay->s, sizeof(struct Line));
 	memset(line, 0, sizeof(struct Line));
-	line->s = lay->s;
+
+	if (!lay->lines) lay->lines = line;
+	if (lay->last_line) lay->last_line->next = line;
+	lay->last_line = line;
 
 	return line;
 }
 
 struct Span *
-add_span(struct Line *line, char *text, int len, int size, int styles)
+add_span(struct Layout *lay, char *text, int len, int size, int styles)
 {
+	struct Line *line;
 	struct Span *span;
 
-	span = iks_stack_alloc(line->s, sizeof(struct Span));
+	span = iks_stack_alloc(lay->s, sizeof(struct Span));
 	memset(span, 0, sizeof(struct Span));
+	span->text = text;
+	span->len = len;
+	span->size = size;
+	span->styles = styles;
 
+	line = lay->last_line;
+	if (!line) line = add_line(lay);
 	if (line->spans) {
 		span->x = line->last_span->x + line->last_span->w;
 		span->y = line->last_span->y;
@@ -62,6 +71,10 @@ add_span(struct Line *line, char *text, int len, int size, int styles)
 		span->x = line->x;
 		span->y = line->y;
 	}
+
+	if (!line->spans) line->spans = span;
+	if (line->last_span) line->last_span->next = span;
+	line->last_span = span;
 
 	return span;
 }
@@ -89,8 +102,25 @@ calc_sizes(ImpRenderCtx *ctx, void *drw_data, struct Layout *lay)
 }
 
 void
-calc_pos(void)
+calc_pos(ImpRenderCtx *ctx, struct Layout *lay)
 {
+	struct Line *line;
+	struct Span *span;
+	int x, y, x2;
+
+	x = lay->x;
+	y = lay->y;
+	for (line = lay->lines; line; line = line->next) {
+		line->x = x;
+		line->y = y;
+		y += line->h;
+		x2 = x;
+		for (span = line->spans; span; span = span->next) {
+			span->x = x2;
+			span->y = y;
+			x2 += span->w;
+		}
+	}
 }
 
 void
@@ -115,6 +145,7 @@ _imp_draw_layout(ImpRenderCtx *ctx, void *drw_data, struct Layout *lay)
 static void
 text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t len)
 {
+	add_span(lay, text, len, 12, 0);
 	printf("Span %d [%s]\n", len, text);
 }
 
@@ -154,6 +185,12 @@ r_text(ImpRenderCtx *ctx, void *drw_data, iks *node)
 			text_p(ctx, &lay, n);
 		}
 	}
+
+	calc_sizes(ctx, drw_data, &lay);
+	calc_pos(ctx, &lay);
+	_imp_draw_layout(ctx, drw_data, &lay);
+
+	iks_stack_delete(lay.s);
 }
 /*
 
