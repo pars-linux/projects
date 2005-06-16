@@ -127,6 +127,33 @@ close_image(void *drw_data, void *img_data)
 	g_object_unref(G_OBJECT(pb));
 }
 
+static void
+get_text_size(void *drw_data, const char *text, size_t len, int size, int styles, int *w, int *h)
+{
+	struct my_ctx *ctx = (struct my_ctx *) drw_data;
+	PangoLayout *lay;
+	int pw, ph;
+
+	lay = pango_layout_new(ctx->pango_ctx);
+	pango_layout_set_markup(lay, text, len);
+	pango_layout_get_size(lay, &pw, &ph);
+	g_object_unref(lay);
+	*w = pw / PANGO_SCALE;
+	*h = ph / PANGO_SCALE;
+}
+
+static void
+draw_text(void *drw_data, int x, int y, const char *text, size_t len, int size, int styles)
+{
+	struct my_ctx *ctx = (struct my_ctx *) drw_data;
+	PangoLayout *lay;
+
+	lay = pango_layout_new(ctx->pango_ctx);
+	pango_layout_set_markup(lay, text, len);
+	gdk_draw_layout(ctx->d, ctx->gc, x, y, lay);
+	g_object_unref(lay);
+}
+
 static const ImpDrawer my_drawer = {
 	get_size,
 	set_fg_color,
@@ -139,7 +166,9 @@ static const ImpDrawer my_drawer = {
 	get_image_size,
 	scale_image,
 	draw_image,
-	close_image
+	close_image,
+	get_text_size,
+	draw_text
 };
 
 static gboolean
