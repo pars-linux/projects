@@ -127,17 +127,38 @@ close_image(void *drw_data, void *img_data)
 	g_object_unref(G_OBJECT(pb));
 }
 
+static char *
+markup(const char *text, size_t len, int styles, int size)
+{
+	double scr_mm, scr_px, dpi;
+	char *esc;
+	char *ret;
+	int sz;
+
+	scr_mm = gdk_screen_get_height_mm(gdk_screen_get_default());
+	scr_px = gdk_screen_get_height(gdk_screen_get_default());
+	dpi = (scr_px / scr_mm) * 25.4;
+	sz = (int) ((double) size * 72.0 * PANGO_SCALE / dpi);
+	esc = g_markup_escape_text(text, len);
+	ret = g_strdup_printf("<span size ='%d'>%s</span>", sz, esc);
+	free(esc);
+	return ret;
+}
+
 static void
 get_text_size(void *drw_data, const char *text, size_t len, int size, int styles, int *w, int *h)
 {
 	struct my_ctx *ctx = (struct my_ctx *) drw_data;
 	PangoLayout *lay;
 	int pw, ph;
+	char *m;
 
 	lay = pango_layout_new(ctx->pango_ctx);
-	pango_layout_set_markup(lay, text, len);
+	m = markup(text, len, styles, size);
+	pango_layout_set_markup(lay, m, strlen(m));
 	pango_layout_get_size(lay, &pw, &ph);
 	g_object_unref(lay);
+	free(m);
 	*w = pw / PANGO_SCALE;
 	*h = ph / PANGO_SCALE;
 }
@@ -147,11 +168,14 @@ draw_text(void *drw_data, int x, int y, const char *text, size_t len, int size, 
 {
 	struct my_ctx *ctx = (struct my_ctx *) drw_data;
 	PangoLayout *lay;
+	char *m;
 
 	lay = pango_layout_new(ctx->pango_ctx);
-	pango_layout_set_markup(lay, text, len);
+	m = markup(text, len, styles, size);
+	pango_layout_set_markup(lay, m, strlen(m));
 	gdk_draw_layout(ctx->d, ctx->gc, x, y, lay);
 	g_object_unref(lay);
+	free(m);
 }
 
 static const ImpDrawer my_drawer = {
