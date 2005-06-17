@@ -145,8 +145,21 @@ _imp_draw_layout(ImpRenderCtx *ctx, void *drw_data, struct Layout *lay)
 static void
 text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t len)
 {
-	add_span(lay, text, len, 12, 0);
-	printf("Span %d [%s]\n", len, text);
+	struct Span *span;
+	double cm;
+	char *attr;
+	int px = 0;
+
+	attr = r_get_style(ctx, node, "fo:font-size");
+	if (attr) {
+		cm = atof(attr);
+		if (strstr(attr, "pt")) cm = cm * 2.54 / 102;
+		px = cm * ctx->fact_y;
+	}
+	span = add_span(lay, text, len, px, 0);
+	r_get_color(ctx, node, "fo:color", &span->fg);
+
+	printf("Span %d [%s] size %d\n", len, text, px);
 }
 
 static void
@@ -193,26 +206,6 @@ r_text(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	iks_stack_delete(lay.s);
 }
 /*
-
-static int
-get_size (render_ctx *ctx, char *size)
-{
-	float dpi, cm, px, sz;
-	float scr_mm, scr_px;
-
-	scr_mm = gdk_screen_get_height_mm (gdk_screen_get_default ());
-	scr_px = gdk_screen_get_height (gdk_screen_get_default ());
-	dpi = (scr_px / scr_mm) * 25.4;
-//printf("%s\n", size);
-	cm = atof (size);
-	if (strstr (size, "pt")) cm = cm * 2.54 / 102;
-	px = cm * ctx->fact_y;
-//printf ("dpi %f, fact_y %f, cm %f, scale_px %f\n", dpi, ctx->fact_y, cm, px);
-
-	sz = px * 72 / dpi;
-	return sz * PANGO_SCALE;
-}
-
 static int
 r_get_font_size (render_ctx *ctx, text_ctx *tc, iks *node)
 {
