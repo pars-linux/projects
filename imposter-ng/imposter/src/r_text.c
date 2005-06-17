@@ -147,8 +147,8 @@ text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t l
 {
 	struct Span *span;
 	double cm;
-	char *attr;
-	int px = 0;
+	char *attr, *t, *s;
+	int px = 0, cont = 1;
 
 	attr = r_get_style(ctx, node, "fo:font-size");
 	if (attr) {
@@ -156,10 +156,22 @@ text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t l
 		if (strstr(attr, "pt")) cm = cm * 2.54 / 102;
 		px = cm * ctx->fact_y;
 	}
-	span = add_span(lay, text, len, px, 0);
-	r_get_color(ctx, node, "fo:color", &span->fg);
-
-	printf("Span %d [%s] size %d\n", len, text, px);
+	t = text;
+	while (cont) {
+		s = strchr(t, '\n');
+		if (s) {
+			int len2 = s - t;
+			span = add_span(lay, t, len2, px, 0);
+			t = s + 1;
+			len -= len2;
+			add_line(lay);
+		} else {
+			span = add_span(lay, text, len, px, 0);
+			cont = 0;
+		}
+		r_get_color(ctx, node, "fo:color", &span->fg);
+		printf("Span %d [%s] size %d\n", len, text, px);
+	}
 }
 
 static void
@@ -167,6 +179,7 @@ text_p(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
 {
 	iks *n, *n2;
 
+	add_line(lay);
 	for (n = iks_child(node); n; n = iks_next(n)) {
 		if (iks_type(n) == IKS_CDATA) {
 			text_span(ctx, lay, node, iks_cdata(n), iks_cdata_size(n));
@@ -176,6 +189,8 @@ text_p(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
 					text_span(ctx, lay, n, iks_cdata(n2), iks_cdata_size(n2));
 				}
 			}
+		} else if (iks_strcmp(iks_name(n), "text:line-break") == 0) {
+			add_line(lay);
 		}
 	}
 }
