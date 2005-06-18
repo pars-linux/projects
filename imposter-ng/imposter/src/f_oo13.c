@@ -58,6 +58,7 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 		r_get_color(ctx, node, "svg:stroke-color", &fg);
 		ctx->drw->set_fg_color(drw_data, &fg);
 		_imp_draw_rect(ctx, drw_data, 0, x, y, w, h, r);
+		r_text(ctx, drw_data, node);
 	} else if (strcmp(tag, "draw:ellipse") == 0 || strcmp(tag, "draw:circle") == 0) {
 		int sa, ea, fill = 0;
 		r_get_color(ctx, node, "svg:stroke-color", &fg);

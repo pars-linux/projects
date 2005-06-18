@@ -32,6 +32,7 @@ struct Layout {
 	int tw, th;
 	struct Line *lines;
 	struct Line *last_line;
+	char spaces[128];
 };
 
 struct Line *
@@ -94,7 +95,6 @@ calc_sizes(ImpRenderCtx *ctx, void *drw_data, struct Layout *lay)
 			);
 			line->w += span->w;
 			if (span->h > line->h) line->h = span->h;
-			line->h += span->h;
 		}
 		if (line->w > lay->tw) lay->tw = line->w;
 		lay->th += line->h;
@@ -170,7 +170,7 @@ text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t l
 			cont = 0;
 		}
 		r_get_color(ctx, node, "fo:color", &span->fg);
-		printf("Span %d [%s] size %d\n", len, text, px);
+		printf("Span %d [%.*s] size %d\n", len, len, text, px);
 	}
 }
 
@@ -187,10 +187,38 @@ text_p(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
 			for (n2 = iks_child(n); n2; n2 = iks_next(n2)) {
 				if (iks_type(n2) == IKS_CDATA) {
 					text_span(ctx, lay, n, iks_cdata(n2), iks_cdata_size(n2));
+				} else if (iks_strcmp(iks_name(n2), "text:s") == 0) {
+					char *attr;
+					int c = 1;
+					attr = iks_find_attrib(n2, "text:c");
+					if (attr) c = atoi(attr);
+					if (c > 127) {
+						c = 127;
+						puts("bork bork");
+					}
+					text_span(ctx, lay, n, lay->spaces, c);
 				}
 			}
 		} else if (iks_strcmp(iks_name(n), "text:line-break") == 0) {
 			add_line(lay);
+		}
+	}
+}
+
+void
+text_list(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
+{
+	iks *n, *n2;
+
+	for (n = iks_first_tag(node); n; n = iks_next_tag(n)) {
+		for (n2 = iks_first_tag(n); n2; n2 = iks_next_tag(n2)) {
+			if (strcmp(iks_name(n2), "text:p") == 0) {
+				text_p(ctx, lay, n2);
+			} else if (strcmp(iks_name(n2), "text:ordered-list") == 0) {
+				text_list(ctx, lay, n2);
+			} else if (strcmp(iks_name(n2), "text:unordered-list") == 0) {
+				text_list(ctx, lay, n2);
+			}
 		}
 	}
 }
@@ -202,6 +230,7 @@ r_text(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	iks *n;
 
 	memset(&lay, 0, sizeof(struct Layout));
+	memset(&lay.spaces, ' ', 128);
 	lay.s = iks_stack_new(sizeof(struct Span) * 16, 0);
 	lay.x = r_get_x(ctx, node, "svg:x");
 	lay.y = r_get_y(ctx, node, "svg:y");
@@ -211,6 +240,10 @@ r_text(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	for (n = iks_first_tag(node); n; n = iks_next_tag(n)) {
 		if (strcmp(iks_name(n), "text:p") == 0) {
 			text_p(ctx, &lay, n);
+		} else if (strcmp(iks_name(n), "text:ordered-list") == 0) {
+			text_list(ctx, &lay, n);
+		} else if (strcmp(iks_name(n), "text:unordered-list") == 0) {
+			text_list(ctx, &lay, n);
 		}
 	}
 
@@ -245,14 +278,6 @@ r_get_font_size (render_ctx *ctx, text_ctx *tc, iks *node)
 static void
 text_span (render_ctx *ctx, text_ctx *tc, struct layout_s *lout, iks *node, char *text, int len)
 {
-	char buf[20];
-	char *attr;
-	int size;
-	char *esc;
-
-	if (text == NULL) return;
-	if (len == 0) len = strlen (text);
-	textcat (lout, "<span", 5);
 	attr = r_get_style (ctx, node, "fo:color");
 	if (attr) textcatv (lout, " foreground='", attr, "'", lout);
 	attr = r_get_style (ctx, node, "fo:font-weight");
@@ -262,15 +287,6 @@ text_span (render_ctx *ctx, text_ctx *tc, struct layout_s *lout, iks *node, char
 	attr = r_get_style (ctx, node, "fo:font-style");
 	if (attr && strcmp (attr, "italic") == 0) textcat (lout, " style='italic'", 0);
 	if (tc->bullet_flag && tc->bullet_sz) size = tc->bullet_sz; else size = r_get_font_size (ctx, tc, node);
-	if (size) {
-		sprintf (buf, "%d", size);
-		textcatv (lout, " size='", buf, "'", lout);
-	}
-	textcat (lout, ">", 1);
-	esc = g_markup_escape_text (text, len);
-	textcat (lout, esc, 0);
-	free (esc);
-	textcat (lout, "</span>", 7);
 }
 
 static int
@@ -310,16 +326,6 @@ text_p (render_ctx *ctx, text_ctx *tc, iks *node)
 			for (n2 = iks_child (n1); n2; n2 = iks_next (n2)) {
 				if (iks_type (n2) == IKS_CDATA) {
 					text_span (ctx, tc, lout, n1, iks_cdata (n2), iks_cdata_size (n2));
-				}
-				if (iks_type (n2) == IKS_TAG && iks_strcmp (iks_name (n2), "text:s") == 0) {
-					int gargar;
-					char *hede;
-					hede = iks_find_attrib (n2, "text:c");
-					if (hede) {
-						for (gargar = 0; gargar < atoi (hede); gargar++)
-							textcat (lout, " ", 1);
-					} else
-						textcat (lout, " ", 1);
 				}
 				if (iks_type (n2) == IKS_TAG && iks_strcmp (iks_name (n2), "text:a") == 0) {
 					text_span (ctx, tc, lout, n1, iks_cdata (iks_child (n2)), iks_cdata_size (iks_child (n2)));
@@ -398,30 +404,6 @@ find_bullet (render_ctx *ctx, text_ctx *tc, iks *node)
 }
 
 void
-text_list (render_ctx *ctx, text_ctx *tc, iks *node)
-{
-	iks *n1, *n2;
-
-	for (n1 = iks_child (node); n1; n1 = iks_next (n1)) {
-		if (iks_type (n1) == IKS_TAG) {
-			for (n2 = iks_child (n1); n2; n2 = iks_next (n2)) {
-				if (iks_type (n2) == IKS_TAG) {
-					if (strcmp (iks_name (n2), "text:p") == 0)
-						text_p (ctx, tc, n2);
-					else if (strcmp (iks_name (n2), "text:ordered-list") == 0)
-						text_list (ctx, tc, n2);
-					else if (strcmp (iks_name (n2), "text:unordered-list") == 0) {
-						find_bullet (ctx, tc, n2);
-						text_list (ctx, tc, n2);
-						tc->bullet = 0;
-					}
-				}
-			}
-		}
-	}
-}
-
-void
 r_text (render_ctx *ctx, iks *node)
 {
 	tc.id = iks_find_attrib (node, "draw:id");
@@ -438,21 +420,4 @@ r_text (render_ctx *ctx, iks *node)
 		}
 	}
 
-	flag = 0;
-	for (item = g_list_first (tc.layouts); item; item = g_list_next (item)) {
-		lout = (struct layout_s *)item->data;
-		if (flag) {
-			tc.y += flag * 1.2 * lout->lh / 100;
-		}
-		if (lout->flag) gdk_draw_layout (ctx->d, ctx->gc, tc.x, tc.y, lout->play);
-		if (flag) {
-			if (lout->h) flag = lout->h;
-		} else {
-			flag = lout->h;
-		}
-		g_object_unref (lout->play);
-		iks_stack_delete (lout->s);
-	}
-	g_list_free (tc.layouts);
-}
 */
