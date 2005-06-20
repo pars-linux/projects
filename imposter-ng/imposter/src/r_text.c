@@ -186,7 +186,7 @@ text_p(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
 		} else if (iks_strcmp(iks_name(n), "text:span") == 0) {
 			for (n2 = iks_child(n); n2; n2 = iks_next(n2)) {
 				if (iks_type(n2) == IKS_CDATA) {
-					text_span(ctx, lay, n, iks_cdata(n2), iks_cdata_size(n2));
+					text_span(ctx, lay, n2, iks_cdata(n2), iks_cdata_size(n2));
 				} else if (iks_strcmp(iks_name(n2), "text:s") == 0) {
 					char *attr;
 					int c = 1;
@@ -218,6 +218,8 @@ text_list(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
 				text_list(ctx, lay, n2);
 			} else if (strcmp(iks_name(n2), "text:unordered-list") == 0) {
 				text_list(ctx, lay, n2);
+			} else if (strcmp(iks_name(n2), "text:list") == 0) {
+				text_list(ctx, lay, n2);
 			}
 		}
 	}
@@ -243,6 +245,8 @@ r_text(ImpRenderCtx *ctx, void *drw_data, iks *node)
 		} else if (strcmp(iks_name(n), "text:ordered-list") == 0) {
 			text_list(ctx, &lay, n);
 		} else if (strcmp(iks_name(n), "text:unordered-list") == 0) {
+			text_list(ctx, &lay, n);
+		} else if (strcmp(iks_name(n), "text:list") == 0) {
 			text_list(ctx, &lay, n);
 		}
 	}

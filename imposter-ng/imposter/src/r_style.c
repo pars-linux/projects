@@ -27,6 +27,14 @@ get_style(ImpRenderCtx *ctx, iks *node, char *style, char *attr)
 	while (x) {
 		ret = iks_find_attrib (iks_find (x, "style:properties"), attr);
 		if (ret) return ret;
+		ret = iks_find_attrib (iks_find (x, "style:text-properties"), attr);
+		if (ret) return ret;
+		ret = iks_find_attrib (iks_find (x, "style:paragraph-properties"), attr);
+		if (ret) return ret;
+		ret = iks_find_attrib (iks_find (x, "style:graphic-properties"), attr);
+		if (ret) return ret;
+		ret = iks_find_attrib (iks_find (x, "style:drawing-page-properties"), attr);
+		if (ret) return ret;
 
 		style = iks_find_attrib (x, "style:parent-style-name");
 		if (!style) return NULL;
