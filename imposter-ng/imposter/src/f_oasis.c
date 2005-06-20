@@ -19,6 +19,11 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 		for (x = iks_first_tag(node); x; x = iks_next_tag(x)) {
 			render_object(ctx, drw_data, x);
 		}
+	} else if (strcmp(tag, "draw:frame") == 0) {
+		iks *x;
+		for (x = iks_first_tag(node); x; x = iks_next_tag(x)) {
+			render_object(ctx, drw_data, x);
+		}
 	} else if (strcmp(tag, "draw:line") == 0) {
 		r_get_color(ctx, node, "svg:stroke-color", &fg);
 		ctx->drw->set_fg_color(drw_data, &fg);
@@ -43,6 +48,7 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 		r_get_color(ctx, node, "svg:stroke-color", &fg);
 		ctx->drw->set_fg_color(drw_data, &fg);
 		_imp_draw_rect(ctx, drw_data, 0, x, y, w, h, r);
+		r_text(ctx, drw_data, node);
 	} else if (strcmp(tag, "draw:ellipse") == 0 || strcmp(tag, "draw:circle") == 0) {
 		int sa, ea, fill = 0;
 		r_get_color(ctx, node, "svg:stroke-color", &fg);
@@ -58,6 +64,26 @@ render_object(ImpRenderCtx *ctx, void *drw_data, iks *node)
 			r_get_x(ctx, node, "svg:width"), r_get_y(ctx, node, "svg:height"),
 			sa, ea
 		);
+	} else if (strcmp(tag, "draw:polygon") == 0) {
+		// FIXME:
+		r_polygon(ctx, drw_data, node);
+	} else if (strcmp(tag, "draw:text-box") == 0) {
+		// FIXME:
+		r_text(ctx, drw_data, node);
+	} else if (strcmp(tag, "draw:image") == 0) {
+		char *name;
+
+		name = iks_find_attrib(node, "xlink:href");
+		if (!name) return;
+		if (name[0] == '#') ++name;
+
+		_imp_draw_image(ctx, drw_data,
+			name,
+			r_get_x(ctx, node, "svg:x"),
+			r_get_y(ctx, node, "svg:y"),
+			r_get_x(ctx, node, "svg:width"),
+			r_get_y(ctx, node, "svg:height")
+		);
 	} else {
 		printf("Unknown element: %s\n", tag);
 	}
@@ -67,32 +93,25 @@ static void
 render_page(ImpRenderCtx *ctx, void *drw_data)
 {
 	iks *x;
+	char *element;
+	int i;
 
-	/*
-	i = _imp_r_background(ctx, drw_data, ctx->page->page);
+	i = _imp_fill_back(ctx, drw_data, ctx->page->page);
 	element = iks_find_attrib(ctx->page->page, "draw:master-page-name");
 	if (element) {
 		x = iks_find_with_attrib(
 			iks_find(ctx->page->doc->styles, "office:master-styles"),
-			"style:master-page", "style:name", element);
+			"style:master-page", "style:name", element
+		);
 		if (x) {
-			if (i == 0) _imp_r_background(ctx, drw_data, x);
+			if (i == 0) _imp_fill_back(ctx, drw_data, x);
 			for (x = iks_first_tag(x); x; x = iks_next_tag(x)) {
 				if (iks_find_attrib(x, "presentation:class"))
 					continue;
-				element = iks_name(x);
-				i = 0;
-				while (elements[i].name) {
-					if (strcmp(element, elements[i].name) == 0) {
-						elements[i].func(ctx, drw_data, x);
-						break;
-					}
-					i++;
-				}
+				render_object(ctx, drw_data, x);
 			}
 		}
 	}
-	*/
 	for (x = iks_first_tag(ctx->page->page); x; x = iks_next_tag(x)) {
 		render_object(ctx, drw_data, x);
 	}
