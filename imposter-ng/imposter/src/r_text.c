@@ -149,6 +149,7 @@ text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t l
 	double cm;
 	char *attr, *t, *s;
 	int px = 0, cont = 1;
+	int styles = IMP_NORMAL;
 
 	attr = r_get_style(ctx, node, "fo:font-size");
 	if (attr) {
@@ -156,21 +157,27 @@ text_span(ImpRenderCtx *ctx, struct Layout *lay, iks *node, char *text, size_t l
 		if (strstr(attr, "pt")) cm = cm * 2.54 / 102;
 		px = cm * ctx->fact_y;
 	}
+	attr = r_get_style(ctx, node, "fo:font-weight");
+	if (attr && strcmp(attr, "bold") == 0) styles |= IMP_BOLD;
+	attr = r_get_style(ctx, node, "style:text-underline");
+	if (attr && strcmp(attr, "single") == 0) styles |= IMP_UNDERLINE;
+	attr = r_get_style(ctx, node, "fo:font-style");
+	if (attr && strcmp(attr, "italic") == 0) styles |= IMP_ITALIC;
+
 	t = text;
 	while (cont) {
 		s = strchr(t, '\n');
 		if (s) {
 			int len2 = s - t;
-			span = add_span(lay, t, len2, px, 0);
+			span = add_span(lay, t, len2, px, styles);
 			t = s + 1;
 			len -= len2;
 			add_line(lay);
 		} else {
-			span = add_span(lay, text, len, px, 0);
+			span = add_span(lay, text, len, px, styles);
 			cont = 0;
 		}
 		r_get_color(ctx, node, "fo:color", &span->fg);
-		printf("Span %d [%.*s] size %d\n", len, len, text, px);
 	}
 }
 
@@ -197,10 +204,24 @@ text_p(ImpRenderCtx *ctx, struct Layout *lay, iks *node)
 						puts("bork bork");
 					}
 					text_span(ctx, lay, n, lay->spaces, c);
+				} else if (iks_strcmp(iks_name(n2), "text:a") == 0) {
+					text_span(ctx, lay, n, iks_cdata(iks_child(n2)), iks_cdata_size(iks_child(n2)));
+				} else if (iks_strcmp(iks_name(n2), "text:tab-stop") == 0) {
+					text_span(ctx, lay, n, "\t", 1);
+				} else if (iks_strcmp(iks_name(n2), "text:page-number") == 0) {
+					char buf[8];
+					sprintf(buf, "%d", ctx->page->nr);
+					text_span(ctx, lay, n, iks_stack_strdup(lay->s, buf, 0), strlen(buf));
 				}
 			}
 		} else if (iks_strcmp(iks_name(n), "text:line-break") == 0) {
 			add_line(lay);
+		} else if (iks_strcmp(iks_name(n), "text:a") == 0) {
+			text_span(ctx, lay, n, iks_cdata(iks_child(n)), iks_cdata_size(iks_child(n)));
+		} else if (iks_strcmp(iks_name(n), "text:page-number") == 0) {
+			char buf[8];
+			sprintf(buf, "%d", ctx->page->nr);
+			text_span(ctx, lay, n, iks_stack_strdup(lay->s, buf, 0), strlen(buf));
 		}
 	}
 }
@@ -258,38 +279,9 @@ r_text(ImpRenderCtx *ctx, void *drw_data, iks *node)
 	iks_stack_delete(lay.s);
 }
 /*
-static int
-r_get_font_size (render_ctx *ctx, text_ctx *tc, iks *node)
-{
-	char *size, *min;
-	int sz, mn;
-
-	size = r_get_style (ctx, node, "fo:font-size");
-	min = r_get_style (ctx, node, "fo:min-height");
-	if (size) {
-		sz = get_size (ctx, size);
-		if (min) {
-//			mn = get_size (ctx, min);
-			mn = 0;
-			if (mn > sz) sz = mn;
-		}
-		tc->last_sz = sz;
-		return sz;
-	}
-	return 0;
-}
-
 static void
 text_span (render_ctx *ctx, text_ctx *tc, struct layout_s *lout, iks *node, char *text, int len)
 {
-	attr = r_get_style (ctx, node, "fo:color");
-	if (attr) textcatv (lout, " foreground='", attr, "'", lout);
-	attr = r_get_style (ctx, node, "fo:font-weight");
-	if (attr && strcmp (attr, "bold") == 0) textcat (lout, " weight='bold'", 0);
-	attr = r_get_style (ctx, node, "style:text-underline");
-	if (attr && strcmp (attr, "single") == 0) textcat (lout, " underline='single'", 0);
-	attr = r_get_style (ctx, node, "fo:font-style");
-	if (attr && strcmp (attr, "italic") == 0) textcat (lout, " style='italic'", 0);
 	if (tc->bullet_flag && tc->bullet_sz) size = tc->bullet_sz; else size = r_get_font_size (ctx, tc, node);
 }
 
@@ -320,40 +312,6 @@ text_p (render_ctx *ctx, text_ctx *tc, iks *node)
 			text_span (ctx, tc, lout, node, tc->bullet, strlen (tc->bullet));
 			text_span (ctx, tc, lout, node, " ", 1);
 			tc->bullet_flag = 0;
-		}
-	}
-	for (n1 = iks_child (node); n1; n1 = iks_next (n1)) {
-		if (iks_type (n1) == IKS_CDATA) {
-			text_span (ctx, tc, lout, node, iks_cdata (n1), iks_cdata_size (n1));
-		}
-		if (iks_type (n1) == IKS_TAG && iks_strcmp (iks_name (n1), "text:span") == 0) {
-			for (n2 = iks_child (n1); n2; n2 = iks_next (n2)) {
-				if (iks_type (n2) == IKS_CDATA) {
-					text_span (ctx, tc, lout, n1, iks_cdata (n2), iks_cdata_size (n2));
-				}
-				if (iks_type (n2) == IKS_TAG && iks_strcmp (iks_name (n2), "text:a") == 0) {
-					text_span (ctx, tc, lout, n1, iks_cdata (iks_child (n2)), iks_cdata_size (iks_child (n2)));
-				}
-				if (iks_type (n2) == IKS_TAG && iks_strcmp (iks_name (n2), "text:tab-stop") == 0) {
-					text_span (ctx, tc, lout, n2, "\t", 1);
-				}
-				if (iks_type (n2) == IKS_TAG && iks_strcmp (iks_name (n2), "text:page-number") == 0) {
-					char buf[32];
-					sprintf (buf, "%d", ctx->page_no);
-					text_span (ctx, tc, lout, n2, buf, 0);
-				}
-			}
-		}
-		if (iks_type (n1) == IKS_TAG && iks_strcmp (iks_name (n1), "text:a") == 0) {
-			text_span (ctx, tc, lout, node, iks_cdata (iks_child (n1)), iks_cdata_size (iks_child (n1)));
-		}
-		if (iks_type (n1) == IKS_TAG && iks_strcmp (iks_name (n1), "text:line-break") == 0) {
-			textcat (lout, "\n", 1);
-		}
-		if (iks_type (n1) == IKS_TAG && iks_strcmp (iks_name (n1), "text:page-number") == 0) {
-			char buf[32];
-			sprintf (buf, "%d", ctx->page_no);
-			textcat (lout, buf, 0);
 		}
 	}
 

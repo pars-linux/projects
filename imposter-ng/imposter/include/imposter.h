@@ -33,6 +33,11 @@ typedef struct ImpColorStruct {
 	int blue;
 } ImpColor;
 
+#define IMP_NORMAL 0
+#define IMP_BOLD 1
+#define IMP_ITALIC 2
+#define IMP_UNDERLINE 4
+
 typedef struct ImpDrawer_struct {
 	void (*get_size)(void *drw_data, int *w, int *h);
 	void (*set_fg_color)(void *drw_data, ImpColor *color);

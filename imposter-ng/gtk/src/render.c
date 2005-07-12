@@ -128,20 +128,35 @@ close_image(void *drw_data, void *img_data)
 }
 
 static char *
+join(char *t1, char *t2)
+{
+	char *t;
+	t = g_strconcat(t1, t2, NULL);
+	free(t1);
+	return t;
+}
+
+static char *
 markup(const char *text, size_t len, int styles, int size)
 {
 	double scr_mm, scr_px, dpi;
 	char *esc;
 	char *ret;
+	char *tmp;
 	int sz;
 
 	scr_mm = gdk_screen_get_height_mm(gdk_screen_get_default());
 	scr_px = gdk_screen_get_height(gdk_screen_get_default());
 	dpi = (scr_px / scr_mm) * 25.4;
 	sz = (int) ((double) size * 72.0 * PANGO_SCALE / dpi);
+	tmp = g_strdup("");
+	if (styles & IMP_BOLD) tmp = join(tmp, " weight='bold'");
+	if (styles & IMP_ITALIC) tmp = join(tmp, " style='italic'");
+	if (styles & IMP_UNDERLINE) tmp = join(tmp, " underline='single'");
 	esc = g_markup_escape_text(text, len);
-	ret = g_strdup_printf("<span size ='%d'>%s</span>", sz, esc);
+	ret = g_strdup_printf("<span size ='%d'%s>%s</span>", sz, tmp, esc);
 	free(esc);
+	free(tmp);
 	return ret;
 }
 
