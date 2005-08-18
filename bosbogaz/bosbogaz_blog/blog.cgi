@@ -38,6 +38,13 @@ def main():
 	print
 	print header_text
 
+        c = FieldStorage()
+
+        if MAILER and c.has_key("mailcont"):
+            import blog_mailer
+            blog_mailer.sendMail(c.getvalue("mailaddr"),\
+                                 c.getvalue("mailcont"))
+
 	index = Index(index_file)
 
 	logs=glob(LOGS+"/*"+log_prefix)
@@ -58,8 +65,8 @@ def main():
 	# sort the list using mtimes in the .index
 	logs = index.sort_filelist(logs)
 
-        c = FieldStorage()
         global entry_count
+
         if c.has_key("date"):
                 param_date = c.getvalue("date")
                 param_date = list_to_tuple(param_date)
