@@ -16,6 +16,13 @@ EOE = '' # end of entry
 LOGS = "logs" #log's directory
 IMGS = "img"  #images directory
 
+MAILER = 0
+EMAIL = "your@mail.address"
+BLOGMAILADDR = "noreply-blog@mail.address" 
+SMTPSERVER = "localhost" 
+
+entry_count = 10 # entries printed in first page
+
 REPLACE = {
         'Pardus':'<a href="http://www.uludag.org.tr/">Pardus</a>',
 	'Çağlar':'<a href="http://cekirdek.uludag.org.tr/~caglar/blog/">Çağlar</a>',
@@ -28,7 +35,6 @@ REPLACE = {
         'Tekman':'<a href="http://cekirdek.uludag.org.tr/~tekman/blog/">Tekman</a>'
         }
 
-entry_count = 10 # entries printed in first page
 
 header_text = '''
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -67,6 +73,25 @@ menu_text = '''
 
 
 	'''
+
+if MAILER:
+        mailer_text = '''
+                <br />
+                <hr />
+                <form method="post" action="?">
+                <small>e-mail:</small><br />
+                <input type="text" name="mailaddr" size=20><br />
+                <small>text:</small><br />
+                <textarea name="mailcont" rows=10 cols=20></textarea><br />
+                <input type=submit value="send to ''' + USER + '''"><br />
+                </form>
+                <hr />
+        '''
+else:
+        mailer_text = '''
+	'''
+
+	
 footer_text = '''
 		<br />
 		<img src="img/bosbutton.png" border="0" />
@@ -74,8 +99,8 @@ footer_text = '''
 		<a href="http://www.mozilla.org/products/firefox/"
 		title="Adam gibi bir browser kullanın!"><img
 		src="http://www.mozilla.org/products/firefox/buttons/firefox_80x15.png"
-		width="80" height="15" border="0" alt="Get Firefox" /></a>
-
+		width="80" height="15" border="0" alt="Get Firefox" /></a><br />
+        ''' + mailer_text + '''
 	</div> <!-- menu -->
 	</body>
 	</html>
