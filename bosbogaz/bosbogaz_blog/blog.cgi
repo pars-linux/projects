@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #imports
+from os.path import basename
 from cgi import FieldStorage
 from glob import glob
 import time
@@ -65,7 +66,7 @@ def main():
                 logs = index.get_entries_of_date(logs, param_date)
                 entry_count = 0 # zero entry_count and print all 
         if c.has_key("file"):
-                param_file = c.getvalue("file")
+                param_file = basename(c.getvalue("file"))
                 logs = [LOGS+"/"+param_file]
                 entry_count = 0
 
