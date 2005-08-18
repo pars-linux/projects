@@ -13,6 +13,9 @@ TITLE = '<a href="?file=%s" class="title">%s</a>'
 DATE = '<span class="date">%s</span>'
 EOE = '' # end of entry
 
+LOGS = "logs" #log's directory
+IMGS = "img"  #images directory
+
 REPLACE = {
         'Pardus':'<a href="http://www.uludag.org.tr/">Pardus</a>',
 	'Çağlar':'<a href="http://cekirdek.uludag.org.tr/~caglar/blog/">Çağlar</a>',
@@ -94,5 +97,3 @@ months = {1: "Ocak",
 
 index_file = LOGS + "/.index"
 log_prefix = ".txt"
-LOGS = "logs"
-IMGS = "img"
