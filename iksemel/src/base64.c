@@ -7,13 +7,14 @@
 #include "common.h"
 #include "iksemel.h"
 
-static char base64_charset[] =
-	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static const char base64_charset[] =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 
 char *iks_base64_decode(const char *buf)
 {
-	char *res, *save, *foo, val;
+	char *res, *save,val;
+        const char *foo; 
 	const char *end;
 	int index;
 
