@@ -91,7 +91,7 @@ iks_sha (const char *data, char *hash)
 	iksha *sha;
 
 	sha = iks_sha_new ();
-	iks_sha_hash (sha, data, strlen (data), 1);
+	iks_sha_hash (sha, (const unsigned char*)data, strlen (data), 1);
 	iks_sha_print (sha, hash);
 	iks_free (sha);
 }

@@ -594,10 +594,12 @@ Node contains an attribute and its value.
 
 @deftypefun char* iks_name (iks* @var{x});
 Returns the name of the tag for nodes with the type @var{IKS_TAG}.
+Returns an attribute's name for nodes of type IKS_ATTRIBUTE.
 @end deftypefun
 
 @deftypefun char* iks_cdata (iks* @var{x});
 Returns a pointer to node's character data if available, NULL otherwise.
+Returns an attribute's value for nodes of type IKS_ATTRIBUTE.
 @end deftypefun
 
 @deftypefun size_t iks_cdata_size (iks *@var{x});

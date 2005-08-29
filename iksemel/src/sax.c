@@ -149,7 +149,7 @@ stack_expand (iksparser *prs, int len)
 	if (need < prs->stack_max) {
 		need = prs->stack_max * 2;
 	} else {
-		need = prs->stack_max + (need * 1.2);
+          need = prs->stack_max + (/*need * 1.2 [NO FP ON ARM]*/ (need * 6) / 5);
 	}
 	tmp = iks_malloc (need);
 	if (!tmp) return 0;
