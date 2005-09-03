@@ -1,0 +1,14 @@
+PyWireless is a basic wireless connection monitor with DCOP support...
+
+This is written because
+
+* KWifiManager seems like disaster (sorry guys!),
+* Karamba eats my CPU,
+* And there is no (or i can't find) KDE integrated wifi monitor
+
+PyWireless requires following:
+
+* KDE
+* Python
+* PyQt
+* PyKDE
