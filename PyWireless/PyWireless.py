@@ -44,11 +44,16 @@ class WirelessStatus:
     SIOCGIWMODE = 0x8B07  # Get Mode
     SIOCGIWRATE = 0x8B21  # Get Rate
     
-    ''' Constans '''
-    KILO = 10**3
-    MEGA = 10**6
-    GIGA = 10**9
+    ''' Wireless Constans '''
+    wKILO = 10**3
+    wMEGA = 10**6
+    wGIGA = 10**9
 
+    ''' Byte constants '''
+    bKILO = 2**10
+    bMEGA = 2**20
+    bGIGA = 2**30
+    
     modes = ['Auto', 'Ad-Hoc', 'Managed', 'Master', 'Repeat', 'Second', 'Monitor']
 
     def __init__(self):
@@ -85,6 +90,34 @@ class WirelessStatus:
         fileName = 'wireless/level'
         self.signal = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
         return int(self.signal) - 256
+     
+    def returnReceived(self):
+        ''' Returns received bytes '''
+        fileName = 'statistics/rx_bytes'
+        self.rx = int(file(os.path.join(self.class_path, self.device, fileName)).readline().strip())
+ 
+        if self.rx >= self.bGIGA:
+            return "%i Gb" %(self.rx/self.bGIGA)
+
+        if self.rx >= self.bMEGA:
+            return "%i Mb" %(self.rx/self.bMEGA)
+
+        if self.rx >= self.bKILO:
+            return "%i Kb" %(self.rx/self.bKILO)
+
+    def returnTransferred(self):
+        ''' Returns transferred bytes '''
+        fileName = 'statistics/tx_bytes'
+        self.tx = int(file(os.path.join(self.class_path, self.device, fileName)).readline().strip())
+ 
+        if self.tx >= self.bGIGA:
+            return "%i Gb" %(self.tx/self.bGIGA)
+
+        if self.tx >= self.bMEGA:
+            return "%i Mb" %(self.tx/self.bMEGA)
+
+        if self.tx >= self.bKILO:
+            return "%i Kb" %(self.tx/self.bKILO)
 
     def returnESSID(self):
         ''' Returns essid of interface '''
@@ -107,14 +140,14 @@ class WirelessStatus:
         else:
             bitrate = float(m) * 10**e
 
-        if bitrate >= self.GIGA:
-            return "%i Gb/s" %(bitrate/self.GIGA)
+        if bitrate >= self.wGIGA:
+            return "%i Gb/s" %(bitrate/self.wGIGA)
 
-        if bitrate >= self.MEGA:
-            return "%i Mb/s" %(bitrate/self.MEGA)
+        if bitrate >= self.wMEGA:
+            return "%i Mb/s" %(bitrate/self.wMEGA)
 
-        if bitrate >= self.KILO:
-            return "%i Kb/s" %(bitrate/self.KILO)
+        if bitrate >= self.wKILO:
+            return "%i Kb/s" %(bitrate/self.wKILO)
 
     def returnMode(self):
         ''' Returns operation mode of interface '''
@@ -168,6 +201,8 @@ class DCOPIface(DCOPExObj):
         self.addMethod("int getSignalStatus()", self.getSignalStatus)
         self.addMethod("QString getESSID()", self.getESSID)
         self.addMethod("QString getMode()", self.getMode)
+        self.addMethod("QString returnReceived()", self.returnReceived)
+        self.addMethod("QString returnTransferred()", self.returnTransferred)
 
     def getInterfaceName(self):
         return self.wSO.returnInterfaceName()
@@ -191,6 +226,14 @@ class DCOPIface(DCOPExObj):
     def getMode():
         ''' Returns operation mode of interface '''
         return self.wSO.returnMode()
+
+    def returnReceived(self):
+        ''' Returns received bytes '''
+        return self.wSO.returnReceived()
+
+    def returnTransferred(self):
+        ''' Returns transferred bytes '''
+        return self.wSO.returnTransferred()
 
 class SystemTray(KSystemTray):
     def __init__(self, *args):
@@ -224,6 +267,8 @@ class SystemTray(KSystemTray):
         noiseStatus = self.wirelessStatus.returnNoiseStatus()
         signalStatus = self.wirelessStatus.returnSignalStatus()
         bitRate = self.wirelessStatus.returnBitrate()
+        received = self.wirelessStatus.returnReceived()
+        transferred = self.wirelessStatus.returnTransferred()
     
         ''' Tooltip '''
         toolTip = _('''<center><b>Monitoring:</b> %s</center>
@@ -253,7 +298,15 @@ class SystemTray(KSystemTray):
             <td bgcolor="#EEEEEE"><b>Signal level:</b></td>
             <td bgcolor="#EEEEEE"><center>%d dBm</center></td>
         </tr>
-    </table>''') % (interfaceName, interfaceESSID, linkStatus, bitRate, interfaceMode, noiseStatus, signalStatus)
+        <tr>
+            <td bgcolor="#CCCCCC"><b>Received:</b></td>
+            <td bgcolor="#CCCCCC"><center>%s</center></td>
+        </tr>
+        <tr>
+            <td bgcolor="#EEEEEE"><b>Transferred:</b></td>
+            <td bgcolor="#EEEEEE"><center>%s</center></td>
+        </tr>
+    </table>''') % (interfaceName, interfaceESSID, linkStatus, bitRate, interfaceMode, noiseStatus, signalStatus, received, transferred)
             
         QToolTip.add(self, toolTip)
     
@@ -271,12 +324,13 @@ if __name__ == '__main__':
     programName = 'PyWireless'
     description = 'A Basic Wireless Connection Monitor'
     license = KAboutData.License_GPL
-    version = '2.0'
+    version = '2.1'
     copyright = '(C) 2005 S.Çağlar Onur <caglar@uludag.org.tr>'
 
     aboutData = KAboutData(appName, programName, version, description, license, copyright)
 
     aboutData.addAuthor('S.Çağlar Onur', 'Maintainer', 'caglar@uludag.org.tr')
+    aboutData.addAuthor('Onur Küçük', 'Contributor [Rx/Tx bytes part]', 'onur@uludag.org.tr')
 
     KCmdLineArgs.init(sys.argv, aboutData)
     KCmdLineArgs.addCmdLineOptions([('+files', 'File to open')])
