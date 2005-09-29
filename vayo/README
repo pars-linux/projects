@@ -1,8 +1,8 @@
 USE="-xmms" emerge xosd
 
 chown root:users /proc/acpi/sony/brightness /proc/acpi/sony/fnkey
-chmod 660 /proc/acpi/brightness
-chmod 640 /proc/acpi/fnkey
+chmod 660 /proc/acpi/sony/brightness
+chmod 640 /proc/acpi/sony/fnkey
 
 daha sonra eski sony_fnkey programını kapatıp, bunu user
 olarak çalıştırmak yetiyor.
