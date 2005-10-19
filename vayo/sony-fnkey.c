@@ -175,6 +175,14 @@ void setBrightness( int b )
 	osd_show("Brightness", b * 100.0 / 8.0);
 }
 
+void launch_magnifier()
+{
+    pid_t pid;
+
+    if((pid = fork()) == 0 )
+        execl("/usr/kde/3.4/bin/kmag", "kmag", NULL);
+}
+
 
 #define KEY_FILE "/proc/acpi/sony/fnkey"
 
@@ -200,6 +208,10 @@ handle_key(int key)
 		
 	if (key & FN_F4) {
 		volume_up();
+	}
+    
+    if (key & FN_F10) {
+		launch_magnifier();
 	}
 }
 
