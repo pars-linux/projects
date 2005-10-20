@@ -1,0 +1,238 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-20 20:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: PARDUSclient.cpp:511
+msgid "PARDUS preview (Version 0.3)"
+msgstr ""
+
+#: PARDUSclient.cpp:530
+msgid "Menu"
+msgstr ""
+
+#: PARDUSclient.cpp:541 PARDUSclient.cpp:758
+msgid "Not on all desktops"
+msgstr ""
+
+#: PARDUSclient.cpp:542 PARDUSclient.cpp:759
+msgid "On all desktops"
+msgstr ""
+
+#: PARDUSclient.cpp:551
+msgid "Help"
+msgstr ""
+
+#: PARDUSclient.cpp:558
+msgid "Minimize"
+msgstr ""
+
+#: PARDUSclient.cpp:567 PARDUSclient.cpp:748
+msgid "Restore"
+msgstr ""
+
+#: PARDUSclient.cpp:567 PARDUSclient.cpp:747
+msgid "Maximize"
+msgstr ""
+
+#: PARDUSclient.cpp:577
+msgid "Close"
+msgstr ""
+
+#: PARDUSclient.cpp:586 PARDUSclient.cpp:801
+msgid "Do not keep above others"
+msgstr ""
+
+#: PARDUSclient.cpp:587 PARDUSclient.cpp:801 PARDUSclient.cpp:819
+msgid "Keep above others"
+msgstr ""
+
+#: PARDUSclient.cpp:598 PARDUSclient.cpp:814
+msgid "Do not keep below others"
+msgstr ""
+
+#: PARDUSclient.cpp:599 PARDUSclient.cpp:806 PARDUSclient.cpp:814
+msgid "Keep below others"
+msgstr ""
+
+#: PARDUSclient.cpp:610 PARDUSclient.cpp:769
+msgid "Unshade"
+msgstr ""
+
+#: PARDUSclient.cpp:610 PARDUSclient.cpp:770
+msgid "Shade"
+msgstr ""
+
+#: config/config.cpp:163
+msgid "Select Logo Image"
+msgstr ""
+
+#: config/configdialog.cpp:183
+msgid "Config Dialog"
+msgstr ""
+
+#: config/configdialog.cpp:184
+msgid "Title Alignment"
+msgstr ""
+
+#: config/configdialog.cpp:185
+msgid "&Left"
+msgstr ""
+
+#: config/configdialog.cpp:186
+msgid "Alt+L"
+msgstr ""
+
+#: config/configdialog.cpp:187
+msgid "&Center"
+msgstr ""
+
+#: config/configdialog.cpp:188
+msgid "Alt+C"
+msgstr ""
+
+#: config/configdialog.cpp:189
+msgid "&Right"
+msgstr ""
+
+#: config/configdialog.cpp:190
+msgid "Alt+R"
+msgstr ""
+
+#: config/configdialog.cpp:191
+msgid "Round Top Corners"
+msgstr ""
+
+#: config/configdialog.cpp:192
+msgid "Alwa&ys"
+msgstr ""
+
+#: config/configdialog.cpp:193
+msgid "Alt+Y"
+msgstr ""
+
+#: config/configdialog.cpp:194
+msgid "Not maximi&zed"
+msgstr ""
+
+#: config/configdialog.cpp:195
+msgid "Alt+Z"
+msgstr ""
+
+#: config/configdialog.cpp:196
+msgid "Ne&ver"
+msgstr ""
+
+#: config/configdialog.cpp:197
+msgid "Alt+V"
+msgstr ""
+
+#: config/configdialog.cpp:198
+msgid "&Show titlebar logo"
+msgstr ""
+
+#: config/configdialog.cpp:199
+msgid "Alt+S"
+msgstr ""
+
+#: config/configdialog.cpp:200
+msgid "Check this if you want to see the titlebar logo in the titlebar."
+msgstr ""
+
+#: config/configdialog.cpp:201
+msgid "Logo preview:"
+msgstr ""
+
+#: config/configdialog.cpp:203
+msgid "Select image"
+msgstr ""
+
+#: config/configdialog.cpp:204
+msgid "Select the titlebar logo image."
+msgstr ""
+
+#: config/configdialog.cpp:205
+msgid "Set the offset of the logo from the titeltext."
+msgstr ""
+
+#: config/configdialog.cpp:206
+msgid "px offset from title"
+msgstr ""
+
+#: config/configdialog.cpp:207
+msgid "Close &windows by double clicking the menu button"
+msgstr ""
+
+#: config/configdialog.cpp:208
+msgid "Alt+W"
+msgstr ""
+
+#: config/configdialog.cpp:209
+msgid ""
+"Check this option if you want windows to be closed when you double click the "
+"menu button, similar to Microsoft Windows."
+msgstr ""
+
+#: config/configdialog.cpp:210
+msgid "Buttontype:"
+msgstr ""
+
+#: config/configdialog.cpp:212
+msgid "Plastik flat"
+msgstr ""
+
+#: config/configdialog.cpp:213
+msgid "Lipstik flat"
+msgstr ""
+
+#: config/configdialog.cpp:214
+msgid "Plastik 3D"
+msgstr ""
+
+#: config/configdialog.cpp:215
+msgid "Lipstik 3D"
+msgstr ""
+
+#: config/configdialog.cpp:216
+msgid "Lipstik bright"
+msgstr ""
+
+#: config/configdialog.cpp:217
+msgid "Use shadowed &text"
+msgstr ""
+
+#: config/configdialog.cpp:218
+msgid "Alt+T"
+msgstr ""
+
+#: config/configdialog.cpp:219
+msgid ""
+"Check this option if you want the titlebar text to have a 3D look with a "
+"shadow behind it."
+msgstr ""
+
+#: config/configdialog.cpp:220
+msgid "A&nimate buttons"
+msgstr ""
+
+#: config/configdialog.cpp:221
+msgid "Alt+N"
+msgstr ""
+
+#: config/configdialog.cpp:222
+msgid ""
+"Check this option if you want the buttons to fade in when the mouse pointer "
+"hovers over them and fade out again when it moves away."
+msgstr ""

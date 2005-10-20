@@ -1,0 +1,4 @@
+make -f admin/Makefile.commo
+./configure
+make
+make install

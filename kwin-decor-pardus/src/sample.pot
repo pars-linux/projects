@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-20 20:21+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: PARDUSclient.cpp:511
+msgid "PARDUS preview (Version 0.3)"
+msgstr ""
+
+#: PARDUSclient.cpp:530
+msgid "Menu"
+msgstr ""
+
+#: PARDUSclient.cpp:541 PARDUSclient.cpp:758
+msgid "Not on all desktops"
+msgstr ""
+
+#: PARDUSclient.cpp:542 PARDUSclient.cpp:759
+msgid "On all desktops"
+msgstr ""
+
+#: PARDUSclient.cpp:551
+msgid "Help"
+msgstr ""
+
+#: PARDUSclient.cpp:558
+msgid "Minimize"
+msgstr ""
+
+#: PARDUSclient.cpp:567 PARDUSclient.cpp:748
+msgid "Restore"
+msgstr ""
+
+#: PARDUSclient.cpp:567 PARDUSclient.cpp:747
+msgid "Maximize"
+msgstr ""
+
+#: PARDUSclient.cpp:577
+msgid "Close"
+msgstr ""
+
+#: PARDUSclient.cpp:586 PARDUSclient.cpp:801
+msgid "Do not keep above others"
+msgstr ""
+
+#: PARDUSclient.cpp:587 PARDUSclient.cpp:801 PARDUSclient.cpp:819
+msgid "Keep above others"
+msgstr ""
+
+#: PARDUSclient.cpp:598 PARDUSclient.cpp:814
+msgid "Do not keep below others"
+msgstr ""
+
+#: PARDUSclient.cpp:599 PARDUSclient.cpp:806 PARDUSclient.cpp:814
+msgid "Keep below others"
+msgstr ""
+
+#: PARDUSclient.cpp:610 PARDUSclient.cpp:769
+msgid "Unshade"
+msgstr ""
+
+#: PARDUSclient.cpp:610 PARDUSclient.cpp:770
+msgid "Shade"
+msgstr ""
+
+#: config/config.cpp:163
+msgid "Select Logo Image"
+msgstr ""
