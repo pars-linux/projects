@@ -111,9 +111,9 @@ void PARDUSConfig::load(KConfig*)
     m_dialog->menuClose->setChecked(menuClose);
     bool titleShadow = m_config->readBoolEntry("TitleShadow", true);
     m_dialog->titleShadow->setChecked(titleShadow);
-    bool titleBarLogo = m_config->readBoolEntry("TitleBarLogo", true);
+    bool titleBarLogo = m_config->readBoolEntry("TitleBarLogo", false);
     m_dialog->titleBarLogo->setChecked(titleBarLogo);
-    int titleBarLogoOffset = m_config->readNumEntry("TitleBarLogoOffset", 3);
+    int titleBarLogoOffset = m_config->readNumEntry("TitleBarLogoOffset", 5);
     m_dialog->titleBarLogoOffset->setValue(titleBarLogoOffset);
     QString titleBarImage = locate("data", "kwin/pics/titlebar_decor.png");
     titlebarLogoURL = m_config->readEntry("TitleBarLogoURL", titleBarImage);
