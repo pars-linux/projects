@@ -159,8 +159,8 @@ void PARDUSHandler::readConfig()
     config.setGroup("General");
 
     // grab settings
-    m_titleLogo      = config.readBoolEntry("TitleBarLogo", true);
-    m_titleLogoOffset = config.readNumEntry("TitleBarLogoOffset", 3);
+    m_titleLogo      = config.readBoolEntry("TitleBarLogo", false);
+    m_titleLogoOffset = config.readNumEntry("TitleBarLogoOffset", 5);
     m_titleLogoURL   = config.readEntry("TitleBarLogoURL", locate("data", "kwin/pics/titlebar_decor.png"));
     m_titleShadow    = config.readBoolEntry("TitleShadow", true);
 
