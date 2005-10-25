@@ -313,7 +313,7 @@ class SystemTray(KSystemTray):
         ''' Tray icon name { Icons borrowed from KWirelessInfo } '''
         if int(linkStatus) is not 0:
             index = int(linkStatus) / 20
-            iconName = 'pywireless_' + str(index)
+            iconName = 'pywireless_' + str(index -1)
         else:
             iconName = 'pywireless_zero'
 
