@@ -80,6 +80,7 @@ QImage ShadowEngine::makeShadow(const QPixmap& textPixmap, const QColor &bgColor
       result.setPixel(i,j, qRgba(bgRed, bgGreen , bgBlue, (int) alphaShadow));
     }
   }
+
   return result;
 }
 

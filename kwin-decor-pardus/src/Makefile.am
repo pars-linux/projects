@@ -13,7 +13,7 @@ METASOURCES = AUTO
 linkdir = $(kde_datadir)/kwin/
 link_DATA = PARDUS.desktop
 
-kwin_pics_data_DATA = titlebar_decor.png
+kwin_pics_data_DATA = titlebar_decor.png konqui-deco.png
 kwin_pics_datadir = $(kde_datadir)/kwin/pics
 
 EXTRA_DIST = $(kwin_pics_data_DATA) $(link_DATA) $(kdisplay_colorscheme_DATA)

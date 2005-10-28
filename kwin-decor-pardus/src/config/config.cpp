@@ -78,6 +78,8 @@ PARDUSConfig::PARDUSConfig(KConfig* config, QWidget* parent)
             this, SIGNAL(changed()));
     connect(m_dialog->titleShadow, SIGNAL(toggled(bool)),
             this, SIGNAL(changed()));
+    connect(m_dialog->addSpace, SIGNAL(valueChanged(int)),
+            this, SIGNAL(changed()));
     connect(m_dialog->titleBarLogo, SIGNAL(toggled(bool)),
             this, SIGNAL(changed()));
     connect(m_dialog->titleBarLogoOffset, SIGNAL(valueChanged(int)),
@@ -85,6 +87,10 @@ PARDUSConfig::PARDUSConfig(KConfig* config, QWidget* parent)
     connect(m_dialog->selectButton, SIGNAL(clicked()),
             this, SLOT(selectImage()));
     connect(m_dialog->buttonType, SIGNAL(activated(int)),
+            this, SIGNAL(changed()));
+    connect(m_dialog->useTitleProps, SIGNAL(toggled(bool)),
+            this, SIGNAL(changed()));
+    connect(m_dialog->iconSize, SIGNAL(valueChanged(int)),
             this, SIGNAL(changed()));
 }
 
@@ -98,29 +104,45 @@ void PARDUSConfig::load(KConfig*)
 {
     m_config->setGroup("General");
 
-
     QString alignValue = m_config->readEntry("TitleAlignment", "AlignLeft");
     QRadioButton *alignButton = (QRadioButton*)m_dialog->titleAlign->child(alignValue.latin1());
     if (alignButton) alignButton->setChecked(true);
+
     QString roundValue = m_config->readEntry("RoundCorners", "NotMaximized");
     QRadioButton *roundButton = (QRadioButton*)m_dialog->roundCorners->child(roundValue.latin1());
     if (roundButton) roundButton->setChecked(true);
+
     bool animateButtons = m_config->readBoolEntry("AnimateButtons", true);
     m_dialog->animateButtons->setChecked(animateButtons);
+
     bool menuClose = m_config->readBoolEntry("CloseOnMenuDoubleClick", true);
     m_dialog->menuClose->setChecked(menuClose);
+
     bool titleShadow = m_config->readBoolEntry("TitleShadow", true);
     m_dialog->titleShadow->setChecked(titleShadow);
-    bool titleBarLogo = m_config->readBoolEntry("TitleBarLogo", false);
+
+    int addSpace = m_config->readNumEntry("AddSpace", 4);
+    m_dialog->addSpace->setValue(addSpace);
+
+    bool titleBarLogo = m_config->readBoolEntry("TitleBarLogo", true);
     m_dialog->titleBarLogo->setChecked(titleBarLogo);
-    int titleBarLogoOffset = m_config->readNumEntry("TitleBarLogoOffset", 5);
+
+    int titleBarLogoOffset = m_config->readNumEntry("TitleBarLogoOffset", 3);
     m_dialog->titleBarLogoOffset->setValue(titleBarLogoOffset);
+
     QString titleBarImage = locate("data", "kwin/pics/titlebar_decor.png");
     titlebarLogoURL = m_config->readEntry("TitleBarLogoURL", titleBarImage);
     QImage tmpLogo = QImage::QImage(titlebarLogoURL);
     m_dialog->logoImage->setPixmap(QPixmap(tmpLogo.smoothScale(120, 20, QImage::ScaleMin)));
-    int titleButtonType = m_config->readNumEntry("TitleBarButtonType", 4);
+
+    int titleButtonType = m_config->readNumEntry("TitleBarButtonType", 0);
     m_dialog->buttonType->setCurrentItem(titleButtonType);
+
+    int iconSize = m_config->readNumEntry("IconSize", 45);
+    m_dialog->iconSize->setValue(iconSize);
+
+    bool useTitleProps = m_config->readBoolEntry("UseTitleProps", false);
+    m_dialog->useTitleProps->setChecked(useTitleProps);
 }
 
 void PARDUSConfig::save(KConfig*)
@@ -134,10 +156,13 @@ void PARDUSConfig::save(KConfig*)
     m_config->writeEntry("AnimateButtons", m_dialog->animateButtons->isChecked() );
     m_config->writeEntry("CloseOnMenuDoubleClick", m_dialog->menuClose->isChecked());
     m_config->writeEntry("TitleShadow", m_dialog->titleShadow->isChecked());
+    m_config->writeEntry("AddSpace", m_dialog->addSpace->value());
     m_config->writeEntry("TitleBarLogo", m_dialog->titleBarLogo->isChecked());
     m_config->writeEntry("TitleBarLogoOffset", m_dialog->titleBarLogoOffset->value());
     m_config->writeEntry("TitleBarLogoURL", QString(titlebarLogoURL));
     m_config->writeEntry("TitleBarButtonType", m_dialog->buttonType->currentItem());
+    m_config->writeEntry("IconSize", m_dialog->iconSize->value());
+    m_config->writeEntry("UseTitleProps", m_dialog->useTitleProps->isChecked());
     m_config->sync();
 }
 
@@ -150,12 +175,15 @@ void PARDUSConfig::defaults()
     m_dialog->animateButtons->setChecked(true);
     m_dialog->menuClose->setChecked(false);
     m_dialog->titleShadow->setChecked(true);
+    m_dialog->addSpace->setValue(4);
     m_dialog->titleBarLogo->setChecked(true);
     m_dialog->titleBarLogoOffset->setValue(3);
     titlebarLogoURL = locate("data", "kwin/pics/titlebar_decor.png");
     QImage tmpLogo = QImage::QImage(titlebarLogoURL);
     m_dialog->logoImage->setPixmap(QPixmap(tmpLogo.smoothScale(120, 20, QImage::ScaleMin)));
     m_dialog->buttonType->setCurrentItem(0);
+    m_dialog->iconSize->setValue(45);
+    m_dialog->useTitleProps->setChecked(false);
 }
 
 void PARDUSConfig::selectImage()

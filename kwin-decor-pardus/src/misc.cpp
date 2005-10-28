@@ -74,7 +74,7 @@ QImage recolorImage(QImage *img, QColor color) {
     destImg.setAlphaBuffer(true);
     for (int x = 0; x < img->width(); x++) {
         for (int y = 0; y < img->height(); y++) {
-            if(img->pixel(x,y) == qRgb(0,0,255) ) {
+            if(img->pixel(x,y) == qRgb(0,0,0)) {
                 destImg.setPixel(x,y,color.rgb() ); // set to the new color
             } else {
                 destImg.setPixel(x,y,qRgba(0,0,0,0) ); // set transparent...

@@ -21,7 +21,11 @@
   Boston, MA 02111-1307, USA.
  */
 
-#include <kdebug.h>
+//#include <kdebug.h>
+
+#include <qpainter.h>
+#include <qpixmap.h>
+#include <qbitmap.h>
 
 #include <kconfig.h>
 #include <klocale.h>
@@ -29,43 +33,32 @@
 #include <kstandarddirs.h>
 
 #include "misc.h"
+#include "shadow.h"
 #include "PARDUS.h"
 #include "PARDUS.moc"
 #include "PARDUSclient.h"
+#include "PARDUSbutton.h"
 
 namespace KWinPARDUS
 {
 
-// static bool pixmaps_created = false;
-
-bool PARDUSHandler::m_initialized    = false;
-int  PARDUSHandler::m_buttonType     = 0;
-bool PARDUSHandler::m_animateButtons = true;
-bool PARDUSHandler::m_titleLogo      = true;
-bool PARDUSHandler::m_titleShadow    = true;
-bool PARDUSHandler::m_shrinkBorders  = true;
-bool PARDUSHandler::m_menuClose      = false;
-bool PARDUSHandler::m_reverse        = false;
-int  PARDUSHandler::m_borderSize     = 4;
-int  PARDUSHandler::m_titleHeight    = 19;
-int  PARDUSHandler::m_titleHeightTool= 12;
-QFont PARDUSHandler::m_titleFont = QFont();
-QFont PARDUSHandler::m_titleFontTool = QFont();
-Qt::AlignmentFlags PARDUSHandler::m_titleAlign = Qt::AlignLeft;
-int PARDUSHandler::m_roundCorners    = 2;
-int PARDUSHandler::m_titleLogoOffset = 3;
-QString PARDUSHandler::m_titleLogoURL = locate("data", "kwin/pics/titlebar_decor.png");
-
 PARDUSHandler::PARDUSHandler()
 {
+    memset(m_pixmaps, 0, sizeof(QPixmap*)*5*NumButtonIcons); // set elements to 0
+
     KGlobal::locale()->insertCatalogue("kwin_clients");
     KGlobal::locale()->insertCatalogue("kwin_PARDUS");
+
     reset(0);
 }
 
 PARDUSHandler::~PARDUSHandler()
 {
     m_initialized = false;
+
+    for (int t=0; t < 5; ++t)
+        for (int i=0; i < NumButtonIcons; ++i)
+            delete m_pixmaps[t][i];
 }
 
 bool PARDUSHandler::reset(unsigned long changed)
@@ -104,6 +97,15 @@ bool PARDUSHandler::reset(unsigned long changed)
 
     // read in the configuration
     readConfig();
+
+    for (int t=0; t < 5; ++t) {
+        for (int i=0; i < NumButtonIcons; ++i) {
+            if (m_pixmaps[t][i]) {
+                delete m_pixmaps[t][i];
+                m_pixmaps[t][i] = 0;
+            }
+        }
+    }
 
     m_initialized = true;
 
@@ -159,20 +161,18 @@ void PARDUSHandler::readConfig()
     config.setGroup("General");
 
     // grab settings
-    m_titleLogo      = config.readBoolEntry("TitleBarLogo", false);
-    m_titleLogoOffset = config.readNumEntry("TitleBarLogoOffset", 5);
+    m_titleLogo      = config.readBoolEntry("TitleBarLogo", true);
+    m_titleLogoOffset = config.readNumEntry("TitleBarLogoOffset", 3);
     m_titleLogoURL   = config.readEntry("TitleBarLogoURL", locate("data", "kwin/pics/titlebar_decor.png"));
     m_titleShadow    = config.readBoolEntry("TitleShadow", true);
 
     QFontMetrics fm(m_titleFont);  // active font = inactive font
-    int titleHeightMin = config.readNumEntry("MinTitleHeight", 16);
-    // The title should strech with bigger font sizes!
-    m_titleHeight = QMAX(titleHeightMin, fm.height() + 4); // 4 px for the shadow etc.
+    int addSpace = config.readNumEntry("AddSpace", 4);
+    // The title should stretch with bigger font sizes!
+    m_titleHeight = QMAX(16, fm.height() + addSpace);
 
     fm = QFontMetrics(m_titleFontTool);  // active font = inactive font
-    int titleHeightToolMin = config.readNumEntry("MinTitleHeightTool", 13);
-    // The title should strech with bigger font sizes!
-    m_titleHeightTool = QMAX(titleHeightToolMin, fm.height() ); // don't care about the shadow etc.
+    m_titleHeightTool = QMAX(13, fm.height() ); // don't care about the shadow etc.
 
     QString alignValue = config.readEntry("TitleAlignment", "AlignLeft");
     if (alignValue == "AlignLeft")         m_titleAlign = Qt::AlignLeft;
@@ -184,8 +184,10 @@ void PARDUSHandler::readConfig()
     else if (roundValue == "NotMaximized") m_roundCorners = 2;
     else if (roundValue == "RoundNever")   m_roundCorners = 3;
 
-    m_buttonType = config.readNumEntry("TitleBarButtonType", 4);
+    m_buttonType = config.readNumEntry("TitleBarButtonType", 0);
+    m_iconSize = (config.readNumEntry("IconSize", 45))/100.0;
     m_animateButtons = config.readBoolEntry("AnimateButtons", true);
+    m_useTitleProps = config.readBoolEntry("UseTitleProps", false);
     m_menuClose = config.readBoolEntry("CloseOnMenuDoubleClick", true);
 }
 
@@ -213,6 +215,85 @@ QColor PARDUSHandler::getColor(KWinPARDUS::ColorType type, const bool active)
     }
 }
 
+const QPixmap &PARDUSHandler::buttonPixmap(ButtonIcon type, int size, int state)
+{
+    int typeIndex = type;
+    int s = size;
+
+    if (m_pixmaps[state][typeIndex] && m_pixmaps[state][typeIndex]->size() == QSize(s, s))
+        return *m_pixmaps[state][typeIndex];
+
+    // no matching pixmap found, create a new one...
+
+    delete m_pixmaps[state][typeIndex];
+    m_pixmaps[state][typeIndex] = 0;
+
+    QColor aDecoFgDark = alphaBlendColors(getColor(TitleGradientTo, true), Qt::black, 50);
+    QColor aDecoFgLight = alphaBlendColors(getColor(TitleGradientTo, true), Qt::white, 50);
+    QColor iDecoFgDark = alphaBlendColors(getColor(TitleGradientTo, false), Qt::black, 50);
+    QColor iDecoFgLight = alphaBlendColors(getColor(TitleGradientTo, false), Qt::white, 50);
+
+    QPixmap icon = IconEngine::icon(type, s);
+    QImage img = icon.convertToImage();
+
+    QPixmap *pixmap;
+    QImage tmpImage;
+    ShadowEngine se;
+    QPainter painter;
+    QPixmap tmpShadow;
+    switch (state) {
+        case A_FG_DARK:
+            if (useTitleProps())
+                tmpImage = recolorImage(&img, getColor(TitleFont, true));
+            else
+                tmpImage = recolorImage(&img, aDecoFgDark);
+
+            pixmap = new QPixmap(tmpImage);
+            break;
+        case A_FG_LIGHT:
+            if (useTitleProps())
+                tmpImage = recolorImage(&img, getColor(TitleFont, true));
+            else
+                tmpImage = recolorImage(&img, aDecoFgLight);
+
+            pixmap = new QPixmap(tmpImage);
+            break;
+        case I_FG_DARK:
+            if (useTitleProps())
+                tmpImage = recolorImage(&img, getColor(TitleFont, false));
+            else
+                tmpImage = recolorImage(&img, iDecoFgDark);
+
+            pixmap = new QPixmap(tmpImage);
+            break;
+        case I_FG_LIGHT:
+            if (useTitleProps())
+                tmpImage = recolorImage(&img, getColor(TitleFont, false));
+            else
+                tmpImage = recolorImage(&img, iDecoFgLight);
+
+            pixmap = new QPixmap(tmpImage);
+            break;
+        case SHADOW:
+            // prepare shadow
+            tmpShadow = QPixmap(icon.width()+4, icon.height()+4);
+            tmpShadow.fill(QColor(0,0,0));
+            tmpShadow.setMask(tmpShadow.createHeuristicMask(TRUE));
+            painter.begin(&tmpShadow);
+            painter.setPen(white);
+            painter.drawPixmap(0,0, icon);
+            painter.end();
+            tmpImage = se.makeShadow(tmpShadow, QColor(0, 0, 0));
+            pixmap = new QPixmap(tmpImage);
+            break;
+        default:
+            pixmap = new QPixmap();
+    }
+
+    m_pixmaps[state][typeIndex] = pixmap;
+    return *pixmap;
+}
+
 QValueList< PARDUSHandler::BorderSize >
 PARDUSHandler::borderSizes() const
 {
@@ -222,13 +303,18 @@ PARDUSHandler::borderSizes() const
 	BorderVeryHuge << BorderOversized;
 }
 
+static PARDUSHandler *handler = 0;
+
+PARDUSHandler* Handler()
+{
+    return handler;
+}
+
 } // KWinPARDUS
 
 //////////////////////////////////////////////////////////////////////////////
 // Plugin Stuff                                                             //
 //////////////////////////////////////////////////////////////////////////////
-
-static KWinPARDUS::PARDUSHandler *handler = 0;
 
 extern "C"
 {
@@ -238,7 +324,7 @@ extern "C"
     KDecorationFactory *create_factory()
 #endif
     {
-        handler = new KWinPARDUS::PARDUSHandler();
-        return handler;
+        KWinPARDUS::handler = new KWinPARDUS::PARDUSHandler();
+        return KWinPARDUS::handler;
     }
 }
