@@ -24,7 +24,7 @@
 #define PARDUSBUTTON_H
 
 #include <qbutton.h>
-#include <qimage.h>
+#include <qpixmap.h>
 #include <qintcache.h>
 #include "PARDUS.h"
 
@@ -81,7 +81,7 @@ private:
     int m_size;
 
     ButtonType m_type;
-    QImage m_aDecoLight,m_iDecoLight,m_aDecoDark,m_iDecoDark;
+    ButtonIcon btnType;
     bool hover;
 
     QTimer *animTmr;
@@ -130,6 +130,29 @@ private:
         }
     };
     QIntCache<CacheEntry> *pixmapCache;
+};
+
+/**
+ * This class creates bitmaps which can be used as icons on buttons. The icons
+ * are "hardcoded".
+ * Over the previous "Gimp->xpm->QImage->recolor->SmoothScale->QPixmap" solution
+ * it has the important advantage that icons are more scalable and at the same
+ * time sharp and not blurred.
+ */
+class IconEngine
+{
+    public:
+        static QBitmap icon(ButtonIcon icon, int size);
+
+    private:
+        enum Object {
+            HorizontalLine,
+            VerticalLine,
+            DiagonalLine,
+            CrossDiagonalLine
+        };
+
+        static void drawObject(QPainter &p, Object object, int x, int y, int length, int lineWidth);
 };
 
 } // namespace KWinPARDUS

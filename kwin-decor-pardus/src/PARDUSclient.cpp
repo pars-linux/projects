@@ -82,11 +82,11 @@ void PARDUSClient::init()
     connect(this, SIGNAL(keepBelowChanged(bool)), SLOT(keepBelowChange(bool)));
 
     s_titleHeight = isTool() ?
-                    PARDUSHandler::titleHeightTool()
-                    : PARDUSHandler::titleHeight();
+                    Handler()->titleHeightTool()
+                    : Handler()->titleHeight();
     s_titleFont = isTool() ?
-                  PARDUSHandler::titleFontTool()
-                  : PARDUSHandler::titleFont();
+                  Handler()->titleFontTool()
+                  : Handler()->titleFont();
 
     createMainWidget(WNoAutoErase);
 
@@ -122,12 +122,12 @@ void PARDUSClient::resizeEvent()
     // FIXME: don't update() here! this would result in two paintEvent()s
     // because there is already "something" else triggering the repaint...
     // needed if the corners change
-//    if (PARDUSHandler::roundCorners() == 2) widget()->update();
+//    if (Handler()->roundCorners() == 2) widget()->update();
 }
 
 void PARDUSClient::paintEvent(QPaintEvent*)
 {
-    if (!PARDUSHandler::initialized()) return;
+    if (!Handler()->initialized()) return;
 
     if (captionBufferDirty) update_captionBuffer();
 
@@ -136,10 +136,10 @@ void PARDUSClient::paintEvent(QPaintEvent*)
     QPainter painter(widget());
 
     // colors...
-    const QColor windowContour = PARDUSHandler::getColor(WindowContour, active);
-    const QColor innerWindowContour = PARDUSHandler::getColor(TitleGradientTo, active);
-    const QColor deco = PARDUSHandler::getColor(TitleGradientTo, active);
-    const QColor aBorder = PARDUSHandler::getColor(Border, active);
+    const QColor windowContour = Handler()->getColor(WindowContour, active);
+    const QColor innerWindowContour = Handler()->getColor(TitleGradientTo, active);
+    const QColor deco = Handler()->getColor(TitleGradientTo, active);
+    const QColor aBorder = Handler()->getColor(Border, active);
     const QColor iBorder = innerWindowContour;
 
     QRect Rtop(topSpacer_->geometry());
@@ -185,7 +185,7 @@ void PARDUSClient::paintEvent(QPaintEvent*)
         const int titleMargin = 5; // 5 px between title and buttons
 
         int tX, tW;
-        switch (PARDUSHandler::titleAlign()) {
+        switch (Handler()->titleAlign()) {
             // AlignCenter
             case Qt::AlignHCenter:
                 tX = (titleBfrPtr->width() > Rtitle.width()-2 * titleMargin) ?
@@ -222,8 +222,8 @@ void PARDUSClient::paintEvent(QPaintEvent*)
 
     // title border lines
     painter.setPen(windowContour);
-    if (PARDUSHandler::roundCorners() == 1 ||
-        (PARDUSHandler::roundCorners() == 2 && maximizeMode() != MaximizeFull)) {
+    if (Handler()->roundCorners() == 1 ||
+        (Handler()->roundCorners() == 2 && maximizeMode() != MaximizeFull)) {
         // top line
         if (maximizeMode() != MaximizeFull || options()->moveResizeMaximizedWindows()) {
             painter.drawLine(Rtop.left()+5, Rtop.top(), Rtop.right()-5, Rtop.top());
@@ -365,18 +365,18 @@ void PARDUSClient::paintEvent(QPaintEvent*)
             r = Rbottom.right();
 
         if (Rbottom.height() > 3) {
-            tempRect.setCoords(l, Rbottom.bottom()-PARDUSHandler::borderSize()+1, r, Rbottom.bottom()-2);
+            tempRect.setCoords(l, Rbottom.bottom()-Handler()->borderSize()+1, r, Rbottom.bottom()-2);
             painter.fillRect(tempRect, active ? aGradientBottom : iGradientBottom);
         }
 
         painter.setPen(windowContour);
         painter.drawLine(l, Rbottom.bottom(), r, Rbottom.bottom());
-        painter.drawLine(Rbottom.left()+PARDUSHandler::borderSize()-1, Rbottom.bottom()-PARDUSHandler::borderSize()+1,
-                         Rbottom.left()+PARDUSHandler::borderSize()-1, Rbottom.top() );
-        painter.drawLine(Rbottom.right()-PARDUSHandler::borderSize()+1, Rbottom.bottom()-PARDUSHandler::borderSize()+1,
-                         Rbottom.right()-PARDUSHandler::borderSize()+1, Rbottom.top() );
-        painter.drawLine(Rbottom.left()+PARDUSHandler::borderSize(), Rbottom.bottom()-PARDUSHandler::borderSize()+1,
-                         Rbottom.right()-PARDUSHandler::borderSize(), Rbottom.bottom()-PARDUSHandler::borderSize()+1 );
+        painter.drawLine(Rbottom.left()+Handler()->borderSize()-1, Rbottom.bottom()-Handler()->borderSize()+1,
+                         Rbottom.left()+Handler()->borderSize()-1, Rbottom.top() );
+        painter.drawLine(Rbottom.right()-Handler()->borderSize()+1, Rbottom.bottom()-Handler()->borderSize()+1,
+                         Rbottom.right()-Handler()->borderSize()+1, Rbottom.top() );
+        painter.drawLine(Rbottom.left()+Handler()->borderSize(), Rbottom.bottom()-Handler()->borderSize()+1,
+                         Rbottom.right()-Handler()->borderSize(), Rbottom.bottom()-Handler()->borderSize()+1 );
     }
 }
 
@@ -397,8 +397,8 @@ void PARDUSClient::doShape()
     if (titleSpacer_->geometry().height() > 0) {
         // Remove top-left corner.
         if (leftTitleSpacer_->geometry().width() > 0 &&
-            (PARDUSHandler::roundCorners() == 1 ||
-            (PARDUSHandler::roundCorners() == 2 && maximizeMode() != MaximizeFull))) {
+            (Handler()->roundCorners() == 1 ||
+            (Handler()->roundCorners() == 2 && maximizeMode() != MaximizeFull))) {
             mask -= QRegion(0, 0, 1, 5);
             mask -= QRegion(0, 0, 2, 3);
             mask -= QRegion(0, 0, 3, 2);
@@ -410,8 +410,8 @@ void PARDUSClient::doShape()
         }
         // Remove top-right corner.
         if (rightTitleSpacer_->geometry().width() > 0 &&
-            (PARDUSHandler::roundCorners() == 1 ||
-            (PARDUSHandler::roundCorners() == 2 && maximizeMode() != MaximizeFull))) {
+            (Handler()->roundCorners() == 1 ||
+            (Handler()->roundCorners() == 2 && maximizeMode() != MaximizeFull))) {
             mask -= QRegion(r-1, 0, 1, 5);
             mask -= QRegion(r-2, 0, 2, 3);
             mask -= QRegion(r-3, 0, 3, 2);
@@ -451,7 +451,7 @@ void PARDUSClient::_resetLayout()
     // |_______________________________________________________________|
     //
 
-    if (!PARDUSHandler::initialized()) return;
+    if (!Handler()->initialized()) return;
 
     delete mainLayout_;
 
@@ -474,11 +474,11 @@ void PARDUSClient::_resetLayout()
     rightTitleSpacer_ = new QSpacerItem(SIDETITLEMARGIN, s_titleHeight,
                                         QSizePolicy::Fixed, QSizePolicy::Fixed);
     decoSpacer_       = new QSpacerItem(1, DECOHEIGHT, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    leftSpacer_       = new QSpacerItem(PARDUSHandler::borderSize(), 1,
+    leftSpacer_       = new QSpacerItem(Handler()->borderSize(), 1,
                                         QSizePolicy::Fixed, QSizePolicy::Expanding);
-    rightSpacer_      = new QSpacerItem(PARDUSHandler::borderSize(), 1,
+    rightSpacer_      = new QSpacerItem(Handler()->borderSize(), 1,
                                         QSizePolicy::Fixed, QSizePolicy::Expanding);
-    bottomSpacer_     = new QSpacerItem(1, PARDUSHandler::borderSize(),
+    bottomSpacer_     = new QSpacerItem(1, Handler()->borderSize(),
                                         QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     // top
@@ -490,7 +490,7 @@ void PARDUSClient::_resetLayout()
     // sizeof(...) is calculated at compile time
     memset(m_button, 0, sizeof(PARDUSButton *) * NumButtons);
 
-    titleLayout_->addItem(PARDUSHandler::reverseLayout()?rightTitleSpacer_:leftTitleSpacer_);
+    titleLayout_->addItem(Handler()->reverseLayout() ? rightTitleSpacer_ : leftTitleSpacer_);
     addButtons(titleLayout_,
                options()->customButtonPositions() ? options()->titleButtonsLeft() : QString(default_left),
                s_titleHeight-1);
@@ -498,21 +498,21 @@ void PARDUSClient::_resetLayout()
     addButtons(titleLayout_,
                options()->customButtonPositions() ? options()->titleButtonsRight() : QString(default_right),
                s_titleHeight-1);
-    titleLayout_->addItem(PARDUSHandler::reverseLayout() ? leftTitleSpacer_ : rightTitleSpacer_);
+    titleLayout_->addItem(Handler()->reverseLayout() ? leftTitleSpacer_ : rightTitleSpacer_);
 
     // deco
     mainLayout_->addItem(decoSpacer_);
 
     //Mid
     QHBoxLayout *midLayout   = new QHBoxLayout(mainLayout_, 0, 0);
-    midLayout->addItem(PARDUSHandler::reverseLayout() ? rightSpacer_ : leftSpacer_);
+    midLayout->addItem(Handler()->reverseLayout() ? rightSpacer_ : leftSpacer_);
 
     if( isPreview())
-        midLayout->addWidget(new QLabel("<center><b>" + i18n("PARDUS preview (Version 0.3)") + "</b></center>", widget()));
+        midLayout->addWidget(new QLabel("<center><b>" + i18n("PARDUS preview (Version 0.3.1)") + "</b></center>", widget()));
     else
         midLayout->addItem(new QSpacerItem(0, 0));
 
-    midLayout->addItem(PARDUSHandler::reverseLayout() ? leftSpacer_ : rightSpacer_);
+    midLayout->addItem(Handler()->reverseLayout() ? leftSpacer_ : rightSpacer_);
 
     //Bottom
     mainLayout_->addItem(bottomSpacer_);
@@ -647,11 +647,11 @@ void PARDUSClient::reset(unsigned long changed)
     } else if (changed & SettingFont) {
         // font has changed -- update title height and font
         s_titleHeight = isTool() ?
-                        PARDUSHandler::titleHeightTool()
-                        : PARDUSHandler::titleHeight();
+                        Handler()->titleHeightTool()
+                        : Handler()->titleHeight();
         s_titleFont = isTool() ?
-                      PARDUSHandler::titleFontTool()
-                      : PARDUSHandler::titleFont();
+                      Handler()->titleFontTool()
+                      : Handler()->titleFont();
         // update buttons
         for (int n=0; n<NumButtons; n++) {
             if (m_button[n]) m_button[n]->setSize(s_titleHeight-1);
@@ -669,7 +669,7 @@ void PARDUSClient::reset(unsigned long changed)
 
 PARDUSClient::Position PARDUSClient::mousePosition(const QPoint &point) const
 {
-    const int corner = 18+3 * PARDUSHandler::borderSize()/2;
+    const int corner = 18+3 * Handler()->borderSize()/2;
     Position pos = PositionCenter;
 
     // often needed coords..
@@ -739,7 +739,7 @@ void PARDUSClient::activeChange()
 
 void PARDUSClient::maximizeChange()
 {
-    if (!PARDUSHandler::initialized()) return;
+    if (!Handler()->initialized()) return;
 
     if (m_button[MaxButton]) {
         m_button[MaxButton]->setOn(maximizeMode()==MaximizeFull);
@@ -747,7 +747,7 @@ void PARDUSClient::maximizeChange()
                                          i18n("Maximize")
                                          : i18n("Restore"));
     }
-    if (PARDUSHandler::roundCorners() == 2) widget()->update();
+    if (Handler()->roundCorners() == 2) widget()->update();
 }
 
 void PARDUSClient::desktopChange()
@@ -829,7 +829,7 @@ void PARDUSClient::menuButtonPressed()
     bool dbl = (lastClient==this && t->elapsed() <= QApplication::doubleClickInterval());
     lastClient = this;
     t->start();
-    if (!dbl || !PARDUSHandler::menuClose()) {
+    if (!dbl || !Handler()->menuClose()) {
         QRect menuRect = m_button[MenuButton]->rect();
         QPoint menutop = m_button[MenuButton]->mapToGlobal(menuRect.topLeft());
         QPoint menubottom = m_button[MenuButton]->mapToGlobal(menuRect.bottomRight());
@@ -860,21 +860,21 @@ void PARDUSClient::create_pixmaps()
     // aTitleBarTile
     tempPixmap.resize(1, DECOHEIGHT + TOPMARGIN + s_titleHeight);
     KPixmapEffect::gradient(tempPixmap,
-                            PARDUSHandler::getColor(TitleGradientFrom, true),
-                            PARDUSHandler::getColor(TitleGradientTo, true),
+                            Handler()->getColor(TitleGradientFrom, true),
+                            Handler()->getColor(TitleGradientTo, true),
                             KPixmapEffect::VerticalGradient);
     aTitleBarTile = new QPixmap(1, DECOHEIGHT + TOPMARGIN + s_titleHeight);
     painter.begin(aTitleBarTile);
     painter.drawPixmap(0, 0, tempPixmap);
     QImage t(1, (DECOHEIGHT + TOPMARGIN + s_titleHeight)/2 + 1, 32 );
     t = KImageEffect::gradient(QSize(1, t.height()),
-                               PARDUSHandler::getColor(TitleGradientFrom, true).light(150),
-                               PARDUSHandler::getColor(TitleGradientTo, true).light(110),
+                               Handler()->getColor(TitleGradientFrom, true).light(150),
+                               Handler()->getColor(TitleGradientTo, true).light(110),
                                KImageEffect::VerticalGradient);
     painter.drawImage(0, 2, t, 0, 0, -1, tempPixmap.height()-2);
     t = KImageEffect::gradient(QSize(1, t.height()),
-                               PARDUSHandler::getColor(TitleGradientTo, true),
-                               PARDUSHandler::getColor(TitleGradientFrom, true),
+                               Handler()->getColor(TitleGradientTo, true),
+                               Handler()->getColor(TitleGradientFrom, true),
                                KImageEffect::VerticalGradient);
     painter.drawImage(0, t.height(), t, 0, 0, -1, t.height());
     painter.end();
@@ -882,8 +882,8 @@ void PARDUSClient::create_pixmaps()
     // iTitleBarTile
     tempPixmap.resize(1, DECOHEIGHT + TOPMARGIN + s_titleHeight);
     KPixmapEffect::gradient(tempPixmap,
-                            PARDUSHandler::getColor(TitleGradientFrom, false),
-                            PARDUSHandler::getColor(TitleGradientTo, false),
+                            Handler()->getColor(TitleGradientFrom, false),
+                            Handler()->getColor(TitleGradientTo, false),
                             KPixmapEffect::VerticalGradient);
     iTitleBarTile = new QPixmap(1, DECOHEIGHT + TOPMARGIN + s_titleHeight);
     painter.begin(iTitleBarTile);
@@ -911,7 +911,7 @@ void PARDUSClient::delete_pixmaps()
 
 void PARDUSClient::update_captionBuffer()
 {
-    if (!PARDUSHandler::initialized()) return;
+    if (!Handler()->initialized()) return;
 
     const uint maxCaptionLength = 300; // truncate captions longer than this!
     QString c(caption());
@@ -920,12 +920,12 @@ void PARDUSClient::update_captionBuffer()
         c.append(" [...]");
     }
 
-    QImage logo(PARDUSHandler::titleLogoURL());
-    int logoOffset = PARDUSHandler::titleLogoOffset();
+    QImage logo(Handler()->titleLogoURL());
+    int logoOffset = Handler()->titleLogoOffset();
     QFontMetrics fm(s_titleFont);
     int captionWidth  = fm.width(c);
 
-    if (PARDUSHandler::titleLogo()) {
+    if (Handler()->titleLogo()) {
         captionWidth += logo.width() + logoOffset;
         if (logo.height()+1 > fm.height())
             logo.scaleHeight(fm.height()-1);
@@ -933,7 +933,7 @@ void PARDUSClient::update_captionBuffer()
 
     QPixmap textPixmap;
     QPainter painter;
-    if(PARDUSHandler::titleShadow()) {
+    if(Handler()->titleShadow()) {
         // prepare the shadow
         textPixmap = QPixmap(captionWidth+4, DECOHEIGHT + TOPMARGIN + s_titleHeight); // 4 px shadow space
         textPixmap.fill(QColor(0,0,0));
@@ -941,7 +941,7 @@ void PARDUSClient::update_captionBuffer()
         painter.begin(&textPixmap);
         painter.setFont(s_titleFont);
         painter.setPen(white);
-        if (PARDUSHandler::titleLogo()) {
+        if (Handler()->titleLogo()) {
             painter.drawText(textPixmap.rect().left(), textPixmap.rect().top()+TOPMARGIN,
                              textPixmap.rect().width()-logo.width() - logoOffset, textPixmap.rect().height()-TOPMARGIN-DECOHEIGHT,
                              AlignCenter, c);
@@ -961,16 +961,17 @@ void PARDUSClient::update_captionBuffer()
     aCaptionBuffer->resize(captionWidth+4, DECOHEIGHT + TOPMARGIN + s_titleHeight); // 4 px shadow
     painter.begin(aCaptionBuffer);
     painter.drawTiledPixmap(aCaptionBuffer->rect(), *aTitleBarTile);
-    if(PARDUSHandler::titleShadow()) {
+    if(Handler()->titleShadow()) {
         shadow = se.makeShadow(textPixmap, QColor(0, 0, 0));
         painter.drawImage(1, 1, shadow);
     }
     painter.setFont(s_titleFont);
-    painter.setPen(PARDUSHandler::getColor(TitleFont,true));
-    if (PARDUSHandler::titleLogo()) {
+    painter.setPen(Handler()->getColor(TitleFont,true));
+    if (Handler()->titleLogo()) {
         painter.drawText(aCaptionBuffer->rect().left(), aCaptionBuffer->rect().top() + TOPMARGIN,
                          aCaptionBuffer->rect().width()-logo.width()-logoOffset, aCaptionBuffer->rect().height() - TOPMARGIN-DECOHEIGHT,
                          AlignCenter, c);
+
         painter.drawImage(captionWidth - logo.width(), TOPMARGIN, logo);
     } else {
         painter.drawText(aCaptionBuffer->rect().left(), aCaptionBuffer->rect().top() + TOPMARGIN,
@@ -985,8 +986,8 @@ void PARDUSClient::update_captionBuffer()
     painter.begin(iCaptionBuffer);
     painter.drawTiledPixmap(iCaptionBuffer->rect(), *iTitleBarTile);
     painter.setFont(s_titleFont);
-    painter.setPen(PARDUSHandler::getColor(TitleFont,false));
-    if (PARDUSHandler::titleLogo()) {
+    painter.setPen(Handler()->getColor(TitleFont,false));
+    if (Handler()->titleLogo()) {
         painter.drawText(iCaptionBuffer->rect().left(), iCaptionBuffer->rect().top() + TOPMARGIN,
                          iCaptionBuffer->rect().width() - logo.width() - logoOffset, iCaptionBuffer->rect().height() - TOPMARGIN - DECOHEIGHT,
                          AlignCenter, c);
@@ -1015,7 +1016,7 @@ void PARDUSClient::borders(int &left, int &right, int &top, int &bottom) const
         rightTitleSpacer_->changeSize(right, s_titleHeight, QSizePolicy::Fixed, QSizePolicy::Fixed);
         bottomSpacer_->changeSize(1, bottom, QSizePolicy::Expanding, QSizePolicy::Fixed);
     } else {
-        left = right = bottom = PARDUSHandler::borderSize();
+        left = right = bottom = Handler()->borderSize();
         top = s_titleHeight + DECOHEIGHT + TOPMARGIN;
 
         // update layout etc.
