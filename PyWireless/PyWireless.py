@@ -313,7 +313,7 @@ class SystemTray(KSystemTray):
         ''' Tray icon name { Icons borrowed from KWirelessInfo } '''
         if int(linkStatus) is not 0:
             index = int(linkStatus) / 20
-            iconName = 'pywireless_' + str(index -1)
+            iconName = 'pywireless_' + str(index - 1)
         else:
             iconName = 'pywireless_zero'
 
@@ -331,6 +331,7 @@ if __name__ == '__main__':
 
     aboutData.addAuthor('S.Çağlar Onur', 'Maintainer', 'caglar@uludag.org.tr')
     aboutData.addAuthor('Onur Küçük', 'Contributor [Rx/Tx bytes part]', 'onur@uludag.org.tr')
+    aboutData.addAuthor('Serdar Soytetir', 'Contributor [New PyWireless Icons]', 'sendirom@gmail.com')
 
     KCmdLineArgs.init(sys.argv, aboutData)
     KCmdLineArgs.addCmdLineOptions([('+files', 'File to open')])
