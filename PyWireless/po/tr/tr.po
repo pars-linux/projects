@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyWireless 2.0\n"
-"POT-Creation-Date: 2005-09-03 04:46+0300\n"
-"PO-Revision-Date: 2005-09-28 04:46+0300\n"
+"POT-Creation-Date: 2005-11-16 06:30++0300\n"
+"PO-Revision-Date: 2005-11-16 06:30++0300\n"
 "Last-Translator: S.Çağlar Onur <caglar@uludag.org.tr>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,6 +12,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
+#: PyWireless.py:65
+msgid "No Wireless Interface"
+msgstr "Kablosuz Arayüz Yok"
+
+#: PyWireless.py:65
+msgid "You don't have any wireless interface..."
+msgstr "Kablosuz arayüz bulunamadı..."
 
 #: PyWireless.py:272
 msgid ""
@@ -89,3 +96,7 @@ msgstr ""
 "            <td bgcolor=\"#EEEEEE\"><center>%s</center></td>\n"
 "        </tr>\n"
 "    </table>"
+
+#: PyWireless.py:325
+msgid "<center><b>Monitoring:</b> %s is turned off </center>"
+msgstr "<center><b>İzlenen:</b> %s kapalı </center>"
