@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-09-28 02:37+EEST\n"
+"POT-Creation-Date: 2005-11-16 06:30+EET\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,15 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: PyWireless.py:272
+#: PyWireless.py:65
+msgid "No Wireless Interface"
+msgstr ""
+
+#: PyWireless.py:65
+msgid "You don't have any wireless interface..."
+msgstr ""
+
+#: PyWireless.py:283
 msgid ""
 "<center><b>Monitoring:</b> %s</center>\n"
 "<br>\n"
@@ -53,5 +61,9 @@ msgid ""
 "            <td bgcolor=\"#EEEEEE\"><center>%s</center></td>\n"
 "        </tr>\n"
 "    </table>"
+msgstr ""
+
+#: PyWireless.py:325
+msgid "<center><b>Monitoring:</b> %s is turned off </center>"
 msgstr ""
 

@@ -62,7 +62,7 @@ class WirelessStatus:
         self.device = self.findWirelessInterface()
         self.sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         if not self.device:
-            QMessageBox.information(self, _("No Wireless Interface", "You don't have any wireless interface..."), QMessageBox.Ok)
+            QMessageBox.information(self, _("No Wireless Interface"), _("You don't have any wireless interface..."), QMessageBox.Ok)
             sys.exit(1)
         
     def findWirelessInterface(self):
@@ -322,7 +322,7 @@ class SystemTray(KSystemTray):
             index = int(linkStatus) / 20
             iconName = 'pywireless_' + str(index)
         else:
-            toolTip = "<center><b>Monitoring:</b> %s is turned off</center>" % interfaceName
+            toolTip = _("<center><b>Monitoring:</b> %s is turned off </center>") % interfaceName
             iconName = 'pywireless'
 
         QToolTip.add(self, toolTip)
