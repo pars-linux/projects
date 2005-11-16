@@ -61,6 +61,9 @@ class WirelessStatus:
         self.class_path = '/sys/class/net'
         self.device = self.findWirelessInterface()
         self.sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        if not self.device:
+            QMessageBox.information(self, _("No Wireless Interface", "You don't have any wireless interface..."), QMessageBox.Ok)
+            sys.exit(1)
         
     def findWirelessInterface(self):
         ''' Finds wireless interface '''
@@ -68,6 +71,11 @@ class WirelessStatus:
         for interface in os.listdir(self.class_path):
             if os.path.exists(os.path.join(self.class_path, interface, fileName)):
                 return interface
+
+    def returnInterfaceStatus(self):
+        fileName = 'carrier'
+        self.status = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
+        return self.status
 
     def returnInterfaceName(self):
         ''' Returns the wireless interface name '''
@@ -255,7 +263,7 @@ class SystemTray(KSystemTray):
             Until i found a way to use inotify or libfam '''
         self.time = QTimer(self)
         self.connect(self.time, SIGNAL('timeout()'), self.timeoutSlot)
-        self.time.start(5000)
+        self.time.start(3000)
     
         self.show()
 
@@ -269,6 +277,7 @@ class SystemTray(KSystemTray):
         bitRate = self.wirelessStatus.returnBitrate()
         received = self.wirelessStatus.returnReceived()
         transferred = self.wirelessStatus.returnTransferred()
+        status = self.wirelessStatus.returnInterfaceStatus()
     
         ''' Tooltip '''
         toolTip = _('''<center><b>Monitoring:</b> %s</center>
@@ -308,15 +317,15 @@ class SystemTray(KSystemTray):
         </tr>
     </table>''') % (interfaceName, interfaceESSID, linkStatus, bitRate, interfaceMode, noiseStatus, signalStatus, received, transferred)
             
-        QToolTip.add(self, toolTip)
-    
-        ''' Tray icon name { Icons borrowed from KWirelessInfo } '''
-        if int(linkStatus) is not 0:
+        ''' Tray icon name '''
+        if int(status):
             index = int(linkStatus) / 20
-            iconName = 'pywireless_' + str(index - 1)
+            iconName = 'pywireless_' + str(index)
         else:
-            iconName = 'pywireless_zero'
+            toolTip = "<center><b>Monitoring:</b> %s is turned off</center>" % interfaceName
+            iconName = 'pywireless'
 
+        QToolTip.add(self, toolTip)
         self.setPixmap(self.icons.loadIcon(iconName, KIcon.Desktop, 22))
 
 if __name__ == '__main__':
@@ -324,7 +333,7 @@ if __name__ == '__main__':
     programName = 'PyWireless'
     description = 'A Basic Wireless Connection Monitor'
     license = KAboutData.License_GPL
-    version = '2.1'
+    version = '2.2'
     copyright = '(C) 2005 S.Çağlar Onur <caglar@uludag.org.tr>'
 
     aboutData = KAboutData(appName, programName, version, description, license, copyright)
