@@ -278,52 +278,63 @@ class SystemTray(KSystemTray):
         received = self.wirelessStatus.returnReceived()
         transferred = self.wirelessStatus.returnTransferred()
         status = self.wirelessStatus.returnInterfaceStatus()
-    
-        ''' Tooltip '''
-        toolTip = _('''<center><b>Monitoring:</b> %s</center>
-<br>
-    <table>
-        <tr>
-            <td bgcolor="#CCCCCC"><b>ESSID:</b></td>
-            <td bgcolor="#CCCCCC"><center>%s</center></td>
-        </tr>
-        <tr>
-            <td bgcolor="#EEEEEE"><b>Link Quality:</b></td> 
-            <td bgcolor="#EEEEEE"><center>%d</center></td>
-        </tr>
-        <tr>
-            <td bgcolor="#CCCCCC"><b>Bitrate:</b></td>
-            <td bgcolor="#CCCCCC"><center>%s</center></td>
-        </tr>
-        <tr>
-            <td bgcolor="#EEEEEE"><b>Mode:</b></td>
-            <td bgcolor="#EEEEEE"><center>%s</center></td>
-        </tr>
-        <tr>
-            <td bgcolor="#CCCCCC"><b>Noise level:</b></td>
-            <td bgcolor="#CCCCCC"><center>%d dBm</center></td>
-        </tr>
-        <tr>
-            <td bgcolor="#EEEEEE"><b>Signal level:</b></td>
-            <td bgcolor="#EEEEEE"><center>%d dBm</center></td>
-        </tr>
-        <tr>
-            <td bgcolor="#CCCCCC"><b>Received:</b></td>
-            <td bgcolor="#CCCCCC"><center>%s</center></td>
-        </tr>
-        <tr>
-            <td bgcolor="#EEEEEE"><b>Transferred:</b></td>
-            <td bgcolor="#EEEEEE"><center>%s</center></td>
-        </tr>
-    </table>''') % (interfaceName, interfaceESSID, linkStatus, bitRate, interfaceMode, noiseStatus, signalStatus, received, transferred)
-            
+
         ''' Tray icon name '''
         if int(status):
             index = int(linkStatus) / 20
             iconName = 'pywireless_' + str(index)
+
+            ''' Tooltip '''
+            toolTip = _('''<center><img align="center" src="/usr/share/PyWireless/%s.png"></center>
+            <center>
+            <table border="0" bgcolor="#000000" cellspacing="1" cellpadding="1">
+            <tr>
+                <td colspan="2" bgcolor="#04CC1A"><center><b>Monitoring:</b> [ %s ]</b></center></td>
+            <tr>
+                <td bgcolor="#CCCCCC"><b>ESSID:</b></td>
+                <td bgcolor="#CCCCCC"><center>%s</center></td>
+            </tr>
+            <tr>
+                <td bgcolor="#EEEEEE"><b>Link Quality:</b></td>
+                    <td bgcolor="#EEEEEE"><center>%d</center></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC"><b>Bitrate:</b></td>
+                <td bgcolor="#CCCCCC"><center>%s</center></td>
+            </tr>
+            <tr>
+               <td bgcolor="#EEEEEE"><b>Mode:</b></td>
+                <td bgcolor="#EEEEEE"><center>%s</center></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC"><b>Noise Level:</b></td>
+                <td bgcolor="#CCCCCC"><center>%d dBm</center></td>
+            </tr>
+            <tr>
+                <td bgcolor="#EEEEEE"><b>Signal Level:</b></td>
+                <td bgcolor="#EEEEEE"><center>%d dBm</center></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC"><b>Received:</b></td>
+                <td bgcolor="#CCCCCC"><center>%s</center></td>
+            </tr>
+            <tr>
+                <td bgcolor="#EEEEEE"><b>Transferred:</b></td>
+                <td bgcolor="#EEEEEE"><center>%s</center></td>
+            </tr>
+            </table>
+            </center>
+            ''') % (iconName, interfaceName, interfaceESSID, linkStatus, bitRate, interfaceMode, noiseStatus, signalStatus, received, transferred)
         else:
-            toolTip = _("<center><b>Monitoring:</b> %s is turned off </center>") % interfaceName
             iconName = 'pywireless'
+            toolTip = _('''<center><img align="center" src="/usr/share/PyWireless/%s.png"></center>
+            <center>
+            <table border="0" bgcolor="#000000" cellspacing="1" cellpadding="1">
+            <tr>
+                <td colspan="2" bgcolor="#DD0500"><center>[ %s ] <b>is powered off</b></center></td>
+            <tr>
+            </table>
+            </center>''') % (iconName, interfaceName)
 
         QToolTip.add(self, toolTip)
         self.setPixmap(self.icons.loadIcon(iconName, KIcon.Desktop, 22))
@@ -333,14 +344,14 @@ if __name__ == '__main__':
     programName = 'PyWireless'
     description = 'A Basic Wireless Connection Monitor'
     license = KAboutData.License_GPL
-    version = '2.2'
+    version = '3.0'
     copyright = '(C) 2005 S.Çağlar Onur <caglar@uludag.org.tr>'
 
     aboutData = KAboutData(appName, programName, version, description, license, copyright)
 
     aboutData.addAuthor('S.Çağlar Onur', 'Maintainer', 'caglar@uludag.org.tr')
     aboutData.addAuthor('Onur Küçük', 'Contributor [Rx/Tx bytes part]', 'onur@uludag.org.tr')
-    aboutData.addAuthor('Serdar Soytetir', 'Contributor [New PyWireless Icons]', 'sendirom@gmail.com')
+    aboutData.addAuthor('Serdar Soytetir', 'Contributor [New PyWireless Icons & UI Improvements]', 'sendirom@gmail.com')
 
     KCmdLineArgs.init(sys.argv, aboutData)
     KCmdLineArgs.addCmdLineOptions([('+files', 'File to open')])
