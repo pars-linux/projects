@@ -9,12 +9,13 @@ all:
 install:
 	@echo "PyWireless version 2.0 by S.Çağlar Onur <caglar@uludag.org.tr>"
 	@echo
-	@install -o root -g root -m0755 PyWireless.py /usr/bin/
-	@install -o root -g root -d -m0755 /usr/share/PyWireless
-	@install -o root -g root -m0644 images/*.png /usr/share/PyWireless/
+	@mkdir -p ${PREFIX}/usr/bin/ ${PREFIX}/usr/share/PyWireless ${PREFIX}/usr/share/locale/tr/LC_MESSAGES/
+	@install -o root -g root -m0755 PyWireless.py ${PREFIX}/usr/bin/
+	@install -o root -g root -d -m0755 ${PREFIX}/usr/share/PyWireless
+	@install -o root -g root -m0644 images/*.png ${PREFIX}/usr/share/PyWireless/
 	
 	@msgfmt po/tr/tr.po -o po/tr/PyWireless.mo
-	@install -o root -g root -m0644 po/tr/PyWireless.mo /usr/share/locale/tr/LC_MESSAGES/
+	@install -o root -g root -m0644 po/tr/PyWireless.mo ${PREFIX}/usr/share/locale/tr/LC_MESSAGES/
 	@echo "Installation completed..."
 	@echo "To run PyWireless write PyWireless.py"
 
