@@ -1,4 +1,4 @@
-USE="-xmms" emerge xosd
+pisi it xosd
 
 chown root:users /proc/acpi/sony/brightness /proc/acpi/sony/fnkey
 chmod 660 /proc/acpi/sony/brightness
