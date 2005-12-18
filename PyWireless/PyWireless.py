@@ -32,7 +32,7 @@ __trans = gettext.translation('PyWireless', fallback=True)
 _  =  __trans.ugettext
 
 ''' PyQt and PyKDE Modules'''
-from qt import QToolTip, QTimer, SIGNAL
+from qt import QToolTip, QTimer, QMessageBox, SIGNAL
 from kdecore import KIcon, KIconLoader, KCmdLineArgs, KAboutData, KUniqueApplication, KStandardDirs
 from kdeui import KSystemTray
 from dcopexport import DCOPExObj
