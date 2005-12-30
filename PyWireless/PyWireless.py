@@ -74,7 +74,10 @@ class WirelessStatus:
 
     def returnInterfaceStatus(self):
         fileName = 'carrier'
-        self.status = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
+        try:
+            self.status = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
+        except IOError:
+            return 0
         return self.status
 
     def returnInterfaceName(self):
@@ -352,6 +355,7 @@ if __name__ == '__main__':
     aboutData.addAuthor('S.Çağlar Onur', 'Maintainer', 'caglar@uludag.org.tr')
     aboutData.addAuthor('Onur Küçük', 'Contributor [Rx/Tx bytes part]', 'onur@uludag.org.tr')
     aboutData.addAuthor('Serdar Soytetir', 'Contributor [New PyWireless Icons & UI Improvements]', 'sendirom@gmail.com')
+    aboutData.addAuthor('Furkan Duman', 'Contributor [Bug fix]', 'coderlord@yahoo.com')
 
     KCmdLineArgs.init(sys.argv, aboutData)
     KCmdLineArgs.addCmdLineOptions([('+files', 'File to open')])
