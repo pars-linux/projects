@@ -62,7 +62,7 @@ class WirelessStatus:
         self.device = self.findWirelessInterface()
         self.sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         if not self.device:
-            QMessageBox.information(self, _("No Wireless Interface"), _("You don't have any wireless interface..."), QMessageBox.Ok)
+            QMessageBox.information(None, _("No Wireless Interface"), _("You don't have any wireless interface..."), QMessageBox.Ok)
             sys.exit(1)
         
     def findWirelessInterface(self):
@@ -234,7 +234,7 @@ class DCOPIface(DCOPExObj):
         ''' Returns essid of interface '''
         return self.wSO.returnESSID()
 
-    def getMode():
+    def getMode(self):
         ''' Returns operation mode of interface '''
         return self.wSO.returnMode()
 
@@ -261,6 +261,9 @@ class SystemTray(KSystemTray):
         self.KStandardDirs.addResourceDir("icon", "/usr/share/PyWireless")
         ''' Tray icon Loader '''
         self.icons = KIconLoader("PyWireless", self.KStandardDirs)
+
+        ''' Load icon on startup '''
+        self.setPixmap(self.icons.loadIcon('pywireless', KIcon.Desktop, 22)) 
 
         ''' Timer event triggered every 5 second
             Until i found a way to use inotify or libfam '''
