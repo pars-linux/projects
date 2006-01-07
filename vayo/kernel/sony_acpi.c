@@ -32,11 +32,11 @@
 #include <acpi/acpi_bus.h>
 #include <asm/uaccess.h>
 
-#define ACPI_SNC_CLASS		"sony"
-#define ACPI_SNC_HID		"SNY5001"
-#define ACPI_SNC_DRIVER_NAME	"ACPI Sony Notebook Control Driver v0.2"
+#define ACPI_SNC_CLASS "sony"
+#define ACPI_SNC_HID "SNY5001"
+#define ACPI_SNC_DRIVER_NAME "ACPI Sony Notebook Control Driver"
 
-#define LOG_PFX			KERN_WARNING "sony_acpi: "
+#define LOG_PFX KERN_WARNING "sony_acpi: "
 
 MODULE_AUTHOR("Stelian Pop, S.Çağlar Onur");
 MODULE_DESCRIPTION(ACPI_SNC_DRIVER_NAME);
