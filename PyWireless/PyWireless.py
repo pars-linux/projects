@@ -113,8 +113,7 @@ class WirelessStatus:
         if self.rx >= self.bMEGA:
             return "%i Mb" %(self.rx/self.bMEGA)
 
-        if self.rx >= self.bKILO:
-            return "%i Kb" %(self.rx/self.bKILO)
+        return "%i Kb" %(self.rx/self.bKILO)
 
     def returnTransferred(self):
         ''' Returns transferred bytes '''
@@ -127,8 +126,7 @@ class WirelessStatus:
         if self.tx >= self.bMEGA:
             return "%i Mb" %(self.tx/self.bMEGA)
 
-        if self.tx >= self.bKILO:
-            return "%i Kb" %(self.tx/self.bKILO)
+        return "%i Kb" %(self.tx/self.bKILO)
 
     def returnESSID(self):
         ''' Returns essid of interface '''
