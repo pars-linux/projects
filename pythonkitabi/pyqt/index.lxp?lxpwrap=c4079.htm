@@ -1,0 +1,667 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c4079.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Qt Designer, BlackAdder and uic</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="PyQt fundamentals"
+HREF="p1032.htm"><LINK
+REL="PREVIOUS"
+TITLE="Qt Utility classes and their Python equivalents"
+HREF="x3738.htm"><LINK
+REL="NEXT"
+TITLE="Advanced Designer topics"
+HREF="x4274.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x3738.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x4274.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 11. Qt Designer, BlackAdder and uic</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c4079.htm#AEN4107">Introduction</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x4274.htm">Advanced Designer topics</A
+></DT
+></DL
+></DIV
+><P
+>BlackAdder is the most powerful Python GUI designer in
+    existence. In fact, it compares favorably with every other GUI
+    designer I have ever used. There are other GUI designers for Python,
+    notably Pythonworks by Secret Labs and Boa Constructor, but
+    Pythonworks gives you access to a only subset of the relatively
+    feeble Tkinter GUI toolkit, and Boa Constructor, for wxWindows,
+    is not integrated into a development environment.</P
+><P
+>With BlackAdder's GUI designer you can create dialog
+    windows, custom widgets and wizards. In the next generation of
+    BlackAdder, which will be based on Qt 3.0, you can even create
+    complete main windows with menu's, toolbars and a main widget.
+    BlackAdder gives you access to a wide range of widgets, and makes
+    it possible to integrate your own widgets.</P
+><P
+>Note that everything mentioned in this chapter
+    holds equally true for Qt Designer. The combination of Qt, Qt
+    Designer, pyuic and PyQt gives you exactly the same power&#8212;
+    just not the same convenience.</P
+><P
+>There are a number of unique features to the
+    GUI designer in BlackAdder:</P
+><P
+></P
+><UL
+><LI
+><P
+>The designer produces XML files that can
+        be compiled to Python or C++.</P
+></LI
+><LI
+><P
+>You can create signal/slot connections in
+        the designer, thus tying together all aspects of interface
+        logic.</P
+></LI
+><LI
+><P
+>You can use the layout management classes
+        of Qt (like <TT
+CLASS="CLASSNAME"
+>QLayout</TT
+>). </P
+></LI
+><LI
+><P
+>You can preview your work in any of the
+        native styles that Qt supports.</P
+></LI
+><LI
+><P
+>You can add your own widgets &#8212; even
+        if they are written in Python instead of C++</P
+></LI
+></UL
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Introduction</A
+></H1
+><P
+>Working with the designer modules includes creating
+      files with your interface definition, compiling those files to
+      Python code, and then using that code in your application.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Starting out with the designer module</A
+></H2
+><P
+>Beginning this process is easy, at least as far as GUI design is
+        concerned! After choosing <SPAN
+CLASS="GUIMENUITEM"
+>New</SPAN
+> from the
+      <SPAN
+CLASS="GUIMENU"
+>File</SPAN
+> menu, you will be presented with a dialog
+        that asks you to choose what kind of item you want to create:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Selecting a template for a new GUI design.</P
+></DIV
+></P
+></DIV
+><P
+>This dialog should be moderately familiar to developers
+        who have worked with other GUI designers, such as Visual Basic
+        and JBuilder. Currently, the available options are:</P
+><P
+></P
+><UL
+><LI
+><P
+>Dialog</P
+></LI
+><LI
+><P
+>Wizard</P
+></LI
+><LI
+><P
+>Widget</P
+></LI
+><LI
+><P
+>Configuration Dialog</P
+></LI
+><LI
+><P
+>Dialog with Buttons (bottom)</P
+></LI
+><LI
+><P
+>Dialog with Buttons (right)</P
+></LI
+><LI
+><P
+>Tab-Dialog</P
+></LI
+></UL
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>Adding templates: </B
+>You are not limited to these choices &#8212; the list is
+          infinitely extensible, because all valid designer files
+          (those ending in <TT
+CLASS="FILENAME"
+>.ui</TT
+>) are also valid
+          templates for the designer. You can create a new
+          template using the Designer, and then copy the
+          <TT
+CLASS="FILENAME"
+>.ui</TT
+> file to the
+          <TT
+CLASS="FILENAME"
+>templates</TT
+> directory in the
+          <TT
+CLASS="FILENAME"
+>BlackAdder/properties</TT
+>  directory. The next time you want to create a
+          designer file, your template will be among the choices.  Of
+          the original choices, <SPAN
+><I
+CLASS="EMPHASIS"
+>Configuration
+            Dialog</I
+></SPAN
+>, <SPAN
+><I
+CLASS="EMPHASIS"
+> Dialog with Buttons
+            (Bottom)</I
+></SPAN
+>, <SPAN
+><I
+CLASS="EMPHASIS"
+>Dialog with Buttons
+            (Right)</I
+></SPAN
+> and <SPAN
+><I
+CLASS="EMPHASIS"
+>Tab Dialog</I
+></SPAN
+> are
+          based on <TT
+CLASS="FILENAME"
+>.ui</TT
+> files, and are therefore
+          customizable.</P
+></BLOCKQUOTE
+></DIV
+><P
+>Dialog is relatively uninteresting. It is a base class for creating
+        modal and modeless dialog boxes.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The Dialog template, which appears rather bare.</P
+></DIV
+></P
+></DIV
+><P
+>Wizard is more interesting. This template, based on
+        <TT
+CLASS="CLASSNAME"
+>QWizard</TT
+>, offers everything you need to create
+        these popular "hand-holding" forms.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The wizard template.</P
+></DIV
+></P
+></DIV
+><P
+>Configuration Dialog is interesting, too. It is meant for
+        application-wide preference dialogs, with a listbox
+        containing configuration categories on the left, and a new set
+        of tabbed forms for each configuration category on the right.
+        Note that you can just as easily put pixmaps in a listbox as
+        text strings.  It is far more professional to give the user
+        icons to select from instead of text labels in a
+        listbox.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The Configuration dialog template.</P
+></DIV
+></P
+></DIV
+><P
+>The dialogs with buttons to the right or to the bottom are
+        useful, everyday dialogs. The included buttons are already
+        connected to the methods that close and cancel the dialog, and
+        the contents are already subject to layout management. Which
+        constellation you prefer is a matter of taste. For
+        instance, the KDE desktop standard calls for buttons at the
+        bottom; but Microsoft often puts the buttons that right-hand
+        side.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The dialog-with-the-buttons-on-the-right template.</P
+></DIV
+></P
+></DIV
+><P
+>The last default template is for creating a bottom-buttoned dialog
+        with a tab strip on top.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The tabbed dialog template.</P
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Creating a design</A
+></H2
+><P
+>I'm assuming that you are familiar with the concept of
+        drawing a gui on a grid. Click on the icon that represents the
+        widget you want, click on the grid, drag it to where you want,
+        and alter any properties you want. It's as simple as
+        that&#8212;I can't make it any more difficult for you.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>A partially filled-in form.</P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>Grouping widgets</A
+></H3
+><P
+>One thing to keep in mind is the
+          essential difference between container widgets and normal
+          widgets. Container widgets can hold other widgets in a
+          parent-child relation. One example is the groupbox around a
+          set of radio buttons. It is essential to create the radio
+          buttons inside the groupbox to make them a set; otherwise it
+          would be difficult to keep the selection unique. Thus, you
+          first create the groupbox, drag it to an agreeable size, and
+          then place the radiobuttons inside the groupbox.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>A groupbox holding radio buttons.</P
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>Layout management</A
+></H3
+><P
+>A layoutmanager is a container, too, but
+          here the procedure is just the other way around. You first
+          create the widgets. Then, you select all widgets that should
+          be managed, and then select one of the layout managers
+          (horizontal, vertical or grid). Every time you add a new
+          widget to the container (or a spacer object) you will break
+          the layout and have to recreate it. You can also nest layout
+          managers, to create more complicated effects.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The toolbar buttons for the
+                layout managers <SPAN
+CLASS="GUIBUTTON"
+>set size</SPAN
+>,:
+                <SPAN
+CLASS="GUIBUTTON"
+>horizontal</SPAN
+>,
+                <SPAN
+CLASS="GUIBUTTON"
+>vertical</SPAN
+>,
+                <SPAN
+CLASS="GUIBUTTON"
+>grid</SPAN
+>, <SPAN
+CLASS="GUIBUTTON"
+>break
+                  layout</SPAN
+> and <SPAN
+CLASS="GUIBUTTON"
+>add a
+                  spring</SPAN
+>.</P
+></DIV
+></P
+></DIV
+><P
+>Layout management can be further
+          augmented by adding size hints to each widget. These hints
+          determine whether the widget should stretch as much as
+          possible, or stay the same size.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>Tab order and accelerators</A
+></H3
+><P
+>A good GUI allows the user to do
+          everything with just the keyboard. For this, it is necessary
+          to give every control its own accelerator key. There are two
+          possibilities for creating these accelerators. Either the
+          widget has a label component of its own, in which case
+          typing an &#38; before the letter you want to make the
+          accelerator will suffice. Or, and this is more usual, the
+          widget is purely graphical, but can be associated with a
+          <TT
+CLASS="CLASSNAME"
+>QLabel</TT
+>. Again, the &#38; defines the
+          accelerator, but you must still somehow link the label with
+          the widgets. This is done through the
+          <SPAN
+CLASS="GUIMENU"
+>buddy</SPAN
+> option in the properties sheet. If
+          you select the label, and then enter the name of the
+          associated widget in the buddy field, a link will be
+          made.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Selecting a buddy.</P
+></DIV
+></P
+></DIV
+><P
+>BlackAdder can check for duplicate
+          accelerators. In the <SPAN
+CLASS="GUIMENU"
+>Edit</SPAN
+> menu, select
+          the option <SPAN
+CLASS="GUIMENUITEM"
+>Check Accelerators</SPAN
+>.
+          There's a shortcut for this, too:
+            <B
+CLASS="KEYCAP"
+>CTRL</B
+>-<B
+CLASS="KEYCAP"
+>R</B
+> .</P
+><P
+>Defining accelerators is one part of creating a GUI that
+          is usable with the keyboard only. The tab order is
+          important, too. If the user presses the <B
+CLASS="KEYCAP"
+>Tab</B
+>
+          key, the focus should shift to the next widget (from left to right),
+          instead of going hoppity-skip all over the form.</P
+><P
+>Therefore, fixing the tab order should be the last thing you do
+           after completing a form. This is very
+          easy: press the right button on the toolbar, or
+          choose <SPAN
+CLASS="GUIMENU"
+>Tools</SPAN
+> <SPAN
+CLASS="GUIMENUITEM"
+>Tab
+            Order</SPAN
+> (shortcut:
+            <B
+CLASS="KEYCAP"
+>F4</B
+>).
+          BlackAdder then superimposes small numbered circles on every
+          widget. You simply click on these widgets in the order you want the focus to follow, and BlackAdder does the rest. Life could not be
+          more simple!</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Setting the tab order.</P
+></DIV
+></P
+></DIV
+><P
+>Setting the tab order right now becomes one of those
+          pleasurable little tasks that give a developer a bit of
+          thinking time.</P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x3738.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x4274.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Qt Utility classes and their Python equivalents</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p1032.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Advanced Designer topics</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

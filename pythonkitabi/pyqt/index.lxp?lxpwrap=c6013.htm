@@ -1,0 +1,321 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c6013.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Application Configuration</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="PREVIOUS"
+TITLE="Conclusion"
+HREF="x6008.htm"><LINK
+REL="NEXT"
+TITLE="The Python way of handling configuration
+      settings"
+HREF="x6053.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x6008.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6053.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 18. Application Configuration</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c6013.htm#AEN6019">Platform differences</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x6053.htm">The Python way of handling configuration
+      settings</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x6082.htm">Implementing configurations settings for
+      <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+></A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x6300.htm">Settings in Qt 3.0</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x6342.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>Every user has a preferred way of doing
+    things &#8212; and a good application should be accommodating
+    enough that important choices&#8212;such as what font to
+    use&#8212; can be set by the user. Of course, no one likes
+    applying their favorite settings every time they start an
+    application, so we will need to store the settings, too. This
+    chapter deals with settings &#8212; retrieving, storing and using.
+  </P
+><P
+>Unfortunately, different platforms have
+    vastly differing traditions for the storing of user preferences.
+    You can either use the platform standard, or create your own
+    solution.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Platform differences</A
+></H1
+><P
+>On a Windows system, most applications
+      store user preferences in a central database, called the
+      Registry. This book is not the place to argue about the wisdom
+      or folly of keeping all application and system settings in one
+      database, which can only be accessed with specialized tools.
+      Most modern windows applications no longer use the once
+      prevalent <TT
+CLASS="FILENAME"
+>.ini</TT
+> standard. Using
+      <TT
+CLASS="FILENAME"
+>.ini</TT
+>, an application could store settings
+      in a file in either the installation directory, the
+      <TT
+CLASS="FILENAME"
+>windows</TT
+> directory, or in one of two
+      configuration files: <TT
+CLASS="FILENAME"
+>win.ini</TT
+> or
+      <TT
+CLASS="FILENAME"
+>system.ini</TT
+>. Windows has only recently
+      become a multi-user system, so it is still difficult to
+      determine where to store user specific settings. In Windows
+      2000, I suggest the <TT
+CLASS="FILENAME"
+>C:\Documents and
+        Settings\{Username}\Local Settings\Application Data</TT
+>
+      directory. In the registry, there is the HKEY_USER
+      branch.</P
+><P
+>The Unix standard is not so much a standard
+      as a gentle guide. You can store system-wide application
+      settings in the <TT
+CLASS="FILENAME"
+>/etc</TT
+> directory, or one of
+      its subdirectories, or in the <TT
+CLASS="FILENAME"
+>/usr/share</TT
+>
+      directory together with resources... Or in
+      <TT
+CLASS="FILENAME"
+>/usr/local/share</TT
+> &#8212; or in any number
+      of other places.</P
+><P
+>User settings on a Unix system are
+      generally stored in so-called dot files, or dot directories.
+      These are files or directories that start with a dot (.) and are
+      thus &#8216;invisible' when the user asks for the contents of a
+      directory using <TT
+CLASS="FILENAME"
+>ls</TT
+> (or browses the
+      directory with a filemanager like konqueror). The dot-files or
+      dot-directories are located in the home directory of the user. A
+      Unix home directory can be compared to the user's directory
+      under <TT
+CLASS="FILENAME"
+>C:\Documents And Settings</TT
+> in Windows
+      2000. It is generally found under <TT
+CLASS="FILENAME"
+>/home</TT
+>.
+      You can retrieve the location of this directory with:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>os.environ["HOME"]
+    </PRE
+><P
+>This returns None when HOME is not set. If
+      you are developing for KDE, you might want to store the user
+      settings in
+      <TT
+CLASS="FILENAME"
+>$HOME/.kde/share/config/</TT
+>instead, and the
+      application settings in
+      <TT
+CLASS="FILENAME"
+>$KDEDIR/share/apps</TT
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x6008.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6053.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conclusion</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p4627.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>The Python way of handling configuration
+      settings</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

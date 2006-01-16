@@ -1,0 +1,460 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x1214.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Designing forms</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Qt Concepts"
+HREF="c1036.htm"><LINK
+REL="PREVIOUS"
+TITLE="      A better Hello World
+    "
+HREF="x1149.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x1263.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x1149.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. Qt Concepts</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1263.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Designing forms</A
+></H1
+><P
+>One important feature of BlackAdder and
+      PyQt is the visual gui designer. You can use the designer to
+      easily create all kinds of dialog windows, and even custom
+      widgets.</P
+><P
+>The definition of these user-interface
+      designs is saved in files in an XML format, and you can easily
+      translate those to Python code. The beauty of the system is that
+      you can just as easily translate your designs to valid C++ code,
+      making it easy to develop your prototype in Python and, when
+      satisfied, port the whole gui to fast, compiled C++. (C++ code,
+      I might add, that compiles just as well on Windows, Unix/X11, OS
+      X and embedded systems).</P
+><P
+>The version of Qt Designer that is included
+      with Qt3 can also create complete main windows with menus and
+      toolbars. Once <SPAN
+CLASS="APPLICATION"
+>pyuic</SPAN
+> has been updated
+      to include those elements, you can use this in your Python
+      projects, too.</P
+><P
+>Let's use Designer to design a small form
+      that would be useful for connecting to some system, and hook it
+      up in a small PyQt program.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>A form in the gui designer</P
+></DIV
+></P
+></DIV
+><P
+>It's quite easy to work with designer
+      &#8212; just keep in mind that you <SPAN
+><I
+CLASS="EMPHASIS"
+>never</I
+></SPAN
+>
+      have to place items pixel-perfect. Just bang widgets of roughly
+      the right size in roughly the right places, add the Qt layout
+      managers, and see them work their magic. </P
+><P
+>You add a layout manager by selecting the
+      widgets you want to be managed, and then selecting the right
+      layout manager from the toolbar.</P
+><P
+>In the above design, there are three layout
+      managers: the buttons on the right are stacked, the widgets
+      inside the bevel are in a grid, and everything in the form is in
+      another grid. Try making the dialog larger and smaller &#8212;
+      it will always look good. Even better, if a visually impaired
+      user chooses a large system font, say Arial 24 points bold, the
+      form will still look good.</P
+><P
+>You can either compile the .ui file to
+      Python code from BlackAdder or from the command-line.  The
+      result will be something like this:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 6-6. frmconnect.py</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+># Form implementation generated from reading ui file 'frmconnect.ui'
+#
+# Created: Wed Feb 28 21:34:40 2001
+#      by: The Python User Interface Compiler (pyuic)
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from qt import *
+
+
+class frmConnect(QDialog):
+    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
+        QDialog.__init__(self,parent,name,modal,fl)
+
+        if name == None:
+            self.setName('frmConnect')
+
+        self.resize(547,140)
+        self.setCaption(self.tr('Connecting'))
+        self.setSizeGripEnabled(1)
+        frmConnectLayout = QGridLayout(self)
+        frmConnectLayout.setSpacing(6)
+        frmConnectLayout.setMargin(11)
+
+        Layout5 = QVBoxLayout()
+        Layout5.setSpacing(6)
+        Layout5.setMargin(0)
+
+        self.buttonOk = QPushButton(self,'buttonOk')
+        self.buttonOk.setText(self.tr('&#38;OK'))
+        self.buttonOk.setAutoDefault(1)
+        self.buttonOk.setDefault(1)
+        Layout5.addWidget(self.buttonOk)
+
+        self.buttonCancel = QPushButton(self,'buttonCancel')
+        self.buttonCancel.setText(self.tr('&#38;Cancel'))
+        self.buttonCancel.setAutoDefault(1)
+        Layout5.addWidget(self.buttonCancel)
+
+        self.buttonHelp = QPushButton(self,'buttonHelp')
+        self.buttonHelp.setText(self.tr('&#38;Help'))
+        self.buttonHelp.setAutoDefault(1)
+        Layout5.addWidget(self.buttonHelp)
+        spacer = QSpacerItem(20,20,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        Layout5.addItem(spacer)
+
+        frmConnectLayout.addLayout(Layout5,0,1)
+
+        self.grpConnection = QGroupBox(self,'grpConnection')
+        self.grpConnection.setSizePolicy(QSizePolicy(5,7,self.grpConnection. \
+        sizePolicy().hasHeightForWidth()))
+        
+        self.grpConnection.setTitle(self.tr(''))
+        self.grpConnection.setColumnLayout(0,Qt.Vertical)
+        self.grpConnection.layout().setSpacing(0)
+        self.grpConnection.layout().setMargin(0)
+        grpConnectionLayout = QGridLayout(self.grpConnection.layout())
+        grpConnectionLayout.setAlignment(Qt.AlignTop)
+        grpConnectionLayout.setSpacing(6)
+        grpConnectionLayout.setMargin(11)
+
+        self.lblName = QLabel(self.grpConnection,'lblName')
+        self.lblName.setText(self.tr('&#38;Name'))
+
+        grpConnectionLayout.addWidget(self.lblName,0,0)
+
+        self.lblHost = QLabel(self.grpConnection,'lblHost')
+        self.lblHost.setText(self.tr('&#38;Host'))
+
+        grpConnectionLayout.addWidget(self.lblHost,2,0)
+
+        self.lblPasswd = QLabel(self.grpConnection,'lblPasswd')
+        self.lblPasswd.setText(self.tr('&#38;Password'))
+
+        grpConnectionLayout.addWidget(self.lblPasswd,1,0)
+
+        self.txtPasswd = QLineEdit(self.grpConnection,'txtPasswd')
+        self.txtPasswd.setMaxLength(8)
+        self.txtPasswd.setEchoMode(QLineEdit.Password)
+
+        grpConnectionLayout.addWidget(self.txtPasswd,1,1)
+
+        self.cmbHostnames = QComboBox(0,self.grpConnection,'cmbHostnames')
+
+        grpConnectionLayout.addWidget(self.cmbHostnames,2,1)
+
+        self.txtName = QLineEdit(self.grpConnection,'txtName')
+        self.txtName.setMaxLength(8)
+
+        grpConnectionLayout.addWidget(self.txtName,0,1)
+
+        frmConnectLayout.addWidget(self.grpConnection,0,0)
+
+        self.connect(self.buttonOk,SIGNAL('clicked()'),self,SLOT('accept()'))
+        self.connect(self.buttonCancel,SIGNAL('clicked()'), \
+        self,SLOT('reject()'))
+
+        self.setTabOrder(self.txtName,self.txtPasswd)
+        self.setTabOrder(self.txtPasswd,self.cmbHostnames)
+        self.setTabOrder(self.cmbHostnames,self.buttonOk)
+        self.setTabOrder(self.buttonOk,self.buttonCancel)
+        self.setTabOrder(self.buttonCancel,self.buttonHelp)
+
+        self.lblName.setBuddy(self.txtName)
+        self.lblPasswd.setBuddy(self.txtName)
+        </PRE
+></DIV
+><P
+>Now this looks pretty hideous &#8212; but fortunately you'll
+      never have to hack it. You would lose all your changes anyway, the
+      next time you make a change to your design and regenerate the Python
+      code. The best thing to do is to subclass this form with
+      code that actually fills the dialog with data and perfoms an
+      action upon closing it. I like to keep the names of the
+      generated form and the subclassed form related, and I tend to
+      refer to the first as a form, and the second as dialog &#8212;
+      hence the prefix frmXXX for generated forms and dlgXXX for the
+      dialogs.</P
+><P
+>For example:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 6-7. dlgconnect.py &#8212; the subclass of the generated form</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>import sys
+from qt import *
+
+from frmconnect import frmConnect
+
+class dlgConnect(frmConnect):
+
+    def __init__(self, parent=None):
+        frmConnect.__init__(self, parent)
+        self.txtName.setText("Baldrick")
+        for host in ["elizabeth","george", "melchett"]:
+            self.cmbHostnames.insertItem(host)
+
+    def accept(self):
+        print self.txtName.text()
+        print self.txtPasswd.text()
+        print self.cmbHostnames.currentText()
+        frmConnect.accept(self)
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    QObject.connect(app, SIGNAL('lastWindowClosed()'),
+                    app, SLOT('quit()'))
+    win = dlgConnect()
+    app.setMainWidget(win)
+    win.show()
+    app.exec_loop()
+        </PRE
+></DIV
+><P
+>As you can see, we have subclassed the
+      generated form. In the constructor, the various fields are
+      filled with a bit of data. Note that we can simply use Python
+      string objects in setText() methods. Qt uses a special string
+      object, <TT
+CLASS="CLASSNAME"
+>QString</TT
+> for all its textual data,
+      but PyQt automatically translates both Python strings and Python
+      unicode strings to these <TT
+CLASS="CLASSNAME"
+>QString</TT
+> objects.
+      There are some complications, which we deal with in
+      <A href="index.lxp%3Flxpwrap=c2029.htm">Chapter 8</A
+>, but the translation is mostly
+      transparent.</P
+><P
+>When you press the OK button, Qt calls the
+      <TT
+CLASS="FUNCTION"
+>accept()</TT
+> method of the dialog class, in
+      this case <TT
+CLASS="CLASSNAME"
+>dlgConnect</TT
+>, which inherits
+      <TT
+CLASS="CLASSNAME"
+>frmConnect</TT
+>, which inherits
+      <TT
+CLASS="CLASSNAME"
+>QDialog</TT
+>. The
+      <TT
+CLASS="FUNCTION"
+>accept()</TT
+> method prints out the contents of
+      the fields. Then the <TT
+CLASS="FUNCTION"
+>accept()</TT
+> method of the
+      parent class  &#8212; ultimately <TT
+CLASS="CLASSNAME"
+>QDialog</TT
+>
+      &#8212; is called, and the dialog is closed.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x1149.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1263.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>A better Hello World</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c1036.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

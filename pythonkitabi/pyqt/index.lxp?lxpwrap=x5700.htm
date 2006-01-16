@@ -1,0 +1,296 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5700.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>A stack of documents</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="User Interface Paradigms"
+HREF="c5584.htm"><LINK
+REL="PREVIOUS"
+TITLE="A row of split windows"
+HREF="x5679.htm"><LINK
+REL="NEXT"
+TITLE="A more complex view management solution"
+HREF="x5722.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5679.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 16. User Interface Paradigms</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5722.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>A stack of documents</A
+></H1
+><P
+>I said I wouldn't do an emacs-like stack
+      of documents without any surrounding GUI &#8212; but it was so
+      easy. PyQt contains a very basic class,
+      <TT
+CLASS="CLASSNAME"
+>QWidgetStack</TT
+>, which can contain any
+      number of widgets, though only one is shown at a time. This
+      class is used in <TT
+CLASS="CLASSNAME"
+>QWizard</TT
+>,
+      <TT
+CLASS="CLASSNAME"
+>QTabWidget</TT
+> and
+      <TT
+CLASS="CLASSNAME"
+>QTabDialog</TT
+>, but it can be very useful
+      when used by itself, too.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+stackspace.py - stacked view manager for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class StackSpace(QWidgetStack):
+
+    def __init__(self, *args):
+        apply(QWidgetStack.__init__,(self, ) + args)
+        self.views=[]
+
+    def addView(self, view):
+        self.views.append(view)
+        self.addWidget(view, len(self.views) - 1)
+        self.raiseWidget(view)
+
+    def removeView(self, view):
+        if view in self.views:
+            self.views.remove(view)
+            self.removeWidget(view)
+    </PRE
+><P
+><TT
+CLASS="CLASSNAME"
+>QWidgetStack</TT
+> is one
+      of those classes that wants its children to be explicitly added
+      and removed. You also have to give a numerical ID to identify
+      the widget.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def activeWindow(self):
+        return self.visibleWidget()
+
+    def cascade(self): pass
+
+    def tile(self): pass
+
+    def canCascade(self):
+        return FALSE
+
+    def canTile(self):
+        return FALSE
+
+    def windowList(self):
+        return self.views
+
+    def activateView(self, view):
+        self.raiseWidget(view)
+    </PRE
+><P
+>In contrast with all other view managers
+      we have created up to now, <TT
+CLASS="CLASSNAME"
+>QWidgetStack</TT
+>
+      does not automatically raise a window when it gets focus. This
+      means that we have to add a new method to the view manager
+      interface&#8212; <TT
+CLASS="FUNCTION"
+>activateView</TT
+>. This has to
+      be added to all other view managers, too, and there is a small
+      change necessary in the application class
+      <TT
+CLASS="CLASSNAME"
+>MDIApp</TT
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotWindowMenuActivated(self, index):
+        self.menuToWindowMap[index].setFocus()
+    </PRE
+><P
+>becomes:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotWindowMenuActivated(self, index):
+        self.workspace.activateView(self.menuToWindowMap[index])
+    </PRE
+><P
+>Of course, this is merely an example of
+      the use of <TT
+CLASS="CLASSNAME"
+>QWidgetStack</TT
+>. If you want to
+      present your users with stacked document windows, you ought to
+      offer more than a mere &#8216;window' menu for selecting
+      windows&#8212; A keyboard interface, for instance, or perhaps a
+      listview with icons for open documents to the left.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5679.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5722.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>A row of split windows</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5584.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>A more complex view management solution</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

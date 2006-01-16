@@ -1,0 +1,833 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c1267.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Signals and Slots in Depth</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="PyQt fundamentals"
+HREF="p1032.htm"><LINK
+REL="PREVIOUS"
+TITLE="Conclusion"
+HREF="x1263.htm"><LINK
+REL="NEXT"
+TITLE="Connecting with signals and slots"
+HREF="x1408.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x1263.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1408.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 7. Signals and Slots in Depth</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#AEN1273">The concept of signals and slots</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1408.htm">Connecting with signals and slots</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm">Disconnecting</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1807.htm">A parser-formatter using signals and slots</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2026.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>The concept of signals and slots is possibly
+    the most interesting innovation in the Qt library. Good widgets
+    and a clean API are rare, but not unique. But until Qt appeared on
+    the horizon, connecting your widgets with your application and
+    your data was a nasty and error-prone endeavor &#8212; even in
+    Python. I will first discuss the problem that is solved by signals
+    and slots in some detail; then I will introduce the actual
+    mechanics of the signal/slot mechanism, and finish with an
+    application of the technique outside the GUI domain.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>The concept of signals and slots</A
+></H1
+><P
+>The problem in a nutshell: imagine you have
+      an application, and the application shows a button on screen.
+      Whenever the button is pressed, you want a function in your
+      application to execute. Of course, you'd prefer that the button
+      doesn't know much about the application, or you would have to
+      write a different button for each application. In the next
+      example, the button has been coded to work only with an
+      application that has the
+      <TT
+CLASS="FUNCTION"
+>doSomeApplicationSpecificFunction</TT
+> function.
+    </P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-1. A stupid button which is not reusable</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# stupid_button.py &#8212; this button is not reusable
+#
+class Button:
+
+    def __init__(self, application):
+      self.application = application
+
+    def clicked(self):
+        self.application.doSomeApplicationSpecificFunction()
+
+class Application:
+
+    def __init__(self):
+        self.button=Button(self)
+
+    def doSomeApplicationSpecificFunction(self):
+        print "Function called"
+
+app=Application()
+app.button.clicked() # simulate a user button press
+      </PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Callbacks</A
+></H2
+><P
+>This is no solution&#8212; the button code
+        isn't reusable at all. A better solution would be to pass the
+        <SPAN
+><I
+CLASS="EMPHASIS"
+>function</I
+></SPAN
+> object to the button. Remember
+        that in Python functions are objects just like everything
+        else. In a language like C or C++ you would pass a
+        <SPAN
+><I
+CLASS="EMPHASIS"
+>function pointer</I
+></SPAN
+>, the actual memory
+        address of the function being called. This is quite nasty,
+        because there is no way the compiler can check what arguments
+        are passed to the function represented by the function
+        pointer. In Python, passing functions around is really
+        easy.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-2. A simple callback system</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# callback.py &#8212; handing the function over the the app
+#
+class Button:
+
+    def __init__(self, function):
+        self.callbackFunction = function
+
+    def clicked(self):
+        apply(self.callbackFunction)
+
+class Application:
+
+    def __init__(self):
+        self.button=Button(self.doSomeApplicationSpecificFunction)
+
+    def doSomeApplicationSpecificFunction(self):
+        print "Function called"
+
+
+app=Application()
+app.button.clicked() # simulate a user button press
+        </PRE
+></DIV
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+></A
+><P
+><B
+>Using <TT
+CLASS="FUNCTION"
+>apply()</TT
+> to execute
+            function objects.: </B
+>Note the usage of the
+            <TT
+CLASS="FUNCTION"
+>apply()</TT
+> function in the
+            <TT
+CLASS="FUNCTION"
+>clicked()</TT
+> function &#8212; this
+            Python built-in function executes the function object you
+            pass as the first argument argument.  You can also hand it
+            parameters, as a tuple in the second argument to
+            <TT
+CLASS="FUNCTION"
+>apply()</TT
+>. You'll see that idiom quite
+            often when we subclass Qt classes:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class MyWidget(QWidget):
+
+    def __init__(self, *args):
+        apply(QWidget.__init__, (self,) + args)
+        </PRE
+><P
+>This is useful because
+            <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> and the other Qt classes
+            often have a lot of optional parameters, such as the
+            object name or certain widget flags. If we discount the
+            possibility that someone wants to use those optional
+            parameters, we would write:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class MyWidget(QWidget):
+
+    def __init__(self, parent):
+        QWidget.__init__(self, parent)
+          </PRE
+><P
+>This is far less flexible. In the previous example,
+            we created an argument tuple to be passed to the
+            <TT
+CLASS="FUNCTION"
+>__init__()</TT
+> by first creating a tuple
+            containing our own object reference -
+            <TT
+CLASS="VARNAME"
+>self</TT
+>, and then adding the arguments
+            from the variable positional argument list to that tuple.
+            Remember from the discussion of positional arguments in
+            <A href="index.lxp%3Flxpwrap=x719.htm#CH24POSITIONALARGUMENTS">the Section called <I
+>Methods and functions</I
+> in Chapter 4</A
+> that the
+            arguments in *args <SPAN
+><I
+CLASS="EMPHASIS"
+>are</I
+></SPAN
+> a tuple, and
+            you can create a new tuple by adding two tuples.</P
+><P
+>In more recent versions of Python, you don't need to
+            use <TT
+CLASS="FUNCTION"
+>apply()</TT
+> anymore to call the
+            constructor of a superclass with a variable number of
+            arguments. That is, from version 2.0 of Python you can
+            also use the following construction:</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; class O(QObject):
+...     def __init__(self, *args):
+...             QObject.__init__(self, *args)
+... 
+&#62;&#62;&#62; a=O()
+&#62;&#62;&#62; b=O(a, "bla")
+&#62;&#62;&#62; b
+&#60;__main__.O instance at 0x82b5c3c&#62;
+&#62;&#62;&#62; b.name()
+'bla'
+&#62;&#62;&#62; b.parent()
+&#60;__main__.O instance at 0x8106cb4&#62;
+&#62;&#62;&#62;       </PRE
+><P
+>That is, when calling the constructor of the
+            superclass, you can pass <TT
+CLASS="VARNAME"
+>self</TT
+> as the
+            first argument, and then the argument list, with asterisks
+            and all.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Action registry</A
+></H2
+><P
+>Unfortunately, this callback system is not
+        quite generic enough. For example, what if you wanted to
+        activate two functions when the button is pressed? While this
+        is not likely in the simple example, under more complex
+        situations it often occurs. Think of a text editor where
+        editing the text should change the internal representation of
+        the document, the word count in the statusbar, and the
+        edited-indicator in the titlebar. You wouldn't want to put all
+        this functionality in one function, but it is a natural fit
+        for signals and slots. You could have one signal,
+        <TT
+CLASS="FUNCTION"
+>textChanged</TT
+>, that is connected to three
+        functions: <TT
+CLASS="FUNCTION"
+>changeText()</TT
+>,
+        <TT
+CLASS="FUNCTION"
+>setWordCount()</TT
+>,
+        <TT
+CLASS="FUNCTION"
+>setEdited()</TT
+>.</P
+><P
+>Wouldn't it be extremely comfortable to
+        simply have a central registry where interested parties could
+        come together? Something like:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-3. A central registry of connected widgets</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# registry.py &#8212; a central registry of connected widgets
+#
+class Registry:
+
+    def __init__(self):
+        self.connections={}                                <IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+>
+
+    def add(self, occasion, function):                     <IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+>
+        if self.connections.has_key(occasion) == 0:
+            self.connections[occasion]=[function]
+        else:
+            self.connections[occasion].append(function)
+
+    def remove(self, occasion, function):                  <IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+>
+        if self.connections.has_key(occasion):
+            self.connections[occasion].remove(function)
+
+    def execute(self, occasion):
+        if self.connections.has_key(occasion):             <IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+>
+            for function in self.connections[occasion]:
+                apply(function)
+
+registry=Registry()
+                                                           <IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+>
+class Button:
+                                                           <IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+>
+    def clicked(self):
+        registry.execute("clicked")
+
+class Application:
+
+    def __init__(self):
+        self.button=Button()
+        registry.add("clicked", self.doAppSpecificFunction)
+        registry.add("clicked", self.doSecondFunction)     <IMG
+SRC="images/callouts/7.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(7)"></A
+>
+
+    def doAppSpecificFunction(self):
+        print "Function called"
+
+    def doSecondFunction(self):
+        print "A second function is called."
+
+app=Application()
+app.button.clicked()
+        </PRE
+><DIV
+CLASS="CALLOUTLIST"
+><DL
+COMPACT="COMPACT"
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYCONNECTIONS"><IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+></DT
+><DD
+>The actual registry is a Python dictionary with
+                the name <TT
+CLASS="VARNAME"
+>connections</TT
+>. Here,
+                each <TT
+CLASS="VARNAME"
+>occasion</TT
+> is used as a key to
+                find the actual function object that should be called.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYADD"><IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+></DT
+><DD
+>If the &#8216;occasion' is already registered, we simply
+                add a new entry to the list; otherwise a new entry
+                is created in the registry.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYREMOVE"><IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+></DT
+><DD
+>If the &#8216;occasion' exists, then we remove the
+                relevant function entry from its list of
+                functions.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYEXECUTE"><IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+></DT
+><DD
+>We loop over all functions that belong to this
+                &#8216;occasion' and simply execute them by calling
+                <TT
+CLASS="FUNCTION"
+>apply()</TT
+> on them.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYCREATE"><IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+></DT
+><DD
+>A registry is a unique object to an application:
+                there should only be one, so we create it globally.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYBUTTON"><IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+></DT
+><DD
+>This is the &#8216;button' class.
+                Whenever the button is &#8216;clicked', it calls the
+                <TT
+CLASS="FUNCTION"
+>execute()</TT
+> function in the
+                registry with the &#8216;clicked' occasion.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYAPPLICATION"><IMG
+SRC="images/callouts/7.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(7)"></A
+></DT
+><DD
+>The application creates one button and binds two
+                of its functions to the button. This looks a
+                lot like the way connections are made in Qt!</DD
+><DT
+><A href="index.lxp%3Flxpwrap=c1267.htm#CH6REGISTRYSIMULATE"><IMG
+SRC="images/callouts/8.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(8)"></A
+></DT
+><DD
+>Here we simulate a button click by directly
+                calling the <TT
+CLASS="FUNCTION"
+>clicked()</TT
+> function on
+                the button.</DD
+></DL
+></DIV
+></DIV
+><P
+>This is one step up from the previous example, which was
+        an extremely crude implementation of the well known Observer
+        design pattern, in that there is now a &#8216;neutral' object that
+        mediates between the button and the application. However, it
+        is still not particularly sophisticated. It certainly wouldn't do
+        for a real application &#8212; where there might be many
+        objects with the same &#8216;occasion'.</P
+><P
+>It is quite possible to implement a solution like this in
+        pure Python, especially with the weak references module that
+        debuted in Python 2.1. Bernhard Herzog has done so in his fine
+        Python application <SPAN
+CLASS="APPLICATION"
+>Sketch</SPAN
+>
+        (http://sketch.sourceforge.net). He had to do it himself
+        &#8212; because he was working in PyGTK, not PyQt.
+        Fortunately, PyQt has already solved the whole problem for
+        us.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Signals and slots</A
+></H2
+><P
+>We've just outlined the problem which the
+        developers of Qt at Trolltech have solved in a unique and
+        flexible manner. They created the concept of signals and
+        slots. <SPAN
+><I
+CLASS="EMPHASIS"
+>signals</I
+></SPAN
+> are sent by an object that
+        wants to tell the world something interesting has happened,
+        and by <SPAN
+><I
+CLASS="EMPHASIS"
+>connecting</I
+></SPAN
+> the "signals to the
+        slots", those signals arrive at the <SPAN
+><I
+CLASS="EMPHASIS"
+>slots</I
+></SPAN
+>
+        of the objects that are interested.</P
+><P
+>On the whole the concept is really neat
+        and clean and the implementation well-executed. What's more,
+        the concept is even better suited to Python than it is to C++.
+        If you want to use signals and slots in C++, you have to work
+        with a preprocessor, called <B
+CLASS="COMMAND"
+>moc</B
+>, and
+        indicate with special macros which function can be called as a
+        slot, and which function is a signal. All that is completely
+        unnecessary in Python, where a signal is a string, and any
+        function can be a slot.</P
+><P
+>Signals and slots are not magic, of
+        course. As with our simple Python registry, there has to be a
+        registry of objects that are interested in signals. This
+        registry is updated by the <TT
+CLASS="FUNCTION"
+>connect</TT
+> and
+        <TT
+CLASS="FUNCTION"
+>disconnect</TT
+> functions; both are member
+        functions of the <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> class. The
+        registry, as far as Python signals and slots is concerned, is
+        kept by the sip library. Signals and slots that are defined in
+        the underlying C++ library are maintained by the
+        <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> class itself.</P
+><P
+>In a nutshell, signals and slots are the
+        solution Qt provides for situations in which you want two
+        objects to interact, while keeping that fact hidden from
+        them.</P
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>Signals, messages, events: </B
+>This is one area where there is a
+          perfect Babel of tongues. Even really knowledgeable people
+          like Dr Dobbs' Al Stevens get confused when confronted with
+          terms like &#8216;message', &#8216;event' or
+          &#8216;signal'.</P
+><P
+>In PyQt programming, the term
+          '&#8216;message' is quite irrelevant &#8212; it is used in
+          Windows programming to indicate function calls made from
+          your application to the Windows GUI libraries.</P
+><P
+>Events and signals, on the other hand,
+          are central to PyQt. Signals and slots are used to connect
+          one object to another. An example is the perennial
+          pushbutton, whose <TT
+CLASS="FUNCTION"
+>clicked()</TT
+> signal gets
+          connected to the <TT
+CLASS="FUNCTION"
+>accept()</TT
+> slot function
+          of a dialog box. Signals are used to connect entities
+          internal to the application.</P
+><P
+>Events are more often generated
+          directly by user input, such as moving or clicking with the
+          mouse, or typing at the keyboard. As such, they don't
+          connect two class instances, but rather a physical object,
+          such as a keyboard, with an application. Events are
+          encapsulated by the <TT
+CLASS="CLASSNAME"
+>QEvent</TT
+> class, and
+          are mostly delivered to <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> and
+          its descendants. Events are used to communication with
+          external entities.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x1263.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1408.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conclusion</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p1032.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Connecting with signals and slots</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

@@ -1,0 +1,546 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c653.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Introduction to Python</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Introduction to the BlackAdder IDE"
+HREF="p266.htm"><LINK
+REL="PREVIOUS"
+TITLE="Conclusion"
+HREF="x650.htm"><LINK
+REL="NEXT"
+TITLE="The Rules"
+HREF="x719.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x650.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x719.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 4. Introduction to Python</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c653.htm#AEN663">Programming fundamentals</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x719.htm">The Rules</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x823.htm">Constructions</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x879.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>In this chapter I attempt to explain the
+    fundamentals of Python. Here I have the same difficulty as Bertie
+    Wooster faces when he tries to keep us abreast of the developments
+    in <I
+CLASS="CITETITLE"
+>Much Obliged, Jeeves</I
+>. If I start too
+    early, and begin at the very beginning, telling you all about how
+    a computer doesn't understand plain English, I'm likely to
+    irritate the coves who already know all about that, and just want
+    a quick update on the high-level datastructures of Python and the
+    current state of iterators and generators. However, that would
+    leave the birds who are just starting out wondering whether it was
+    such a good idea, after all, to pick up this book, and start
+    learning how to program.</P
+><P
+>The fact is, writing an introduction to a
+    complete programming language &#8212; or the concept of
+    programming in itself &#8212; in just one chapter is the deuce of
+    a task. It can't really be done, I'm afraid to say. If you already
+    know a few programming languages, the on-line Python tutorial that
+    is included with BlackAdder (or with Python itself) will probably
+    suffice. If you haven't programmed all that much before, I highly
+    advise you to buy Marc Lutz' excellent book,
+    <I
+CLASS="CITETITLE"
+>Learning Python</I
+>, which is more like an
+    introduction to programming, with a focus on Python.</P
+><P
+>Still with me? Then we had better take a
+    quick tour through Python &#8212; which is really one of the
+    easiest programming languages to master. Like ancient Gaul, and
+    like this book, I have divided this chapter into three sections.
+    The first tries to gently introduce the concept of programming to
+    people who need to be primed with the most basic concepts. This is
+    difficult for me to do, because I have been programming since I
+    was twelve years old, so bear with me. The second is about Rules.
+    Every programming language needs rules, and these are the rules
+    that you need to keep in mind while programming Python. The final
+    part gives an overview of the various constructions that Python
+    contains for your satisfaction and pleasure.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Programming fundamentals</A
+></H1
+><P
+>Please don't think that I can teach you
+      programming in just the space of this section &#8212; you need
+      to read some good books for that, such as Steve McConnel's
+      <I
+CLASS="CITETITLE"
+>Code Complete</I
+>. What I can do is show you
+      what the fuss is all about.</P
+><P
+>Computers do not do anything of their own
+      volition: ultimately, someone has always told the machine what
+      to do. Even crashing, down to the ultimate Blue Screen of Death,
+      is caused by a computer blindly following instructions given by
+      a human being.</P
+><P
+>Instructions can take the form of
+      mouseclicks on fancy icons or buttons, or of bits of text the
+      computer can understand. While there is still no computer that
+      can understand plain English, there are many sub-dialects of
+      English that a computer can understand. Python is one of these
+      &#8212; a mix between pidgin English and mathematical notation.
+      It is close to both the way computers work, and the way people
+      think.</P
+><P
+>Unless you have a speech-to-text interface
+      for your computer, you will have to type out all the
+      pidgin-English, and then tell the computer to read what you've
+      written, and do what you told it to. In a sense, you have to
+      write a kind of manual for the computer to read, on how to
+      perform a certain task.</P
+><P
+>Let's start with a simple example: fire up
+      BlackAdder, and open the Python Interpreter window. If you start
+      typing at the <TT
+CLASS="PROMPT"
+>&#62;&#62;&#62;</TT
+>, nothing will happen
+      &#8212; only by pressing the Enter key will Python realize that
+      it has been spoken to. Go ahead and type something &#8212; you
+      can't hurt the computer or your system, except if, by a fluke,
+      you type <TT
+CLASS="USERINPUT"
+><B
+>import os</B
+></TT
+>, followed by Enter and
+      <TT
+CLASS="USERINPUT"
+><B
+>os.system("deltree c:")</B
+></TT
+> &#8212; which
+      would radically clean out your C drive. So don't do this! On the
+      other hand, asking Python about the captain's age or the
+      contents of a bathtub that's being filled by two taps is all
+      right.</P
+><P
+>Chances are very small that you will have
+      hit upon something Python understands by accident, for you are
+      strictly limited to the few <SPAN
+><I
+CLASS="EMPHASIS"
+>keywords</I
+></SPAN
+> Python
+      actually knows about. Most of these keywords are concerned with
+      creating <SPAN
+><I
+CLASS="EMPHASIS"
+>blocks</I
+></SPAN
+> of instructions, called
+      functions. Functions are used to construct more complex systems.
+      Other keywords are used for creating another kind of block,
+      called classes, which are combinations of information and
+      instructions.</P
+><P
+>Let's construct a class that knows the
+      value of something (though not the price), and has a function
+      that does something to that value. Remember to press enter at
+      the end of each line, and don't type the three &#62; signs or the
+      three dots &#8212; Python does this for you.</P
+><PRE
+CLASS="SCREEN"
+>Python 2.1.1 (#1, Aug 11 2001, 20:14:53) [GCC 2.95.2 19991024
+(release)] on linux2 Type "copyright", "credits" or "license"
+for more information.
+&#62;&#62;&#62; class FirstClass:
+...     def __init__(self, value):
+...             self.item=value
+...     def printValue(self):
+...             print self.item
+...
+&#62;&#62;&#62; firstObject=FirstClass(value="BlackAdder goes forth")
+&#62;&#62;&#62; firstObject.printValue
+&#60;method FirstClass.printValue of FirstClass instance at 0x80db1f4&#62;
+&#62;&#62;&#62; firstObject.printValue()
+BlackAdder goes forth
+&#62;&#62;&#62;
+    </PRE
+><P
+>If you type neatly and without mistakes,
+      the contents of the Python interpreter window might look like
+      this. Let's look at what happens: we have defined a &#8216;class'
+      &#8212; that's a combination of information and complex actions
+      that work on the contained information. The class has a name:
+      <TT
+CLASS="VARNAME"
+>FirstClass</TT
+>. (It is customary to capitalize
+      the first letter of each word in a classname).</P
+><P
+>A class in itself is only the
+      &#8216;template', so to speak, while an object is the
+      &#8216;document' &#8212; just as you can make documents out of
+      templates in a wordprocessor, you can make objects from
+      classes.</P
+><P
+>Furthermore, the class has two
+      &#8216;functions' &#8212; defined with the
+      <TT
+CLASS="FUNCTION"
+>def</TT
+> statement.
+    </P
+><P
+>The first function,
+      <TT
+CLASS="FUNCTION"
+>__init__</TT
+>, is called when you want to create
+      an object. The function has two &#8216;parameters' &#8212; that is,
+      two names associated with a value (which we call a &#8216;variable'
+      because the value can change, though the name remains the same).
+      The first parameter refers to the object &#8212; it's always
+      called <TT
+CLASS="VARNAME"
+>self</TT
+> in Python (though it is called
+      <TT
+CLASS="VARNAME"
+>this</TT
+> in Java or C++). The second parameter is
+      the value we want the object to manage for us.</P
+><P
+>You can use a dot &#8216;.' to associate
+      variables with each other. The line &#8216;self.item = value' means
+      that from now on the object we refer to with
+      <TT
+CLASS="VARNAME"
+>self</TT
+> (but also, in another context, with
+      <TT
+CLASS="VARNAME"
+>firstObject</TT
+>) knows that the name
+      <TT
+CLASS="VARNAME"
+>item</TT
+> is associated with the value represented
+      by the parameter <TT
+CLASS="VARNAME"
+>value</TT
+>.</P
+><P
+>Cleverly, Python doesn't forget this, so
+      when you create an object with the name
+      <TT
+CLASS="VARNAME"
+>firstObject</TT
+> and the
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>string</I
+></SPAN
+> value (that is to say, some text, as
+      opposed to a number) &#8216;BlackAdder goes forth', you can later call
+      the <TT
+CLASS="FUNCTION"
+>printValue()</TT
+> function, which will be
+      able to do something with that value.</P
+><P
+>In order to call&#8212;that is, ask Python to
+      execute&#8212; a function, you must add brackets after the
+      function name; the parameters always go between the brackets.
+      You don't have to put <TT
+CLASS="VARNAME"
+>self</TT
+> between brackets, for
+      Python does this for you. If you don't add the brackets, you are
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>referring to</I
+></SPAN
+> the function, not asking
+      Python to execute it. Python then answers you with the revealing
+      sentence:</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; firstObject.printValue
+&#60;method FirstClass.printValue of FirstClass instance at 0x80db1f4&#62;
+    </PRE
+><P
+>This tells you what kind of an object a
+      function is. <SPAN
+><I
+CLASS="EMPHASIS"
+>Calling</I
+></SPAN
+> the function will
+      &#8216;print' the value of <TT
+CLASS="VARNAME"
+>item</TT
+> in your
+      window:</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; firstObject.printValue()
+BlackAdder goes forth
+&#62;&#62;&#62;
+    </PRE
+><P
+>As I said, the <TT
+CLASS="VARNAME"
+>self</TT
+> is
+      supplied by Python, because you call the function from the
+      object. That is, by prefixing the variable that points to the
+      object to the function name, with a dot in between. This is the
+      same as typing the following code (that is, calling the function
+      with the object as its first parameter). As such, the following
+      two expressions are equivalent:</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62;firstObject.printValue()
+BlackAdder goes forth
+&#62;&#62;&#62;FirstClass.printValue(firstObject)
+BlackAdder goes forth
+    </PRE
+><P
+>Of course, typing in all these
+      instructions correctly every time you want the computer to print
+      &#8216;BlackAdder goes forth' is quite a chore. To get around this,
+      you can write a small text document (this is not the same as a
+      Word document!) using BlackAdder's text editor, and then ask
+      Python to execute it.</P
+><P
+>To sum up: composition of complex wholes
+      from smaller parts using a debased variant of English, and
+      calling things names, is what programming is all about. The rest
+      is made up of rules &#8212;rules intended to make it easier for
+      computer the compute to determine what it should do, and more
+      difficult for you to explain yourself to the machine.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Please be warned that if you execute
+        your programs (or scripts) from BlackAdder, all the output of
+        &#8216;print' will disappear into the void. The output will
+        only be shown if you start your scripts using the debugger,
+        and have the Python Interpreter window open. If you merely
+        type in stuff in the Interpreter window you will see all
+        output.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>If this section went over your head with
+      the airspeed of an unladen African swallow, don't worry. There
+      is much more to programming &#8212; more than I can explain in a
+      third of a chapter. Please read the Python tutorial that is
+      included with Python and with BlackAdder. It is well-written and
+      a little less hasty. Another good source is the free Livewires
+      Python course, which you can find in PDF format at:
+      http://www.livewires.org.uk/python/. I heartily recommend it as
+      the best introduction to the general idea of programming I've
+      ever read.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x650.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x719.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conclusion</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p266.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>The Rules</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

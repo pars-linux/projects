@@ -1,0 +1,515 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x719.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>The Rules</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Introduction to Python"
+HREF="c653.htm"><LINK
+REL="PREVIOUS"
+TITLE="Introduction to Python"
+HREF="c653.htm"><LINK
+REL="NEXT"
+TITLE="Constructions"
+HREF="x823.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c653.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Introduction to Python</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x823.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>The Rules</A
+></H1
+><P
+>For a full treatment of the rules of
+      Python, see the Python Language Reference, which is available
+      online with BlackAdder and Python. This section will in a series
+      of short statements enumerate what makes Python Python.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Objects and references</A
+></H2
+><P
+>Before Python 2.2, not all types were
+        classes, but now they are.</P
+><P
+>Moore's law has made type declarations
+        obsolete (with thanks to Paul Prescod).</P
+><P
+>An object has a type (which you can
+        query with <TT
+CLASS="FUNCTION"
+>type()</TT
+>). A reference does not
+        have a type. You can use the same name to refer to two objects
+        in succession, but the first reference disappears as soon as
+        you've made the second.</P
+><P
+>Objects disappear once the last
+        reference has gone (except if the reference is an explicit
+        weak reference). You can destroy a reference with
+        <TT
+CLASS="FUNCTION"
+>del</TT
+> &#8212; from that moment on, the name
+        doesn't exist anymore. If you set the reference to
+        <TT
+CLASS="VARNAME"
+>None</TT
+>, the link to the object disappears,
+        but the reference remains in existence.</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; a="aaa"
+&#62;&#62;&#62; print a
+aaa
+&#62;&#62;&#62; del a
+&#62;&#62;&#62; print a
+Traceback (most recent call last):
+  File "&#60;stdin&#62;", line 1, in ?
+NameError: name 'a' is not defined
+&#62;&#62;&#62; a="aaa"
+&#62;&#62;&#62; print a
+aaa
+&#62;&#62;&#62; a=None
+&#62;&#62;&#62; print a
+None
+&#62;&#62;&#62;
+      </PRE
+><P
+>Functions and classes are both also
+        objects.</P
+><P
+>Every object has one identity, which
+        you can retrieve with <TT
+CLASS="FUNCTION"
+>id()</TT
+>:</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; a=A()
+&#62;&#62;&#62; id(a)
+135121324
+          </PRE
+><P
+>Some types are callable (i.e., put on a
+        line with an argument list between ()) and can return a value.
+        Callable types include classes, methods in clasess, functions
+        and objects that implement the special method
+        <TT
+CLASS="FUNCTION"
+>__call__</TT
+>.
+          </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Formatting</A
+></H2
+><P
+>A block is first marked by a colon at
+        the end of the previous line, and is indented. The block ends
+        at the next dedent. (You should indent with four spaces, and
+        not use tabs.)</P
+><P
+>Whatever is typed between brackets is
+        considered to be on one line. Dictionaries are delimited with
+        curlies {}, lists are delimited with brackets [] and tuples
+        (and lists of arguments to functions) are delimited with
+        ().</P
+><P
+>A classname should start with a capital
+        letter; variable and function names should begin with a
+        lowercase letter.</P
+><P
+>Only alphabetic characters (a-z, A-Z),
+        digits (0-9) and the underscore (_) are valid in variable
+        names, but a variable name should not start with a
+        digit.</P
+><P
+>Names that start with one underscore (_)
+        are a bit private (not imported with <TT
+CLASS="USERINPUT"
+><B
+>from module
+          import *</B
+></TT
+>); names that start with two underscores
+        (__) are very private in scope (not visible with
+        <TT
+CLASS="USERINPUT"
+><B
+>dir(object)</B
+></TT
+>); names that start and end
+        with two underscores are system-defined.</P
+><PRE
+CLASS="SCREEN"
+>Python 2.1.1 (#1, Aug 11 2001, 20:14:53)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&#62;&#62;&#62; class A:
+...     def __test():
+...             pass
+...
+&#62;&#62;&#62; dir(A)
+['_A__test', '__doc__', '__module__']
+&#62;&#62;&#62; a=A()
+&#62;&#62;&#62; dir (a)
+[]
+      </PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Keywords</A
+></H2
+><P
+>The following keywords are reserved:
+      </P
+><PRE
+CLASS="SCREEN"
+>and       del       for       is        raise
+assert    elif      from      lambda    return
+break     else      global    not       try
+class     except    if        or        while
+continue  exec      import    pass      yield
+def       finally   in        print
+        </PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Literals</A
+></H2
+><P
+>Strings can be enclosed in single (' or
+        ") or triple (''' or """") quotes. Triple-quoted strings can
+        span lines, the linebreaks are part of the string. If you
+        prefix the string literal with u, it becomes a Unicode
+        string.</P
+><P
+>Numbers can be integers, long integers,
+        floating point, and imaginary. If you divide integers or long
+        integers, you will not get a float, but the integer before the
+        decimal symbol (unless you <TT
+CLASS="LITERAL"
+>import division from
+          future</TT
+> in Python 2.2).</P
+><P
+>Python has the following operators:</P
+><PRE
+CLASS="SCREEN"
+>+       &#8212;       *       **      /       %
+&#60;&#60;      &#62;&#62;      &#38;       |       ^       ~
+&#60;       &#62;       &#60;=      &#62;=      ==      !=      &#60;&#62;
+      </PRE
+><P
+>The comparison operators
+        <TT
+CLASS="FUNCTION"
+>&#60;&#62;</TT
+> and <TT
+CLASS="FUNCTION"
+>!=</TT
+> are
+        alternate spellings of the same operator.
+        <TT
+CLASS="FUNCTION"
+>!=</TT
+> is the preferred spelling;
+        <TT
+CLASS="FUNCTION"
+>&#60;&#62;</TT
+> is obsolescent.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Methods and functions</A
+></H2
+><P
+>Functions are callable objects that
+        return a value (if a function doesn't explicitly return a
+        value, it retuns <TT
+CLASS="VARNAME"
+>None</TT
+>). Methods are the
+        same, but part of a class. A method's argument list always has
+        <TT
+CLASS="VARNAME"
+>self</TT
+> (which refers to the class instance)
+        as its first argument.</P
+><P
+>A function can be called with positional
+        arguments, or named arguments. When mixed, positional
+        arguments come first.
+      </P
+><P
+>A variable number of positional
+        arguments is indicated by <TT
+CLASS="VARNAME"
+>*args</TT
+>, and a
+        variable number of named arguments is indicated by
+        <TT
+CLASS="VARNAME"
+>**args</TT
+>. You can access
+        <TT
+CLASS="VARNAME"
+>*args</TT
+> as a tuple in your function, and
+        <TT
+CLASS="VARNAME"
+>**args</TT
+> as a dictionary in your
+        function.</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; def f(a):
+...     print a
+...
+&#62;&#62;&#62; def ff(a, b):
+...     print a, b
+...
+&#62;&#62;&#62; def fff(*args):
+...     print args
+...
+&#62;&#62;&#62; def ffff(**args):
+...     print args
+...
+&#62;&#62;&#62; f(1)
+1
+&#62;&#62;&#62; ff(1, b=2)
+1 2
+&#62;&#62;&#62; fff(1,2,3)
+(1, 2, 3)
+&#62;&#62;&#62; ffff(a=1,b=2,c=3)
+{'b': 2, 'c': 3, 'a': 1}
+&#62;&#62;&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>High level datatypes</A
+></H2
+><P
+>Python has three very high level
+        datatypes: tuples, lists and dictionaries.</P
+><P
+>A tuple is any combination of unique
+        objects. You can't change the composition of items in a tuple
+        (i.e. substitute another object), although the objects
+        themselves can be changed.</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; t=("a","b","c")
+&#62;&#62;&#62; t
+('a', 'b', 'c')
+&#62;&#62;&#62; t[2]="d"
+Traceback (most recent call last):
+  File "&#60;stdin&#62;", line 1, in ?
+TypeError: object doesn't support item assignment
+&#62;&#62;&#62;
+      </PRE
+><P
+>A list is a list of objects. You can
+        change which objects are in a list, adding and deleting items
+        to your heart's delight.</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; l=["a", "b", "c"]
+&#62;&#62;&#62; l[2]="d"
+&#62;&#62;&#62; l
+['a', 'b', 'd']
+&#62;&#62;&#62;
+      </PRE
+><P
+>A dictiony is a keyed list. Keys, which
+        must be unchangeable (i.e. not lists) point to values. One
+        key, one value. There can be no duplicate keys in a
+        dictionary.</P
+><PRE
+CLASS="SCREEN"
+>&#62;&#62;&#62; d={"a": "aaa", "b": "bbb", "c": "ccc"}
+&#62;&#62;&#62; d
+{'b': 'bbb', 'c': 'ccc', 'a': 'aaa'}
+&#62;&#62;&#62; d[2]
+Traceback (most recent call last):
+  File "&#60;stdin&#62;", line 1, in ?
+KeyError: 2
+&#62;&#62;&#62; d["b"]
+'bbb'
+&#62;&#62;&#62; d["b"]="ddd"
+&#62;&#62;&#62; d
+{'b': 'ddd', 'c': 'ccc', 'a': 'aaa'}
+&#62;&#62;&#62;
+      </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c653.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x823.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Introduction to Python</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c653.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Constructions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

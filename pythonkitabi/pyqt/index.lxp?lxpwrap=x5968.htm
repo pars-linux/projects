@@ -1,0 +1,481 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5968.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Undo, redo and other editing functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating Application Functionality"
+HREF="c5783.htm"><LINK
+REL="PREVIOUS"
+TITLE="Saving and loading documents"
+HREF="x5925.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x6008.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5925.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 17. Creating Application Functionality</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6008.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Undo, redo and other editing functions</A
+></H1
+><P
+>The editing component we are using,
+      <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>, already supports undo and
+      redo using standard keys. Because undo and redo are defined as
+      slots in the C++ source for
+      <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>, they immediately affect
+      the document and all views. The only thing left for us is to add
+      these functions to the edit menu and the toolbar. The same
+      principle holds for cut, copy, paste and select all.</P
+><P
+>The right place for these additions is the
+      central application class, <TT
+CLASS="CLASSNAME"
+>KalamApp</TT
+>.
+      However, we need to do more than simply connect the correct
+      <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>s to the relevant slots in the
+      view's editors. If we do that, then undo, for instance, would
+      undo the last action in all views, simultaneously! We need to
+      write special functions in <TT
+CLASS="CLASSNAME"
+>KalamApp</TT
+> that
+      work only on the active view, and we must wrap the
+      <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+> slots in the view
+      component.</P
+><P
+>First the <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+>
+      wrappings:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def clear(self):
+        self.editor.clear()
+
+    def append(self, s):
+        self.editor.append(s)
+
+    def deselect(self):
+        self.editor.deselect()
+
+    def selectAll(self):
+        self.editor.selectAll()
+
+    def paste(self):
+        self.editor.paste()
+
+    def copy(self):
+        self.editor.copy()
+
+    def cut(self):
+        self.editor.cut()
+
+    def insert(self, s):
+        self.editor.insert(s)
+
+    def undo(self):
+        self.editor.undo()
+
+    def redo(self):
+        self.editor.redo()
+    </PRE
+><P
+>Of course, this initially looks very
+      silly, and we could just as well directly call the
+      <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+> <TT
+CLASS="VARNAME"
+>editor</TT
+>
+      object variable &#8212; but by encapsulating the editor
+      component we are free to substitute another component without
+      having to hack the other components of the application.</P
+><P
+>The other changes are in the
+      <TT
+CLASS="CLASSNAME"
+>KalamApp</TT
+> class. First, a set of
+      <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>s is added to the dictionary of
+      actions.</P
+><P
+>Some of these actions have an associated
+      toolbar or menubar icon defined. The icon data is defined in the
+      <TT
+CLASS="FILENAME"
+>resources.py</TT
+> file. I've used the GPL'ed
+      toolbar icons from the KDE project. It is always a good idea to
+      blend in as closely to the desktop environment you are
+      targetting, so you might also want to provide a set of Windows
+      standard icons and make it a configuration option which set
+      should be used.</P
+><P
+>I do not show the full code, just the bits
+      that are new compared to the previous chapter:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>        
+    def initActions(self):
+        
+        self.actions = {}
+
+        ... 
+
+        #
+        # Edit actions
+        #
+         self.actions["editClear"] = QAction("Clear",
+                                           "C&#38;lear",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editClear"],
+                     SIGNAL("activated()"),
+                     self.slotEditClear)
+
+
+        self.actions["editSelectAll"] = QAction("SelectAll",
+                                                "&#38;SelectAll",
+                                                QAccel.stringToKey(""),
+                                                self)
+        self.connect(self.actions["editSelectAll"],
+                     SIGNAL("activated()"),
+                     self.slotEditSelectAll)
+        
+
+        self.actions["editDeselect"] = QAction("Deselect",
+                                           "Clear selection",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editDeselect"],
+                     SIGNAL("activated()"),
+                     self.slotEditDeselect)
+
+        self.actions["editCut"] = QAction("Cut",
+                                           QIconSet(QPixmap(editcut)),
+                                           "C&#38;ut",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editCut"],
+                     SIGNAL("activated()"),
+                     self.slotEditCut)
+
+        self.actions["editCopy"] = QAction("Copy",
+                                           QIconSet(QPixmap(editcopy)),
+                                           "&#38;Copy",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editCopy"],
+                     SIGNAL("activated()"),
+                     self.slotEditCopy)
+        
+        self.actions["editPaste"] = QAction("Paste",
+                                           QIconSet(QPixmap(editpaste)),
+                                           "&#38;Paste",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editPaste"],
+                     SIGNAL("activated()"),
+                     self.slotEditPaste)
+        
+        self.actions["editInsert"] = QAction("Insert",
+                                           "&#38;Insert",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editInsert"],
+                     SIGNAL("activated()"),
+                     self.slotEditInsert)
+        
+        self.actions["editUndo"] = QAction("Undo",
+                                           QIconSet(QPixmap(editundo)),
+                                           "&#38;Undo",
+                                           QAccel.stringToKey("CTRL+Z"),
+                                           self)
+        self.connect(self.actions["editUndo"],
+                     SIGNAL("activated()"),
+                     self.slotEditUndo)
+        
+        self.actions["editRedo"] = QAction("Redo",
+                                           QIconSet(QPixmap(editredo)),
+                                           "&#38;Redo",
+                                           QAccel.stringToKey("CTRL+R"),
+                                           self)
+        self.connect(self.actions["editRedo"],
+                     SIGNAL("activated()"),
+                     self.slotEditRedo)
+    </PRE
+><P
+>As you can see, there is still a fair
+      amount of drudgery involved in creating a GUI interface. Qt 3.0
+      provides an extended GUI Designer that lets you design actions,
+      menubars and toolbars with a comfortable interface.</P
+><P
+>For now, we'll have to distribute the
+      actions by hand in the <TT
+CLASS="FUNCTION"
+>initMenu()</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>initToolbar()</TT
+> functions. Again, omitted
+      code is elided with three dots (...).</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initMenuBar(self):
+
+        ...
+
+        self.editMenu = QPopupMenu()
+        self.actions["editUndo"].addTo(self.editMenu)
+        self.actions["editRedo"].addTo(self.editMenu)
+        self.editMenu.insertSeparator()
+        self.actions["editCut"].addTo(self.editMenu)
+        self.actions["editCopy"].addTo(self.editMenu)
+        self.actions["editPaste"].addTo(self.editMenu)
+        self.actions["editSelectAll"].addTo(self.editMenu)
+        self.actions["editDeselect"].addTo(self.editMenu)
+        self.actions["editClear"].addTo(self.editMenu)
+        self.menuBar().insertItem("&#38;Edit", self.editMenu)
+
+        ...
+
+    def initToolBar(self):
+
+        ...
+
+        self.editToolbar = QToolBar(self, "edit operations")
+        self.actions["editUndo"].addTo(self.editToolbar)
+        self.actions["editRedo"].addTo(self.editToolbar)
+        self.actions["editCut"].addTo(self.editToolbar)
+        self.actions["editCopy"].addTo(self.editToolbar)
+        self.actions["editPaste"].addTo(self.editToolbar)
+
+        ...
+    </PRE
+><P
+>Finally, we have to define the actual
+      slots called by the <TT
+CLASS="CLASSNAME"
+>QAction</TT
+> objects. Note
+      that we are not working directly on the document &#8212; if we
+      did, then all actions (such as selecting text) would apply to
+      all views of the document. We would also have to code an
+      undo-redo stack ourselves. Instead, we retrieve the active view
+      from the workspace manager, and work on that. This view will
+      pass the command on to the <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>
+      object, and propagate all changes to the relevant
+      document.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    # Edit slots
+
+    def slotEditClear(self):
+        self.workspace.activeWindow().clear()
+
+    def slotEditDeselect(self):
+        self.workspace.activeWindow().deselect()
+
+    def slotEditSelectAll(self):
+        self.workspace.activeWindow().selectAll()
+
+    def slotEditPaste(self):
+        self.workspace.activeWindow().paste()
+
+    def slotEditCopy(self):
+        self.workspace.activeWindow().copy()
+
+    def slotEditCut(self):
+        self.workspace.activeWindow().cut()
+
+    def slotEditInsert(self):
+        self.workspace.activeWindow().insert()
+
+    def slotEditUndo(self):
+        self.workspace.activeWindow().undo()
+
+    def slotEditRedo(self):
+        self.workspace.activeWindow().redo()
+    </PRE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5925.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6008.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Saving and loading documents</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5783.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

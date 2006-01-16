@@ -1,0 +1,599 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x3270.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Advanced widgets</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Qt Class Hierarchy"
+HREF="c2591.htm"><LINK
+REL="PREVIOUS"
+TITLE="Basic widgets"
+HREF="x2976.htm"><LINK
+REL="NEXT"
+TITLE="Layout managers"
+HREF="x3410.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2976.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 10. Qt Class Hierarchy</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x3410.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Advanced widgets</A
+></H1
+><P
+>It is with the advanced widgets that the
+      real fun starts. PyQt has a range of really powerful widgets
+      that allows you to build any kind of modern application you
+      desire.</P
+><P
+>You will notice that many advanced Qt
+      widgets are formed from the combination of a manager widget
+      class and an item class. This holds for
+      <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> with
+      <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>, for
+      <TT
+CLASS="CLASSNAME"
+>QListView</TT
+> with
+      <TT
+CLASS="CLASSNAME"
+>QListViewItem</TT
+> and for many others.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QSimpleRichText, QTextView and QTextBrowser</A
+></H2
+><P
+>These classes implement rich text
+        viewers. They use html text and stylesheets to present data to
+        a user. <TT
+CLASS="CLASSNAME"
+>QTextView</TT
+> is limited to one
+        page of text, while <TT
+CLASS="CLASSNAME"
+>QTextBrowser</TT
+>
+        includes hyperlink navigation. The class
+        <TT
+CLASS="CLASSNAME"
+>QStyleSheet</TT
+> is used to determine the
+        graphical rendering of the contents of
+        <TT
+CLASS="CLASSNAME"
+>QTextView</TT
+> and
+        <TT
+CLASS="CLASSNAME"
+>QTextBrowser</TT
+>.
+        <TT
+CLASS="CLASSNAME"
+>QSimpleRichText</TT
+> is more like a label in
+        use, and is intended for smaller texts. Indeed, if you stuff a
+        <TT
+CLASS="CLASSNAME"
+>QLabel</TT
+> with rich text, it will get
+        displayed using <TT
+CLASS="CLASSNAME"
+>QSimpleRichText</TT
+>. These
+        classes do not provide a complete web-browser rendering engine
+        &#8212; that would be too much for a mere toolkit, but the
+        rendering is quite good.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QTextEdit</A
+></H2
+><P
+>Available only in Qt3, not in Qt2,
+        <TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> is a rich text editing
+        widget. This is a very powerful class, almost a complete
+        wordprocessor in its own right - except that it doesn't have a
+        notion of the concept of &#8216;page'. The KDE Office wordprocessor,
+        <SPAN
+CLASS="APPLICATION"
+>KWord</SPAN
+> is built around it.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> can display images, text
+        in fancy fonts across the whole Unicode range, tables and
+        lists. Internally, <TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> uses the
+        same subset of HTML that <TT
+CLASS="CLASSNAME"
+>QTextView</TT
+> and
+        friends use. If your text is saved in a different file format,
+        you will first have to convert it to HTML, and that makes
+        <TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> difficult to use for purposes
+        such as a programmers editor, but has everything needed to create a rich
+        text input pane for an email client, for instance. (Not that I
+        condone sending html-formatted email!)</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QListView and QListViewItem</A
+></H2
+><P
+>This is possibly the most overworked PyQt class &#8212; it
+        seems to be used in almost every application.
+        <TT
+CLASS="CLASSNAME"
+>QListView</TT
+> doubles as a listview and a
+        treeview. People coming from a Visual Basic background will
+        be delighted with the ease of use of this treeview.  Adding
+        an item in a tree is a simple matter of creating a
+        <TT
+CLASS="CLASSNAME"
+>QListViewItem</TT
+> with another
+        <TT
+CLASS="CLASSNAME"
+>QListViewItem</TT
+> for a parent.
+      </P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 10-11. tree.py - building a tree</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# tree.py - a simple tree with QListView
+#
+import sys
+from qt import *
+
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.tree = QListView(self)
+        self.setCentralWidget(self.tree)
+        self.tree.addColumn("item")
+        self.tree.setRootIsDecorated(1)
+        self.items=[]
+        self.items.append(QListViewItem(self.tree, "testself1"))
+        self.items.append(QListViewItem(self.items[-1], "child 1"))
+        self.items.append(QListViewItem(self.items[-2], "child 2"))
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+     </PRE
+></DIV
+><P
+>Note that inserting items in an unsorted
+        <TT
+CLASS="CLASSNAME"
+>QListView</TT
+> inserts the items at the top
+        of the listview. Thus, if you insert items A,
+        B and C, in that order, the order in the listview will be
+        C, B, A. Try adding the following line in the constructor,
+        before the listviewitems are created:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>self.tree.setSorting(1,-1)
+      </PRE
+><P
+>If you want your latest item to be the last in the branch,
+        then you will have to give the item it comes after as a second
+        argument&#8212; this can make for some quite irksome
+        bookkeeping. (Remember our little XML parser plus treeview in
+        <A href="index.lxp%3Flxpwrap=x1807.htm">the Section called <I
+>A parser-formatter using signals and slots</I
+> in Chapter 7</A
+>? Well, this is the cause
+        of one nasty bug in that code! In that treeview, all items are
+        sorted  within their node, and thus do not represent the
+        structure of the XML document.)</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QIconView and QIconViewItem</A
+></H2
+><P
+>If you are familiar with the Listview control that's
+        available on Windows, you might be somewhat surprised to learn
+        that Qt's listview doesn't include an icon view mode. There is
+        a separate icon view class <TT
+CLASS="CLASSNAME"
+>QIconView</TT
+>
+        that provides all the functionality you might expect, except
+        for the easy switching between listview mode and iconview
+        mode. You will need to use two widgets in a widget-stack
+        (<TT
+CLASS="CLASSNAME"
+>QWidgetStack</TT
+>) for that.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QSplitter</A
+></H2
+><P
+><TT
+CLASS="CLASSNAME"
+>QSplitter</TT
+> is used to separate two
+        gui items that can take a variable amount of space. The user
+        can drag the splitter to give more room to one of those
+        items. Splitters can be horizontal or vertical, and you can
+        use splitters within splitters.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QCanvas, QCanvasView and QCanvasItems</A
+></H2
+><P
+>This is a very powerful combination.
+        Canvases are typically used in graphics applications, games or
+        applications where a complex layout of text is required.
+        <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> is the real widget that
+        includes scrollbars and can react to mouse presses or keyboard
+        interaction. A <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> can show
+        (part of) a <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+>, but a
+        <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> can be shown on more than one
+        <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+>. You can place
+        <TT
+CLASS="CLASSNAME"
+>QCanvasItems</TT
+> on a
+        <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+>. These items can represent
+        simple geometric forms, chunks of text or sprites (sprites are
+        independently moving, animated pictures). The following
+        classes implement <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>:
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>QCanvasSprite</P
+></LI
+><LI
+><P
+>QCanvasText</P
+></LI
+><LI
+><P
+>QCanvasPolygonalItem</P
+></LI
+><LI
+><P
+>QCanvasEllipse</P
+></LI
+><LI
+><P
+>QCanvasLine</P
+></LI
+><LI
+><P
+>QCanvasPolygon</P
+></LI
+><LI
+><P
+>QCanvasRectangle</P
+></LI
+></UL
+><P
+>From Qt 3, there is also
+        <TT
+CLASS="CLASSNAME"
+>QCanvasSpline</TT
+>, which can be used to
+        draw bezier curves. Note that you cannot subclass
+        <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+> &#8212; this is explicitly
+        forbidden in the Qt documentation: you will have to select a
+        more specialized subclass of
+        <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>.</P
+><P
+>Canvas items can move independently from each other, and
+        can be rendered on top of other items, or below others (by
+        clipping the obscured part). The PyQt canvas is completely
+        double-buffered and thus gives a very smooth
+        performance.</P
+><P
+><A href="index.lxp%3Flxpwrap=x7601.htm">the Section called <I
+>QCanvas</I
+> in Chapter 21</A
+> shows a practical use for a
+        <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QTable, QTableItem and QTableView (or
+        QGridView)</A
+></H2
+><P
+><TT
+CLASS="CLASSNAME"
+>QTable</TT
+> and
+        <TT
+CLASS="CLASSNAME"
+>QTableView</TT
+> are completely different
+        classes, but they should be discussed together, since both
+        implement a way for a developer to present tabular
+        data.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>QTableView</TT
+> is rather difficult to
+        use &#8212; it has a primitive, low-level interface and code
+        based on it tends to be buggy. There is a lot of flexibility
+        built into <TT
+CLASS="CLASSNAME"
+>QTableView</TT
+>, but you cannot
+        add widgets to cells. It has been deprecated in Qt3, where you
+        can use the <TT
+CLASS="CLASSNAME"
+>QGridView</TT
+> class instead.
+      </P
+><P
+><TT
+CLASS="CLASSNAME"
+>QTable</TT
+>, by
+        contrast, is  a very high-level spreadsheet-like control,
+        eminently suited for the presentation of database data.
+        <TT
+CLASS="CLASSNAME"
+>QTableItem</TT
+>s are the items that fill the
+        cells of a <TT
+CLASS="CLASSNAME"
+>QTable</TT
+>, and are editable.
+        It's easy to have a combobox or line editor pop-up when the
+        user selects a certain cell. Windows users especially will
+        know about the vast amount of &#8216;grid controls' that can
+        be bought for Visual Basic or Visual C++ &#8212;
+        <TT
+CLASS="CLASSNAME"
+>QTable</TT
+> is the Qt equivalent, only not
+        so bloated as most of those grids are.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2976.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x3410.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Basic widgets</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c2591.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Layout managers</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

@@ -1,0 +1,316 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c2029.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>String Objects in Python and Qt</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="PyQt fundamentals"
+HREF="p1032.htm"><LINK
+REL="PREVIOUS"
+TITLE="Conclusion"
+HREF="x2026.htm"><LINK
+REL="NEXT"
+TITLE="String conversions"
+HREF="x2068.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2026.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2068.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 8. String Objects in Python and Qt</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c2029.htm#AEN2034">Introduction</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2068.htm">String conversions</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2104.htm">QCString &#8212; simple strings in PyQt</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2183.htm">Unicode strings</A
+></DT
+></DL
+></DIV
+><P
+>Most likely, you won't need the information in
+    this chapter very often. If you don't juggle character encodings
+    on a regular basis, or work extensively with Unicode, then you can
+    probably get by quite well with the automatic string handling of
+    PyQt. However, situations may arise, especially when working with
+    string-intensive applications, where PyQt's behavior might
+    surprise you. Then you will probably find yourself coming to this
+    chapter.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Introduction</A
+></H1
+><P
+>Working with strings is a delight in Python.
+      Take the simple fact that you can, depending on your whim and on
+      whether the string contains the other kind, choose to enclose
+      your string literals in single ('), double ("), or triple ('''
+      or """) quotes. Triple quoted strings can span multiple lines
+      &#8212; no more string concatenations just because the string
+      doesn't fit the line.</P
+><P
+>Once you have your string, and it can be a
+      delightfully long string, megabytes if needs be, you can
+      transform it, mangle it, search in it &#8212; all using a few
+      choice modules, such as <TT
+CLASS="FILENAME"
+>string</TT
+>,
+      <TT
+CLASS="FILENAME"
+>re</TT
+> or the native methods of the
+      <TT
+CLASS="CLASSNAME"
+>string</TT
+> object. About the only snag is the
+      immutability of strings &#8212; every modifying action creates a
+      new string from the old, which can be costly.</P
+><P
+>In C++, working with strings is
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> a delight. Working with strings in C++
+      requires using null-terminated character arrays, and writing all
+      your own support functions. Or you have to try to use the  C++
+      Standard Library String class, which is rather limited. This is
+      why Trolltech created two string classes &#8212;
+      <TT
+CLASS="CLASSNAME"
+>QString</TT
+> and
+      <TT
+CLASS="CLASSNAME"
+>QCString</TT
+> &#8212; which are almost as
+      powerful and friendly to use as the Python string classes. In
+      fact, when Trolltech first created
+      <TT
+CLASS="CLASSNAME"
+>QString</TT
+>, there was no string class in the
+      standard C++ library.</P
+><P
+>Python also has two string classes: the
+      'old' <TT
+CLASS="CLASSNAME"
+>string</TT
+> class, in which every byte
+      represents a character, and the newer Unicode
+      <TT
+CLASS="CLASSNAME"
+>string</TT
+> class, which contains a sequence
+      of Unicode characters that can, depending on the encoding, take
+      between one and four bytes. The Qt
+      <TT
+CLASS="CLASSNAME"
+>QString</TT
+> class is equivalent to the Python
+      Unicode <TT
+CLASS="CLASSNAME"
+>string</TT
+> class, and the Qt
+      <TT
+CLASS="CLASSNAME"
+>QCString</TT
+> class is more like the
+      'old' 8-bit Python <TT
+CLASS="CLASSNAME"
+>string</TT
+>.</P
+><P
+>Your friendly Python Library Reference will
+      tell you all about the <TT
+CLASS="FILENAME"
+>string</TT
+> module, the
+      <TT
+CLASS="FILENAME"
+>string</TT
+> class, and the
+      <TT
+CLASS="FILENAME"
+>re</TT
+> module for regular expression matching.
+      In this chapter I am more concerned with the interaction between
+      <TT
+CLASS="CLASSNAME"
+>QString</TT
+> and Python strings, and with
+      character encoding questions.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2026.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2068.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conclusion</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p1032.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>String conversions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

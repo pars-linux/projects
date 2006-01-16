@@ -1,0 +1,325 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5202.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>A more complicated test</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Automatic testing with PyUnit"
+HREF="c5064.htm"><LINK
+REL="PREVIOUS"
+TITLE="Collecting tests in a test suite"
+HREF="x5171.htm"><LINK
+REL="NEXT"
+TITLE="Large projects"
+HREF="x5234.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5171.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 14. Automatic testing with PyUnit</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5234.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>A more complicated test</A
+></H1
+><P
+>Remember, we have two tests to perform on the
+      <TT
+CLASS="CLASSNAME"
+>DocviewDoc</TT
+> class. It would be a bit messy
+      and chaotic to write separate testcase classes for those two
+      tests. Additionally, in many cases you will have to prepare an
+      environment for those tests, and it would be a pity to duplicate
+      that code across many test classes.</P
+><P
+>It is therefore possible to create more
+      than one testing method for each testcase. For each test method
+      a separate instance of the test object is created and added to
+      the test suite. These methods customarily start with
+      &#8216;check', but that's not necessary.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# dvt2.py - a simple test of instantiating a document
+#
+import sys
+import unittest
+from docviewdoc import DocviewDoc
+
+class DocviewDocTestCase(unittest.TestCase):
+    """DocviewDocTestCase test the DocviewDoc class.
+    """
+    def checkInstantion(self):
+        """Check whether the document could be instantiated"""
+        doc=None
+        doc=DocviewDoc()
+        except:
+            self.fail("Could not instantiate document for reason: " +
+                 sys.exc_info()[0])
+        else:
+            assert doc!=None, 'Could not instantiate DocviewDoc'
+
+    def checkModifiable(self):
+        """Check whether the document could be modified"""
+        doc=DocviewDoc()
+        doc.slotModify()
+        assert doc.isModified(), 'Document could not be modified'
+
+    def checkUniverse(self):
+        """Check whether the universe is still sane"""
+        try:
+            val = 1 / 0
+        except ZeroDivisionError:
+            pass # all natural laws still hold
+        else:
+            fail ("The universe has been demolished and replaced with chaos.")
+
+def suite():
+    testSuite=unittest.TestSuite()
+    testSuite.addTest(DocviewDocTestCase("checkInstantion"))
+    testSuite.addTest(DocviewDocTestCase("checkModifiable"))
+    return testSuite
+
+
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+    </PRE
+><P
+>In this case,
+      <TT
+CLASS="CLASSNAME"
+>DocviewDocTestCase</TT
+> contains two tests:
+      <TT
+CLASS="FUNCTION"
+>checkInstantion</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>checkModifiable</TT
+>. This means that two
+      instances of <TT
+CLASS="CLASSNAME"
+>DocviewDocTestCase</TT
+> are added
+      to the testsuite.</P
+><P
+>I've also added a small test of the universe, to show how to
+      test that your exceptions are fired when you feed your classes
+      illegal input. There are many cases in which you want your
+      code to raise an exception, rather than silently continuing to churn
+      out illegal data. In those cases, you will want the test to
+      succeed when the exception is raised. On the other hand, if the
+      exception is not raised, something happens, and the test
+      fails. That's exactly what the try...except...else block in
+      <TT
+CLASS="FUNCTION"
+>testUniverse</TT
+> does.</P
+><P
+>You can thus use the <TT
+CLASS="FUNCTION"
+>fail()</TT
+> function to
+      let a test noisily fail with a message. There are two similar
+      functions: <TT
+CLASS="FUNCTION"
+>failIf()</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>failUnless()</TT
+>, that cause the test to fail
+      if the tested expression is true and if the tested
+      expression is false, respectively:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def checkFailUnless(self):
+        self.failUnless(1==1, "One should be one.")
+
+    def checkFailIf(self):
+        self.failIf(1==2,"I don't one to be one, I want it to be two.")
+    </PRE
+><P
+>A shorter way to check that an exception is indeed raised,
+    is to use <TT
+CLASS="FUNCTION"
+>assertRaises</TT
+>:
+    </P
+><PRE
+CLASS="PROGRAMLISTING"
+>def divide(a, b):
+    return a/b
+...
+def checkShortCircuitException(self):
+    self.assertRaises(ZeroDivisionError, divide, 1, 0)
+    </PRE
+><P
+>The first argument is the exception that
+      should be raised. The second argument of
+      <TT
+CLASS="FUNCTION"
+>assertRaises()</TT
+> must be a callable object,
+      such as a function. The other arguments are simply the arguments
+      that should be passed to the function.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5171.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5234.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Collecting tests in a test suite</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5064.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Large projects</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

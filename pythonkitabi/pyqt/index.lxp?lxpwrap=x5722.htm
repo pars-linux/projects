@@ -1,0 +1,424 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5722.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>A more complex view management solution</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="User Interface Paradigms"
+HREF="c5584.htm"><LINK
+REL="PREVIOUS"
+TITLE="A stack of documents"
+HREF="x5700.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x5778.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5700.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 16. User Interface Paradigms</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5778.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>A more complex view management solution</A
+></H1
+><P
+>In the previous section I suggested that
+      it might be nice to code up a view manager where the list of
+      open views was shown in a listbox on the left side. I could have
+      have left this for you to do, but I couldn't resist.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+listspace.py - stacked view manager with a list for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class ListSpace(QSplitter):
+    </PRE
+><P
+>The <TT
+CLASS="CLASSNAME"
+>ListSpace</TT
+> is
+      based on <TT
+CLASS="CLASSNAME"
+>QSplitter</TT
+> &#8212; that way the
+      user can decide how wide he wants to have his list of window
+      titles.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def __init__(self, *args):
+        apply(QSplitter.__init__,(self, ) + args)
+        self.viewlist=QListBox(self)
+        self.setResizeMode(self.viewlist,
+                           QSplitter.KeepSize)
+        self.stack=QWidgetStack(self)
+        self.views=[]
+        self.connect(self.viewlist,
+                     SIGNAL("highlighted(int)"),
+                     self.__activateViewByIndex)
+    </PRE
+><P
+>First the <TT
+CLASS="CLASSNAME"
+>QListBox</TT
+>
+      is added to the splitter, and then to the widget stack (which is
+      used in the same way as in the previous section). Here, I chose
+      to use a <TT
+CLASS="CLASSNAME"
+>QListBox</TT
+>, because it offers a
+      more comfortable interface for the adding, changing and removing
+      of entries than a <TT
+CLASS="CLASSNAME"
+>QListView</TT
+>. As soon as
+      we need the treeview, column header or multi-column capabilities
+      of <TT
+CLASS="CLASSNAME"
+>QListView</TT
+>, the change to
+      <TT
+CLASS="CLASSNAME"
+>QListView</TT
+> will be simple enough.</P
+><P
+>Because the
+      <TT
+CLASS="FUNCTION"
+>highlighted(int)</TT
+> signal of
+      <TT
+CLASS="CLASSNAME"
+>QListBox</TT
+> passed the index of the selected
+      entry in the listbox, not the actual view object, we have to
+      pass it through an internal function,
+      <TT
+CLASS="FUNCTION"
+>__activateViewByIndex</TT
+>, which maps the index
+      to the view object that should be activated.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def addView(self, view):
+        self.views.append(view)
+        self.viewlist.insertItem(view.caption(), len(self.views) - 1)
+        self.stack.addWidget(view, len(self.views) - 1)
+        self.stack.raiseWidget(view)
+        self.connect(view,
+                     PYSIGNAL("sigCaptionChanged"),
+                     self.setListText)
+
+    def setListText(self, view, caption):
+        i = self.views.index(view)
+        self.viewlist.changeItem(caption, i)
+
+    </PRE
+><P
+>Of course, adding a view is now slightly
+      more complicated, because the caption of the view must also be
+      inserted into the listbox. Note that we have changed the code of
+      <TT
+CLASS="CLASSNAME"
+>MDIView</TT
+> slightly: when its caption
+      changes, it now emits a signal, which we use here to keep the
+      title text in the listview synchronized with the title of the
+      document. Synchronization is done using the
+      <TT
+CLASS="FUNCTION"
+>setListText</TT
+> function, which uses the view
+      to determine the right entry in the listbox. Of course, the
+      mapping between the view object and the entry in the listbox
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>should</I
+></SPAN
+> be encapsulated in a subclass of
+      <TT
+CLASS="CLASSNAME"
+>QListBox</TT
+>.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def removeView(self, view):
+        if view in self.views:
+            self.viewlist.removeItem(self.views.index(view))
+            self.stack.removeWidget(view)
+            self.views.remove(view)
+    </PRE
+><P
+>Removing an item from a
+      <TT
+CLASS="CLASSNAME"
+>QListView</TT
+> is rather difficult to do
+      without clearing the entire listview and building the contents
+      anew.
+      <A href="index.lxp%3Flxpwrap=.html#FTN%2eAEN5763" name="AEN5763">[1]</A
+> Fortunately, the <TT
+CLASS="CLASSNAME"
+>QListBox</TT
+>
+      class offers a handy <TT
+CLASS="FUNCTION"
+>remove()</TT
+>
+      function.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def activeWindow(self):
+        return self.stack.visibleWidget()
+
+    def cascade(self): pass
+
+    def tile(self): pass
+
+    def canCascade(self):
+        return FALSE
+
+    def canTile(self):
+        return FALSE
+
+    def windowList(self):
+        return self.views
+
+    def activateView(self, view):
+        self.stack.raiseWidget(view)
+
+    def __activateViewByIndex(self, index):
+        self.activateView(self.views[index])
+    </PRE
+><P
+>Apart from
+      <TT
+CLASS="FUNCTION"
+>__activateViewByIndex()</TT
+>, which we discussed
+      above, the rest of the code is a plain reflection of our view
+      manager API &#8212; in other words, nothing spectacular.</P
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notes</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A href="index.lxp%3Flxpwrap=x5722.htm#AEN5763" name="FTN.AEN5763">[1]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>This is one area where the cleverness
+          of PyQt makes life a bit more difficult than you might like.
+          In C++, you remove a <TT
+CLASS="CLASSNAME"
+>QListViewItem</TT
+> by
+          <TT
+CLASS="FUNCTION"
+>deleting</TT
+> it. The parent
+          <TT
+CLASS="CLASSNAME"
+>QListView</TT
+> or
+          <TT
+CLASS="CLASSNAME"
+>QListViewItem</TT
+> then forgets about the
+          child item, too. However, sip keeps a reference to the
+          <TT
+CLASS="CLASSNAME"
+>QListViewItem</TT
+>; deleting the item from
+          Python won't make any difference&#8212;as long as the parent
+          keeps a reference to the child, sip will keep one, too.
+          There is a function <TT
+CLASS="FUNCTION"
+>takeItem()</TT
+>, but its
+          use is fraught with danger. You might want to try the
+          <TT
+CLASS="FUNCTION"
+>item.parent().removeChild(item)</TT
+> trick
+          if you want to remove items from a
+          <TT
+CLASS="CLASSNAME"
+>QListView</TT
+>.</P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5700.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5778.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>A stack of documents</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5584.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

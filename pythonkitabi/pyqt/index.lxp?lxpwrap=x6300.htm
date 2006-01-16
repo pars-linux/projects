@@ -1,0 +1,387 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x6300.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Settings in Qt 3.0</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Application Configuration"
+HREF="c6013.htm"><LINK
+REL="PREVIOUS"
+TITLE="Implementing configurations settings for
+      Kalam"
+HREF="x6082.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x6342.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x6082.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 18. Application Configuration</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6342.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Settings in Qt 3.0</A
+></H1
+><P
+>Qt 3.0 will have built-in cross-platform
+      solutions for the management of configuration settings. Note
+      that what I discuss here is based on the beta release of Qt 3.0,
+      and thus is subject to change. It is also not a completely
+      satisfactory solution, since you still need to be aware of the
+      type of platform you're running on, whether Windows (all 32 bits
+      flavors), Apple's OS X or any Unix with X11.</P
+><P
+>The Qt 3.0 system is built around the
+      <TT
+CLASS="CLASSNAME"
+>QSettings</TT
+> class. On Windows systems, all
+      settings are saved in the registry; on Linux or other Unices
+      settings are saved in a file. The exact location
+      of the file is determined by a "search path". This is a list of
+      directories, similar to the $PATH environment variable, that
+      lists all places Qt will look for a configuration file.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>QSettings</TT
+> saves all
+      settings in a hierarchical tree format, conforming to the layout
+      of the Windows registry. You cannot use keys longer than 255
+      Unicode characters or values longer than 16.300 characters
+      (silly limitation, but there you are). The complete
+      path&#8212;i.e., all keys plus the value&#8212;must fit into the
+      memory of a Commodore 64 (that is, 64 kb). You can exceed these
+      limits if you are targeting only Unix. It remains to be seen
+      what the limitations will be on OS X, but since OS X is Unix
+      based, you can assume it will follow the general Unix scheme of
+      configuration files.</P
+><P
+>Let's translate the Kalam example above to
+      <TT
+CLASS="CLASSNAME"
+>QSettings</TT
+>. Note that this is untested
+      code: I've merely extrapolated from the known C++ interface to
+      what I assume will become the PyQt interface.
+      (<TT
+CLASS="CLASSNAME"
+>QSetting</TT
+> wasn't in the subset of Qt 3
+      classes that were implemented when I finished this text). Note
+      also that there are two ways of using
+      <TT
+CLASS="CLASSNAME"
+>QSettings</TT
+>. You can either read all
+      settings from the registry or configuration file and assign them
+      as attributes to the <TT
+CLASS="CLASSNAME"
+>Config</TT
+> object, or
+      you can open a <TT
+CLASS="CLASSNAME"
+>QSettings</TT
+> object and add
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>that</I
+></SPAN
+> to Config; then you can query the
+      settings object directly every time you need a value.</P
+><P
+>The first approach has a few advantages:
+      it is compatible with current code, you can approach settings
+      with a simple <TT
+CLASS="VARNAME"
+>Config.geometry.app_x</TT
+> variable,
+      and if the user removes the configuration file, your app can
+      merrily continue.</P
+><P
+>The second approach, which is advised by
+      Trolltech, also has advantages. It is simpler to write, does not
+      demand much startup time, and does not fill the memory with data
+      that is not (yet) needed. Furthermore, the app can dynamically
+      react to changes in the configuration file.</P
+><P
+>I chose the first approach, as it fits
+      better with <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+>. Besides, it gives
+      me the chance to show the interesting bits and bobs of
+      <TT
+CLASS="CLASSNAME"
+>QSettings</TT
+> without touring
+      <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> again.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+kalamconfig.py - Configuration class for the Kalam Unicode Editor
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+
+import sys, os, types
+from qt import *
+
+
+class Config:
+    defaults = {
+        "APPNAME" : "kalam",
+        "APPVERSION" : "ch13",
+        "viewmanager" : "tabmanager",
+        "app_x" : 0,
+        "app_y" : 0,
+        "app_w" : 640,
+        "app_h" : 420},
+        "fontfamily" : "courier",
+        "pointsize" : 12,
+        "weight" : 50,
+        "italic" : 0,
+        "encoding" : 22
+        }
+
+def init(self):
+    Config.settings = QSettings()
+    Config.settings(QSettings.Windows,
+                    "/kalam")
+    Config.settings(QSettings.Unix,
+                    "/usr/local/share/kalam")
+
+def readConfig(configClass = Config):
+    for key in configClass.defaults.keys():
+        v = configClass.settings.readEntry("/kalam/" + key)
+        configClass.key = v
+
+
+def writeConfig(configClass = Config):
+    sys.stderr.write( "Saving configuration\n")
+    for key in dir(Config):
+        if key[:2]!='__':
+            val=getattr(Config, key)
+            configClass.settings.writeEntry("/kalam/" + key, val)
+
+...
+    </PRE
+><P
+>As you can see, there is an initialization
+      phase (<TT
+CLASS="FUNCTION"
+>init()</TT
+>), that creates a
+      <TT
+CLASS="VARNAME"
+>settings</TT
+> objects. This is the one place where
+      <TT
+CLASS="CLASSNAME"
+>QSettings</TT
+> is not platform independent,
+      and you have to add a search path.</P
+><P
+>Windows and Unix use different search
+      paths. The Windows search path refers to the registry key under
+      "/Software", and Qt looks through the main branches in the
+      following order &#8212; and whenever it encounters a duplicate
+      setting, it takes the last one read.: HKEY_CURRENT_USER,
+      HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_LOCAL_MACHINE.
+    </P
+><P
+>On Unix, the sequence is comprised of the
+      path you added yourself, then <TT
+CLASS="FILENAME"
+>$QTDIR/etc</TT
+>,
+      and then <TT
+CLASS="FILENAME"
+>$HOME/.qt</TT
+>. That's also the 
+      directory where all Qt applications will save their
+      configuration files. Your application
+      settings are thus saved in a file that is named from the
+      combination of the first key you save under ("kalam" in this
+      case), and the suffix <TT
+CLASS="FILENAME"
+>rc</TT
+>. And that file is
+      places in the <TT
+CLASS="FILENAME"
+>.qt</TT
+> directory in the user's
+      home directory.</P
+><P
+>The class <TT
+CLASS="CLASSNAME"
+>QSettings</TT
+>
+      also offers functions to retrieve strings, lists, doubles,
+      integers and boolean values from the configuration database, as
+      well as functions to add, remove and list keys and
+      subkeys.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x6082.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6342.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Implementing configurations settings for
+      <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c6013.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

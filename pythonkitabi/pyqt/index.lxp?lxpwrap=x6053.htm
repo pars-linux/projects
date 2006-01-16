@@ -1,0 +1,280 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x6053.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>The Python way of handling configuration
+      settings</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Application Configuration"
+HREF="c6013.htm"><LINK
+REL="PREVIOUS"
+TITLE="Application Configuration"
+HREF="c6013.htm"><LINK
+REL="NEXT"
+TITLE="Implementing configurations settings for
+      Kalam"
+HREF="x6082.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c6013.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 18. Application Configuration</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6082.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>The Python way of handling configuration
+      settings</A
+></H1
+><P
+>Qt 3.0 offers a nice and integrated way of
+      handling configuration settings. The Qt 3.0 way of working
+      wasn't quite ready when I was writing this chapter, so I've just
+      added a forward-looking statement in the last section of this
+      chapter on how things will work Qt 3.0 is bound to Python.</P
+><P
+>Creating a configuration management framework is an
+      interesting exercise in its own right, so, after exploring the
+      standard modules Python offers, we'll build a simple framework
+      that neatly fits <SPAN
+CLASS="APPLICATION"
+>kalam</SPAN
+>
+      ourselves.</P
+><P
+>For now, the choice is between taking the
+      easy way out, or conducting a really nice cross-platform
+      solution. The easy way out is to store all settings in a
+      settings file, both on Unix and on Windows. We can store this
+      file in $HOME/.kalamrc, and prompt the Windows users to enter a
+      setting for HOME in their control panel.</P
+><P
+>To store user settings the "right" way, the
+      editor will have to determine if it is running on a Windows or
+      Unix system. On Windows, the editor will store all configuration
+      files in the registry (using the Python module
+      <TT
+CLASS="FILENAME"
+>_winreg</TT
+>), and on Linux in a dot file in the
+      users home directory. We can structure the dot file with the
+      Python <TT
+CLASS="FILENAME"
+>ConfigParser</TT
+> module, which can read
+      and write files of the old Windows <TT
+CLASS="FILENAME"
+>.ini</TT
+>
+      format.</P
+><P
+>As the name implies,
+      <TT
+CLASS="FILENAME"
+>_winreg</TT
+> is a very low-level library, and
+      only suitable to build something on top that is more complete.
+      Furthermore, the way in which <TT
+CLASS="FILENAME"
+>ConfigParser</TT
+>
+      deals with settings, while very elegant, is not really
+      compatible with <TT
+CLASS="FILENAME"
+>_winreg</TT
+>. We will first take
+      a look at the easy way out: after all, within the foreseeable
+      future we'll have Qt 3.0's <TT
+CLASS="CLASSNAME"
+>QConfig</TT
+>, which
+      will obsolete our own efforts.</P
+><P
+>If you want to keep your application
+      firmly in the Python domain&#8212;perhaps with a view to later
+      translate the application to another GUI toolkit&#8212;you can
+      use <TT
+CLASS="FILENAME"
+>ConfigParser</TT
+> and
+      <TT
+CLASS="FILENAME"
+>_winreg</TT
+> (for Windows and Unix,
+      respectively). You can determine which platform your application
+      runs on with the following check:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>if sys.platform=="win32":
+    import _winreg
+    # handle reading and writing of configuration data using
+    # the registry
+else:
+    import ConfigParser
+    # handle reading and writing of configuration data using
+    # the configuration files that are structured like windows
+    # .ini files.
+    </PRE
+><P
+>Discussing these standard Python library modules is a bit
+      beyond the scope of this book. You can find descriptions of them in the
+      Python Library Reference. Regardless of the solution you choose, you
+      should be able to use the same central configuration object &#8212; an
+      object which we are now going to develop.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c6013.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6082.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Application Configuration</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c6013.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Implementing configurations settings for
+      <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

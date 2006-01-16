@@ -1,0 +1,349 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c1036.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Qt Concepts</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="PyQt fundamentals"
+HREF="p1032.htm"><LINK
+REL="PREVIOUS"
+TITLE="PyQt fundamentals"
+HREF="p1032.htm"><LINK
+REL="NEXT"
+TITLE="      As simple as they come
+    "
+HREF="x1067.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=p1032.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1067.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 6. Qt Concepts</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c1036.htm#AEN1040">Python, Qt and PyQt</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1067.htm">As simple as they come</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1149.htm">A better Hello World</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1214.htm">Designing forms</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1263.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>This chapter describes the way Python and Qt
+    bind together, using the PyQt wrapper library. Concepts peculiar
+    to PyQt and Qt such as signals and slots, inheritance and gui
+    design, are introduced by building steadily more complex versions
+    of the hackneyed <SPAN
+><I
+CLASS="EMPHASIS"
+>hello world</I
+></SPAN
+> example
+    application.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Python, Qt and PyQt</A
+></H1
+><P
+>Unlike a tool like Visual Basic, which
+      consists of a GUI engine with a scripting language built-in,
+      Python does not have a native GUI interface. But there are many
+      GUI libraries available for Python &#8212; examples are
+      wxPython, Tkinter, PyGTK, PyFLTK, FoxPy, and PyQt. PyQt is based
+      on Qt, an advanced GUI library for Windows and Unix written in
+      C++ by Eirik Eng and Arnt Gulbrantsen of Trolltech in Norway.
+      It's quite easy to wrap C++ or C libraries so they can be used
+      from Python &#8212; and when Phil Thompson was looking around
+      for a good GUI library for Python he decided to wrap Qt,
+      producing PyQt. PyQt forms the basis for the BlackAdder rapid
+      development environment.</P
+><P
+>Qt is very advanced: the library offers a
+      large set of well-designed screen objects, or widgets, and many
+      utility classes. In addition, Qt has a clean object-oriented
+      design that is easy to grasp and intuitive to use. PyQt
+      applications can run without any change, without recompiling,
+      both on Windows and Unix/X11 systems &#8212; and soon on Apple's
+      OS X, too.</P
+><P
+>PyQt widgets can be drawn in
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>styles</I
+></SPAN
+>, to make them appear exactly like
+      the native widgets of the operating system the application runs
+      on (or like something different altogether, if you want).</P
+><P
+>There are two kinds of objects in the Qt
+      library&#8212; visual and non-visual. The mother of all visual
+      objects is QWidget, widget being the term Qt uses for what the
+      Windows world usually calls <SPAN
+><I
+CLASS="EMPHASIS"
+>control</I
+></SPAN
+>. There
+      are simple widgets such as labels and buttons, and complex widgets
+      such as canvas views. Even dialog windows are descended from
+      <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+>.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> and many
+      other, but not all, Qt classes derive from the
+      <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> base class &#8212; a class like
+      <TT
+CLASS="CLASSNAME"
+>QLayout</TT
+> <SPAN
+><I
+CLASS="EMPHASIS"
+>is</I
+></SPAN
+> derived
+      from <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>, but
+      <TT
+CLASS="CLASSNAME"
+>QPixmap</TT
+> is not. Whether a class is
+      derived from <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> is determined by
+      whether there is a need for signals and slots, and whether the
+      created objects must be placed in an ownership hierarchy.</P
+><P
+>Scripting languages like Python have a
+      reputation for bad performance, but PyQt applications perform very
+      well indeed; there is just a thin wrapper between the GUI objects
+      and Python. Those GUI objects do most of the heavy work of pixel
+      shifting, and they are written in well-optimized C++. If you try
+      to do things like writing your own DTP layout engine from scratch
+      using the Qt drawing primitives, you might be hindered by the
+      slowness inherent in a byte-code interpreted language like Python,
+      but on the whole, your application will be as responsive as one
+      written in pure C++, and you'll have a working application where
+      you would still be hacking the first prototype in C++.</P
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>A note on versions: </B
+>PyQt consists of at least three
+        components, Python, Qt and PyQt itself. Additionally, there is
+        PyKDE, the bindings to the KDE Desktop Environment for Unix.
+        That's four components with almost unrelated version
+        numbering. Qt has been through three versions to date, just
+        like PyQt. However, PyQt 3.x can be compiled against Qt 1.x, Qt
+        2.x <SPAN
+><I
+CLASS="EMPHASIS"
+>and</I
+></SPAN
+> Qt 3.x.
+      </P
+><P
+>The differences between versions of PyQt
+        consist of the range of versions of Qt supported, and certain
+        matters of organization and some implementation
+        details.</P
+><P
+>The relation between PyQt and Python is
+        even more nebulous: PyQt works best with the latest version of
+        Python, but earlier versions are known to work, too.</P
+><P
+>Anyway, just keep in mind that PyQt 3.x
+        can use Qt 2.x or Qt 3.x. This book was mostly written using
+        PyQt 2.x for Qt 2.x, but I've tried to include as much
+        information about PyQt 3.x and Qt 3.x as I could.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=p1032.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1067.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PyQt fundamentals</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p1032.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>As simple as they come</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

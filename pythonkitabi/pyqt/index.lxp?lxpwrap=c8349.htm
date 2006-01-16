@@ -1,0 +1,338 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c8349.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Delivering your Application</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="PREVIOUS"
+TITLE="Internationalizing an Application"
+HREF="c8212.htm"><LINK
+REL="NEXT"
+TITLE="Packaging source"
+HREF="x8401.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c8212.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8401.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 26. Delivering your Application</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c8349.htm#AEN8351">Introduction</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8401.htm">Packaging source</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8418.htm">Starting with distutils.</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8580.htm">Creating Unix RPM packages</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8613.htm">Windows installers</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8628.htm">Desktop integration</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Introduction</A
+></H1
+><P
+>Packaging your software for installation is
+      a difficult, nasty, unpleasant, arduous, error-prone task. It is
+      awfully enticing to just give up, zip up your Python source code
+      together with a README file, and leave it at that.</P
+><P
+>In some cases, doing just that might be
+      wise: if your intended users are technically knowledgeable, you
+      can ask them to install Python, edit system variables, and mess
+      around until everything works. Typically, though, more than this
+      is expected.</P
+><P
+>The first problem of packaging an
+      application for installation arises because of the wide variety
+      of platforms a PyQt application will run on: Classic Unix,
+      Linux, the free BSDs, Windows in its infinite variety and
+      finally OS X. Depending upon your target audience, one or more
+      of these platforms can be dropped. If your application is open
+      source, you might be able to get other developers to package
+      your application for their platform.</P
+><P
+>The second problem is that Python has
+      several methods of packaging applications. The standard is
+      <SPAN
+CLASS="APPLICATION"
+>Distutils</SPAN
+>, which comes with the
+      Python distribution. Then there is
+      <SPAN
+CLASS="APPLICATION"
+>freeze</SPAN
+>, Gordon McMillan's
+      <SPAN
+CLASS="APPLICATION"
+>Installer</SPAN
+>, Fredrik Lundh's
+      <SPAN
+CLASS="APPLICATION"
+>Squeeze</SPAN
+> (which is packaged with the
+      <SPAN
+CLASS="APPLICATION"
+>PythonWorks</SPAN
+> IDE), and finally Thomas
+      Heller's <SPAN
+CLASS="APPLICATION"
+>py2exe</SPAN
+> (which makes use of
+      <SPAN
+CLASS="APPLICATION"
+>Distutils</SPAN
+>). There are also generic
+      commercial solutions, such as <SPAN
+CLASS="APPLICATION"
+>Wise</SPAN
+> or
+      <SPAN
+CLASS="APPLICATION"
+>InstallShield</SPAN
+> (both for Windows) and
+      <SPAN
+CLASS="APPLICATION"
+>InstallAnywhere</SPAN
+> (for all platforms
+      that support Java). Furthermore, there are free alternatives,
+      such as rpm or dpgk for Unix. This breadth of choice alone
+      points to the fact that creating installation packages is a
+      difficult problem that has yet to be solved.</P
+><P
+>Distutils is the standard Python solution
+      and comes with Python 2.x. It appears to be more geared to
+      distribution modules and libraries, and less to distributing
+      applications. If you want something that generates stand-alone
+      executables of an application, you might want to try Gordon
+      McMillan's Installer (http://www.mcmillan-inc.com/builder.html).
+      BlackAdder will probably provide an installation utility in a
+      future version, and it will probably be based on
+      Distutils.</P
+><P
+>The third problem (they do mount up) is
+      that you cannot assume that your user has Python installed. You
+      must choose whether you want your users to install Python
+      themselves, or package a complete Python installation with your
+      application. The first option is perfectly feasible on Linux,
+      because installing Python using either rpm or apt-get is easy
+      enough. The second option might be feasible on Windows, as
+      Python for windows comes with a very nice and easy installer. Of
+      course, Windows users are generally a bit lazier than Unix
+      users, and might not want to install another package before they
+      can start using your application.</P
+><P
+>The fourth problem is the presence, or
+      absence, of PyQt. Again, most modern Linux distributions include
+      PyQt, so users can just grab the rpm or deb package, and go. As
+      for Windows, you can freely redistribute the runtime components
+      that come with BlackAdder, if you have bought the professional
+      version or the non-commercial PyQt and Qt libraries.</P
+><P
+>The fifth problem arises if you have used
+      third-party modules that require separate compilation for each
+      platform, and separate installation.</P
+><P
+>A sixth problem arises if you have written
+      extensions in C or C++ as part of your application or library,
+      and want to distribute those, too.</P
+><P
+>Finally, it's difficult to achieve even a
+      little integration with the user's desktop. All user interface
+      platforms Qt supports - Windows, KDE, Gnome, CDE, OS X and
+      others have wildly different standards for menu options, desktop
+      icons, mime-type integration (for those open file with
+      application menu's). This is, perhaps, the hardest, as it
+      requires knowledge of all relevant desktop environments.</P
+><P
+>This chapter will cover the creation of
+      source packages, Windows installers and Unix rpms using the
+      standard <SPAN
+CLASS="APPLICATION"
+>Distutils</SPAN
+> package. This
+      requires that the user has already installed Python, PyQt, and
+      any other libraries. The Redhat Package Manager (rpm) on Linux
+      can be told to check for these dependencies. On Windows, it's a
+      matter of forcing your users to read the manual. I don't
+      describe the process of packaging your own C or C++ extensions,
+      though it is possible. Consult the Distutils manual for more
+      information.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c8212.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8401.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Internationalizing an Application</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p4627.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Packaging source</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

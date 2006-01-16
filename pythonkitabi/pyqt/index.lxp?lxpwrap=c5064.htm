@@ -1,0 +1,350 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c5064.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Automatic testing with PyUnit</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="PREVIOUS"
+TITLE="Setting an application icon"
+HREF="x5049.htm"><LINK
+REL="NEXT"
+TITLE="Starting out"
+HREF="x5102.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5049.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5102.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 14. Automatic testing with PyUnit</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c5064.htm#AEN5073">About unittests</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5102.htm">Starting out</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5120.htm">A first testcase</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5171.htm">Collecting tests in a test suite</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5202.htm">A more complicated test</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5234.htm">Large projects</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5255.htm">Testing signals and slots</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5285.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>In <A href="index.lxp%3Flxpwrap=c4631.htm">Chapter 12</A
+>, we created an
+    application framework in which the GUI interface was separate from
+    the application logic. One of the reasons for this was to make it
+    easier to test the components in isolation. Testing your software
+    components separately is called unit-testing, and it has proven
+    over the past few years to be a very good way of ensuring software
+    quality. Python supports working with unit-tests out of the box:
+    since version 2.1, a special module,
+    <TT
+CLASS="FILENAME"
+>unittest.py</TT
+>, is included in the standard
+    distribution. In this chapter, we will write a unittest for the
+    document module from the document-view framework.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>About unittests</A
+></H1
+><P
+>Have you ever done maintenance on a large
+      application and broken something because you changed something,
+      somewhere? Or worse, only noticed the breakage when a user
+      mailed you? Have you ever begun writing an application, but were
+      unable to complete it because the whole castle of cards
+      collapsed due to excessive fragility?</P
+><P
+>It has probably happened to you, and it
+      certainly has happened to me. Testing software is a boring
+      chore, and besides, everything has to be finished yesterday, or
+      today at the latest. However, <SPAN
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> testing
+      will cost you a lot of time, too, and it's more fun to program
+      than to bug-hunt. It would be best if automated testing could be
+      made part of the edit-compile-crash cycle.</P
+><P
+>This has occurred before to a lot of people,
+      but the honor of &#8216;inventing' automatic unit-testing
+      belongs to Erich Gamma and Kent Beck - familiar names to
+      developers everywhere. They started writing unit-test frameworks
+      for SmallTalk, moving on to Java and other languages.</P
+><P
+>The idea is simple but ingenuous: first the
+      developer writes his test, then the class that will make the
+      test work; the process is repeated until the created code fits
+      the application you're developing. All the while, you will get
+      instant feedback from a small GUI app that runs your tests and
+      shows you a green progressbar when everything works as intended,
+      and a horrible, unfriendly red progressbar when a test fails.
+      You can also run the unittests without a gui, but it isn't as
+      much fun.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>All is well - the bar is green!</P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Back to the drawing board; the bar is red, tests
+      have failed!</P
+></DIV
+></P
+></DIV
+><P
+>Writing tests takes a bit of getting used-to,
+      and it <SPAN
+><I
+CLASS="EMPHASIS"
+>is</I
+></SPAN
+> something more easily learned when
+      working together with someone who has done it before. However,
+      once you get around to it, it is definitely addictive.</P
+><P
+>Unit-testing using the
+      <TT
+CLASS="FILENAME"
+>unittest.py</TT
+> framework also departs from
+      what people are used to doing when testing: namely, writing
+      scripts that simulate user input, such as mouse-clicks. Those
+      scripting solutions are quite often so fragile that they are
+      worse than useless. It is far better to explicitly code tests
+      for the back-end of your application, guaranteeing that the
+      interaction between backend and GUI is correct, as opposed to
+      trying to deduce bugs from apparent errors at the GUI
+      front.</P
+><P
+>In sum, the advantage of unit-testing is:
+      you know you can depend upon the behavior of your components,
+      and whenever you change a component, you will be alerted to that
+      change by failing tests. In short, you will be able to trust
+      your software at a relatively low level.</P
+><P
+>There a few disadvantages, too. You might
+      be lulled into a false sense of security: if you change your
+      unit-tests along with the code, then you can no longer be sure
+      that your components fit your system, for you have just changed
+      their behavior.  A unittest is a kind of contract about the
+      behavior your code exposes to the outside world. Changing the
+      contract one-sidedly is a guarantee for breaking
+      relations.</P
+><P
+>It's also quite difficult to find a good
+      division between unit-tests and functional tests. Functional
+      testing is mostly done from a user perspective; unit-tests test
+      the behavior of your classes, but functional tests test the
+      behavior of the application. There is currently no way to
+      automate functional testing.</P
+><P
+>Cynics have noted that the running of
+      unittests has negated all the progress made in creating fast
+      compilers, and even virtually compilation-less languages such as
+      Python. Indeed, running a full testsuite can take a long time.
+      Fortunately, <SPAN
+CLASS="APPLICATION"
+>Pyunit</SPAN
+> is very
+      fast.</P
+><P
+>Lastly, watching the bar stay green is
+      addictive in itself, and you might be tempted to run working
+      tests over and over again...</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5049.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5102.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Setting an application icon</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p4627.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Starting out</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

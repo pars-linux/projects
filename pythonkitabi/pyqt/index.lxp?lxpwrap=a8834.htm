@@ -1,0 +1,351 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=a8834.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>First Steps with Sip</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Appendices"
+HREF="p8645.htm"><LINK
+REL="PREVIOUS"
+TITLE="PyQwt"
+HREF="x8818.htm"><LINK
+REL="NEXT"
+TITLE="How sip works"
+HREF="x8867.htm"></HEAD
+><BODY
+CLASS="APPENDIX"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x8818.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8867.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="APPENDIX"
+><H1
+>Appendix C. First Steps with Sip</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=a8834.htm#AEN8842">Introduction</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8867.htm">How sip works</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8887.htm">Creating .sip files</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8949.htm">Things <B
+CLASS="COMMAND"
+>sip</B
+> can't do
+      automatically</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x9012.htm">Where to look to start writing your own
+    wrappers/bindings</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x9022.htm">Sip usage and syntax</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x9236.htm">Directives</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x9571.htm">Accepted C++ / Qt constructs</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x9684.htm">SIPLIB Functions</A
+></DT
+></DL
+></DIV
+><FONT
+COLOR="RED"
+>&#13;    Jim Bublitz
+  </FONT
+><P
+>Jim Bublitz knows far more about
+    <SPAN
+><I
+CLASS="EMPHASIS"
+>sip</I
+></SPAN
+>, the tool used to wrap C++ libraries for
+    Python, than I do. For instance, he's the author of the bindings
+    to the KDE2 libraries. For these reasons, I asked him to write an
+    appendix on using sip.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Introduction</A
+></H1
+><P
+>Wrapping C++ libraries for use from Python is
+      a profitable undertaking, given the wealth of functionality that
+      becomes available after doing so. Python, in contrast with Java,
+      has been designed from the outset to be easily extensible with
+      &#8216;foreign' libraries written in C. C++, however, is a far more
+      complex language than C, and requires careful attention to the
+      creation, ownership and destruction of objects. Trolltech have
+      made the work even more complicated with the invention of a
+      special meta-object pre-compiler needed to get techniques like
+      signals and slots working.</P
+><P
+>These days it is not usual to wrap C++
+      libraries by hand. If only because of the size of the Qt
+      libraries, it probably isn't practical to write these bindings
+      manually, so an automated tool, <SPAN
+><I
+CLASS="EMPHASIS"
+>sip</I
+></SPAN
+>, was
+      developed by Phil Thompson (the PyQt developer) to generate the
+      necessary binding code.</P
+><P
+>As you know, PyQt is a set of Python
+      bindings for the Qt libraries. That means that PyQt isn't a
+      translation of Qt into Python&#8212;instead, the &#8216;bindings' let
+      you access and use the C++ Qt libraries from the Python language
+      via an intermediate wrapper library, which is also written (or
+      rather, generated) in C++.</P
+><P
+>The <SPAN
+><I
+CLASS="EMPHASIS"
+>sip</I
+></SPAN
+> program
+      generates these C++ &#8216;wrappers'. Wrappers are chunks of C++ code
+      that allow Python to pass data to and from other C++ code and to
+      invoke C++ methods or functions. <SPAN
+><I
+CLASS="EMPHASIS"
+>Sip</I
+></SPAN
+> gets
+      its name (and some of it's architecture) from another wrapper
+      generator named <SPAN
+><I
+CLASS="EMPHASIS"
+>swig</I
+></SPAN
+>. In fact,
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>sip</I
+></SPAN
+> started out as a small
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>swig</I
+></SPAN
+>, although it has grown a bit since
+      then.  It is specifically designed to generate Python bindings
+      for C++ libraries, while <SPAN
+><I
+CLASS="EMPHASIS"
+>swig</I
+></SPAN
+> is more
+      general purpose, and can wrap C libraries for a variety of
+      scripting languages. Of course, <SPAN
+><I
+CLASS="EMPHASIS"
+>sip</I
+></SPAN
+> also
+      offers some additional functionality, like support for signals
+      and slots, Python inheritance of C++ objects, and many other C++
+      language features:</P
+><P
+></P
+><UL
+><LI
+><P
+>Re-implementation of C++ virtual methods
+          in Python.</P
+></LI
+><LI
+><P
+>Sub-classing C++ classes from
+          Python.</P
+></LI
+><LI
+><P
+>Access to a C++ class's protected
+          methods.</P
+></LI
+><LI
+><P
+>Overloading of C++ functions and methods
+          with different parameter type signatures.</P
+></LI
+><LI
+><P
+>Automatic translation between C++
+          classes and similar (but more appropriate) Python
+          types.</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x8818.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8867.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PyQwt</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p8645.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>How sip works</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

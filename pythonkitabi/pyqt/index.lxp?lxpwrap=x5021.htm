@@ -1,0 +1,257 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5021.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Keyboard accelerators</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Actions: menus, toolbars and accelerators"
+HREF="c4807.htm"><LINK
+REL="PREVIOUS"
+TITLE="Toolbars"
+HREF="x4974.htm"><LINK
+REL="NEXT"
+TITLE="Setting an application icon"
+HREF="x5049.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x4974.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 13. Actions: menus, toolbars and accelerators</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5049.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Keyboard accelerators</A
+></H1
+><P
+>The old vi or Emacs lags amongst us know
+      this already, just as the WordPerfect veterans know: regardless
+      of what Rob Pike, designer of the Plan9 operating system, says,
+      using a keyboard can actually be preferable to grabbing the
+      mouse for every trifle. Giving the vast majority of interface
+      actions in your application a keyboard accelerator is therefore
+      a Good Thing, and is highly encouraged.</P
+><P
+>Note the subtle difference between a
+      keyboard accelerator and a keyboard shortcut. Shortcuts are
+      generally combinations of the Alt key and a letter. They are
+      indicated in menus and dialogs by an underscore, and created
+      by simply prefixing an ampersand (&#38;) to the shortcut
+      letter. Shortcuts only function in the context of a menu or
+      dialog box: that's why Alt-F generally opens the file menu,
+      but Alt-Q doesn't close the application unless the file menu
+      happens to be open. Accelerators are important and every
+      menu option and every widget on a dialog ought to be
+      associated with one.</P
+><P
+>Accelerators, on the other hand, are
+      generally combinations of CTRL and some other key (or,
+      for the WordPerfect-conditioned octopodi amongst us, all
+      modifiers together; CTRL-SHIFT-ALT-F12, anyone?). If the focus
+      of your application is on the document (or on a text field in a
+      dialog box), then your user will want to use shortcuts for
+      everything.</P
+><P
+>There are a number of standard
+      accelerators, such as CTRL-X for the cut action, but every
+      application is free to add to that store. You associate
+      accelerators with <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>s, with the
+      <TT
+CLASS="FUNCTION"
+>setAccel</TT
+> function. For actions that are not
+      associated with <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>s, you can create
+      <TT
+CLASS="CLASSNAME"
+>QAccel</TT
+> objects on their own, and connect
+      them to a slot of your choice.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>QAccel</TT
+> offers one
+      especially handy class method, <TT
+CLASS="FUNCTION"
+>stringToKey</TT
+>,
+      which takes a string describing an accelerator and returns and
+      integer value that represents a key combination to PyQt. The
+      format is very clear: "Ctrl+O", for instance. Even better,
+      because this is a <SPAN
+><I
+CLASS="EMPHASIS"
+>string</I
+></SPAN
+>, you can translate
+      this string using pygettext or PyQt's <TT
+CLASS="FUNCTION"
+>tr()</TT
+>
+      to localize the keyboard shortcuts for different countries. This
+      is not possible if you use the Qt constants that represent keys,
+      such as <SPAN
+><I
+CLASS="EMPHASIS"
+>Qt.CTRL + Qt.Key_O</I
+></SPAN
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x4974.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5049.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Toolbars</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c4807.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Setting an application icon</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

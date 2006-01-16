@@ -1,0 +1,392 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c8016.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Drag and drop</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="PREVIOUS"
+TITLE="Creating themes with QStyle"
+HREF="x7947.htm"><LINK
+REL="NEXT"
+TITLE="Initiating drags"
+HREF="x8073.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x7947.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8073.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 23. Drag and drop</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c8016.htm#AEN8026">Handling drops</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8073.htm">Initiating drags</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x8095.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>PyQt fully supports standard drag and drop
+    operations on all platforms. This includes both Windows OLE drag
+    and drop, and the two X11 standards: XDND (which uses MIME) and
+    the legacy Motif Drag'n'Drop protocol.</P
+><P
+>MIME, which you may know as a way to encode
+    all kinds of datatypes for e-mail, is used to encode the dragged
+    data in Qt. This is a very flexible standard, regulated by IANA
+    (http://www.isi.edu/in-notes/iana/assignments/media-types/). This
+    means that almost any kind of data can be handled by the Qt drag
+    and drop mechanism, not just text or images.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Handling drops</A
+></H1
+><P
+>Our <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> editor
+      must be able to accepts drops from other applications, so we
+      will have to implement this functionality.</P
+><P
+>Incoming drop operations are easy enough to
+      handle. Basically, you call
+      <TT
+CLASS="FUNCTION"
+>self.setAcceptDrops(TRUE)</TT
+> for the widget or
+      widgets that should accept drop events, and then actually handle
+      those drop events.</P
+><P
+>The widget that <SPAN
+><I
+CLASS="EMPHASIS"
+>should</I
+></SPAN
+>
+      accept the drops is our <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+> class.
+      But setting <TT
+CLASS="FUNCTION"
+>self.setAcceptDrops(TRUE)</TT
+> in
+      the constructor of <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+> won't work.
+      This is because <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+> doesn't
+      actually handle the drops; rather, they are handled by the
+      <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+> class, which is
+      encapsulated by <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+>.</P
+><P
+>The easiest solution is to extend the small
+      subclass of <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+> (which we
+      already created) to handle drop events.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 23-1. Handling drop events</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+kalamview.py - the editor view component for Kalam
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+import kalamconfig
+from resources import TRUE, FALSE
+class KalamMultiLineEdit(QMultiLineEdit):
+
+    def __init__(self, *args):
+        apply(QMultiLineEdit.__init__,(self,) + args)
+        self.setAcceptDrops(TRUE)
+
+    def dragEnterEvent(self, e):
+        e.accept(QTextDrag.canDecode(e))
+
+    def dropEvent(self, e):
+        t=QString()
+        if QTextDrag.decode(e, t): # fills t with decoded text
+            self.insert(t)
+            self.emit(SIGNAL("textChanged()"), ())
+
+    def event(self, e):
+        if e.type() == QEvent.KeyPress:
+            QMultiLineEdit.keyPressEvent(self, e)
+            return TRUE
+        else:
+            return QMultiLineEdit.event(self, e)
+      </PRE
+></DIV
+><P
+>How does this bit of code work? First, you
+      can see that the custom widget accepts drop events:
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>self.setAcceptDrops(TRUE)</I
+></SPAN
+>.</P
+><P
+>The <TT
+CLASS="FUNCTION"
+>dragEnterEvent()</TT
+>
+      method is fired whenever something is dragged over the widget.
+      In this function we can determine whether the object that is
+      dragged over our application is something we'd like to accept.
+       If the function
+      <TT
+CLASS="FUNCTION"
+>QTextDrag.canDecode()</TT
+> returns true, then we
+      know we can get some text out of the data the drop event
+      carries. We accept the event, which means that whenever
+      the cursor enters the widget, the shape will change to indicate
+      that the contents can be dropped.</P
+><P
+>If the user releases the mouse button, the
+      function <TT
+CLASS="FUNCTION"
+>dropEvent()</TT
+> is called. This
+      presents us with a <TT
+CLASS="CLASSNAME"
+>QDropEvent</TT
+> object,
+      which we can decode to get the contents.</P
+><P
+>However, here we come across one of the
+      inconsistencies of the PyQt bindings to Qt. Sometimes a function
+      wants to return two values: a boolean to indicate whether the
+      operation was successful, and the result of the operation. In
+      the case of <TT
+CLASS="CLASSNAME"
+>QFontDialog</TT
+>, the results are
+      returned in a tuple:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>        (font, ok) = QFontDialog.getFont(self, "FontDialog")
+    </PRE
+><P
+>Likewise,
+      <TT
+CLASS="FUNCTION"
+>QTextDrag.decode</TT
+> wants to return two
+      values: a boolean and a string. However, here you need to first
+      create a <TT
+CLASS="CLASSNAME"
+>QString</TT
+>, and pass that to
+      <TT
+CLASS="FUNCTION"
+>QTextDrag.decode</TT
+>, which fills it with the
+      text, while returning a boolean indicating whether the decoding
+      went well.</P
+><P
+>However, having got the text by hook or by
+      crook, we can insert it in the view, and tell the world that the
+      text has changed (so other views on the text can update
+      themselves).</P
+><P
+>You can now select and drag that text to a
+      <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> document. If you drag a file,
+      only the filename will be inserted, because a filename can also
+      be decoded as text. If you want to open the file instead, you
+      still have some work to do.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x7947.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8073.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Creating themes with QStyle</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p4627.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Initiating drags</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

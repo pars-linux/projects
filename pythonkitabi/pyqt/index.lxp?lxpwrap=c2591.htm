@@ -1,0 +1,315 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c2591.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Qt Class Hierarchy</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="PyQt fundamentals"
+HREF="p1032.htm"><LINK
+REL="PREVIOUS"
+TITLE="Object and class introspection"
+HREF="x2568.htm"><LINK
+REL="NEXT"
+TITLE="Base classes"
+HREF="x2629.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2568.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2629.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 10. Qt Class Hierarchy</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c2591.htm#AEN2597">Hierarchy</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2629.htm">Base classes</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2693.htm">Application classes</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2765.htm">Widget foundations: QWidget</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2976.htm">Basic widgets</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x3270.htm">Advanced widgets</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x3410.htm">Layout managers</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x3581.htm">Dialogs and Standard Dialogs</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x3738.htm">Qt Utility classes and their Python equivalents</A
+></DT
+></DL
+></DIV
+><P
+>In this chapter I will present an overview of
+    the Qt library, including both gui objects and non-gui objects.
+    While well-designed, Qt is a large library, and the key to
+    effective use is not knowing every class by heart, but rather
+    developing an intuition for what is available and where it is.
+    After an overview of the entire hierarchy I will shortly discuss
+    the base classes, the gui classes and compare the Qt utility
+    classes with their Python equivalents.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Hierarchy</A
+></H1
+><P
+>As noted before, Qt consists of a hierarchy
+      of classes derived from a basic QObject class, and a side-show
+      cluster of more independent classes. Classes derived from
+      QObject share some important functionality, namely the power to
+      communicate through signals and slots and to arrange themselves
+      in an ownership hierarchy. There are other odds and ends, such
+      as introspection functionality, which is discussed in
+      <A href="index.lxp%3Flxpwrap=x2568.htm">the Section called <I
+>Object and class introspection</I
+> in Chapter 9</A
+>.</P
+><DIV
+CLASS="FIGURE"
+></A
+><P
+><B
+>Figure 10-1. Qt Inheritance Hierarchy (only the most important classes)</B
+></P
+><P
+><IMG
+SRC="ch2/qt-condensed.eps"
+ALIGN="CENTER"></P
+></DIV
+><P
+>Prior to version 3.0, PyQt basically plunked
+      everything except for the OpenGL extension in the
+      <TT
+CLASS="FILENAME"
+>qt</TT
+> module. That was the situation when I
+      wrote this book. From PyQt 3.0, the Qt modules
+      <TT
+CLASS="FILENAME"
+>Canvas</TT
+>, <TT
+CLASS="FILENAME"
+>IconView</TT
+>,
+      <TT
+CLASS="FILENAME"
+>Network</TT
+>, <TT
+CLASS="FILENAME"
+>OpenGL</TT
+>,
+      <TT
+CLASS="FILENAME"
+>SQL</TT
+>, <TT
+CLASS="FILENAME"
+>Table</TT
+>,
+      <TT
+CLASS="FILENAME"
+>WorkSpace</TT
+> and <TT
+CLASS="FILENAME"
+>XML</TT
+> have
+      been put in separate Python modules.</P
+><P
+>In addition to the inheritance hierarchy,
+      there is an ownership hierarchy, where a window will own, for
+      instance, toolbars, a menubar and a statusbar. If the window is
+      deleted, all child objects will be deleted, too, and if a
+      keypress event arrives for an application, it will traverse the
+      tree until it arrives at the right spot. The ownership hierarchy
+      comes into existence by creating objects with their owner object
+      as parent - see <A href="index.lxp%3Flxpwrap=x2420.htm">the Section called <I
+>References and ownership</I
+> in Chapter 9</A
+> about this
+      principle.</P
+><DIV
+CLASS="FIGURE"
+></A
+><P
+><B
+>Figure 10-2. Object Ownership Hierarchy</B
+></P
+><P
+><IMG
+SRC="ch2/ownership-condensed.eps"
+ALIGN="CENTER"></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2568.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2629.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Object and class introspection</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p1032.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Base classes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

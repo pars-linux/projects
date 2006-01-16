@@ -1,0 +1,779 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x3410.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Layout managers</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Qt Class Hierarchy"
+HREF="c2591.htm"><LINK
+REL="PREVIOUS"
+TITLE="Advanced widgets"
+HREF="x3270.htm"><LINK
+REL="NEXT"
+TITLE="Dialogs and Standard Dialogs"
+HREF="x3581.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x3270.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 10. Qt Class Hierarchy</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x3581.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Layout managers</A
+></H1
+><P
+>One of the great strengths of PyQt is the use of layout
+      managers. Formerly, gui designers had to position and size every
+      element in their dialogs with pixel precision. Of course, this
+      meant that enlarging a window wouldn't show the user more data,
+      just a vast desert of boring grey pixels. Worse, when making a
+      window smaller, data would be obscured. Even worse, there are
+      still applications being made where you cannot resize the
+      windows <SPAN
+><I
+CLASS="EMPHASIS"
+>at all</I
+></SPAN
+>.
+    </P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Too large...</P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Too small.</P
+></DIV
+></P
+></DIV
+><P
+>It's easy to write applications as badly
+      behaved as this in PyQt&#8212; but where a Visual Basic
+      developer has to  write a complex resize routine that
+      recalculates the size and position of each element, PyQt
+      developers can use Qt's advanced layout management
+      facilities.</P
+><P
+>Basically, this means that you create
+      several containers that hold your widgets, and those widgets
+      will resize together with the containers. The easiest way to
+      create a pleasing layout is by using the BlackAdder or Qt forms
+      designer, as this automatically uses sensible defaults.</P
+><P
+>There are three fundamental approaches to
+      layout management in PyQt: by stacking widgets or grouping them
+      in frames, by using the simple layout management provided by
+      <TT
+CLASS="CLASSNAME"
+>QFrame</TT
+> and children, or by using the
+      advanced layout management <TT
+CLASS="CLASSNAME"
+>QLayout</TT
+>
+      provides. In Qt 3.0 <TT
+CLASS="CLASSNAME"
+>QLayout</TT
+> is even smart
+      enough to reverse the order of labels and entry widgets in
+      dialog boxes for right-to-left scripts.</P
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>Note: </B
+><TT
+CLASS="CLASSNAME"
+>QMainWindow</TT
+>
+        provides its own layout management&#8212; it manages the size
+        and position of the menubar, toolbar or toolbars, statusbar
+        and the widget in the middle. If that widget is not composed
+        of several widgets, the management will be quite sufficient.
+        If there are several widgets constrained by a
+        <TT
+CLASS="CLASSNAME"
+>QSplitter</TT
+>, the management will likewise
+        be sufficient, because in that case, the
+        <TT
+CLASS="CLASSNAME"
+>QSplitter</TT
+> will be the central widget.
+        If you have a more complex assembly of widgets, you will have
+        to create a dummy central <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> that
+        contains a layoutmanager that manages those widgets in a
+        pleasing way. You can also directly add a layout manager to
+        QMainWindow, but PyQt will natter about a layout manager being
+        added to a widget that already had one. It's not dangerous,
+        though. See <A href="index.lxp%3Flxpwrap=x3410.htm#CH2EXAMPLELAYOUT">Example 10-12</A
+> for an example
+        of such a dummy central widget.</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Widget sizing: QSizePolicy</A
+></H2
+><P
+><TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> based
+        classes provide the layout management system with
+        <SPAN
+><I
+CLASS="EMPHASIS"
+>size hints</I
+></SPAN
+>. This is a subtle system based
+        on a class named <TT
+CLASS="CLASSNAME"
+>QSizePolicy</TT
+>. A
+        widget's size policy determines how small a widget can shrink,
+        how big it can grow and how big it really wants to be. Then
+        the layout manager negotiates with the widget though the use
+        of the <TT
+CLASS="FUNCTION"
+>sizeHint()</TT
+> about the size it will
+        get.</P
+><P
+>A widget can thus indicate whether it
+        prefers to stay a fixed horizontal or vertical size, or would
+        like to grow to occupy all available space. QSizePolicy
+        contains a horizontal size policy record and a vertical size
+        policy record. You can set the size policy programmatically,
+        but the setting is also available in the BlackAdder forms
+        creator.</P
+><P
+>The following size policies exist:</P
+><P
+></P
+><UL
+><LI
+><P
+>Fixed &#8212; the widget can't
+            shrink nor grow.</P
+></LI
+><LI
+><P
+>Minimum &#8212; the widget can't
+            shrink, and shouldn't grow.</P
+></LI
+><LI
+><P
+>Maximum &#8212; the widget can't
+            grow, but can shrink without any problem.</P
+></LI
+><LI
+><P
+>Preferred &#8212; the widget can
+            shrink, but shouldn't grow.</P
+></LI
+><LI
+><P
+>MinimumExpanding &#8212; the widget
+            can't shrink, but should be allowed to grow as much as
+            possible.</P
+></LI
+><LI
+><P
+>Expanding &#8212; the widget can
+            shrink, but should be allowed to grow  as much as
+            possible.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Groups and frames</A
+></H2
+><P
+>One way of getting automatic layout
+        management is by using <TT
+CLASS="CLASSNAME"
+>QFrame</TT
+>, and its
+        children, like <TT
+CLASS="CLASSNAME"
+>QGroupBox</TT
+>. We have
+        already seen such a frame in the radiobuttons example, 
+        <A href="index.lxp%3Flxpwrap=x2976.htm#CH2EXAMPLERADIOBUTTONS">Example 10-9</A
+>. The contents of the
+        frame will be managed automatically.
+        </P
+><P
+><TT
+CLASS="CLASSNAME"
+>QFrame</TT
+> has
+        three interesting child classes: <TT
+CLASS="CLASSNAME"
+>QGrid</TT
+>,
+        <TT
+CLASS="CLASSNAME"
+>QHBox</TT
+> and
+        <TT
+CLASS="CLASSNAME"
+>QGroupBox</TT
+>. There's also
+        <TT
+CLASS="CLASSNAME"
+>QVBox</TT
+>, which descends from
+        <TT
+CLASS="CLASSNAME"
+>QHBox</TT
+>. </P
+><P
+>Adding widgets to one of the
+        frame-based layout managers is simply a matter of creating the
+        widget with the layout manager as <SPAN
+><I
+CLASS="EMPHASIS"
+>parent</I
+></SPAN
+>.
+        Those widgets will be resized according to the value their
+        <TT
+CLASS="FUNCTION"
+>sizeHint()</TT
+> returns.</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>QHBox</A
+></H3
+><P
+>This a very, very simple class. A
+            <TT
+CLASS="CLASSNAME"
+>QHBox</TT
+> aligns its children
+            horizontally, with a settable spacing between them.
+        </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>QVBox</A
+></H3
+><P
+>A <TT
+CLASS="CLASSNAME"
+>QVBox</TT
+> layout
+          is possibly even simpler than the
+          <TT
+CLASS="CLASSNAME"
+>QHBox</TT
+> layout: as the name implies, it
+          aligns its children vertically.
+        </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>QGrid</A
+></H3
+><P
+>It will come as no surprise that the
+          <TT
+CLASS="CLASSNAME"
+>QGrid</TT
+> is a simple grid layout
+          manager &#8212; for more complicated layouts, with differently
+          sized columns, you really need
+          <TT
+CLASS="CLASSNAME"
+>QGridLayout</TT
+>.
+        </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>QGroupBox</A
+></H3
+><P
+>A <TT
+CLASS="CLASSNAME"
+>QGroupBox</TT
+>
+          gives you a frame (which can be drawn in as many flavors as
+          <TT
+CLASS="CLASSNAME"
+>QFrame</TT
+> supports) and with a title
+          text which will appear on top of the frame. A
+          <TT
+CLASS="CLASSNAME"
+>QGroupBox</TT
+> can hold child widgets.
+          Those widgets will be aligned horizontally, vertically or in
+          a grid. The grid can also be filled in columns (for
+          vertically oriented frames), or in strips (for horizontally
+          oriented frames).
+        </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QLayout</A
+></H2
+><P
+><TT
+CLASS="CLASSNAME"
+>QLayout</TT
+> is
+        foundation of all complex Qt layout managers. Built on
+        <TT
+CLASS="CLASSNAME"
+>QLayout</TT
+>, there are three
+        layoutmanagers: one for horizontal layouts, one for vertical
+        layouts and one for grids. It's also quite possible to build a
+        new layoutmanager on <TT
+CLASS="CLASSNAME"
+>QLayout</TT
+>, one, for
+        instance, that manages playing cards on a stack, or perhaps
+        items in circle.</P
+><P
+>You can not only add widgets to layouts;
+        but also layouts. In this way, quite complex layouts can
+        achieved with very little pain.</P
+><P
+>All layout managers work by maintaining
+        a list of layoutitems. Those items can be
+        <TT
+CLASS="CLASSNAME"
+>QLayoutItem</TT
+>s,
+        <TT
+CLASS="CLASSNAME"
+>QLayoutWidget</TT
+>s or
+        <TT
+CLASS="CLASSNAME"
+>QSpacerItem</TT
+>s. It's interesting to note
+        that <TT
+CLASS="CLASSNAME"
+>QLayout</TT
+> <SPAN
+><I
+CLASS="EMPHASIS"
+>is</I
+></SPAN
+> a
+        <TT
+CLASS="CLASSNAME"
+>QLayoutItem</TT
+>, and can thus be managed by
+        another layoutmanager.</P
+><P
+>Every layout item proxies for a widget.
+        A <TT
+CLASS="CLASSNAME"
+>QSpacerItem</TT
+> is rather special, since
+        it doesn't represent a widget, but rather space. A
+        <TT
+CLASS="CLASSNAME"
+>QSpacerItem</TT
+> &#8216;pushes' other
+        widgets, either horizontally or vertically. You can use them
+        to push all pushbuttons to the top of the dialog, instead of
+        having them spread out over the whole height by the layout
+        manager.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QBoxLayout and children</A
+></H2
+><P
+><TT
+CLASS="CLASSNAME"
+>QBoxLayout</TT
+> is the
+        parent class of the horizontal and vertical box layout
+        managers &#8212; you will never use this class on its own, but
+        its useful to look at the methods it offers, because those are
+        inherited by <TT
+CLASS="CLASSNAME"
+>QHBoxLayout</TT
+> and
+        <TT
+CLASS="CLASSNAME"
+>QVBoxLayout</TT
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>QGridLayout</A
+></H2
+><P
+>While you can handle many layout
+        problems with combinations of horizontal and vertical box
+        layout managers, other problems are more suited for a
+        grid-based layout. The <TT
+CLASS="CLASSNAME"
+>QGridLayout</TT
+>
+        class provides a flexible layout manager.
+      </P
+><P
+>The grid managed by a
+        <TT
+CLASS="CLASSNAME"
+>QGridLayout</TT
+> consists of cells laid out
+        in rows and columns: the grid cannot be as complicated as a
+        html table, but you can add widgets (or sub-layouts) that span
+        multiple rows and columns. Rows (or columns) can be given a
+        stretch factor and spacing.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 10-12. layout.py - two box layouts and adding and removing buttons
+          dynamically to a layout</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# layout.py - adding and removing widgets to a layout
+#
+import sys
+from qt import *
+
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        self.setCaption("Adding and deleting widgets")
+        self.setName("main window")
+        self.mainWidget=QWidget(self) # dummy widget to contain the
+                                      # layout manager
+        self.setCentralWidget(self.mainWidget)
+        self.mainLayout=QVBoxLayout(self.mainWidget, 5, 5, "main")
+        self.buttonLayout=QHBoxLayout(self.mainLayout, 5, "button")
+        self.widgetLayout=QVBoxLayout(self.mainLayout, 5, "widget")
+
+        self.bnAdd=QPushButton("Add widget", self.mainWidget, "add")
+        self.connect(self.bnAdd, SIGNAL("clicked()"),
+                     self.slotAddWidget)
+
+        self.bnRemove=QPushButton("Remove widget",
+                                  self.mainWidget, "remove")
+        self.connect(self.bnRemove, SIGNAL("clicked()"),
+                     self.slotRemoveWidget)
+
+        self.buttonLayout.addWidget(self.bnAdd)
+        self.buttonLayout.addWidget(self.bnRemove)
+
+        self.buttons = []
+
+    def slotAddWidget(self):
+        widget=QPushButton("test", self.mainWidget)
+        self.widgetLayout.addWidget(widget)
+        self.buttons.append(widget)
+        widget.show()
+
+    def slotRemoveWidget(self):
+        self.widgetLayout.parent().removeChild(self.widgetLayout)
+        self.widgetLayout=QVBoxLayout(self.mainLayout, 5, "widget")
+        self.buttons[-1].parent().removeChild(self.buttons[-1])
+        del self.buttons[-1:]
+
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                                 , app
+                                 , SLOT("quit()")
+                                 )
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+          </PRE
+></DIV
+><P
+>This example shows that it is not only
+        possible to dynamically add widgets to a layout, but also to
+        remove them again. Removing means first severing the link from
+        the widget to the parent, and then deleting (using
+        <TT
+CLASS="FUNCTION"
+>del</TT
+>) all Python references to the widget.
+        When the last reference has been removed, the widget
+        disappears.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>layout.py</P
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>setGeometry</A
+></H2
+><P
+>You can use
+        <TT
+CLASS="FUNCTION"
+>setGeometry</TT
+> to set the size of every
+        individual widget yourself. There's another useful application
+        of <TT
+CLASS="FUNCTION"
+>setGeometry()</TT
+>, too: if you save the
+        size of the application window when the last window closes in
+        a configuration file, you can bring the window back to its
+        last size and position the next time the user starts opens it.
+        </P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 10-13. geometry.py - setting the initial size of an
+          application</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# geometry.py
+#
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+        
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.editor=QMultiLineEdit(self)
+        self.setCentralWidget(self.editor)
+        
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.setGeometry(100,100,300,300)
+    win.show()
+        
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                           , app
+                           , SLOT("quit()")
+                           )
+    app.exec_loop()
+    
+if __name__=="__main__":
+    main(sys.argv)
+        </PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x3270.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x3581.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Advanced widgets</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c2591.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Dialogs and Standard Dialogs</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    
