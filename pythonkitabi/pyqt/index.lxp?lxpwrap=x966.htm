@@ -1,0 +1,309 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x966.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Stepping along</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Debugging"
+HREF="c883.htm"><LINK
+REL="PREVIOUS"
+TITLE="Setting breakpoints"
+HREF="x945.htm"><LINK
+REL="NEXT"
+TITLE="Debugging Techniques"
+HREF="x993.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x945.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Debugging</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x993.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Stepping along</A
+></H1
+><P
+>If your application goes wrong in the
+      initialization phase, then you might want to single step every
+      statement until you arrive at the offending statement. Let's
+      debug the same script as in the previous section, but altered
+      slightly to introduce a pesky typo. If you can spot it from
+      eyeballing the code alone, then you've probably skipped ahead to
+      <A href="index.lxp%3Flxpwrap=c1267.htm">Chapter 7</A
+>, on signals and slots.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#
+# button2.py
+#
+
+from qt import *
+import sys
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.setCaption("Button")
+
+        self.grid=QGrid(2, self)
+        self.grid.setFrameShape(QFrame.StyledPanel)
+
+        self.bn=QPushButton("Hello World", self.grid)
+        self.bn.setDefault(1)
+
+        self.connect(self.bn, SIGNAL("clicked()"),
+                     self.slotSlot())
+
+        self.setCentralWidget(self.grid)
+
+    def slotSlot(self):
+        i = 1/0
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+    </PRE
+><P
+>Running this code won't place the window on screen.
+      Instead, it ends with the following stacktrace:</P
+><PRE
+CLASS="SCREEN"
+>Traceback (most recent call last):
+  File "&#60;stdin&#62;", line 37, in ?
+  File "&#60;stdin&#62;", line 30, in main
+  File "&#60;stdin&#62;", line 21, in __init__
+  File "&#60;stdin&#62;", line 26, in slotSlot
+ZeroDivisionError: integer division or modulo by zero
+    </PRE
+><P
+>If you single step this using
+      <SPAN
+CLASS="APPLICATION"
+>BlackAdder</SPAN
+> you'll notice that
+      directly after the line:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>        self.connect(self.bn, SIGNAL("clicked()"),
+                     self.slotSlot())
+    </PRE
+><P
+>Python continues with:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotSlot(self):
+    </PRE
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Accidentally stepping into a function.</P
+></DIV
+></P
+></DIV
+><P
+>Armed with this knowledge, it's easy to
+      see what went wrong: we <SPAN
+><I
+CLASS="EMPHASIS"
+>called</I
+></SPAN
+> the function
+      in the <TT
+CLASS="FUNCTION"
+>connect</TT
+> line by adding the two
+      brackets, passing the result of the
+      <TT
+CLASS="FUNCTION"
+>slotSlot()</TT
+> function to the
+      <TT
+CLASS="FUNCTION"
+>connect()</TT
+>, instead of giving the
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>function</I
+></SPAN
+> object as a parameter to
+      <TT
+CLASS="FUNCTION"
+>connect</TT
+>. Simply changing the line
+      to:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>        self.connect(self.bn, SIGNAL("clicked()"),
+                     self.slotSlot)
+    </PRE
+><P
+>And the bug is fixed! Incidentally, this
+      also shows that you can create new signal/slot connections on
+      the fly, from the output of a function&#8212;this is something to
+      be aware of when creating a very dynamic application.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x945.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x993.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Setting breakpoints</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c883.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Debugging Techniques</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

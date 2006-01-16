@@ -1,0 +1,474 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x8949.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Things sip can't do
+      automatically</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="First Steps with Sip"
+HREF="a8834.htm"><LINK
+REL="PREVIOUS"
+TITLE="Creating .sip files"
+HREF="x8887.htm"><LINK
+REL="NEXT"
+TITLE="Where to look to start writing your own
+    wrappers/bindings"
+HREF="x9012.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x8887.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix C. First Steps with Sip</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x9012.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Things <B
+CLASS="COMMAND"
+>sip</B
+> can't do
+      automatically</A
+></H1
+><P
+>In a lot of cases, <B
+CLASS="COMMAND"
+>sip</B
+>
+      needs nothing but a stripped header file to do its work
+      on&#8212;but sometimes more is needed.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Handwritten code</A
+></H2
+><P
+>Look at the cursorPosition method.  It
+        does something Python can't do: it returns values via pointer
+        arguments (the two <TT
+CLASS="VARNAME"
+>int *</TT
+> parameters) passed
+        to the method, instead of returning a tuple of values.</P
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>Call by reference and call by value: </B
+>C and C++ (and Visual Basic and a host of other
+          programming languages) have two ways of passing arguments to
+          functions: by reference, or by value. If a function is
+          called with arguments by reference, changing the value of
+          the arguments will change their value outside the function.
+          Python only has call by (object) reference. If an object is
+          mutable, then changing it inside a function, will also
+          change the object outside a function:
+        </P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#62;&#62;&#62; def f(a):
+...     a.append("bla")
+... 
+&#62;&#62;&#62; a=["bla"]
+&#62;&#62;&#62; f(a)
+&#62;&#62;&#62; a
+['bla', 'bla']
+        </PRE
+><P
+>When you can a Python function with an immutable object
+          like a string or an integer, the value of the reference
+          outside the function won't change:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#62;&#62;&#62; 
+&#62;&#62;&#62; def f(a):
+...     a="b"
+... 
+&#62;&#62;&#62; a="a"
+&#62;&#62;&#62; f(a)
+&#62;&#62;&#62; a
+'a'
+&#62;&#62;&#62; 
+        </PRE
+><P
+>That's because the name of the argument and the name of
+          the variable are not aliases, they are two seperate names,
+          that might point to different objects, or to the same. As
+          soon as you assign a new string to the argument, the
+          references no longer point to the same name.</P
+></BLOCKQUOTE
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>%MemberCode
+  // The Python interface returns a tuple.
+
+  QMultiLineEdit *ptr;
+
+  if (sipParseArgs(&#38;sipArgsParsed,sipArgs,
+                   "m",
+                   sipThisObj,
+                   sipClass_QMultiLineEdit,
+                   &#38;ptr))
+  {
+    int line, col;
+
+    ptr -&#62; QMultiLineEdit::cursorPosition(&#38;line,&#38;col);
+
+    return Py_BuildValue("(ii)",line,col);
+  }
+%End
+      </PRE
+><P
+>However, <B
+CLASS="COMMAND"
+>sip</B
+> can't
+        determine whether these pointers contain data being sent to
+        the <TT
+CLASS="FUNCTION"
+>cursorPosition</TT
+> function, or data
+        being returned by <TT
+CLASS="FUNCTION"
+>cursorPosition</TT
+> to the
+        calling code. Since Python has nothing comparable to a C/C++
+        pointer, there is no automatic way to generate the wrapper for
+        this method. Inside knowledge of what the code actually does
+        is required to generate wrappers, and the developer has to
+        provide <B
+CLASS="COMMAND"
+>sip</B
+> with this knowledge.</P
+><P
+>Immediately following the cursorPosition
+        method declaration is a <TT
+CLASS="FUNCTION"
+>%MemberCode</TT
+>
+        declaration. This allows the developer to tell
+        <B
+CLASS="COMMAND"
+>sip</B
+> how to wrap this function by providing
+        most of the necessary C++ code. The contents of the
+        <TT
+CLASS="FUNCTION"
+>%Membercode</TT
+> block is, in fact, C++
+        code.</P
+><P
+>Looking at the
+        <TT
+CLASS="FUNCTION"
+>%Membercode</TT
+> block, <B
+CLASS="COMMAND"
+>sip</B
+>
+        is instructed to first parse the arguments which Python will
+        pass to the wrapper code. The
+        <TT
+CLASS="FUNCTION"
+>sipParseArgs</TT
+> function is the most
+        important, and complex, function in the <B
+CLASS="COMMAND"
+>sip</B
+>
+        library. The third parameter is a string that encodes the
+        number and types of the Python parameters that are expected,
+        with more information given in later parameters. In this case
+        the <TT
+CLASS="FUNCTION"
+>sipParseArgs</TT
+> is being told to expect
+        exactly one Python parameter which is a Python instance of the
+        <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+> class which corresponds
+        to the value of <TT
+CLASS="FUNCTION"
+>self</TT
+>.</P
+><P
+>Next, some variables are defined
+        (<TT
+CLASS="VARNAME"
+>line</TT
+>, <TT
+CLASS="VARNAME"
+>col</TT
+>) to hold the
+        data <TT
+CLASS="FUNCTION"
+>cursorPosition</TT
+> will return.  The
+        member next calls the Qt/C++ version of
+        <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+><TT
+CLASS="FUNCTION"
+>::cursorPosition</TT
+>, 
+        which will fill in the values pointed to by
+        <TT
+CLASS="VARNAME"
+>&#38;line</TT
+> and
+        <TT
+CLASS="VARNAME"
+>&#38;col</TT
+>.</P
+><P
+>Last, the code uses the
+        <TT
+CLASS="FUNCTION"
+>Py_BuildValue</TT
+> to return the
+        <TT
+CLASS="VARNAME"
+>line</TT
+> and <TT
+CLASS="VARNAME"
+>col</TT
+> values
+        obtained to the Python caller. In this case, since two values
+        are returned, the code places the two values in a tuple which
+        is returned to the Python program that called the method. Even
+        though a Python method can return 2 or more distinct values,
+        C++ can't, and the member code is in the C++ domain.</P
+><P
+>If you look at some of the code
+        <B
+CLASS="COMMAND"
+>sip</B
+> generates, you'll find it looks very
+        much like the member code generated manually for the
+        cursorPosition method. There will be a number of references to
+        functions or methods which begin with &#8216;sip' or
+        &#8216;Py'. The &#8216;Py'-prefixed calls are to code built
+        into Python itself. Python contains a library of functions
+        used to write wrappers/interfaces for C and C++ code. The
+        &#8216;sip'-prefixed functions are calls to the
+        <B
+CLASS="COMMAND"
+>sip</B
+> library, and occur in all
+        <B
+CLASS="COMMAND"
+>sip</B
+>-generated code (including all of PyQt).
+        This is why you need to have the <B
+CLASS="COMMAND"
+>sip</B
+>
+        library installed before you can use PyQt, even though you
+        don't need to run the <B
+CLASS="COMMAND"
+>sip</B
+> program
+        itself.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Other limitations</A
+></H2
+><P
+>Presently, <B
+CLASS="COMMAND"
+>sip</B
+> can't
+        automatically generate code for methods which have parameters
+        or return values with types like <TT
+CLASS="VARNAME"
+>int&#38;</TT
+>,
+        <TT
+CLASS="VARNAME"
+>int*</TT
+> or <TT
+CLASS="VARNAME"
+>bool*</TT
+>.</P
+><P
+>In addition, <B
+CLASS="COMMAND"
+>sip</B
+> can't
+        directly handle types based on C++ templates. In these cases
+        you have to used the <TT
+CLASS="FUNCTION"
+>%MappedType</TT
+>
+        directive to supply your own C++ code to explicitly handle how
+        such types are converted to and from Python objects. You still
+        use the C++ template type in parameters and return values of
+        functions and methods, <B
+CLASS="COMMAND"
+>sip</B
+> will
+        automatically carry out the necessary conversions based on the
+        C++ code you provided.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x8887.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x9012.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Creating .sip files</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=a8834.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Where to look to start writing your own
+    wrappers/bindings</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

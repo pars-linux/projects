@@ -1,0 +1,250 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x2377.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Circular references</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Python Objects and Qt Objects"
+HREF="c2341.htm"><LINK
+REL="PREVIOUS"
+TITLE="Python Objects and Qt Objects"
+HREF="c2341.htm"><LINK
+REL="NEXT"
+TITLE="Qt objects, Python objects and shadow objects"
+HREF="x2393.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c2341.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Python Objects and Qt Objects</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2393.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Circular references</A
+></H1
+><P
+>You can cause a memory leak in Python by creating circular
+      references, or by never deleting the last reference to
+      an object. The latest versions of Python support a garbage
+      collector that can detect circular references and clean them
+      up. It's quite difficult to create circular references, but it's
+      very easy to accidentally keep references lying about. The next
+      snippet shows the circularity of referring from A to B to A...
+      </P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 9-2. circular.py - circululululular references</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# circular.py - circululululular references in Python
+#
+class B: pass
+
+class A:
+
+    def __init__(self):
+        self.b=B()
+        self.b.a=self
+
+a=A()
+
+print a
+print a.b
+print a.b.a
+print a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a
+      </PRE
+></DIV
+><PRE
+CLASS="SCREEN"
+>boudewijn@maldar:~/doc/opendoc/ch3 &#62; python circular.py
+&#60;__main__.A instance at 0x8199bb4&#62;
+&#60;__main__.B instance at 0x8199c04&#62;
+&#60;__main__.A instance at 0x8199bb4&#62;
+&#60;__main__.A instance at 0x8199bb4&#62;
+    </PRE
+><P
+>If you delete the instance <TT
+CLASS="VARNAME"
+>a</TT
+>, you
+      only make the objects inaccessible; because <TT
+CLASS="VARNAME"
+>b</TT
+>
+      still refers to <TT
+CLASS="VARNAME"
+>a</TT
+>, there's a reference for
+      the reference counter, and <TT
+CLASS="VARNAME"
+>a</TT
+> will not be
+      destroyed. Thus <TT
+CLASS="VARNAME"
+>b</TT
+> will not be destroyed either,
+      which means the reference to <TT
+CLASS="VARNAME"
+>a</TT
+> remains in
+      existence &#8212; ad infinitum! (Or at least until the Python
+      interpreter shuts down.)</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c2341.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2393.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Python Objects and Qt Objects</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c2341.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Qt objects, Python objects and shadow objects</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

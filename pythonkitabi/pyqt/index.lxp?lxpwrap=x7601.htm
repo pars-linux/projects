@@ -1,0 +1,1189 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x7601.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>QCanvas</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Drawing on Painters and Canvases"
+HREF="c7391.htm"><LINK
+REL="PREVIOUS"
+TITLE="Drawing on Painters and Canvases"
+HREF="c7391.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x7875.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c7391.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 21. Drawing on Painters and Canvases</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x7875.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>QCanvas</A
+></H1
+><P
+>The other way of pushing pixels on the
+      screen is using the <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> class. This
+      is rather more complicated than simply painting what you want,
+      but offers the unique capability of accessing the individual
+      elements of the composition. Not only that, but you can also
+      determine whether elements overlap each other, set them moving
+      across the canvas at a predefined rate, and show and hide them
+      at will.</P
+><P
+>In working with
+      <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+>, three classes play an essential
+      role: the <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> itself, which is a
+      receptacle for <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+> objects
+      &#8212; or rather, their descendants, and one or more
+      <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> widgets are used to show the
+      canvas and its contents on screen.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>the relation between QCanvas,
+          QCanvasItems and QCanvasView</P
+></DIV
+></P
+></DIV
+><P
+>The class <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>
+      is rather special: you cannot instantiate objects from it, nor
+      can you directly subclass it. You <SPAN
+><I
+CLASS="EMPHASIS"
+>can</I
+></SPAN
+>
+      instantiate and subclass the subclasses of
+      <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>:
+      <TT
+CLASS="CLASSNAME"
+>QCanvasPolygonalItem</TT
+>,
+      <TT
+CLASS="CLASSNAME"
+>QCanvasSprite</TT
+> and
+      <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+>.</P
+><P
+>Even
+      <TT
+CLASS="CLASSNAME"
+>QCanvasPolygonalItem</TT
+> itself is not
+      terribly useful: the derived classes
+      <TT
+CLASS="CLASSNAME"
+>QCanvasEllipse</TT
+>,
+      <TT
+CLASS="CLASSNAME"
+>QCanvasLine</TT
+>,
+      <TT
+CLASS="CLASSNAME"
+>QCanvasPolygon</TT
+> and
+      <TT
+CLASS="CLASSNAME"
+>QCanvasRectangle</TT
+> can be used to draw
+      ellipses, lines, polygons and rectangles on the canvas.
+      Interestingly, these items can have a non-square bounding
+      box.</P
+><P
+>This means that two circles won't touch if
+      they overlap the box that contains them: only if the circles
+      themselves touch. This is quite special, and if you create new
+      derivations of these classes yourself, you should take care to
+      carefully calculate the area your object occupies.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Overlapping and non-overlapping circles.</P
+></DIV
+></P
+></DIV
+><P
+>A <TT
+CLASS="CLASSNAME"
+>QCanvasSprite</TT
+>
+      should be familiar to anyone who has ever played with an 8-bit
+      home computer. A <TT
+CLASS="CLASSNAME"
+>QCanvasSprite</TT
+> is an
+      animated pixmap, and can move (like any
+      <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>) across the canvas under its
+      own steam. You fill the <TT
+CLASS="CLASSNAME"
+>QCanvasSprite</TT
+>
+      with a <TT
+CLASS="CLASSNAME"
+>QPixMapArray</TT
+>. This class contains
+      a list of <TT
+CLASS="CLASSNAME"
+>QPixmap</TT
+>s and a list of
+      <TT
+CLASS="CLASSNAME"
+>QPoint</TT
+>s. These define how the sprite
+      looks and where its hot spots are. If you want to create a game
+      using PyQt you'll probably want to use this class.</P
+><P
+>Lastly, the
+      <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> can draw a single line of
+      text on the canvas. Let me repeat that: you can not create a
+      whole column of text, put it in a
+      <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> object, and paste it on the
+      canvas. This makes creating a PageMaker clone just a little bit
+      more difficult.</P
+><P
+>Nevertheless, it is
+      <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> which we are going to use in
+      the next section. Another example of the use
+      <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> is the
+      <SPAN
+CLASS="APPLICATION"
+>Eric</SPAN
+> debugger, which is part of the
+      PyQt source distribution.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>A simple Unicode character picker</A
+></H2
+><P
+>The goal of this example is to provide a
+        point-and-click way of entering characters from the
+        <SPAN
+><I
+CLASS="EMPHASIS"
+>complete</I
+></SPAN
+> unicode range in
+        <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+>. The Unicode range is divided
+        into a few hundred scripts. What I want is a window that shows
+        a clickable table of one of those scripts, with a combo-box
+        that allows me to select the script I need. And when I click
+        on a character, that character should be inserted into the
+        current document.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>A Unicode character picker</P
+></DIV
+></P
+></DIV
+><P
+>The underlying data can be retrieved from the Unicode
+        consortium website. They provide a file,
+        <TT
+CLASS="FILENAME"
+>Blocks.txt</TT
+>, that gives you the range each
+        script occupies:</P
+><PRE
+CLASS="SCREEN"
+># Start Code; End Code; Block Name
+0000; 007F; Basic Latin
+0080; 00FF; Latin-1 Supplement
+0100; 017F; Latin Extended-A
+0180; 024F; Latin Extended-B
+0250; 02AF; IPA Extensions
+02B0; 02FF; Spacing Modifier Letters
+0300; 036F; Combining Diacritical Marks
+...
+F900; FAFF; CJK Compatibility Ideographs
+FB00; FB4F; Alphabetic Presentation Forms
+FB50; FDFF; Arabic Presentation Forms-A
+FE20; FE2F; Combining Half Marks
+FE30; FE4F; CJK Compatibility Forms
+FE50; FE6F; Small Form Variants
+FE70; FEFE; Arabic Presentation Forms-B
+FEFF; FEFF; Specials
+FF00; FFEF; Halfwidth and Fullwidth Forms
+FFF0; FFFD; Specials
+      </PRE
+><P
+>This file can be used to fill a combobox
+        with all different scripts:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 21-2. charmap.py - a Unicode character selection
+        widget</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+charmap.py - A unicode character selector
+
+copyright: (C) 2001, Boudewijn Rempt
+email:         boud@rempt.xs4all.nl
+"""
+
+import string, os.path
+from qt import *
+
+TRUE=1
+FALSE=0
+
+class CharsetSelector(QComboBox):
+
+    def __init__(self, datadir, *args):
+        apply(QComboBox.__init__,(self,)+args)
+        self.charsets=[]
+        self.connect(self,
+                     SIGNAL("activated(int)"),
+                     self.sigActivated)
+
+        f=open(os.path.join(datadir,"Blocks.txt"))
+        f.readline() # skip first line
+        for line in f.readlines():
+            try:
+                self.charsets.append((string.atoi(line[0:4],16)
+                                      ,string.atoi(line[6:10],16)))
+                self.insertItem(line[12:-1])
+            except: pass
+
+    def sigActivated(self, index):
+        begin, start=self.charsets[index]
+        self.emit(PYSIGNAL("sigActivated"),(begin, start))
+      </PRE
+></DIV
+><P
+>This is simple enough: the location of
+        <TT
+CLASS="FILENAME"
+>Blocks.txt</TT
+> is retrieved, and each line is
+        read. Every line represents one script, and for every line an
+        entry is inserted into the <TT
+CLASS="CLASSNAME"
+>QComboBox</TT
+>.
+        In a separate list, <TT
+CLASS="VARNAME"
+>self.charsets</TT
+>, we keep
+        a tuple with the begin and the end of each range, converted to
+        integers from their hexadecimal representation. Python is a
+        great language for this kind of data massaging.</P
+><P
+>Whenever the user selects an item from the combobox, a
+        signal is emitted, <TT
+CLASS="VARNAME"
+>sigActivated</TT
+>, that
+        carries the begin and endpoint of the range.</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>The canvas</A
+></H3
+><P
+>Working with
+          <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> entails handling two classes:
+          <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> and
+          <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+>. In this section, we'll
+          lay out the Unicode table on the
+          <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+>. From PyQt 3.0 onwards, the
+          canvas classes are in a separate module:
+          <TT
+CLASS="FILENAME"
+>qtcanvas</TT
+>, which has to be imported
+          separately.</P
+><P
+>You can think of a
+          <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> as a virtually boundless
+          two-dimensional paste-board, which you can fill with
+          <TT
+CLASS="CLASSNAME"
+>QCanvasItems</TT
+>. The main difference
+          between a <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> with
+          <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>s on it and a
+          <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> with a lot of sub-widgets, is
+          that the first is a lot more efficient in terms of
+          memory-use, and offers easy collision detection. Of course,
+          <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>s are not widgets, so you
+          don't have easy event handling &#8212; but you can fake it
+          easily enough, by catching mouse presses on individual
+          <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>s.</P
+><P
+>Here, we will create a
+          <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> for every Unicode
+          glyph. In the <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+>
+          mouse-clicks on those items will be caught.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class CharsetCanvas(QCanvas):
+
+    def __init__(self, parent, font, start, end, maxW, *args):
+        apply(QCanvas.__init__,(self, ) + args)
+        self.parent=parent
+        self.start=start
+        self.end=end
+        self.font=font
+        self.drawTable(maxW)
+
+    def drawTable(self, maxW):
+        self.maxW=maxW
+        self.items=[]
+        x=0
+        y=0
+
+        fontMetrics=QFontMetrics(self.font)
+        cell_width=fontMetrics.maxWidth() + 3
+        if self.maxW &#60; 16 * cell_width:
+            self.maxW = 16 * cell_width
+        cell_height=fontMetrics.lineSpacing()
+
+        for wch in range(self.start, self.end + 1):
+            item=QCanvasText(QString(QChar(wch)),self)
+            item.setFont(self.font)
+
+            item.setX(x)
+            item.setY(y)
+            item.show()
+
+            self.items.append(item)
+
+            x=x + cell_width
+            if x &#62;= self.maxW:
+                x=0
+                y=y+cell_height
+
+        if self.parent.height() &#62; y + cell_height:
+            h = self.parent.height()
+        else:
+            h = y + cell_height
+
+        self.resize(self.maxW + 20, h)
+        self.update()
+
+    def setFont(self, font):
+        self.font=font
+        self.drawTable(self.maxW)
+        </PRE
+><P
+>Most of the real work is done in the
+          <TT
+CLASS="FUNCTION"
+>drawTable()</TT
+> method. The
+          <TT
+CLASS="VARNAME"
+>maxW</TT
+> parameter determines how wide the
+          canvas will be. However, if there is not place enough for at
+          least sixteen glyphs, the width is adjusted.</P
+><P
+>Then the
+          <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> items are created, in a
+          plain loop, starting at the beginning of the character set
+          and running to the end. You must give these items an initial
+          position and size, and explicitly call
+          <TT
+CLASS="FUNCTION"
+>show()</TT
+> on each item. If you forget to
+          do this, all you will see is a very empty canvas.</P
+><P
+>You will also be greeted by an equally
+          empty canvas if you do not keep a Python reference to the
+          items &#8212; here a list of
+          <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> items is kept in
+          <TT
+CLASS="VARNAME"
+>self.items</TT
+>.</P
+><P
+>If the end of a line is reached,
+          drawing continues on the next line.</P
+><P
+>An <SPAN
+><I
+CLASS="EMPHASIS"
+>essential</I
+></SPAN
+>
+          step, and one which I tend to forget myself, is to resize
+          the <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> after having determined
+          what space the items take. You can place items outside the
+          confines of the canvas, and they won't show unless you
+          resize the canvas to include them.</P
+><P
+>Finally, you must
+          <TT
+CLASS="FUNCTION"
+>update()</TT
+> the
+          <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> &#8212; otherwise you still
+          won't see anything. This method updates all
+          <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> objects that show this
+          canvas.</P
+><P
+>Setting the font involves drawing the
+          table anew. This is more efficient than applying the font
+          change to each individual <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+>
+          item &#8212; even though that is perfectly possible. The
+          reason is that if the font metrics change, for instance
+          because the new font is a lot larger, you will have to check
+          for collisions and adjust the location of all items anyway.
+          That would take not only a lot of time, it would also demand
+          complex and unmaintainable code. Simple is good, as far as
+          I'm concerned.</P
+><P
+>This little table shows almost nothing
+          of the power of <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> &#8212; you
+          can animate the objects, determine if they overlap, and lots
+          more. It offers everything you need, for instance, to write
+          your very own <SPAN
+><I
+CLASS="EMPHASIS"
+>Asteroids</I
+></SPAN
+> clone...</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>The view on the canvas</A
+></H3
+><P
+>Putting stuff on a canvas
+          is useless, unless you can also see what you've done. You
+          can create one or more <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+>
+          objects that show the contents of canvas. Each view can show
+          a different part, but every time you call
+          <TT
+CLASS="FUNCTION"
+>update()</TT
+> (or
+          <TT
+CLASS="FUNCTION"
+>advance()</TT
+>, which advances all animated
+          objects), all views are updated.</P
+><P
+>The most important work your
+          <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> subclasses have is to
+          react on user input. Here, we draw a cursor rectangle round
+          selected glyphs and emit signals for every
+          mousepress.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class CharsetBrowser(QCanvasView):
+
+    def __init__(self, *args):
+        apply(QCanvasView.__init__,(self,)+args)
+
+    def setCursor(self, item):
+        self.cursorItem=QCanvasRectangle(self.canvas())
+        self.cursorItem.setX(item.boundingRect().x() -2)
+        self.cursorItem.setY(item.boundingRect().y() -2)
+        self.cursorItem.setSize(item.boundingRect().width() + 4,
+                                item.boundingRect().height() + 4)
+
+        self.cursorItem.setZ(-1.0)
+        self.cursorItem.setPen(QPen(QColor(Qt.gray), 2, Qt.DashLine))
+        self.cursorItem.show()
+        self.canvas().update()
+
+    def contentsMousePressEvent(self, ev):
+        try:
+            items=self.canvas().collisions(ev.pos())
+            self.setCursor(items[0])
+            self.emit(PYSIGNAL("sigMousePressedOn"), (items[0].text(),))
+        except IndexError:
+            pass
+
+    def setFont(self, font):
+        self.font=font
+        self.canvas().setFont(self.font)
+        </PRE
+><P
+>First, the drawing of the cursor. You
+          can see that you don't need to create your canvas items in
+          the <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> class or its derivatives.
+          Here, it is done in the <TT
+CLASS="FUNCTION"
+>setCursor()</TT
+>
+          method. This method is called with the activated
+          <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> item as its
+          parameter.</P
+><P
+>A new item is created, a
+          <TT
+CLASS="CLASSNAME"
+>QCanvasRectangle</TT
+> called
+          <TT
+CLASS="VARNAME"
+>self.cursorItem</TT
+>. It's an instance, not a
+          local variable, because otherwise the rectangle would
+          disappear once the item goes out of scope (because the function
+          finishes).</P
+><P
+>The location and dimensions of the
+          rectangle are determined. It will be a two-pixel wide, gray,
+          dashed line exactly outside the current glyph. Of course, it
+          must be shown, and the canvas must call
+          <TT
+CLASS="FUNCTION"
+>update()</TT
+> in order to notify the
+          view(s). Note that you can retrieve a canvas shown by
+          <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> with the
+          <TT
+CLASS="FUNCTION"
+>canvas()</TT
+> function.</P
+><P
+>If you consult PyQt's documentation
+          (or the C++ Qt documentation) on
+          <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+>, you will notice that it
+          is not very well endowed with useful functions.
+          <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> is a type of specialized
+          <TT
+CLASS="CLASSNAME"
+>QScrollView</TT
+>, and this class offers
+          lots of useful methods (for example, event handling methods
+          for mouse events).</P
+><P
+>One of these methods,
+          <TT
+CLASS="FUNCTION"
+>contentsMousePressEvent</TT
+>, is highly
+          useful. It is called whenever a user clicks somewhere on the
+          canvas view. You can then use the coordinates of the click
+          to determine which <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+>
+          objects were hit. The coordinates of the mouse click can be
+          retrieved with the <TT
+CLASS="FUNCTION"
+>pos()</TT
+> function of
+          the <TT
+CLASS="VARNAME"
+>ev</TT
+>
+          <TT
+CLASS="CLASSNAME"
+>QMouseEvent</TT
+>. You then check which
+          <TT
+CLASS="CLASSNAME"
+>QCanvasItem</TT
+> objects were hit using
+          the collision detection <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+>
+          provides with the <TT
+CLASS="FUNCTION"
+>collisions()</TT
+>.</P
+><P
+>The result is a list of items. Because
+          we <SPAN
+><I
+CLASS="EMPHASIS"
+>know</I
+></SPAN
+> that there are no overlapping
+          items on our canvas, we can simply take the first
+          <TT
+CLASS="CLASSNAME"
+>QCanvasText</TT
+> item: that's
+          <TT
+CLASS="VARNAME"
+>items[0]</TT
+>. Now we have the selected glyph.
+          The <TT
+CLASS="FUNCTION"
+>setCursor()</TT
+> function is called to
+          draw a rectangle around the glyph. Then a signal is emitted,
+          which can be caught by other widgets. This signal is
+          ultimately responsible for getting the selected character in
+          the <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> document.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+>Tying the canvas and view together</A
+></H3
+><P
+>The <TT
+CLASS="CLASSNAME"
+>CharMap</TT
+>
+          widget is a specialized <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> that
+          contains the three components we developed above.</P
+><P
+>A vertical layout manager contains the
+          selection combobox and the
+          <TT
+CLASS="CLASSNAME"
+>CharsetBrowser</TT
+>
+          <TT
+CLASS="CLASSNAME"
+>QCanvasView</TT
+> widget. Every time a new
+          script is selected, a new
+          <TT
+CLASS="CLASSNAME"
+>CharsetCanvas</TT
+> is created &#8212; this
+          is easier than erasing the contents of the existing
+          canvas.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class CharMap(QWidget):
+    def __init__(self,
+                 parent,
+                 initialFont = "arial",
+                 datadir = "unidata",
+                 *args):
+
+        apply(QWidget.__init__, (self, parent, ) + args)
+        self.parent=parent
+        self.font=initialFont
+        self.box=QVBoxLayout(self)
+        self.comboCharset=CharsetSelector(datadir, FALSE, self)
+        self.box.addWidget(self.comboCharset)
+        self.charsetCanvas=CharsetCanvas(self, self.font, 0, 0, 0)
+        self.charsetBrowser=CharsetBrowser(self.charsetCanvas, self)
+        self.box.addWidget(self.charsetBrowser)
+
+        self.setCaption("Unicode Character Picker")
+
+        self.connect(qApp,
+                     PYSIGNAL("sigtextfontChanged"),
+                     self.setFont)
+
+
+        self.connect(self.comboCharset,
+                     PYSIGNAL("sigActivated"),
+                     self.slotShowCharset)
+
+        self.connect(self.charsetBrowser,
+                     PYSIGNAL("sigMousePressedOn"),
+                     self.sigCharacterSelected)
+
+        self.resize(300,300)
+        self.comboCharset.sigActivated(self.comboCharset.currentItem())
+        </PRE
+><P
+>In the constructor of
+          <TT
+CLASS="CLASSNAME"
+>CharMap</TT
+> both the selector combobox
+          and the canvasview are created. We create an initial canvas
+          for the view to display. The
+          <TT
+CLASS="VARNAME"
+>qApp.sigtextfontChanged</TT
+> signal is used to
+          redraw the character map when the application font changes.
+          Recall how we synthesized signals for all configuration
+          options in <A href="index.lxp%3Flxpwrap=c6013.htm">Chapter 18</A
+>, and used the
+          globally available <TT
+CLASS="VARNAME"
+>qApp</TT
+> object to emit
+          those signals.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def setFont(self, font):
+        self.font=font
+        self.charsetBrowser.setFont(font)
+
+    def sigCharacterSelected(self, text):
+        self.emit(PYSIGNAL("sigCharacterSelected"), (text,))
+        </PRE
+><P
+>Every time a user selects a character, the
+          <TT
+CLASS="VARNAME"
+>sigCharacterSelected</TT
+> signal is emitted.
+          In <TT
+CLASS="CLASSNAME"
+>KalamApp</TT
+>, this signal is connected
+          to the a slot function that inserts the character in the
+          current view or window.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotShowCharset(self, begin, end):
+        self.setCursor(Qt.waitCursor)
+        
+        self.charTable=CharsetCanvas(self,
+                                     self.font,
+                                     begin,
+                                     end,
+                                     self.width() - 40)
+        self.charsetBrowser.setCanvas(self.charTable)
+        self.setCursor(Qt.arrowCursor)        
+        </PRE
+><P
+>Drawing a character map can take a
+          while, especially if you select the set of Chinese
+          characters, which has a few tens of thousands of entries. In
+          order to not disquiet the user, we set a waiting
+          cursor&#8212;this is a small wristwatch on most versions of
+          Unix/X11, and the familiar sand-timer on Windows. Then a new
+          canvas is created and the canvas view is told to display
+          it.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Saving Unicode files</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Recall <A href="index.lxp%3Flxpwrap=c2029.htm">Chapter 8</A
+> on
+            Unicode&#8212; if you implement this character map and
+            want to save your carefully created Thai letter, you will
+            be greeted by an encoding error.</P
+><P
+>To avoid that, you need to use of the
+            <TT
+CLASS="FUNCTION"
+>unicode</TT
+> function instead of
+            <TT
+CLASS="FUNCTION"
+>str()</TT
+> when converting the
+            <TT
+CLASS="CLASSNAME"
+>KalamDoc</TT
+>.<TT
+CLASS="VARNAME"
+>text</TT
+>
+            <TT
+CLASS="CLASSNAME"
+>QString</TT
+> variable to Python
+            strings.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>Input methods and foreign keyboards: </B
+>If you have played around with the
+            version of Kalam that belongs to this chapter, you will no
+            doubt have noticed that writing a letter in, say, Tibetan,
+            is not quite as easy as just banging on the keyboard (to
+            say nothing of writing Chinese, which demands advanced
+            hunting and picking skills).</P
+><P
+>A character map like we just made is
+            useful for the occasional phonetic or mathematics character,
+            but not a substitute for the real stuff: specific keyboard
+            layouts for alphabetic scripts, like Cyrillic or Thai, and
+            input method editors for languages like Chinese.</P
+><P
+>Properly speaking, it's the job of
+            the Operating System or the GUI system to provide this
+            functionality. Specialized keyboard layouts are fairly
+            easy to come by, at least in the Unix/X11 world. My KDE 2
+            desktop has lots of keyboard layouts &#8212; perhaps you
+            have to buy them in the Windows world. Still, it's not
+            worthwhile to create special keyboard layouts in
+            PyQt.</P
+><P
+>It is possible to create your own keyboard layouts in
+            PyQt: re-implement the
+            <TT
+CLASS="FUNCTION"
+>keyPressEvent()</TT
+> of the view class and
+            use each pressed key as an index into a dictionary that
+            maps plain keyboard key definitions to, say, Tibetan
+            Unicode characters. This is the same technique we used in 
+            <A href="index.lxp%3Flxpwrap=c5783.htm">Chapter 17</A
+> to make sure tab characters
+            ended up in the text</P
+><PRE
+CLASS="PROGRAMLISTING"
+>            keymap={Qt.Key_A: QString(u"\u0270")}
+
+            def keyPressEvent(self, ev):
+                if keymap.has_key(ev.key()):
+                    self.insert(keymap[ev.key()])
+                else:
+                    QMultiLineEdit.keyPressEvent(self, ev)
+          </PRE
+><P
+>Input method editors (IME's) are
+            more difficult. Installing the free Chinese or Japanese
+            IME's on Unix/X11 is a serious challenge. Getting your
+            applications to work with them is another challenge. There
+            are, however, special Chinese, Korean and Japanese
+            versions of Qt to deal with these problems. As for
+            Windows, I think you need a special Chinese, Korean or
+            Japanese version of Windows.</P
+><P
+>It can be worthwhile to implement a
+            Chinese IME, for instance, yourself:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>A Chinese input method editor
+                written in Python and PyQt.</P
+></DIV
+></P
+></DIV
+><P
+>You can find the code for a
+            stand-alone Pinyin-based Chinese IME at
+            http://www.valdyas.org/python/qt2.html &#8212; it's also a
+            nice example of using large Python dictionaries (every
+            Mandarin Chinese syllable is mapped to a list characters
+            with that pronunciation, and Emacs cannot syntax-color the
+            file containing the dictionary).</P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c7391.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x7875.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Drawing on Painters and Canvases</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c7391.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

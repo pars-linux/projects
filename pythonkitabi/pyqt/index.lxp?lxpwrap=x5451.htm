@@ -1,0 +1,266 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5451.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Document</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="A More Complex Framework: Multiple Documents, Multiple
+    Views"
+HREF="c5288.htm"><LINK
+REL="PREVIOUS"
+TITLE="The Document Manager"
+HREF="x5388.htm"><LINK
+REL="NEXT"
+TITLE="View"
+HREF="x5458.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5388.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 15. A More Complex Framework: Multiple Documents, Multiple
+    Views</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5458.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Document</A
+></H1
+><P
+>As with the simple document/view
+      framework, the document class should know as little as possible
+      about the actual arrangements. As you can see, little has
+      changed compared to the simple document-view application of
+      <A href="index.lxp%3Flxpwrap=c4631.htm">Chapter 12</A
+>.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 15-3. The document class</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+mdidoc.py &#8212; document or application model.
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class MDIDoc(QObject):
+    """
+    The document represents the application model. The current
+    document keeps a 'modified' state.
+
+    signals: sigDocModified (boolean)
+             sigDocTitleChanged (string)
+             
+    """
+    def __init__(self, *args):
+        apply(QObject.__init__, (self,)+args)
+        self.newDocument()
+        self._fileName=None
+        self._title="Untitled"
+
+    def setPathName(self, fileName):
+        self._fileName=fileName
+        self.setTitle(str(QFileInfo(fileName).fileName()))
+    
+    def pathName(self):
+        return self._fileName
+
+    def setTitle(self, title):
+        self._title=title
+        self.emit(PYSIGNAL("SigDocTitleChanged"),
+                  (self._title,))
+
+    def title(self):
+        return self._title
+
+    def newDocument(self):
+        self.slotModify(FALSE)
+
+    def open(self, fileName, format=None):
+        self.slotModify(FALSE)
+        self.setPathName(fileName)
+
+    def slotModify(self, value=None):
+        if value==None:
+            self._modified=not self._modified
+        else:
+            self._modified = value
+        self.emit(PYSIGNAL("sigDocModified"),
+                  (self._modified,))
+
+    def modified(self):
+        return self._modified
+
+    def close(self):
+        pass
+
+    def save(self, fileName = None, format = None):
+        if fileName is not None and fileName &#60;&#62; "":
+            self.setPathName(fileName)
+        else:
+            if self.pathName() == None:
+                raise "Could not save document: no filename."
+        self.slotModify(FALSE)
+    </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5388.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5458.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>The Document Manager</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5288.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>View</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

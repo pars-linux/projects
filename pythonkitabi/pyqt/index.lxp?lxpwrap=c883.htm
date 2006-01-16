@@ -1,0 +1,395 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c883.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Debugging</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Introduction to the BlackAdder IDE"
+HREF="p266.htm"><LINK
+REL="PREVIOUS"
+TITLE="Conclusion"
+HREF="x879.htm"><LINK
+REL="NEXT"
+TITLE="Setting breakpoints"
+HREF="x945.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x879.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x945.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 5. Debugging</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c883.htm#AEN933">Running scripts</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x945.htm">Setting breakpoints</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x966.htm">Stepping along</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x993.htm">Debugging Techniques</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x1024.htm">If all else fails</A
+></DT
+></DL
+></DIV
+><P
+>At some point in their career, most
+    programmers realize that their job title should be "senior
+    debugger" instead of senior developer. Debugging is the art of
+    getting your code to run as you intended, instead of running as
+    you wrote it. That is the nub, really&#8212;in most cases it's your code
+    that is wrong. Python itself is pretty flawless &#8212; there are
+    hardly any noticeable bugs left. The same goes for Qt. PyQt might
+    still have a few bugs in it, but you would have to be using
+    decidedly advanced features to stumble onto them. In most cases,
+    your own &#8216;undocumented features' will be your undoing.</P
+><P
+>In this chapter we'll use the debugger
+    included in <SPAN
+CLASS="APPLICATION"
+>BlackAdder</SPAN
+> to find bugs in
+    some simple scripts. If you don't understand the actual code yet,
+    don't worry &#8212; you can always come back later. The main goal
+    is to familiarize yourself with the BlackAdder environment and the
+    concept of debugging.</P
+><P
+>There are two basic methods of debugging. The
+    first is sprinkling your code with <TT
+CLASS="FUNCTION"
+>print</TT
+>
+    statements that dump the contents of the variables of your
+    application. The second method is to follow your application as it
+    executes using a good debugger, examining the application data
+    using the tools the debugger provides.</P
+><P
+>Python has always been possessed of a basic
+    command-line based debugger, <SPAN
+CLASS="APPLICATION"
+>pdb</SPAN
+>,
+    similar to the infamous Unix debuggers,
+    <SPAN
+CLASS="APPLICATION"
+>dbx</SPAN
+> and <SPAN
+CLASS="APPLICATION"
+>gdb</SPAN
+>.
+    If you've ever tried to actually trace an application using one of
+    these, you'll know the exact meaning of the word &#8216;inconvenient'.
+    Using them is on a par with using <SPAN
+CLASS="APPLICATION"
+>ed</SPAN
+> or
+    <SPAN
+CLASS="APPLICATION"
+>edlin</SPAN
+> &#8212; both line editors &#8212;
+    for editing code.</P
+><P
+>To show a session with pdb:</P
+><PRE
+CLASS="SCREEN"
+>Python 2.1.1 (#1, Aug 11 2001, 20:14:53)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&#62;&#62;&#62; import pdb
+&#62;&#62;&#62; import button
+&#62;&#62;&#62; pdb.run("button.main([])")
+&#62; /home/boudewijn/doc/pyqt/ch23/&#60;string&#62;(0)?()
+(Pdb) continue
+&#62; /home/boudewijn/doc/pyqt/ch23/&#60;string&#62;(1)?()
+(Pdb) continue
+Traceback (most recent call last):
+  File "button.py", line 26, in slotSlot
+    i = 1/0
+ZeroDivisionError: integer division or modulo by zero
+--Return--
+&#62; /home/boudewijn/doc/pyqt/ch23/&#60;string&#62;(1)?()-&#62;None
+(Pdb) w
+&#62; /home/boudewijn/doc/pyqt/ch23/&#60;string&#62;(1)?()-&#62;None
+(Pdb) l
+[EOF]
+(Pdb) q
+&#62;&#62;&#62;
+  </PRE
+><P
+>You can see why there have been many attempts
+    to create a useful GUI fronted to <SPAN
+CLASS="APPLICATION"
+>pdb</SPAN
+>.
+    Most have suffered from the fact that they don't know where to
+    stop debugging. If you are debugging a piece of code that contains
+    the statement <TT
+CLASS="FUNCTION"
+>string.join()</TT
+>, you probably
+    don't want to single-step into the <TT
+CLASS="FILENAME"
+>string.py</TT
+>
+    module, which is part of the Python system library&#8212;and yet
+    this is exactly what happens very often.</P
+><P
+><SPAN
+CLASS="APPLICATION"
+>BlackAdder</SPAN
+>
+    includes a very nice debugger, one that knows where to stop
+    debugging. It includes all the usual facilities, like
+    single-stepping, breakpoints and a watch panel for variable
+    values.</P
+><P
+>Currently missing features include
+    conditional breakpoints (a breakpoint that only breaks execution
+    on certain values for certain variables) and runtime code changes.
+    You can change variable values runtime using the Python
+    interpreter window, though.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The BlackAdder debugger.</P
+></DIV
+></P
+></DIV
+><P
+>The PyQt library includes another, simpler
+    debugger, called <SPAN
+CLASS="APPLICATION"
+>eric</SPAN
+>. This application
+    is no longer maintained, so I won't spend much time here
+    describing the way it works. It does, however, provide a very nice
+    example of using regular expressions and PyQt's
+    <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+> widget. You can start
+    <SPAN
+CLASS="APPLICATION"
+>eric</SPAN
+> by typing
+    <TT
+CLASS="FILENAME"
+>eric</TT
+> on the command-line.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Eric, the debugger included in PyQt.</P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Running scripts</A
+></H1
+><P
+>The BlackAdder toolbar has two buttons for debugging your
+      code. You can either debug a single script, or the whole
+      project.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The script execution toolbar. From left to
+            right: run script, run project, debug script, debug
+            project, restart debugger, continue, single step, set
+            breakpoint, clear breakpoint and cancel debugging.</P
+></DIV
+></P
+></DIV
+><P
+>One thing to be aware of when running
+      scripts or projects from <SPAN
+CLASS="APPLICATION"
+>BlackAdder</SPAN
+>
+      is that everything you <TT
+CLASS="FUNCTION"
+>print</TT
+> or write to
+      standard error or standard output gets lost, unless you have the
+      Python interpreter window active. Eric also prints the output to
+      the Python shell window.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x879.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x945.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conclusion</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p266.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Setting breakpoints</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

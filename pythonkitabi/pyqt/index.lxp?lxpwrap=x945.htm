@@ -1,0 +1,262 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x945.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Setting breakpoints</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Debugging"
+HREF="c883.htm"><LINK
+REL="PREVIOUS"
+TITLE="Debugging"
+HREF="c883.htm"><LINK
+REL="NEXT"
+TITLE="Stepping along"
+HREF="x966.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c883.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Debugging</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x966.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Setting breakpoints</A
+></H1
+><P
+>Setting a breakpoint in your script is
+      done by clicking on the left vertical gray bar in the editor
+      pane. It will place a small, inconspicuous white circle in the
+      editor border. You can also set and unset breakpoints during a
+      debugging session.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Setting a breakpoint (the small white circle
+            left to &#8216;print i').</P
+></DIV
+></P
+></DIV
+><P
+>Now, if you start debugging the script,
+      and press the Continue button, the script will run until it
+      arrives at the <TT
+CLASS="LITERAL"
+>print i</TT
+> line. The output will
+      show up in the Python Interpreter window, if you have it
+      open.</P
+><P
+>Now that you know how breakpoints work,
+      I'll show a good way to use them.</P
+><P
+>In GUI programming, breakpoints are often
+      the only way of debugging code that becomes activated after the
+      main loop has started. Let's look at the following script, where
+      there is a bug in the code that is activated when the button is
+      pressed:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# button.py
+#
+
+from qt import *
+import sys
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.setCaption("Button")
+
+        self.grid=QGrid(2, self)
+        self.grid.setFrameShape(QFrame.StyledPanel)
+
+        self.bn=QPushButton("Hello World", self.grid)
+        self.bn.setDefault(1)
+
+        self.connect(self.bn, SIGNAL("clicked()"),
+                     self.slotSlot)
+
+        self.setCentralWidget(self.grid)
+
+    def slotSlot(self):
+        i = 1/0
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+    </PRE
+><P
+>If you try to single-step until you've
+      arrived at the bug, you will be stepping for a long time. It is
+      easier to continue the application until it hits the breakpoint
+      in <TT
+CLASS="FUNCTION"
+>slotSlot()</TT
+>, and take it from there by
+      hand.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c883.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x966.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Debugging</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c883.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Stepping along</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

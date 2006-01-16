@@ -1,0 +1,550 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x7295.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Creating a macro API from an application</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="A Macro Language for Kalam"
+HREF="c6996.htm"><LINK
+REL="PREVIOUS"
+TITLE="Integrating macros with a GUI"
+HREF="x7161.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x7388.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x7161.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 20. A Macro Language for <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x7388.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Creating a macro API from an application</A
+></H1
+><P
+>Enabling users to execute any bit of
+      Python code they might have lying around, from a document, the
+      menu or keyboard, isn't enough to macro-enable
+      <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+>. For this, we must offer a
+      clean and clear set of functions that can be used to manipulate
+      the data and interface of our application. This is the hardest
+      part, actually. If you can't accomplish this, you might as well
+      tell users to hack your application directly.</P
+><P
+>One problem is already apparent in the startup script we
+      created in the previous section. The macro writer needs to
+      call a nebulous entity named <TT
+CLASS="VARNAME"
+>self</TT
+>, but how
+      is he to know that this is a reference to the application
+      itself?</P
+><P
+>It would be more effective to allow access
+      to the application using a logical name. The solution is to add
+      an extra entry to the namespace that is used to initialize the
+      macro manager. This is as simple as adding a key to a
+      dictionary. Let's revisit the
+      <TT
+CLASS="FUNCTION"
+>initMacroManager()</TT
+> function and add the
+      current <TT
+CLASS="VARNAME"
+>KalamApp</TT
+> object:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initMacroManager(self):
+        g=globals()
+        g["kalam"]=self
+        self.macroManager = MacroManager(self, g)
+    </PRE
+><P
+>Another, and perhaps slightly less hackish
+      way of adding items to the global namespace is the use of the
+      <TT
+CLASS="FUNCTION"
+>global</TT
+> keyword:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initMacroManager(self):
+        global kalam
+        kalam = self
+        self.macroManager = MacroManager(self, globals())
+    </PRE
+><P
+>By declaring a variable
+      <TT
+CLASS="VARNAME"
+>global</TT
+>, it becomes part of the global
+      namespace. Passing that namespace to <TT
+CLASS="FUNCTION"
+>exec</TT
+>
+      gives all executed code access to the variable.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Accessing the application itself</A
+></H2
+><P
+>As an example, I have created a few
+        functions that simplify the creation of new documents and
+        macro's. Because a macro is wrapped in
+        <TT
+CLASS="CLASSNAME"
+>MacroAction</TT
+>, which is a subclass of
+        <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>, it's very easy to add them to
+        the menu.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    # kalamapp.py
+    #
+    # Macro API
+    #
+    def installMacro(self,
+                     action,
+                     menubar = None,
+                     toolbar = None):
+        """
+        Installs a certain macro action in the menu and/or the toolbar
+        """
+        if menubar != None:
+            action.addTo(menubar)
+        if toolbar != None:
+            action.addTo(toolbar)
+
+    def removeMacro(self, action):
+        action.remove()
+
+    def createDocument(self):
+        doc, view = self.docManager.createDocument(KalamDoc, KalamView)
+        return (doc, view)
+
+    def createMacro(self, name, code):
+        return self.macroManager.addMacro(name, code)
+      </PRE
+><P
+>These methods are part of the
+      <TT
+CLASS="CLASSNAME"
+>KalamApp</TT
+> class, but it would be nice
+      to not have to prefix class with <TT
+CLASS="VARNAME"
+>kalam</TT
+> from
+      every macro. So these functions are added to the global
+      namespace, too:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initMacroManager(self):
+        g=globals()
+        g["kalam"]=self
+        g["docManager"]=self.docManager
+        g["workspace"]=self.workspace
+        g["installMacro"]=self.installMacro
+        g["removeMacro"]=self.removeMacro
+        g["createDocument"]=self.createDocument
+        g["createMacro"]=self.createMacro
+        self.macroManager = MacroManager(self, g)
+      </PRE
+><P
+>Later, we will be writing a nice macro
+        that resides in a file called <TT
+CLASS="FILENAME"
+>edmund.py</TT
+>.
+        Here's how the <TT
+CLASS="FILENAME"
+>startup.py</TT
+> script uses the
+        API to install the macro:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# startup.py - Kalam startup macro file"
+#
+edmund = createMacro("edmund", open("edmund.py").read())
+edmund.setMenuText("Edmund")
+edmund.setText("Edmund")
+edmund.setToolTip("Psychoanalyze Edmund")
+edmund.setStatusTip("Psychoanalyze Edmund")
+installMacro(edmund, kalam.macroMenu)
+      </PRE
+><P
+>Using the <TT
+CLASS="VARNAME"
+>kalam</TT
+> instance of
+        <TT
+CLASS="CLASSNAME"
+>KalamApp</TT
+>, the macro writer has access
+        to all menus.  In this case the edmund macro is added to the
+        macro menu, <TT
+CLASS="VARNAME"
+>kalam.macroMenu</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Accessing application data</A
+></H2
+><P
+>This application collects its data in the
+      <TT
+CLASS="CLASSNAME"
+>KalamDoc</TT
+> object and shows it using the
+      <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+> object. By giving a user access
+      to the entire internal object model via the
+      <TT
+CLASS="CLASSNAME"
+>DocManager</TT
+> object, we make it possible to
+      script the creation, modification and saving of documents.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Accessing and extending the GUI</A
+></H2
+><P
+>The function
+        <TT
+CLASS="FUNCTION"
+>installMacro</TT
+>, which we have already seen,
+        is used to add a macro to any menubar or toolbar. What text
+        the macro shows, what tooltips, what icon and what accelerator
+        key is all determined by the settings of the underlying
+        <TT
+CLASS="FUNCTION"
+>QAction</TT
+> object. In the example above, we
+        didn't set a shortcut or an icon.
+        </P
+><P
+>By not hiding the underlying gui toolkit, clever
+        users can do almost anything to your application. It would be
+        a trivial exercise to integrate a Python class browser into
+        <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+>, especially since I have
+        already made a PyQt based standalone class browser, which you
+        can find at http://www.valdyas.org/python. However, let's not
+        be so serious and sensible, and implement something a little
+        more frivolous.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> rivals
+    <SPAN
+CLASS="APPLICATION"
+>Emacs</SPAN
+>: an <SPAN
+CLASS="APPLICATION"
+>Eliza
+    macro</SPAN
+></A
+></H2
+><P
+>One of the first extensions to the
+        <SPAN
+CLASS="APPLICATION"
+>Emacs</SPAN
+> editor, way back in the
+        beginning of the eighties, was an
+        <SPAN
+CLASS="APPLICATION"
+>Eliza</SPAN
+> application. A kind of
+        Rogerian psychoanalyst that took the user's input, analyzed it
+        a bit, and said something comprehensible back.</P
+><P
+>This is actually a very nice example of
+        working with documents in an editor, since the macro must be
+        aware (more or less) of what the user typed in, and be able
+        react to the pressing of the Enter key. Surely having all the
+        power of Python at our disposal means that we can at least
+        achieve equal status with the doyen of editors!</P
+><P
+>So, without further ado, I present
+        Edmund - who doesn't really listen, but does answer back, in
+        his accustomed vein:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>import random
+
+class Edmund(QObject):
+    """
+    An Edmund macro for the Kalam Editor.
+
+    Of course, if I really re-implemented Eliza, the responses would bear
+    some relevance to the input. Anyway.
+    """
+
+    def __init__(self, *args):
+        QObject.__init__(self)
+        self.responses = [
+            "First Name?",
+            "Come on, you MUST have a first name.",
+            "Sod Off?",
+            "Madam, without you, life was like a broken pencil...pointless.",
+            "So what you are saying, Percy, is something you have never" +
+            " seen is slightly less blue than something else . . that you " +
+            "have never seen?",
+            "I'm afraid that might not be far enough. " +
+            "Apparently the head Mongol and the Duke are good friends. " +
+            "They were at Eton together.",
+            "Ah ah, not so fast! Not that it would make any difference. " +
+            "We have the preliminary sketches...",
+            "You have absolutely no idea what irony is, have you Baldrick?",
+            "Baldric, you wouldn't recognize a subtle plan if it painted  " +
+            "itself purple and danced naked on a harpsichord singing " +
+            "'subtle plans are here again'.",
+            "Baldric, you have the intellectual capacity of a dirty potato.",
+            "Ah, yes. A maternally crazed gorilla would come in handy " +
+            "at this very moment.",
+            "That would be as hard as finding a piece of hay in an " +
+            "incredibly large stack of needles.",
+            "Normal procedure, Lieutenant, is to jump 200 feet in the air " +
+            "and scatter oneself over a wide area.",
+            "I think I'll write my tombstone - Here lies Edmund Blackadder" +
+            ", and he's bloody annoyed.",
+            "As a reward, Baldrick, take a short holiday. " +
+            ".... Did you enjoy it?"
+    ]
+
+        self.doc, self.view = createDocument()
+        self.doc.setTitle("Talk to Edmund BlackAdder")
+        self.connect(self.view,
+                     PYSIGNAL("returnPressed"),
+                     self.respond)
+        self.view.append("Welcome\n")
+        self.view.goEnd()
+
+    def respond(self):
+        input = str(self.view.textLine(self.view.numLines() - 2))
+        if input.find("love") &#62; 0:
+            response = self.responses[3]
+        elif input.find("dead") &#62; 0:
+            response = self.responses[15]
+        elif input.find("fear") &#62; 0:
+            response = self.responses[5]
+        else:
+            choice = random.randrange(0,len(self.responses),1)
+            response = self.responses[choice]
+        self.view.append(response + "\n\n")
+        self.view.goEnd()
+
+edmund = Edmund()
+      </PRE
+><P
+>Of course, this is an extremely
+        primitive form of amusement, but you get the idea. By
+        accessing the API's of the <TT
+CLASS="CLASSNAME"
+>KalamDoc</TT
+> and
+        <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+> classes, the macro author can
+        do all kinds of fun things, like reading out lines of the text
+        or adding text to the document. 
+        </P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Talking heart to heart with your computer.</P
+></DIV
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x7161.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x7388.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Integrating macros with a GUI</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c6996.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

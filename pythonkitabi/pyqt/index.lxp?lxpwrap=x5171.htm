@@ -1,0 +1,276 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5171.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Collecting tests in a test suite</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Automatic testing with PyUnit"
+HREF="c5064.htm"><LINK
+REL="PREVIOUS"
+TITLE="A first testcase"
+HREF="x5120.htm"><LINK
+REL="NEXT"
+TITLE="A more complicated test"
+HREF="x5202.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5120.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 14. Automatic testing with PyUnit</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5202.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Collecting tests in a test suite</A
+></H1
+><P
+>Executing this script isn't much use.
+      First, the test must be collected in a testsuite, and the
+      testsuite must then be run. A testsuite is a collection of
+      related tests, of the type
+      <TT
+CLASS="CLASSNAME"
+>TestSuite</TT
+>.</P
+><P
+>It is customary to create a function
+      <TT
+CLASS="FUNCTION"
+>suite()</TT
+> in every testfile that return a
+      suite with all the tests the file contains. This function is
+      then called by a <TT
+CLASS="CLASSNAME"
+>TestRunner</TT
+> object.  This
+      will be either a <TT
+CLASS="FUNCTION"
+>TextTestRunner</TT
+>, if you run
+      your tests without a gui, or a gui TestRunner application, such
+      as the <SPAN
+CLASS="APPLICATION"
+>QtTestRunner</SPAN
+>. Defining a
+      testsuite is a simple matter of creating a
+      <TT
+CLASS="CLASSNAME"
+>TestSuite</TT
+> object and adding tests:
+    </P
+><PRE
+CLASS="PROGRAMLISTING"
+>def suite():
+    testSuite=unittest.TestSuite()
+    testSuite.addTest(DocviewDocTestCase())
+    return testSuite
+    </PRE
+><P
+>In order to be able to execute this file
+      it's handy to add a bit of executable code to the end:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+    </PRE
+><P
+>Running the test will give you the
+      satisfaction of knowing that at least one piece of your
+      application is working:</P
+><PRE
+CLASS="SCREEN"
+>boud@calcifer:~/doc/pyqt &#62; python ch9/dvt1.py
+runTest (__main__.DocviewDocTestCase) ...
+ok
+------------------------------------------------------------------------------
+Ran 1 test in 0.035s
+
+OK
+    </PRE
+><P
+>Or, if you want to see the green and pleasant bar, you can
+    run the gui testrunner. Enter the name of the testmodule
+    (<TT
+CLASS="FILENAME"
+>dvt1</TT
+> in this case) in the textbox, followed
+    by the name of the function that returns the testsuite:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Preparing a GUI test run.</P
+></DIV
+></P
+></DIV
+><P
+>Then press run, and sit back. Please note
+      that the actual output you get might differ. The python
+      unittesting framework is in constant development. For the screen
+      output in this chapter, I used version 1.3.0, which is included
+      with the other sources that belong to this book. The unittest
+      gui has been brought up to date to the version of
+      <TT
+CLASS="FILENAME"
+>unittest.py</TT
+> that's included with Python
+      2.2.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5120.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5202.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>A first testcase</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5064.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>A more complicated test</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

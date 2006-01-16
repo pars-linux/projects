@@ -1,0 +1,523 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5339.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Document/View Manager</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="A More Complex Framework: Multiple Documents, Multiple
+    Views"
+HREF="c5288.htm"><LINK
+REL="PREVIOUS"
+TITLE="A More Complex Framework: Multiple Documents, Multiple
+    Views"
+HREF="c5288.htm"><LINK
+REL="NEXT"
+TITLE="The Document Manager"
+HREF="x5388.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c5288.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 15. A More Complex Framework: Multiple Documents, Multiple
+    Views</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5388.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Document/View Manager</A
+></H1
+><P
+>Let's first take stock of the requirements
+      for a document/view manager, and write a little testcase.The
+      document/view manager will have to take care of the mapping
+      between documents and views.  Every document can have more than
+      one view, but a view can only show one document.</P
+><P
+></P
+><UL
+><LI
+><P
+>The document/view manager must be able
+          to create new documents, together with new views.
+        </P
+></LI
+><LI
+><P
+>The document/view manager will have to make sure the
+          document gets closed when the last view is closed.
+        </P
+></LI
+><LI
+><P
+>The document/view manager must be able to create new
+          views for existing documents.
+        </P
+></LI
+><LI
+><P
+>The document/view manager must not be forced to know
+          about exact document or view classes, but work against a
+          standard set of methods, i.e., an interface.
+        </P
+></LI
+></UL
+><P
+>A guideline during implementation is that the
+      document/view manager should not make GUI calls directly. There
+      are two reasons for this: it is easier to write good testcases
+      if there is no GUI involved, and denying the document/view
+      manager access to the GUI forces us to place all the actual GUI
+      code in one place, namely the application or controller object.</P
+><P
+>Here's the testcase:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 15-1. A testcase for a document manager</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>import unittest
+from docmanager import *
+from qt import *
+
+class TestViewManager(QObject):
+
+    def activeWindow(self):
+        return None
+
+    def width(self):
+        return 100
+
+    def height(self):
+        return 100
+
+class TestParent(QObject):
+
+    def queryCloseDocument(self, document):
+        return QMessageBox.Yes
+
+    def querySaveDocument(self, document):
+        return QMessageBox.No
+
+    def queryDiscardDocument(self, document):
+        return QMessageBox.Yes
+
+    def queryFileName (self, document =None):
+        return "fileName"
+
+class TestDocument(QObject):
+
+    def modified(self):
+        return TRUE
+
+    def save(self):
+        pass
+
+    def close(self):
+        pass
+
+    def title(self):
+        return "title"
+
+    def pathName(self):
+        return "pathname"
+
+    def setPathName(self, pathname):
+        pass
+
+class TestView(QObject):
+
+    def __init__(self, parent, document, *args):
+        QObject.__init__(self, parent)
+        self._document = document
+
+    def show(self): pass
+
+    def showMaximized(self): pass
+
+    def setCaption(self, caption): pass
+
+    def resize(self, x, y): pass
+
+    def close(self, destroy):
+        return TRUE
+    </PRE
+></DIV
+><P
+>The purpose of this testcase is to test
+      the documentmanager. An interesting side effect is that the
+      development of the testcase necessitates the development of fake
+      versions of the other necessary components. Creating these fake
+      components for the view, document and application makes clear
+      which functions they must support.</P
+><P
+>The <TT
+CLASS="CLASSNAME"
+>TestViewManager</TT
+>
+      class is an interesting object. It will manage the different
+      views (windows, tabs, or splitpanes) for the application. As
+      such, it will become the visual counterpart of the
+      <TT
+CLASS="CLASSNAME"
+>DocManager</TT
+> class.</P
+><P
+>The <TT
+CLASS="CLASSNAME"
+>TestParent</TT
+>
+      represents the application itself &#8212; that is, the central
+      class that manages all QActions, menus, toolbars and so on. As
+      you can see, we need four methods in the application, to ask the
+      user whether she wants to close, save or discard the document,
+      and what the filename should be. By not calling
+      <TT
+CLASS="CLASSNAME"
+>QMessageBox</TT
+> or
+      <TT
+CLASS="CLASSNAME"
+>QFileDialog</TT
+> directly, we again get a
+      stronger separation of GUI and application logic. But life is
+      messy, and a complete separation is not attainable.</P
+><P
+>This is most apparent in the
+      <TT
+CLASS="CLASSNAME"
+>TestView</TT
+> class. Here we need to create
+      stubs for a number of functions that are part of
+      <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+>, such as
+      <TT
+CLASS="CLASSNAME"
+>setCaption()</TT
+>.</P
+><P
+>The <TT
+CLASS="CLASSNAME"
+>TestDocument</TT
+>
+      class also shows a clear interface: but more than that, it is
+      also clearly meant for file-oriented applications. A database
+      application would in all likelihood not concern itself with
+      obscurities like pathnames. On the other hand, with a database
+      application it is even more important to allow more than one
+      view on more than one document at a time &#8212; if we simply
+      equate document with query.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class DocManagerTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.parent = TestParent()
+        self.viewManager = TestViewManager()
+
+    def checkInstantiate(self):
+        try:
+            docManager = DocManager(self.parent, self.viewManager)
+        except Exception, e:
+            self.fail("Could not instantiate docmanager: " + str(e))
+
+    def checkCreateDocument(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        numberOfDocs = docManager.numberOfDocuments() + 1
+        numberOfViews = docManager.numberOfViews() + 1
+        try:
+            document = docManager.createDocument(TestDocument, TestView)
+        except Exception, e:
+            self.fail("Could not add a new document: " + str(e))
+
+        assert document, "No document created"
+        assert numberOfDocs == docManager.numberOfDocuments(),\
+               "No document added"
+        assert numberOfViews == docManager.numberOfViews(), \
+               "No view added"
+        assert docManager.views(document),\
+               "Document does not have a view"
+            
+    def checkAddView(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        document = docManager.createDocument(TestDocument, TestView)
+        numberOfDocs = docManager.numberOfDocuments()
+        numberOfViews = docManager.numberOfViews() + 1
+        numberOfDocViews = len(docManager.views(document)) +1
+        
+        try:
+            view = docManager.addView(document, TestView)
+        except DocManagerError, e:
+            self.fail(e)
+        except Exception, e:
+            self.fail("Could not add a view to a document " + str(e))
+            
+        assert view is not None,\
+               "No view created"
+        assert numberOfDocs == docManager.numberOfDocuments(),\
+               "Document added"
+        assert numberOfViews == docManager.numberOfViews(), \
+               "No view added"
+        assert numberOfDocViews == len(docManager.views(document)), \
+               "No view added to document"
+
+        view = None
+        document = TestDocument()
+        try:
+            view = docManager.addView(document, TestView)
+            fail("Should not have been able to add a view " +
+                 "to an unmanaged document")
+        except DocManagerError, e:
+            pass
+        assert view == None,\
+               "View created"
+
+    def checkCloseView(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        document = docManager.createDocument(TestDocument, TestView)
+        view = docManager.addView(document, TestView)
+        numberOfViews = docManager.numberOfViews()
+        docManager.closeView(view)
+        assert numberOfViews &#62; docManager.numberOfViews(), \
+               "No view removed: was %i, is %i" % (docManager.numberOfViews(),
+                                                   numberOfViews)
+        
+    def doNotCheckCloseDocument(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        document = docManager.createDocument(TestDocument, TestView)
+        docManager.closeDocument(document)
+        assert docManager.numberOfDocuments() == 0,\
+               "docManager still manages a document"
+        
+def suite():
+    testSuite=unittest.makeSuite(DocManagerTestCase, "check")
+    return testSuite
+
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+     </PRE
+><P
+>A look at the testcases shows how the
+      documentmanager is intended to be used. When a document is
+      created, one view is automatically created. More views can be
+      added to a document. Views can be removed, and when the last
+      view is removed, the document is closed. Creating documents and
+      views is the job of the documentmanager; this is why we pass the
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>classes</I
+></SPAN
+> of the view and document to the
+      manager, and not to complete objects.</P
+><P
+>As I said, life is messy, and if you look
+      at the last test, you will see one bit of unavoidable mess.
+      During the implementation of the document manager it became
+      clear that in order to &#8216;catch' events (such as closing the
+      application or window with the close button in the title bar) it
+      was necessary to install an event filter in every view. This
+      meant that the original implementation of
+      <TT
+CLASS="FUNCTION"
+>closeDocument()</TT
+>, which called
+      <TT
+CLASS="FUNCTION"
+>closeView()</TT
+>, had to be changed to one where
+      <TT
+CLASS="FUNCTION"
+>closeDocument()</TT
+> called
+      <TT
+CLASS="FUNCTION"
+>view.close()</TT
+> &#8212; which fires the event
+      filter, which fires the <TT
+CLASS="FUNCTION"
+>closeView()</TT
+>. This,
+      however, is only possible if you use actual
+      <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+>-derived objects; it cannot be
+      done with the fakes we created for the test. This means that the
+      <TT
+CLASS="FUNCTION"
+>checkCloseDocument()</TT
+> needs to be renamed
+      <TT
+CLASS="FUNCTION"
+>doNotCheckCloseDocument()</TT
+>(It is a
+      convention to prefix tests that don't work with
+      <TT
+CLASS="FUNCTION"
+>doNot</TT
+>)&#8212;the test will never
+      work.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c5288.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5388.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>A More Complex Framework: Multiple Documents, Multiple
+    Views</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5288.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>The Document Manager</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

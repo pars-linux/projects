@@ -1,0 +1,1000 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x1631.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Disconnecting</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Signals and Slots in Depth"
+HREF="c1267.htm"><LINK
+REL="PREVIOUS"
+TITLE="Connecting with signals and slots"
+HREF="x1408.htm"><LINK
+REL="NEXT"
+TITLE="A parser-formatter using signals and slots"
+HREF="x1807.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x1408.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. Signals and Slots in Depth</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1807.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Disconnecting</A
+></H1
+><P
+>What can be bound, can be severed, and even
+      for signals and slots there are divorce courts. You can
+      disconnect a signal from a slot using
+      <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>.<TT
+CLASS="FUNCTION"
+>disconnect()</TT
+>. 
+      Why would you want to disconnect signals? Not preparatory to
+      removing a connected widget, for the connections are severed
+      automatically when the signal recipient is deleted. I've never
+      needed <TT
+CLASS="FUNCTION"
+>disconnect()</TT
+> myself, but with a bit
+      of imagination, a likely scenario can be found.</P
+><P
+>Imagine therefore that you are writing a monitoring
+      application. There are several data sources, but you want only
+      to look at one at a time. The data keeps flowing in from a host
+      of objects representing the sources. This is a scenario well
+      worth writing a small test for...</P
+><P
+>First, we design the interface using
+      BlackAdder's designer module or Qt Designer. This is a simple
+      affair, with a combobox that contains the datasources, a
+      read-only multi-line edit control that will show the output of
+      the selected datasource, and a close button. The dialog window
+      will be the main window, too.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Designing the interface</P
+></DIV
+></P
+></DIV
+><P
+>Then, we use Designer to add an extra slot to the form,
+      <TT
+CLASS="FUNCTION"
+>switchDataSource</TT
+>, which will be called
+      whenever a new item is selected in the datasource combobox.
+      Drawing a simple line from the combobox to the form gives us the
+      opportunity to connect signal and slot:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Connecting the <TT
+CLASS="FUNCTION"
+>activated(const QString&#38;)</TT
+>
+        signal to the <TT
+CLASS="FUNCTION"
+>switchDataSource()</TT
+> slot.</P
+></DIV
+></P
+></DIV
+><P
+>This raises an interesting point. If the
+      <TT
+CLASS="FUNCTION"
+>activated(const QString&#38;)</TT
+> signal passes a
+      <TT
+CLASS="CLASSNAME"
+>QString</TT
+> to the slot, shouldn't we define
+      the slot <TT
+CLASS="FUNCTION"
+>switchDataSource()</TT
+> in the Designer
+      as having an argument?</P
+><P
+>The answer is no&#8212; we will subclass the generated
+      python code, and in the subclass we will override the generated
+      slot with a function that has the requisite number of
+      arguments. Python does not know the concept of overloading, so
+      all functions with the same name are the same function. It is
+      actually impossible to define the number of arguments a slot has
+      in the Designer&#8212; you can only match signals to slots without
+      arguments.</P
+><P
+>Having designed the form, we can generate it with a single
+      menu-choice and start subclassing it, adding all kinds of
+      interesting bits. First, we create the actual
+      datasources.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-8. datasource.py &#8212; connecting and disconnecting signals and
+      slots</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# datasource.py &#8212; a monitor for different datasources
+#
+
+import sys, whrandom                                       <IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+>
+from time import *                                         <IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+>
+from qt import *
+
+from frmdatasource import frmDataSource                    <IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+>
+        </PRE
+><DIV
+CLASS="CALLOUTLIST"
+><DL
+COMPACT="COMPACT"
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#I1"><IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+></DT
+><DD
+>The sys module is needed for
+          QApplication; whrandom is one of the two random modules
+          Python provides.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#I2"><IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+></DT
+><DD
+>The time module provides lots of time
+          related functions.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#I3"><IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+></DT
+><DD
+>This is the form we designed
+          and generated  with BlackAdder.</DD
+></DL
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>COOKIES=["""That is for every schoolboy and schoolgirl for the next<IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+>
+four hundred years. Have you any idea how much suffering you are going
+to cause. Hours spent at school desks trying to find one joke in A
+Midsummer Night's Dream? Years wearing stupid tights in school plays
+and saying things like 'What ho, my lord' and 'Oh, look, here comes
+Othello, talking total crap as usual' Oh, and that is Ken Branagh's
+endless uncut four-hour version of Hamlet.
+"", """I've got a cunning plan...""","""A Merry Messy Christmas"? All
+right, but the main thing is that it should be messy -- messy cake;
+soggy pudding; great big wet kisses under the mistletoe...
+ """]
+
+def randomFunction():                                      <IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+>
+    return str(whrandom.randrange(0, 100))                 <IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+>
+
+def timeFunction():                                        <IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+>
+    return ctime(time())                                   <IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+>
+
+def cookieFunction():                                      <IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+>
+    return COOKIES[whrandom.randrange(0, len(COOKIES))]    <IMG
+SRC="images/callouts/7.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(7)"></A
+>
+        </PRE
+><DIV
+CLASS="CALLOUTLIST"
+><DL
+COMPACT="COMPACT"
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#C1"><IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+></DT
+><DD
+>A list of pithy quotes &#8212; global
+        to this script, so we can treat it like a kind of constant.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#F1"><IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+></DT
+><DD
+>We will define three functions
+              that provide some data. Later on, there's a generic
+              <TT
+CLASS="CLASSNAME"
+>DataSource</TT
+> class that can use one
+              of these functions to compute some data. This function,
+              obviously, generates random numbers.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#F1%2eB"><IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+></DT
+><DD
+>There is no real, practical
+              reason to choose the whrandom module over the random
+              module. The <TT
+CLASS="FUNCTION"
+>randrange(start, end,
+              step)</TT
+> function returns a random integer
+              between start and end. Note that we let this function
+              return a <SPAN
+><I
+CLASS="EMPHASIS"
+>string</I
+></SPAN
+>, not a number. All
+              data produced by the datasource should be in the same
+              format.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#F2"><IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+></DT
+><DD
+>This function will simply produce
+              the current date and time.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#F2%2eB"><IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+></DT
+><DD
+>The <TT
+CLASS="FUNCTION"
+>time()</TT
+>
+              gives the the number of seconds elapsed since the
+              &#8216;epoch' &#8212; what that means is OS-dependent. For Unix,
+              it's January 1, 1970. The <TT
+CLASS="FUNCTION"
+>ctime()</TT
+>
+              converts that to nice text.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#F3"><IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+></DT
+><DD
+>This last function will return a
+              cookie, one of the COOKIES list.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#F3%2eB"><IMG
+SRC="images/callouts/7.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(7)"></A
+></DT
+><DD
+>Note how we use
+              <TT
+CLASS="FUNCTION"
+>whrandom.randrange()</TT
+> here to pick
+              one from a list &#8212; the start of the range is 0, the
+              length is the length of the cookies list.</DD
+></DL
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>class DataSource(QObject):                                 <IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+>
+
+    def __init__(self, dataFunction, *args):               <IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+>
+        apply(QObject.__init__, (self,) + args)
+        self.timer = self.startTimer(1000)                 <IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+>
+        self.dataFunction = dataFunction                   <IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+>
+
+    def timerEvent(self, ev):                              <IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+>
+        self.emit(PYSIGNAL("timeSignal"), (self.dataFunction(),))<IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+>
+        </PRE
+><DIV
+CLASS="CALLOUTLIST"
+><DL
+COMPACT="COMPACT"
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#D1"><IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+></DT
+><DD
+>The
+              <TT
+CLASS="CLASSNAME"
+>DataSource</TT
+> class is a generic
+              datasource. We base it on <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>
+              so we can emit signals from it.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#D2"><IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+></DT
+><DD
+>The constructor of
+              <TT
+CLASS="CLASSNAME"
+>DataSource</TT
+> takes a function as
+              the first parameter. This is the actual dataproducing
+              function. We saw their definitions above. Remember,
+              every function is an object in its own right &#8212; you can
+              pass them on as arguments, add them to object
+              dictionaries, etc.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#D3"><IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+></DT
+><DD
+>Every second (1000
+              milliseconds) the timer will generate an event that
+              will be caught by the <TT
+CLASS="FUNCTION"
+>timerEvent</TT
+>
+              function.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#D4"><IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+></DT
+><DD
+>By creating a local name that
+              links to the passed function object, we can call this
+              function as if it were a plain member function of the
+              class.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#D5"><IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+></DT
+><DD
+>The
+              <TT
+CLASS="FUNCTION"
+>timerEvent</TT
+> is called every second
+              because of the events generated by the timer
+              object.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#D6"><IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+></DT
+><DD
+>A Python signal is emitted, of
+              the name "timeSignal" which passes the result of the
+              <TT
+CLASS="FUNCTION"
+>dataFunction</TT
+> on.</DD
+></DL
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>class DataWindow(frmDataSource):                           <IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+>
+
+    def __init__(self, *args):
+        apply(frmDataSource.__init__, (self,) + args)
+
+        self.sources = {                                   <IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+>
+            "random" : DataSource(randomFunction),
+            "time" : DataSource(timeFunction),
+            "cookies" : DataSource(cookieFunction)
+            }
+
+        self.cmbSource.insertStrList(self.sources.keys())  <IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+>
+        self.currentSource=self.sources.keys()[0]          <IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+>
+        self.connect(self.sources[self.currentSource],     <IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+>
+                     PYSIGNAL("timeSignal"),
+                     self.appendData)
+                     
+    def switchDataSource(self, source):                    <IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+>
+        source=str(source)                                 <IMG
+SRC="images/callouts/7.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(7)"></A
+>
+        self.disconnect(self.sources[self.currentSource],  <IMG
+SRC="images/callouts/8.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(8)"></A
+>
+                     PYSIGNAL("timeSignal"),
+                     self.appendData)
+        self.connect(self.sources[source],                 <IMG
+SRC="images/callouts/9.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(9)"></A
+>
+                     PYSIGNAL("timeSignal"),
+                     self.appendData)
+        self.currentSource=source
+        
+    def appendData(self, value):                           <IMG
+SRC="images/callouts/10.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(10)"></A
+>
+        self.mleWindow.insertLine(value)
+        self.mleWindow.setCursorPosition(self.mleWindow.numLines(), 0)
+        </PRE
+><DIV
+CLASS="CALLOUTLIST"
+><DL
+COMPACT="COMPACT"
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW1"><IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+></DT
+><DD
+>The <TT
+CLASS="CLASSNAME"
+>DataWindow</TT
+> class is a
+              subclass of the generated form &#8212; class
+              <TT
+CLASS="CLASSNAME"
+>frmDataSource</TT
+>.
+            </DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW2"><IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+></DT
+><DD
+>We create a Python dictionary, which takes
+              <TT
+CLASS="CLASSNAME"
+>DataSource</TT
+> objects (each
+              instantiated with a different data generating function)
+              and maps them to distinct names.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW3"><IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+></DT
+><DD
+>The <TT
+CLASS="VARNAME"
+>self.cmbSource</TT
+> combobox is
+              defined in the generated form. We fill the combobox with
+              the set of keys to the dictionary. To do this, we use
+              <TT
+CLASS="FUNCTION"
+>InsertStrList</TT
+> and not
+              <TT
+CLASS="FUNCTION"
+>InsertStringList</TT
+>. A list of Python
+              strings is converted automatically to a
+              <TT
+CLASS="CLASSNAME"
+>QStrList</TT
+>, while a
+              <TT
+CLASS="CLASSNAME"
+>QStringList</TT
+> object must be constructed
+              separately.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW4"><IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+></DT
+><DD
+><TT
+CLASS="VARNAME"
+>self.currentSource</TT
+> is a local
+            variable where we keep track of what datasource we're
+            looking at.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW5"><IMG
+SRC="images/callouts/5.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(5)"></A
+></DT
+><DD
+>Simply connect the "timeSignal" Python signal from
+            one of the objects in the dictionary of datasources to the
+            slot that will display the output.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW6"><IMG
+SRC="images/callouts/6.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(6)"></A
+></DT
+><DD
+>The <TT
+CLASS="FUNCTION"
+>switchDataSource</TT
+> function
+              is where interesting things happen. This function is
+              a slot that is called whenever the user selects
+              something from the combobox. The
+              <TT
+CLASS="FUNCTION"
+>clicked()</TT
+> signal of the
+              combobox was connected to the
+              <TT
+CLASS="FUNCTION"
+>switchDataSource</TT
+> slot
+              of the Designer.
+
+
+            </DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW7"><IMG
+SRC="images/callouts/7.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(7)"></A
+></DT
+><DD
+>The variable passed by the signal
+              connected to this slot is of the
+              <TT
+CLASS="CLASSNAME"
+>QString</TT
+> type. The index to
+              the dictionary of data sources is a Python string. This
+              is one instance where we <SPAN
+><I
+CLASS="EMPHASIS"
+>must</I
+></SPAN
+>
+              convert a <TT
+CLASS="CLASSNAME"
+>QString</TT
+> to a Python
+              string.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW8"><IMG
+SRC="images/callouts/8.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(8)"></A
+></DT
+><DD
+>Using the cached current datasource, we disconnect
+              the signals it generates from the
+              <TT
+CLASS="FUNCTION"
+>appendData</TT
+> function.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW9"><IMG
+SRC="images/callouts/9.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(9)"></A
+></DT
+><DD
+>After the signal is disconnected, we can create a
+            new connection.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1631.htm#DW10"><IMG
+SRC="images/callouts/10.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(10)"></A
+></DT
+><DD
+>This is the function that shows the data. It simply
+            adds every value that is passed on by the signal to the
+            multi-line edit widget, and then sets the cursor to the
+            last line. If this is not done, the display will not follow
+            the added data, and instead stay at the beginning.</DD
+></DL
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>def main(args):
+    a = QApplication(args)
+    QObject.connect(a,SIGNAL('lastWindowClosed()'),a,SLOT('quit()'))
+    w = DataWindow()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
+
+if __name__ == '__main__':
+    main(sys.argv)
+        </PRE
+></DIV
+><P
+>As you can see, connecting and
+      disconnecting signals and slots is a natural and intuitive
+      technique. Their use is not limited to connecting GUI widgets,
+      as signals and slots are also useful for the separation of the
+      data model of an application from its interface. In Part III, We
+      will investigate an application model based on the strict
+      separation of model and interface, using signals and slots to
+      tie everything together.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x1408.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1807.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Connecting with signals and slots</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c1267.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>A parser-formatter using signals and slots</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

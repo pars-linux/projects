@@ -1,0 +1,333 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c2341.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Python Objects and Qt Objects</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="PyQt fundamentals"
+HREF="p1032.htm"><LINK
+REL="PREVIOUS"
+TITLE="Unicode strings"
+HREF="x2183.htm"><LINK
+REL="NEXT"
+TITLE="Circular references"
+HREF="x2377.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2183.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2377.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 9. Python Objects and Qt Objects</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c2341.htm#AEN2346">Pointers and references</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2377.htm">Circular references</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2393.htm">Qt objects, Python objects and shadow objects</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2420.htm">References and ownership</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2540.htm">Other C++ objects</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2549.htm">Connecting signals and slots</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x2568.htm">Object and class introspection</A
+></DT
+></DL
+></DIV
+><P
+>This chapter delves into the construction of
+    Python and C++ objects. This is a complex topic, and not really
+    required if you are only interested in getting started with your
+    project. However, when you feel that your objects are disappearing
+    from under your hands, or if you're leaking memory like a sieve,
+    then this is the place to turn to.
+    </P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Pointers and references</A
+></H1
+><P
+>In order to be able to determine the
+      relations between Python objects and C++ objects it is necessary
+      to first gain a good understanding of <SPAN
+><I
+CLASS="EMPHASIS"
+>what</I
+></SPAN
+>
+      an object is, exactly, and what constitutes a reference to an
+      object.
+    </P
+><P
+>In C++, an object is simply a chunk of
+      memory that contains executable bytes and data bytes. The
+      executable bytes represent the functions, and the data bytes
+      represent the values of the object variables. Of course, this is
+      a simplified representation: the functions are shared by all
+      objects of the same class, and there is some serious (and
+      platform dependent) pointer logic needed to find them. But,
+      basically, a C++ object is simply a stretch of memory that has
+      to be allocated explicitly by the developer (using
+      <TT
+CLASS="FUNCTION"
+>new()</TT
+>), and also deallocated explicitly by
+      the developer, with <TT
+CLASS="FUNCTION"
+>delete()</TT
+>.
+    </P
+><P
+>The object can be accessed by other parts of
+      the application as long as its location in memory is known: the
+      variable that contains the location is a pointer. If a
+      programmer knows the size of an object, he can do fancy things
+      (such as loop through the memory by adding the size of the
+      object to the pointer) to get at the location of the next
+      object.
+    </P
+><P
+>However, once the pointer variable is lost,
+      there's no longer a certain way of getting at the location of
+      the object, and there's no way to delete the object&#8212;the
+      memory will remain occupied for as long as the application runs,
+      and there's <SPAN
+><I
+CLASS="EMPHASIS"
+>no</I
+></SPAN
+> way it can be useful! This
+      is called a memory leak, and is undoubtedly a bad thing. </P
+><P
+>One of the strengths of Python is that the
+      programmer is freed of the responsibility of explicitly deleting
+      objects. Python manages all objects for you. It does this by
+      keeping track of <SPAN
+><I
+CLASS="EMPHASIS"
+>references</I
+></SPAN
+> to every
+      object. A reference is a variable, or an entry in a list that
+      represents an object. For instance, run: </P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 9-1. refs.py - showing object references</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# refs.py
+#
+class theClass: pass
+
+anObject=theClass()
+aList=[anObject]
+aDictionary={"key": anObject}
+
+print anObject
+print aList
+print aDictionary
+      </PRE
+></DIV
+><P
+>This will result in one object with three references, as you
+      can see from the result of the <TT
+CLASS="FUNCTION"
+>print</TT
+>
+      statements:</P
+><PRE
+CLASS="SCREEN"
+>&#60;__main__.theClass instance at 0x81d9cb4&#62;
+[&#60;__main__.theClass instance at 0x81d9cb4&#62;]
+{'key': &#60;__main__.theClass instance at 0x81d9cb4&#62;}</PRE
+><P
+>The object instance (0x81dcb4 is the object's id hash) will
+      only be deleted when the last reference is deleted. It is
+      possible for references to disappear by going out of scope. If
+      the references are created inside a function, then as soon as
+      the function is finished running, the references disappear.
+      References to variables can also be attached to both classes (a
+      class is an object in Python), and to objects. In the first
+      case, if the class disappears, then the references disappear. In
+      the second case, if the last reference to the object disappears,
+      all references that object &#8216;has' to other objects disappear,
+      too.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2183.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2377.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Unicode strings</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p1032.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Circular references</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

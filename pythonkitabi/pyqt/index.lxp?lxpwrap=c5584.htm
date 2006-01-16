@@ -1,0 +1,517 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c5584.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>User Interface Paradigms</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="PREVIOUS"
+TITLE="Conclusion"
+HREF="x5581.htm"><LINK
+REL="NEXT"
+TITLE="Back to the MDI windows"
+HREF="x5657.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5581.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5657.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 16. User Interface Paradigms</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c5584.htm#AEN5591">Tabbed documents</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5657.htm">Back to the MDI windows</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5679.htm">A row of split windows</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5700.htm">A stack of documents</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5722.htm">A more complex view management solution</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x5778.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>In <A href="index.lxp%3Flxpwrap=c5288.htm">Chapter 15</A
+>, we created a
+    general framework to handle the complexities of applications that
+    have more than one document open at the same time &#8212; with
+    possibly more than one view on the same document, too. We also
+    discussed the various paradigms for representing those views in
+    the application.</P
+><P
+>In this chapter, we will explore the actual
+    implementation of some of those paradigms, starting with one of
+    the most useful and modern paradigms: the tabbed document
+    model.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Tabbed documents</A
+></H1
+><P
+>Like most user interface paradigms, the
+      tabbed document paradigm has been popularized by current
+      integrated development environments. A tabbed document collects
+      all open documents in one window, with a row of tabs to facilitate easy navigation of
+      documents. This paradigm has become so prevalent that even the
+      old stalwart of user interface conservatism, XEmacs, supports
+      it.</P
+><P
+>It turns out to be remarkably easy to
+      implement a tabbed document interface. First, let's determine
+      what we want to get out of this component. It is the first of
+      several generic components that can take views &#8212; i.e.
+      <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+>'s&#8212; and show them in an
+      application workspace. All view managers should have the same
+      API. That allows the user to choose his favorite way of working
+      without giving us lots of work &#8212; because, from the point
+      of view of the application, all view managers are exactly the
+      same.</P
+><P
+>We will provisionally call the component
+      that manages tabbed views <TT
+CLASS="CLASSNAME"
+>TabManager</TT
+>. The
+      <TT
+CLASS="CLASSNAME"
+>TabManager</TT
+> is meant to be almost a
+      drop-in replacement for the <TT
+CLASS="CLASSNAME"
+>QWorkspace</TT
+> we
+      used in the <A href="index.lxp%3Flxpwrap=c5288.htm">Chapter 15</A
+>. Therefore, it should support
+      most of the same functionality: adding, removing and listing
+      actual views. Other capabilities of
+      <TT
+CLASS="CLASSNAME"
+>QWorkspace</TT
+> don't make sense: you cannot
+      tile or cascade tabbed windows. There must be some way to
+      indicate to the wrapping application whether the view manager
+      supports these capabilities.</P
+><P
+>PyQt offers a
+      <TT
+CLASS="CLASSNAME"
+>QTabWidget</TT
+>, which fits the basics of our
+      needs perfectly. However, in contrast with the
+      <TT
+CLASS="CLASSNAME"
+>QWorkspace</TT
+>, where merely creating a
+      widget with the workspace as parent widget was enough to let it
+      be managed, <TT
+CLASS="CLASSNAME"
+>QTabWidget</TT
+> wants us to
+      explicitly add pages, and thus widgets, to its list of tabs.
+      Finally, it also allows the addition and removal of pages. We
+      can also request a reference to the active view, and ask to be
+      notified of page changes.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>QTabWidget</TT
+> is used
+      in the <TT
+CLASS="CLASSNAME"
+>QTabDialog</TT
+> dialog window class,
+      and makes use of <TT
+CLASS="CLASSNAME"
+>QWidgetStack</TT
+> and
+      <TT
+CLASS="CLASSNAME"
+>QTabBar</TT
+>.
+      <TT
+CLASS="CLASSNAME"
+>QWidgetStack</TT
+> keeps a stack of widgets of
+      which only one is shown at a time.
+      <TT
+CLASS="CLASSNAME"
+>QTabBar</TT
+>, which keeps a row of tabs.
+      Tabs can be square or triangular (the
+      latter is seldom seen nowadays, for it is very ugly), and shown
+      on the top or bottom of the window.</P
+><P
+>Applications that handle documents that
+      consist of several (but not many) pages often show a row of
+      triangular tabs at the bottom of the window. You cannot set the
+      tabs to appear at the side of the window. That's a pity, since
+      it is a position that is quite often preferred by users.</P
+><P
+>Let us take a look at the implementation of
+      a tabbed document manager:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+tabmanager.py - tabbed document manager for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class TabManager(QTabWidget):
+
+    def __init__(self, *args):
+        apply(QTabWidget.__init__,(self, ) + args)
+        self.views=[]
+        self.setMargin(10)
+    </PRE
+><P
+>The <TT
+CLASS="CLASSNAME"
+>TabManager</TT
+> is
+      derived from <TT
+CLASS="CLASSNAME"
+>QTabWidget</TT
+>. A simple python
+      list of views is kept, otherwise we would not be able to
+      retrieve a list of all open views for the &#8216;windows' menu. The
+      margin between tab and document should really be a user-settable
+      property, but we won't develop a user preferences framework
+      until chapter
+      <A href="index.lxp%3Flxpwrap=c6013.htm">Chapter 18</A
+>.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def addView(self, view):
+        if view not in self.views:
+            self.views.append(view)
+            self.addTab(view, view.caption())
+            self.showPage(view)
+    </PRE
+><P
+>Adding a new view is a simple exercise.
+      However, note that until you actually call
+      <TT
+CLASS="FUNCTION"
+>showPage()</TT
+> on your view, the
+      <TT
+CLASS="CLASSNAME"
+>QTabWidget</TT
+> appears to be innocent of your
+      addition, and won't manage the layout of the page. This means
+      that when you create a new window and resize the application
+      window, the contents won't resize with it. Simply drawing the
+      tab widget's attention to the page will suffice, however.</P
+><P
+>With PyQt's
+      <TT
+CLASS="CLASSNAME"
+>QWorkspace</TT
+> it was enough to create a
+      widget with the workspace as its parent&#8212;the widget was
+      automatically managed shown. This is no longer enough when we
+      use <TT
+CLASS="CLASSNAME"
+>QTabWidget</TT
+>.  This means that we will have to adapt the
+      <TT
+CLASS="CLASSNAME"
+>DocManager</TT
+> class to work with
+      <TT
+CLASS="FUNCTION"
+>addView</TT
+>. This is done in the private
+      <TT
+CLASS="FUNCTION"
+>_createView()</TT
+> function:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def _createView(self, document, viewClass):
+        view = viewClass(self._viewManager,
+                         document,
+                         None,
+                         QWidget.WDestructiveClose)
+        if self._docToViewMap.has_key(document):
+            index = len(self._docToViewMap[document]) + 1
+        else:
+            index = 1
+        view.setCaption(document.title() + " %s" % index)
+
+        self._viewManager.addView(view)
+
+        view.installEventFilter(self._parent)
+
+        if self._viewToDocMap == {}:
+            view.showMaximized()
+        else:
+            view.show()
+
+        return view
+    </PRE
+><P
+>To return to the
+      <TT
+CLASS="CLASSNAME"
+>TabManager</TT
+> class:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def removeView(self, view):
+        if view in self.views:
+            self.views.remove(view)
+            self.removePage(view)
+
+    def activeWindow(self):
+        return self.currentPage()
+
+    def windowList(self):
+        return self.views
+    </PRE
+><P
+>The first of these three functions is new.
+      Simply closing a widget was enough to remove it when it was
+      managed by the <TT
+CLASS="CLASSNAME"
+>QWorkspace</TT
+> object; now we
+      must explicitly remove it. This, too, demands a change in the
+      <TT
+CLASS="CLASSNAME"
+>DocManager</TT
+> class, but fortunately, it's a
+      simple change:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def _removeView(self, view, document):
+        try:
+            self._docToViewMap[document].remove(view)
+            self._viewManager.removeView(view)
+            del self._viewToDocMap[view]
+        except ValueError, e:
+            pass # apparently already deleted
+    </PRE
+><P
+>Both <TT
+CLASS="FUNCTION"
+>activeWindow()</TT
+>
+      and <TT
+CLASS="FUNCTION"
+>windowList</TT
+> have been included to make
+      the interface of the tabmanager more similar to that of
+      <TT
+CLASS="CLASSNAME"
+>QWorkspace</TT
+>. If you want to have
+      transparently interchangeable components, they must have the
+      same functions.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def cascade(self): pass
+
+    def tile(self): pass
+
+    def canCascade(self):
+        return FALSE
+
+    def canTile(self):
+        return FALSE
+    </PRE
+><P
+>You cannot cascade nor tile a set of tab
+      pages. The functions are included, but merely to avoid runtime
+      exceptions when the application inadvertently does try to call
+      them. The functions <TT
+CLASS="FUNCTION"
+>canCascade()</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>canTile()</TT
+> can be used to determine whether
+      this component supports this functionality.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5581.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5657.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conclusion</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p4627.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Back to the MDI windows</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

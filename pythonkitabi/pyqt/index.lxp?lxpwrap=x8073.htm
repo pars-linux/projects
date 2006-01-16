@@ -1,0 +1,282 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x8073.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Initiating drags</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Drag and drop"
+HREF="c8016.htm"><LINK
+REL="PREVIOUS"
+TITLE="Drag and drop"
+HREF="c8016.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x8095.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c8016.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 23. Drag and drop</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8095.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Initiating drags</A
+></H1
+><P
+>Initiating drag operations is a bit more
+      difficult, because you must determine when exactly a drag
+      begins. Users expect that holding down the mouse-button on the
+      object they want to drag and moving it should start dragging.
+      However, everyone moves the mouse very slightly, even if just
+      single-clicking on an object. Thus, we must determine how many
+      pixels the mouse pointer should move (while the first mouse
+      button is depressed) to enter a drag operation.</P
+><P
+>We cannot do this using
+      <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>. A class like
+      <TT
+CLASS="CLASSNAME"
+>QIconView</TT
+> offers special support for
+      starting drags by allowing you to re-implement the
+      <TT
+CLASS="FUNCTION"
+>dragObject</TT
+> function:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class MyIconView(QIconView):
+
+      def dragObject(self):
+          return QTextDrag(self.currentItem().text(), self)
+    </PRE
+><P
+>Once you have determined what should start
+      a drag (and this can be anything, really), starting a drag
+      operation is a simple matter of creating a new
+      <TT
+CLASS="CLASSNAME"
+>QDragObject</TT
+>. This could be, for instance,
+      a <TT
+CLASS="CLASSNAME"
+>QTextDrag</TT
+> or a
+      <TT
+CLASS="CLASSNAME"
+>QImageDrag</TT
+>. Take care that you keep a
+      reference to the drag object&#8212;if you delete it, or allow it
+      to go out of scope, it will disappear.</P
+><P
+>In the next example, simply moving a mouse
+      will start a drag operation:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 23-2. Drag and drop</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#!/usr/bin/env python
+
+from sys import argv
+from qt import *
+
+
+class DropDemo(QListView):
+    def __init__(self,parent=None,name=None):
+        QListView.__init__(self,parent,name)
+        self.setAcceptDrops(1)
+        self.setGeometry(10,10,100,60)
+        self.addColumn("Column 1")
+        self.i = QListViewItem(self, "Hello")
+        self.ii = QListViewItem(self, "Hello 2")
+        r = self.itemRect(self.i)
+        r = self.itemRect(self.ii)
+        
+    def dragEnterEvent(self, event):
+        event.accept(QTextDrag.canDecode(event))
+  
+    def dropEvent(self, event):
+        text = QString()
+        pos = QPoint(event.pos().x(), event.pos().y() - self.header().height())
+        item = self.itemAt(pos)
+        text=QString()
+ 
+    def mouseMoveEvent(self, event):
+        self.startDrag()
+
+    def startDrag(self):
+        d = QTextDrag("blabla",self) # keep a reference to d
+        d.dragCopy()
+ 
+if __name__ == '__main__':
+    a = QApplication(argv)
+    w = DropDemo()
+    w.setCaption("Drag and Drop Test")
+    w.resize(120,80)
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
+        </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c8016.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8095.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Drag and drop</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c8016.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

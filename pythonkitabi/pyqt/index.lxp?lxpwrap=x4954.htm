@@ -1,0 +1,248 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x4954.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Menus</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Actions: menus, toolbars and accelerators"
+HREF="c4807.htm"><LINK
+REL="PREVIOUS"
+TITLE="Actions: menus, toolbars and accelerators"
+HREF="c4807.htm"><LINK
+REL="NEXT"
+TITLE="Toolbars"
+HREF="x4974.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c4807.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 13. Actions: menus, toolbars and accelerators</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x4974.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Menus</A
+></H1
+><P
+>Most of the time, you can simply add
+      actions or action groups to menus. This is what we did above, in
+      the docview framework. However, in some cases it is desirable to
+      have a dynamic list of menu options. This is a bit more
+      complicated. This is useful, for instance, in applications where
+      the user can open more than one window, or for lists of recently
+      opened files. In almost every other case, it is awfully
+      confusing to the user if menu options are added and removed at
+      the whim of the application.
+      </P
+><P
+>By connecting the
+      <TT
+CLASS="FUNCTION"
+>aboutToShow()</TT
+> signal of a menu to a slot
+      (for example, <TT
+CLASS="FUNCTION"
+>slotWindowMenuAboutToShow</TT
+>),
+      you can exercise precise control over the contents of the menu
+      by first clearing it, and then building it up again. Note the
+      use of <TT
+CLASS="FUNCTION"
+>setItemChecked()</TT
+> to place a
+      checkmark next to selected windows. This is something you get
+      for free with a <TT
+CLASS="CLASSNAME"
+>QActionGroup</TT
+>, but
+      recreating a <TT
+CLASS="CLASSNAME"
+>QActionGroup</TT
+> every time the
+      user selects the window menu is just as much a bore as
+      recreating the menu, if not more so.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>  def slotWindowMenuAboutToShow(self):
+        self.windowMenu.clear()
+        self.actions["windowNewWindow"].addTo(self.windowMenu)
+        self.actions["windowCascade"].addTo(self.windowMenu)
+	self.actions["windowTile"].addTo(self.windowMenu)
+        if self.workspace.windowList()==[]:
+            self.actions["windowAction"].setEnabled(FALSE)
+        else:
+            self.actions["windowAction"].setEnabled(TRUE)
+        self.windowMenu.insertSeparator()
+
+        i=0 # window numbering
+        self.menuToWindowMap={}
+        for window in self.workspace.windowList():
+            i+=1
+            index=self.windowMenu.insertItem(("&#38;%i " % i) +
+                                             str(window.caption()),
+                                             self.slotWindowMenuActivated)
+            self.menuToWindowMap[index]=window
+            if self.workspace.activeWindow()==window:
+                self.windowMenu.setItemChecked(index, TRUE)
+
+    def slotWindowMenuActivated(self, index):
+        self.menuToWindowMap[index].setFocus()
+      </PRE
+><P
+>We will investigage the creation of
+      application frameworks containing more than one window in
+      chapter <A href="index.lxp%3Flxpwrap=c5288.htm">Chapter 15</A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c4807.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x4974.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Actions: menus, toolbars and accelerators</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c4807.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Toolbars</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

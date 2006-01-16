@@ -1,0 +1,1296 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x6734.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Non-modal: Search and
+      replace</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Using Dialog Windows"
+HREF="c6351.htm"><LINK
+REL="PREVIOUS"
+TITLE="Using Dialog Windows"
+HREF="c6351.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x6992.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c6351.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 19. Using Dialog Windows</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6992.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Non-modal: Search and
+      replace</A
+></H1
+><P
+>In the previous section we constructed a
+      deviously complex (at least, it felt that way) modal dialog box.
+      Now we will attempt something comparable for a non-modal dialog
+      box.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Design</A
+></H2
+><P
+>What we are aiming for is a combined
+        "search" and "search and replace" dialog box. It should
+        conform to the following requirements:</P
+><P
+></P
+><UL
+><LI
+><P
+>Two kinds of search: plain
+            text and regular expressions.</P
+></LI
+><LI
+><P
+>Search forward and
+            backward</P
+></LI
+><LI
+><P
+>Case sensitive or
+            insensitive search</P
+></LI
+><LI
+><P
+>Search from the beginning of
+            the text or the current cursor position</P
+></LI
+><LI
+><P
+>Search on a selection or the
+            whole text.</P
+></LI
+><LI
+><P
+>Choice between replace one
+            occurrence after another, or or all occurrences.</P
+></LI
+></UL
+><P
+>A tall order? Certainly, but also quite
+        probably very instructive. A few minutes with the Designer
+        gives us the following, esthetically pleasing, dialog
+        box:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The find and replace dialog.</P
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Integration in the application</A
+></H2
+><P
+>Implementing all this functionality is
+        quite complex, so it is best to first make sure that we can
+        call the find and replace dialog window from the application.
+        This entails adding two <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>'s to
+        the action dictionary, an icon to
+        <TT
+CLASS="FILENAME"
+>resources.py</TT
+>, and two new slots&#8212;and
+        creating the dialog, of course.</P
+><P
+>You don't create, run and destroy a
+        non-modal dialog, like we did with the settings dialog.
+        Instead, you create it once, and show it whenever necessary.
+        The Close button on the dialog doesn't really close it; it
+        merely hides the window. In this case, the find and replace
+        dialog is created in the constructor of
+        <TT
+CLASS="CLASSNAME"
+>KalamApp</TT
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>...
+from dlgfindreplace import DlgFindReplace
+...
+class KalamApp(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        ...
+        # Create the non-modal dialogs
+        self.dlgFindReplace = DlgFindReplace(self, "Find and replace")
+      </PRE
+><P
+>There are two actions defined: one for
+        search, and one for find and replace. Again, the "find" icon
+        is the standard KDE 2 icon for find operations.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initActions(self):
+        self.actions = {}
+
+        ...
+
+        #
+        # Edit actions
+        #
+
+        ...
+        self.actions["editFind"] = QAction("Find",
+                                           QIconSet(QPixmap(editfind)),
+                                           "&#38;Find",
+                                           QAccel.stringToKey("CTRL+F"),
+                                           self)
+        self.connect(self.actions["editFind"],
+                     SIGNAL("activated()"),
+                     self.slotEditFind)
+
+        self.actions["editReplace"] = QAction("Replace",
+                                           "&#38;Replace",
+                                           QAccel.stringToKey("CTRL+R"),
+                                           self)
+        self.connect(self.actions["editReplace"],
+                     SIGNAL("activated()"),
+                     self.slotEditReplace)
+      </PRE
+><P
+>By now, you probably know what comes
+        next: adding the actions to the menu bar, and to the toolbar.
+        Since there isn't an icon for replace, it cannot be added to
+        the toolbar:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initMenuBar(self):
+        ...
+        self.editMenu = QPopupMenu()
+        ...
+        self.editMenu.insertSeparator()
+        self.actions["editFind"].addTo(self.editMenu)
+        self.actions["editReplace"].addTo(self.editMenu)
+        self.menuBar().insertItem("&#38;Edit", self.editMenu)
+        ...
+
+    def initToolBar(self):
+        ...
+        self.editToolbar = QToolBar(self, "edit operations")
+        ...
+        self.actions["editFind"].addTo(self.editToolbar)
+      </PRE
+><P
+>Because the combined find/find and
+        replace dialog has two modes, it is necessary to have two ways
+        of calling it&#8212;one for find, and one for find and
+        replace. The dialog should work on the current document and
+        the current view, but it is difficult to determine if
+        &#8216;current' should be the current document and view when
+        the dialog is opened, as opposed to the document and view that
+        have focus. The user might, after all, change document and
+        view while the find dialog is open, or even close them. For
+        now, let's use the document and view that are open when the
+        dialog is shown.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotEditFind(self):
+        self.dlgFindReplace.showFind(self.docManager.activeDocument(),
+                                     self.workspace.activeWindow())
+
+    def slotEditReplace(self):
+        self.dlgFindReplace.showReplace(self.docManager.activeDocument(),
+                                        self.workspace.activeWindow())
+      </PRE
+><P
+>The actual implementation in
+        <TT
+CLASS="CLASSNAME"
+>DlgFindReplace</TT
+> of these show function
+        is quite simple. The Find option hides certain widgets, after
+        which the automatic layout management ensures that the dialog
+        looks as good as it should. The Find and Replace options makes
+        sure they are shown. The window caption is adapted, too. Note
+        that you must first call <TT
+CLASS="FUNCTION"
+>show()</TT
+> on the
+        entire dialog, and only then <TT
+CLASS="FUNCTION"
+>show()</TT
+> on
+        the previously hidden widgets, otherwise the layout manager
+        doesn't show the appearing widgets.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def showFind(self, document, view):
+        FrmFindReplace.show(self)
+        self.setCaption("Find in " + document.title())
+        self.bnReplaceNext.hide()
+        self.bnReplaceAll.hide()
+        self.grpReplace.hide()
+        self.initOptions(document, view)
+
+    def showReplace(self, document, view):
+        FrmFindReplace.show(self)
+        self.setCaption("Find and replace in " + document.title())
+        self.bnReplaceNext.show()
+        self.bnReplaceAll.show()
+        self.grpReplace.show()
+        self.initOptions(document, view)
+      </PRE
+><P
+>The result is pretty enough to show:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The Find dialog.</P
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Implementation of the functionality</A
+></H2
+><P
+>Now that we can show the find and
+        replace dialog, it is time to implement some functionality.
+        Again, we subclass the generated design and add what we need.
+      </P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+dlgfindreplace.py - Findreplace dialog for Kalam.
+
+See: frmfindreplace.ui
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+import os, sys
+from qt import *
+
+import kalamconfig
+
+from resources import TRUE, FALSE
+from frmfindreplace import FrmFindReplace
+
+class DlgFindReplace(FrmFindReplace):
+    """ A full-featured search and replace dialog.
+    """
+    def __init__(self,
+                 parent = None,
+                 name = None):
+        FrmFindReplace.__init__(self, parent, name, FALSE, Qt.WStyle_Dialog)
+        
+        self.connect(self.bnFind,
+                     SIGNAL("clicked()"),
+                     self.slotFindNext)
+        self.connect(self.bnReplaceNext,
+                     SIGNAL("clicked()"),
+                     self.slotReplaceNext)
+        self.connect(self.bnReplaceAll,
+                     SIGNAL("clicked()"),
+                     self.slotReplaceAll)
+
+        self.connect(self.radioRegexp,
+                     SIGNAL("clicked()"),
+                     self.slotRegExp)
+        self.connect(self.chkCaseSensitive,
+                     SIGNAL("clicked()"),
+                     self.slotCaseSensitive)
+        self.connect(self.chkWholeText,
+                     SIGNAL("clicked()"),
+                     self.slotBeginning)
+        self.connect(self.chkSelection,
+                     SIGNAL("clicked()"),
+                     self.slotSelection)
+        self.connect(self.radioForward,
+                     SIGNAL("clicked()"),
+                     self.slotForward)
+        self.connect(self.radioBackward,
+                     SIGNAL("clicked()"),
+                     self.slotBackward)
+      </PRE
+><P
+>In the constructor we connect all relevant
+      <TT
+CLASS="FUNCTION"
+>clicked()</TT
+> signals to their slots. The rest
+      of the initialization (such as determining which text or part
+      of text we will work on) is moved to the <TT
+CLASS="FUNCTION"
+>show()</TT
+>
+      function. The same instance of the dialog can be used for
+      different documents.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def showFind(self, document, view):
+        FrmFindReplace.show(self)
+        self.bnFind.setDefault(TRUE)
+        self.setCaption("Find in " + document.title())
+        self.bnReplaceNext.hide()
+        self.bnReplaceAll.hide()
+        self.grpReplace.hide()
+        self.cmbFind.setFocus()
+        self.init(document, view)
+
+
+    def showReplace(self, document, view):
+        FrmFindReplace.show(self)
+        self.setCaption("Find and replace in " + document.title())
+        self.bnReplaceNext.show()
+        self.bnReplaceNext.setDefault(TRUE)
+        self.bnReplaceAll.show()
+        self.grpReplace.show()
+        self.cmbFind.setFocus()
+        self.init(document, view)
+      </PRE
+><P
+>As we discussed above, there are two show functions
+        (<TT
+CLASS="FUNCTION"
+>showFind()</TT
+> and
+        <TT
+CLASS="FUNCTION"
+>showReplace</TT
+>), each hides or shows the
+        widgets that are relevant. The show functions also call the
+        initialization function <TT
+CLASS="FUNCTION"
+>init()</TT
+>.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def init(self, document, view):
+        self.document = document
+        self.view = view
+
+        if view.hasSelection():
+            self.chkSelection.setChecked(TRUE)
+
+        self.setFindExtent()
+
+      </PRE
+><P
+>The <TT
+CLASS="FUNCTION"
+>init()</TT
+>
+        function sets the document and view variables. Most of the
+        work is done directly on the view, making use of its
+        functionality for inserting, deleting and selecting text. This
+        is because whenever a string is found, it will be selected.
+        Asking the document to select a string will cause it to select
+        the string in all views of that document, which would be quite
+        confusing for the user.</P
+><P
+>If there is already a selection present
+        in the view, the "find in selection" checkbox is checked. This
+        is convenient, because when a user presses find after having
+        selected a section of text, he most likely wants the search to
+        be performed in that selection only.</P
+><P
+>The function
+        <TT
+CLASS="FUNCTION"
+>setFindExtent()</TT
+> (which we will examine in
+        detail later in this section) determines which part of the
+        text should be searched: from the cursor position to the end,
+        to the beginning, or between the beginning and end of a
+        selection. The find routine keeps track of where it is within
+        a search extent, using the variable
+        <TT
+CLASS="VARNAME"
+>self.currentPosition</TT
+>, which is initially
+        the same as the start position of the extent.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    #
+    # Slot implementations
+    #
+    def slotRegExp(self):
+        if self.radioRegexp.isChecked():
+            self.radioForward.setChecked(TRUE)
+            self.grpDirection.setEnabled(FALSE)
+        else:
+            self.grpDirection.setEnabled(TRUE)
+      </PRE
+><P
+>If you are using Qt 2.3, you cannot use
+        regular expressions to search backwards. In Qt 3.0 the regular
+        expression object <TT
+CLASS="CLASSNAME"
+>QRegExp</TT
+> has been
+        greatly extended, and can be used to search both forwards and
+        backwards. When <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> was written,
+        Qt 3.0 was still in beta. Therefore, it was necessary to include
+        code to disable the forward/backward checkboxes whenever the
+        user selects the regular expressions search mode, and code to
+        make forward searching the default.</P
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>On regular expressions: </B
+>It is quite probable that you know
+          more about regular expressions than I do. I can't write them
+          for toffee, and I find reading regular expressions to be
+          even harder (despite the fact that I used to be a dab hand
+          at Snobol). Nonetheless, regular expressions are
+          indispensable when searching a text. Even I know how to use
+          $ to specify the end of input or \n to specify a new line.
+          Regular expressions are everywhere on a Unix system, and all
+          decent editors (as well as Python, Perl and most other
+          languages) support them. On Windows, you can enter regular
+          expressions in the search function of Word (or so I am
+          told).</P
+><P
+>A regular expression is nothing more
+          than an algebraic notation for characterizing a set of
+          strings. An expression represents a pattern that the regular
+          expression engine can use to match text. Python comes with
+          its own highly capable, high performance regular expression
+          engine, compared with which the regular expression engine in
+          Qt 2.3 is a bit puny. The regular expression engine of Qt
+          3.0 has been improved a lot, and is nearly as good as the
+          Python one.</P
+><P
+>According to the Qt online documentation, the Qt 2.3
+          <TT
+CLASS="CLASSNAME"
+>QRegExp</TT
+> class recognized the
+          following primitives:</P
+><P
+></P
+><UL
+><LI
+><P
+>c - the character 'c'
+            </P
+></LI
+><LI
+><P
+>. - any character (but only one)
+            </P
+></LI
+><LI
+><P
+>^ - matches start of input
+            </P
+></LI
+><LI
+><P
+>$ - matches end of input
+            </P
+></LI
+><LI
+><P
+>[] - matches a defined set of characters. For
+            instance, [a-z] matches all lowercase ASCII
+            characters. Note that you can give a range with a dash
+            (-) and negate a set with a caron (^ - [^ab] match
+            anything that does contain neither a nor b)/
+            </P
+></LI
+><LI
+><P
+>c* -  matches a sequence of zero or more character c's
+            </P
+></LI
+><LI
+><P
+>c+ -  matches a sequence of one or more character c's
+            </P
+></LI
+><LI
+><P
+>c? - matches an optional character c
+            </P
+></LI
+><LI
+><P
+>\c - escape code for special characters such
+              as \, [, *, +, . etc.
+            </P
+></LI
+><LI
+><P
+>\t - matches the TAB character (9)
+            </P
+></LI
+><LI
+><P
+>\n - matches newline (10). For instance "else\n"
+            will find all occurrence of else that are followed with a
+            new line, and that are thus missing the obligatory closing
+            colon (:).
+            </P
+></LI
+><LI
+><P
+>\r - matches return (13)
+            </P
+></LI
+><LI
+><P
+>\s - matches a white space (defined as any character
+              for which QChar::isSpace() returns TRUE. This includes
+              at least ASCII characters 9 (TAB), 10 (LF), 11 (VT),
+              12(FF), 13 (CR) and 32 (Space)).
+            </P
+></LI
+><LI
+><P
+>\d - matches a digit (defined as any character for
+              which QChar::isDigit() returns TRUE. This includes at
+              least ASCII characters '0'-'9').
+            </P
+></LI
+><LI
+><P
+>\x1f6b - matches the character with unicode point
+              U1f6b (hexadecimal 1f6b). \x0012 will match the
+              ASCII/Latin1 character 0x12 (18 decimal, 12
+              hexadecimal).
+            </P
+></LI
+><LI
+><P
+>\022 - matches the ASCII/Latin1 character 022 (18
+              decimal, 22 octal).
+            </P
+></LI
+></UL
+><P
+>Being constitutionally unable to explain exactly
+          <SPAN
+><I
+CLASS="EMPHASIS"
+>how</I
+></SPAN
+> you go about creating regular
+          expressions that work, I can only refer you to the online
+          documentation of Python and Qt, and to the many tutorials
+          available on the web. Qt 3.0 comes with an excellent page on
+          regular expressions, too. Whenever I read Part I of Jurafsky
+          and Martin's book &#8216;Speech and Language Processing', I have
+          the feeling that I understand regular expressions, and I
+          have never found that to be the case with any other text on the
+          subject.</P
+><P
+>As a last note: both Python and Qt regular expressions
+          work just fine with Unicode. Back to our code...</P
+></BLOCKQUOTE
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotCaseSensitive(self):
+        pass
+
+    def slotBeginning(self):
+        self.setFindExtent()
+
+    def slotSelection(self):
+        self.setFindExtent()
+
+    def slotForward(self):
+        self.setFindExtent()
+
+    def slotBackward(self):
+        self.setFindExtent()
+      </PRE
+><P
+>Whenever the user alters one of the options that influence
+      the direction or area of search, the extent must be adapted.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    #
+    # Extent calculations
+    #
+    def setSelectionExtent(self):
+        self.startSelection = self.view.selectionStart()
+        self.endSelection = self.view.selectionEnd()
+
+        self.startPosition = self.startSelection
+        self.endPosition = self.endSelection
+
+    def setBackwardExtent(self):
+        # Determine extent to be searched
+        if (self.chkWholeText.isChecked()):
+            self.endPosition = self.view.length()
+        else:
+            self.endPosition = self.view.getCursorPosition()
+        self.startPosition = 0
+
+        if self.chkSelection.isChecked():
+            if self.view.hasSelection():
+                setSelectionExtent()
+
+        self.currentPosition = self.endPosition
+
+    def setForwardExtent(self):
+        # Determine extent to be searched
+        if (self.chkWholeText.isChecked()):
+            self.startPosition = 0
+        else:
+            self.startPosition = self.view.getCursorPosition()
+
+        self.endPosition = self.view.length()
+
+        if self.chkSelection.isChecked():
+            if self.view.hasSelection():
+                setSelectionExtent()
+
+        self.currentPosition = self.startPosition
+
+    def setFindExtent(self):
+        if self.radioForward.isChecked():
+            self.setForwardExtent()
+        else:
+            self.setBackwardExtent()
+      </PRE
+><P
+>Correctly determining which part of the
+        text should be searched is a fairly complex task. First, there
+        is an important difference between searching forwards and
+        backwards, if only because of the place where searching should
+        start. A further complication is caused by the option to
+        search either the whole text, or from the cursor position.
+        Note that begin and end mean the same thing with both
+        backwards and forwards searches; it is
+        <TT
+CLASS="VARNAME"
+>currentPosition</TT
+>, where searching should
+        start, that is different between forward and backward
+        searches.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def wrapExtentForward(self):
+        if QMessageBox.information(self.parent(),
+                                   "Kalam",
+                                   "End reached. Start from beginning?",
+                                   "yes",
+                                   "no",
+                                   None,
+                                   0,
+                                   1) == 0:
+            self.endPosition = self.startPosition
+            self.startPosition = 0
+            self.currentPosition = 0
+            self.slotFindNext()
+
+    def wrapExtentBackward(self):
+        if QMessageBox.information(self.parent(),
+                                   "Kalam",
+                                   "Begin reached. Start from end?",
+                                   "yes",
+                                   "no",
+                                   None,
+                                   0,
+                                   1) == 0:
+            self.startPosition = self.endPosition
+            self.endPosition = self.view.length()
+            self.currentPosition = self.startPosition
+            self.previousOccurrence()
+            self.slotFindNext()
+      </PRE
+><P
+>Whenever the current extent has been searched, the user
+        should be asked whether he or she wants to search the rest of
+        the text. The functions above are different for
+        forwards and backwards searching, too.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    #
+    # Find functions
+    #
+    def nextOccurrence(self):
+        findText = self.cmbFind.currentText()
+        caseSensitive = self.chkCaseSensitive.isChecked()
+        if self.radioRegexp.isChecked():
+            # Note differences with Qt 3.0
+            regExp = QRegExp(findText,
+                             caseSensitive)
+            pos, len = regExp.match(self.view.text(),
+                                    self.currentPosition,
+                                    FALSE)
+            return pos, pos+len
+        else:
+            pos = self.view.text().find(findText,
+                                        self.currentPosition,
+                                        caseSensitive)
+            return (pos, pos + findText.length())
+      </PRE
+><P
+>Searching forwards can be done by plain text matching, or
+      with regular expressions.</P
+><P
+>Regular expressions are available from
+        both Python and PyQt. Python regular expressions (in the
+        <TT
+CLASS="FILENAME"
+>re</TT
+> module) work on Python strings, while
+        PyQt regular expressions work on
+        <TT
+CLASS="CLASSNAME"
+>QString</TT
+>s. It is relatively inefficient
+        to convert a <TT
+CLASS="CLASSNAME"
+>QString</TT
+> to a Python
+        string, so we use <TT
+CLASS="CLASSNAME"
+>QRegExp</TT
+> here (though
+        it is a little underpowered in its Qt 2.3 incarnation compared
+        to <TT
+CLASS="FILENAME"
+>re</TT
+> and Qt 3.0's
+        <TT
+CLASS="CLASSNAME"
+>QRegExp</TT
+>).</P
+><P
+>A <TT
+CLASS="CLASSNAME"
+>QRegExp</TT
+> is
+        constructed from a string that contains the patterns that
+        should be matched, and two options. The first option
+        determines whether the search should be case sensitive; the
+        second determines whether or not the search is a wildcard
+        search. Wildcard searches work like the filename expansion on
+        a Unix command line, and are not terribly useful for searching
+        in a text.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>QRegExp</TT
+> has two
+        tools for searching: <TT
+CLASS="FUNCTION"
+>match()</TT
+> and
+        <TT
+CLASS="FUNCTION"
+>find()</TT
+>. Both take as parameters the
+        <TT
+CLASS="CLASSNAME"
+>QString</TT
+> to be searched and the position
+        from which searching should start. However,
+        <TT
+CLASS="FUNCTION"
+>match()</TT
+> also returns the length of the
+        string that is found, and can take an optional parameter that
+        indicates whether the start position should match the regular
+        expression character "^" (start of input). You don't want this
+        for searching in editable text, so we make it FALSE by
+        default.</P
+><P
+>Literal searching is a simple matter of
+        applying the <TT
+CLASS="FUNCTION"
+>find()</TT
+> method of
+        <TT
+CLASS="CLASSNAME"
+>QString</TT
+> from the current
+        position.</P
+><P
+>Looking for an occurrence returns
+        either -1, if nothing was found, or the begin and end
+        positions of the string that was found. Note that
+        <TT
+CLASS="CLASSNAME"
+>QString</TT
+>.<TT
+CLASS="FUNCTION"
+>find()</TT
+>
+        doesn't return the length of the found string; we take the
+        <TT
+CLASS="FUNCTION"
+>length()</TT
+> of the search string to
+        determine the end position.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def previousOccurrence(self):
+        findText = self.cmbFind.currentText()
+        caseSensitive = self.chkCaseSensitive.isChecked()
+        pos = self.view.text().findRev(findText,
+                                       self.currentPosition,
+                                       caseSensitive)
+        return (pos, pos + findText.length())
+      </PRE
+><P
+>Qt 2.3 doesn't yet support backwards
+        searching with regular expressions, so the function
+        <TT
+CLASS="FUNCTION"
+>previousOccurrence</TT
+> is quite a bit
+        simpler. Instead of
+        <TT
+CLASS="CLASSNAME"
+>QString</TT
+>.<TT
+CLASS="FUNCTION"
+>find()</TT
+>,
+        <TT
+CLASS="CLASSNAME"
+>QString</TT
+>.<TT
+CLASS="FUNCTION"
+>findRev()</TT
+>
+        is used - this searches backwards.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotFindNext(self):
+        if self.radioForward.isChecked():
+            begin, end = self.nextOccurrence()
+            if begin &#62; -1:
+                self.view.setSelection(begin,
+                                       end)
+                self.currentPosition = end
+                return (begin, end)
+            else:
+                if (self.chkSelection.isChecked() == FALSE and
+                    self.chkWholeText.isChecked() == FALSE):
+                    self.wrapExtentForward()
+                return (self.currentPosition, self.currentPosition)
+        else:
+            begin, end = self.previousOccurrence()
+            if begin &#62; -1:
+                self.view.setSelection(begin,
+                                       end)
+                self.currentPosition = begin -1
+                return (begin, end)
+            else:
+                if (self.chkSelection.isChecked() == FALSE and
+                    self.chkWholeText.isChecked() == FALSE):
+                    self.wrapExtentBackward()
+                return (self.currentPosition, self.currentPosition)
+      </PRE
+><P
+>The <TT
+CLASS="FUNCTION"
+>slotFindNext</TT
+>
+        slot is the central bit of intelligence in this class.
+        Depending upon the selected direction, the next or previous
+        occurrence of the search string is searched. If an occurrence
+        is found (when <TT
+CLASS="VARNAME"
+>begin</TT
+> is greater
+        than -1), it is selected, and the current position is moved.
+        If there are no more matches, the user is asked whether he or
+        she wants to go on with the rest of the document. </P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotReplaceNext(self):
+        begin, end = self.slotFindNext()
+        if self.view.hasSelection():
+            self.view.replaceSelection(self.cmbReplace.currentText())
+            return begin, end
+        else:
+            return -1, -1
+
+    def slotReplaceAll(self):
+        begin, end = self.slotReplaceNext()
+        while begin &#62; -1:
+            begin, end = self.slotReplaceNext()
+            print begin, end
+      </PRE
+><P
+>Replacing is one part finding, one part
+        replacing. The <TT
+CLASS="FUNCTION"
+>slotFindNext()</TT
+> code is
+        reused, which is one good reason for creating a dialog that
+        has both a find and a find and replace mode.
+        <TT
+CLASS="FUNCTION"
+>slotFindNext()</TT
+> already selects the match,
+        so replacing is a simple matter of deleting the match and
+        inserting the replacement string. This is done with a new
+        function in <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>...
+class KalamView(QWidget):
+...
+    def replaceSelection(self, text):
+        self.editor.deleteChar()
+        self.editor.insert(text)
+        self.editor.emit(SIGNAL("textChanged()"),())
+      </PRE
+><P
+>Messing about with the text in a
+        <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+> widget has a few tricky
+        points. You should avoid trying to directly change the
+        <TT
+CLASS="CLASSNAME"
+>QString</TT
+> that you retrieve with
+        <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>.<TT
+CLASS="FUNCTION"
+>text()</TT
+>&#8212; 
+        changing this string behind the editor's back is a sure recipe
+        for a beautiful crash. <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>
+        has several functions, such as
+        <TT
+CLASS="FUNCTION"
+>deleteChar()</TT
+> (which not only deletes
+        characters, but also the selection, if there is one), to alter
+        the contents. However, these functions don't emit the
+        <TT
+CLASS="FUNCTION"
+>textChanged()</TT
+> signal&#8212; you will have
+        to do that yourself. If we do not emit
+        <TT
+CLASS="FUNCTION"
+>textChanged()</TT
+>, other views on the same
+        document won't know of the changes, nor will the document
+        itself know it has been changed.</P
+><P
+>Another interesting complication occurs
+        because <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>, the editor
+        widget used in <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+>, works with
+        line and column positioning, not with a position within the
+        string that represents the text. This makes it necessary to
+        create conversion functions between string index and editor
+        line / column position in <TT
+CLASS="CLASSNAME"
+>KalamView</TT
+>,
+        which is potentially very costly business for long
+        files:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>...
+class KalamView(QWidget):
+...
+    def getLineCol(self, p):
+        i=p
+        for line in range(self.editor.numLines()):
+            if i &#60; self.editor.textLine(line).length():
+                return (line, i)
+            else:
+                # + 1 to compensate for \n
+                i-=(self.editor.textLine(line).length() + 1) 
+        # fallback
+        return (0,0)
+
+    def setCursorPosition(self, p):
+        """Sets the cursor of the editor at position p in the text."""
+        l, c = self.getLineCol(p)
+        self.editor.setCursorPosition(l, c)
+
+    def getPosition(self, startline, startcol):
+        if startline = 0:
+            return startcol
+        if startline &#62; self.editor.numLines():
+            return self.editor.text().length()
+        i=0
+        for line in range(self.editor.numLines()):
+            if line &#60; startline:
+                i += self.editor.textLine(line).length()
+            else:
+                return i + startcol
+
+    def getCursorPosition(self):
+        """Get the position of the cursor in the text"""
+        if self.editor.atBeginning():
+            return 0
+        if self.editor.atEnd():
+            return self.editor.text().length()
+
+        l, c = self.editor.getCursorPosition()
+        return self.getPosition(l, c)
+      </PRE
+><P
+>The function
+        <TT
+CLASS="FUNCTION"
+>getLineCol()</TT
+> takes a single index
+        position as argument. It then loops through the lines of the
+        editor, subtracting the length of each line from a temporary
+        variable, until the length of the current line is greater than
+        the remaining number of characters. Then we have linenumber
+        and column.</P
+><P
+>The same, but in reverse is necessary in
+        <TT
+CLASS="FUNCTION"
+>getPosition</TT
+> to find out how far into a
+        string the a certain line number and column position
+        is. There are a few safeguards and optimizations, but not
+        quite enough.</P
+><P
+>Qt 3 offers the
+        <TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> class, which is vastly more
+        powerful than <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+>. For
+        instance, <TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> sports a built-in
+        find function. Internally, <TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> is
+        associated with <TT
+CLASS="CLASSNAME"
+>QTextDocument</TT
+>, which is
+        comparable to our <TT
+CLASS="FUNCTION"
+>KalamDocument</TT
+>. But you
+        can't get at <TT
+CLASS="CLASSNAME"
+>QTextDocument</TT
+> (it's not
+        even documented, you need to read the Qt source code to find
+        out about it), so it's not a complete replacement for our
+        document-view architecture. The external rich text
+        representation of <TT
+CLASS="CLASSNAME"
+>QTextEdit</TT
+> is a subset
+        of html, which makes it less suitable for a programmer's
+        editor. You have to choose: either colorized, fontified
+        text, and filter the html codes out yourself, or a plain text
+        editor. Fortunately, Qt 3 still includes
+        <TT
+CLASS="CLASSNAME"
+>QMultiLineEdit</TT
+> for compatibility
+        reasons.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c6351.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x6992.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using Dialog Windows</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c6351.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

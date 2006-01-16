@@ -1,0 +1,793 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c4631.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Application Frameworks</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="PREVIOUS"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="NEXT"
+TITLE="Macro languages"
+HREF="x4760.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=p4627.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x4760.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 12. Application Frameworks</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c4631.htm#AEN4637">Architecture: models, documents and views</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x4760.htm">Macro languages</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x4782.htm">Project layout</A
+></DT
+></DL
+></DIV
+><P
+>Up to this point we have seen only example
+    scripts&#8212; Exciting examples, illuminating examples, promising
+    examples, but still just examples. Example scripts are far removed
+    from the realities of a complex GUI application. For a complex
+    application you need a well thought-out modular structure, where
+    each component can find its place. You need an architecture, and
+    you need a design.</P
+><P
+>Most books on programming languages don't
+    progress much beyond basic examples; indeed, it is not really
+    possible to discuss a complete, complex application. Still, in
+    this part of the book I want to show how BlackAdder and PyQt can
+    help you achieve a well-written, maintainable application,
+    starting with the architecture, and then moving on to the outlines
+    of an application. On the way, I'll show you one useful way of
+    laying out the project structure. In the next few chapters we'll
+    build this framework into a real application.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Architecture: models, documents and views</A
+></H1
+><P
+>Let's start with the basics. Applications
+      are, essentially, interfaces that manipulate data. Whether you
+      are handling records from a database, an object tree from a
+      parsed HTML page, a game world, or a stream from a network
+      socket, there is always a reality that is mediated to the user
+      with an interface.</P
+><P
+>From this, it follows naturally that it
+      would be a good idea to separate bits of software that handle
+      the data from the interface. After all, you might want to
+      manipulate the same data with a different interface. In some
+      development environments this is quite difficult to achieve.
+      Visual Basic, for instance, almost mandates that you entangle
+      your data-mangling code with your GUI code. On the other side of
+      the scale, SmallTalk has explicit support for the most extended
+      form of the celebrated <SPAN
+><I
+CLASS="EMPHASIS"
+>Observer</I
+></SPAN
+> pattern
+      &#8212; with the Model/View/Controller framework for the
+      SmallTalk user interface (or, in later versions, the
+      Model-View-Presenter architecture).</P
+><P
+>The component that represents the data is
+      variously termed <SPAN
+><I
+CLASS="EMPHASIS"
+>model</I
+></SPAN
+> or
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>document</I
+></SPAN
+>; the component that actually shows
+      the data on screen is the <SPAN
+><I
+CLASS="EMPHASIS"
+>view</I
+></SPAN
+>. The
+      model-view-controller framework adds a
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>controller</I
+></SPAN
+> component, which represents the
+      user input.</P
+><P
+>The controller component receives mouse
+      clicks, key press events and all other user input, and passes
+      those on to the model. The model determines its current state
+      from that input, and notifies the view that its representation
+      of the model should be changed. Sounds like PyQt signals and
+      slots would come in handy, doesn't it?</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>Model-view-controller architecture</P
+></DIV
+></P
+></DIV
+><P
+>Be aware of the &#8216;fractal' nature of
+      this architecture. You can envision your entire application
+      divided into two or three parts &#8212; one component for the
+      model, one for the view, and perhaps one for the controller.
+      However, the same tripartition can be designed for the lowliest
+      checkbox class. Here, the boolean value is the model, the
+      picture of a box with a cross in it is the view, and the event
+      handler is the controller.</P
+><P
+>Swing, the Java gui toolkit, does exactly
+      this, and gives you the opportunity to write specialized models
+      and controllers for almost all its widgets (and specialized
+      views, too). PyQt doesn't go quite that far, and its widgets are
+      based on a simpler, more monolithic model. Like all good ideas
+      carried through to their extremes, writing models and
+      controllers for every widget is a bit tiresome. That's why
+      Java's Swing also presents capable default implementations for
+      the controller and model parts.</P
+><P
+>This chapter is about application
+      architecture, and when speaking of views and models, documents
+      and controllers, I do so only at the application architecture
+      level, not the widget level. However, a complex application
+      could consist of several models and views: for instance, in an
+      application based on a database, you could view every table as a
+      model and every corresponding form as a view.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>A document-view framework</A
+></H2
+><P
+>The most basic architecture in which
+        application model and interface are separated is the
+        <SPAN
+><I
+CLASS="EMPHASIS"
+>document-view</I
+></SPAN
+> paradigm. Here, you have
+        two basic modules: one representing your data (the document),
+        and one representing the interface that shows the data to the
+        user (the view). This architecture is prevalent in the Windows
+        world: the entire Microsoft MFC library is based on its
+        principles, and it is also popular in the Unix world, where
+        many KDE applications are based on it.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>The document-view architecture</P
+></DIV
+></P
+></DIV
+><P
+>There must be an interface between the
+        document and the view. Changes made in the view must be passed
+        on to the document, and vice-versa. A simple document-view
+        framework is readily constructed:</P
+><P
+>The basic application structure consists
+        of three classes: an application class, a view class and a
+        document class. In the next few chapters of this part, we'll
+        work with the framework to build a real application. We'll
+        also extend it to handle multiple document windows: the
+        framework detailed below can only work with one document. The
+        complete framework is in the file
+        <TT
+CLASS="FILENAME"
+>docview.py</TT
+>.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 12-1. A simple document-view framework</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>class DocviewDoc(QObject):
+
+    def __init__(self, *args):
+        apply(QObject.__init__, (self,)+args)
+        self.modified=FALSE
+
+    def slotModify(self):
+        self.modified = not self.modified
+        self.emit(PYSIGNAL("sigDocModified"),
+                  (self.modified,))
+
+    def isModified(self):
+        return self.modified
+        </PRE
+></DIV
+><P
+>You should always begin with designing
+        the application model - or so the theory goes. Your
+        preferences might lie with first creating a mock-up of the
+        interface using generic widgets, in order to be able to have
+        something concrete to talk about. That's fine with me. Anyway,
+        the <TT
+CLASS="CLASSNAME"
+>DocviewDoc</TT
+> class represents the
+        <SPAN
+><I
+CLASS="EMPHASIS"
+>document</I
+></SPAN
+> or the application model. This
+        can be as complex as you want. This class merely remembers
+        whether it has been modified. The controlling application can
+        query the document using the <TT
+CLASS="FUNCTION"
+>isModified()</TT
+>
+        function to determine whether the document has changed, and it
+        can hook a <TT
+CLASS="CLASSNAME"
+>QAction</TT
+> to the
+        <TT
+CLASS="FUNCTION"
+>slotModify()</TT
+> slot to signal user
+        interaction to the model. Separating all code that handles the
+        application data makes it easy to write automated tests using
+        Pyunit. This is the topic of the next chapter.</P
+><P
+><TT
+CLASS="CLASSNAME"
+>DocviewView</TT
+> is
+        the view class in the framework. A view is a visual component;
+        in PyQt it must somehow descend from
+        <TT
+CLASS="CLASSNAME"
+>QWidget</TT
+> &#8212; either directly, as it
+        is done here, or via a more specialized class, such as
+        <TT
+CLASS="CLASSNAME"
+>QTable</TT
+> or
+        <TT
+CLASS="CLASSNAME"
+>QCanvas</TT
+>. A reference to the application
+        model is passed to the view. This breaks encapsulation
+        somewhat, but it makes initially setting up the display a lot
+        easier.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>I mentioned earlier, in
+          <A href="index.lxp%3Flxpwrap=x2765.htm#CH2QCOLOR">the Section called <I
+>QColor</I
+> in Chapter 10</A
+>, that the nice people at
+          Trolltech changed the name of the function that is
+          used to set background colors from
+          <TT
+CLASS="FUNCTION"
+>setBackgroundColor</TT
+> to
+          <TT
+CLASS="FUNCTION"
+>setEraseColor</TT
+>. This means of course
+          that you, if you want to run this example with PyQt 3,
+          will have to adapt the relevant calls.</P
+></TD
+></TR
+></TABLE
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>class DocviewView(QWidget):
+    def __init__(self, doc, *args):
+        apply(QWidget.__init__, (self, ) + args)
+        self.doc = doc
+        self.connect(self.doc, PYSIGNAL("sigDocModified"),
+                     self.slotDocModified)
+        self.slotDocModified(self.doc.isModified())
+
+    def slotDocModified(self, value):
+        if value:
+            self.setBackgroundColor(QColor("red"))
+        else:
+            self.setBackgroundColor(QColor("green"))
+      </PRE
+><P
+>The document has to notify the view of
+        changes. This means that the view has to have slots
+        corresponding to all the document signals the view is
+        interested in. A view can thus show changes to the document
+        selectively, and you can create more than one view, each with
+        a specialized function.</P
+><P
+>The <TT
+CLASS="CLASSNAME"
+>DocviewApp</TT
+>
+        is the controller component. It controls both view and
+        document.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>class DocviewApp(QMainWindow):
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        self.initActions()
+        self.initMenuBar()
+        self.initToolBar()
+        self.initStatusBar()
+
+        self.initDoc()
+        self.initView()
+      </PRE
+><P
+>The controller keeps a dictionary of
+        actions, making it easier to refer to those actions when
+        populating the menu and toolbars. The dictionary can also be
+        used to export functionality for a macro language, by calling
+        the
+        <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>.<TT
+CLASS="FUNCTION"
+>activated()</TT
+> 
+        slot, which is connected to the relevant slots in the
+        controller. The pixmap is in the form of an inline XPM image,
+        which is not shown here.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initActions(self):
+        fileQuitIcon=QIconSet(QPixmap(filequit))
+        self.actions = {}
+        self.actions["fileQuit"] = QAction("Exit",
+                                           fileQuitIcon,
+                                           "E&#38;xit",
+                                           QAccel.stringToKey("CTRL+Q"),
+                                           self)
+
+        self.connect(self.actions["fileQuit"],
+                     SIGNAL("activated()"),
+                     self.slotFileQuit)
+
+        self.actions["editDoc"] = QAction("Edit",
+                                           fileQuitIcon,
+                                           "&#38;Edit",
+                                           QAccel.stringToKey("CTRL+E"),
+                                           self)
+
+        self.connect(self.actions["editDoc"],
+                     SIGNAL("activated()"),
+                     self.slotEditDoc)
+      </PRE
+><P
+>Populating toolbars, menubars and
+        statusbars are always a bit tedious. When BlackAdder is
+        integrated with  Qt 3.0, it will be possible to design not
+        only dialogs and widgets, but also menu's and toolbars using a
+        very comfortable action editor. I will discuss the various
+        aspects of creating toolbars and menubars later in <A href="index.lxp%3Flxpwrap=c4807.htm">Chapter 13</A
+>.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initMenuBar(self):
+        self.fileMenu = QPopupMenu()
+        self.actions["fileQuit"].addTo(self.fileMenu)
+        self.menuBar().insertItem("&#38;File", self.fileMenu)
+
+        self.editMenu = QPopupMenu()
+        self.actions["editDoc"].addTo(self.editMenu)
+        self.menuBar().insertItem("&#38;Edit", self.editMenu)
+
+    def initToolBar(self):
+        self.fileToolbar = QToolBar(self, "file operations")
+        self.actions["fileQuit"].addTo(self.fileToolbar)
+        QWhatsThis.whatsThisButton(self.fileToolbar)
+
+    def initStatusBar(self):
+        self.statusBar().message("Ready...")
+        </PRE
+><P
+>Here the document, or application model, is
+          initialized.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initDoc(self):
+        self.doc=DocviewDoc()
+        </PRE
+><P
+>The view is created after the document,
+        and then made into the central application widget.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initView(self):
+        self.view = DocviewView( self.doc, self)
+        self.setCentralWidget(self.view)
+        </PRE
+><P
+>This function is called in the
+          <TT
+CLASS="FUNCTION"
+>slotFileQuit()</TT
+> slot when the document
+          has been modified. Note that we're using a class function,
+          <TT
+CLASS="FUNCTION"
+>information</TT
+>, from
+          <TT
+CLASS="CLASSNAME"
+>QMessageBox</TT
+>. By passing an empty
+          string after the button labels for "Ok" and "Cancel", the
+          messagebox is created with only two buttons, instead of
+          three.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def queryExit(self):
+        exit = QMessageBox.information(self,
+                                       "Quit...",
+                                       "Do you really want to quit?",
+                                       "&#38;Ok", 
+                                       "&#38;Cancel", 
+                                       "", 0, 1)
+        if exit==0:
+            return TRUE
+        else:
+            return FALSE
+        </PRE
+><P
+>The slot functions are called whenever
+        one of the <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>s is
+        <TT
+CLASS="FUNCTION"
+>activated()</TT
+>. Note how the statusbar
+        message is set, before calling the document functions
+        directly. </P
+><PRE
+CLASS="PROGRAMLISTING"
+>    #
+    # Slot implementations
+    #
+
+    def slotFileQuit(self):
+        self.statusBar().message("Exiting application...")
+        if self.doc.isModified():
+            if self.queryExit():
+                qApp.quit()
+        else:
+            qApp.quit()
+        self.statusBar().message("Ready...")
+
+    def slotEditDoc(self):
+        self.doc.slotModify()
+
+def main(args):
+    app=QApplication(args)
+    docview = DocviewApp()
+    app.setMainWidget(docview)
+    docview.show()
+    app.exec_loop()
+    
+if __name__=="__main__":
+    main(sys.argv)
+        </PRE
+><P
+>This is the stub that starts the
+        application. In contrast with the examples from Part I, such
+        as <TT
+CLASS="FILENAME"
+>hello5.py</TT
+>, this framework doesn't
+        check if all windows are closed with:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>  app.connect(app, SIGNAL("lastWindowClosed()")
+                 , app, SLOT("quit()"))
+          </PRE
+><P
+>This is because the framework supports
+        only <SPAN
+><I
+CLASS="EMPHASIS"
+>one</I
+></SPAN
+> window, and quitting the app is
+        integrated in the <TT
+CLASS="CLASSNAME"
+>DocviewApp</TT
+>
+        class.</P
+><P
+>Now the startup bit is done, we can see
+        what <TT
+CLASS="FILENAME"
+>docview.py</TT
+> produces when it is
+        run:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><DIV
+CLASS="CAPTION"
+><P
+>A very simple document-view framework
+            application</P
+></DIV
+></P
+></DIV
+><P
+>This framework only supports one window
+        with one view and one document. Another omission is that there
+        is no interaction between view and document. Usually, you will
+        also allow the view component to receive user actions, like
+        mouse clicks. These mostly arrive in the form of events. You
+        can handle these in various ways. The first is to directly
+        call the relevant slot functions in the document. Try adding
+        the following method to the <TT
+CLASS="CLASSNAME"
+>DocviewView</TT
+>
+        class:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def mouseDoubleClickEvent(self, ev):
+        self.doc.slotModify()
+      </PRE
+><P
+>This bypasses the controlling application
+        (<TT
+CLASS="CLASSNAME"
+>DocviewApp</TT
+>) and leads to an
+        uncomfortably tight coupling between view and document.
+        Another way
+        to notify the document of the double-click is to let the view
+        emit a signal, which can be
+        caught by the application object and connected to the document
+        slot. Replace the previous function with the following
+        function in the <TT
+CLASS="CLASSNAME"
+>DocviewView</TT
+> class 
+        instead:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def mouseDoubleClickEvent(self, ev):
+        self.emit(PYSIGNAL("sigViewDoubleClick"),())
+      </PRE
+><P
+>And to the
+        <TT
+CLASS="CLASSNAME"
+>DocviewApp</TT
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initView(self):
+        self.view = DocviewView( self.doc, self)
+        self.setCentralWidget(self.view)
+        self.connect(self.view, PYSIGNAL("sigViewDoubleClick"),
+                     self.slotEditDoc)
+      </PRE
+><P
+>As you can see, you can either call the
+        document directly from the view, or via the application
+        controller. The approach you choose depends on the complexity
+        of your application. In the rest of this part we will extend
+        this simple framework to include MDI (multiple document
+        interface) and MTI (multiple top-level windows interface)
+        applications.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=p4627.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x4760.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Creating real applications with PyQt</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p4627.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Macro languages</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

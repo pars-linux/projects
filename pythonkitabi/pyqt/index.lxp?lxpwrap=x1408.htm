@@ -1,0 +1,1235 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x1408.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Connecting with signals and slots</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Signals and Slots in Depth"
+HREF="c1267.htm"><LINK
+REL="PREVIOUS"
+TITLE="Signals and Slots in Depth"
+HREF="c1267.htm"><LINK
+REL="NEXT"
+TITLE="Disconnecting"
+HREF="x1631.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c1267.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. Signals and Slots in Depth</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1631.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Connecting with signals and slots</A
+></H1
+><P
+>Signals and slots come in two basic
+      varieties: Vanilla, or C++ signals and slots (as defined in the
+      Qt library) and Pythonic (signals and slots defined in Python).
+      Any function of any object can be used as a slot in Python (you
+      don't even have to inherit from <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>).
+      This contrasts to C++, where you need to specially mark a
+      function as a slot in order to be able to connect it to a signal
+      (and have to inherit <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>).</P
+><P
+>Every class that descends from
+      <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> is eligible for the sending
+      (<SPAN
+><I
+CLASS="EMPHASIS"
+>emitting</I
+></SPAN
+> is the technical term) and
+      connecting of signals to its own methods. That means that if
+      your Python class is to emit signals it has to ultimately
+      inherit <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>.</P
+><P
+>Connections are made using the
+      <TT
+CLASS="FUNCTION"
+>connect()</TT
+> method. This is a class method of
+      <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>, and you can, according to your
+      preference, use the method on <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>, or
+      on the actual object you're working with.</P
+><P
+>You can connect signals to slots, but also
+      to other signals, creating a chain of notifications. If you want
+      to disconnect signals from slots, you can use
+      <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>.<TT
+CLASS="FUNCTION"
+>disconnect()</TT
+>. 
+      If you want to emit signals from a Python object, you can use
+      the <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>.<TT
+CLASS="FUNCTION"
+>emit()</TT
+>
+      function.</P
+><P
+>The connect function can take the following
+    parameters:</P
+><P
+></P
+><UL
+><LI
+><P
+>sender &#8212; the <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> that will
+          send the signal.
+        </P
+></LI
+><LI
+><P
+>signal &#8212; the signal that must be connected
+        </P
+></LI
+><LI
+><P
+>receiver &#8212; the <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> that has
+          the slot method that will be called when the signal is
+          emitted.
+        </P
+></LI
+><LI
+><P
+>slot &#8212; the slot method that will be called when the
+        signal is emitted.
+        </P
+></LI
+></UL
+><P
+>If you're connecting your signals from within a class, you can
+    often omit the third parameter &#8212; the receiver.</P
+><P
+>PyQt defines three special functions that
+      appear to be macros (because of their all-caps spelling, as in
+      C++) but are in fact just functions. (In fact, there are no
+      macros in Python). These are <TT
+CLASS="FUNCTION"
+>SLOT()</TT
+>,
+      <TT
+CLASS="FUNCTION"
+>SIGNAL()</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>PYSIGNAL()</TT
+>.</P
+><P
+>Two of these functions are meant for
+      signals and slots defined in C++; the other is meant for signals
+      defined in Python. Signals and slots defined in C++ are
+      connected on the level of C++ (i.e., not in the sip registry)
+      and can be a bit faster.</P
+><P
+>The first function is
+      <TT
+CLASS="FUNCTION"
+>SLOT()</TT
+>, which marks its only argument, a
+      string, as a slot defined in the Qt library, i.e. in C++. The
+      corresponding <TT
+CLASS="FUNCTION"
+>SIGNAL</TT
+>, which also has one
+      string argument, marks its argument as a signal as defined in
+      Qt.</P
+><P
+>For instance, from the documentation of
+      <TT
+CLASS="CLASSNAME"
+>QListview</TT
+> we can learn that this class
+      possesses the slot <TT
+CLASS="FUNCTION"
+>invertSelection()</TT
+>. From the
+      documentation of <TT
+CLASS="CLASSNAME"
+>QButton</TT
+> we learn that it
+      can emit a signal <TT
+CLASS="FUNCTION"
+>clicked()</TT
+>. We can
+      connect a button press to this slot as follows:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-4. Connecting a signal to a slot</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# lsv.py - connect a button to a listview
+#
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+
+        self.mainWidget=QWidget(self);                     <IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+>
+
+        self.vlayout = QVBoxLayout(self.mainWidget, 10, 5)
+
+        self.lsv = QListView(self.mainWidget)              <IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+>
+        self.lsv.addColumn("First column")
+        self.lsv.setSelectionMode(QListView.Multi)
+        self.lsv.insertItem(QListViewItem(self.lsv, "One"))
+        self.lsv.insertItem(QListViewItem(self.lsv, "Two"))
+        self.lsv.insertItem(QListViewItem(self.lsv, "Three"))
+
+        self.bn = QPushButton("Push Me", self.mainWidget)  <IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+>
+        
+        self.vlayout.addWidget(self.lsv)
+        self.vlayout.addWidget(self.bn)
+
+        QObject.connect(self.bn, SIGNAL("clicked()"),      <IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+>
+                        self.lsv, SLOT("invertSelection()"))
+
+        self.setCentralWidget(self.mainWidget)
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+  
+if __name__=="__main__":
+        main(sys.argv)
+      </PRE
+><DIV
+CLASS="CALLOUTLIST"
+><DL
+COMPACT="COMPACT"
+><DT
+><A href="index.lxp%3Flxpwrap=x1408.htm#CH6MAINWIDGET"><IMG
+SRC="images/callouts/1.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(1)"></A
+></DT
+><DD
+>We want to combine a pushbutton and
+              a listview in a main window. So we first define a single
+              main widget that can be managed by the layout manager of
+              <TT
+CLASS="CLASSNAME"
+>QMainWindow</TT
+>, and then add a new
+              layout manager to that widget. The pushbutton and the
+              listview then become children of the main widget,
+              <TT
+CLASS="VARNAME"
+>self.mainWidget</TT
+>. </DD
+><DD
+><P
+>You don't need to keep
+              <TT
+CLASS="VARNAME"
+>self</TT
+> references to the widgets,
+              because these widgets are child objects to
+              <TT
+CLASS="CLASSNAME"
+>QMainWindow</TT
+>. However, if you
+              later want to access those widgets, it is necessary to
+              have a reference.</P
+></DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1408.htm#CH6LISTVIEW"><IMG
+SRC="images/callouts/2.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(2)"></A
+></DT
+><DD
+>The
+              <TT
+CLASS="CLASSNAME"
+>QListView</TT
+> is a child widget to
+              the <TT
+CLASS="VARNAME"
+>mainWidget</TT
+>. It has one column and
+              owns three listview items. In order to give the
+              pushbutton some useful work to do, we allow a multiple
+              selection.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1408.htm#CH6PUSHBUTTON"><IMG
+SRC="images/callouts/3.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(3)"></A
+></DT
+><DD
+>A very standard pushbutton &#8212;
+              nothing special, except that is is a child of the
+              <TT
+CLASS="VARNAME"
+>mainWidget</TT
+>.</DD
+><DT
+><A href="index.lxp%3Flxpwrap=x1408.htm#CH6LSVCONNECT"><IMG
+SRC="images/callouts/4.gif"
+HSPACE="0"
+VSPACE="0"
+BORDER="0"
+ALT="(4)"></A
+></DT
+><DD
+>This is the actual connection
+              between the <TT
+CLASS="FUNCTION"
+>clicked()</TT
+> signal of the
+              button and the <TT
+CLASS="FUNCTION"
+>invertSelection()</TT
+> of
+              the listview. If you press the button, you'll notice the
+              effect.</DD
+></DL
+></DIV
+></DIV
+><P
+>Note that the arguments of SIGNAL and SLOT
+      are used as an index of the dictionary
+      <SPAN
+CLASS="APPLICATION"
+>sip</SPAN
+> keeps of available slots and
+      signals, and that you should match the definition of the signal
+      and slot as given in the class documentation exactly.</P
+><P
+>A more complicated signal/slot combination
+      can pass an integer along (or even a complete object). Let's
+      connect the knob of a <TT
+CLASS="CLASSNAME"
+>QDial</TT
+> to a few
+      functions, creating an color dialer. A
+      <TT
+CLASS="CLASSNAME"
+>QDial</TT
+> generates the
+      <TT
+CLASS="FUNCTION"
+>valueChanged(int)</TT
+> signal, which passes the
+      current value of the dial in the form of an integer to every
+      slot that's connected to the signal. You need to explicitly
+      enter the types of the signal arguments, but not their
+      names.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-5. Connection a dial to a label with signals and slots</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# dial.py &#8212; connecting a QDial to a QLabel or two
+#
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+
+        self.vlayout = QVBoxLayout(self, 10, 5)
+        self.hlayout = QHBoxLayout(None, 10, 5)
+        self.labelLayout=QHBoxLayout(None, 10, 5)
+
+        self.red = 0
+        self.green = 0
+        self.blue = 0
+
+        self.dialRed = QDial(0, 255, 1, 0, self)
+        self.dialRed.setBackgroundColor(QColor("red"))
+        self.dialRed.setNotchesVisible(1)
+        self.dialGreen = QDial(0, 255, 1, 0, self)
+        self.dialGreen.setBackgroundColor(QColor("green"))
+        self.dialGreen.setNotchesVisible(1)
+        self.dialBlue = QDial(0, 255, 1, 0, self)
+        self.dialBlue.setBackgroundColor(QColor("blue"))
+        self.dialBlue.setNotchesVisible(1)
+
+        self.hlayout.addWidget(self.dialRed)
+        self.hlayout.addWidget(self.dialGreen)
+        self.hlayout.addWidget(self.dialBlue)
+
+        self.vlayout.addLayout(self.hlayout)
+
+        self.labelRed = QLabel("Red: 0", self)
+        self.labelGreen = QLabel("Green: 0", self)
+        self.labelBlue = QLabel("Blue: 0", self)
+
+        self.labelLayout.addWidget(self.labelRed)
+        self.labelLayout.addWidget(self.labelGreen)
+        self.labelLayout.addWidget(self.labelBlue)
+
+        self.vlayout.addLayout(self.labelLayout)
+
+        QObject.connect(self.dialRed, SIGNAL("valueChanged(int)"),
+                        self.slotSetRed)
+        QObject.connect(self.dialGreen, SIGNAL("valueChanged(int)"),
+                        self.slotSetGreen)
+        QObject.connect(self.dialBlue, SIGNAL("valueChanged(int)"),
+                        self.slotSetBlue)
+
+        QObject.connect(self.dialRed, SIGNAL("valueChanged(int)"),
+                        self.slotSetColor)
+        QObject.connect(self.dialGreen, SIGNAL("valueChanged(int)"),
+                        self.slotSetColor)
+        QObject.connect(self.dialBlue, SIGNAL("valueChanged(int)"),
+                        self.slotSetColor)
+
+    def slotSetRed(self, value):
+        self.labelRed.setText("Red: " + str(value))
+        self.red = value
+
+    def slotSetGreen(self, value):
+        self.labelGreen.setText("Green: " + str(value))
+        self.green = value
+
+    def slotSetBlue(self, value):
+        self.labelBlue.setText("Blue: " + str(value))
+        self.blue = value
+
+    def slotSetColor(self, value):
+        self.setBackgroundColor(QColor(self.red, self.green, self.blue))
+        self.labelRed.setBackgroundColor(QColor(self.red, 128, 128))
+        self.labelGreen.setBackgroundColor(QColor(128, self.green, 128))
+        self.labelBlue.setBackgroundColor(QColor(128, 128, self.blue))
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+      </PRE
+></DIV
+><P
+>Note that we connect the C++ signals
+      (SIGNAL), to Python functions. You simply give the function
+      object as the slot argument&#8212; not the result of the
+      function call. Consider the difference between:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>      QObject.connect(self.dialBlue,
+                      SIGNAL("valueChange(int)"),
+                      self.slotSetColor())
+    </PRE
+><P
+>which is wrong, and:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>      QObject.connect(self.dialBlue,
+                      SIGNAL("valueChange(int)"),
+                      self.slotSetColor)
+    </PRE
+><P
+>which is right. All that difference for two little brackets!
+      This is a rather frequent typo or thinko. (However, to give you a
+      glimpse of the dynamic nature of Python, if you have a function
+      that returns the correct function to connect to the signal, you
+      do want a function call in
+      <TT
+CLASS="FUNCTION"
+>connect()</TT
+>.)</P
+><P
+>Note also that the number and type of arguments of the
+      signal and the slot you want to connect have to match. When
+      connecting C++ signals to C++ slots, there is also a bit of
+      type-checking done. </P
+><P
+>Python signals are indicated by the
+      <TT
+CLASS="FUNCTION"
+>PYSIGNAL()</TT
+> function, which also takes a
+      string. There is no <TT
+CLASS="FUNCTION"
+>PYSLOT()</TT
+> function
+      corresponding to <TT
+CLASS="FUNCTION"
+>SLOT()</TT
+>, because you can
+      use <SPAN
+><I
+CLASS="EMPHASIS"
+>any</I
+></SPAN
+> function as a slot in
+      Python.</P
+><P
+>The argument of <TT
+CLASS="FUNCTION"
+>PYSIGNAL()</TT
+> is a simple
+      string that is unique for the class from which the signal is
+      emitted. It performs the same function as the
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>occasion</I
+></SPAN
+> string in the small
+      <TT
+CLASS="FILENAME"
+>registry.py</TT
+> script.  The difference is that
+      <TT
+CLASS="FUNCTION"
+>PYSIGNAL()</TT
+> string needs to be unique only
+      for the class, and not the whole application.</P
+><P
+>Connecting to a Python signal doesn't
+      differ much from connecting to a C++ signal, except that you
+      don't have to worry so much about the type and number of
+      arguments of the signal. To rewrite the
+      <TT
+CLASS="FILENAME"
+>registry.py</TT
+> example:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-6. Python signals and slots</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# sigslot.py  &#8212; python signals and slots
+#
+from qt import *
+
+class Button(QObject):
+
+    def clicked(self):
+        self.emit(PYSIGNAL("sigClicked"), ())
+
+class Application(QObject):
+
+    def __init__(self):
+        QObject.__init__(self)
+
+        self.button=Button()
+        self.connect(self.button, PYSIGNAL("sigClicked"),
+                        self.doAppSpecificFunction)
+        self.connect(self.button, PYSIGNAL("sigClicked"),
+                        self.doSecondFunction)
+
+    def doAppSpecificFunction(self):
+        print "Function called"
+
+    def doSecondFunction(self):
+        print "A second function is called."
+
+app=Application()
+app.button.clicked()
+      </PRE
+></DIV
+><P
+>Running this example from the command line gives the
+      following output:</P
+><PRE
+CLASS="SCREEN"
+>/home/boudewijn/doc/pyqt/ch6 $ python sigslot.py
+A second function is called.
+Function called
+    </PRE
+><P
+>The <TT
+CLASS="CLASSNAME"
+>Button</TT
+> emits the
+      Python signal. Note the construction: the second argument to the
+      <TT
+CLASS="FUNCTION"
+>emit</TT
+> function is a
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>tuple</I
+></SPAN
+> that contains the arguments you want
+      to pass on. It must always be a tuple, even if it has to be an
+      empty tuple, or a tuple with only one element. This is shown in
+      the next example, in which we have to explicitly create an empty
+      tuple, and a tuple with one element from a single argument, by
+      enclosing the argument in brackets and adding a comma:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 7-7. Python signals and slots with arguments</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#
+# sigslot2.py  &#8212; python signals and slots with arguments
+#
+from qt import *
+
+class Widget(QObject):
+
+    def noArgument(self):
+        self.emit(PYSIGNAL("sigNoArgument"), ())
+
+    def oneArgument(self):
+        self.emit(PYSIGNAL("sigOneArgument"), (1, ))
+
+    def twoArguments(self):
+        self.emit(PYSIGNAL("sigTwoArguments"), (1, "two"))
+
+class Application(QObject):
+
+    def __init__(self):
+        QObject.__init__(self)
+
+        self.widget = Widget()
+
+        self.connect(self.widget, PYSIGNAL("sigNoArgument"),
+                        self.printNothing)
+        self.connect(self.widget, PYSIGNAL("sigOneArgument"),
+                        self.printOneArgument)
+        self.connect(self.widget, PYSIGNAL("sigTwoArguments"),
+                        self.printTwoArguments)
+        self.connect(self.widget, PYSIGNAL("sigTwoArguments"),
+                        self.printVariableNumberOfArguments)
+
+    def printNothing(self):
+        print "No arguments"
+
+    def printOneArgument(self, arg):
+        print "One argument", arg
+
+    def printTwoArguments(self, arg1, arg2):
+        print "Two arguments", arg1, arg2
+
+    def printVariableNumberOfArguments(self, *args):
+        print "list of arguments", args
+
+app=Application()
+app.widget.noArgument()
+app.widget.oneArgument()
+app.widget.twoArguments()
+      </PRE
+></DIV
+><P
+>Note the usage of the *arg argument
+      definition. This Python construct means that a variable length
+      list of un-named arguments can be passed to a function. Thus
+      <TT
+CLASS="FUNCTION"
+>printVariableNumberOfArguments(self, *args)</TT
+>
+      fits every signal that you care to connect it to.</P
+><P
+>It's an interesting test to run this script
+      several times: you will notice that the order in which the
+      signals generated by <TT
+CLASS="FUNCTION"
+>twoArguments()</TT
+> arrive
+      at their destination is not fixed. This means that if a signal
+      is connected to two or more slots, the slots are not called in
+      any particular order. However, if two signals are connected to
+      two separate slots, then the slots are called in the order in
+      which the signals are emitted.</P
+><P
+>The following combinations of arguments to the
+      <TT
+CLASS="FUNCTION"
+>connect()</TT
+> function are possible:</P
+><DIV
+CLASS="TABLE"
+></A
+><P
+><B
+>Table 7-1. Matrix of
+        <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>.<TT
+CLASS="FUNCTION"
+>connect()</TT
+>
+        combinations.</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Signal
+            </TH
+><TH
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Connected to
+            </TH
+><TH
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Syntax (Note that you can replace
+              <TT
+CLASS="FUNCTION"
+>QObject.connect()</TT
+> by
+              <TT
+CLASS="FUNCTION"
+>self.connect()</TT
+> everywhere.)
+            </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ slot of another object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, SIGNAL("qtSignal()"), object2,
+              SLOT("qtSlot()"))
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ slot of &#8216;self' object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, SIGNAL("qtSignal()"), SLOT("qtSlot()"))
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python slot of another object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, SIGNAL("qtSignal()"), object2,
+              pythonFunction)
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python slot of &#8216;self' object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, SIGNAL("qtSignal()"),
+              self.pythonFunction)
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ signal of another object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, SIGNAL("qtSignal()"), object2,
+              SIGNAL("qtSignal()")
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ signal of &#8216;self' object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, SIGNAL("qtSignal()"), self,
+              SIGNAL("qtSignal()")
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ slot of another object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, PYSIGNAL("pySignal()"), object2,
+              SLOT("qtSlot()"))
+
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ slot of &#8216;self' object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, PYSIGNAL("pySignal()"),
+              SLOT("qtSlot()"))
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python slot of another object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, PYSIGNAL("pySignal()"),
+              object2.pythonFunction))
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python slot of &#8216;self' object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, PYTHON("pySignal()"),
+              self.pythonFunction))
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ signal of another object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, OYSIGNAL("pySignal()"), object2,
+              SIGNAL("qtSignal()")
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              C++ signal of &#8216;self' object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, PYSIGNAL("pySignal()"), self,
+              SIGNAL("qtSignal()")
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python signal of another object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, PYSIGNAL("pySignal()"), object2,
+              PYSIGNAL("pySignal()")
+            </TD
+></TR
+><TR
+><TD
+WIDTH="50"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python
+            </TD
+><TD
+WIDTH="100"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              Python signal of &#8216;self' object
+            </TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>              QObject.connect(object1, PYSIGNAL("pySignal()"),
+              PYSIGNAL("pySignal()")
+            </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=c1267.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x1631.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Signals and Slots in Depth</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c1267.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Disconnecting</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

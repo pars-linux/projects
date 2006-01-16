@@ -1,0 +1,856 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=c6996.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>A Macro Language for Kalam</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Creating real applications with PyQt"
+HREF="p4627.htm"><LINK
+REL="PREVIOUS"
+TITLE="Conclusion"
+HREF="x6992.htm"><LINK
+REL="NEXT"
+TITLE="Integrating macros with a GUI"
+HREF="x7161.htm"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x6992.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x7161.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+>Chapter 20. A Macro Language for <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+></A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=c6996.htm#AEN7006">Executing Python code from Python</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x7161.htm">Integrating macros with a GUI</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x7295.htm">Creating a macro API from an application</A
+></DT
+><DT
+><A href="index.lxp%3Flxpwrap=x7388.htm">Conclusion</A
+></DT
+></DL
+></DIV
+><P
+>One thing that separates a run-of-the-mill
+    application from a real tool&#8212;one that users will take refuge
+    in day after day&#8212;is a good macro facility. Python, which was
+    designed with ease of use in mind, is a natural choice for a macro
+    language. Nine out of ten secretaries would choose Python over the
+    WordPerfect macro language or Visual Basic, given the choice!
+    Isn't it fortunate that we have already begun developing our
+    application in Python?</P
+><P
+>This chapter deals with integrating a Python
+    based macro facility in <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+>. In the
+    course of this chapter we investigate the execution of Python code
+    while dynamically adding actions and menu items. We also cover
+    granting user access to a predefined API of our application
+    objects.</P
+><P
+>Of course, the underlying mechanics of a
+    macro facility are not particular to any GUI toolkit. And if you
+    decide to convert your application to C++, you can still embed
+    Python, wrap the API using <SPAN
+CLASS="APPLICATION"
+>sip</SPAN
+>, and
+    allow your users to execute the same macros. We handle powerful
+    stuff in this chapter, and it's well worth the effort. </P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Executing Python code from Python</A
+></H1
+><P
+>There are three basic ways to execute
+      Python code that is not directly (i.e. imported as a module)
+      part of your application. Single statements can be executed with
+      <TT
+CLASS="FUNCTION"
+>eval()</TT
+>; we already encountered
+      <TT
+CLASS="FUNCTION"
+>eval()</TT
+> in <A href="index.lxp%3Flxpwrap=c6013.htm">Chapter 18</A
+>. Strings
+      that contain more than a single statement of Python code can be
+      executed with <TT
+CLASS="FUNCTION"
+>exec()</TT
+>, while Python code
+      that is saved in a file can be executed with
+      <TT
+CLASS="FUNCTION"
+>execfile()</TT
+>.</P
+><P
+>Both <TT
+CLASS="FUNCTION"
+>eval()</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>exec()</TT
+> can be fed either plain text strings
+      or pre-compiled Python byte code. You can create blobs of byte
+      code with the <TT
+CLASS="FUNCTION"
+>compile()</TT
+> function, but you
+      don't have to&#8212;it is simply a little more efficient to use
+      bytecode if you execute the same code more than once. The
+      <TT
+CLASS="FUNCTION"
+>evalfile()</TT
+> function reads in a file and
+      executes the contents, which must be plain text. You cannot feed
+      <TT
+CLASS="FUNCTION"
+>execfile</TT
+> compiled Python byte code.</P
+><P
+>Please note that
+      <TT
+CLASS="FUNCTION"
+>eval()</TT
+>, <TT
+CLASS="FUNCTION"
+>exec()</TT
+>,
+      <TT
+CLASS="FUNCTION"
+>execfile()</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>compile()</TT
+> are the real ginger: this is what
+      your Python interpreter uses to execute your code.</P
+><P
+>The mere ability to execute random bits of
+      code is quite powerful in itself, but code only becomes truly
+      useful if it no longer exists in a void, but can call other,
+      pre-existing bits of code.</P
+><P
+>The code we execute with
+    <TT
+CLASS="FUNCTION"
+>eval()</TT
+>, <TT
+CLASS="FUNCTION"
+>exec()</TT
+> and
+    <TT
+CLASS="FUNCTION"
+>execfile()</TT
+> should be brought into relation
+    with the other Python modules that exist in the library, and with
+    the code of our application. Not only that, but preferably also
+    with the <SPAN
+><I
+CLASS="EMPHASIS"
+>state</I
+></SPAN
+>, that is, the variables and
+    objects, of the application that asks <TT
+CLASS="FUNCTION"
+>eval()</TT
+>,
+    <TT
+CLASS="FUNCTION"
+>exec()</TT
+> and <TT
+CLASS="FUNCTION"
+>execfile()</TT
+> to
+    execute the code.</P
+><P
+>To that end, <TT
+CLASS="FUNCTION"
+>eval()</TT
+>,
+      <TT
+CLASS="FUNCTION"
+>exec()</TT
+> and <TT
+CLASS="FUNCTION"
+>execfile()</TT
+>
+      take two parameters. The first, <TT
+CLASS="VARNAME"
+>globals</TT
+>, is a
+      dictionary that represents the <SPAN
+><I
+CLASS="EMPHASIS"
+>global</I
+></SPAN
+>
+      namespace. You can retrieve the global namespace of your
+      application with the function <TT
+CLASS="FUNCTION"
+>globals()</TT
+>.
+      The global namespace contains all imported classes, built-in
+      functions and all global
+      variables, but you can also construct a restricted global
+      environment dictionary yourself.</P
+><P
+>The second argument,
+      <TT
+CLASS="VARNAME"
+>locals</TT
+>, is a dictionary that represents the
+      <SPAN
+><I
+CLASS="EMPHASIS"
+>local</I
+></SPAN
+> namespace. You can retrieve it with
+      <TT
+CLASS="FUNCTION"
+>locals()</TT
+>. The <TT
+CLASS="VARNAME"
+>locals</TT
+>
+      dictionary contains whatever names are local to the function
+      your application is currently in. You can also create a
+      restricted (or expanded) <TT
+CLASS="VARNAME"
+>locals</TT
+> dictionary
+      yourself.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>If you mess about with the globals and
+        locals dictionary, be prepared to encounter what the Python
+        Language Reference calls "undefined behavior". For instance,
+        if you execute a bit of code with an empty locals dictionary,
+        you cannot add new names to the namespace. This means that
+        import won't work, for instance, or even variable assignments.
+        Generally speaking, it is best to simply pass the
+        globals dictionary, which means that the locals dictionary
+        used by the executed code will be a copy of the globals
+        dictionary.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Let's compare these locals and globals
+      from an interactive Python session:</P
+><PRE
+CLASS="SCREEN"
+>Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&#62;&#62;&#62; globals()
+{'__doc__': None, '__name__': '__main__',
+ '__builtins__': &#60;module '__builtin__' (built-in)&#62;}
+&#62;&#62;&#62; def f():
+...     a=1
+...     print "locals: ", locals()
+...
+&#62;&#62;&#62; globals()
+{'f': &#60;function f at 0x8124a94&#62;, '__doc__': None,
+ '__name__': '__main__',
+ '__builtins__': &#60;module '__builtin__' (built-in)&#62;}
+&#62;&#62;&#62; f()
+locals:  {'a': 1}
+&#62;&#62;&#62;
+    </PRE
+><P
+>First, we take a look at the contents of
+      the <TT
+CLASS="VARNAME"
+>globals</TT
+> dictionary when Python is first
+      started. Then, we define a simple function
+      <TT
+CLASS="FUNCTION"
+>f</TT
+>, that creates a variable
+      <TT
+CLASS="VARNAME"
+>a</TT
+>, which contains the value 1 and which
+      prints the <TT
+CLASS="VARNAME"
+>locals</TT
+> dictionary. Retrieving the
+      value of <TT
+CLASS="VARNAME"
+>globals</TT
+> shows that
+      <TT
+CLASS="FUNCTION"
+>f</TT
+> is now part of
+      <TT
+CLASS="VARNAME"
+>globals</TT
+>. Running <TT
+CLASS="FUNCTION"
+>f</TT
+> shows
+      that <TT
+CLASS="VARNAME"
+>a</TT
+> is the only member of
+      <TT
+CLASS="VARNAME"
+>locals</TT
+>.</P
+><P
+>By default, the <TT
+CLASS="VARNAME"
+>globals</TT
+>
+      and <TT
+CLASS="VARNAME"
+>locals</TT
+> arguments of
+      <TT
+CLASS="FUNCTION"
+>eval()</TT
+>, <TT
+CLASS="FUNCTION"
+>exec()</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>execfile()</TT
+> contain the current contents of
+      <TT
+CLASS="VARNAME"
+>globals</TT
+> and <TT
+CLASS="VARNAME"
+>locals</TT
+>, but
+      you can alter this&#8212; for instance, to restrict access to
+      certain application objects.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Playing with <TT
+CLASS="FUNCTION"
+>eval()</TT
+></A
+></H2
+><P
+><TT
+CLASS="FUNCTION"
+>eval()</TT
+> functions as
+        if it executes a single line of code in the Python
+        interpreter: it returns a value that represents the result of
+        the evaluated expression. If the statement you give to
+        <TT
+CLASS="FUNCTION"
+>eval()</TT
+> raises an exception, the
+        surrounding code gets that exception, too. Playing around with
+        <TT
+CLASS="FUNCTION"
+>eval()</TT
+> will give you a feeling for what
+        it can do for you.</P
+><DIV
+CLASS="FIGURE"
+></A
+><P
+><B
+>Figure 20-1. Playing with <TT
+CLASS="FUNCTION"
+>eval()</TT
+></B
+></P
+><PRE
+CLASS="SCREEN"
+>boud@calcifer:~/doc/pyqt/ch15 &#62; python
+Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&#62;&#62;&#62; eval
+&#60;built-in function eval&#62;
+&#62;&#62;&#62; eval("1==1")
+1
+&#62;&#62;&#62; import string
+&#62;&#62;&#62; eval("string.split('bla bla bla')")
+['bla', 'bla', 'bla']
+&#62;&#62;&#62; eval("string.split('bla bla bla')", {}, {})
+Traceback (most recent call last):
+  File "&#60;stdin&#62;", line 1, in ?
+  File "&#60;string&#62;", line 0, in ?
+NameError: There is no variable named 'string'
+&#62;&#62;&#62; eval("""from qt import *
+... s=QString("bla bla bla")
+... print str(s).split()
+... """)
+Traceback (most recent call last):
+  File "&#60;stdin&#62;", line 1, in ?
+  File "&#60;string&#62;", line 1
+    from qt import *
+       ^
+SyntaxError: invalid syntax
+&#62;&#62;&#62;
+      </PRE
+></DIV
+><P
+>First, we take a look at what "eval" is
+        for a beast. A built-in function. OK, let's try it out. Yes, 1
+        equals 1 evaluates to 1, which means TRUE -
+        <TT
+CLASS="FUNCTION"
+>eval</TT
+> neatly returns the result of the
+        code it executes. Next, having imported the
+        <TT
+CLASS="FILENAME"
+>string</TT
+> module, we use it to split a
+        string. Here, <TT
+CLASS="FUNCTION"
+>eval()</TT
+> has access to the
+        global namespace, which means it can access the module we just
+        imported, so <TT
+CLASS="FUNCTION"
+>string.split()</TT
+> evaluates
+        just fine. However, if we try to evaluate the same expression,
+        but with empty global and local dictionaries, we get a
+        <TT
+CLASS="VARNAME"
+>NameError</TT
+> exception - suddenly
+        <TT
+CLASS="FUNCTION"
+>string</TT
+> isn't known anymore. Trying to
+        evaluate something more complicated, something that is not a
+        single expression that returns a value (even if it's only
+        <TT
+CLASS="VARNAME"
+>None</TT
+>)  doesn't work at all - which is why
+        <TT
+CLASS="FUNCTION"
+>exec()</TT
+> exists.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Playing with <TT
+CLASS="FUNCTION"
+>exec</TT
+></A
+></H2
+><P
+>First, <TT
+CLASS="FUNCTION"
+>exec</TT
+> is
+        really a statement, not a function, so it doesn't return
+        anything.  Just as with <TT
+CLASS="FUNCTION"
+>eval()</TT
+>,
+        exceptions are propagated outside the code block you execute.
+        You can feed <TT
+CLASS="FUNCTION"
+>exec</TT
+> a string, a compiled
+        code object or an open file. The file will be parsed until an
+        EOF (end-of-file) occurs, and executed. The same rules hold
+        for the global and local namespace dictionaries as with
+        <TT
+CLASS="FUNCTION"
+>eval()</TT
+> - but keep in mind that running
+        <TT
+CLASS="FUNCTION"
+>exec</TT
+> might add new items to those
+        namespaces.</P
+><DIV
+CLASS="FIGURE"
+></A
+><P
+><B
+>Figure 20-2. Playing with <TT
+CLASS="FUNCTION"
+>exec</TT
+></B
+></P
+><PRE
+CLASS="SCREEN"
+>boud@calcifer:~/doc/pyqt/ch15 &#62; python
+Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&#62;&#62;&#62; globals()
+{'__doc__': None, '__name__': '__main__',
+ '__builtins__': &#60;module '__builtin__' (built-in)&#62;}
+&#62;&#62;&#62; code = """
+... import qt
+... s = qt.QString("bla bla bla")
+... print string.split(str(s))
+... """
+&#62;&#62;&#62; exec code
+Traceback (most recent call last):
+  File "&#60;stdin&#62;", line 1, in ?
+  File "&#60;string&#62;", line 4, in ?
+NameError: There is no variable named 'string'
+&#62;&#62;&#62; import string
+&#62;&#62;&#62; exec code
+['bla', 'bla', 'bla']
+&#62;&#62;&#62; globals()
+{'__doc__': None, 'string': &#60;module 'string' from
+'/usr/lib/python2.0/string.pyc'&#62;, '__name__':
+ '__main__', '__builtins__': &#60;module '__builtin__'
+ (built-in)&#62;, 'qt': &#60;module 'qt' from
+'/usr/lib/python2.0/site-packages/qt.py'&#62;,
+ 'code': '\012import qt\012s = qt.QString("bla bla bla")\012print
+string.split(str(s))\012', 's': &#60;qt.QString instance at 0x8278af4&#62;}
+&#62;&#62;&#62;
+        </PRE
+></DIV
+><P
+>First, we create a string that contains
+        the bit of Python we want to execute. Note how it imports the
+        <TT
+CLASS="FILENAME"
+>qt</TT
+> module, and how it uses the
+        <TT
+CLASS="FILENAME"
+>string</TT
+> module. Executing the code doesn't
+        work: it throws a <TT
+CLASS="VARNAME"
+>NameError</TT
+> because
+        <TT
+CLASS="FILENAME"
+>string</TT
+> isn't known. Importing
+        <TT
+CLASS="FILENAME"
+>string</TT
+> into the global namespace makes it
+        also available to <TT
+CLASS="FUNCTION"
+>exec</TT
+>, of course.
+        Executing the <TT
+CLASS="VARNAME"
+>code</TT
+> string now succeeds, and
+        a quick peek in <TT
+CLASS="VARNAME"
+>globals</TT
+> learns us that the
+        module <TT
+CLASS="FILENAME"
+>qt</TT
+> has been added.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Playing with <TT
+CLASS="FUNCTION"
+>execfile()</TT
+></A
+></H2
+><P
+>The <TT
+CLASS="FUNCTION"
+>execfile()</TT
+>
+        statement is rarely used; after all, it can't do anything
+        beyond what the plain <TT
+CLASS="FUNCTION"
+>exec</TT
+> statement
+        already does. <TT
+CLASS="FUNCTION"
+>execfile()</TT
+> functions
+        exactly the same as <TT
+CLASS="FUNCTION"
+>exec</TT
+>, except that the
+        first argument must be a filename (it doesn't need to be an
+        open file object). Note that <TT
+CLASS="FUNCTION"
+>execfile()</TT
+>
+        differs from <TT
+CLASS="LITERAL"
+>import</TT
+> in that it doesn't
+        create a new module in the global namespace. Note the
+        difference between <TT
+CLASS="FUNCTION"
+>execfile()</TT
+> and
+        <TT
+CLASS="LITERAL"
+>import</TT
+> in the following output:</P
+><DIV
+CLASS="FIGURE"
+></A
+><P
+><B
+>Figure 20-3. Playing with
+      <TT
+CLASS="FUNCTION"
+>execfile()</TT
+></B
+></P
+><PRE
+CLASS="SCREEN"
+>Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&#62;&#62;&#62; execfile("main.py")
+Initializing configuration
+{'kalam': &#60;kalamapp.KalamApp instance at 0x825f014&#62;,
+ 'app': &#60;qt.QApplication instance at 0x814a2a4&#62;, 'args': ['']}
+Saving configuration
+&#62;&#62;&#62; import main
+&#62;&#62;&#62; globals()
+{..., 'main': &#60;module 'main' from 'main.py'&#62;, ... }
+        </PRE
+></DIV
+><P
+>In the middle of all the
+        <TT
+CLASS="FILENAME"
+>qt</TT
+> classes the <TT
+CLASS="FILENAME"
+>main</TT
+>
+        module of <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> imports into
+        <TT
+CLASS="VARNAME"
+>globals</TT
+>, we find the
+        <TT
+CLASS="FILENAME"
+>main</TT
+> module itself, which isn't there if
+        we just <TT
+CLASS="FILENAME"
+>execfile</TT
+>
+        <TT
+CLASS="FILENAME"
+>main.py</TT
+>.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x6992.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x7161.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conclusion</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=p4627.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Integrating macros with a GUI</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

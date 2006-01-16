@@ -1,0 +1,854 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x5469.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>The actual application</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="A More Complex Framework: Multiple Documents, Multiple
+    Views"
+HREF="c5288.htm"><LINK
+REL="PREVIOUS"
+TITLE="View"
+HREF="x5458.htm"><LINK
+REL="NEXT"
+TITLE="Conclusion"
+HREF="x5581.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5458.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 15. A More Complex Framework: Multiple Documents, Multiple
+    Views</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5581.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>The actual application</A
+></H1
+><P
+>As with the document-view framework, you
+      can view the <TT
+CLASS="CLASSNAME"
+>QMainWindow</TT
+> derived class as
+      the central application controller. It takes the user input and
+      translates that to calls to either the data or the GUI
+      interface.</P
+><P
+>Even though the
+      <TT
+CLASS="CLASSNAME"
+>MDIApp</TT
+> class might appear a bit complex
+      (and certainly very long!) it is much simpler than it would  be
+      with everything from the <TT
+CLASS="CLASSNAME"
+>DocManager</TT
+> added
+      to it. The creation of <TT
+CLASS="CLASSNAME"
+>QAction</TT
+>s, and the
+      attendant fringe decorations such as menu's and toolbars, is
+      quite standard:</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 15-5. The application class</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>"""
+mdiapp.py &#8212; application class for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+
+from qt import *
+
+from mdiview import MDIView
+from mdidoc import MDIDoc
+from docmanager import DocManager
+
+from resources import *
+
+class MDIApp(QMainWindow):
+    """
+    MDIApp combines MDIDoc and MDIView into an single
+    window, multiple sub-window, multiple document application.
+    """
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        self.setCaption("MDI Application Framework")
+        self.workspace = self.initWorkSpace()
+
+        self.docManager=DocManager(self, self.workspace)
+        self.connect(self.docManager,
+                     PYSIGNAL("sigNumberOfDocsChanged"),
+                     self.setActionsEnabled)
+        self.initActions()
+        self.initMenuBar()
+        self.initToolBar()
+        self.initStatusBar()
+        self.setActionsEnabled()
+    #
+    # GUI initialization
+    #
+        
+    def initActions(self):
+        fileNewIcon=QIconSet(QPixmap(filenew))
+        fileQuitIcon=QIconSet(QPixmap(filequit))
+        fileOpenIcon=QIconSet(QPixmap(fileopen))
+        fileSaveIcon=QIconSet(QPixmap(filesave))
+        
+        self.actions = {}
+  
+        self.actions["fileNew"] = QAction("New",
+                                           fileNewIcon,
+                                           "&#38;New",
+                                           QAccel.stringToKey("CTRL+N"),
+                                           self)
+        self.connect(self.actions["fileNew"],
+                     SIGNAL("activated()"),
+                     self.slotFileNew)
+
+
+        self.actions["fileOpen"] = QAction("Open",
+                                           fileOpenIcon,
+                                           "&#38;Open",
+                                           QAccel.stringToKey("CTRL+O"),
+                                           self)
+        self.connect(self.actions["fileOpen"],
+                     SIGNAL("activated()"),
+                     self.slotFileOpen)
+
+        self.actions["fileSave"] = QAction("Save",
+                                           fileSaveIcon,
+                                           "&#38;Save",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["fileSave"],
+                     SIGNAL("activated()"),
+                     self.slotFileSave)
+
+        self.actions["fileSaveAs"] = QAction("Save as",
+                                             fileSaveIcon,
+                                             "&#38;Save as",
+                                             QAccel.stringToKey(""),
+                                             self)
+        self.connect(self.actions["fileSaveAs"],
+                     SIGNAL("activated()"),
+                     self.slotFileSaveAs)
+
+        self.actions["fileClose"] = QAction("Close",
+                                            "&#38;Close Document",
+                                           QAccel.stringToKey("CTRL+W"),
+                                           self)
+        self.connect(self.actions["fileClose"],
+                     SIGNAL("activated()"),
+                     self.slotFileClose)
+        
+        self.actions["fileQuit"] = QAction("Exit",
+                                           fileQuitIcon,
+                                           "E&#38;xit",
+                                           QAccel.stringToKey("CTRL+Q"),
+                                           self)
+        self.connect(self.actions["fileQuit"],
+                     SIGNAL("activated()"),
+                     self.slotFileQuit)
+
+        self.actions["editDoc"] = QAction("Edit",
+                                           fileQuitIcon,
+                                           "&#38;Edit",
+                                           QAccel.stringToKey("CTRL+E"),
+                                           self)
+        self.connect(self.actions["editDoc"],
+                     SIGNAL("activated()"),
+                     self.slotEditDoc)
+
+        self.actions["windowCloseWindow"] = QAction(self)
+        self.actions["windowCloseWindow"].setText("Close Window")
+        self.actions["windowCloseWindow"].setAccel(QAccel.
+                                                   stringToKey("CTRL+W"))
+        self.actions["windowCloseWindow"].setMenuText("&#38;Close Window")
+        self.connect(self.actions["windowCloseWindow"],
+                     SIGNAL("activated()"),
+                     self.slotWindowCloseWindow)
+
+        self.actions["windowNewWindow"] = QAction(self)
+        self.actions["windowNewWindow"].setText("New Window")
+        self.actions["windowNewWindow"].setMenuText("&#38;New Window")
+        self.connect(self.actions["windowNewWindow"],
+                     SIGNAL("activated()"),
+                     self.slotWindowNewWindow)
+
+        self.actions["windowCascade"] = QAction(self)
+        self.actions["windowCascade"].setText("Cascade")
+        self.actions["windowCascade"].setMenuText("&#38;Cascade")
+        self.connect(self.actions["windowCascade"],
+                     SIGNAL("activated()"),
+                     self.workspace.cascade)
+  
+        self.actions["windowTile"] = QAction(self)
+        self.actions["windowTile"].setText("Tile")
+        self.actions["windowTile"].setMenuText("&#38;Tile")
+        self.connect(self.actions["windowTile"],
+                     SIGNAL("activated()"),
+                     self.workspace.tile)
+
+        self.actions["windowAction"] = QActionGroup(self, None, FALSE)
+        self.actions["windowAction"].insert(self.actions["windowCloseWindow"])
+        self.actions["windowAction"].insert(self.actions["windowNewWindow"])
+        self.actions["windowAction"].insert(self.actions["windowCascade"])
+        self.actions["windowAction"].insert(self.actions["windowTile"])
+
+        self.actions["helpAboutApp"] = QAction(self)
+        self.actions["helpAboutApp"].setText("About")
+        self.actions["helpAboutApp"].setMenuText("&#38;About...")
+        self.connect(self.actions["helpAboutApp"],
+                     SIGNAL("activated()"),
+                     self.slotHelpAbout)
+
+    </PRE
+></DIV
+><P
+>The set of actions included in this framework is not
+      complete, of course. Ideally, you would want accelerators for
+      switching between views, and a lot of application specific
+      actions. We'll be adding these over the next few
+      chapters.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initMenuBar(self):
+        self.fileMenu = QPopupMenu()
+        self.actions["fileNew"].addTo(self.fileMenu)
+        self.actions["fileOpen"].addTo(self.fileMenu)
+        self.actions["fileSave"].addTo(self.fileMenu)
+        self.actions["fileSaveAs"].addTo(self.fileMenu)
+        self.actions["fileClose"].addTo(self.fileMenu)
+        self.fileMenu.insertSeparator()
+        self.actions["fileQuit"].addTo(self.fileMenu)
+        self.menuBar().insertItem("&#38;File", self.fileMenu)
+
+        self.editMenu = QPopupMenu()
+        self.actions["editDoc"].addTo(self.editMenu)
+        self.menuBar().insertItem("&#38;Edit", self.editMenu)
+
+        self.windowMenu = QPopupMenu()
+        self.windowMenu.setCheckable(TRUE)
+        self.connect(self.windowMenu,
+                     SIGNAL("aboutToShow()"),
+                     self.slotWindowMenuAboutToShow)
+        self.menuBar().insertItem("&#38;Window", self.windowMenu)
+        
+        self.helpMenu = QPopupMenu()
+        self.actions["helpAboutApp"].addTo(self.helpMenu)
+        self.menuBar().insertItem("&#38;Help", self.helpMenu)
+        
+    def initToolBar(self):
+        self.fileToolbar = QToolBar(self, "file operations")
+        self.actions["fileNew"].addTo(self.fileToolbar)
+        self.actions["fileQuit"].addTo(self.fileToolbar)
+        QWhatsThis.whatsThisButton(self.fileToolbar)
+
+    def initStatusBar(self):
+        self.statusBar().message("Ready...")
+    </PRE
+><P
+>We have created menus, toolbars and
+      statusbars so often by now that this is merely an exercise in
+      cutting and pasting. However, note that we create a Window menu,
+      but we don't add the actions to that menu. This is because the
+      contents of the window menu are dynamic. Just before showing the
+      window menu, when the signal
+      <TT
+CLASS="FUNCTION"
+>"aboutToShow()"</TT
+> is emitted, we will be
+      building the menu from the list of views
+      managed by the document manager. This is done in the
+      <TT
+CLASS="FUNCTION"
+>slotWindowMenuAboutToShow</TT
+> slot
+      function.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def initWorkSpace(self):
+        workspace=QWorkspace(self)
+        self.setCentralWidget(workspace)
+        return workspace
+    </PRE
+><P
+>For now, the view manager is simply an
+      instance of <TT
+CLASS="CLASSNAME"
+>QWorkSpace</TT
+>, which is a very
+      simple class that manages widgets as sub-windows to itself. For
+      it to manage widgets, they should be created with the workspace
+      as parent. <TT
+CLASS="CLASSNAME"
+>QWorkSpace</TT
+> has two methods:
+      <TT
+CLASS="FUNCTION"
+>activeWindow()</TT
+>, which returns the widget
+      that currently has focus, and <TT
+CLASS="FUNCTION"
+>windowList()</TT
+>,
+      which returns the list of all windows.</P
+><P
+>Furthermore, there are two slots:
+      <TT
+CLASS="FUNCTION"
+>cascade()</TT
+> and <TT
+CLASS="FUNCTION"
+>tile()</TT
+>,
+      that arrange the widgets managed by the workspace. Lastly, there
+      is one signal you can connect to:
+      <TT
+CLASS="FUNCTION"
+>windowActivated()</TT
+>, which is fired whenever
+      a widget is activated &#8212; i.e. gets focus.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def setActionsEnabled(self):
+        enabled = self.docManager.numberOfDocuments()
+        self.actions["fileSave"].setEnabled(enabled)
+        self.actions["fileClose"].setEnabled(enabled)
+        self.actions["editDoc"].setEnabled(enabled)
+    </PRE
+><P
+>If there is no document loaded by the
+      application, functions like &#8216;save', &#8216;close' or
+      &#8216;edit' are not terribly relevant. It's better to disable
+      them then. By requesting the number of documents managed by the
+      document manager, we can easily achieve this. After all, no
+      documents is zero, which is false for Python, and more than zero
+      documents is always true.</P
+><P
+>The next section is concerned with the
+      implementation of the slots called by the
+      <TT
+CLASS="CLASSNAME"
+>QAction</TT
+> objects that we just
+      created:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    #
+    # Slot implementations
+    #
+
+    def slotFileNew(self):
+        document = self.docManager.createDocument(MDIDoc, MDIView)
+    </PRE
+><P
+>Creating a document is now simply a matter
+      of asking the document manager to do it &#8212; just as we did
+      in the test script.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotFileOpen(self):
+        fileName = QFileDialog.getOpenFileName(None, None, self)
+
+        if not fileName.isEmpty():
+            document=MDIDoc()
+            document.open(fileName)
+            view = self.docManager.addDocument(document, MDIView)
+            view.setFocus()
+    </PRE
+><P
+>Opening a file is slightly more
+      complicated; we need to be sure that the user actually selected
+      a file before a file can be opened. Remember that all Qt classes
+      return <TT
+CLASS="CLASSNAME"
+>QString</TT
+> objects, not Python
+      <TT
+CLASS="CLASSNAME"
+>string</TT
+> objects. As a result, we have to
+      use <TT
+CLASS="FUNCTION"
+>isEmpty()</TT
+> instead of comparing with
+      <TT
+CLASS="CLASSNAME"
+>None</TT
+>.</P
+><P
+>If the filename is not empty, we create an
+      empty document, ask that document to open the file, and then add
+      the document to the document manager. Of course, this complexity
+      can also be removed to the document manager, by adding an
+      <TT
+CLASS="FUNCTION"
+>openDocument(self, fileName, documentClass,
+        viewClass)</TT
+> function to
+      <TT
+CLASS="CLASSNAME"
+>DocManager</TT
+>.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotFileSave(self, document=None):
+        if document == None:
+            document = self.docManager.activeDocument()
+        if document.pathName() == None:
+            self.slotFileSaveAs()
+        else:
+            try:
+                document.save()
+            except Exception, e:
+                QMessageBox.critical(self,
+                                     "Error",
+                                     "Could not save the current document")
+
+    def slotFileSaveAs(self, doc=None):
+        fileName = QFileDialog.getSaveFileName(None, None, self)
+        if not fileName.isEmpty():
+            if doc == None:
+                doc = self.docManager.activeDocument()
+            try:
+                doc.save(str(fileName))
+            except:
+                QMessageBox.critical(self,
+                                     "Error",
+                                     "Could not save the current document")
+    </PRE
+><P
+>Saving a document entails some complexity:
+      the document may or may not have a filename; if not, the user
+      should supply one. Saving could fail for a variety of reasons.
+      Nothing is so frustrating as losing your data because you simply
+      wanted to save it. An application should handle save errors very
+      carefully to ensure no data is lost.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotFileClose(self):
+        doc=self.docManager.activeDocument()
+        self.docManager.closeDocument(doc)
+
+    def slotFileQuit(self):
+        try:
+            self.docManager.closeAllDocuments()
+        except:
+            return
+        qApp.quit()
+    </PRE
+><P
+>Closing a document and quitting the
+      application are closely related processes. Note the call to
+      <TT
+CLASS="FUNCTION"
+>qApp.quit()</TT
+> &#8212; this is only reached
+      when closing all documents succeeds.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotEditDoc(self):
+        doc = self.docManager.activeDocument()
+        doc.slotModify()
+
+    def slotWindowCloseWindow(self):
+        self.workspace.activeWindow().close()
+    </PRE
+><P
+>Closing a single window might mean that
+      the document will be closed, too &#8212; if it is the last or
+      only view the document has. By retrieving the active window from
+      the workspace, and calling the <TT
+CLASS="FUNCTION"
+>close()</TT
+>
+      function on it, a <TT
+CLASS="FUNCTION"
+>closeEvent</TT
+> will be
+      generated. This will be caught by the event filter defined
+      below, which calls the appropriate functions in the document
+      manager.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotWindowNewWindow(self):
+        doc = self.docManager.activeDocument()
+        self.docManager.addView(doc, MDIView)
+
+    def slotHelpAbout(self):
+        QMessageBox.about(self,
+                          "About...",
+                          "MDI Framework\n" +
+                          "Inspired by the KDevelop templates.\n" +
+                          "(c) 2001 by Boudewijn Rempt")
+    </PRE
+><P
+>Adding a new window is very simple: retrieve the
+    currently active document, and ask the document manager to add a
+    view for that document.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    def slotWindowMenuAboutToShow(self):
+        self.windowMenu.clear()
+        self.actions["windowNewWindow"].addTo(self.windowMenu)
+        self.actions["windowCascade"].addTo(self.windowMenu)
+	self.actions["windowTile"].addTo(self.windowMenu)
+        self.windowMenu.insertSeparator()
+        self.actions["windowCloseWindow"].addTo(self.windowMenu)
+
+        if self.workspace.windowList()==[]:
+            self.actions["windowAction"].setEnabled(FALSE)
+        else:
+            self.actions["windowAction"].setEnabled(TRUE)
+        self.windowMenu.insertSeparator()
+
+        i=0 # window numbering
+        self.menuToWindowMap={}
+        for window in self.workspace.windowList():
+            i+=1
+            index=self.windowMenu.insertItem(("&#38;%i " % i) +
+                                             str(window.caption()),
+                                             self.slotWindowMenuActivated)
+            self.menuToWindowMap[index]=window
+            if self.workspace.activeWindow()==window:
+                self.windowMenu.setItemChecked(index, TRUE)
+
+    def slotWindowMenuActivated(self, index):
+        self.menuToWindowMap[index].setFocus()
+    </PRE
+><P
+>Here, we dynamically create the window
+      menu just before it is shown. The four menu options&#8212;new
+      window, cascade, tile and close&#8212;are part of a single
+      <TT
+CLASS="CLASSNAME"
+>QActionGroup</TT
+>, and can be enabled or
+      disabled together. Of course, the same could be done with the
+      other actions that are only enabled when there are actually
+      documents in existence. Note also that we add accelerators by
+      numbering the views (this will, of course, stop being sensible
+      once we have more than nine open windows).</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    #
+    # Toplevel event filter
+    #
+
+    def eventFilter(self, object, event):
+        if (event.type() == QEvent.Close):
+            if (object != self):
+                if self.docManager.closeView(object):
+                    event.accept()
+                else:
+                    event.ignore()
+            else:
+                try:
+                    self.docManager.closeAllDocuments()
+                    event.accept()
+                except Exception, e:
+                    return TRUE
+        return QWidget.eventFilter(self, object, event)
+    </PRE
+><P
+>Qt events contrast with Qt signals in that
+      they are typically created by user actions, such as key presses
+      or mouse actions. Signals are mostly emitted by objects on
+      themselves.</P
+><P
+>An event filter is an object that receives
+      all events for the object to which it applies. You can install
+      eventfilters that are created for one object in other objects.
+      In this case, all views share the same event filter as the
+      application object. An eventfilter must return either true or
+      false&#8212;true if the event should not be propagated further,
+      and false if someone should handle the event.</P
+><P
+>Here, we check whether the event is of the
+      type <TT
+CLASS="VARNAME"
+>QEvent.close</TT
+> &#8212; if that is so, we
+      check whether it is meant for the main application window
+      (that's us&#8212; the <TT
+CLASS="VARNAME"
+>self</TT
+>). In that case,
+      all documents must be closed. This event is generated when the
+      user closes the application.</P
+><P
+>If the event is meant for one of the
+      sub-windows, the document manager is asked to close the view. If
+      that is successful, the event is
+      <TT
+CLASS="FUNCTION"
+>accept()</TT
+>-ed, and will not be propagated any
+      further.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>    #
+    # Functions called from the document manager
+    #
+def queryCloseDocument(self, document):
+        r = QMessageBox.information(self,
+                                    str(self.caption()),
+                                    "Do you want to close %s?" %
+                                    document.title(),
+                                    "Yes",
+                                    "No",
+                                    None,
+                                    0, 1)
+        if r == 0:
+            return QMessageBox.Yes
+        else:
+            return QMessageBox.No
+
+    def querySaveDocument(self, document):
+        r = QMessageBox.information(self,
+                                    str(self.caption()),
+                                    "Do you want to save your changes to " +
+                                    "%s?" %
+                                    document.title(),
+                                    "Yes",
+                                    "No",
+                                    "Cancel",
+                                    0, 2)
+        if r == 0:
+            return QMessageBox.Yes
+        elif r == 1:
+            return QMessageBox.No
+        else:
+            return QMessageBox.Cancel
+
+    def queryDiscardDocument(self, document):
+        r = QMessageBox.warning(self,
+                                str(self.caption()),
+                                "Could not save %s.\n" % document.title() +
+                                "Do you want to discard your changes?",
+                                "Yes",
+                                "No",
+                                None,
+                                0, 1)
+        if r == 0:
+            return QMessageBox.Yes
+        else:
+            return QMessageBox.No
+
+    def queryFileName (self, document=None):
+        fileName = QFileDialog.getSaveFileName(None, None, self)
+        if not fileName.isEmpty():
+            return str(fileName)
+        else:
+            return "untitled"
+    </PRE
+><P
+>These calls to
+      <TT
+CLASS="CLASSNAME"
+>QMessageBox</TT
+> and the standard file dialog
+      <TT
+CLASS="CLASSNAME"
+>QFileDialog</TT
+> are made from the document
+      manager. This makes sure that the document manager can also work
+      without a GUI.</P
+><P
+>The <TT
+CLASS="CLASSNAME"
+>QMessageBox</TT
+>
+      class is a bit messy, by Qt standards. There are two ways of
+      specifying buttons: by string, or by identity. These identities,
+      like <TT
+CLASS="VARNAME"
+>QMessageBox.Yes</TT
+> are defined in the
+      class. If you use these constants in your calls to
+      <TT
+CLASS="FUNCTION"
+>QMessageBox.warning()</TT
+>, for instance, then
+      the return value will be the identity of the button
+      pressed.</P
+><P
+>However, if you want the added flexibility
+      of translatable strings, you cannot use the identities. You can
+      call functions like <TT
+CLASS="FUNCTION"
+>QMessageBox.warning()</TT
+>
+      with strings, but the return value will be the position of the
+      key pressed, starting with 0 and going from left to
+      right.</P
+><P
+>I want to use the identities in the
+      document manager &#8212; this makes the code a lot clearer. But
+      I wanted to use strings in the actual message boxes. That's why
+      I translate the position of the button pressed to the correct
+      identity.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x5458.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x5581.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>View</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c5288.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conclusion</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

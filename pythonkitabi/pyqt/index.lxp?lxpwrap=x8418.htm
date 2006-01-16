@@ -1,0 +1,710 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x8418.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Starting with distutils.</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Delivering your Application"
+HREF="c8349.htm"><LINK
+REL="PREVIOUS"
+TITLE="Packaging source"
+HREF="x8401.htm"><LINK
+REL="NEXT"
+TITLE="Creating Unix RPM packages"
+HREF="x8580.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x8401.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 26. Delivering your Application</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8580.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Starting with distutils.</A
+></H1
+><P
+>Once you've collected all the bits and
+      bobs for your application, you start using distutils by writing
+      a special Python script, customarily named
+      <TT
+CLASS="FILENAME"
+>setup.py</TT
+>. You can make your
+      <TT
+CLASS="FILENAME"
+>setup.py</TT
+> script as complex as you want, but
+      typically it is quite simple.</P
+><P
+>The <TT
+CLASS="FILENAME"
+>setup.py</TT
+> script will
+      then call <TT
+CLASS="FUNCTION"
+>setup</TT
+> from
+      <TT
+CLASS="FILENAME"
+>distutils.core</TT
+> with lots of arguments, including
+      meta-data about the application or module to install, and a list
+      of stuff to install.</P
+><P
+>The developer uses the
+      <TT
+CLASS="FILENAME"
+>setup.py</TT
+> script to create the package, and
+      the user uses it to install the package.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>setup.py</A
+></H2
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 26-2. setup.py - a sample setup script</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#!/usr/bin/env python
+
+from distutils.core import setup
+
+setup(name = "kalam",
+      version = "1.0",
+      description = "Kalam - the extensible Python editor",
+      author = "Boudewijn Rempt",
+      author_email = "boud@rempt.xs4all.nl",
+      url = "http://www.valdyas.org",
+      packages = ["charmap",
+                  "kalamlib",
+                  "typometer",
+                  "workspace",
+                  ""],
+      data_files = [("kalam/data", ["data/Blocks.txt"]),
+                    ("kalam/pixmaps", ["pixmaps/listspace.png",
+                                       "pixmaps/splitspace.png",
+                                       "pixmaps/stackspace.png",
+                                       "pixmaps/tabmanager.png",
+                                       "pixmaps/workspace.png"])],
+      scripts = ["kalam","kalam.bat"],
+      long_description = """
+Kalam is a plain-text editor. It is written in Python using
+the PyQt GUI toolkit as an example and tutorial for the book
+GUI programming with Python and Qt, published by Opendocs.
+"""          
+      )    
+      </PRE
+></DIV
+><P
+>The <TT
+CLASS="FILENAME"
+>setup.py</TT
+> is the
+        place to specify all executable parts of your application, and
+        some metadata. Let's examine all parts:</P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>name</TT
+>: the name of
+            the application</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>version</TT
+>: the
+            version number (major, minor, wee number)</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>description</TT
+>: a
+            short description of the application</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>author</TT
+>: the
+            person responsible for the application</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>author_email</TT
+>: his
+            email address</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>url</TT
+>: website
+            where the application is hosted</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>packages</TT
+>: a list
+            of Python modules (directories that contain a set of
+            Python files listed in a <TT
+CLASS="FILENAME"
+>__init__.py</TT
+>
+            file). In the case of <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+>
+            these are the modules for the character map, the
+            type-o-meter and the set of workspace options. The
+            additional module, kalamlib, contains all the real
+            <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+> code.</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>py_modules</TT
+>: a
+            list of Python files. Note that if you include both the
+            <TT
+CLASS="VARNAME"
+>packages</TT
+> and
+            the<TT
+CLASS="VARNAME"
+>py_modules</TT
+> keyword only the latter
+            will be used.</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>data_files</TT
+>: this
+            is a list of files that are not executable code. These
+            files will be installed in a default place, like
+            <TT
+CLASS="FILENAME"
+>/usr/share</TT
+> on Linux. You must also
+            include all these files in <TT
+CLASS="VARNAME"
+>MANIFEST.in</TT
+>,
+            otherwise they won't be packaged.</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>scripts</TT
+>: this is
+            a list of python script files. If you use
+            #!/usr/bin/python as the first line of a script to make it
+            executable on Unix, Distutils will change that to the
+            location of Python on the user's machine.</P
+></LI
+><LI
+><P
+><TT
+CLASS="VARNAME"
+>long_description</TT
+>:
+            a longer description of the application. This is used when
+            you create an rpm package.</P
+></LI
+></UL
+><P
+>There are other options more concerned with
+        distributing C or C++ extension modules you have
+        created. I don't cover them here.</P
+><P
+>Finally, a word of warning: if you are experimenting with
+        <TT
+CLASS="FILENAME"
+>setup.py</TT
+>, you will notice that a file called
+        <TT
+CLASS="FILENAME"
+>MANIFEST</TT
+> has been created. Always remove this
+        file after creating a distribution. It is a kind of
+        cache that lists the set of files that should be included;
+        if you change this set, distutils will still read
+        <TT
+CLASS="FILENAME"
+>MANIFEST</TT
+> instead of your changes in
+        <TT
+CLASS="FILENAME"
+>setup.py</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>MANIFEST.in</A
+></H2
+><P
+>Despite the <TT
+CLASS="VARNAME"
+>data_files</TT
+> option to
+        <TT
+CLASS="FUNCTION"
+>setup()</TT
+>, it is still necessary to provide
+        a second file that contains a list of extra, non-Python
+        files that need to be distributed. This file is called
+        <TT
+CLASS="FILENAME"
+>MANIFEST.in</TT
+> (mind the capitalization),
+        and employs its own set of keywords to specify files to
+        include or exclude.</P
+><DIV
+CLASS="EXAMPLE"
+></A
+><P
+><B
+>Example 26-3. MANIFEST.in</B
+></P
+><PRE
+CLASS="SCREEN"
+>include kalam
+include kalam.bat
+recursive-include data *
+recursive-include pixmaps *
+recursive-include dialogs *
+        </PRE
+></DIV
+><P
+>Here, we include the <TT
+CLASS="FILENAME"
+>kalam</TT
+> starter script
+        and the <TT
+CLASS="FILENAME"
+>kalam.bat</TT
+> and batch file. Then we
+        recursively include everything in the directories
+        <TT
+CLASS="FILENAME"
+>data</TT
+>, <TT
+CLASS="FILENAME"
+>pixmaps</TT
+> and
+        <TT
+CLASS="FILENAME"
+>dialogs</TT
+>. (The latter is not absolutely
+        necessary for running the application, but it can't hurt to
+        give people access to our dialog designs.)</P
+><P
+>The options available for
+        <TT
+CLASS="FILENAME"
+>MANIFEST.in</TT
+> are:</P
+><P
+></P
+><UL
+><LI
+><P
+>include pat1 pat2 ...</P
+></LI
+><LI
+><P
+>exclude pat1 pat2 ...</P
+></LI
+><LI
+><P
+>recursive-include dir pat1 pat2 ...</P
+></LI
+><LI
+><P
+>recursive-exclude dir pat1 pat2 ...</P
+></LI
+><LI
+><P
+>global-include pat1 pat2 ...</P
+></LI
+><LI
+><P
+>global-exclude pat1 pat2 ...</P
+></LI
+><LI
+><P
+>prune dir</P
+></LI
+><LI
+><P
+>graft dir</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>setup.cfg</A
+></H2
+><P
+>The <TT
+CLASS="FILENAME"
+>setup.py</TT
+> script takes myriad
+        command-line options. You can also create a
+        <TT
+CLASS="FILENAME"
+>setup.cfg</TT
+> file that contains the most
+        important options. Amongst those options are a number that tell the
+        installer to install the application in a
+        specific place. The user might need to edit these to reflect
+        his preferences. For Unix, a good default is:
+      </P
+><PRE
+CLASS="PROGRAMLISTING"
+>[install]
+install_lib=/usr/local/share/kalam
+install_data=/usr/local/share/kalam
+install_scripts=/usr/local/bin
+      </PRE
+><P
+>All Python files (everything that is mentioned in the
+        <TT
+CLASS="VARNAME"
+>py_modules</TT
+> or <TT
+CLASS="VARNAME"
+>packages</TT
+>
+        argument in <TT
+CLASS="FILENAME"
+>setup.py</TT
+>) will be installed
+        in the install_lib directory. Everything that is mentioned in
+        the <TT
+CLASS="VARNAME"
+>data_files</TT
+> argument will be installed
+        in the install_data directory. Likewise, everything that is
+        included in the <TT
+CLASS="VARNAME"
+>scripts</TT
+> argument will be
+        installed in install_scripts.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Creating the source distribution</A
+></H2
+><P
+>We are now ready to create the source distribution. This is a
+        simple, one-line command:</P
+><PRE
+CLASS="SCREEN"
+>boud@calcifer:~/src/kalam &#62; python setup.py sdist
+      </PRE
+><P
+>The distutils will then spew a lot of text on the screen,
+        and deliver your package in a subdirectory named
+        <TT
+CLASS="FILENAME"
+>dist</TT
+>:</P
+><PRE
+CLASS="SCREEN"
+>boudewijn@maldar:~/doc/pyqt/ch18/kalam &#62; python setup.py sdist
+running sdist
+reading manifest template 'MANIFEST.in'
+writing manifest file 'MANIFEST'
+creating kalam-1.0
+creating kalam-1.0/charmap
+creating kalam-1.0/data
+creating kalam-1.0/dialogs
+creating kalam-1.0/kalamlib
+creating kalam-1.0/pixmaps
+creating kalam-1.0/typometer
+creating kalam-1.0/workspace
+making hard links in kalam-1.0...
+hard linking README -&#62; kalam-1.0
+hard linking edmund.py -&#62; kalam-1.0
+hard linking kalam -&#62; kalam-1.0
+hard linking kalam.bat -&#62; kalam-1.0
+hard linking setup.cfg -&#62; kalam-1.0
+hard linking setup.py -&#62; kalam-1.0
+hard linking sitecustomize.py -&#62; kalam-1.0
+hard linking startup.py -&#62; kalam-1.0
+hard linking charmap/__init__.py -&#62; kalam-1.0/charmap
+hard linking charmap/charmap.py -&#62; kalam-1.0/charmap
+hard linking data/Blocks.txt -&#62; kalam-1.0/data
+hard linking dialogs/frmfindreplace.ui -&#62; kalam-1.0/dialogs
+hard linking dialogs/frmsettings.ui -&#62; kalam-1.0/dialogs
+hard linking kalamlib/__init__.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/configtest.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/dlgfindreplace.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/dlgsettings.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/docmanager.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/docmanagertest.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/frmfindreplace.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/frmsettings.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/kalamapp.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/kalamconfig.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/kalamdoc.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/kalamview.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/macromanager.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/macromanagertest.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/main.py -&#62; kalam-1.0/kalamlib
+hard linking kalamlib/resources.py -&#62; kalam-1.0/kalamlib
+hard linking pixmaps/fileprint.xpm -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/find.png -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/listspace.png -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/listspace.xpm -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/splitspace.png -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/splitspace.xpm -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/stackspace.png -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/stackspace.xpm -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/tabmanager.png -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/tabmanager.xpm -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/workspace.png -&#62; kalam-1.0/pixmaps
+hard linking pixmaps/workspace.xpm -&#62; kalam-1.0/pixmaps
+hard linking typometer/__init__.py -&#62; kalam-1.0/typometer
+hard linking typometer/typometer.py -&#62; kalam-1.0/typometer
+hard linking workspace/__init__.py -&#62; kalam-1.0/workspace
+hard linking workspace/listspace.py -&#62; kalam-1.0/workspace
+hard linking workspace/splitspace.py -&#62; kalam-1.0/workspace
+hard linking workspace/stackspace.py -&#62; kalam-1.0/workspace
+hard linking workspace/tabmanager.py -&#62; kalam-1.0/workspace
+hard linking workspace/workspace.py -&#62; kalam-1.0/workspace
+creating dist
+tar -cf dist/kalam-1.0.tar kalam-1.0
+gzip -f9 dist/kalam-1.0.tar
+removing 'kalam-1.0' (and everything under it)
+boudewijn@maldar:~/doc/pyqt/ch18/kalam &#62;
+      </PRE
+><P
+>That's it&#8212;a nice, clean and complete source distribution
+        of <SPAN
+CLASS="APPLICATION"
+>Kalam</SPAN
+>. You can generate both zip
+        archives and gzipped tarballs by providing options on the
+        command line:</P
+><PRE
+CLASS="SCREEN"
+>boudewijn@maldar:~/doc/pyqt/ch18/kalam &#62; python setup.py sdist  --formats=gztar,zip
+      </PRE
+><P
+>The options are zip, gztar, bztar, ztar and tar, for
+        zipfiles, gzipped tarfiles, bzipped tarfiles, compressed
+        tarfiles and plain tar files.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+>Installing a source archive</A
+></H2
+><P
+>Installing a source archive is a simple matter of
+        unpacking the archive and executing the following command:</P
+><PRE
+CLASS="SCREEN"
+> boudewijn@maldar:~/doc/pyqt/ch18/kalam/dist/kalam-1.0 &#62; python setup.py install
+      </PRE
+><P
+>Distutils will copy everything to the location
+        designated in <TT
+CLASS="FILENAME"
+>setup.cfg</TT
+>, and
+        <SPAN
+CLASS="APPLICATION"
+>kalam</SPAN
+> will be ready to run!.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x8401.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x8580.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Packaging source</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c8349.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Creating Unix RPM packages</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    

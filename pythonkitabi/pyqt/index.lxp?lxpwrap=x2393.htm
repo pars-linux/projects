@@ -1,0 +1,254 @@
+
+
+  
+  <table border="0" cellspacing="0" cellpadding="3" width="100%"><tr><td>
+    <div align="center" id="bldcontent">
+      <a href="http://www.opendocspublishing.com/"><img src="../images/opendocs.png" width="63" height="76" border="0"></a>
+      <br>
+      <div class="symbol">Your OpenSource Publisher&#153;</div>
+    </div>
+    
+  </td></tr></table>
+  
+  <div align="center" class="author">
+      	<a href="../products.lxp.html">Products</a>
+	&nbsp;|&nbsp;
+	<a href="../wheretobuy.lxp.html">Where to buy</a>
+	&nbsp;|&nbsp;
+	<a href="../bookstore.lxp.html">Retailers</a>
+	&nbsp;|&nbsp;
+	<a href="../FAQ.lxp.html">FAQ</a>
+	&nbsp;|&nbsp;
+        <a href="../writeforus.lxp.html">Write for Us.</a>
+        &nbsp;|&nbsp;
+        <a href="index.lxp%3Flxpwrap=x2393.htm#contact">Contact Us.</a>
+  </div>
+    <table border="0" cellspacing="3" cellpadding="0" width="100%"><tr><td width="100%">
+      <div class="content">
+        <table border="0" cellspacing="2" cellpadding="0" width="100%"><tr><td width="100%">
+          <div align="center">
+<H4 CLASS="AUTHOR"><A NAME="AEN5">Boudewijn Rempt</A>
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+<img src="ODPyQT125.png">
+</a>
+<br>
+ISBN: 0-97003300-4-4
+<br>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0970033044/q4/103-9966647-8957454?v=glance&s=books">
+Available from bookstores everywhere or you can order it here.
+</a>
+<p>
+You can download the source files for the book <a href="pyqtsrc.tgz">(code / eps) here.</a>
+<hr>
+</div>
+
+          
+          <HTML
+><HEAD
+><TITLE
+>Qt objects, Python objects and shadow objects</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="GUI Programming with Python: QT Edition"
+HREF="book1.htm"><LINK
+REL="UP"
+TITLE="Python Objects and Qt Objects"
+HREF="c2341.htm"><LINK
+REL="PREVIOUS"
+TITLE="Circular references"
+HREF="x2377.htm"><LINK
+REL="NEXT"
+TITLE="References and ownership"
+HREF="x2420.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GUI Programming with Python: QT Edition</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2377.htm">Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Python Objects and Qt Objects</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2420.htm">Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+>Qt objects, Python objects and shadow objects</A
+></H1
+><P
+>What happens when you create a Qt object
+      from Python? A Qt object is an instance of a C++ class, but in
+      order to be able to manipulate that object from Python, there
+      needs to be a Python object, too. The answer is that both are
+      created: a C++ object that contains the real functionality, and
+      a Python object that "wraps" the C++ object.</P
+><P
+>Thus, when you call
+      <TT
+CLASS="FUNCTION"
+>QWidget()</TT
+> from Python, three things are
+      created:</P
+><P
+></P
+><UL
+><LI
+><P
+>The C++ QWidget instance.
+          Actually it will be a sipQWidget instance which is a
+          sub-class of QWidget - it is needed to be a catcher for
+          QWidget's virtual methods and to expose its protected
+          methods and enums.</P
+></LI
+><LI
+><P
+>the Python object
+          shadow/proxy which is a thin wrapper around the C++ instance
+          and which has a unique Python type.</P
+></LI
+><LI
+><P
+> the Python class instance that
+          you actually deal with in your script. Its instance
+          dictionary contains a reference (named
+          <TT
+CLASS="VARNAME"
+>__sipThis__</TT
+>) to the shadow object.</P
+></LI
+></UL
+><P
+>The two Python objects are needed because
+      the programmer wants a class instance, but a Python class
+      instance doesn't provide you with the capability of wrapping a
+      C++ pointer.</P
+><P
+>In fact, both the Qt library and the PyQt
+      library can create C++ objects. These are passed between them.
+      For instance, an object could be created by PyQt and passed to
+      Qt, or it could be created by Qt and passed to Python. Both Qt
+      and Python have the concept of deleting things &#8212; so there
+      has to be a method of making sure that C++ instances are deleted
+      properly. If both try to delete the same instance your program
+      crashes, if neither do then you get memory leaks. Therefore
+      there is the concept of ownership: the current owner (PyQt or
+      Qt) is responsible for deleting the C++ instance. Ownership of
+      an instance may be transferred between PyQt and C++ during the
+      life of the instance.</P
+><P
+>Mostly you won't need to concern yourself
+      with this problem, since PyQt knows exactly when to transfer
+      ownership of C++ instances automatically.. Complications arise
+      if you create <TT
+CLASS="CLASSNAME"
+>QObject</TT
+> derived objects
+      that &#8216;own', through the <TT
+CLASS="CLASSNAME"
+>QObject</TT
+>
+      parent-child mechanism, other objects. (This ownership of
+      objects by other objects is one of the places where Qt deviates
+      from the C++ standard practice, where the object that creates
+      another object should also take care of deleting it.)</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A accesskey="P" href="index.lxp%3Flxpwrap=x2377.htm">Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="H" href="index.lxp%3Flxpwrap=book1.htm">Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A accesskey="N" href="index.lxp%3Flxpwrap=x2420.htm">Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Circular references</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A accesskey="U" href="index.lxp%3Flxpwrap=c2341.htm">Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>References and ownership</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
+      </td>
+      </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+  
+    
