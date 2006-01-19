@@ -1,0 +1,893 @@
+<chapter id="ch12">
+
+  <title>Creating Application Functionality</title>
+
+  <sect1><title>Introduction</title>
+    
+    <para id="para-ch12-1">In the last few chapters, we have built a
+      useful framework for a file-oriented application. In this
+      chapter we add some real functionality to the document and view
+      modules.</para>
+
+    <para id="para-ch12-2">As an example application, I propose to
+      develop a reasonably full-featured editor, using the standard
+      PyQt multi-line editor widget. This will give us a chance to
+      explore some outlying regions of the Qt library without having
+      to handle the complexity of a custom created widget (as we would
+      have to do if we were to create, for example, a paint
+      application). Not that PyQt isn't capable of this, or of nice
+      games &mdash; you can make those, too, if you want. Later, we
+      will have occasion to look at the versatile canvas widget, which
+      has been used for many things, including web browsers, games,
+      and the eric debugger that is part of PyQt.</para>
+
+    <para id="para-ch12-3">We will extend our project with an input
+      method for Unicode text, which will give us a chance to work
+      with <classname>QCanvas</classname>, search and replace, and
+      macros. Additionally, there are some fun items that we can add,
+      such as a rolling chart that keeps track of how fast you
+      type.</para>
+
+    <sect2><title>Giving the project a name</title>
+
+<!-- XXX: refer to webforum! -->
+
+      <indexterm>
+  <primary>kalam</primary>
+  </indexterm>
+  <para id="para-ch12-4">Before starting out, we should decide
+        upon a name for this project. I rather like
+        <emphasis>kalam</emphasis> &mdash; a word which means pen or
+        pencil, and which is derived from the Latin
+        <emphasis>calamus</emphasis>. I have snapshotted the version
+        we have at the end of each chapter so you can follow the
+        development of this project. I didn't print the complete code
+        of every class in every chapter, as that would be too tedious
+        for words!</para>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1><title>The view</title>
+
+    <para id="para-ch12-5">It is certainly possible to use Python and
+      PyQt to write a custom editing component &mdash; you shoud
+      probably base it on the <classname>QScrollView</classname>
+      class. But making your own editor would entail a lot of very
+      complicated work, mostly involved with datastructures to store
+      text, text attributes, painting text and keeping track of the
+      cursor position. And don't forget font handling, which gets
+      complicated with Unicode. It would make quite an interesting
+      project, but what's the use of a rich GUI library if you don't
+      use it?</para>
+
+    <indexterm>
+  <primary>QMultiLineEdit</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTextEdit</primary>
+  </indexterm>
+  <para id="para-ch12-6">Therefore I propose to start out using the
+      standard <classname>QMultiLineEdit</classname> widget. With PyQt
+      for Qt 3.0, we can convert kalam to use the new editor widget,
+      <classname>QTextEdit</classname>, which supports embedded
+      pictures, hyperlinks and rich text. For now, we will have to be
+      satisfied with plain text in a single font and a single
+      color.</para>
+
+    <indexterm>
+  <primary>QMultiLineEdit</primary><secondary>document-view</secondary>
+  </indexterm>
+  <para id="para-ch12-7">However, there is one problem with using a
+      <classname>QMultiLineEdit</classname> editor widget as a view on
+      the text: the widget itself contains a copy of the text. A
+      <classname>QMultiLineEdit</classname> is a conflation of
+      document and view. This means that we will have to synchronize
+      the text in the document and in the view &mdash; recall that
+      with our framework there can be more than one view on the same
+      document. It is inevitable that we waste a lot of time copying
+      text between views and documents. This shows that  we
+      <emphasis>should</emphasis> have implemented our own editor
+      widget, one that is based on a separation of GUI and
+      data.</para>
+
+    <para id="para-ch12-8">The initial wrapping of
+      <classname>QMultiLineEdit</classname> is pretty easy:</para>
+
+      <programlisting>
+"""
+kalamview.py - the editor view component for Kalam
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+
+class KalamMultiLineEdit(QMultiLineEdit):
+    
+    def event(self, e):
+        if e.type() == QEvent.KeyPress:
+            QMultiLineEdit.keyPressEvent(self, e)
+            return TRUE
+        else:
+            return QMultiLineEdit.event(self, e)
+    </programlisting>
+
+    <indexterm>
+  <primary>event()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>TAB</primary>
+  </indexterm>
+  <indexterm>
+  <primary>catching TAB presses</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QEvent</primary>
+  </indexterm>
+  <para id="para-ch12-9">By default the
+      <classname>QWidget</classname>'s <function>event()</function>
+      function filters out all tab (and shift-tab) presses. Those keys
+      are used for focus management, and move the focus to the next
+      widget. This is not what we want in an editor, where pressing
+      tab should insert a TAB character in the text. By overriding the
+      default <function>event()</function> function, we can correct
+      this behavior. If the type&mdash;and there are more than seventy
+      event types in PyQt&mdash;is <varname>QEvent.KeyPress</varname>,
+      we send the event directly to the
+      <function>keyPressEvent</function> method, instead of moving
+      focus. In all other cases, we let our parent class,
+      <classname>QMultiLineEdit</classname> handle the event.</para>
+
+    <para>The view class encapsulates the editor widget we previously
+      created:</para>
+
+    <programlisting>
+class KalamView(QWidget):
+    """
+    The KalamView class can represent object of class
+    KalamDoc on screen, using a standard edit control.
+
+    signals:
+          sigCaptionChanged
+    """
+    def __init__(self, parent, doc, *args):
+        apply(QWidget.__init__,(self, parent) + args)
+
+        self.layout=QHBoxLayout(self)
+        self.editor=KalamMultiLineEdit(self)
+        self.layout.addWidget(self.editor)
+        self.doc = doc
+        self.editor.setText(self.doc.text())
+
+        self.connect(self.doc,
+                     PYSIGNAL("sigDocTitleChanged"),
+                     self.setCaption)
+        self.connect(self.doc,
+                     PYSIGNAL("sigDocTextChanged"),
+                     self.setText)
+        self.connect(self.editor,
+                     SIGNAL("textChanged()"),
+                     self.changeDocument)
+
+        self._propagateChanges = TRUE
+    </programlisting>
+
+    <para id="para-ch12-10">The basic view is a plain
+      <classname>QWidget</classname> that contains a layout manager
+      (<classname>QHBoxLayout</classname>) that manages a
+      <classname>KalamMultiLineEdit</classname> widget. By strictly
+      wrapping the <classname>KalamMultiLineEdit</classname>
+      functionality, instead of inheriting and extending, it will be
+      easier to swap this relatively underpowered component for
+      something with a bit more oomph and espieglerie, such as
+      <classname>QTextEdit</classname> or KDE's editor component,
+      libkwrite. Or, perhaps, a home-grown editor component we wrote
+      in Python...</para>
+
+    <para id="para-ch12-11">In the framework, we set the background
+      color initially to green; the same principle holds here, only
+      now we set the text initially to the text of the
+      document.</para>
+
+    <para id="para-ch12-12">The first two connections speak for
+      themselves: if the title of the document changes, the caption of
+      the window should change; and if the text of the document
+      changes (perhaps through editing in another view), our text
+      should change, too.</para>
+
+
+    <indexterm>
+  <primary>QMultiLineEdit </primary><secondary>textChanged()</secondary>
+  </indexterm>
+  <para id="para-ch12-13">The last connection is a bit more
+      interesting. Since we are wrapping a
+      <classname>QMultiLineEdit</classname> in the
+      <classname>KalamView</classname> widget, we have to pass changes
+      in the editor to the outside world. The
+      <function>textChanged()</function> signal is fired whenever the
+      user changes the text in a <classname>QMultiLineEdit</classname>
+      widget (for instance, by pasting a string or by typing
+      characters).</para>
+
+    <para id="para-ch12-14">When you use functions that are not
+      defined as slots in C++ to change the text programmatically,
+      <function>textChanged()</function> is not emitted. We will wrap
+      these functions and make them emit signals, too.</para>
+
+    <programlisting>
+    def setCaption(self, caption):
+        QWidget.setCaption(self, caption)
+        self.emit(PYSIGNAL("sigCaptionChanged"),
+                  (self, caption))
+
+    def document(self):
+        return self.doc
+
+    def closeEvent(self, e):
+        pass
+
+    def close(self, destroy=0):
+        return QWidget.close(self, destroy)
+
+    def changeDocument(self):
+        if self._propagateChanges:
+            self.doc.setText(self.editor.text(), self)
+
+    def setText(self, text, view):
+        if self != view:
+            self._propagateChanges = FALSE
+            self.editor.setText(text)
+            self._propagateChanges = TRUE
+      </programlisting>
+
+    <para id="para-ch12-15">The function
+      <function>changeDocument()</function> is called whenever the
+      <function>textChanged()</function> signal is emitted by the
+      editor widget. Since we have a reference to the document in
+      every view, we can call <function>setText</function> on the
+      document directly. Note that we pass the document the changed
+      text and a reference to this view.</para>
+
+    <para id="para-ch12-16">The document again passes the view
+      reference on when a sigDocTextChanged Python signal is emitted
+      from the document. This signal is connected to all views that
+      represent the document, and makes sure that the
+      <function>setText()</function> function is called.</para>
+
+    <para id="para-ch12-17">In the <function>setText()</function>
+      function the view reference is used to check whether the changes
+      originate from this view: if that is so, then it is nonsense to
+      change the text. If this view is currently a 'slave' view
+      &mdash; then the text of the
+      <classname>QMultiLineEdit</classname> should be updated.
+      Updating the text causes a <function>textChanged()</function>
+      signal to be emitted &mdash; creating a recursion into
+      oblivion.</para>
+
+    <para id="para-ch12-18">To avoid the recursion, you can use the
+      flag variable <varname>_propagateChanges</varname>. If this
+      variable is set to FALSE, then the
+      <function>changeDocument()</function> will not call the
+      <function>setText()</function> function of the document.</para>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>disconnect()</secondary>
+  </indexterm>
+  <para id="para-ch12-19">Another solution would be to temporarily
+      disconnect the <function>textChanged()</function> signal from
+      the <function>changeDocument()</function> function.
+      Theoretically, this would give a small performance benefit,
+      since the signal no longer has to be routed nor the function
+      called&mdash; but in practice, the difference is negligible.
+      Connecting and disconnecting signal takes some time, too. Try
+      the following alternative implementation of
+      <function>setText()</function>:</para>
+
+    <programlisting>
+    def setText(self, text, view):
+        if self != view:
+            self.disconnect(self.editor,
+                            SIGNAL("textChanged()"),
+                            self.changeDocument)
+            self.editor.setText(text)
+            self.connect(self.editor,
+                         SIGNAL("textChanged()"),
+                         self.changeDocument)
+    </programlisting>
+
+    <para id="para-ch12-20">Note that changing the text of a
+      <classname>QMultiLineEdit</classname> does not change the cursor
+      position in the editor.  This makes life a lot easier, because
+      otherwise we would have to move the cursor back to the original
+      position ourselves in all dependent views. After all, the
+      purpose of having multiple views on the same document is to
+      enable the user to have more than one cursor location at the
+      same time.</para>
+
+  </sect1>
+
+  <sect1><title>The document</title>
+
+    <indexterm>
+  <primary>KalamDoc</primary>
+  </indexterm>
+  <para id="para-ch12-21">The <classname>KalamDocument</classname>
+      document class is a simple wrapper around a
+      <classname>QString</classname> object. The reason for using a
+      <classname>QString</classname> to hold all text, instead of a
+      Python string object, is straight-forward: with all the passing
+      around of strings, converting the
+      <classname>QString</classname>s retrieved from the
+      <classname>QMultiLineEdit</classname> widgets to Python strings
+      would take far too much time. String conversion is a fairly
+      costly operation, involving the copying of potentially large
+      amounts of memory.</para>
+
+    <indexterm>
+  <primary>QString</primary><secondary>mutability</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>strings</primary><secondary>mutability</secondary>
+  </indexterm>
+  <para id="para-ch12-22">There is another reason for using
+      <classname>QString</classname>in this manner: a
+      <classname>QString</classname> is mutable, and a Python string
+      not. This means, simply put, that every time you change a single
+      character in a Python string, a complete new copy of the string
+      is made, and the old copy is discarded.</para>
+
+    <para id="para-ch12-23">There are good reasons for this behavior.
+      If Python strings were mutable, they could not be used to index
+      Python dictionaries based on their character value, but only on
+      the abstract object ID that all Python objects receive. Imagine
+      the mess you would have if you changed the actual value of a key
+      in a dictionary.</para>
+
+    <para id="para-ch12-24"><classname>QString</classname> is a clever
+      and optimized class. If two instances of
+      <classname>QString</classname> have the same contents, there is
+      a good chance that they will even share the memory needed to
+      store the actual text. Furthermore,
+      <classname>QString</classname> offers as rich a set of methods
+      to mangle strings as Python does, so we don't lose much
+      functionality. (But look carefully at the documentation for
+      <classname>QString</classname> &mdash; some functions, such as
+      <function>stripWhiteSpace()</function>, return a new string
+      instead of working on the existing string.)</para>
+
+    <para id="para-ch12-25">Would our editor have to store more
+      complex information, instead of plain text, we should use the
+      <classname>KalamDocument</classname> class to store its data
+      perhaps in a list of paragraphs, where each paragraph is a list
+      itself, containing words, lines and perhaps more complex
+      objects, such as images or even active widgets &mdash; so you
+      could embed a button or a hyperlink in your text. However, never
+      code what you don't yet need is a excellent motto...</para>
+
+    <programlisting>
+"""
+kalamdoc.py - abstraction of a document with a certain encoding
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class KalamDoc(QObject):
+    """
+    The document represents a plain text with a certain encoding. Default
+    is Unicode.
+
+    signals: sigDocModified (boolean)
+             sigDocTitleChanged (string)
+             sigDocTextChanged (qstring, qwidget)
+
+    """
+    def __init__(self, *args):
+        apply(QObject.__init__, (self,)+args)
+        self.encoding="unicode"
+        self.newDocument()
+        self._fileName = None
+        self._title = "Untitled"
+        self._modified = FALSE
+        self._text = QString()
+    </programlisting>
+
+    <para id="para-ch12-26">Instead of wrapping a simple, silly
+      boolean value, we now wrap s single
+      <classname>QString</classname> object.</para>
+
+    <programlisting>
+    def setText(self, text, view=None):
+        self._text=text
+        self._modified=TRUE
+        self.emit(PYSIGNAL("sigDocTextChanged"),
+                  (self._text, view))
+    </programlisting>
+
+    <para id="para-ch12-27">Most of the above functions haven't
+      changed the basic framework. Note that the
+      <function>slotModified</function> function has disappeared.
+      Modifying a text isn't as simple as flipping a single
+      boolean.</para>
+
+    <para id="para-ch12-28">The <function>setText</function> function,
+      which is called from the <classname>KalamView</classname> class,
+      applies brute force to the text that
+      <classname>KalamDocument</classname> manages.  Quite simply,
+      <function>setText</function> replaces the internal reference to
+      <classname>QString</classname> with a reference to the
+      <classname>QString</classname> that was presented by the calling
+      view. The text has been modified, and this is recorded in the
+      administrative <varname>_modified</varname> variable. Finally,
+      by emitting the <varname>"sigDocTextChanged"</varname> Python
+      signal, all views that show this document are told to update
+      their display.</para>
+
+    <para id="para-ch12-29">The <varname>view</varname> parameter has
+      a default value of <varname>None</varname> &mdash; this means
+      the change does not originate with any view, and will be applied
+      to all views.</para>
+  </sect1>
+
+  <sect1><title>Saving and loading documents</title>
+
+    <para id="para-ch12-30">What's the use of an editor if it can't
+      load and save texts? It would be of no use at all&mdash; and
+      thus it is high time that we implemented this essential
+      functionality. Loading and saving are part of the
+      <classname>KalamDocument</classname> class. First, we need to
+      decide if we will make use of the special PyQt file classes, or
+      of the generic Python file classes. Let's do both for now, and
+      you can choose which style you prefer.</para>
+
+    <sect2><title>Loading</title>
+
+      <indexterm>
+  <primary>KalamDoc</primary><secondary>loading and saving text</secondary>
+  </indexterm>
+  <para id="para-ch12-31">Loading first:</para>
+
+
+      <programlisting>
+    def open(self, fileName, format=None):
+        self.setPathName(fileName)
+        f = QFile(fileName)
+        if f.exists():
+            f.open(IO_ReadOnly)
+            self.setText(QTextStream(f).read())
+        else:
+            raise IOError("No such file or directory: '%s'" % fileName)
+        self._modified=FALSE
+      </programlisting>
+
+      <indexterm>
+  <primary>QFile</primary>
+  </indexterm>
+  <para id="para-ch12-32">This is the Qt way of doing things:
+        first, a <classname>QFile</classname> object is created. If a
+        file with the name <varname>fileName</varname> already exists,
+        a <classname>QTextStream</classname> is used to read the text
+        from the file. This text is read into a
+        <classname>QString</classname> object, which is passed on to
+        <function>setText</function>, which we saw above. If the file
+        doesn't exist, an exception is raised, which is caught in the
+        application class, <classname>KalamApp</classname>. </para>
+
+        <indexterm>
+  <primary>operator overloading</primary>
+  </indexterm>
+  <para id="para-ch12-34">The Pythonic method is a lot shorter:</para>
+
+      <programlisting>
+    def open(self, fileName, format=None):
+        self.setPathName(fileName)
+        self.setText(QString(open(str(fileName)).read()))
+        self._modified=FALSE
+      </programlisting>
+
+      <para id="para-ch12-35">The net result is the same: the document
+        receives a text in <classname>QString</classname> format, and
+        all views are updated. There is no appreciable difference in
+        performance between these two methods, but if you plan to
+        translate the Python application to C++ at some time, it might
+        be preferable to work with as many Qt classes as
+        possible.</para>
+
+    </sect2>
+
+    <sect2><title>Saving</title>
+
+      <para id="para-ch12-36">Saving text is slightly more critical
+        than loading: what you can't load, you can't mangle and lose,
+        but if the application refuses to save a text, a user can lose
+        a lot of work. Still, there is little you can do when the disk
+        is full, beyond preventing the application from crashing. As
+        long as <application>Kalam</application> is running, users can still
+        select, copy and paste text - a lesson I learned with early
+        versions of Word. <!-- this sentence doesn't make sense to me.
+        It's unclear what, specifically, "beyond not crashing" means.
+        I see what you're getting at, but I think the wording is
+        vague.  Br: Ok, expanded--> Note that saving using
+        <classname>QTextStream</classname> is not currently possible.
+        <classname>QTextStream</classname> uses C++ operator
+        overloading (i.e. &lt;&lt;) to write to a stream, which is not
+        yet available in Python.</para>
+
+
+
+
+      <programlisting>
+    def save(self, fileName = None, format = None):
+        if fileName is not None and fileName &lt;&gt; "":
+            self.setPathName(fileName)
+
+        if self.pathName() == None:
+            raise IOError("Could not save document: no filename.")
+
+        if isinstance(self.pathName(), QString):
+            self.setPathName(str(self.pathName()))
+
+        s=str(self.text())
+
+        f = open(self.pathName(), "w")
+        f.write(s)
+
+        if s[-1:] != "\n":
+            f.write("\n")
+        f.flush()
+
+        self._modified = FALSE
+      </programlisting>
+
+      <indexterm>
+  <primary>undo</primary>
+  </indexterm>
+  <indexterm>
+  <primary>redo</primary>
+  </indexterm>
+  <para id="para-ch12-37">There are a few necessary checks to
+        perform. The first is to make sure that the document actually
+        possesses a filename; then we check whether the filename is an
+        instance of <classname>QString</classname>, instead of a
+        Python string. Python's file object cannot use
+        <classname>QString</classname>s &mdash; it needs to have a
+        genuine Python string. So, if the pathname is an instance of
+        <classname>QString</classname>, it is converted to a Python
+        string.</para>
+
+
+        <!-- edit of the gods Br: Deus lo volt. -->
+
+      <para id="para-ch12-38">The document text is then converted to a
+        Python string. A Python file object is created by using the
+        <function>open</function> function, and we write the string to
+        it. If the last character is not a newline, we write a last
+        newline and flush the file. It is a good idea to end all files
+        with a newline, though you may wish to make this is a
+        user-option in the application.</para>
+
+
+
+    </sect2>
+
+  </sect1>
+
+
+  <sect1><title>Undo, redo and other editing functions</title>
+
+    <indexterm>
+  <primary>KalamView</primary>
+  </indexterm>
+  <para id="para-ch12-39">The editing component we are using,
+      <classname>QMultiLineEdit</classname>, already supports undo and
+      redo using standard keys. Because undo and redo are defined as
+      slots in the C++ source for
+      <classname>QMultiLineEdit</classname>, they immediately affect
+      the document and all views. The only thing left for us is to add
+      these functions to the edit menu and the toolbar. The same
+      principle holds for cut, copy, paste and select all.</para>
+
+    <para id="para-ch12-40">The right place for these additions is the
+      central application class, <classname>KalamApp</classname>.
+      However, we need to do more than simply connect the correct
+      <classname>QAction</classname>s to the relevant slots in the
+      view's editors. If we do that, then undo, for instance, would
+      undo the last action in all views, simultaneously! We need to
+      write special functions in <classname>KalamApp</classname> that
+      work only on the active view, and we must wrap the
+      <classname>QMultiLineEdit</classname> slots in the view
+      component.</para>
+
+    <indexterm>
+  <primary>KalamApp</primary>
+  </indexterm>
+  <para id="para-ch12-41">First the <classname>KalamView</classname>
+      wrappings:</para>
+
+    <programlisting>
+    def clear(self):
+        self.editor.clear()
+
+    def append(self, s):
+        self.editor.append(s)
+
+    def deselect(self):
+        self.editor.deselect()
+
+    def selectAll(self):
+        self.editor.selectAll()
+
+    def paste(self):
+        self.editor.paste()
+
+    def copy(self):
+        self.editor.copy()
+
+    def cut(self):
+        self.editor.cut()
+
+    def insert(self, s):
+        self.editor.insert(s)
+
+    def undo(self):
+        self.editor.undo()
+
+    def redo(self):
+        self.editor.redo()
+    </programlisting>
+
+    <indexterm>
+  <primary>icons</primary>
+  </indexterm>
+  <para id="para-ch12-42">Of course, this initially looks very
+      silly, and we could just as well directly call the
+      <classname>QMultiLineEdit</classname> <varname>editor</varname>
+      object variable &mdash; but by encapsulating the editor
+      component we are free to substitute another component without
+      having to hack the other components of the application.</para>
+
+    <para id="para-ch12-43">The other changes are in the
+      <classname>KalamApp</classname> class. First, a set of
+      <classname>QAction</classname>s is added to the dictionary of
+      actions.</para>
+
+    <indexterm>
+  <primary>QAction</primary>
+  </indexterm>
+  <para id="para-ch12-44">Some of these actions have an associated
+      toolbar or menubar icon defined. The icon data is defined in the
+      <filename>resources.py</filename> file. I've used the GPL'ed
+      toolbar icons from the KDE project. It is always a good idea to
+      blend in as closely to the desktop environment you are
+      targetting, so you might also want to provide a set of Windows
+      standard icons and make it a configuration option which set
+      should be used.</para>
+
+    <para id="para-ch12-45">I do not show the full code, just the bits
+      that are new compared to the previous chapter:</para>
+
+    <programlisting>
+        
+    def initActions(self):
+        
+        self.actions = {}
+
+        ... 
+
+        #
+        # Edit actions
+        #
+         self.actions["editClear"] = QAction("Clear",
+                                           "C&amp;lear",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editClear"],
+                     SIGNAL("activated()"),
+                     self.slotEditClear)
+
+
+        self.actions["editSelectAll"] = QAction("SelectAll",
+                                                "&amp;SelectAll",
+                                                QAccel.stringToKey(""),
+                                                self)
+        self.connect(self.actions["editSelectAll"],
+                     SIGNAL("activated()"),
+                     self.slotEditSelectAll)
+        
+
+        self.actions["editDeselect"] = QAction("Deselect",
+                                           "Clear selection",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editDeselect"],
+                     SIGNAL("activated()"),
+                     self.slotEditDeselect)
+
+        self.actions["editCut"] = QAction("Cut",
+                                           QIconSet(QPixmap(editcut)),
+                                           "C&amp;ut",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editCut"],
+                     SIGNAL("activated()"),
+                     self.slotEditCut)
+
+        self.actions["editCopy"] = QAction("Copy",
+                                           QIconSet(QPixmap(editcopy)),
+                                           "&amp;Copy",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editCopy"],
+                     SIGNAL("activated()"),
+                     self.slotEditCopy)
+        
+        self.actions["editPaste"] = QAction("Paste",
+                                           QIconSet(QPixmap(editpaste)),
+                                           "&amp;Paste",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editPaste"],
+                     SIGNAL("activated()"),
+                     self.slotEditPaste)
+        
+        self.actions["editInsert"] = QAction("Insert",
+                                           "&amp;Insert",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["editInsert"],
+                     SIGNAL("activated()"),
+                     self.slotEditInsert)
+        
+        self.actions["editUndo"] = QAction("Undo",
+                                           QIconSet(QPixmap(editundo)),
+                                           "&amp;Undo",
+                                           QAccel.stringToKey("CTRL+Z"),
+                                           self)
+        self.connect(self.actions["editUndo"],
+                     SIGNAL("activated()"),
+                     self.slotEditUndo)
+        
+        self.actions["editRedo"] = QAction("Redo",
+                                           QIconSet(QPixmap(editredo)),
+                                           "&amp;Redo",
+                                           QAccel.stringToKey("CTRL+R"),
+                                           self)
+        self.connect(self.actions["editRedo"],
+                     SIGNAL("activated()"),
+                     self.slotEditRedo)
+    </programlisting>
+
+    <para id="para-ch12-46">As you can see, there is still a fair
+      amount of drudgery involved in creating a GUI interface. Qt 3.0
+      provides an extended GUI Designer that lets you design actions,
+      menubars and toolbars with a comfortable interface.</para>
+
+
+    <para id="para-ch12-47">For now, we'll have to distribute the
+      actions by hand in the <function>initMenu()</function> and
+      <function>initToolbar()</function> functions. Again, omitted
+      code is elided with three dots (...).</para>
+
+    <programlisting>
+    def initMenuBar(self):
+
+        ...
+
+        self.editMenu = QPopupMenu()
+        self.actions["editUndo"].addTo(self.editMenu)
+        self.actions["editRedo"].addTo(self.editMenu)
+        self.editMenu.insertSeparator()
+        self.actions["editCut"].addTo(self.editMenu)
+        self.actions["editCopy"].addTo(self.editMenu)
+        self.actions["editPaste"].addTo(self.editMenu)
+        self.actions["editSelectAll"].addTo(self.editMenu)
+        self.actions["editDeselect"].addTo(self.editMenu)
+        self.actions["editClear"].addTo(self.editMenu)
+        self.menuBar().insertItem("&amp;Edit", self.editMenu)
+
+        ...
+
+    def initToolBar(self):
+
+        ...
+
+        self.editToolbar = QToolBar(self, "edit operations")
+        self.actions["editUndo"].addTo(self.editToolbar)
+        self.actions["editRedo"].addTo(self.editToolbar)
+        self.actions["editCut"].addTo(self.editToolbar)
+        self.actions["editCopy"].addTo(self.editToolbar)
+        self.actions["editPaste"].addTo(self.editToolbar)
+
+        ...
+    </programlisting>
+
+    <para id="para-ch12-48">Finally, we have to define the actual
+      slots called by the <classname>QAction</classname> objects. Note
+      that we are not working directly on the document &mdash; if we
+      did, then all actions (such as selecting text) would apply to
+      all views of the document. We would also have to code an
+      undo-redo stack ourselves. Instead, we retrieve the active view
+      from the workspace manager, and work on that. This view will
+      pass the command on to the <classname>QMultiLineEdit</classname>
+      object, and propagate all changes to the relevant
+      document.</para>
+
+    <programlisting>
+    # Edit slots
+
+    def slotEditClear(self):
+        self.workspace.activeWindow().clear()
+
+    def slotEditDeselect(self):
+        self.workspace.activeWindow().deselect()
+
+    def slotEditSelectAll(self):
+        self.workspace.activeWindow().selectAll()
+
+    def slotEditPaste(self):
+        self.workspace.activeWindow().paste()
+
+    def slotEditCopy(self):
+        self.workspace.activeWindow().copy()
+
+    def slotEditCut(self):
+        self.workspace.activeWindow().cut()
+
+    def slotEditInsert(self):
+        self.workspace.activeWindow().insert()
+
+    def slotEditUndo(self):
+        self.workspace.activeWindow().undo()
+
+    def slotEditRedo(self):
+        self.workspace.activeWindow().redo()
+    </programlisting>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para id="para-ch12-49">We now have a fairly capable editor on our
+      hands. It can load and save documents, handle more than one
+      document at a time, handle more than one view on a document, and
+      can potentially use any of a number of interface
+      paradigms.</para>
+
+    <para id="para-ch12-50">However, our editor is still not a Unicode
+      editor, and as such, you will have problems if you enter a
+      single <emphasis>euro</emphasis> sign, let alone a bit of
+      Cyrillic. You cannot search and replace, and you cannot set the
+      font. In fact, our editor is not at all configurable. We will
+      remedy these omissions in the next few chapters.
+  </para>
+
+  </sect1>
+
+
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->

@@ -1,0 +1,331 @@
+<!DOCTYPE UI><UI>
+<class>unnamed</class>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>Form1</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>440</width>
+            <height>430</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form1</string>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="0"  column="0"  rowspan="3"  colspan="3" >
+            <class>QFrame</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Frame3</cstring>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>WinPanel</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Sunken</enum>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>A plaintext label in a frame.</string>
+                    </property>
+                    <property stdset="1">
+                        <name>scaledContents</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>alignment</name>
+                        <set>WordBreak|AlignVCenter|AlignLeft</set>
+                    </property>
+                    <property>
+                        <name>vAlign</name>
+                    </property>
+                    <property>
+                        <name>wordwrap</name>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="0"  column="4"  rowspan="1"  colspan="2" >
+            <class>QPushButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>PushButton</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>PushButton</string>
+            </property>
+        </widget>
+        <widget row="5"  column="1"  rowspan="1"  colspan="3" >
+            <class>QComboBox</class>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>Qt</string>
+                </property>
+            </item>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>New Item</string>
+                </property>
+            </item>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ComboBox1</cstring>
+            </property>
+        </widget>
+        <widget row="4"  column="0"  rowspan="1"  colspan="2" >
+            <class>QCheckBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>CheckBox1</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Check</string>
+            </property>
+            <property stdset="1">
+                <name>checked</name>
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget row="3"  column="0"  rowspan="1"  colspan="4" >
+            <class>QButtonGroup</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ButtonGroup1</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>A buttongroup with radio buttons</string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="1"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>RadioButton2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Me, for a preference</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget row="0"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>RadioButton1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Choose one</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="5"  column="0" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>TextLabel3</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Widget sets</string>
+            </property>
+        </widget>
+        <widget row="1"  column="4"  rowspan="1"  colspan="2" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Current</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Current IDE's</string>
+            </property>
+            <property stdset="1">
+                <name>scaledContents</name>
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget row="2"  column="4"  rowspan="3"  colspan="2" >
+            <class>QListBox</class>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>Wing IDE</string>
+                </property>
+            </item>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>BlackAdder</string>
+                </property>
+            </item>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>Komode</string>
+                </property>
+            </item>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>IDLE</string>
+                </property>
+            </item>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>PythonWin</string>
+                </property>
+            </item>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ListBox1</cstring>
+            </property>
+        </widget>
+        <widget row="6"  column="1"  rowspan="1"  colspan="3" >
+            <class>QLineEdit</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>LineEdit1</cstring>
+            </property>
+        </widget>
+        <widget row="7"  column="2"  rowspan="1"  colspan="4" >
+            <class>QMultiLineEdit</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>MultiLineEdit1</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>A multi-line edit control can handle quite a lot
+of text. It can wordwrap, or work on single lines,
+but it can't show colors or rich text.</string>
+            </property>
+        </widget>
+        <widget row="6"  column="0" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>TextLabel4</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Type a bit</string>
+            </property>
+        </widget>
+        <widget row="9"  column="0"  rowspan="1"  colspan="6" >
+            <class>QProgressBar</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ProgressBar1</cstring>
+            </property>
+            <property stdset="1">
+                <name>progress</name>
+                <number>49</number>
+            </property>
+        </widget>
+        <widget row="7"  column="0"  rowspan="1"  colspan="2" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Type_a_bit_more</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Type a bit more</string>
+            </property>
+        </widget>
+        <widget row="0"  column="3"  rowspan="2"  colspan="1" >
+            <class>QDial</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Dial1</cstring>
+            </property>
+        </widget>
+        <widget row="8"  column="0"  rowspan="1"  colspan="6" >
+            <class>QSlider</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Slider1</cstring>
+            </property>
+            <property stdset="1">
+                <name>value</name>
+                <number>47</number>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget row="5"  column="5" >
+            <class>QSpinBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>SpinBox1</cstring>
+            </property>
+        </widget>
+        <widget row="5"  column="4" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>TextLabel6</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Fiddlesticks</string>
+            </property>
+        </widget>
+    </grid>
+</widget>
+</UI>

@@ -1,0 +1,53 @@
+<!doctype article public "-//OASIS//DTD DocBook V3.1//EN">
+<article>
+
+  <title>About this book</title>
+
+  <para>I've been working with Python and PyQt for a few years now.
+    Working with PyQt is lot of fun, and I have always tried to share
+    the fun with other Pythoneers. I mean, I've worked with a lot of
+    technologies: I've done Windows programming in pure C, with
+    Borland Pascal and with Visual Basic. I've done my stretch with
+    Oracle Forms, and served as a Java developer. On Linux, I've wet
+    my feet with Free Pascal, with C++: with XForms and with Qt.
+    However, for sheer productivity, nothing beats Python and PyQt.
+    And while there's always something new to learn or explore, it's
+    easy and pleasant to write useful applications from the first day.
+    No other environment has ever given me that.</para>
+
+  <para>When Cameron Laird, during a discussion on the
+    comp.lang.python newsgroup suggested that I'd write a book on this
+    particular way of GUI programming with Python, I started to think
+    - and more than think. I started to write publishers, until one
+    day Joshua Drake of Opendocs wrote <emphasis>me</emphasis>. I
+    started writing almost immediately.</para>
+
+  <para>I'm still very busy writing chapters for this book, and the
+    text as you find it here isn't very polished. You will encounter a
+    lot of XXX - mostly when I don't know what chapter I will refer
+    to. The two large applciations mentioned are tentative. (Although
+    I've nearly done the editor.) There is duplication of text: some
+    intentional, some caused by the fact that when I started writing,
+    I couldn't refer to prior knowledge. And my native tongue is
+    Dutch, not English. I've probably slit the occasional infinitive,
+    and, worse, used a present perfect where an imperfect would have
+    been preferable (and vice versa).</para>
+
+  <para>I really appreciate any and all comments you can send me:
+    either directly (boud@rempt.xs4all.nl), or via opendocs (XXX -
+    Joshua?) - on minor matters of spelling, or major matters of
+    organisation. If you cannot run the examples, or don't get my
+    meaning. Commenting on XXX's isn't very useful: I'll be doing a
+    grep on them when all chapters have been written.</para>
+
+  <para>Currenly, I'm progressing at a rate of about one chapter a
+    week - but I hope to step that up a bit in the coming month, since
+    I want to have most of the text done before the end of
+    July.</para>
+
+</article>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+End:
+-->

@@ -1,0 +1,312 @@
+<appendix id="readingDocumentation" >
+  <title>Reading the Qt Documentation</title>
+
+  <para id="para-documentation-1">Qt is originally a C++ GUI toolkit,
+    and PyQt is just a wrapper around it. Fortunately, Qt is very well
+    designed and makes full use of the object-oriented qualities of
+    C++, so the translation is very comfortable, and PyQt feel like a
+    real Python library.</para>
+
+  <!-- XXX - will this be true? -->
+  <para id="para-documentation-2">BlackAdder includes a copy of the Qt
+    class documentation (nineteen megabytes of html text) that has
+    been fully translated to Python. Of course, if you want to use a
+    more recent version of PyQt than that which comes with BlackAdder,
+    or if you use PyQt on itself, then you need to read the C++
+    documentation for all the details that I didn't have space to
+    discuss in this book. After all, this book teaches you how to use
+    the toolkit to create complete applications, and isn't a mere
+    duplication of the class documentation.</para>
+
+  <para id="para-documentation-4">Fortunately, reading C++
+    documentation for use from Python isn't very difficult. In fact,
+    the translation to Python idiom that is included with BlackAdder
+    has been achieved for the greater part with a few find & replace
+    scripts. However, if your knowledge of C++ (or C) is limited to
+    knowing that it exists, then you might want to read this appendix
+    for some guidance.</para>
+
+  <note>
+    <title>Using KDE to have quick access to the Qt
+      documentation</title>
+
+    <para id="para-documentation-5">If you are using KDE on Unix/X11,
+      you can create new internet shortcuts that take you to the Qt
+      class documentation in an instant.</para>
+
+    <para id="para-documentation-6">KDE has a wonderful feature,
+      called the run command window, in which you can type a short
+      abbreviation (like  "gg" for the Google search engine), followed
+      by a colon and an argument.</para>
+
+    <para id="para-documentation-7">If you add
+      "file://usr/lib/qt2/doc/html/\1.html" in
+      <application>KControl</application>, section Web
+      Browsing/Enhanced Browsing:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" fileref="appendices/qtshortcut1.eps">
+        </imageobject>
+        <caption><para id="para-documentation-8">Creating a shortcut
+            to the Qt documentation</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <para id="para-documentation-9">Then you will be able to access al
+      Qt documentation by typing "qt:qobject", for instance. What you
+      are typing is the name of the html document that contains the
+      class information: all these documents have the classname as a
+      filename, all in lowercase.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" fileref="appendices/qtshortcut2.eps">
+        </imageobject>
+        <caption><para id="para-documentation-10">Using a shortcut to
+            the Qt documentation</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <para id="para-documentation-11">Note that the shortcut
+      (file://usr/lib/qt2/doc/html/\1.html) should point to the place
+      where your qt (or BlackAdder - that would work too)
+      documentation resides. The element after the directory path
+      (\1.html) is a simple substitution argument&mdash; \1 is
+      replaced by what you type after the colon.</para>
+
+    <para id="para-documentation-12">You can quickly access the run
+      command window by pressing ALT-F2 in KDE's standard
+      configuration.</para>
+
+  </note>
+
+  <para id="para-documentation-13">Let's take a simple Qt class as an
+    example: <classname>QLabel</classname>. It's a good idea to open
+    the Qt class documentation in your browser window (remember the
+    KDE shortcut) and keep that in view.</para>
+
+  <para id="para-documentation-14">First, the documentation tells you
+    that the <classname>QLabel</classname> class includes
+    <filename>qlabel.h</filename>: <emphasis>#include
+      &lt;qlabel.h&gt;</emphasis>. This means about the same as a
+    Python import statement. You can disregard it.</para>
+
+    <!-- todo: the first sentence above doesn't appear to be a
+  complete sentence. Br: fixed-->
+
+
+  <para id="para-documentation-15">The methods that do not return
+    anything, but have the same name as the class, are the C++
+    constructors. Simply call them with the right arguments. Don't pay
+    attention to any spurious asterisks (*) or ampersands (&) around
+    the arguments to the function: what matters is the type, like
+    <classname>QWidget</classname>. Don't pay attention to the
+    <varname>const</varname> keyword either.</para>
+
+  <para id="para-documentation-16">If there is an equals sign (=)
+    after the variable name, then the function can use a default
+    parameter, just like in Python. Again, just like in Python,
+    booleans are zero or one. However, a default
+    argument of zero, has a default argument of None in Python. This
+    is important if you want to use two out of three arguments: then
+    you must also mention the middle man (you can safely drop any
+    tailing default arguments you don't need):</para>
+
+  <programlisting>
+label=QLabel("text", None, "name")
+  </programlisting>
+
+  <para>versus</para>
+
+  <programlisting>
+label=QLabel("text")
+  </programlisting>
+
+  <para id="para-documentation-17">Public members are instance methods
+    of objects. If you call a public member, you should always prefix
+    the call with the name of the object you have created (or
+    <varname>self</varname> if you are calling the method from within
+    the object). For example:</para>
+
+  <programlisting>
+print label.text()
+  </programlisting>
+
+
+  <para id="para-documentation-18">Slots are in no way different from
+    ordinary functions in Python, so what holds for public members
+    also holds for public slots. Protected member variables are a
+    vague kind of private&mdash;if you create the
+    <classname>QLabel</classname> from Python, you can access the
+    protected members, like <varname>drawContents()</varname>, without
+    problems, but if the <classname>QLabel</classname> has been
+    created from a C++ class then you cannot access the protected
+    member functions.</para>
+
+  <para id="para-documentation-19">Properties are currently not
+    supported by PyQt&mdash;everything you can set and get with
+    properties is also accessible by <function>get()</function> and
+    <function>set()</function> methods.</para>
+
+  <para id="para-documentation-20">If you are reading the detailed
+    description of a class, you will often come across snippets of C++
+    code. These are easy to translate, too. Just keep in mind that
+    both a double semi-colon (::) or an arrow (->) translate to a
+    Python dot (.). And you don't need braces or final semicolons, of
+    course. Or <function>new</function> statements. For
+    instance:</para>
+
+  <programlisting>
+    QLabel *label = new QLabel;
+    label->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+    label->setText( "first line\nsecond line" );
+    label->setAlignment( AlignBottom | AlignRight );
+  </programlisting>
+
+  <para id="para-documentation-21">Could become in Python:</para>
+
+  <programlisting>
+    label = new QLabel()
+    label.setFrameStyle( QFrame.Panel or QFrame.Sunken )
+    label.setText( "first line\nsecond line" )
+    label.setAlignment( Qt.AlignBottom or Qt.AlignRight )
+  </programlisting>
+
+  <para id="para-documentation-22">Note also that certain pre-defined
+    values, called constants in C++ (and lots of other languages), are
+    placed either in a certain <emphasis>class</emphasis>, not
+    <emphasis>object instances</emphasis> or in the
+    <classname>Qt</classname> pseudoclass. Thus, the
+    <varname>Panel</varname> or <varname>Sunken</varname> constants
+    are accessed from the <classname>QFrame</classname> class, while
+    the <varname>AlignBottom</varname> and
+    <varname>AlignRight</varname> constants are taken from the
+    <classname>Qt</classname> pseudoclass. Note also that it isn't
+    necessary to prefix <classname>Qt</classname> in C++, but that
+    this is obligatory in Python.</para>
+
+
+  <para id="para-documentation-23">A bit like constants are
+    <emphasis>static</emphasis> methods, and are defined on the
+    class:</para>
+
+  <programlisting>
+QObject.connect()  
+  </programlisting>
+
+  <para id="para-documentation-24"><classname>QLabel</classname>
+    doesn't have any signals or static members. For those we had
+    better look at another class:
+    <classname>QScrollbar</classname>.</para>
+
+  <para id="para-documentation-25">Signals have already been discussed
+    in detail in <xref linkend="ch6">. Here I only want to mention the
+    way you must remove any fluff from the declaration. Signals are
+    placed in a Python dictionary by <application>sip</application>,
+    so you really want to get the string argument to
+    <function>SIGNAL()</function> right.</para>
+
+  <para id="para-documentation-26">So, if there are no arguments to
+    the signal, you can just copy it, including the brackets. If there
+    are arguments you need to copy the entire argument list, but not
+    the variable name. So:</para>
+
+  <programlisting>
+void valueChanged ( int value ) 
+  </programlisting>
+
+  <para id="para-documentation-27">Can be used as:</para>
+
+  <programlisting>
+QObject.connect(sbar,SIGNAL("valueChanged(int)"),someFunction)
+  </programlisting>
+
+  <para id="para-documentation-28">On the other hand, if there are
+    asterisks involved, then you have to copy those, too. In
+    <classname>QListView</classname>, </para>
+
+  <programlisting>
+void returnPressed ( QListViewItem * ) 
+  </programlisting>
+
+<para id="para-documentation-29">Becomes:</para>
+
+  <programlisting>
+    self.connect(self,
+                 SIGNAL("returnPressed(QListViewItem *)"),
+                 self.slotItemSelected)
+  </programlisting>
+ 
+  <para id="para-documentation-30">The Qt documentation is not always
+    consistent in giving signal parameters variable names - sometimes
+    they do, sometimes they don't.</para>
+
+  <para id="para-documentation-31">Finally, wherever there is a NULL
+    in C++, you can use None, but you can also use None in many cases
+    where there is a zero (0) (this being a pointer to nowhere). That
+    means that everywhere a function takes an object (instead of a
+    simple integer) as a parameter, you can use None. A zero is often
+    given as a default argument in these cases, and then you don't
+    need to give any parameter. Thus:</para>
+
+  <programlisting>
+QListView ( QWidget * parent = 0, const char * name = 0 ) 
+  </programlisting>
+
+  <para id="para-documentation-32">Can be called as:</para>
+
+  <programlisting>
+listview = QListView(None, None)
+  </programlisting>
+
+  <para id="para-documentation-33">or:</para>
+
+  <programlisting>
+listview = QListView()
+  </programlisting>
+
+  <para id="para-documentation-34">You can also use actual arguments,
+    of course. You almost never need to actually pass something for
+    the <varname>name</varname> parameter, but it makes for nicer
+    debugging:</para>
+
+  <programlisting>
+listview = QListView(parentWindows, "listview")
+  </programlisting>
+
+    <!-- todo: I think it's not ideal to start a paragraph with "but
+  also..." Br: Ok.-->
+ 
+
+  <para>As you've seen, it's not difficult at all to translate from
+    C++ to Python &mdash; even if you don't know any C or C++. If you
+    do want to know more about C++, I can recommend Steven Oualline's
+    book, <citetitle>Practical C++ Programming</citetitle> as a good
+    beginners title.</para>
+
+
+</appendix>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../appendix.ced"
+End:
+-->

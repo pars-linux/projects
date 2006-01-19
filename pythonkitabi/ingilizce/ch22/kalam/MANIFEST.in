@@ -1,0 +1,5 @@
+include kalam
+include kalam.bat
+recursive-include data *
+recursive-include pixmaps *
+recursive-include dialogs *

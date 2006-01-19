@@ -1,0 +1,32 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: Fri Aug 24 14:19:43 2001\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.1\n"
+
+
+#: kalamapp.py:108
+msgid "Open"
+msgstr ""
+
+#: kalamapp.py:110
+msgid "&Open"
+msgstr ""
+
+#: kalamapp.py:98
+msgid "New"
+msgstr ""
+
+#: kalamapp.py:100
+msgid "&New"
+msgstr ""
+

@@ -1,0 +1,3875 @@
+<chapter id="ch2">
+  <title>Qt Class Hierarchy</title>
+
+  <indexterm>
+  <primary>hierarchy</primary><secondary>class</secondary>
+  </indexterm>
+  <para id="para-ch2-1">In this chapter I will present an overview of
+    the Qt library, including both gui objects and non-gui objects.
+    While well-designed, Qt is a large library, and the key to
+    effective use is not knowing every class by heart, but rather
+    developing an intuition for what is available and where it is.
+    After an overview of the entire hierarchy I will shortly discuss
+    the base classes, the gui classes and compare the Qt utility
+    classes with their Python equivalents.</para>
+
+  <sect1>
+    
+    <title>Hierarchy</title>
+    
+    <indexterm>
+  <primary>QObject</primary>
+  </indexterm>
+  <indexterm>
+  <primary>introspection</primary>
+  </indexterm>
+  <para id="para-ch2-2">As noted before, Qt consists of a hierarchy
+      of classes derived from a basic QObject class, and a side-show
+      cluster of more independent classes. Classes derived from
+      QObject share some important functionality, namely the power to
+      communicate through signals and slots and to arrange themselves
+      in an ownership hierarchy. There are other odds and ends, such
+      as introspection functionality, which is discussed in
+      <xref linkend="ch3ObjectAndClassIntroSpection">.</para>
+
+    <figure>
+      <title>Qt Inheritance Hierarchy (only the most important classes)</title>
+      <graphic scale="20" align="center" fileref="ch2/qt-condensed.eps">
+    </figure>
+
+    <indexterm>
+  <primary>hierarchy</primary><secondary>module</secondary>
+  </indexterm>
+  <para id="para-ch2-3">Prior to version 3.0, PyQt basically plunked
+      everything except for the OpenGL extension in the
+      <filename>qt</filename> module. That was the situation when I
+      wrote this book. From PyQt 3.0, the Qt modules
+      <filename>Canvas</filename>, <filename>IconView</filename>,
+      <filename>Network</filename>, <filename>OpenGL</filename>,
+      <filename>SQL</filename>, <filename>Table</filename>,
+      <filename>WorkSpace</filename> and <filename>XML</filename> have
+      been put in separate Python modules.</para>
+
+    <indexterm>
+  <primary>hierarchy</primary><secondary>ownership</secondary>
+  </indexterm>
+  <para id="para-ch2-4">In addition to the inheritance hierarchy,
+      there is an ownership hierarchy, where a window will own, for
+      instance, toolbars, a menubar and a statusbar. If the window is
+      deleted, all child objects will be deleted, too, and if a
+      keypress event arrives for an application, it will traverse the
+      tree until it arrives at the right spot. The ownership hierarchy
+      comes into existence by creating objects with their owner object
+      as parent - see <xref linkend="ch3-sect1-ownership"> about this
+      principle.</para>
+
+    <figure>
+      <title>Object Ownership Hierarchy</title>
+      <graphic fileref="ch2/ownership-condensed.eps" scale="35" align="center">
+    </figure>
+
+  </sect1>
+
+  <sect1>
+    <title>Base classes</title>
+
+
+
+    <para id="para-ch2-5">You won't often create objects from Qt base classes,
+      but you might need to subclass QObject now and then. The basic
+      classes that Qt is built on are QObject and QEvent. There are several
+      other classes used for the construction of high-level datatypes,
+      and a large number of other classes that support working with,
+      for instance, fonts, images and colors.</para>
+
+    <para id="para-ch2-6">QObject brings together support for: </para>
+    <itemizedlist>
+      <listitem>
+        <para id="para-ch2-7">Signals and slots</para>
+      </listitem>
+      <listitem>
+        <para id="para-ch2-8">Timers</para>
+	</listitem>
+      <listitem>
+        <para id="para-ch2-9">Object ownership hierarchy</para>
+      </listitem>
+      <listitem>
+        <para id="para-ch2-10">Event handling and event filters</para>
+      </listitem>
+      <listitem>
+        <para id="para-ch2-11">Introspection</para>
+      </listitem>
+      <listitem>
+        <para id="para-ch2-12">Properties</para>
+      </listitem>
+    </itemizedlist>
+
+    <indexterm>
+  <primary>signals/slots vs events</primary>
+  </indexterm>
+  <indexterm>
+  <primary>signals/slots</primary><secondary>events</secondary>
+  </indexterm>
+  <para id="para-ch2-13">Signals and slots are meant for communication between
+      objects&mdash;for instance, when a button is pressed, certain other
+      objects must be notified. Events, on the other hand, notify
+      objects of general actions of the user, such as key presses
+      or mouse movements; events do not necessarily originate with
+      objects.</para>
+
+    <indexterm>
+  <primary>events vs signals/slots</primary>
+  </indexterm>
+  <indexterm>
+  <primary>events</primary><secondary>signals/slots</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPaintEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QFocusEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QMouseEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QWheelEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QKeyEvent</primary>
+  </indexterm>
+  <para id="para-ch2-14">The linchpin of the event handling mechanism is the class
+      representing the information associated with an event, such as
+      the position of the mouse. This is the QEvent class; there are a
+      whole slew of specialized subclasses like QPaintEvent,
+      QFocusEvent, QMouseEvent, QWheelEvent and QKeyEvent that do the
+      rounds of all interested objects. For instance, a keypress is
+      first passed to the application object, based on QApplication.
+      From there it trickles down the whole widget ownership hierarchy
+      until one widget &lsquo;consumes' it &mdash;that is, reacts to the event and doesn't
+      send it on by calling the <function>event(QEvent)</function>
+      method.</para>
+
+    <indexterm>
+  <primary>paintEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>mouse events</primary>
+  </indexterm>
+  <indexterm>
+  <primary>events</primary><secondary>handling mouse events</secondary>
+  </indexterm>
+  <para id="para-ch2-15">See the next listing for an example of reacting to mouse
+      presses and movements. Note also that if the window is
+      obscured and remapped, the paintEvent method is fired&mdash;
+      this will obliterate your whole beautiful drawing.</para>
+
+    <example>
+      <title>event1.py - handling mouse events in PyQt</title>
+      <programlisting>
+#
+# event1.py
+#
+from qt import *
+import sys
+
+class Painting(QWidget):
+
+    def __init__(self, *args):
+        apply(QWidget.__init__,(self, ) + args)
+
+    def paintEvent(self, ev):
+        self.p = QPainter()
+        self.p.begin(self)
+        self.p.fillRect(self.rect(), QBrush(Qt.white))
+        self.p.flush()
+        self.p.end()
+
+    def mouseMoveEvent(self, ev):
+        self.p = QPainter()
+        self.p.begin(self)
+        self.p.drawLine(self.currentPos, ev.pos())
+        self.currentPos=QPoint(ev.pos())
+        self.p.flush()
+        self.p.end()
+
+    def mousePressEvent(self, ev):
+        self.p = QPainter()
+        self.p.begin(self)
+        self.p.drawPoint(ev.pos())
+        self.currentPos=QPoint(ev.pos())
+
+        self.p.flush()
+        self.p.end()
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.painting=Painting(self)
+        self.setCentralWidget(self.painting)
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+      </programlisting>
+    </example>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="60" align="center" fileref="ch2/event1.eps">
+        </imageobject>
+        <caption><para id="para-ch2-16">event1.py</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <para id="para-ch2-17">In handling methods such as <function>mousePressEvent()</function>,
+      It is customary to use <parameter>ev</parameter> as the name
+      for the <classname>QEvent</classname> parameter. In
+      this example, all mouse press events and mouse move events are
+      consumed by the <classname>Painting</classname> class.</para>
+
+  </sect1>
+
+  <sect1>
+    <title>Application classes</title>
+
+    <indexterm>
+  <primary>application classes</primary>
+  </indexterm>
+  <indexterm>
+  <primary>main window</primary>
+  </indexterm>
+  <para id="para-ch2-18">Most gui applications consist of a main
+      window embellished with toolbars, a menu bar, and a statusbar,
+      and have a hole in the middle. The hole in the middle can be
+      filled with a specialized widget, or it may be a sort of
+      desktop-in-a- desktop, with its own windows, and with
+      sub-windows that dock themselves to the sides of the main
+      window. Often, and application includes a few secondary windows,
+      dialogs and a number of small popup-windows that warn or inform
+      the user.</para>
+
+    <indexterm>
+  <primary>QApplication</primary>
+  </indexterm>
+  <para id="para-ch2-19">We have already worked with a few of these
+      components. There is <classname>QApplication</classname>, the
+      base of every PyQt application.
+      <classname>QApplication</classname> wants to receive the
+      command-line arguments to determine the look and feel of the
+      application, as shown in
+      <xref linkend="ch1HelloWorld">.</para>
+
+    <indexterm>
+  <primary>QMainWindow</primary>
+  </indexterm>
+  <para id="para-ch2-20">Then there's the main window &mdash; as
+      shown in <xref linkend="ch1-sect1-better-hello">, you can have
+      an unlimited number of main windows, and not all those main
+      windows have to be of the same class, as long as they inherit
+      <classname>QMainWindow</classname>.</para>
+
+    <indexterm>
+  <primary>QAction</primary>
+  </indexterm>
+  <para id="para-ch2-21">We have yet to add the frills to the main
+      window. PyQt makes it quite easy to do this. The best way of
+      adding menu options and toolbar buttons is to create a
+      <classname>QAction</classname> for each action.
+      <classname>QAction</classname> is a class that brings together
+      user interface information about a certain action the user can
+      undertake in your application.</para>
+
+    <para id="para-ch2-22">For instance, if you're developing a network client
+      application, one of the actions could be the command to
+      <command>log in</command>. Associated with this command
+      is a short help text that appears as a tooltip, a longer
+      help text that might appear in the status bar, an icon that is
+      used in the toolbar, a short text for use in the menu, and an
+      accelerator key that is used from the keyboard. The <command>log in</command>
+      action can be enabled or disabled (when the network is down, for
+      instance). You do not want to distribute all this functionality
+      all over your application.</para>
+
+    <para id="para-ch2-23">A <classname>QAction</classname> ties everything related to
+      an action together, and can be added to toolbars and menus.
+      When performed, a <classname>QAction</classname> emits an <function>activated()</function>
+      signal. The following is a simple example with an action, a menubar, a toolbar
+      and a statusbar:</para>
+
+    <example>
+      <title>action.py - Using a QAction to group data associated with
+        user commands</title>
+      <programlisting>
+#
+# action.py
+#
+
+import sys
+from qt import *
+
+connectIcon=["16 14 5 1",
+             " 	c None",
+             ".	c black",
+             "X	c gray50",
+             "o	c red",
+             "O	c yellow",
+             "                ",
+             "          .     ",
+             "       X .X     ",
+             "      XooX  .   ",
+             "     Xoooo .X   ",
+             "    XooooooX    ",
+             "    XooooooX    ",
+             "    XoooooX.    ",
+             "    XooooX.     ",
+             "   XOXXXX.      ",
+             "  XOXX...       ",
+             " XOXX           ",
+             "  XX            ",
+             "  X             "
+             ]
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        self.setCaption("Network Client")
+
+        # Define action
+        self.action=QAction(self, "login")
+        self.action.setText("Log in")
+        self.action.setMenuText("&amp;Login")
+        self.action.setToolTip("Login to the central server")
+        self.action.setWhatsThis("Logs in to the central server.")
+        self.action.setStatusTip("Log in to the central server.")
+        self.action.setAccel(Qt.CTRL + Qt.Key_L)
+        self.action.setIconSet(QIconSet(QPixmap(connectIcon)))
+        self.connect(self.action,
+                     SIGNAL("activated()"),
+                     self.slotAction)
+
+
+        # Statusbar
+        self.statusBar=QStatusBar(self)
+
+        # Define menu
+        self.menu=QPopupMenu()
+        self.action.addTo(self.menu)
+        self.menuBar().insertItem("&amp;File", self.menu)
+
+        # Define toolbar
+        self.toolBar=QToolBar(self, 'Main')
+        self.action.addTo(self.toolBar)
+
+        # Set a central widget
+        self.editor=QMultiLineEdit(self)
+        self.setCentralWidget(self.editor)
+
+    def slotAction(self):
+        QMessageBox.information(self,
+                                "Network Client",
+                                "Connecting to server...")
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+      </programlisting>
+    </example>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch2/action.eps">
+        </imageobject>
+        <caption><para id="para-ch2-24">action.py</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <para id="para-ch2-25">When, in <xref linkend="ch17">, we reach
+      the pinnacle of development of <application>Kalam</application>,
+      the extensible Unicode editor, you will have become
+      <emphasis>very</emphasis> familiar with
+      <classname>QAction</classname>.</para>
+
+    <sect2><title>Multiple document windows with QWorkspace</title>
+
+      <indexterm>
+  <primary>MDI</primary>
+  </indexterm>
+  <indexterm>
+  <primary>multiple document interface</primary>
+  </indexterm>
+  <para id="para-ch2-26">The MDI (multiple document interface) is
+        a paradigm made popular by Microsoft, in which one application
+        window contains several document windows. For certain classes
+        of application, such as programming editors, this is a very
+        comfortable paradigm, but most users tend to get very confused
+        when confronted with windows that don't show up in their
+        taskbar. In fact, a large percentage of users have trouble
+        when there is more than one window on their desktop.</para>
+
+      <indexterm>
+  <primary>QWorkSpace</primary>
+  </indexterm>
+  <para id="para-ch2-27">However, the functionality is available,
+        and it might be useful for <emphasis>your</emphasis>
+        application. Let's take our high-powered graphics editor, from
+        the event1.py example, and give the user ten windows to
+        scribble in. All that is needed is it to add the
+        <classname>Painting</classname> to a
+        <classname>QWorkspace</classname> object, instead of setting
+        it as the central widget of the
+        <classname>MainWindow</classname>.</para>
+
+      <para id="para-ch2-28">Realistically, you'll want to offer menu
+        options for selecting, tiling and cascading the windows.
+        <classname>QWorkSpace</classname> provides a
+        <function>tile()</function> and a
+        <function>cascade()</function> slot for these purposes, as
+        well as a <function>windowList</function> that returns a list
+        of all windows. While it is a bad idea to limit your users to
+        a small maximum number of documents, if you let them open
+        more, you should provide a separate window with a full list.
+        Having more than ten windows to select from in a menu makes
+        working difficult.</para>
+
+        <example>
+          <title>fragment from mdi.py - ten little scribbling windows</title>
+          <programlisting>
+...
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.setCaption("MDI Scribbler")
+        self.workspace=QWorkspace(self, "workspace")
+        self.winlist=[]
+        for i in range(10):
+            win=Painting(self.workspace)
+            win.resize(100,100)
+            win.setCaption("Window " + str(i))
+            self.winlist.append(win)
+        self.setCentralWidget(self.workspace)
+...
+        </programlisting>
+      </example>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="40" align="center" fileref="ch2/mdi.eps">
+          </imageobject>
+          <caption><para id="para-ch2-29">mdi.py - ten little scribbling windows.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1>
+    <title>Widget foundations: QWidget</title>
+
+    <indexterm>
+  <primary>QWidget </primary>
+  </indexterm>
+  <para id="para-ch2-30">All Qt widgets and all visible components are founded upon
+      <classname>QWidget</classname> &mdash; this monster class provides all
+      event handling, all style handling and countless other chores.
+      To help with the handling of these tasks, there are other
+      classes, such as <classname>QPixmap</classname>,
+      <classname>QColor</classname>, <classname>QFont</classname> or
+      <classname>QStyle</classname>.</para>
+
+    <para id="para-ch2-31"><classname>QWidget</classname> can be useful to build your
+      own widgets on, provided you are prepared to do all your own
+      painting &mdash; this includes buffering in case your widget gets
+      a <function>paintEvent</function> call! Consider the next
+      snippet, which is an extension of the event1.py example:</para>
+
+    <example>
+      <title>event2.py - using QWidget to create a custom,
+        double-buffered drawing widget.</title>
+      <programlisting>
+#
+# event2.py
+#
+from qt import *
+import sys
+
+class Painting(QWidget):
+
+    def __init__(self, *args):
+        apply(QWidget.__init__,(self, ) + args)
+        self.buffer = QPixmap()
+
+    def paintEvent(self, ev):
+        # blit the pixmap
+        bitBlt(self, 0, 0, self.buffer)
+
+    def mouseMoveEvent(self, ev):
+        self.p = QPainter()
+        self.p.begin(self.buffer)
+        self.p.drawLine(self.currentPos, ev.pos())
+        self.currentPos=QPoint(ev.pos())
+        self.p.flush()
+        self.p.end()
+        bitBlt(self, 0, 0, self.buffer)
+                
+    def mousePressEvent(self, ev):
+        self.p = QPainter()
+        self.p.begin(self.buffer)
+        self.p.drawPoint(ev.pos())
+        self.currentPos=QPoint(ev.pos())
+        self.p.flush()
+        self.p.end()
+        bitBlt(self, 0, 0, self.buffer)
+        
+    def resizeEvent(self, ev):
+        tmp = QPixmap(self.buffer.size())
+        bitBlt(tmp, 0, 0, self.buffer)
+        self.buffer.resize(ev.size())
+        self.buffer.fill()
+        bitBlt(self.buffer, 0, 0, tmp)
+                           
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.painting=Painting(self)
+        self.setCentralWidget(self.painting)
+        
+def main(args):
+  app=QApplication(args)
+  win=MainWindow()
+  win.show()
+  app.connect(app, SIGNAL("lastWindowClosed()")
+                 , app
+                 , SLOT("quit()")
+                 )
+  app.exec_loop()
+  
+if __name__=="__main__":
+  main(sys.argv)
+      </programlisting>
+    </example>
+    
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="50" align="center" fileref="ch2/event2.eps">
+        </imageobject>
+        <caption><para id="para-ch2-32">event2.py - persistent drawing</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <indexterm>
+  <primary>double buffering</primary>
+  </indexterm>
+  <indexterm>
+  <primary>blitting</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPixMap</primary>
+  </indexterm>
+  <para id="para-ch2-33">By drawing to <classname>QPixmap</classname> instead of
+      to <classname>QWidget</classname>, and
+      <emphasis>blitting</emphasis> the contents of that pixmap to the
+      widget, the drawing will be kept. Note also how much smoother
+      the drawing feels, despite the extra work the script has to do.
+      This technique is called double buffering, and is the alpha
+      and the omega of graphics programming. Of course, there's still
+      a small problem with resizing... In fact, if you want to build
+      your own widgets from the ground up using QWidget, you're always
+      in for more work than you reckoned with.</para>
+
+    <sect2 id="ch2QColor"><title>QColor</title>
+      
+      <indexterm>
+  <primary>QColor</primary>
+  </indexterm>
+  <indexterm>
+  <primary>RGB</primary>
+  </indexterm>
+  <indexterm>
+  <primary>HSV</primary>
+  </indexterm>
+  <indexterm>
+  <primary>Color</primary><secondary>QColor</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>Color</primary><secondary>RGB</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>Color</primary><secondary>HSV</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>Color</primary><secondary>X11 color names</secondary>
+  </indexterm>
+  <para id="para-ch2-34">The <classname>QColor</classname> class
+        represents any color that can be used in PyQt. You can
+        instantiate a new color either by using an RGB
+        (red-green-blue) value, an HSV (hue-saturation-value) value,
+        or a name. The X11 system used on Unix provides a database
+        full of rather poetic color names like &lsquo;Old Lace',
+        &lsquo;Royal Blue' and &lsquo;Peach Puff' &mdash;you can use
+        these names instead of hexadecimal numbers. The Windows
+        version of PyQt has a copy of this database, so it's quite
+        portable. If you replace the
+        <function>resizeEvent()</function> in the event2.py example
+        with the following code, you'll see the effect:</para>
+
+      <example><title>snippet from event3.py - a peach puff drawing
+          board</title>
+        <programlisting>
+...
+    def resizeEvent(self, ev):
+        tmp = QPixmap(self.buffer.size())
+        bitBlt(tmp, 0, 0, self.buffer)
+        self.buffer.resize(ev.size())
+        self.buffer.fill(QColor("peachpuff"))
+        bitBlt(self.buffer, 0, 0, tmp)
+...
+        </programlisting>
+      </example>
+      
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="50" align="center" fileref="ch2/event3.eps">
+          </imageobject>
+          <caption><para id="para-ch2-35">event3.py</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      
+      <indexterm>
+        <primary>setBackgroundColor</primary>
+        <secondary>setEraseColor</secondary>
+        <tertiary>QColor</tertiary>
+      </indexterm>
+
+      <indexterm>
+  <primary>setBackGroundColor</primary><secondary>setEraseColor</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>SetEraseColor</primary><secondary>setBackgroundColor</secondary>
+  </indexterm>
+  <para id="para-ch2-36">A final note on colors: the way you set
+        the colors of a widget have been changed between Qt2 and Qt3.
+        Where you first used
+        <function>setBackgroundColor()</function>, you'd now use
+        <function>setEraseColor()</function>. Yes, there is a logic
+        behind this change of name, but it is very specious, and the
+        change broke almost all my code. The erase color is the color
+        that Qt uses to clear away, or erase, all the pixels that had
+        been painted just before they are painted again in a
+        paint event.</para>
+
+
+      <indexterm>
+  <primary>setBackgroundMode</primary>
+  </indexterm>
+  <para id="para-ch2-37">When you're designing complex widgets,
+        you will want to investigate
+        <function>setBackgroundMode</function> and the
+        <varname>BackgroundMode</varname> flags.</para>
+
+
+    </sect2>
+      <sect2><title>QPixmap, QBitmap and QImage</title>
+
+      <indexterm>
+    <primary>svg</primary><secondary>scalable vector graphics</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QBitmap</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QImage</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPixmap</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPicture</primary>
+  </indexterm>
+  <para id="para-ch2-38">We have already been using a
+        <classname>QPixMap</classname> to double buffer the
+        scribblings in the previous two examples.
+        <classname>QPixmap</classname> is not the only image class
+        PyQt offers: there's also <classname>QBitmap</classname>,
+        which is just like <classname>QPixmap</classname>, but for
+        black and white images only, and
+        <classname>QImage</classname>. Where
+        <classname>QPixmap</classname> and
+        <classname>QBitmap</classname> are optimized for drawing (and
+        then showing on screen or on a printer),
+        <classname>QImage</classname> is optimized for reading and
+        writing (together with the <classname>QImageIO</classname>
+        class), and for manipulating the actual pixels of an image.
+        There's another image-related class,
+        <classname>QPicture</classname>, which can be used to record
+        drawing operations and replay them later. The recorded paint
+        events can then be stored in a file and reloaded later on.
+        Those files are called <emphasis>meta-files</emphasis> &mdash;
+        but they're in a special Qt format. In Qt 3,
+        <classname>QPicture</classname> also supports the standard
+        scalable vector graphics format, svg. If you want to create a
+        complex vector-drawing application you'd be well advised to
+        stick to this standard.</para>
+      </sect2>
+
+    <sect2><title>QPainter</title>
+
+      <indexterm>
+  <primary>QPainter</primary>
+  </indexterm>
+  <para id="para-ch2-39">A <classname>QPainter</classname> object
+        is used to efficiently paint on any paintdevice using a
+        variety of primitive graphics, such as simple dots or lines,
+        bezier curves, polygons, strings of text (using a particular
+        font) or pixmaps. Drawings can be modified, for instance by
+        shearing or rotating, and parts can be erased or clipped. We
+        have already used a QPainter to draw the scribbly lines in
+        previous examples.
+        </para>
+
+        <indexterm>
+  <primary>Paint devices</primary>
+  </indexterm>
+  <para id="para-ch2-40">Paint devices can be:</para>
+
+  <indexterm>
+    <primary>QPrinter</primary>
+  </indexterm>
+         <itemizedlist>
+          <listitem><para id="para-ch2-41">pictures:
+              <classname>QPicture</classname></para></listitem>
+          <listitem><para id="para-ch2-42">pixmaps:
+              <classname>QPixmap</classname></para></listitem>
+          <listitem>
+  <para id="para-ch2-43">printers:
+              <classname>QPrinter</classname></para></listitem>
+          <listitem><para id="para-ch2-44">widgets <classname>: QWidget</classname> (and
+              all children of <classname>QWidget</classname>)
+            </para></listitem>
+        </itemizedlist>
+
+      <para id="para-ch2-45">What can be drawn on one device, can
+        be drawn on all devices, so it's uncommonly easy to print on
+        paper what can be drawn on screen. Copying batches of pixels
+        from one paint device to another is blindingly fast if you use
+        the bitBlt global function, as we did above for our
+        double-buffered graphics editor.</para>
+      
+      <indexterm>
+  <primary>QPaintDevice</primary><secondary>QApplication</secondary>
+  </indexterm>
+  <para id="para-ch2-46">Note that you cannot create
+        <emphasis>any</emphasis> paint device until you have created a
+        <classname>QApplication</classname>. This includes
+        <classname>QPixmap</classname>s. The following variant on
+        action.py won't work, even though it seems a
+        <emphasis>good</emphasis> idea to pre-create the pixmap,
+        instead of converting the xpm data on constructing the
+        <classname>QAction</classname>:</para>
+
+        <example><title>fragment from action2.py - You cannot create a
+            QPixmap before a QApplication</title>
+          <programlisting>
+#
+# action2.py
+#
+
+import sys
+from qt import *
+
+connectIcon=QPixmap(["16 14 5 1",
+             " 	c None",
+             ".	c black",
+             "X	c gray50",
+             "o	c red",
+             "O	c yellow",
+             "                ",
+             "          .     ",
+             "       X .X     ",
+             "      XooX  .   ",
+             "     Xoooo .X   ",
+             "    XooooooX    ",
+             "    XooooooX    ",
+             "    XoooooX.    ",
+             "    XooooX.     ",
+             "   XOXXXX.      ",
+             "  XOXX...       ",
+             " XOXX           ",
+             "  XX            ",
+             "  X             "
+             ])
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+...
+        self.action.setIconSet(QIconSet(connectIcon))
+...
+        </programlisting>
+      </example>
+
+      <para id="para-ch2-47">Running this gives the following result:</para>
+
+      <screen>
+boudewijn@maldar:~ > python action2.py
+QPaintDevice: Must construct a QApplication before a QPaintDevice
+Aborted
+      </screen>
+
+      <para id="para-ch2-48"><xref linkend="ch16"> deals with painters and paintdevices
+        in quite a lot of detail, while <xref linkend="ch17"> deals
+        with printing to paper.</para>
+
+    </sect2>
+
+    <sect2><title>QFont</title>
+
+      <indexterm>
+  <primary>fonts</primary>
+  </indexterm>
+  <para id="para-ch2-49">There is no other area where there are so
+        many and profound differences between operating systems as
+        there is with fonts. And if you take into account the
+        difference in font handling between printers and screens, you
+        will get a feeling for how difficult it is to get proper and
+        dependable cross-platform multi-lingual font support in a
+        toolkit.
+        </para>
+
+      <para id="para-ch2-50">Fortunately, Qt's font support has
+        steadily improved, and is now at the point where, provided
+        good quality fonts are available on a system, it can offer the
+        same excellent screen <emphasis>and</emphasis> printer support
+        on all platforms.</para>
+
+      <indexterm>
+  <primary>fonts</primary><secondary>system</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>fonts</primary><secondary>layout management</secondary>
+  </indexterm>
+  <para id="para-ch2-51">The first issue is the font used for
+        drawing labels and other application texts &mdash; sometimes
+        called the system font. This naturally differs for each
+        system: Windows uses Arial these days, while KDE uses
+        Helvetica, CDE Times and OS X a bold Helvetica. Furthermore,
+        the system font is also often customized by the user. Text in
+        one font takes more room than text in another font &mdash;
+        possibly giving ugly display errors. By using Qt's layout
+        managers, instead of positioning widgets with pixel-precision
+        yourself, you will have little trouble dealing with the
+        geometry differences between Window's Arial font and KDE's
+        Helvetica standard &mdash; all controls will reflow
+        neatly.</para>
+
+
+      <indexterm>
+  <primary>fonts</primary><secondary>QFont</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QFont</primary>
+  </indexterm>
+  <para id="para-ch2-52">For handling fonts in your application
+        you can work with <classname>QFont</classname>. Qt builds its
+        own database of available fonts from whatever the system
+        provides. You can then access these fonts in a
+        system-independent manner, without having to juggle X11 font
+        resource names yourself.</para>
+
+      <indexterm>
+  <primary>QFont</primary><secondary>encoding</secondary>
+  </indexterm>
+  <para id="para-ch2-53"><classname>QFont</classname> provides all
+        necessary functions to select encodings (or scripts in Qt3),
+        font families, styles and sizes. There's also a standard
+        dialog available, <classname>QFontDialog</classname> that you
+        can use to let the user select a certain font.</para>
+
+
+      <indexterm>
+  <primary>QFont</primary><secondary>Qt2 vs Qt3</secondary>
+  </indexterm>
+  <para id="para-ch2-54">There are serious differences between the
+        font system in Qt2 and Qt3. In Qt2, you need to determine
+        which character set encoding you need; and you can only use
+        the character set encodings that the particular font supports.
+        For instance, if your font supports the KOI8 Cyrillic
+        encoding, then that is the encoding you can use. The font you
+        request has a one-to-one relation with the font files on your
+        system.</para>
+
+      <indexterm>
+  <primary>QFont</primary><secondary>script</secondary>
+  </indexterm>
+  <para id="para-ch2-55">In Qt3, you select fonts by name, style
+        and script (like Cyrillic), and Qt will select the closest
+        fitting font. If your widget needs to present text on screen
+        that uses characters that cannot be retrieved from the
+        selected font, Qt will query all other fonts on your system,
+        and assemble a composite, synthetic font that includes all
+        characters you need. You lose some control but you gain a
+        correct representation of all possible texts&mdash; you can
+        use any font for any text in any script.</para>
+
+      <indexterm>
+  <primary>QFont</primary><secondary>setting the application font</secondary>
+  </indexterm>
+  <para id="para-ch2-56">If you want to set a certain font for the
+        entire application, you can use the
+        <function>QApplication.setFont</function> class function.
+        Likewise, everything that descends from
+        <classname>QWidget</classname> also has a
+        <function>setFont()</function> function.</para>
+ 
+      <indexterm>
+  <primary>QFontInfo</primary>
+  </indexterm>
+  <para id="para-ch2-57">You can use <classname>QFontInfo</classname> to
+        determine the exact font Qt uses for a certain QFont &mdash; but
+        this might be quite slow. An important use of
+        <classname>QFontInfo</classname> with Qt3 is to determine
+        whether the font you get was exactly the font you asked for.
+        For instance, if you desire a Bembo font, which might not be
+        present on your system, you could get something closeish: a
+        Times New Roman. Especially for drawing and dtp applications
+        it's important to be sure which font is actually used.</para>
+
+      <indexterm>
+  <primary>QFontMetrics</primary>
+  </indexterm>
+  <para id="para-ch2-58"><classname>QFontMetrics</classname> can
+        be used to determine metrics information about a font. For
+        instance, how high the ascenders and descenders are, and how
+        wide the widest character is. This is useful if you need to
+        determine how much space a line of text takes when printed on
+        paper. </para>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="35" align="center" fileref="ch2/metrics.eps">
+            </imageobject>
+<indexterm>
+  <primary>fonts</primary><secondary>font selectiondialog</secondary>
+  </indexterm>
+            <caption>
+  <para id="para-ch2-59">Font metrics</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1>
+      <title>Basic widgets</title>
+
+      <indexterm>
+  <primary>basic widgets</primary>
+  </indexterm>
+  <para id="para-ch2-60">All basic screen components are available in PyQt:
+        buttons, frames, edit controls, listboxes and comboboxes. All
+        these widgets can be drawn in any number of styles, and you
+        can even define your own style. Note that the window
+        titlebar and borders are not defined by the widget style, but
+        by the system you are running. The borders in these
+        screenshots are from the KDE System++ style.
+       </para>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch2/basic_cde.eps">
+            </imageobject>
+<indexterm>
+  <primary>QStyle</primary><secondary>CDE</secondary>
+  </indexterm>
+            <caption>
+  <para id="para-ch2-61">Basic widgets in the  CDE style</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch2/basic_motif.eps">
+            </imageobject>
+<indexterm>
+  <primary>QStyle</primary><secondary>Motif</secondary>
+  </indexterm>
+            <caption>
+  <para id="para-ch2-62">Basic widgets in the motif style</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch2/basic_motifplus.eps">
+            </imageobject>
+<indexterm>
+  <primary>QStyle</primary><secondary>Motif+</secondary>
+  </indexterm>
+            <caption>
+  <para id="para-ch2-63">Basic widgets in the motif plus style</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch2/basic_platinum.eps">
+            </imageobject>
+<indexterm>
+  <primary>QStyle</primary><secondary>Platinum</secondary>
+  </indexterm>
+            <caption>
+  <para id="para-ch2-64">Basic widgets in the platinum style</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch2/basic_sgi.eps">
+            </imageobject>
+<indexterm>
+  <primary>QStyle</primary><secondary>SGI</secondary>
+  </indexterm>
+            <caption>
+  <para id="para-ch2-65">Basic widgets in the SGI style</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch2/basic_windows.eps">
+            </imageobject>
+<indexterm>
+  <primary>QStyle</primary><secondary>Windows</secondary>
+  </indexterm>
+            <caption>
+  <para id="para-ch2-66">Basic widgets in the Windows style</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+
+      <sect2><title>QFrame</title>
+        <indexterm>
+  <primary>frames</primary>
+  </indexterm>
+  <para id="para-ch2-67">Frames are used to group other widgets
+        &mdash; either visibly (for instance by drawing a nice bevel
+        around them), or invisibly (by managing the geometry of those
+        widgets. PyQt offers all the usual options, from panels to
+        ridges to bevels, with horizontal and vertical lines thrown in
+        for good measure.
+        </para>
+      </sect2>
+
+      <sect2><title>QPushButton</title>
+        <indexterm>
+  <primary>QPushButton</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QCheckBox</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QRadioButton</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QToolButton</primary>
+  </indexterm>
+  <para id="para-ch2-68">
+        Pushbuttons are the mainstay of gui programming. They can be
+        adorned with text or with a picture, but not both (you need a
+        <classname>QToolButton</classname> for that).
+        <classname>QPushButton</classname>s are based on an
+        abstraction of all button functionality, namely
+        <classname>QButton</classname>, which is also the parent of
+        <classname>QCheckBox</classname>,
+        <classname>QRadioButton</classname> and
+        <classname>QToolButton</classname>. In honor of QPushButton's
+        central importance, I want to present a &lsquo;Hello'
+        application with four buttons, each in a different style. This
+        also shows a frame.
+        </para>
+
+        <example>
+          <title>buttons.py - Four pushbuttons saying
+          &lsquo;hello'.</title>
+          <programlisting>
+#
+# buttons.py
+#
+
+from qt import *
+import sys
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.setCaption("Buttons")
+        
+        self.grid=QGrid(2, self)
+        self.grid.setFrameShape(QFrame.StyledPanel)
+
+        self.bn1=QPushButton("Hello World", self.grid)
+        self.bn1.setFlat(1)
+
+        self.bn2=QPushButton("Hello World", self.grid)
+        self.bn2.setDefault(1)
+        
+        self.bn3=QPushButton("Hello World", self.grid)
+        self.bn3.setToggleButton(1)
+        self.bn3.setDown(1)
+        
+        self.bn4=QPushButton("Hello", self.grid)
+                           
+        self.setCentralWidget(self.grid)
+        
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                   , app
+                   , SLOT("quit()")
+                   )
+    app.exec_loop()
+  
+if __name__=="__main__":
+    main(sys.argv)
+          </programlisting>
+        </example>
+
+          <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="50" align="center" fileref="ch2/buttons.eps">
+            </imageobject>
+            <caption><para id="para-ch2-69">buttons.py</para>
+            </caption>
+          </mediaobject>
+          </screenshot>
+
+
+    </sect2>
+    
+    <sect2><title>QLabel</title>
+      <indexterm>
+  <primary>QLabel</primary>
+  </indexterm>
+  <indexterm>
+  <primary>label</primary>
+  </indexterm>
+  <para id="para-ch2-70">Labels are ubiquitous in a gui
+        application &mdash; and the PyQt <classname>QLabel</classname>
+        offers much more than just plain-text labels for use in dialog
+        boxes. PyQt labels can also contain rich text or a
+        <classname>QMovie</classname>, such as an animated GIF or PNG.
+        Through the <function>setBuddy</function> method, a
+        <classname>QLabel</classname> can be associated with another
+        control. If any character in the label text is prefixed by an
+        ampersand &mdash; &amp; &mdash; that character will be shown
+        underlined, and by pressing alt-character, the user can jump
+        to the control associated with the label through the buddy
+        property.
+      </para>
+
+      <example>
+        <title>label.py - a label associated with an
+          edit control</title>
+        <programlisting>
+#
+# label.py
+#
+import sys
+from qt import *
+
+class dlgLabel(QDialog):
+
+    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
+        QDialog.__init__(self,parent,name,modal,fl)
+        self.setCaption("label dialog")
+        if name == None:
+            self.setName("dlgLabel")
+
+        self.layout=QHBoxLayout(self)
+        self.layout.setSpacing(6)
+        self.layout.setMargin(11)
+
+        self.label=QLabel("&amp;Enter some text", self)
+        self.edit=QLineEdit(self)
+        self.label.setBuddy(self.edit)
+
+        self.layout.addWidget(self.label)
+        self.layout.addWidget(self.edit)
+
+
+if __name__ == '__main__':
+  app = QApplication(sys.argv)
+  QObject.connect(app, SIGNAL('lastWindowClosed()')
+                     , app
+                     , SLOT('quit()')
+                     )
+  win = dlgLabel()
+  app.setMainWidget(win)
+  win.show()
+  app.exec_loop()
+        </programlisting>
+      </example>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="60" align="center" fileref="ch2/label.eps">
+          </imageobject>
+          <caption><para id="para-ch2-71">label.py</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch2-72">If you press alt-e after starting the
+        <filename>label.py</filename> script (which is on the CD-ROM),
+        you'll see the cursor appearing in the edit field.</para>
+
+      <indexterm>
+  <primary>focus</primary>
+  </indexterm>
+  <indexterm>
+  <primary>setFocus()</primary>
+  </indexterm>
+  <para id="para-ch2-73">You might wonder why the cursor is not the control
+        that accepts user input when you start the script &mdash;
+        this is a property of PyQt. On starting an application,
+        the main window has the focus, not the controls
+        associated with it. If you want to make the user's life
+        easier, call <function>setFocus()</function> on the main
+        widget in the <function>__init__</function> of the main
+        window:</para>
+        <programlisting>
+#
+# label2.py
+#
+import sys
+from qt import *
+
+class dlgLabel(QDialog):
+
+    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
+        QDialog.__init__(self,parent,name,modal,fl)
+        self.setCaption("label dialog")
+        if name == None:
+            self.setName("dlgLabel")
+
+        self.layout=QHBoxLayout(self)
+        self.layout.setSpacing(6)
+        self.layout.setMargin(11)
+
+        self.label=QLabel("&amp;Enter some text", self)
+        self.edit=QLineEdit(self)
+        self.label.setBuddy(self.edit)
+
+        self.layout.addWidget(self.label)
+        self.layout.addWidget(self.edit)
+
+        self.edit.setFocus()
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    QObject.connect(app, SIGNAL('lastWindowClosed()'),
+                    app, SLOT('quit()'))
+    win = dlgLabel()
+    app.setMainWidget(win)
+    win.show()
+    app.exec_loop()
+        </programlisting>
+
+      <para id="para-ch2-74">A label is a QWidget; it is thus quite
+        possible to handle key and mouse events in a label. You might,
+        for instance, want to make a clickable label that looks like
+        an URL.</para>
+
+    </sect2>
+
+    <sect2><title>QRadioButton</title>
+
+      <indexterm>
+  <primary>radio buttons</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QRadioButton</primary>
+  </indexterm>
+  <para id="para-ch2-75">Radio buttons always remind of my tax
+        return forms - check <emphasis>one</emphasis> and only
+        <emphasis>one</emphasis> out of a certain number of choices.
+        Radio buttons should not be used if there are more than five
+        choices at most, and you would be well advised to limit
+        yourself to no more than three. A constellation of radio
+        buttons has the advantage that all options are visible at the
+        same time, but it takes a lot of screen space. Do not use
+        checkboxes instead of radio buttons for exclusive choices.
+        People will get confused.
+        </para>
+
+        <indexterm>
+  <primary>QButtonGroup</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QVButtonGroup</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QHButtonGroun</primary>
+  </indexterm>
+  <indexterm>
+  <primary>setChecked()</primary>
+  </indexterm>
+  <para id="para-ch2-76">Radio buttons include their labels
+        &mdash; and these labels can again be marked with an ampersand
+        (&amp;) for easy selection. In order to force the &lsquo;one
+        and only one' choice, combine the mutually exclusive radio
+        buttons in a <classname>QButtonGroup</classname>, or one of
+        the descendants: <classname>QVButtonGroup</classname> for
+        vertical layouts (recommended) or
+        <classname>QHButtonGroup</classname> for horizontal layouts
+        (these look rather weird). A radiobutton can be initialized
+        with <function>setChecked()</function>.</para>
+
+        <example id="ch2ExampleRadiobuttons">
+          <title>radio.py - a group of mutually exclusive
+          options</title>
+          <programlisting>
+#
+# label.py
+#
+import sys
+from qt import *
+
+class dlgRadio(QDialog):
+
+    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
+        QDialog.__init__(self,parent,name,modal,fl)
+        self.setCaption("radiobutton dialog")
+        if name == None:
+            self.setName("dlgRadio")
+        self.layout=QVBoxLayout(self)
+
+        self.buttonGroup=QVButtonGroup("Choose your favourite", self)
+        self.radio1=QRadioButton("&amp;Blackadder I", self.buttonGroup)
+        self.radio2=QRadioButton("B&amp;lackadder II", self.buttonGroup)
+        self.radio3=QRadioButton("Bl&amp;ackadder III", self.buttonGroup)
+        self.radio4=QRadioButton("Bla&amp;ckadder Goes Forth", self.buttonGroup)
+
+        self.radio1.setChecked(1)
+
+        self.layout.addWidget(self.buttonGroup)
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    QObject.connect(app, SIGNAL('lastWindowClosed()'),
+                    app, SLOT('quit()'))
+    win = dlgRadio()
+    app.setMainWidget(win)
+    win.show()
+    app.exec_loop()
+        </programlisting>
+      </example>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="40" align="center" fileref="ch2/radio.eps">
+          </imageobject>
+          <caption><para id="para-ch2-77">radio.py</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+    </sect2>
+
+    <sect2><title>QCheckBox</title>
+
+      <indexterm>
+  <primary>QCheckBox</primary>
+  </indexterm>
+  <indexterm>
+  <primary>tri-state checkbox</primary>
+  </indexterm>
+  <para id="para-ch2-78">Checkboxes are another of those gui
+        features that makes one think of bureaucratic forms. Check any
+        that apply... Checkboxes are as easy to use as radiobuttons,
+        and come with a label attached, like radiobuttons. A variation
+        which makes for instant user confusion is the tri-state
+        checkbox, in which there's a <emphasis>checked</emphasis>,
+        <emphasis>unchecked</emphasis> and a <emphasis>doesn't
+          apply</emphasis> state &mdash; the doesn't apply state is
+        usually rendered to look just like a completely disabled
+        checkbox. However, it is sometimes necessary to introduce this
+        behavior. Imagine a dialog box that allows the user to set a
+        filter:</para>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="40" align="center" fileref="ch2/checkbox1.eps">
+          </imageobject>
+          <caption><para id="para-ch2-79">A dialog with a tri-state
+              checkbox in the <emphasis>&lsquo;doesn't
+                apply'</emphasis> state.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch2-80">Now the user has three choices: either
+        look for solvent persons, for insolvent persons or for both.
+        The Platinum style makes it very clear which state the
+        checkbox is in, compared to, for instance, the Windows
+        style.</para>
+
+      </sect2>
+
+      <sect2><title>QListBox</title>
+
+      <indexterm>
+  <primary>QListBox</primary>
+  </indexterm>
+  <para id="para-ch2-81">Listboxes are simple containers where a
+        variable number of strings can be added. You can allow the
+        user to select no item, one item, a range of items or a
+        discontinuous set of items. You can enter texts or pixmaps in
+        a listbox, but the listbox, like the listview and the
+        combobox, doesn't let you associate arbitrary data with the
+        items inside it.</para>
+
+      <indexterm>
+  <primary>listbox</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QListBox</primary><secondary>associating entries with objects</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>listbox</primary><secondary>associating entries with data</secondary>
+  </indexterm>
+  <para id="para-ch2-82">This is something you may often want
+        &mdash; you let the user select a certain object by clicking
+        on an item in the listbox, and you want that object to be
+        available in your application, not the string or picture that
+        represents the object, or the index of the item in the
+        listbox. You can achieve this by coding a small associative
+        listbox:</para>
+
+      <example><title>listbox.py - A listbox where data can be
+          associated with an entry</title>
+        <programlisting>
+#
+# listbox.py
+#
+# listbox with key-to-index and index-to-key mapping
+#
+import sys
+from qt import *
+
+class AssociativeListBox(QListBox):
+
+    def __init__(self, *args):
+        apply(QListBox.__init__,(self,)+args)
+        self.text2key = {}
+        self.key2text = {}
+        self.connect(self, SIGNAL("selected(int)"),
+                     self.slotItemSelected)
+
+    def insertItem(self, text, key):
+        QListBox.insertItem(self, text)
+        self.text2key [self.count() - 1] = key
+        self.key2text [key]=self.count() - 1
+
+    def currentKey(self):
+        return self.text2key[self.currentItem()]
+
+    def setCurrentItem(self, key):
+        if self.key2text.has_key(key):
+            QListBox.setCurrentItem(self, self.key2text[key])
+
+    def slotItemSelected(self, index):
+        key=self.currentKey()
+        self.emit(PYSIGNAL("itemSelected"),
+                  (key, self.currentText()) )
+
+    def removeItem(self, index):
+        del self.text2key[self.currentItem()]
+        del self.key2text[index]
+        QListView.removeItem(self, index)
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.listbox=AssociativeListBox(self)
+        self.listbox.insertItem("Visible text 1", "key1")
+        self.listbox.insertItem("Visible text 2", "key2")
+        self.listbox.insertItem("Visible text 3", "key3")
+        self.setCentralWidget(self.listbox)
+
+        self.connect(self.listbox,PYSIGNAL( "itemSelected"), self.printSelection)
+
+    def printSelection(self, key, text):
+            print "Associated with", key, "is", text
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                                 , app
+                                 , SLOT("quit()")
+                                 )
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+        </programlisting>
+      </example>
+
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="50" align="center" fileref="ch2/listbox.eps">
+          </imageobject>
+          <caption><para id="para-ch2-83">listbox.py</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch2-84">Of course, the same trick is needed to get something
+        useful out of a <classname>QComboBox</classname> or a
+        <classname>QListView</classname>.</para>
+
+    </sect2>
+
+    <sect2><title>QComboBox</title>
+
+      <indexterm>
+  <primary>QComboBox</primary>
+  </indexterm>
+  <para id="para-ch2-85">A <classname>QComboBox</classname> offers almost the same
+        functionality as a <classname>QListBox</classname>, but folds
+        out and in, preserving screen space. The contents of a
+        combobox can be read-only or editable, and you can check the
+        correctness of user input using a
+        <classname>QValdidator</classname> object.</para>
+
+    </sect2>
+
+    <sect2><title>QLineEdit</title>
+      <indexterm>
+  <primary>QLineEdit</primary>
+  </indexterm>
+  <indexterm>
+  <primary>password</primary>
+  </indexterm>
+  <para id="para-ch2-86">This is a simple one-line edit control, familiar to gui
+        users everywhere. It supports copy, cut and paste and redo,
+        too. There's a special mode for password boxes.
+      </para>
+    </sect2>
+
+    <sect2><title>QMultiLineEdit</title>
+
+      <indexterm>
+  <primary>QMultiLineEdit</primary>
+  </indexterm>
+  <para id="para-ch2-87"><classname>QMultiLineEdit</classname> provides a very
+        simple multi-line editor. This class does not, in any way,
+        support rich text &mdash; all text is in the same font, same
+        size and same color. You can enable word-wrap, but that's
+        about it. There are no limits on the amount of text it can
+        handle (as was the case with the old Windows edit control,
+        which had a limit of about 32 kb), but with megabytes of data,
+        it will become decidedly slow.</para>
+
+      <indexterm>
+  <primary>QTextEdit</primary>
+  </indexterm>
+  <para id="para-ch2-88">With Qt3 this class has become obsolete.
+        You're supposed to use the new, advanced
+        <classname>QTextEdit</classname>, instead. After creating a
+        <classname>QTextEdit</classname> object, you'd set the
+        textformat to plain with
+        <function>QTextEdit.setFormat(Qt.PlainText)</function>; no
+        user would notice the difference.
+        <classname>QTextEdit</classname> and
+        <classname>QMultiLineEdit</classname> are quite different to
+        the programmer, though, and you can still use
+        <classname>QMultiLineEdit</classname> if you need
+        compatibility with older versions of Qt.</para>
+
+    </sect2>
+
+    <sect2><title>QPopupMenu</title>
+      <indexterm>
+  <primary>QPopupMenu</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPopupMenu</primary><secondary>QAction</secondary>
+  </indexterm>
+  <para id="para-ch2-89">One of the most useful things you can
+        offer a user in any document-based application is a context
+        menu &mdash; press the mouse-button anywhere in the document
+        and a list of useful options pop up. PyQt's
+        <classname>QPopupMenu</classname> can be used both as a
+        stand-alone popup menu, and within a menu bar. Menu items can
+        have a shortcut key associated with them, an accelerator and a
+        small icon. The most useful way of adding items to a menu is
+        by defining a <classname>QAction</classname>. You can nest
+        menus, and make &lsquo;tear-off' menus, where the user can
+        click on a &lsquo;tear-off handle' which puts the menu in a
+        window of its own.</para>
+
+    </sect2>
+
+    <sect2><title>QProgressBar</title>
+
+      <indexterm>
+  <primary>QProgressBar</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QProgressDialog</primary>
+  </indexterm>
+  <para id="para-ch2-90"><classname>QProgressBar</classname> gives
+        you a horizontal progressbar &mdash; it's quite simple, even
+        though it can be set to use one of several different styles.
+        There's also <classname>QProgressDialog</classname> which can
+        be used for lengthy actions that completely block access to
+        the application. Since PyQt doesn't really support
+        multi-threading, it's probably best to stick with the blocking
+        dialog.</para>
+
+      <indexterm>
+  <primary>QTimer</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QSlider</primary>
+  </indexterm>
+  <para id="para-ch2-91">If you want to get fancy, you can, with a
+        bit of juggling, get an approximation to threading by using a
+        <classname>QTimer</classname>. Then it's best to place the
+        progress bar in the statusbar of your application, instead of
+        a separate non-modal progress dialog.
+        <xref linkend="ch16PaintingExample"> gives an example of the
+        use of a timer.</para>
+
+    </sect2>
+    
+    
+    <sect2><title>QSlider and other small fry</title>
+
+      <para id="para-ch2-92">There are several other, simple
+        user-interface widgets: <classname>QDial</classname>,
+        <classname>QLCDNumber</classname>,
+        <classname>QScrollBar</classname>,
+        <classname>QSizeGrip</classname>,
+        <classname>QSpinBox</classname> and
+        <classname>QToolButton</classname>. These widgets are seldom
+        used, mostly because they are rather overspecialized.</para>
+
+      <indexterm>
+  <primary>QDial</primary>
+  </indexterm>
+  <para id="para-ch2-93"><classname>QDial</classname> is a
+        potentio-meter like knob. Twiddling it demands a fair
+        proficiency with the mouse, and the keyboard interface isn't
+        immediately obvious. See <xref linkend="ch6-example-qdial">
+        for an example of using <classname>QDial</classname>.</para>
+
+      <indexterm>
+  <primary>ZX-Spectrum</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QLCDNumber</primary>
+  </indexterm>
+  <para id="para-ch2-94"><classname>QLCDNumber</classname> is a
+        kind of label which can display numbers in an lcd-like format.
+        It's mostly interesting for historical reasons &mdash; the
+        first version was written for the Sinclair ZX-Spectrum, a 1.9
+        MHz Z80 computer with a rubber keyboard and 48 Kb of
+        ram.</para>
+
+      <indexterm>
+  <primary>QScrollBar</primary>
+  </indexterm>
+  <para id="para-ch2-95"><classname>QScrollBar</classname> looks
+        to be quite useful, because, on the face of it, any gui
+        application is full of scrollbars. But those scrollbars come
+        automatically with the edit-controls, listboxes and other
+        scrollable widgets, and the <classname>QScrollBar</classname>
+        is seldom used in isolation, and then mostly for the same
+        purpose as <classname>QDial</classname>&mdash; as a range
+        control. If you want to use it for scrolling a section on
+        screen, use the <classname>QScrollView</classname> class
+        instead. 
+        </para>
+
+      <indexterm>
+  <primary>QSizeGrip</primary>
+  </indexterm>
+  <para id="para-ch2-96">The <classname>QSizeGrip</classname> is
+        <emphasis>extremely</emphasis> obscure, being at its peak form
+        only in statusbars of resizable windows. And those
+        <classname>QStatusBar</classname>s can take care of their
+        sizegrips themselves.</para>
+
+      <indexterm>
+  <primary>QSpinBox</primary>
+  </indexterm>
+  <para id="para-ch2-97"><classname>QSpinBox</classname> is another range control.
+        It's often used to let the user select a size for a font
+        &mdash; she can either type the size directly, or use the
+        little arrows to choose a larger or smaller size. Spinboxes
+        are often quite fiddly to use.</para>
+      
+      <indexterm>
+  <primary>QToolButton</primary>
+  </indexterm>
+  <para id="para-ch2-98"><classname>QToolButton</classname> is a special button
+        that carries more often a picture than a text &mdash; it's
+        mostly used in toolbars, where you can add buttons without
+        explicitly creating instances of this class.</para>
+
+    </sect2>
+    
+  </sect1>
+  
+  <sect1>
+    <title>Advanced widgets</title>
+
+    <indexterm>
+  <primary>advanced widgets</primary>
+  </indexterm>
+  <para id="para-ch2-99">It is with the advanced widgets that the
+      real fun starts. PyQt has a range of really powerful widgets
+      that allows you to build any kind of modern application you
+      desire.</para>
+
+    <para id="para-ch2-100">You will notice that many advanced Qt
+      widgets are formed from the combination of a manager widget
+      class and an item class. This holds for
+      <classname>QCanvas</classname> with
+      <classname>QCanvasItem</classname>, for
+      <classname>QListView</classname> with
+      <classname>QListViewItem</classname> and for many others.</para>
+
+    <sect2><title>QSimpleRichText, QTextView and QTextBrowser</title>
+      
+      <indexterm>
+  <primary>QSimpleRichText</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTextView</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTextBrowser</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QStyleSheet</primary>
+  </indexterm>
+  <para id="para-ch2-101">These classes implement rich text
+        viewers. They use html text and stylesheets to present data to
+        a user. <classname>QTextView</classname> is limited to one
+        page of text, while <classname>QTextBrowser</classname>
+        includes hyperlink navigation. The class
+        <classname>QStyleSheet</classname> is used to determine the
+        graphical rendering of the contents of
+        <classname>QTextView</classname> and
+        <classname>QTextBrowser</classname>.
+        <classname>QSimpleRichText</classname> is more like a label in
+        use, and is intended for smaller texts. Indeed, if you stuff a
+        <classname>QLabel</classname> with rich text, it will get
+        displayed using <classname>QSimpleRichText</classname>. These
+        classes do not provide a complete web-browser rendering engine
+        &mdash; that would be too much for a mere toolkit, but the
+        rendering is quite good.</para>
+
+    </sect2>  
+      
+    <sect2><title>QTextEdit</title>
+
+      <indexterm>
+  <primary>QTextEdit</primary>
+  </indexterm>
+  <para id="para-ch2-102">Available only in Qt3, not in Qt2,
+        <classname>QTextEdit</classname> is a rich text editing
+        widget. This is a very powerful class, almost a complete
+        wordprocessor in its own right - except that it doesn't have a
+        notion of the concept of &lsquo;page'. The KDE Office wordprocessor,
+        <application>KWord</application> is built around it.</para>
+
+      <para id="para-ch2-103"><classname>QTextEdit</classname> can display images, text
+        in fancy fonts across the whole Unicode range, tables and
+        lists. Internally, <classname>QTextEdit</classname> uses the
+        same subset of HTML that <classname>QTextView</classname> and
+        friends use. If your text is saved in a different file format,
+        you will first have to convert it to HTML, and that makes
+        <classname>QTextEdit</classname> difficult to use for purposes
+        such as a programmers editor, but has everything needed to create a rich
+        text input pane for an email client, for instance. (Not that I
+        condone sending html-formatted email!)</para>
+
+    </sect2>
+
+    <sect2 id="ch2ListView"><title>QListView and QListViewItem</title>
+      <indexterm>
+  <primary>QListView</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QListViewItem</primary>
+  </indexterm>
+  <para id="para-ch2-104">This is possibly the most overworked PyQt class &mdash; it
+        seems to be used in almost every application.
+        <classname>QListView</classname> doubles as a listview and a
+        treeview. People coming from a Visual Basic background will
+        be delighted with the ease of use of this treeview.  Adding
+        an item in a tree is a simple matter of creating a
+        <classname>QListViewItem</classname> with another
+        <classname>QListViewItem</classname> for a parent.
+      </para>
+
+      <example>
+        <title>tree.py - building a tree</title>
+        <programlisting>
+#
+# tree.py - a simple tree with QListView
+#
+import sys
+from qt import *
+
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.tree = QListView(self)
+        self.setCentralWidget(self.tree)
+        self.tree.addColumn("item")
+        self.tree.setRootIsDecorated(1)
+        self.items=[]
+        self.items.append(QListViewItem(self.tree, "testself1"))
+        self.items.append(QListViewItem(self.items[-1], "child 1"))
+        self.items.append(QListViewItem(self.items[-2], "child 2"))
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+     </programlisting>
+      </example>
+
+      <indexterm>
+  <primary>QListView</primary><secondary>example</secondary>
+  </indexterm>
+  <para id="para-ch2-105">Note that inserting items in an unsorted
+        <classname>QListView</classname> inserts the items at the top
+        of the listview. Thus, if you insert items A,
+        B and C, in that order, the order in the listview will be
+        C, B, A. Try adding the following line in the constructor,
+        before the listviewitems are created:</para>
+
+      <programlisting>
+self.tree.setSorting(1,-1)
+      </programlisting>
+
+      <indexterm>
+  <primary>QListView</primary><secondary>order of QListViewItems</secondary>
+  </indexterm>
+  <para id="para-ch2-106">If you want your latest item to be the last in the branch,
+        then you will have to give the item it comes after as a second
+        argument&mdash; this can make for some quite irksome
+        bookkeeping. (Remember our little XML parser plus treeview in
+        <xref linkend="ch6ParserFormatter">? Well, this is the cause
+        of one nasty bug in that code! In that treeview, all items are
+        sorted  within their node, and thus do not represent the
+        structure of the XML document.)</para>
+
+    </sect2>
+
+    <sect2>
+      <title>QIconView and QIconViewItem</title>
+
+      <indexterm>
+  <primary>QIconView</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QIconViewItem</primary>
+  </indexterm>
+  <para id="para-ch2-107">If you are familiar with the Listview control that's
+        available on Windows, you might be somewhat surprised to learn
+        that Qt's listview doesn't include an icon view mode. There is
+        a separate icon view class <classname>QIconView</classname>
+        that provides all the functionality you might expect, except
+        for the easy switching between listview mode and iconview
+        mode. You will need to use two widgets in a widget-stack
+        (<classname>QWidgetStack</classname>) for that.
+      </para>
+
+    </sect2>
+
+    <sect2><title>QSplitter</title>
+      <indexterm>
+  <primary>QSplitter</primary>
+  </indexterm>
+  <para id="para-ch2-108"><classname>QSplitter</classname> is used to separate two
+        gui items that can take a variable amount of space. The user
+        can drag the splitter to give more room to one of those
+        items. Splitters can be horizontal or vertical, and you can
+        use splitters within splitters.
+      </para>
+    </sect2>
+
+    <sect2><title>QCanvas, QCanvasView and QCanvasItems</title>
+
+      <indexterm>
+  <primary>QCanvas</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QCanvasView</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QCanvasItem</primary>
+  </indexterm>
+  <para id="para-ch2-109">This is a very powerful combination.
+        Canvases are typically used in graphics applications, games or
+        applications where a complex layout of text is required.
+        <classname>QCanvasView</classname> is the real widget that
+        includes scrollbars and can react to mouse presses or keyboard
+        interaction. A <classname>QCanvasView</classname> can show
+        (part of) a <classname>QCanvas</classname>, but a
+        <classname>QCanvas</classname> can be shown on more than one
+        <classname>QCanvasView</classname>. You can place
+        <classname>QCanvasItems</classname> on a
+        <classname>QCanvas</classname>. These items can represent
+        simple geometric forms, chunks of text or sprites (sprites are
+        independently moving, animated pictures). The following
+        classes implement <classname>QCanvasItem</classname>:
+      </para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch2-110">QCanvasSprite</para>
+        </listitem>
+        <listitem><para id="para-ch2-111">QCanvasText</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-112">QCanvasPolygonalItem</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-113">QCanvasEllipse</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-114">QCanvasLine</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-115">QCanvasPolygon</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-116">QCanvasRectangle</para>
+        </listitem>
+      </itemizedlist>
+
+      <para id="para-ch2-117">From Qt 3, there is also
+        <classname>QCanvasSpline</classname>, which can be used to
+        draw bezier curves. Note that you cannot subclass
+        <classname>QCanvasItem</classname> &mdash; this is explicitly
+        forbidden in the Qt documentation: you will have to select a
+        more specialized subclass of
+        <classname>QCanvasItem</classname>.</para>
+
+
+      <para id="para-ch2-118">Canvas items can move independently from each other, and
+        can be rendered on top of other items, or below others (by
+        clipping the obscured part). The PyQt canvas is completely
+        double-buffered and thus gives a very smooth
+        performance.</para>
+
+      <para id="para-ch2-119"><xref linkend="ch16Canvas"> shows a practical use for a
+        <classname>QCanvas</classname>.</para>
+
+
+      </sect2>
+
+      <sect2><title>QTable, QTableItem and QTableView (or
+        QGridView)</title>
+
+      
+      <indexterm>
+  <primary>QTable</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTableItem</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTableView</primary>
+  </indexterm>
+  <para id="para-ch2-120"><classname>QTable</classname> and
+        <classname>QTableView</classname> are completely different
+        classes, but they should be discussed together, since both
+        implement a way for a developer to present tabular
+        data.</para>
+      
+      <para id="para-ch2-121"><classname>QTableView</classname> is rather difficult to
+        use &mdash; it has a primitive, low-level interface and code
+        based on it tends to be buggy. There is a lot of flexibility
+        built into <classname>QTableView</classname>, but you cannot
+        add widgets to cells. It has been deprecated in Qt3, where you
+        can use the <classname>QGridView</classname> class instead.
+      </para>
+      
+      <para id="para-ch2-122"><classname>QTable</classname>, by
+        contrast, is  a very high-level spreadsheet-like control,
+        eminently suited for the presentation of database data.
+        <classname>QTableItem</classname>s are the items that fill the
+        cells of a <classname>QTable</classname>, and are editable.
+        It's easy to have a combobox or line editor pop-up when the
+        user selects a certain cell. Windows users especially will
+        know about the vast amount of &lsquo;grid controls' that can
+        be bought for Visual Basic or Visual C++ &mdash;
+        <classname>QTable</classname> is the Qt equivalent, only not
+        so bloated as most of those grids are.</para>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1><title>Layout managers</title>
+
+    <indexterm>
+  <primary>layout management</primary>
+  </indexterm>
+  <para id="para-ch2-123">One of the great strengths of PyQt is the use of layout
+      managers. Formerly, gui designers had to position and size every
+      element in their dialogs with pixel precision. Of course, this
+      meant that enlarging a window wouldn't show the user more data,
+      just a vast desert of boring grey pixels. Worse, when making a
+      window smaller, data would be obscured. Even worse, there are
+      still applications being made where you cannot resize the
+      windows <emphasis>at all</emphasis>.
+    </para>
+
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch2/too_large.eps">
+      </imageobject>
+      <caption><para id="para-ch2-124">Too large...</para>
+      </caption>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch2/too_small.eps">
+      </imageobject>
+      <caption><para id="para-ch2-125">Too small.</para>
+      </caption>
+    </mediaobject>
+
+    <para id="para-ch2-126">It's easy to write applications as badly
+      behaved as this in PyQt&mdash; but where a Visual Basic
+      developer has to  write a complex resize routine that
+      recalculates the size and position of each element, PyQt
+      developers can use Qt's advanced layout management
+      facilities.</para>
+
+    <para id="para-ch2-127">Basically, this means that you create
+      several containers that hold your widgets, and those widgets
+      will resize together with the containers. The easiest way to
+      create a pleasing layout is by using the BlackAdder or Qt forms
+      designer, as this automatically uses sensible defaults.</para>
+
+    <indexterm>
+  <primary>QLayout</primary>
+  </indexterm>
+  <para id="para-ch2-128">There are three fundamental approaches to
+      layout management in PyQt: by stacking widgets or grouping them
+      in frames, by using the simple layout management provided by
+      <classname>QFrame</classname> and children, or by using the
+      advanced layout management <classname>QLayout</classname>
+      provides. In Qt 3.0 <classname>QLayout</classname> is even smart
+      enough to reverse the order of labels and entry widgets in
+      dialog boxes for right-to-left scripts.</para>
+
+    <note>
+      <indexterm>
+  <primary>layout management</primary><secondary>QMainWindow</secondary>
+  </indexterm>
+  <para id="para-ch2-129"><classname>QMainWindow</classname>
+        provides its own layout management&mdash; it manages the size
+        and position of the menubar, toolbar or toolbars, statusbar
+        and the widget in the middle. If that widget is not composed
+        of several widgets, the management will be quite sufficient.
+        If there are several widgets constrained by a
+        <classname>QSplitter</classname>, the management will likewise
+        be sufficient, because in that case, the
+        <classname>QSplitter</classname> will be the central widget.
+        If you have a more complex assembly of widgets, you will have
+        to create a dummy central <classname>QWidget</classname> that
+        contains a layoutmanager that manages those widgets in a
+        pleasing way. You can also directly add a layout manager to
+        QMainWindow, but PyQt will natter about a layout manager being
+        added to a widget that already had one. It's not dangerous,
+        though. See <xref linkend="ch2ExampleLayout"> for an example
+        of such a dummy central widget.</para>
+    </note>
+
+    <sect2><title>Widget sizing: QSizePolicy</title>
+
+      <indexterm>
+  <primary>QSizePolicy</primary>
+  </indexterm>
+  <para id="para-ch2-131"><classname>QWidget</classname> based
+        classes provide the layout management system with
+        <emphasis>size hints</emphasis>. This is a subtle system based
+        on a class named <classname>QSizePolicy</classname>. A
+        widget's size policy determines how small a widget can shrink,
+        how big it can grow and how big it really wants to be. Then
+        the layout manager negotiates with the widget though the use
+        of the <function>sizeHint()</function> about the size it will
+        get.</para>
+
+      <para id="para-ch2-132">A widget can thus indicate whether it
+        prefers to stay a fixed horizontal or vertical size, or would
+        like to grow to occupy all available space. QSizePolicy
+        contains a horizontal size policy record and a vertical size
+        policy record. You can set the size policy programmatically,
+        but the setting is also available in the BlackAdder forms
+        creator.</para>
+
+      <indexterm>
+  <primary>size policies</primary>
+  </indexterm>
+  <para id="para-ch2-133">The following size policies exist:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para id="para-ch2-134">Fixed &mdash; the widget can't
+            shrink nor grow.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-135">Minimum &mdash; the widget can't
+            shrink, and shouldn't grow.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-136">Maximum &mdash; the widget can't
+            grow, but can shrink without any problem.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-137">Preferred &mdash; the widget can
+            shrink, but shouldn't grow.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-138">MinimumExpanding &mdash; the widget
+            can't shrink, but should be allowed to grow as much as
+            possible.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch2-139">Expanding &mdash; the widget can
+            shrink, but should be allowed to grow  as much as
+            possible.</para>
+        </listitem>
+      </itemizedlist>
+
+      </sect2>
+
+      <sect2><title>Groups and frames</title>
+
+        <para id="para-ch2-140">One way of getting automatic layout
+        management is by using <classname>QFrame</classname>, and its
+        children, like <classname>QGroupBox</classname>. We have
+        already seen such a frame in the radiobuttons example, 
+        <xref linkend="ch2ExampleRadiobuttons">. The contents of the
+        frame will be managed automatically.
+        </para>
+
+        <para id="para-ch2-141"><classname>QFrame</classname> has
+        three interesting child classes: <classname>QGrid</classname>,
+        <classname>QHBox</classname> and
+        <classname>QGroupBox</classname>. There's also
+        <classname>QVBox</classname>, which descends from
+        <classname>QHBox</classname>. </para>
+
+        <para id="para-ch2-142">Adding widgets to one of the
+        frame-based layout managers is simply a matter of creating the
+        widget with the layout manager as <emphasis>parent</emphasis>.
+        Those widgets will be resized according to the value their
+        <function>sizeHint()</function> returns.</para>
+
+      <sect3><title>QHBox</title>
+        <indexterm>
+  <primary>QHBox</primary>
+  </indexterm>
+  <para id="para-ch2-143">This a very, very simple class. A
+            <classname>QHBox</classname> aligns its children
+            horizontally, with a settable spacing between them.
+        </para>
+      </sect3>
+
+      <sect3><title>QVBox</title>
+        <indexterm>
+  <primary>QVBox</primary>
+  </indexterm>
+  <para id="para-ch2-144">A <classname>QVBox</classname> layout
+          is possibly even simpler than the
+          <classname>QHBox</classname> layout: as the name implies, it
+          aligns its children vertically.
+        </para>
+      </sect3>
+      
+      <sect3><title>QGrid</title>
+        <indexterm>
+  <primary>QGrid</primary>
+  </indexterm>
+  <para id="para-ch2-145">It will come as no surprise that the
+          <classname>QGrid</classname> is a simple grid layout
+          manager &mdash; for more complicated layouts, with differently
+          sized columns, you really need
+          <classname>QGridLayout</classname>.
+        </para>
+      </sect3>
+      
+      <sect3><title>QGroupBox</title>
+        <indexterm>
+  <primary>QGroupBox</primary>
+  </indexterm>
+  <para id="para-ch2-146">A <classname>QGroupBox</classname>
+          gives you a frame (which can be drawn in as many flavors as
+          <classname>QFrame</classname> supports) and with a title
+          text which will appear on top of the frame. A
+          <classname>QGroupBox</classname> can hold child widgets.
+          Those widgets will be aligned horizontally, vertically or in
+          a grid. The grid can also be filled in columns (for
+          vertically oriented frames), or in strips (for horizontally
+          oriented frames).
+        </para>
+      </sect3>
+      
+    </sect2>
+    
+    <sect2><title>QLayout</title>
+      
+      <indexterm>
+  <primary>QLayout</primary>
+  </indexterm>
+  <para id="para-ch2-147"><classname>QLayout</classname> is
+        foundation of all complex Qt layout managers. Built on
+        <classname>QLayout</classname>, there are three
+        layoutmanagers: one for horizontal layouts, one for vertical
+        layouts and one for grids. It's also quite possible to build a
+        new layoutmanager on <classname>QLayout</classname>, one, for
+        instance, that manages playing cards on a stack, or perhaps
+        items in circle.</para>
+      
+      <indexterm>
+  <primary>layout management</primary><secondary>nesting</secondary>
+  </indexterm>
+  <para id="para-ch2-148">You can not only add widgets to layouts;
+        but also layouts. In this way, quite complex layouts can
+        achieved with very little pain.</para>
+
+      <indexterm>
+  <primary>layout management</primary><secondary>layout items</secondary>
+  </indexterm>
+  <para id="para-ch2-149">All layout managers work by maintaining
+        a list of layoutitems. Those items can be
+        <classname>QLayoutItem</classname>s,
+        <classname>QLayoutWidget</classname>s or
+        <classname>QSpacerItem</classname>s. It's interesting to note
+        that <classname>QLayout</classname> <emphasis>is</emphasis> a
+        <classname>QLayoutItem</classname>, and can thus be managed by
+        another layoutmanager.</para>
+      
+      <indexterm>
+  <primary>QSpacerItem</primary>
+  </indexterm>
+  <para id="para-ch2-150">Every layout item proxies for a widget.
+        A <classname>QSpacerItem</classname> is rather special, since
+        it doesn't represent a widget, but rather space. A
+        <classname>QSpacerItem</classname> &lsquo;pushes' other
+        widgets, either horizontally or vertically. You can use them
+        to push all pushbuttons to the top of the dialog, instead of
+        having them spread out over the whole height by the layout
+        manager.
+      </para>
+
+    </sect2>
+
+    <sect2><title>QBoxLayout and children</title>
+
+      <indexterm>
+  <primary>QBoxLayout</primary>
+  </indexterm>
+  <para id="para-ch2-151"><classname>QBoxLayout</classname> is the
+        parent class of the horizontal and vertical box layout
+        managers &mdash; you will never use this class on its own, but
+        its useful to look at the methods it offers, because those are
+        inherited by <classname>QHBoxLayout</classname> and
+        <classname>QVBoxLayout</classname></para>
+    </sect2>
+
+    <sect2><title>QGridLayout</title>
+
+      <indexterm>
+  <primary>QGridLayout</primary>
+  </indexterm>
+  <para id="para-ch2-152">While you can handle many layout
+        problems with combinations of horizontal and vertical box
+        layout managers, other problems are more suited for a
+        grid-based layout. The <classname>QGridLayout</classname>
+        class provides a flexible layout manager.
+      </para>
+
+      <para id="para-ch2-153">The grid managed by a
+        <classname>QGridLayout</classname> consists of cells laid out
+        in rows and columns: the grid cannot be as complicated as a
+        html table, but you can add widgets (or sub-layouts) that span
+        multiple rows and columns. Rows (or columns) can be given a
+        stretch factor and spacing.</para>
+
+      <example id="ch2ExampleLayout">
+        <title>layout.py - two box layouts and adding and removing buttons
+          dynamically to a layout</title>
+        <programlisting>
+#
+# layout.py - adding and removing widgets to a layout
+#
+import sys
+from qt import *
+
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        self.setCaption("Adding and deleting widgets")
+        self.setName("main window")
+        self.mainWidget=QWidget(self) # dummy widget to contain the
+                                      # layout manager
+        self.setCentralWidget(self.mainWidget)
+        self.mainLayout=QVBoxLayout(self.mainWidget, 5, 5, "main")
+        self.buttonLayout=QHBoxLayout(self.mainLayout, 5, "button")
+        self.widgetLayout=QVBoxLayout(self.mainLayout, 5, "widget")
+
+        self.bnAdd=QPushButton("Add widget", self.mainWidget, "add")
+        self.connect(self.bnAdd, SIGNAL("clicked()"),
+                     self.slotAddWidget)
+
+        self.bnRemove=QPushButton("Remove widget",
+                                  self.mainWidget, "remove")
+        self.connect(self.bnRemove, SIGNAL("clicked()"),
+                     self.slotRemoveWidget)
+
+        self.buttonLayout.addWidget(self.bnAdd)
+        self.buttonLayout.addWidget(self.bnRemove)
+
+        self.buttons = []
+
+    def slotAddWidget(self):
+        widget=QPushButton("test", self.mainWidget)
+        self.widgetLayout.addWidget(widget)
+        self.buttons.append(widget)
+        widget.show()
+
+    def slotRemoveWidget(self):
+        self.widgetLayout.parent().removeChild(self.widgetLayout)
+        self.widgetLayout=QVBoxLayout(self.mainLayout, 5, "widget")
+        self.buttons[-1].parent().removeChild(self.buttons[-1])
+        del self.buttons[-1:]
+
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                                 , app
+                                 , SLOT("quit()")
+                                 )
+    app.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+          </programlisting>
+        </example>
+
+      <indexterm>
+  <primary>layout management</primary><secondary>adding and removing widgets</secondary>
+  </indexterm>
+  <para id="para-ch2-154">This example shows that it is not only
+        possible to dynamically add widgets to a layout, but also to
+        remove them again. Removing means first severing the link from
+        the widget to the parent, and then deleting (using
+        <function>del</function>) all Python references to the widget.
+        When the last reference has been removed, the widget
+        disappears.</para>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="50" align="center" fileref="ch2/layout.eps">
+          </imageobject>
+          <caption><para id="para-ch2-155">layout.py</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      </sect2>
+
+    <sect2><title>setGeometry</title>
+
+      <indexterm>
+  <primary>setGeometry()</primary>
+  </indexterm>
+  <para id="para-ch2-156">You can use
+        <function>setGeometry</function> to set the size of every
+        individual widget yourself. There's another useful application
+        of <function>setGeometry()</function>, too: if you save the
+        size of the application window when the last window closes in
+        a configuration file, you can bring the window back to its
+        last size and position the next time the user starts opens it.
+        </para>
+
+      <example>
+        <title>geometry.py - setting the initial size of an
+          application</title>
+        <programlisting>
+#
+# geometry.py
+#
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+        
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.editor=QMultiLineEdit(self)
+        self.setCentralWidget(self.editor)
+        
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.setGeometry(100,100,300,300)
+    win.show()
+        
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                           , app
+                           , SLOT("quit()")
+                           )
+    app.exec_loop()
+    
+if __name__=="__main__":
+    main(sys.argv)
+        </programlisting>
+      </example>
+      </sect2>
+    
+  </sect1>
+  
+  <sect1>
+    <title>Dialogs and Standard Dialogs</title>
+
+    <indexterm>
+  <primary>standard dialogs</primary>
+  </indexterm>
+  <para id="para-ch2-157">Bill Gates is apocryphically reported to
+      have once shouted &lsquo;Why must everyone in my company write
+      his own file-open code? Go and build something that works for
+      <emphasis>every</emphasis> application!". And thus the Windows
+      standard file open dialog was born. This dialog has gone through
+      several versions, necessitating continuous rewriting. All the
+      same, the idea was a good idea, and Qt implements several
+      standard dialogs that look and feel just like the Windows common
+      dialogs, but are a lot easier to program.  We'll implement
+      common dialog PyQt lacks, for searching and replacing, in
+      <xref linkend="ch14Sect1SearchAndReplace">, Using Dialog
+      Windows.</para>
+
+
+
+    <sect2><title>QDialog</title>
+      
+      <indexterm>
+  <primary>QDialog</primary>
+  </indexterm>
+  <para id="para-ch2-158"><classname>QDialog</classname> is the
+        parent of all dialog classes. A dialog window is a window that
+        pops up over the application window. These can be modal (where
+        it will block the rest of the application) or modeless (where
+        the user can continue working in the main screen of the
+        application). Dialogs are commonly closed with OK or Cancel
+        buttons. There is no reason to make a dialog a fixed size; you
+        can give it a <classname>QSizeGrip</classname>, and if you use
+        <classname>QLayout</classname> layout management, the contents
+        will be resized quite nicely. A modal dialog has its own
+        <function>exec_loop</function>; a modeless dialog can be
+        constructed, shown, and hidden, but is part of its parents
+        event loop.
+        </para>
+
+        <para id="para-ch2-159">Of course, there are many other
+        occasions where you will want to create custom dialog boxes.
+        PyQt provides for plain dialog boxes, expanding dialog boxes,
+        tabbed dialog boxes and wizards.</para>
+
+      </sect2>
+
+      <sect2><title>QMessageBox</title>
+      <indexterm>
+  <primary>QMessageBox</primary>
+  </indexterm>
+  <indexterm>
+  <primary>message box</primary>
+  </indexterm>
+  <para id="para-ch2-160">A QMessageBox is a very simple
+        standard dialog class. Message boxes are always modal, and can
+        be used to inform, warn or frighten the user. Message texts
+        should preferably short, specific, and as non-threatening as
+        possible.</para>
+
+        <example>
+          <title>dialogs.py - opening message and default dialogs boxes
+          </title>
+          <programlisting>
+#
+# dialogs.py
+#
+
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        self.setCaption("Network Client")
+
+        self.actionInformation=QAction(self, "Information")
+        self.actionInformation.setText("Informational Message")
+        self.actionInformation.setMenuText("&amp;Information")
+        self.actionInformation.setStatusTip("Show an informational mesagebox.")
+
+        self.connect(self.actionInformation,
+                     SIGNAL("activated()"),
+                     self.slotInformation)
+
+
+        self.actionWarning=QAction(self, "Warning")
+        self.actionWarning.setText("Warning Message")
+        self.actionWarning.setMenuText("&amp;Warning")
+        self.actionWarning.setStatusTip("Show a warning mesagebox.")
+
+        self.connect(self.actionWarning,
+                     SIGNAL("activated()"),
+                     self.slotWarning)
+
+        self.actionCritical=QAction(self, "Critical")
+        self.actionCritical.setText("Critical Message")
+        self.actionCritical.setMenuText("&amp;Critical")
+        self.actionCritical.setStatusTip("Show an informational mesagebox.")
+
+
+        self.connect(self.actionCritical,
+                     SIGNAL("activated()"),
+                     self.slotCritical)
+
+        self.actionAbout=QAction(self, "About")
+        self.actionAbout.setText("About")
+        self.actionAbout.setMenuText("&amp;About")
+        self.actionAbout.setStatusTip("Show an about box.")
+
+        self.connect(self.actionAbout,
+                     SIGNAL("activated()"),
+                     self.slotAbout)
+
+
+        self.actionAboutQt=QAction(self, "AboutQt")
+        self.actionAboutQt.setText("About Qt Message")
+        self.actionAboutQt.setMenuText("About &amp;Qt")
+        self.actionAboutQt.setStatusTip("Show an about box for Qt.")
+
+        self.connect(self.actionAboutQt,
+                     SIGNAL("activated()"),
+                     self.slotAboutQt)
+
+
+
+        self.actionFile=QAction(self, "OpenFile")
+        self.actionFile.setText("Open File")
+        self.actionFile.setMenuText("&amp;Open")
+        self.actionFile.setStatusTip("Open a file.")
+
+        self.connect(self.actionFile,
+                     SIGNAL("activated()"),
+                     self.slotFile)
+
+
+
+        self.actionFont=QAction(self, "Font")
+        self.actionFont.setText("Select a font")
+        self.actionFont.setMenuText("&amp;Font")
+        self.actionFont.setStatusTip("Select a font")
+
+        self.connect(self.actionFont,
+                     SIGNAL("activated()"),
+                     self.slotFont)
+
+
+
+        self.actionColor=QAction(self, "Color")
+        self.actionColor.setText("Select a color")
+        self.actionColor.setMenuText("&amp;Color")
+        self.actionColor.setStatusTip("Select a color")
+
+        self.connect(self.actionColor,
+                     SIGNAL("activated()"),
+                     self.slotColor)
+
+
+        # Statusbar
+        self.statusBar=QStatusBar(self)
+
+        # Define menu
+
+        self.messageMenu=QPopupMenu()
+
+        self.actionInformation.addTo(self.messageMenu)
+        self.actionWarning.addTo(self.messageMenu)
+        self.actionCritical.addTo(self.messageMenu)
+
+        self.dialogMenu=QPopupMenu()
+        self.actionFile.addTo(self.dialogMenu)
+        self.actionFont.addTo(self.dialogMenu)
+        self.actionColor.addTo(self.dialogMenu)
+
+        self.helpMenu=QPopupMenu()
+        self.actionAbout.addTo(self.helpMenu)
+        self.actionAboutQt.addTo(self.helpMenu)
+
+        self.menuBar().insertItem("&amp;Messages", self.messageMenu)
+        self.menuBar().insertItem("&amp;Standard dialogs", self.dialogMenu)
+        self.menuBar().insertItem("&amp;Help", self.helpMenu)
+
+    def slotInformation(self):
+        QMessageBox.information(self,
+                                "Information",
+                                "A plain, informational message")
+
+    def slotWarning(self):
+        QMessageBox.warning(self,
+                            "Warning",
+                            "What you are about to do will do some serious harm .")
+
+
+    def slotCritical(self):
+        QMessageBox.critical(self,
+                                "Critical",
+                                "A critical error has occurred.\nProcessing will be stopped!")
+
+    def slotAbout(self):
+        QMessageBox.about(self,
+                          "About me",
+                          "A demo of message boxes and standard dialogs.")
+
+    def slotAboutQt(self):
+        QMessageBox.aboutQt(self)
+
+
+    def slotFile(self):
+        filename=QFileDialog.getOpenFileName("", "*.py", self, "FileDialog")
+
+    def slotFont(self):
+        (font, ok) = QFontDialog.getFont(self, "FontDialog")
+
+    def slotColor(self):
+        color=QColorDialog.getColor(QColor("linen"), self, "ColorDialog")
+
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+          </programlisting>
+        </example>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="45" align="center" fileref="ch2/information.eps">
+          </imageobject>
+          <caption><para id="para-ch2-161">Giving the user some information.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="45" align="center" fileref="ch2/warning.eps">
+          </imageobject>
+          <caption><para id="para-ch2-162">A gentle warning</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="45" align="center" fileref="ch2/critical.eps">
+          </imageobject>
+          <caption><para id="para-ch2-163">A dire warning</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="45" align="center" fileref="ch2/about.eps">
+          </imageobject>
+          <caption><para id="para-ch2-164">About your application</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="45" align="center" fileref="ch2/aboutqt.eps">
+          </imageobject>
+          <caption><para id="para-ch2-165">About Qt</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      </sect2>
+
+      <sect2><title>QTabDialog</title>
+      <indexterm>
+  <primary>QTabDialog</primary>
+  </indexterm>
+  <indexterm>
+  <primary>tabbed dialog</primary>
+  </indexterm>
+  <para id="para-ch2-166">One of the best ways to organize a
+        multitude of options is to group them together and show the
+        user only the pertinent set, hiding the rest between tabs.
+        Usability studies have shown that a moderate number of tabs,
+        presented in a single row showing all available tabs at one
+        time, promotes the greatest usability. Twenty tabs in three
+        rows confuse the user; one scrolling row of twenty tabs
+        irritates the user. I have once used tabs within tabs myself,
+        but it's not something I'd recommend.
+        </para>
+      </sect2>
+
+      <sect2><title>QWizard</title>
+      <indexterm>
+  <primary>QWizard</primary>
+  </indexterm>
+  <para id="para-ch2-167">Complex, infrequent actions are
+        eminently suited to the wizard approach. A wizard is a set of
+        pages that guide the user through a certain path. The user
+        need not visit all pages, and there might be more than one
+        possible path. Avoid using wizards where tab pages might be
+        more suited (when there are many options but no clear
+        progression through the steps of a complex action).
+        </para>
+      </sect2>
+
+      <sect2><title>QFileDialog</title>
+        <indexterm>
+  <primary>QFileDialog</primary>
+  </indexterm>
+  <indexterm>
+  <primary>standard dialogs</primary><secondary>file dialog</secondary>
+  </indexterm>
+  <para id="para-ch2-168">The first of the Qt standard dialogs is the
+        <classname>QFileDialog</classname>. The file dialog can be
+        extended with custom icons, toolbuttons and extra widgets.
+        In its default format it is
+        extremely easy to use: just call one of the predefined class
+        methods that return the name of a directory or file, such as
+        <function>getOpenFileName()</function> or
+        <function>getOpenFileNames()</function>.
+        </para>
+
+        <example>
+          <title>fragment from dialogs.py - opening a file dialog
+          </title>
+          <programlisting>
+...
+    def slotFile(self):
+        filename=QFileDialog.getOpenFileName("", "*.py", self, "FileDialog")
+...
+        </programlisting>
+      </example>
+
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="40" align="center" fileref="ch2/file.eps">
+          </imageobject>
+          <caption><para id="para-ch2-169">The Qt File dialog</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+    </sect2>
+
+    <sect2><title>QFontDialog</title>
+        <indexterm>
+  <primary>QFontDialog</primary>
+  </indexterm>
+  <indexterm>
+  <primary>standard dialogs</primary><secondary>font dialog</secondary>
+  </indexterm>
+  <para id="para-ch2-170">A useful dialog,
+        <classname>QFontDialog</classname> lets the user select a font
+        by giving parameters for font name, style, size, effects and
+        script &mdash; this last parameter being the encoding of the
+        font, such as Unicode. Just as with
+        <classname>QFileDialog</classname>,
+        <classname>QFontDialog</classname> provides a set of class
+        methods that return the selected value, in this case a tuple
+        containing a <classname>QFont</classname> object and a boolean
+        value that indicates whether OK or Cancel was pressed..
+        </para>
+
+      <para id="para-ch2-171">Of course, with Qt3, you no longer set
+        the desired encoding, but rather the script - Greek, Tamil, or
+        whatever you want.</para>
+
+        <example>
+          <title>fragment from dialogs.py - opening a font dialog
+          </title>
+          <programlisting>
+...
+    def slotFont(self):
+        (font, ok) = QFontDialog.getFont(self, "FontDialog")
+...
+          </programlisting>
+        </example>
+
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch2/font.eps">
+            </imageobject>
+            <caption><para id="para-ch2-172">The Qt font dialog</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect2>
+
+      <sect2><title>QColorDialog</title>
+        <indexterm>
+  <primary>QColorDialog</primary>
+  </indexterm>
+  <indexterm>
+  <primary>standard dialogs</primary><secondary>color dialog</secondary>
+  </indexterm>
+  <para id="para-ch2-173"><classname>QColorDialog</classname>
+        provides a standard dialog for color selection. An interesting
+        addition to this class is that you ask it to store a set of
+        custom colors. This set will be kept during the lifetime of
+        the application, and you can store those colors in a
+        configuration file and restore them when the app is restarted.
+        You can ask the color dialog either for a
+        <classname>QColor</classname> object, or for a set of RGB
+        values, encapsulated in a <classname>QRgb</classname> object.
+        In contrast with <classname>QFileDialog</classname>, which is
+        extensible, or <classname>QFontDialog</classname>, which
+        really suffices, <classname>QColorDialog</classname> provides
+        just barely enough for simple color selection, but won't do
+        for more complex graphics applications (with which you might
+        want to implement something that works with HSV values, or
+        with a color wheel).
+        </para>
+
+        <example>
+          <title>fragment from dialogs.py - opening a color dialog
+          </title>
+          <programlisting>
+...
+    def slotColor(self):
+        color=QColorDialog.getColor(QColor("linen"), self, "ColorDialog")
+...
+          </programlisting>
+        </example>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="40" align="center" fileref="ch2/color.eps">
+          </imageobject>
+          <caption><para id="para-ch2-174">The Qt Color dialog</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      </sect2>
+
+
+      <sect2><title>QInputDialog</title>
+        <indexterm>
+  <primary>QInputDialog</primary>
+  </indexterm>
+  <indexterm>
+  <primary>standard dialogs</primary><secondary>input dialog</secondary>
+  </indexterm>
+  <para id="para-ch2-175">You can use
+        <classname>QInputDialog</classname> to ask the user for a
+        simple, single value. This value can be of the following type:
+        text, integer, double, or an item from a listbox. Frankly,
+        I've never had a need for these. The open remote location
+        dialog in browsers like Opera or Netscape are a common
+        example.
+        </para>
+      </sect2>
+
+    <sect2><title>QProgressDialog</title>
+      <indexterm>
+  <primary>QProgressDialog</primary>
+  </indexterm>
+  <indexterm>
+  <primary>standard dialogs</primary><secondary>progress dialog</secondary>
+  </indexterm>
+  <para id="para-ch2-176">The
+        <classname>QProgressDialog</classname> is a useful little
+        dialog that can be used to inform the user that a certain
+        action will be taking a lot of time. If the operation of the
+        dialog is meant to block the whole application, use a modal
+        <classname>QprogressDialog</classname>. If the operation won't
+        block the entire application, then it's possible to use a
+        modeless <classname>QProgressDialog</classname>, but it may be
+        more effective to use a <classname>QProgressBar</classname> in
+        the statusbar of the application.
+        <classname>QProgressDialog</classname> is based on the
+        <classname>QSemiModal</classname> class.
+      </para>
+    </sect2>
+
+  </sect1>
+
+  <sect1>
+    <title>Qt Utility classes and their Python equivalents</title>
+
+    <indexterm>
+  <primary>utility classes</primary>
+  </indexterm>
+  <para id="para-ch2-177">A good many of the Qt classes overlap with
+      Python classes. There is <classname>QString</classname>, which
+      offers almost as much functionality as Python's string object
+      and Unicode string object, <classname>QRegExp</classname>, which
+      does the same as Python's <filename>re</filename> module. Not
+      all Qt classes that overlap with Python classes are available
+      from PyQt, but most are. The defining criterion is usually
+      whether or not such an overlapping class is needed as an
+      argument in method calls.</para>
+
+    <indexterm>
+  <primary>non-gui classes</primary>
+  </indexterm>
+  <para id="para-ch2-178">In those cases where there is duplication,
+      it is up to you to decide which one to use. If you use as many
+      Qt classes as possible, your application will appear less
+      Pythonic, and will be more difficult to port to other Python
+      gui's. However, it will also be easier to port your Python
+      prototype to fast, compiled C++ code. Thus, it depends on
+      whether you see your Python program as the final goal or as a
+      prototype. It is best to take a firm stand, though &mdash; you
+      shouldn't use Qt regular expressions and Python regular
+      expressions in the same program.</para>
+
+    <para id="para-ch2-179">For instance, the dirview Qt example
+      program can use the <classname>QDir</classname> class, or use
+      <function>os.path.walk()</function>. Compare the following
+      <function>setOpen</function> functions. The first is a complex
+      script which uses the Qt functions; the second uses
+      <function>setOpen</function> with the Python equivalents. Both
+      scripts create listview items for all entries in a
+      directory:</para>
+
+    <example><title>from dv_qt.py - using Qt utility
+        classes</title>
+
+      <programlisting>
+#!/usr/bin/env python
+
+import sys
+from qt import *
+
+class Directory(QListViewItem):
+  def __init__(self, parent, name=None):
+    apply(QListViewItem.__init__,(self,parent))
+    if isinstance(parent, QListView):
+      self.p = None
+      self.f = '/'
+    else:
+      self.p = parent
+      self.f = name
+    self.c = []
+    self.readable = 1
+
+  def setOpen(self, o):
+    if o and not self.childCount():
+      s = self.fullName()
+      thisDir = QDir(s)
+      if not thisDir.isReadable():
+        self.readable = 0
+	return
+
+      files = thisDir.entryInfoList()
+      if files:
+        for f in files:
+          fileName = str(f.fileName())
+	  if fileName == '.' or fileName == '..':
+	    continue
+	  elif f.isSymLink():
+	    d = QListViewItem(self, fileName, 'Symbolic Link')
+	  elif f.isDir():
+	    d = Directory(self, fileName)
+	  else:
+	    if f.isFile():
+	      t = 'File'
+	    else:
+	      t = 'Special'
+	    d = QListViewItem(self, fileName, t)
+	  self.c.append(d)
+
+    QListViewItem.setOpen(self, o)
+
+  def setup(self):
+    self.setExpandable(1)
+    QListViewItem.setup(self)
+
+  def fullName(self):
+    if self.p:
+      s = self.p.fullName() + self.f + '/'
+    else:
+      s = '/'
+    return s
+
+  def text(self, column):
+    if column == 0:
+      return self.f
+    elif self.readable:
+      return 'Directory'
+    else:
+      return 'Unreadable Directory'
+
+a = QApplication(sys.argv)
+mw = QListView()
+a.setMainWidget(mw)
+mw.setCaption('Directory Browser')
+mw.addColumn('Name')
+mw.addColumn('Type')
+mw.resize(400, 400)
+mw.setTreeStepSize(20)
+root = Directory(mw)
+root.setOpen(1)
+mw.show()
+a.exec_loop()
+      </programlisting>
+    </example>
+
+    <example>
+      <title>fragment from db_python.py - using Python utility classes</title>
+        <programlisting>
+...
+  def setOpen(self, o):
+    if o and not self.childCount():
+      s = self.fullName()
+
+      if (not os.path.isdir(s)):
+        self.readable == 0
+        return
+
+      if (not os.access(s, os.F_OK or os.R_OK)):
+        self.readable == 0
+        return
+
+      files=os.listdir(s)
+      if files:
+        for fileName in files:
+          f=os.path.join(s, fileName)
+          if fileName == "." or fileName == "..":
+            continue
+          elif os.path.islink(f):
+            d = QListViewItem(self, fileName, 'Symbolic Link')
+          elif os.path.isdir(f):
+            d = Directory(self, fileName)
+          else:
+
+            if os.path.isfile(f):
+              t = 'File'
+            else:
+              print f
+              t = 'Special'
+            d = QListViewItem(self, fileName, t)
+          self.c.append(d)
+
+    QListViewItem.setOpen(self, o)
+...
+        </programlisting>
+</example>
+
+    <para id="para-ch2-180">The result is the same:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch2/dv.eps">
+        </imageobject>
+        <caption><para id="para-ch2-181">The code is different, but
+            the result the same.</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <indexterm>
+  <primary>file handling</primary><secondary>python vs qt</secondary>
+  </indexterm>
+  <para id="para-ch2-182">The first snippet has been taken from the
+      dirview.py example script that comes with PyQt and BlackAdder;
+      the second is my own interpretation of the dirview.cpp example
+      application. Both have been slightly adapted to make them more
+      alike. Perhaps the similarities between the Qt
+      <classname>QDir</classname> object and the Python
+      <filename>os.path</filename> module are even more striking than
+      the differences.</para>
+
+    <sect2>
+      <title>High level data structures</title>
+
+      <indexterm>
+  <primary>high-level datastructures</primary>
+  </indexterm>
+  <para id="para-ch2-183">Qt offers a number of custom high-level
+        data structures, where plain C++ is quite primitive in this
+        respect. (Or, at least, C++ was quite primitive in this
+        respect when Qt was first created. Recently, templates and a
+        standard library have been added, and compilers are starting
+        to support these constructs).</para>
+
+      <para id="para-ch2-184">Python already has a dictionary, as well
+        as list and string data structures that are powerful enough
+        for most needs (what Python is missing is an ordered
+        dictionary), so PyQt does not need the Qt high-level data
+        structures, except where they are demanded as parameters in
+        methods.</para>
+
+      <indexterm>
+  <primary>QList</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QByteArray</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QMap</primary>
+  </indexterm>
+  <para id="para-ch2-185">Qt has two basic high-level
+        datastructures: arrays and collections. Collections are
+        specialized into dictionaries, lists and maps. You can always
+        use a Python list wherever a <classname>QList</classname> is
+        needed, or a string where a <classname>QByteArray</classname>
+        is needed. In other cases, some methods are not implemented
+        because the datatype is not implemented, as is the case with
+        <classname>QMap</classname>.</para>
+
+      <table>
+        <title>Qt and Python high-level datastructures</title>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Qt Class</entry>
+              <entry>Python Class</entry>
+              <entry>Implemented</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>QArray</entry>
+              <entry>list</entry>
+              <entry>No</entry>
+              <entry>Array of simple types.</entry>
+            </row>
+            <row>
+              <entry>QByteArray</entry>
+              <entry>String</entry>
+              <entry>No</entry>
+              <entry>Use a string wherever a method wants a
+                QByteArray</entry>
+            </row>
+            <row>
+              <entry>QPointArray</entry>
+              <entry>No equivalent</entry>
+              <entry>Yes</entry>
+              <entry>Array of QPoint objects &mdash; you can also
+                store QPoint objects in a Python list, of course.
+              </entry>
+            </row>
+            <row>
+              <entry>QCollection</entry>
+              <entry>Dictionary</entry>
+              <entry>No</entry>
+              <entry>Abstract base class for QDict, QList and
+                QMap.</entry>
+            </row>
+            <row>
+              <entry>QDict</entry>
+              <entry>Dictionary</entry>
+              <entry>No</entry>
+              <entry>Just like Python dictionaries, but more
+                complicated in use.</entry>
+            </row>
+            <row>
+              <entry>QList</entry>
+              <entry>list</entry>
+              <entry>No</entry>
+              <entry>Just like Python lists, but more
+                complicated</entry>
+            </row>
+            <row>
+              <entry>QMap</entry>
+              <entry>Dictionary</entry>
+              <entry>No</entry>
+              <entry>Use a Python dictionary &mdash; however, when
+                translating a Python prototype to C++, note that a
+                QMap is based on values, not on references; the keys
+                indexing the dictionary are
+                <emphasis>copies</emphasis> of the original objects,
+                not references.</entry>
+            </row>
+            <row>
+              <entry>QCache</entry>
+              <entry>No equivalent</entry>
+              <entry>No</entry>
+              <entry>A QCache is a low-level class that caches string
+                values so that two variables containing the same
+                text don't use the memory twice. There are similar
+                caches for integers and non-Unicode texts. Python
+                performs the same trick; see the note: Python and
+                Caching.</entry>
+            </row>
+            <row>
+              <entry>QValueList</entry>
+              <entry>list</entry>
+              <entry>No</entry>
+              <entry>A low-level class that implements a list of
+                values (instead of references to objects).</entry>
+            </row>
+            <row>
+              <entry>QVariant</entry>
+              <entry>No equivalent</entry>
+              <entry>Partially</entry>
+              <entry>QVariant is a wrapper class that makes it possible to
+                use C++ as if it were a loosely-typed language (which
+                Python already is). This class
+                is used for implementing class properties (I find it to be a
+                monstrosity compared to Visual Basic's Variant type).</entry>
+            </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+
+      <note>
+        <title>Python and caching</title>
+        <para id="para-ch2-186">Python caches certain often-used
+          values and shares those values across variables. Numbers
+          from 0 to 99 (inclusive) are cached, and strings are always
+          cached. Qt uses the same trick from strings and some other
+          objects</para>
+
+        <screen>
+Python 2.2a4 (#1, Oct  4 2001, 15:35:57)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a=1
+>>> b=1
+>>> id(a)
+135268920
+>>> id(b)
+135268920
+>>> a=100
+>>> b=100
+>>> id(a)
+135338528
+>>> id(b)
+135338504
+>>> a="bla"
+>>> b="bla"
+>>> id(a)
+135563808
+>>> id(b)
+1355638
+        </screen>
+      </note>
+    </sect2>
+
+    <sect2>
+      <title>Files and other IO</title>
+
+      <para id="para-ch2-187">Qt's file classes include the following:</para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch2-188">QDir &mdash; directory information</para></listitem>
+        <listitem><para id="para-ch2-189">QFile &mdash; file handling</para></listitem>
+        <listitem><para id="para-ch2-190">QFileInfo &mdash; file information</para></listitem>
+        <listitem><para id="para-ch2-191">QIODevice &mdash; abstract IO device</para></listitem>
+        <listitem><para id="para-ch2-192">QBuffer &mdash; helper class for buffered
+            IO</para></listitem>
+        <listitem><para id="para-ch2-193">QTextStream &mdash; abstract class for text
+            IO</para></listitem>
+        <listitem><para id="para-ch2-194">QTextIStream &mdash; text input IO</para></listitem>
+        <listitem><para id="para-ch2-195">QTextOSStream &mdash; text output IO</para></listitem>
+        <listitem><para id="para-ch2-196">QAsyncIO &mdash; abstract base for asynchronous
+            IO</para></listitem>
+        <listitem><para id="para-ch2-197">QDataSink &mdash; asynchronous data
+            consumer</para></listitem>
+        <listitem><para id="para-ch2-198">QDataSource &mdash; asynchronous data produced of
+            data</para></listitem>
+        <listitem><para id="para-ch2-199">QDataStream &mdash; binary IO</para></listitem>
+        <listitem><para id="para-ch2-200">QIODeviceSource &mdash; a datasource that draws
+            data from a QIODevice, like QFile.</para></listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>IO handling</primary>
+  </indexterm>
+  <indexterm>
+  <primary>streams</primary>
+  </indexterm>
+  <indexterm>
+  <primary>asynchronous IO</primary>
+  </indexterm>
+  <para id="para-ch2-201">Qt's file and IO handling classes are divided into three
+        groups: classes to handle files on a file system, classes that
+        work on streams, and asynchronous IO classes. We have already
+        seen an example of working with <classname>QDir</classname>.
+        <classname>QFile</classname> is Qt's equivalent of the Python
+        file object; it is almost fully implemented in PyQt,  with
+        some changes due to naming conflicts.
+        <classname>QFileInfo</classname> is a useful class that
+        encapsulates and caches information including name, path, creation
+        date and access rights. You could use the various function in
+        Python's <classname>os.path</classname> module, but those
+        don't cache information.</para>
+
+      <para id="para-ch2-202">The base class for all these IO-oriented classes is
+        <classname>QIODevice</classname>, which is completely
+        implemented in PyQt. You can subclass it for your own IO
+        classes. Qt divides its stream handling into text streams and
+        binary streams. Only the text stream handling in implemented
+        in PyQt, with the <classname>QTextStream</classname>,
+        <classname>QTextIStream</classname> and
+        <classname>QTextOStream</classname> classes.
+        <classname>QTextStream</classname> is the base class,
+        <classname>QTextIStream</classname> provides input stream
+        functionality and  <classname>QTextOStream</classname> output
+        stream functionality. One problem remains with these stream
+        classes &mdash; operator overloading. C++ relies on the
+        &gt;&gt; and &lt;&lt; operators to read from and write to a
+        stream. PyQt doesn't support this yet, so you cannot actually make use of
+        the streaming capabilities. Instead, you will have to limit yourself to
+        using <function>read()</function> to read the entire contents
+        of the stream.</para>
+
+      <para id="para-ch2-203">The asynchronous IO classes, the buffer class
+        and the binary IO classes have <emphasis>not</emphasis> been implemented yet. You can
+        easily substitute the various Python modules for file and IO
+        handling. You can use <classname>asyncore</classname>
+        in place <classname>QAsyncIO</classname>. The Python
+        <classname>file</classname> object is buffered by nature, if
+        you <function>open()</function> your files with the
+        <parameter>bufsize</parameter> parameter set.</para>
+
+    </sect2>
+
+    <sect2>
+<indexterm>
+  <primary>QDate</primary>
+  </indexterm>
+      <title>Date and time</title>
+  <indexterm>
+  <primary>QTime</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QDateTime</primary>
+  </indexterm>
+  <indexterm>
+  <primary>time module</primary>
+  </indexterm>      
+  
+  <itemizedlist>
+        <listitem>
+  <para id="para-ch2-204">QDate &mdash; representation of a
+            data</para></listitem>
+        <listitem>
+  <para id="para-ch2-205">QTime &mdash; clock and time
+            functions</para></listitem>
+        <listitem>
+  <para id="para-ch2-206">QDateTime &mdash; combination of QDate and
+            QTime</para></listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>sleep()</primary>
+  </indexterm>
+  <para id="para-ch2-207">While Python has a <classname>time</classname> module,
+        this only presents a low-level interface to the system
+        date and time functions (and the <function>sleep()</function> function,
+        which halts processing for a while). It does not provide a
+        high-level encapsulation of dates and times. PyQt, however, provides just
+        that with <classname>QDate</classname> and
+        <classname>QTime</classname>. <classname>QDate</classname> is
+        especially suited to data arithmetic, and can hold dates from
+        1752 to 8000. The first limit is based on the date that our
+        Gregorian calendar was introduced; if you need the Julian
+        calendar (or perhaps Vikram Samvat or other exotic calendars),
+        you must write your own <classname>Date</classname>
+        class.</para>
+      </sect2>
+
+    <sect2>
+  <indexterm>
+    <primary>QMimeSource</primary>
+  </indexterm>
+  <indexterm>
+    <primary>QMimeSourceFactory</primary>
+  </indexterm>
+      <title>Mime</title>
+      <itemizedlist>
+        <listitem>
+  <para id="para-ch2-208">QMimeSource &mdash; a piece of formatted
+            data</para></listitem>
+        <listitem>
+  <para id="para-ch2-209">QMimeSourceFactory &mdash; a provider of formatted
+            data</para></listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>mimetools</primary>
+  </indexterm>
+  <indexterm>
+  <primary>MimeWriter</primary>
+  </indexterm>
+  <para id="para-ch2-210">Python <classname>mimetools</classname> and the
+        <classname>MimeWriter</classname> modules are not exactly
+        equivalent to the PyQt <classname>QMimeSource</classname> and
+        <classname>QMimeSourceFactory</classname> classes. The Python
+        modules are optimized for the handling of mime-encoded e-mail
+        messages. The PyQt classes are a more generalized abstraction
+        of formatted data, where the format is identified by the IANA
+        list of MIME media types.
+        <classname>QMimeSource</classname> is used extensively in
+        the drag'n'drop subsystem, in the clipboard handling, and in the
+        production of images for rich text widgets.</para>
+
+      <para id="para-ch2-211">An example is given in the
+        <filename>application.py</filename> script that is included
+        with PyQt. Below, I show a relevant fragment of that example, which takes a
+        bit of html-formatted text with an &lt;img&gt; tag to a
+        certain name, which is resolved using
+        <classname>QMimeSourceFactory</classname>:</para>
+
+      <example>
+        <title>Using QMimeSourceFactory (application.py)</title>
+        <programlisting>
+ ...
+fileOpenText = \
+'''&lt;img source="fileopen"&gt;
+Click this button to open a &lt;em&gt;new file&lt;/em&gt;.&lt;br&gt;&lt;br&gt;
+You can also select the &lt;b&gt;Open&lt;/b&gt; command from the &lt;b&gt;File&lt;/b> menu.'''
+...
+        QWhatsThis.add(self.fileOpen,fileOpenText)
+        QMimeSourceFactory.defaultFactory().setPixmap('fileopen',openIcon)
+...
+        </programlisting>
+      </example>
+      </sect2>
+
+    <sect2>
+<indexterm>
+  <primary>QMimeSourceFactory</primary><secondary>example</secondary>
+  </indexterm>
+      <title>Text handling</title>
+  <indexterm>
+    <primary>regular expressions</primary>
+  </indexterm>
+  <itemizedlist>
+        <listitem>
+  <para id="para-ch2-212">QString &mdash; string handling </para></listitem>
+        <listitem>
+  <para id="para-ch2-213">QRegExp &mdash; regular expressions that work on a
+            string.</para></listitem>
+        <listitem><para id="para-ch2-214">QChar &mdash; one Unicode character</para></listitem>
+        <listitem><para id="para-ch2-215">QValidator &mdash; validates input text according
+            to certain rules</para></listitem>
+        <listitem><para id="para-ch2-216">QTextCodec &mdash; conversions between text
+              encodings</para></listitem>
+        <listitem><para id="para-ch2-217">QTextDecoder &mdash; decode a text to
+            Unicode</para></listitem>
+        <listitem><para id="para-ch2-218">QTextEncoder &mdash; encode a text from
+            Unicode</para></listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>QString</primary>
+  </indexterm>
+  <para id="para-ch2-219">Qt's string handling really excels: it is thoroughly based
+        upon Unicode, but provides easy functionality for other
+        character encodings. However, plain Python also provides
+        Unicode string functionality, and the interplay between Python
+        strings and PyQt QStrings can be quite complex.</para>
+
+      <para id="para-ch2-220">For most purposes, however, the conversions are
+        transparent, and you can use Python strings as parameters in
+        any function call where a <classname>QString</classname> is
+        expected. If you run across more complex problems, you can
+        consult <xref linkend="ch4">, on String Objects in Python and
+        Qt.</para>
+
+    </sect2>
+
+    <sect2>
+<indexterm>
+  <primary>threads</primary>
+  </indexterm>
+      <title>Threads</title>
+      <itemizedlist>
+        <listitem>
+  <para id="para-ch2-221">QMutex</para></listitem>
+      </itemizedlist>
+
+      <para id="para-ch2-222">Python threads and Qt threads bite each other frequently.
+        Qt thread support itself is still experimental, and with
+        Unix/X11, most people still use the un-threaded Qt
+        library. The C++ Qt thread class <classname>QMutex</classname>
+        has not been ported to PyQt, so you cannot serialize access to
+        gui features.</para>
+
+      <para id="para-ch2-223">Python thread support is far more mature, but doesn't mix
+        too well with PyQt &mdash; you don't want two threads
+        accessing the same gui element. You're quite safe though, as
+        long as your threads don't access the gui. The next example
+        shows a simple pure-python script with two threads:</para>
+
+      <example><title>thread1.py &mdash; Python threads without
+          gui</title>
+        <programlisting>
+#
+# thread1.py
+#
+import sys
+import time
+from threading import *
+
+class TextThread(Thread):
+
+    def __init__(self, name, *args):
+        self.counter=0
+        self.name=name
+        apply(Thread.__init__, (self, ) + args)
+
+    def run(self):
+        while self.counter < 200:
+            print self.name, self.counter
+            self.counter = self.counter + 1
+            time.sleep(1)
+
+def main(args):
+   thread1=TextThread("thread1")
+   thread2=TextThread("thread2")
+   thread1.start()
+   thread2.start()
+
+if __name__=="__main__":
+  main(sys.argv)
+        </programlisting>
+      </example>
+
+      <para id="para-ch2-224">The next example has a Qt window. The threads run quite
+        apart from the window, and yet everything operates fine&mdash;
+        that is, until you try to close the application. The threads
+        will continue to run until they are finished, but it would be
+        better to kill the threads when the last window is closed.
+        Killing or stopping threads from outside the threads is not
+        supported in Python, but you can create a global variable,
+        <varname>stop</varname>, to circumvent this.  In the threads
+        themselves, you then check whether <varname>stop</varname> is
+        true.</para>
+
+      <example>
+        <title>Python threads and a PyQt gui window</title>
+
+          <programlisting>
+#
+# thread2.py - Python threads
+#
+import sys, time
+from threading import *
+from qt import *
+
+class TextThread(Thread):
+
+    def __init__(self, name, *args):
+        self.counter=0
+        self.name=name
+        apply(Thread.__init__, (self, ) + args)
+
+    def run(self):
+        while self.counter < 200:
+            print self.name, self.counter
+            self.counter = self.counter + 1
+            time.sleep(1)
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self,) + args)
+        self.editor=QMultiLineEdit(self)
+        self.setCentralWidget(self.editor)
+        self.thread1=TextThread("thread1")
+        self.thread2=TextThread("thread2")
+        self.thread1.start()
+        self.thread2.start()
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
+    app.exec_loop()
+  
+if __name__=="__main__":
+    main(sys.argv)
+        </programlisting>
+      </example>
+
+      <indexterm>
+  <primary>threads</primary><secondary>gui</secondary>
+  </indexterm>
+  <para id="para-ch2-225">Another technique (though dangerous!) is to have the GUI use
+        a timer to periodically check the variables produced by the
+        threads. However, concurrent access of a variable can lead to
+        nasty problems.</para>
+
+    </sect2>
+
+    <sect2>
+      <title>URL's</title>
+
+      <indexterm>
+  <primary>QUrl</primary>
+  </indexterm>
+  <para id="para-ch2-226">The Qt URL-handling classes are quite equivalent to
+        Python's urllib module. It's up to you to choose which you
+        prefer.</para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch2-227">QUrl</para></listitem>
+        <listitem><para id="para-ch2-228">QUrlInfo</para></listitem>
+        <listitem><para id="para-ch2-229">QUrlOperator</para></listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2>
+      <title>Qt modules that overlap with Python modules</title>
+
+      <indexterm>
+  <primary>QXML</primary>
+  </indexterm>
+  <indexterm>
+  <primary>xml handling</primary>
+  </indexterm>
+  <indexterm>
+  <primary>xmllib</primary>
+  </indexterm>
+  <para id="para-ch2-230">In addition, there are two Qt modules that are also
+        available completely as Python modules: the XML module
+        (wrapped by Jim Bublitz) and the Network module. The Python
+        equivalent of Qt's XML module, for simple tasks, xmllib, and
+        for more complicated problems xml.sax. While xmllib is
+        deprecated, it is still very useful and one the simplest ways
+        of handling XML data. The xml.sax module depends on the
+        presence of the expat parser, which is not available on every
+        system.</para>
+
+      <indexterm>
+  <primary>network</primary>
+  </indexterm>
+  <para id="para-ch2-231">The Qt network module has not been
+        completely wrapped in PyQt yet. It is mainly useful if you
+        want to program your own network clients and servers, and
+        intend to move your code to C++ one day. Python offers
+        equivalent modules for every service, and a lot more, too
+        (such as http and gopher clients). You might find Qt's socket
+        objects a bit more convenient than Python's offerings. Another
+        possible reason to use the Qt socket classes is that they are
+        better implemented on Windows than the Python socket
+        classes.</para>
+
+      <table>
+	<title>Qt and Python network classes</title>
+	<tgroup cols="4">
+	  <thead>
+	    <row>
+	      <entry>Qt Class</entry>
+	      <entry>Python Class</entry>
+	      <entry>Implemented</entry>
+	      <entry>Description</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+            <row>
+	      <entry>QSocket</entry>
+	      <entry>socket</entry>
+	      <entry>Partially implemented</entry>
+	      <entry>Low level network connection object. Note that
+                Python's socket module is useful both for clients and
+                servers, while Qt's QSocket is for clients only:
+                servers use QServerSocket.</entry>
+	    </row>
+	    <row>
+              <entry>QSocketDevice</entry>
+              <entry>socket</entry>
+              <entry>No</entry>
+              <entry>This class is mostly intended for use inside Qt -
+                use QIODevice instead, which is completely implemented
+                in PyQt.</entry>
+            </row>
+	    <row>
+              <entry>QServerSocket</entry>
+              <entry>socket, SocketServer</entry>
+              <entry>Partially implemented</entry>
+              <entry>The server-side complement of QSocket. Again,
+                Python's socket module servers both for server and
+                client applications. Python offers the server-specific
+                SocketServer module.</entry>
+            </row>
+	    <row>
+              <entry>QHostAddress</entry>
+              <entry>No real equivalent</entry>
+              <entry>Partially &mdash; not the functionality for
+                IPv6.</entry>
+              <entry>A platform and protocol independent
+                representation of an IP address.</entry>
+            </row>
+	    <row>
+              <entry>QDns</entry>
+              <entry>No real equivalent</entry>
+              <entry>Not implemented</entry>
+              <entry>Asynchronous DNS lookups &mdash; it's not
+                implemented, all Python libraries do automatic
+                synchronous DNS lookups, as do the QSocket derived Qt
+                classes.</entry>
+            </row>
+	    <row>
+              <entry>QFtp</entry>
+              <entry>ftplib</entry>
+              <entry>Not implemented</entry>
+              <entry>This class is seldom used: it's easier to just
+                open an URL either with QUrlOperator or one of the
+                Python Internet protocol handling libraries like
+                urllib.
+	      </entry>
+            </row>
+	  </tbody>
+        </tgroup>
+      </table>
+    </sect2>
+    
+  </sect1>
+  
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->
+

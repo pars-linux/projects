@@ -1,0 +1,1480 @@
+<chapter id="ch10">
+
+  <Title>A More Complex Framework: Multiple Documents, Multiple Views</title>
+
+  <sect1><title>Introduction</title>
+
+    <para>In <xref linkend="ch8"> we saw a fairly simple framework. The
+      document-view framework allowed one document and one view on
+      that document. In this chapter we will explore more complex
+      configurations.</para>
+
+    <para>We will go full tilt immediately, with a framework that
+      supports multiple documents, and with more than one view on
+      those documents. Of course, this means that you have to keep
+      track of which view shows which document. If documents change,
+      all views must be updated. If the last view on a document is
+      closed, then the document must be closed. All fairly complex
+      and prone to what is technically termed 'unique features'. (In
+      fact, I'm quite sure that you will be able to find some, despite
+      all my care.)</para>
+
+      <!-- todo : the last sentence above is incomplete. Also, is it necessary? What are "all fairly complex"  I realize that you are probably
+      refering to the preceding text, but this isn't very clear? -->
+
+    <para>And this is only the conceptual framework. The actual GUI
+      interface is interesting too. There are two or three
+      schools in multiple-document interface design: MDI, MTW, and
+      MTI.</para>
+
+    <para>These are cryptic acronyms, but the differences are easy to
+      understand. MDI stands for Multiple Document Interface. This is an interface
+      in which you have several windows inside a
+      an application workspace (which is a window on the desktop).
+      It was invented by Microsoft, who recently tried
+      to bury it. Some users found it rather confusing. However, other
+      users clamored for its return, and Microsoft appears to have
+      appeased their wishes, and reinstated in full.
+      As found in most programming environments, there are
+      dockable windows that click to the sides of the window, and   <!-- todo : should that say "main window" ? -->
+      free-floating windows. PyQt supports this way of working with
+      the <classname>QWorkSpace</classname> class. It's a pity that in
+      PyQt 2 dockable windows are not supported &mdash; for that you need to
+      use <classname>QDockWindow</classname> in PyQt 3.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch10/mdi">
+      </imageobject>
+      <caption><para>An MDI workspace</para>
+      </caption>
+    </mediaobject>
+
+    <para>MTW stands for Multiple Toplevel Window. This is more in
+      favor with the Unix/X11 crowd. Here, an application litters the
+      entire desktop with various windows: document windows, floating
+      toolbars, dialog windows &mdash; everything. This, too, can be
+      enormously confusing. It works for X11 because most users are
+      sophisticated and have access to a system with multiple
+      desktop. Early versions of Visual
+      Basic also used this strategy, and even now, you can select it
+      as an option.</para>
+
+    <para>You can create as many <classname>QMainWindow</classname>
+      objects in PyQt as you wish, so this style is not a problem at
+      all.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" scale="40" fileref="ch10/mtw">
+      </imageobject>
+      <caption><para>The Gimp littering my desktop</para>
+      </caption>
+    </mediaobject>
+
+    <para>Finally, there is the style made popular by IDE's such as
+      JBuilder. Here, you have your documents in one window, but with
+      a row of tabs that you can use to
+      switch between windows (these tabs are located on the top, bottom or side of the window).
+      There is a legitimate complaint
+      against this style, too: you cannot compare two documents side
+      by side. This style is often used by what I refer to as
+      'iso-standard' IDE's. Project pane, output pane, and top-right a
+      stack of tabbed editor windows.
+      <!-- todo : the above sentence doesn't make sense to me (?) -->
+
+      BlackAdder conforms, too
+      &mdash; except that every project is an MDI-window.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch10/mti">
+      </imageobject>
+      <caption><para>KDevelop &mdash; the epitome of an interface with
+          tabs.</para>
+      </caption>
+    </mediaobject>
+
+    <para>I have chosen to disregard the more exotic styles of
+      multiple-document interfaces.  There are many varieties of these,
+      such as vi's, in which you have a
+      set of documents you can visit one after another (but not go
+      back) and Emacs, which give you a set of buffers that may or may
+      not be presented in another window or another frame (where
+      window and frame are the exact opposite of what you'd expect).
+      These oddities should remain just that &mdash; oddities.</para>
+
+    <para>As an aside, it is interesting to note that
+      all these styles originated with programming environments. It has
+      often been the case that a programming environment influences the
+      developer in his interface decisions &mdash; and this might very well
+      fail to support the needs of the user..</para>
+
+    <para>In this chapter, we first develop a document/view manager that
+      can be used to manage the complexity that is created when you
+      have more than one document with more than one view handled in
+      your application &mdash; where documents can be modified, saved, saved
+      under a new name, or closed without saving.
+
+      <!-- todo : please make the above sentence into two sentences. Also, you are trying to use "complexity" as a noun, but I think
+      it would make more sense to use a real noun here (that is, you can't "manage the complexity," but you can "manage the complex display", etc). -->
+
+      This is quite
+      complex enough for now; in the next chapter, we'll investigate
+      the addition of switchable interface styles. After that we will have,
+      at last, a framework that we can add a real application to.</para>
+
+  </sect1>
+
+  <sect1><title>Document/View Manager</title>
+
+    <para>Let's first take stock of the requirements for a
+      document/view manager, and write a little testcase.The
+      document/view manager will have to take care of the mapping
+      between documents and views.  Every document can have more than
+      one view, but a view can only show one document.</para>
+
+    <itemizedlist>
+
+      <listitem>
+        <para>The document/view manager must be able to create new
+          documents, together with new views.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>The document/view manager will have to make sure the
+          document gets closed when the last view is closed.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>The document/view manager must be able to create new
+          views for existing documents.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>The document/view manager must not be forced to know
+          about exact document or view classes, but work against a
+          standard set of methods, i.e., an interface.
+        </para>
+      </listitem>
+
+    </itemizedlist>
+
+    <para>A guideline during implementation is that the
+      document/view manager should not make GUI calls directly. There
+      are two reasons for this: it is easier to write good testcases
+      if there is no GUI involved, and denying the document/view
+      manager access to the GUI forces us to do all the actual GUI
+      work in one place, the application or controller object.</para>
+
+      <!-- todo : above : are you saying that "the application or controller object" is the "one place" where the work is being done? If so, that
+      sounds awkward, as an "object" usually isn't referred to as a "place" ; if not, then I am not sure what the last clause is telling the reader. -->
+
+
+    <para>Here's the testcase:</para>
+
+    <example>
+      <title>A testcase for a document manager</title>
+    <programlisting>
+import unittest
+from docmanager import *
+from qt import *
+
+class TestViewManager(QObject):
+
+    def activeWindow(self):
+        return None
+
+    def width(self):
+        return 100
+
+    def height(self):
+        return 100
+
+class TestParent(QObject):
+
+    def queryCloseDocument(self, document):
+        return QMessageBox.Yes
+
+    def querySaveDocument(self, document):
+        return QMessageBox.No
+
+    def queryDiscardDocument(self, document):
+        return QMessageBox.Yes
+
+    def queryFileName (self, document =None):
+        return "fileName"
+
+class TestDocument(QObject):
+
+    def modified(self):
+        return TRUE
+
+    def save(self):
+        pass
+
+    def close(self):
+        pass
+
+    def title(self):
+        return "title"
+
+    def pathName(self):
+        return "pathname"
+
+    def setPathName(self, pathname):
+        pass
+
+class TestView(QObject):
+
+    def __init__(self, parent, document, *args):
+        QObject.__init__(self, parent)
+        self._document = document
+
+    def show(self): pass
+
+    def showMaximized(self): pass
+
+    def setCaption(self, caption): pass
+
+    def resize(self, x, y): pass
+
+    def close(self, destroy):
+        return TRUE
+    </programlisting>
+    </example>
+
+    <para>The purpose of this testcase is to test the documentmanager.
+      An interesting side effect is that the development of the
+      testcase necessitates the development of fake versions of
+      the other necessary components. Creating these fake components
+      for the view, document and application makes clear which
+      functions they must support.</para>
+
+    <para>The <classname>TestViewManager</classname> class is an
+      interesting object. It will manage the different views (windows,
+      tabs, or splitpanes) for the application. As such, it will
+      become the visual counterpart of the
+      <classname>DocManager</classname> class.</para>
+
+    <para>The <classname>TestParent</classname> represents the
+      application itself &mdash; that is, the central class that manages all
+      QActions, menus, toolbars and so on. As you can see, we need
+      four methods in the application, to ask the user whether she
+      wants to close, save or discard the document, and what the
+      filename should be. By not calling
+      <classname>QMessageBox</classname> or
+      <classname>QFileDialog</classname> directly, we again get a
+      stronger separation of GUI and application logic. But life is
+      messy, and a complete separation is not attainable.</para>
+
+    <para>This is most apparent in the <classname>TestView</classname>
+      class. Here we need to create stubs for a number of functions
+      that are part of <classname>QWidget</classname>, such as
+      <classname>setCaption()</classname>.</para>
+
+    <para>The <classname>TestDocument</classname> class also shows a
+      clear interface: but more than that, it is also clearly meant
+      for file-oriented applications. A database application would in
+      all likelihood not concern itself with obscurities like
+      pathnames. On the other hand, with a database application it is
+      even more important to allow more than one view on more than one
+      document at a time &mdash; if we simply equate document with
+      query!</para>
+
+<programlisting>
+class DocManagerTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.parent = TestParent()
+        self.viewManager = TestViewManager()
+
+    def checkInstantiate(self):
+        try:
+            docManager = DocManager(self.parent, self.viewManager)
+        except Exception, e:
+            self.fail("Could not instantiate docmanager: " + str(e))
+
+    def checkCreateDocument(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        numberOfDocs = docManager.numberOfDocuments() + 1
+        numberOfViews = docManager.numberOfViews() + 1
+        try:
+            document = docManager.createDocument(TestDocument, TestView)
+        except Exception, e:
+            self.fail("Could not add a new document: " + str(e))
+
+        assert document, "No document created"
+        assert numberOfDocs == docManager.numberOfDocuments(),\
+               "No document added"
+        assert numberOfViews == docManager.numberOfViews(), \
+               "No view added"
+        assert docManager.views(document),\
+               "Document does not have a view"
+            
+    def checkAddView(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        document = docManager.createDocument(TestDocument, TestView)
+        numberOfDocs = docManager.numberOfDocuments()
+        numberOfViews = docManager.numberOfViews() + 1
+        numberOfDocViews = len(docManager.views(document)) +1
+        
+        try:
+            view = docManager.addView(document, TestView)
+        except DocManagerError, e:
+            self.fail(e)
+        except Exception, e:
+            self.fail("Could not add a view to a document " + str(e))
+            
+        assert view is not None,\
+               "No view created"
+        assert numberOfDocs == docManager.numberOfDocuments(),\
+               "Document added"
+        assert numberOfViews == docManager.numberOfViews(), \
+               "No view added"
+        assert numberOfDocViews == len(docManager.views(document)), \
+               "No view added to document"
+
+        view = None
+        document = TestDocument()
+        try:
+            view = docManager.addView(document, TestView)
+            fail("Should not have been able to add a view " +
+                 "to an unmanaged document")
+        except DocManagerError, e:
+            pass
+        assert view == None,\
+               "View created"
+
+    def checkCloseView(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        document = docManager.createDocument(TestDocument, TestView)
+        view = docManager.addView(document, TestView)
+        numberOfViews = docManager.numberOfViews()
+        docManager.closeView(view)
+        assert numberOfViews > docManager.numberOfViews(), \
+               "No view removed: was %i, is %i" % (docManager.numberOfViews(),
+                                                   numberOfViews)
+        
+    def doNotCheckCloseDocument(self):
+        docManager = DocManager(self.parent, self.viewManager)
+        document = docManager.createDocument(TestDocument, TestView)
+        docManager.closeDocument(document)
+        assert docManager.numberOfDocuments() == 0,\
+               "docManager still manages a document"
+        
+def suite():
+    testSuite=unittest.makeSuite(DocManagerTestCase, "check")
+    return testSuite
+
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+     </programlisting>
+
+    <para>A look at the testcases shows how the documentmanager is
+      intended to be used. When a document
+      is created, one view is automatically created. More views can be
+      added to a document. Views can be removed, and when the last
+      view is removed, the document is closed. Creating documents and
+      views is the job of the documentmanager; this is why we pass
+      the <emphasis>classes</emphasis> of the view and document to the
+      manager, and not to complete objects.</para>
+
+    <para>As I said, life is messy, and if you look at the last test,
+      you will see one bit of unavoidable mess. During the
+      implementation of the document manager it became clear that in
+      order to 'catch' events (such as closing the application or window
+      with the close button in the title bar) it was necessary to
+      install an event filter in every view. This meant that the
+      original implementation of <function>closeDocument()</function>,
+      which called <function>closeView()</function>, had to be changed
+      to one where <function>closeDocument()</function> called
+      <function>view.close()</function> &mdash; which fires the event
+      filter, which fires the <function>closeView()</function>. This,
+      however, is only possible if you use actual
+      <classname>QWidget</classname>-derived objects; it cannot be done with the
+      fakes we created for the test. This means that the
+      <function>checkCloseDocument()</function> needs to be renamed
+      <function>doNotCheckCloseDocument()</function>(It is a
+      convention to prefix tests that don't work with
+      <function>doNot</function>).</para>
+
+  </sect1>
+
+  <sect1><title>The Document Manager</title>
+
+    <para>The <classname>DocManager</classname> class is one of the
+    more complex classes discussed in this book.
+    </para>
+
+    <example><title>The document manager class</title>
+    <programlisting>
+"""
+    docmanager.py &mdash; manager class for document/view mappings
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+
+"""
+
+from qt import *
+
+TRUE=1
+FALSE=0
+
+
+class DocManagerError(Exception):pass
+
+class NoSuchDocumentError(DocManagerError):
+
+    ERR = "Document %s with title %s is not managed by this DocumentManager"
+
+    def __init__(self, document):
+        self.errorMessage = ERR % (str(document), document.title(), str())
+
+    def __repr__(self):
+        return self.errorMessage
+
+    def __str__(self):
+        return self.errorMessage
+
+class DocumentsRemainingError(DocManagerError):
+
+    def __init__(self, document):
+        self.errorMessage = "There are still documents remaining."
+
+    def __repr__(self):
+        return self.errorMessage
+
+    def __str__(self):
+        return self.errorMessage
+    </programlisting>
+    </example>
+
+    <para>If you have a complex class like the document manager,
+      it is often uself to create a few specific exception
+      classes. You can still <function>raise</function>
+      exceptions that will be mere messages in a string &mdash; but these
+      have been deprecated since Python 2.0. For the document manager we
+      have a small hierarchy of exceptions, with a base exception
+      (<classname>DocManagerError</classname>), and two specific
+      exceptions, <classname>NoSuchDocumentError</classname> and
+      <classname>DocumentsRemainingError</classname>. The first
+      exception is raised when an attempt is made to delete a document
+      which is not managed by the document manager. This can happen
+      when you need more than one document manager, for instance. The
+      second is raised when an attempt is made to delete all open
+      documents, but one or more of them could not be closed.</para>
+
+    <programlisting>
+class DocManager(QObject):
+    """
+    The DocManager manages the creation and removal of documents
+    and views.
+    """
+    def __init__(self, parent, viewManager = None):
+        QObject.__init__(self)
+        self._viewToDocMap = {}
+        self._docToViewMap = {}
+        self._parent=parent
+        if viewManager:
+            self._viewManager = viewManager
+        else:
+            self._viewManager = parent
+    </programlisting>
+
+    <para>Two very simple datastructures manage all the information in
+      the document manage.  The first is
+      <varname>_viewToDocMap</varname>, which maps documents to views (one
+      document can be associated with a list of views). The
+      other datastructure, <varname>_docToViewMap</varname>, maps views to
+      documents. Note the single underscore before the variable names;
+      this indicates that you shouldn't try to use the variable
+      outside this class. <!-- todo : what class? The use of "this" is unclear -->
+      The <varname>viewManager</varname> is the
+      object that collects all views and shows them in the application
+      letterbox between toolbars and statusbars.</para>
+
+    <programlisting>
+    def numberOfDocuments(self):
+        return len(self._docToViewMap)
+
+    def numberOfViews(self):
+        return len(self._viewToDocMap)
+
+    def views(self, document):
+        return self._docToViewMap[document]
+
+    def _createView(self, document, viewClass):
+        view = viewClass(self._viewManager,
+                         document,
+                         None,
+                         QWidget.WDestructiveClose)
+        view.installEventFilter(self._parent)
+        if self._viewToDocMap == {}:
+            view.showMaximized()
+        else:
+            view.show()
+        if self._docToViewMap.has_key(document):
+            index = len(self._docToViewMap[document]) + 1
+        else:
+            index = 1
+        view.setCaption(document.title() + " %s" % index)
+        return view
+    </programlisting>
+
+    <para>The function <function>_createView(self, document,
+        viewClass)</function> not only maps views to documents, but
+      also creates the view objects. Note the
+      <varname>QWidget.WDestructiveClose</varname> flag &mdash; if
+      this is not passed to the <classname>QWidget</classname>-derived
+      view class, the view will not disappear from the screen when closed!
+      If this view is the first, then it it will be maximized.
+      This is one area where the docmanager still assumes a
+      traditional MDI paradigm &mdash; we'll massage this out in the
+      next chapter. Note also that we keep count of the number of
+      views in each document, and then set the caption
+      accordingly.</para>
+
+    <para>Note also that we 'install' the event filter of the parent
+      object &mdash; that is, the application &mdash; in the view. This overrides
+      the default event handling of the view object, and makes it
+      possible to use the document manager object.</para>
+
+    <programlisting>
+    def createDocument(self, documentClass, viewClass):
+        document = documentClass()
+        view = self._createView(document, viewClass)
+        if self._docToViewMap.has_key(document):
+            self._docToViewMap[document].append(view)
+        else:
+            self._docToViewMap[document] = [view]
+        self._viewToDocMap[view] = document
+        self.emit(PYSIGNAL("sigNumberOfDocsChanged"),())
+        return document
+    </programlisting>
+
+    <para>The <function>createDocument(self, documentClass,
+        viewClass)</function> command actually instantiates the document. When
+      that's done, a view is created and mapped to the
+      document. Note the signal we emit here: it can be useful for the
+      application object to know that the number of documents has been
+      changed. For instance, the "save" menu option must be enabled
+      when the first document is created.</para>
+
+    <programlisting>
+    def addView(self, document, viewClass):
+        if self._docToViewMap.has_key(document):
+            view = self._createView(document, viewClass)
+            self._docToViewMap[document].append(view)
+            self._viewToDocMap[view] = document
+            return view
+        else:
+            raise DocManagerError(document)
+    </programlisting>
+
+    <para>Adding a new view to an existing document is fairly simple:
+    just create the view and map it to a document, and vice
+    versa. Note that if the document does not exist, we raise a
+    <classname>DocManagerError</classname> &mdash; the document object
+    apparently doesn't belong to this manager.</para>
+
+    <programlisting>
+    def addDocument(self, document, viewClass):
+        view = self._createView(document, viewClass)
+            
+        if self._docToViewMap.has_key(document):
+            self._docToViewMap[document].append(view)
+        else:
+            self._docToViewMap[document] = [view]
+        self._viewToDocMap[view] = document
+        self.emit(PYSIGNAL("sigNumberOfDocsChanged"),())
+        return view
+    </programlisting>
+
+    <para>Of course, it must be possible to add an existing document
+    to the document manager. This is used when the user opens a
+    document.</para>
+
+    <programlisting>
+    def activeDocument(self):
+        if self._viewManager.activeWindow() is not None:
+            return self._viewToDocMap[self._viewManager.activeWindow()]
+        else:
+            return None
+    </programlisting>
+
+    <para>Since the <classname>QWorkSpace</classname> class, which is
+      the model for the view manager, knows which window is active, we
+      can use that to determine which document is active.</para>
+
+    <programlisting>
+    def _saveDocument(self, document):
+        if document.pathName() == None:
+            document.setPathName(self._parent.queryFileName(document))
+        try:
+            document.save()
+        except Exception, e:
+            QMessageBox.critical(self,
+                                 "Error",
+                                 "Could not save the current document: " + e)
+            raise e
+    </programlisting>
+    
+    <para>The things that can go wrong when trying to save a document
+      are manifold &mdash; however, we assume that the document knows when
+      to shout "Exception". If that happens, the user is informed, and
+      the exception re-raised.</para>
+
+
+    <programlisting>
+    def _queryCloseDocument(self, document):
+        if self._parent.queryCloseDocument(document) == QMessageBox.No:
+            return FALSE
+        if document.modified():
+            save = self._parent.querySaveDocument(document)
+            if save == QMessageBox.Yes:
+                try:
+                    self._saveDocument(document)
+                    return TRUE
+                except Exception, e:
+                    if self._parent.queryDiscardDocument(document) &lt;&gt; \
+                       QMessageBox.Yes:
+                        return FALSE
+                    else:
+                        return TRUE
+            elif save == QMessageBox.No:
+                return TRUE
+            elif save == QMessageBox.Cancel:
+                return FALSE
+        return TRUE
+    </programlisting>
+
+    <para>When a user asks the application to close a document for
+      him, what does he really want? Does he want to save it, and, if
+      that doesn't succeed, discard the document?  Or does he
+      want to cancel, and keep on throwing foul looks at an
+      application that contains his precious data, which he cannot
+      save? Handling these situations is the aim of the above
+      method.</para>
+
+      <!-- todo : the paragraph above is awkward to me. I think I see what you are getting at, but it took me quite awhile. I'm not sure
+      what would work better; you could try taking out the use of "he" and simply explain the possible situations without listing a series of
+      questions. -->
+
+    <programlisting>
+    def _removeView(self, view, document):
+        try:
+            self._docToViewMap[document].remove(view)
+            del self._viewToDocMap[view]
+        except ValueError, e:
+            pass # apparently already deleted
+
+    def closeView(self, view):
+        document=self._viewToDocMap[view]
+        if len(self._docToViewMap[document])==1:
+            if self._queryCloseDocument(document):
+                self._removeView(view, document)
+                del self._docToViewMap[document]
+                return TRUE
+            else:
+                return FALSE
+        else:
+            self._removeView(view, document)
+            return TRUE
+        
+    def closeDocument(self, document):
+        l=self._docToViewMap[document][:]
+        for view in l:
+            if view.close(TRUE) == FALSE:
+                return FALSE
+        self.emit(PYSIGNAL("sigNumberOfDocsChanged"),())
+        return TRUE
+
+    def closeAllDocuments(self):
+        for document in self._docToViewMap.keys():
+            if not self.closeDocument(document):
+                raise DocumentsRemainingError()
+    </programlisting>
+
+
+
+    <para>Getting rid of documents and views can become quite
+      complicated if you take into consideration all the various
+      methods available: a user can click on the
+      close button in the titlebar of the application, or in the view, or
+      activate the "close" <classname>QAction</classname>. In order to
+      catch the first possibility, we need to use event filters.
+      Clicking on the close button does not generate a signal we can
+      connect to. That being so, we should only call
+      <function>close()</function> on the view, if we know that
+      the closing has <emphasis>not</emphasis> been initiated through the event filter
+      (otherwise we would fire the event filter again).</para>
+
+    <para>However, when the user selects "close document" or "close
+      all documents" from the menu or the toolbar,
+      <function>close()</function> will not be automatically called on
+      the view &mdash; we have to do this ourselves. By looping through all
+      views in the document, and closing them, we will generate an
+      event: the event will be handled by the event filter, which will
+      call <function>closeView()</function> for us. And
+      <function>closeView()</function> will ask the user whether it
+      really wants to close the document if the view is the last
+      one.</para>
+
+    <para>It's an interesting exercise to follow this happening with
+      the BlackAdder debugger.</para>
+
+  </sect1>
+
+  <sect1><title>Document</title>
+
+    <para>As with the simple document/view framework, the document
+    class should know as little as possible about the actual
+    arrangements. As you can see, little has changed compared to the
+    simple document-view application of <xref linkend="ch8">.</para>
+
+    <example><title>The document class</title>
+    <programlisting>
+"""
+mdidoc.py &mdash; document or application model.
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class MDIDoc(QObject):
+    """
+    The document represents the application model. The current
+    document keeps a 'modified' state.
+
+    signals: sigDocModified (boolean)
+             sigDocTitleChanged (string)
+             
+    """
+    def __init__(self, *args):
+        apply(QObject.__init__, (self,)+args)
+        self.newDocument()
+        self._fileName=None
+        self._title="Untitled"
+
+    def setPathName(self, fileName):
+        self._fileName=fileName
+        self.setTitle(str(QFileInfo(fileName).fileName()))
+    
+    def pathName(self):
+        return self._fileName
+
+    def setTitle(self, title):
+        self._title=title
+        self.emit(PYSIGNAL("SigDocTitleChanged"),
+                  (self._title,))
+
+    def title(self):
+        return self._title
+
+    def newDocument(self):
+        self.slotModify(FALSE)
+
+    def open(self, fileName, format=None):
+        self.slotModify(FALSE)
+        self.setPathName(fileName)
+
+    def slotModify(self, value=None):
+        if value==None:
+            self._modified=not self._modified
+        else:
+            self._modified = value
+        self.emit(PYSIGNAL("sigDocModified"),
+                  (self._modified,))
+
+    def modified(self):
+        return self._modified
+
+    def close(self):
+        pass
+
+    def save(self, fileName = None, format = None):
+        if fileName is not None and fileName &lt;&gt; "":
+            self.setPathName(fileName)
+        else:
+            if self.pathName() == None:
+                raise "Could not save document: no filename."
+        self.slotModify(FALSE)
+    </programlisting>
+    </example>
+
+  </sect1>
+
+  <sect1><title>View</title>
+
+    <para>As with the document, the view is still a relatively
+      uncomplicated object. It still knows which document it belongs
+      to. I have added <function>close(self)</function> to make it
+      easier to follow the execution flow when closing a window. What
+      is more important, however, is the <function>closeEvent()</function>
+      function &mdash; this is subclassed to completely override
+      <classname>QWidget's</classname> default functionality. Close
+      events are handled by the application itself, not by the view.
+      The view doesn't know anything about the document manager, which
+      ultimately handles the close event for all views.</para>
+<example><title>The view class</title>
+    <programlisting>
+"""
+mdiview.py &mdash; view component
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+
+class MDIView(QWidget):
+    """
+    The MDIView class can represent object of class
+    MDIDoc on screen.
+
+    slots:
+          slotDocModified
+    """
+    def __init__(self, parent, doc, *args):
+        apply(QWidget.__init__,(self, parent) + args)
+        self.doc = doc
+        self.connect(self.doc, PYSIGNAL("sigDocModified"),
+                     self.slotDocModified)
+        self.connect(self.doc, PYSIGNAL("sigDocTitleChanged"),
+                     self.setCaption)
+        # Set initial values
+        self.slotDocModified(self.doc.modified())
+
+    def slotDocModified(self, value):
+        if value:
+            self.setBackgroundColor(QColor("red"))
+        else:
+            self.setBackgroundColor(QColor("green"))
+
+    def mouseDoubleClickEvent(self, ev):
+        self.doc.slotModify() # direct call to the document
+
+    def document(self):
+        return self.doc
+
+    def closeEvent(self, e):
+        pass
+
+    def close(self, destroy=0):
+        return QWidget.close(self, destroy)
+    </programlisting>
+    </example>
+
+  </sect1>
+
+
+
+  <sect1><title>The actual application</title>
+
+
+    <para>As with the document-view framework, you can view the
+      <classname>QMainWindow</classname> derived class as the central
+      application controller. It takes the user input and translates
+      that to calls to either the data or the GUI interface.</para>
+
+    <para>Even though the <classname>MDIApp</classname> class might
+      appear a bit complex (and certainly very long!) it is much
+      simpler than it would  be with everything from the
+      <classname>DocManager</classname> added to it. The creation of
+      <classname>QAction</classname>s, and the attendant fringe
+      decorations such as menu's and toolbars, is quite standard:</para>
+
+
+    <example><title>The application class</title>
+    <programlisting>
+"""
+mdiapp.py &mdash; application class for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+
+from qt import *
+
+from mdiview import MDIView
+from mdidoc import MDIDoc
+from docmanager import DocManager
+
+from resources import *
+
+class MDIApp(QMainWindow):
+    """
+    MDIApp combines MDIDoc and MDIView into an single
+    window, multiple sub-window, multiple document application.
+    """
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        self.setCaption("MDI Application Framework")
+        self.workspace = self.initWorkSpace()
+
+        self.docManager=DocManager(self, self.workspace)
+        self.connect(self.docManager,
+                     PYSIGNAL("sigNumberOfDocsChanged"),
+                     self.setActionsEnabled)
+        self.initActions()
+        self.initMenuBar()
+        self.initToolBar()
+        self.initStatusBar()
+        self.setActionsEnabled()
+    #
+    # GUI initialization
+    #
+        
+    def initActions(self):
+        fileNewIcon=QIconSet(QPixmap(filenew))
+        fileQuitIcon=QIconSet(QPixmap(filequit))
+        fileOpenIcon=QIconSet(QPixmap(fileopen))
+        fileSaveIcon=QIconSet(QPixmap(filesave))
+        
+        self.actions = {}
+  
+        self.actions["fileNew"] = QAction("New",
+                                           fileNewIcon,
+                                           "&amp;New",
+                                           QAccel.stringToKey("CTRL+N"),
+                                           self)
+        self.connect(self.actions["fileNew"],
+                     SIGNAL("activated()"),
+                     self.slotFileNew)
+
+
+        self.actions["fileOpen"] = QAction("Open",
+                                           fileOpenIcon,
+                                           "&amp;Open",
+                                           QAccel.stringToKey("CTRL+O"),
+                                           self)
+        self.connect(self.actions["fileOpen"],
+                     SIGNAL("activated()"),
+                     self.slotFileOpen)
+
+        self.actions["fileSave"] = QAction("Save",
+                                           fileSaveIcon,
+                                           "&amp;Save",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["fileSave"],
+                     SIGNAL("activated()"),
+                     self.slotFileSave)
+
+        self.actions["fileSaveAs"] = QAction("Save as",
+                                             fileSaveIcon,
+                                             "&amp;Save as",
+                                             QAccel.stringToKey(""),
+                                             self)
+        self.connect(self.actions["fileSaveAs"],
+                     SIGNAL("activated()"),
+                     self.slotFileSaveAs)
+
+        self.actions["fileClose"] = QAction("Close",
+                                            "&amp;Close Document",
+                                           QAccel.stringToKey("CTRL+W"),
+                                           self)
+        self.connect(self.actions["fileClose"],
+                     SIGNAL("activated()"),
+                     self.slotFileClose)
+        
+        self.actions["fileQuit"] = QAction("Exit",
+                                           fileQuitIcon,
+                                           "E&amp;xit",
+                                           QAccel.stringToKey("CTRL+Q"),
+                                           self)
+        self.connect(self.actions["fileQuit"],
+                     SIGNAL("activated()"),
+                     self.slotFileQuit)
+
+        self.actions["editDoc"] = QAction("Edit",
+                                           fileQuitIcon,
+                                           "&amp;Edit",
+                                           QAccel.stringToKey("CTRL+E"),
+                                           self)
+        self.connect(self.actions["editDoc"],
+                     SIGNAL("activated()"),
+                     self.slotEditDoc)
+
+        self.actions["windowCloseWindow"] = QAction(self)
+        self.actions["windowCloseWindow"].setText("Close Window")
+        self.actions["windowCloseWindow"].setAccel(QAccel.
+                                                   stringToKey("CTRL+W"))
+        self.actions["windowCloseWindow"].setMenuText("&amp;Close Window")
+        self.connect(self.actions["windowCloseWindow"],
+                     SIGNAL("activated()"),
+                     self.slotWindowCloseWindow)
+
+        self.actions["windowNewWindow"] = QAction(self)
+        self.actions["windowNewWindow"].setText("New Window")
+        self.actions["windowNewWindow"].setMenuText("&amp;New Window")
+        self.connect(self.actions["windowNewWindow"],
+                     SIGNAL("activated()"),
+                     self.slotWindowNewWindow)
+
+        self.actions["windowCascade"] = QAction(self)
+        self.actions["windowCascade"].setText("Cascade")
+        self.actions["windowCascade"].setMenuText("&amp;Cascade")
+        self.connect(self.actions["windowCascade"],
+                     SIGNAL("activated()"),
+                     self.workspace.cascade)
+  
+        self.actions["windowTile"] = QAction(self)
+        self.actions["windowTile"].setText("Tile")
+        self.actions["windowTile"].setMenuText("&amp;Tile")
+        self.connect(self.actions["windowTile"],
+                     SIGNAL("activated()"),
+                     self.workspace.tile)
+
+        self.actions["windowAction"] = QActionGroup(self, None, FALSE)
+        self.actions["windowAction"].insert(self.actions["windowCloseWindow"])
+        self.actions["windowAction"].insert(self.actions["windowNewWindow"])
+        self.actions["windowAction"].insert(self.actions["windowCascade"])
+        self.actions["windowAction"].insert(self.actions["windowTile"])
+
+        self.actions["helpAboutApp"] = QAction(self)
+        self.actions["helpAboutApp"].setText("About")
+        self.actions["helpAboutApp"].setMenuText("&amp;About...")
+        self.connect(self.actions["helpAboutApp"],
+                     SIGNAL("activated()"),
+                     self.slotHelpAbout)
+
+    </programlisting>
+    </example>
+
+    <para>The set of actions included in this framework is not
+      complete, of course. Ideally, you would want accelerators for
+      switching between views, and a lot of application specific
+      actions. We'll be adding these over the next few
+      chapters.</para>
+
+    <programlisting>
+    def initMenuBar(self):
+        self.fileMenu = QPopupMenu()
+        self.actions["fileNew"].addTo(self.fileMenu)
+        self.actions["fileOpen"].addTo(self.fileMenu)
+        self.actions["fileSave"].addTo(self.fileMenu)
+        self.actions["fileSaveAs"].addTo(self.fileMenu)
+        self.actions["fileClose"].addTo(self.fileMenu)
+        self.fileMenu.insertSeparator()
+        self.actions["fileQuit"].addTo(self.fileMenu)
+        self.menuBar().insertItem("&amp;File", self.fileMenu)
+
+        self.editMenu = QPopupMenu()
+        self.actions["editDoc"].addTo(self.editMenu)
+        self.menuBar().insertItem("&amp;Edit", self.editMenu)
+
+        self.windowMenu = QPopupMenu()
+        self.windowMenu.setCheckable(TRUE)
+        self.connect(self.windowMenu,
+                     SIGNAL("aboutToShow()"),
+                     self.slotWindowMenuAboutToShow)
+        self.menuBar().insertItem("&amp;Window", self.windowMenu)
+        
+        self.helpMenu = QPopupMenu()
+        self.actions["helpAboutApp"].addTo(self.helpMenu)
+        self.menuBar().insertItem("&amp;Help", self.helpMenu)
+        
+    def initToolBar(self):
+        self.fileToolbar = QToolBar(self, "file operations")
+        self.actions["fileNew"].addTo(self.fileToolbar)
+        self.actions["fileQuit"].addTo(self.fileToolbar)
+        QWhatsThis.whatsThisButton(self.fileToolbar)
+
+    def initStatusBar(self):
+        self.statusBar().message("Ready...")
+    </programlisting>
+
+    <para>We have created menus, toolbars and statusbars so often by now
+      that this is merely an exercise in cutting and pasting.
+      However, note that we create a Window menu, but we don't add
+      the actions to that menu. This is because the contents of the
+      window menu are dynamic. Just before showing the window menu,
+      when the signal <function>"aboutToShow()"</function> is emitted,
+      we will be building it  <!-- todo : What is "it" ? Try to use specific nouns instead of inspecific pronouns. I realize that, typically, the object
+      of the sentence is implied from the previous sentence(s), but all the same, I think its best to be as specific as possible. -->
+      from the list of views managed by the document manager. This is done in the
+      <function>slotWindowMenuAboutToShow</function> slot function.</para>
+
+    <programlisting>
+    def initWorkSpace(self):
+        workspace=QWorkspace(self)
+        self.setCentralWidget(workspace)
+        return workspace
+    </programlisting>
+
+    <para>For now, the view manager is simply an instance of
+    <classname>QWorkSpace</classname>, which is a very simple class that
+    manages widgets as sub-windows to itself. For it to manage widgets,
+    they should be created with the workspace as parent.
+    <classname>QWorkSpace</classname> has two methods:
+    <function>activeWindow()</function>, which returns the widget that
+    currently has focus, and <function>windowList()</function>, which
+    returns the list of all windows.</para>
+
+    <para>Furthermore, there are two slots:
+      <function>cascade()</function> and <function>tile()</function>,
+      that arrange the widgets managed by the workspace. Lastly, there
+      is one signal you can connect to:
+      <function>windowActivated()</function>, which is fired whenever
+      a widget is activated &mdash; i.e. gets focus.</para>
+
+    <programlisting>
+    def setActionsEnabled(self):
+        enabled = self.docManager.numberOfDocuments()
+        self.actions["fileSave"].setEnabled(enabled)
+        self.actions["fileClose"].setEnabled(enabled)
+        self.actions["editDoc"].setEnabled(enabled)
+    </programlisting>
+
+    <para>If there is no document loaded by the application, functions
+    like 'save', 'close' or 'edit' are not terribly relevant. It's
+    better to disable them then. By requesting the number of documents
+    managed by the document manager, we can easily achieve this. After
+    all, no documents is zero, which is false for Python, and more
+    than zero documents is always true.</para>
+
+    <para>The next section is concerned with the implementation of the
+      slots called by the <classname>QAction</classname> objects that we just
+      created:</para>
+
+    <programlisting>
+    #
+    # Slot implementations
+    #
+
+    def slotFileNew(self):
+        document = self.docManager.createDocument(MDIDoc, MDIView)
+    </programlisting>
+
+    <para>Creating a document is now simply a matter of asking the
+    document manager to do it &mdash; just as we did in the test script.</para>
+
+    <programlisting>
+    def slotFileOpen(self):
+        fileName = QFileDialog.getOpenFileName(None, None, self)
+
+        if not fileName.isEmpty():
+            document=MDIDoc()
+            document.open(fileName)
+            view = self.docManager.addDocument(document, MDIView)
+            view.setFocus()
+    </programlisting>
+
+    <para>Opening a file is slightly more complicated; we need to be
+    sure that the user actually selected a file before a file can be opened.
+    Remember that all Qt classes return <classname>QString</classname>
+    objects, not Python <classname>String</classname> objects.
+    As a result, we have to use <function>isEmpty()</function> instead
+    of comparing with <classname>None</classname>.</para>
+
+    <para>If the filename is not empty, we create an empty document,
+      ask that document to open the file, and then add the document to
+      the document manager. Of course, this complexity can also be
+      removed to the document manager, by adding an
+      <function>openDocument(self, fileName, documentClass,
+        viewClass)</function> function to
+      <classname>DocManager</classname>.</para>
+
+    <programlisting>
+    def slotFileSave(self, document=None):
+        if document == None:
+            document = self.docManager.activeDocument()
+        if document.pathName() == None:
+            self.slotFileSaveAs()
+        else:
+            try:
+                document.save()
+            except Exception, e:
+                QMessageBox.critical(self,
+                                     "Error",
+                                     "Could not save the current document")
+
+    def slotFileSaveAs(self, doc=None):
+        fileName = QFileDialog.getSaveFileName(None, None, self)
+        if not fileName.isEmpty():
+            if doc == None:
+                doc = self.docManager.activeDocument()
+            try:
+                doc.save(str(fileName))
+            except:
+                QMessageBox.critical(self,
+                                     "Error",
+                                     "Could not save the current document")
+    </programlisting>
+
+    <para>Saving a document entails some complexity: the document may
+      or may not have a filename; if not, the user should supply
+      one. Saving could fail for a variety of reasons.
+      Nothing is so frustrating as losing your data because you simply wanted
+      to save it. An application should handle save errors very
+      carefully to ensure no data is lost.</para>
+
+    <programlisting>
+    def slotFileClose(self):
+        doc=self.docManager.activeDocument()
+        self.docManager.closeDocument(doc)
+
+    def slotFileQuit(self):
+        try:
+            self.docManager.closeAllDocuments()
+        except:
+            return
+        qApp.quit()
+    </programlisting>
+
+    <para>Closing a document and quitting the application are closely
+    related processes. Note the call to <function>qApp.quit()</function> &mdash; this
+    is only reached when closing all documents succeeds.</para>
+
+    <programlisting>
+    def slotEditDoc(self):
+        doc = self.docManager.activeDocument()
+        doc.slotModify()
+
+    def slotWindowCloseWindow(self):
+        self.workspace.activeWindow().close()
+    </programlisting>
+
+    <para>Closing a single window might mean that the document will be
+    closed, too &mdash; if it is the last or only view the document has. By
+    retrieving the active window from the workspace, and calling the
+    <function>close()</function> function on it, a
+    <function>closeEvent</function> will be generated. This will be
+    caught by the event filter defined below, which calls the
+    appropriate functions in the document manager.</para>
+
+    <programlisting>
+    def slotWindowNewWindow(self):
+        doc = self.docManager.activeDocument()
+        self.docManager.addView(doc, MDIView)
+
+    def slotHelpAbout(self):
+        QMessageBox.about(self,
+                          "About...",
+                          "MDI Framework\n" +
+                          "Inspired by the KDevelop templates.\n" +
+                          "(c) 2001 by Boudewijn Rempt")
+    </programlisting>
+
+    <para>Adding a new window is very simple: retrieve the
+    currently active document, and ask the document manager to add a
+    view for that document.</para>
+
+    <programlisting>
+    def slotWindowMenuAboutToShow(self):
+        self.windowMenu.clear()
+        self.actions["windowNewWindow"].addTo(self.windowMenu)
+        self.actions["windowCascade"].addTo(self.windowMenu)
+	self.actions["windowTile"].addTo(self.windowMenu)
+        self.windowMenu.insertSeparator()
+        self.actions["windowCloseWindow"].addTo(self.windowMenu)
+
+        if self.workspace.windowList()==[]:
+            self.actions["windowAction"].setEnabled(FALSE)
+        else:
+            self.actions["windowAction"].setEnabled(TRUE)
+        self.windowMenu.insertSeparator()
+
+        i=0 # window numbering
+        self.menuToWindowMap={}
+        for window in self.workspace.windowList():
+            i+=1
+            index=self.windowMenu.insertItem(("&amp;%i " % i) +
+                                             str(window.caption()),
+                                             self.slotWindowMenuActivated)
+            self.menuToWindowMap[index]=window
+            if self.workspace.activeWindow()==window:
+                self.windowMenu.setItemChecked(index, TRUE)
+
+    def slotWindowMenuActivated(self, index):
+        self.menuToWindowMap[index].setFocus()
+    </programlisting>
+
+    <para>Here, we dynamically create the window menu just before it is
+      shown. The four menu options&mdash;new window, cascade, tile and
+      close&mdash;are part of a single <classname>QActionGroup</classname>,
+      and can be enabled or disabled together. Of course, the same
+      could be done with the other actions that are only enabled when
+      there are actually documents in existence. Note also that we add
+      accelerators by numbering the views (this will, of course, stop
+      being sensible once we have more than nine open windows).</para>
+
+    <programlisting>
+    #
+    # Toplevel event filter
+    #
+
+    def eventFilter(self, object, event):
+        if (event.type() == QEvent.Close):
+            if (object &lt;&gt; self):
+                if self.docManager.closeView(object):
+                    event.accept()
+                else:
+                    event.ignore()
+            else:
+                try:
+                    self.docManager.closeAllDocuments()
+                    event.accept()
+                except Exception, e:
+                    return TRUE
+        return QWidget.eventFilter(self, object, event)
+    </programlisting>
+
+    <indexterm>
+      <primary>QEventFilter</primary>
+      <secondary>Event filters</secondary>
+      <tertiary>QEvent</tertiary>
+    </indexterm>
+
+    <para>Qt events contrast with Qt signals in that they are
+    typically created by user actions, such as key presses or mouse
+    actions. Signals are mostly emitted by objects on
+    themselves.</para>
+
+    <para>An event filter is an object that receives all events for
+      the object to which it applies. You can install eventfilters
+      that are created for one object in other objects. In this case,
+      all views share the same event filter as the application object.
+      An eventfilter must return either true or false&mdash;true if the
+      event should not be propagated further, and false if someone should
+      handle the event.</para>
+
+    <para>Here, we check whether the event is of the type
+      <varname>QEvent.close</varname> &mdash; if that is so, we check
+      whether it is meant for the main application window (that's us&mdash;
+      the 'self'). In that case, all documents must be closed. This
+      event is generated when the user closes the application.</para>
+
+    <para>If the event is meant for one of the sub-windows, the
+      document manager is asked to close the view. If that is
+      successful, the event is <function>accept()</function>-ed, and
+      will not be propagated any further.</para>
+
+    <programlisting>
+    #
+    # Functions called from the document manager
+    #
+def queryCloseDocument(self, document):
+        r = QMessageBox.information(self,
+                                    str(self.caption()),
+                                    "Do you want to close %s?" %
+                                    document.title(),
+                                    "Yes",
+                                    "No",
+                                    None,
+                                    0, 1)
+        if r == 0:
+            return QMessageBox.Yes
+        else:
+            return QMessageBox.No
+
+    def querySaveDocument(self, document):
+        r = QMessageBox.information(self,
+                                    str(self.caption()),
+                                    "Do you want to save your changes to " +
+                                    "%s?" %
+                                    document.title(),
+                                    "Yes",
+                                    "No",
+                                    "Cancel",
+                                    0, 2)
+        if r == 0:
+            return QMessageBox.Yes
+        elif r == 1:
+            return QMessageBox.No
+        else:
+            return QMessageBox.Cancel
+
+    def queryDiscardDocument(self, document):
+        r = QMessageBox.warning(self,
+                                str(self.caption()),
+                                "Could not save %s.\n" % document.title() +
+                                "Do you want to discard your changes?",
+                                "Yes",
+                                "No",
+                                None,
+                                0, 1)
+        if r == 0:
+            return QMessageBox.Yes
+        else:
+            return QMessageBox.No
+
+    def queryFileName (self, document=None):
+        fileName = QFileDialog.getSaveFileName(None, None, self)
+        if not fileName.isEmpty():
+            return str(fileName)
+        else:
+            return "untitled"
+    </programlisting>
+
+    <para>These calls to <classname>QMessageBox</classname> and the
+      standard file dialog <classname>QFileDialog</classname> are made
+      from the document manager. This makes sure that the document
+      manager can also work without a GUI.</para>
+
+    <para>The <classname>QMessageBox</classname> class is a bit messy,
+      by Qt standards. There are two ways of specifying buttons: by
+      string, or by identity. These identities, like
+      <varname>QMessageBox.Yes</varname> are defined in the class. If
+      you use these constants in your calls to
+      <function>QMessageBox.warning()</function>, for instance, then
+      the return value will be the identity of the button
+      pressed.</para>
+
+    <para>However, if you want the added flexibility of translatable
+      strings, you cannot use the identities. You can call functions
+      like <function>QMessageBox.warning()</function> with strings,
+      but the return value will be the position of the key pressed,
+      starting with 0 and going from left to right.</para>
+
+    <para>I want to use the identities in the document manager &mdash; this
+      makes the code a lot clearer. But I wanted to use strings in the actual message boxes.
+      That's why I translate the position of the button pressed to the correct identity.</para>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para>In this chapter we have laid a secure foundation for a
+    complex multi-document application. This foundation, with only
+    minor cosmetic changes, can be used over and again. For
+    file-based MDI applications it is a perfect fit, but the same
+    principles hold for database applications. In the next chapter, we
+    will explore alternatives for the MDI paradigm; and when this is
+    done, we are ready to start the real work of creating an application.</para>
+
+  </sect1>
+
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

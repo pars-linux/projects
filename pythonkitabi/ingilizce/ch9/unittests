@@ -1,0 +1,7 @@
+#
+# unittests - unittests for the whole system.
+# 
+# dvt1 tests the creation of a docviewdoc
+#dvt1.suite 
+# dvt2 tests a whole lot more
+dvt2.suite

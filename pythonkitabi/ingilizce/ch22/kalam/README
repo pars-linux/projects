@@ -1,0 +1,25 @@
+   Kalam - the undocumented, extensible editor.
+
+Kalam is an editor written in Python and PyQt as an example
+application to accompany the third part of the book "Gui programming
+with Python and Qt", published by OpenDocs.
+
+You can extend Kalam with macro's written in Python. See edmund.py
+for an example. Consult either the book, or the file kalamconfig.py
+to configure Kalam, using, for instance startup.py.
+
+   Installation
+
+In order to run Kalam, the kalam main directory needs to be on the
+Python path. On Unix, you can add something like:
+PYTHONPATH=/path/to/kalam/directory:$PYTHONPATH to .bashrc. On
+Windows, you must edit that system variable using the Control Panel.
+
+   Requirements:
+
+you must have Python (>2.0) and PyQt (>2.4) installed. PyQt depends
+on sip. You can get Python from www.python.org and PyQt from
+www.thekompany.com.
+
+Boudewijn Rempt
+boud@rempt.xs4all.nl

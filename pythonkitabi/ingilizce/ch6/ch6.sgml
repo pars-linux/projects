@@ -1,0 +1,2243 @@
+<chapter id="ch6">
+
+  <title>Signals and Slots in Depth</title>
+
+  <indexterm>
+  <primary>signals and slots</primary><secondary>explored</secondary>
+  </indexterm>
+  <para id="para-ch6-1">The concept of signals and slots is possibly
+    the most interesting innovation in the Qt library. Good widgets
+    and a clean API are rare, but not unique. But until Qt appeared on
+    the horizon, connecting your widgets with your application and
+    your data was a nasty and error-prone endeavor &mdash; even in
+    Python. I will first discuss the problem that is solved by signals
+    and slots in some detail; then I will introduce the actual
+    mechanics of the signal/slot mechanism, and finish with an
+    application of the technique outside the GUI domain.</para>
+
+  <sect1>
+
+    <title>The concept of signals and slots</title>
+
+    <indexterm>
+  <primary>signals and slots</primary><secondary>concepts</secondary>
+  </indexterm>
+  <para id="para-ch6-2">The problem in a nutshell: imagine you have
+      an application, and the application shows a button on screen.
+      Whenever the button is pressed, you want a function in your
+      application to execute. Of course, you'd prefer that the button
+      doesn't know much about the application, or you would have to
+      write a different button for each application. In the next
+      example, the button has been coded to work only with an
+      application that has the
+      <function>doSomeApplicationSpecificFunction</function> function.
+    </para>
+
+    <example>
+      <title>A stupid button which is not reusable</title>
+      <programlisting>
+#
+# stupid_button.py &mdash; this button is not reusable
+#
+class Button:
+
+    def __init__(self, application):
+      self.application = application
+
+    def clicked(self):
+        self.application.doSomeApplicationSpecificFunction()
+
+class Application:
+
+    def __init__(self):
+        self.button=Button(self)
+
+    def doSomeApplicationSpecificFunction(self):
+        print "Function called"
+
+app=Application()
+app.button.clicked() # simulate a user button press
+      </programlisting>
+    </example>
+
+    <sect2><title>Callbacks</title>
+
+      <indexterm>
+  <primary>callbacks</primary>
+  </indexterm>
+  <para id="para-ch6-3">This is no solution&mdash; the button code
+        isn't reusable at all. A better solution would be to pass the
+        <emphasis>function</emphasis> object to the button. Remember
+        that in Python functions are objects just like everything
+        else. In a language like C or C++ you would pass a
+        <emphasis>function pointer</emphasis>, the actual memory
+        address of the function being called. This is quite nasty,
+        because there is no way the compiler can check what arguments
+        are passed to the function represented by the function
+        pointer. In Python, passing functions around is really
+        easy.</para>
+
+      <example>
+        <title>A simple callback system</title>
+        <programlisting>
+#
+# callback.py &mdash; handing the function over the the app
+#
+class Button:
+
+    def __init__(self, function):
+        self.callbackFunction = function
+
+    def clicked(self):
+        apply(self.callbackFunction)
+
+class Application:
+
+    def __init__(self):
+        self.button=Button(self.doSomeApplicationSpecificFunction)
+
+    def doSomeApplicationSpecificFunction(self):
+        print "Function called"
+
+
+app=Application()
+app.button.clicked() # simulate a user button press
+        </programlisting>
+      </example>
+
+        <note id="ch6Apply">
+          <title>Using <function>apply()</function> to execute
+            function objects.</title>
+
+          <indexterm zone="ch6Apply">
+            <primary>apply()</primary>
+          </indexterm>
+
+
+          <indexterm>
+  <primary>apply()</primary>
+  </indexterm>
+  <para id="para-ch6-4">Note the usage of the
+            <function>apply()</function> function in the
+            <function>clicked()</function> function &mdash; this
+            Python built-in function executes the function object you
+            pass as the first argument argument. <!-- what is "its" in
+            the above sentence? Replace this with the name of what you
+            are refering to. Br: Missed this!--> You can also hand it
+            parameters, as a tuple in the second argument to
+            <function>apply()</function>. You'll see that idiom quite
+            often when we subclass Qt classes:</para>
+
+        <programlisting>
+class MyWidget(QWidget):
+
+    def __init__(self, *args):
+        apply(QWidget.__init__, (self,) + args)
+        </programlisting>
+
+          <para id="para-ch6-5">This is useful because
+            <classname>QWidget</classname> and the other Qt classes
+            often have a lot of optional parameters, such as the
+            object name or certain widget flags. If we discount the
+            possibility that someone wants to use those optional
+            parameters, we would write:</para>
+
+          <programlisting>
+class MyWidget(QWidget):
+
+    def __init__(self, parent):
+        QWidget.__init__(self, parent)
+          </programlisting>
+
+          <para id="para-ch6-6">This is far less flexible. In the previous example,
+            we created an argument tuple to be passed to the
+            <function>__init__()</function> by first creating a tuple
+            containing our own object reference -
+            <varname>self</varname>, and then adding the arguments
+            from the variable positional argument list to that tuple.
+            Remember from the discussion of positional arguments in
+            <xref linkend="ch24PositionalArguments"> that the
+            arguments in *args <emphasis>are</emphasis> a tuple, and
+            you can create a new tuple by adding two tuples.</para>
+
+<!-- BR: I added the following paras -->
+          <para>In more recent versions of Python, you don't need to
+            use <function>apply()</function> anymore to call the
+            constructor of a superclass with a variable number of
+            arguments. That is, from version 2.0 of Python you can
+            also use the following construction:</para>
+
+          <screen>
+>>> class O(QObject):
+...     def __init__(self, *args):
+...             QObject.__init__(self, *args)
+... 
+>>> a=O()
+>>> b=O(a, "bla")
+>>> b
+<__main__.O instance at 0x82b5c3c>
+>>> b.name()
+'bla'
+>>> b.parent()
+<__main__.O instance at 0x8106cb4>
+>>>       </screen>
+
+          <para>That is, when calling the constructor of the
+            superclass, you can pass <varname>self</varname> as the
+            first argument, and then the argument list, with asterisks
+            and all.</para>
+
+        </note>
+    </sect2>
+
+    <sect2><title>Action registry</title>
+
+      <para id="para-ch6-7">Unfortunately, this callback system is not
+        quite generic enough. For example, what if you wanted to
+        activate two functions when the button is pressed? While this
+        is not likely in the simple example, under more complex
+        situations it often occurs. Think of a text editor where
+        editing the text should change the internal representation of
+        the document, the word count in the statusbar, and the
+        edited-indicator in the titlebar. You wouldn't want to put all
+        this functionality in one function, but it is a natural fit
+        for signals and slots. You could have one signal,
+        <function>textChanged</function>, that is connected to three
+        functions: <function>changeText()</function>,
+        <function>setWordCount()</function>,
+        <function>setEdited()</function>.</para>
+
+      <para id="para-ch6-8">Wouldn't it be extremely comfortable to
+        simply have a central registry where interested parties could
+        come together? Something like:</para>
+      <example>
+        <title>A central registry of connected widgets</title>
+        <programlistingco>
+          <areaspec>
+            <area coords="7" id="ch6registryconnections">
+            <area coords="9" id="ch6registryadd">
+            <area coords="15" id="ch6registryremove">
+            <area coords="20" id="ch6registryexecute">
+            <area coords="25" id="ch6registrycreate">
+            <area coords="27" id="ch6registrybutton">
+            <area coords="36" id="ch6registryapplication">
+            <area coords="46" id="ch6registrysimulate">
+          </areaspec>
+        <programlisting>
+#
+# registry.py &mdash; a central registry of connected widgets
+#
+class Registry:
+
+    def __init__(self):
+        self.connections={}
+
+    def add(self, occasion, function):
+        if self.connections.has_key(occasion) == 0:
+            self.connections[occasion]=[function]
+        else:
+            self.connections[occasion].append(function)
+
+    def remove(self, occasion, function):
+        if self.connections.has_key(occasion):
+            self.connections[occasion].remove(function)
+
+    def execute(self, occasion):
+        if self.connections.has_key(occasion):
+            for function in self.connections[occasion]:
+                apply(function)
+
+registry=Registry()
+
+class Button:
+
+    def clicked(self):
+        registry.execute("clicked")
+
+class Application:
+
+    def __init__(self):
+        self.button=Button()
+        registry.add("clicked", self.doAppSpecificFunction)
+        registry.add("clicked", self.doSecondFunction)
+
+    def doAppSpecificFunction(self):
+        print "Function called"
+
+    def doSecondFunction(self):
+        print "A second function is called."
+
+app=Application()
+app.button.clicked()
+        </programlisting>
+              <indexterm>
+  <primary>registry</primary>
+  </indexterm>
+          <calloutlist>
+            <callout arearefs="ch6registryconnections">
+  <para id="para-ch6-9">The actual registry is a Python dictionary with
+                the name <varname>connections</varname>. Here,
+                each <varname>occasion</varname> is used as a key to
+                find the actual function object that should be called.</para>
+            </callout>
+            <callout arearefs="ch6registryadd">
+              <para id="para-ch6-10">If the &lsquo;occasion' is already registered, we simply
+                add a new entry to the list; otherwise a new entry
+                is created in the registry.</para>
+            </callout>
+            <callout arearefs="ch6registryremove">
+              <para id="para-ch6-11">If the &lsquo;occasion' exists, then we remove the
+                relevant function entry from its list of
+                functions.</para>
+            </callout>
+            <callout arearefs="ch6registryexecute">
+              <para id="para-ch6-12">We loop over all functions that belong to this
+                &lsquo;occasion' and simply execute them by calling
+                <function>apply()</function> on them.</para>
+            </callout>
+            <callout arearefs="ch6registrycreate">
+              <para id="para-ch6-13">A registry is a unique object to an application:
+                there should only be one, so we create it globally.</para>
+            </callout>
+            <callout arearefs="ch6registrybutton">
+              <para id="para-ch6-14">This is the &lsquo;button' class.
+                Whenever the button is &lsquo;clicked', it calls the
+                <function>execute()</function> function in the
+                registry with the &lsquo;clicked' occasion.</para>
+            </callout>
+            <callout arearefs="ch6registryapplication">
+              <para id="para-ch6-15">The application creates one button and binds two
+                of its functions to the button. This looks a
+                lot like the way connections are made in Qt!</para>
+            </callout>
+            <callout arearefs="ch6registrysimulate">
+              <para id="para-ch6-16">Here we simulate a button click by directly
+                calling the <function>clicked()</function> function on
+                the button.</para>
+            </callout>
+          </calloutlist>
+        </programlistingco>
+      </example>
+
+      <indexterm>
+  <primary>observer pattern</primary>
+  </indexterm>
+  <indexterm>
+  <primary>design patterns</primary><secondary>Observer</secondary>
+  </indexterm>
+  <para id="para-ch6-17">This is one step up from the previous example, which was
+        an extremely crude implementation of the well known Observer
+        design pattern, in that there is now a &lsquo;neutral' object that
+        mediates between the button and the application. However, it
+        is still not particularly sophisticated. It certainly wouldn't do
+        for a real application &mdash; where there might be many
+        objects with the same &lsquo;occasion'.</para>
+
+      <indexterm>
+  <primary>Sketch</primary>
+  </indexterm>
+  <para id="para-ch6-18">It is quite possible to implement a solution like this in
+        pure Python, especially with the weak references module that
+        debuted in Python 2.1. Bernhard Herzog has done so in his fine
+        Python application <application>Sketch</application>
+        (http://sketch.sourceforge.net). He had to do it himself
+        &mdash; because he was working in PyGTK, not PyQt.
+        Fortunately, PyQt has already solved the whole problem for
+        us.</para>
+
+    </sect2>
+
+    <sect2><title>Signals and slots</title>
+
+      <para id="para-ch6-19">We've just outlined the problem which the
+        developers of Qt at Trolltech have solved in a unique and
+        flexible manner. They created the concept of signals and
+        slots. <emphasis>signals</emphasis> are sent by an object that
+        wants to tell the world something interesting has happened,
+        and by <emphasis>connecting</emphasis> the "signals to the
+        slots", those signals arrive at the <emphasis>slots</emphasis>
+        of the objects that are interested.</para>
+
+      <indexterm>
+  <primary>moc</primary>
+  </indexterm>
+  <para id="para-ch6-20">On the whole the concept is really neat
+        and clean and the implementation well-executed. What's more,
+        the concept is even better suited to Python than it is to C++.
+        If you want to use signals and slots in C++, you have to work
+        with a preprocessor, called <command>moc</command>, and
+        indicate with special macros which function can be called as a
+        slot, and which function is a signal. All that is completely
+        unnecessary in Python, where a signal is a string, and any
+        function can be a slot.</para>
+
+      <para id="para-ch6-21">Signals and slots are not magic, of
+        course. As with our simple Python registry, there has to be a
+        registry of objects that are interested in signals. This
+        registry is updated by the <function>connect</function> and
+        <function>disconnect</function> functions; both are member
+        functions of the <classname>QObject</classname> class. The
+        registry, as far as Python signals and slots is concerned, is
+        kept by the sip library. Signals and slots that are defined in
+        the underlying C++ library are maintained by the
+        <classname>QObject</classname> class itself.</para>
+
+      <para id="para-ch6-22">In a nutshell, signals and slots are the
+        solution Qt provides for situations in which you want two
+        objects to interact, while keeping that fact hidden from
+        them.</para>
+
+      <note>
+        <title>Signals, messages, events</title>
+
+        <indexterm>
+  <primary>signals/slots</primary><secondary>vs events</secondary>
+  </indexterm>
+  <para id="para-ch6-23">This is one area where there is a
+          perfect Babel of tongues. Even really knowledgeable people
+          like Dr Dobbs' Al Stevens get confused when confronted with
+          terms like &lsquo;message', &lsquo;event' or
+          &lsquo;signal'.</para>
+
+        <para id="para-ch6-24">In PyQt programming, the term
+          '&lsquo;message' is quite irrelevant &mdash; it is used in
+          Windows programming to indicate function calls made from
+          your application to the Windows GUI libraries.</para>
+
+        <indexterm>
+  <primary>signals/slots</primary><secondary>where to use</secondary>
+  </indexterm>
+  <para id="para-ch6-25">Events and signals, on the other hand,
+          are central to PyQt. Signals and slots are used to connect
+          one object to another. An example is the perennial
+          pushbutton, whose <function>clicked()</function> signal gets
+          connected to the <function>accept()</function> slot function
+          of a dialog box. Signals are used to connect entities
+          internal to the application.</para>
+
+        <indexterm>
+  <primary>events</primary><secondary>where to use</secondary>
+  </indexterm>
+  <para id="para-ch6-26">Events are more often generated
+          directly by user input, such as moving or clicking with the
+          mouse, or typing at the keyboard. As such, they don't
+          connect two class instances, but rather a physical object,
+          such as a keyboard, with an application. Events are
+          encapsulated by the <classname>QEvent</classname> class, and
+          are mostly delivered to <classname>QWidget</classname> and
+          its descendants. Events are used to communication with
+          external entities.</para>
+
+
+      </note>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1>
+    <title>Connecting with signals and slots</title>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>C++ vs Python defined</secondary>
+  </indexterm>
+  <para id="para-ch6-27">Signals and slots come in two basic
+      varieties: Vanilla, or C++ signals and slots (as defined in the
+      Qt library) and Pythonic (signals and slots defined in Python).
+      Any function of any object can be used as a slot in Python (you
+      don't even have to inherit from <classname>QObject</classname>).
+      This contrasts to C++, where you need to specially mark a
+      function as a slot in order to be able to connect it to a signal
+      (and have to inherit <classname>QObject</classname>).</para>
+
+    <para id="para-ch6-28">Every class that descends from
+      <classname>QObject</classname> is eligible for the sending
+      (<emphasis>emitting</emphasis> is the technical term) and
+      connecting of signals to its own methods. That means that if
+      your Python class is to emit signals it has to ultimately
+      inherit <classname>QObject</classname>.</para>
+
+    <indexterm>
+  <primary>connect()</primary>
+  </indexterm>
+  <para id="para-ch6-29">Connections are made using the
+      <function>connect()</function> method. This is a class method of
+      <classname>QObject</classname>, and you can, according to your
+      preference, use the method on <classname>QObject</classname>, or
+      on the actual object you're working with.</para>
+
+    <indexterm>
+  <primary>disconnect()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>emit()</primary>
+  </indexterm>
+  <para id="para-ch6-30">You can connect signals to slots, but also
+      to other signals, creating a chain of notifications. If you want
+      to disconnect signals from slots, you can use
+      <classname>QObject</classname>.<function>disconnect()</function>. 
+      If you want to emit signals from a Python object, you can use
+      the <classname>QObject</classname>.<function>emit()</function>
+      function.</para>
+
+    <para id="para-ch6-31">The connect function can take the following
+    parameters:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para id="para-ch6-32">sender &mdash; the <classname>QObject</classname> that will
+          send the signal.
+        </para>
+      </listitem>
+      <listitem>
+        <para id="para-ch6-33">signal &mdash; the signal that must be connected
+        </para>
+      </listitem>
+      <listitem>
+        <para id="para-ch6-34">receiver &mdash; the <classname>QObject</classname> that has
+          the slot method that will be called when the signal is
+          emitted.
+        </para>
+      </listitem>
+      <listitem>
+        <para id="para-ch6-35">slot &mdash; the slot method that will be called when the
+        signal is emitted.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para id="para-ch6-36">If you're connecting your signals from within a class, you can
+    often omit the third parameter &mdash; the receiver.</para>
+
+    <indexterm>
+  <primary>SLOT()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>SIGNAL()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>PYSIGNAL()</primary>
+  </indexterm>
+  <para id="para-ch6-37">PyQt defines three special functions that
+      appear to be macros (because of their all-caps spelling, as in
+      C++) but are in fact just functions. (In fact, there are no
+      macros in Python). These are <function>SLOT()</function>,
+      <function>SIGNAL()</function> and
+      <function>PYSIGNAL()</function>.</para>
+
+    <para id="para-ch6-38">Two of these functions are meant for
+      signals and slots defined in C++; the other is meant for signals
+      defined in Python. Signals and slots defined in C++ are
+      connected on the level of C++ (i.e., not in the sip registry)
+      and can be a bit faster.</para>
+
+    <para id="para-ch6-39">The first function is
+      <function>SLOT()</function>, which marks its only argument, a
+      string, as a slot defined in the Qt library, i.e. in C++. The
+      corresponding <function>SIGNAL</function>, which also has one
+      string argument, marks its argument as a signal as defined in
+      Qt.</para>
+
+    <para id="para-ch6-40">For instance, from the documentation of
+      <classname>QListview</classname> we can learn that this class
+      possesses the slot <function>invertSelection()</function>. From the
+      documentation of <classname>QButton</classname> we learn that it
+      can emit a signal <function>clicked()</function>. We can
+      connect a button press to this slot as follows:</para>
+
+    <example>
+      <title>Connecting a signal to a slot</title>
+      <programlistingco>
+        <areaspec>
+          <area coords="12" id="ch6mainwidget">
+          <area coords="16" id="ch6listview">
+          <area coords="23" id="ch6pushbutton">
+          <area coords="28" id="ch6lsvconnect">
+        </areaspec>
+    <programlisting>
+#
+# lsv.py - connect a button to a listview
+#
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+
+        self.mainWidget=QWidget(self);
+
+        self.vlayout = QVBoxLayout(self.mainWidget, 10, 5)
+
+        self.lsv = QListView(self.mainWidget)
+        self.lsv.addColumn("First column")
+        self.lsv.setSelectionMode(QListView.Multi)
+        self.lsv.insertItem(QListViewItem(self.lsv, "One"))
+        self.lsv.insertItem(QListViewItem(self.lsv, "Two"))
+        self.lsv.insertItem(QListViewItem(self.lsv, "Three"))
+
+        self.bn = QPushButton("Push Me", self.mainWidget)
+        
+        self.vlayout.addWidget(self.lsv)
+        self.vlayout.addWidget(self.bn)
+
+        QObject.connect(self.bn, SIGNAL("clicked()"),
+                        self.lsv, SLOT("invertSelection()"))
+
+        self.setCentralWidget(self.mainWidget)
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+  
+if __name__=="__main__":
+        main(sys.argv)
+      </programlisting>
+        <calloutlist>
+          <callout arearefs="ch6mainwidget">
+            <para id="para-ch6-41">We want to combine a pushbutton and
+              a listview in a main window. So we first define a single
+              main widget that can be managed by the layout manager of
+              <classname>QMainWindow</classname>, and then add a new
+              layout manager to that widget. The pushbutton and the
+              listview then become children of the main widget,
+              <varname>self.mainWidget</varname>. </para>
+
+            <para id="para-ch6-42">You don't need to keep
+              <varname>self</varname> references to the widgets,
+              because these widgets are child objects to
+              <classname>QMainWindow</classname>. However, if you
+              later want to access those widgets, it is necessary to
+              have a reference.</para>
+          </callout>
+
+          <callout arearefs="ch6listview">
+            <para id="para-ch6-43">The
+              <classname>QListView</classname> is a child widget to
+              the <varname>mainWidget</varname>. It has one column and
+              owns three listview items. In order to give the
+              pushbutton some useful work to do, we allow a multiple
+              selection.</para>
+          </callout>
+          <callout arearefs="ch6pushbutton">
+            <para id="para-ch6-44">A very standard pushbutton &mdash;
+              nothing special, except that is is a child of the
+              <varname>mainWidget</varname>.</para>
+          </callout>
+          <callout arearefs="ch6lsvconnect">
+            <para id="para-ch6-45">This is the actual connection
+              between the <function>clicked()</function> signal of the
+              button and the <function>invertSelection()</function> of
+              the listview. If you press the button, you'll notice the
+              effect.</para>
+          </callout>
+        </calloutlist>
+      </programlistingco>
+    </example>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>arguments</secondary>
+  </indexterm>
+  <para id="para-ch6-46">Note that the arguments of SIGNAL and SLOT
+      are used as an index of the dictionary
+      <application>sip</application> keeps of available slots and
+      signals, and that you should match the definition of the signal
+      and slot as given in the class documentation exactly.</para>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>complete example</secondary>
+  </indexterm>
+  <para id="para-ch6-47">A more complicated signal/slot combination
+      can pass an integer along (or even a complete object). Let's
+      connect the knob of a <classname>QDial</classname> to a few
+      functions, creating an color dialer. A
+      <classname>QDial</classname> generates the
+      <function>valueChanged(int)</function> signal, which passes the
+      current value of the dial in the form of an integer to every
+      slot that's connected to the signal. You need to explicitly
+      enter the types of the signal arguments, but not their
+      names.</para>
+
+    <example id="ch6-example-qdial">
+      <title>Connection a dial to a label with signals and slots</title>
+      <programlisting>
+#
+# dial.py &mdash; connecting a QDial to a QLabel or two
+#
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+
+        self.vlayout = QVBoxLayout(self, 10, 5)
+        self.hlayout = QHBoxLayout(None, 10, 5)
+        self.labelLayout=QHBoxLayout(None, 10, 5)
+
+        self.red = 0
+        self.green = 0
+        self.blue = 0
+
+        self.dialRed = QDial(0, 255, 1, 0, self)
+        self.dialRed.setBackgroundColor(QColor("red"))
+        self.dialRed.setNotchesVisible(1)
+        self.dialGreen = QDial(0, 255, 1, 0, self)
+        self.dialGreen.setBackgroundColor(QColor("green"))
+        self.dialGreen.setNotchesVisible(1)
+        self.dialBlue = QDial(0, 255, 1, 0, self)
+        self.dialBlue.setBackgroundColor(QColor("blue"))
+        self.dialBlue.setNotchesVisible(1)
+
+        self.hlayout.addWidget(self.dialRed)
+        self.hlayout.addWidget(self.dialGreen)
+        self.hlayout.addWidget(self.dialBlue)
+
+        self.vlayout.addLayout(self.hlayout)
+
+        self.labelRed = QLabel("Red: 0", self)
+        self.labelGreen = QLabel("Green: 0", self)
+        self.labelBlue = QLabel("Blue: 0", self)
+
+        self.labelLayout.addWidget(self.labelRed)
+        self.labelLayout.addWidget(self.labelGreen)
+        self.labelLayout.addWidget(self.labelBlue)
+
+        self.vlayout.addLayout(self.labelLayout)
+
+        QObject.connect(self.dialRed, SIGNAL("valueChanged(int)"),
+                        self.slotSetRed)
+        QObject.connect(self.dialGreen, SIGNAL("valueChanged(int)"),
+                        self.slotSetGreen)
+        QObject.connect(self.dialBlue, SIGNAL("valueChanged(int)"),
+                        self.slotSetBlue)
+
+        QObject.connect(self.dialRed, SIGNAL("valueChanged(int)"),
+                        self.slotSetColor)
+        QObject.connect(self.dialGreen, SIGNAL("valueChanged(int)"),
+                        self.slotSetColor)
+        QObject.connect(self.dialBlue, SIGNAL("valueChanged(int)"),
+                        self.slotSetColor)
+
+    def slotSetRed(self, value):
+        self.labelRed.setText("Red: " + str(value))
+        self.red = value
+
+    def slotSetGreen(self, value):
+        self.labelGreen.setText("Green: " + str(value))
+        self.green = value
+
+    def slotSetBlue(self, value):
+        self.labelBlue.setText("Blue: " + str(value))
+        self.blue = value
+
+    def slotSetColor(self, value):
+        self.setBackgroundColor(QColor(self.red, self.green, self.blue))
+        self.labelRed.setBackgroundColor(QColor(self.red, 128, 128))
+        self.labelGreen.setBackgroundColor(QColor(128, self.green, 128))
+        self.labelBlue.setBackgroundColor(QColor(128, 128, self.blue))
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+      </programlisting>
+    </example>
+
+    <para id="para-ch6-48">Note that we connect the C++ signals
+      (SIGNAL), to Python functions. You simply give the function
+      object as the slot argument&mdash; not the result of the
+      function call. Consider the difference between:</para>
+
+    <programlisting>
+      QObject.connect(self.dialBlue,
+                      SIGNAL("valueChange(int)"),
+                      self.slotSetColor())
+    </programlisting>
+
+    <para id="para-ch6-49">which is wrong, and:</para>
+
+    <programlisting>
+      QObject.connect(self.dialBlue,
+                      SIGNAL("valueChange(int)"),
+                      self.slotSetColor)
+    </programlisting>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>connecting to a Python function</secondary>
+  </indexterm>
+  <para id="para-ch6-50">which is right. All that difference for two little brackets!
+      This is a rather frequent typo or thinko. (However, to give you a
+      glimpse of the dynamic nature of Python, if you have a function
+      that returns the correct function to connect to the signal, you
+      do want a function call in
+      <function>connect()</function>.)</para>
+
+    <para id="para-ch6-51">Note also that the number and type of arguments of the
+      signal and the slot you want to connect have to match. When
+      connecting C++ signals to C++ slots, there is also a bit of
+      type-checking done. </para>
+
+    <para id="para-ch6-52">Python signals are indicated by the
+      <function>PYSIGNAL()</function> function, which also takes a
+      string. There is no <function>PYSLOT()</function> function
+      corresponding to <function>SLOT()</function>, because you can
+      use <emphasis>any</emphasis> function as a slot in
+      Python.</para>
+
+    <indexterm>
+  <primary>PYSIGNAL</primary><secondary>arguments</secondary>
+  </indexterm>
+  <para id="para-ch6-53">The argument of <function>PYSIGNAL()</function> is a simple
+      string that is unique for the class from which the signal is
+      emitted. It performs the same function as the
+      <emphasis>occasion</emphasis> string in the small
+      <filename>registry.py</filename> script.  The difference is that
+      <function>PYSIGNAL()</function> string needs to be unique only
+      for the class, and not the whole application.</para>
+
+
+
+    <para id="para-ch6-54">Connecting to a Python signal doesn't
+      differ much from connecting to a C++ signal, except that you
+      don't have to worry so much about the type and number of
+      arguments of the signal. To rewrite the
+      <filename>registry.py</filename> example:</para>
+
+    <example>
+      <title>Python signals and slots</title>
+      <programlisting>
+#
+# sigslot.py  &mdash; python signals and slots
+#
+from qt import *
+
+class Button(QObject):
+
+    def clicked(self):
+        self.emit(PYSIGNAL("sigClicked"), ())
+
+class Application(QObject):
+
+    def __init__(self):
+        QObject.__init__(self)
+
+        self.button=Button()
+        self.connect(self.button, PYSIGNAL("sigClicked"),
+                        self.doAppSpecificFunction)
+        self.connect(self.button, PYSIGNAL("sigClicked"),
+                        self.doSecondFunction)
+
+    def doAppSpecificFunction(self):
+        print "Function called"
+
+    def doSecondFunction(self):
+        print "A second function is called."
+
+app=Application()
+app.button.clicked()
+      </programlisting>
+    </example>
+
+    <para id="para-ch6-55">Running this example from the command line gives the
+      following output:</para>
+
+    <screen>
+/home/boudewijn/doc/pyqt/ch6 $ python sigslot.py
+A second function is called.
+Function called
+    </screen>
+
+    <para id="para-ch6-56">The <classname>Button</classname> emits the
+      Python signal. Note the construction: the second argument to the
+      <function>emit</function> function is a
+      <emphasis>tuple</emphasis> that contains the arguments you want
+      to pass on. It must always be a tuple, even if it has to be an
+      empty tuple, or a tuple with only one element. This is shown in
+      the next example, in which we have to explicitly create an empty
+      tuple, and a tuple with one element from a single argument, by
+      enclosing the argument in brackets and adding a comma:</para>
+
+    <example>
+      <title>Python signals and slots with arguments</title>
+      <programlisting>
+#
+# sigslot2.py  &mdash; python signals and slots with arguments
+#
+from qt import *
+
+class Widget(QObject):
+
+    def noArgument(self):
+        self.emit(PYSIGNAL("sigNoArgument"), ())
+
+    def oneArgument(self):
+        self.emit(PYSIGNAL("sigOneArgument"), (1, ))
+
+    def twoArguments(self):
+        self.emit(PYSIGNAL("sigTwoArguments"), (1, "two"))
+
+class Application(QObject):
+
+    def __init__(self):
+        QObject.__init__(self)
+
+        self.widget = Widget()
+
+        self.connect(self.widget, PYSIGNAL("sigNoArgument"),
+                        self.printNothing)
+        self.connect(self.widget, PYSIGNAL("sigOneArgument"),
+                        self.printOneArgument)
+        self.connect(self.widget, PYSIGNAL("sigTwoArguments"),
+                        self.printTwoArguments)
+        self.connect(self.widget, PYSIGNAL("sigTwoArguments"),
+                        self.printVariableNumberOfArguments)
+
+    def printNothing(self):
+        print "No arguments"
+
+    def printOneArgument(self, arg):
+        print "One argument", arg
+
+    def printTwoArguments(self, arg1, arg2):
+        print "Two arguments", arg1, arg2
+
+    def printVariableNumberOfArguments(self, *args):
+        print "list of arguments", args
+
+app=Application()
+app.widget.noArgument()
+app.widget.oneArgument()
+app.widget.twoArguments()
+      </programlisting>
+    </example>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>variable number of arguments</secondary>
+  </indexterm>
+  <para id="para-ch6-57">Note the usage of the *arg argument
+      definition. This Python construct means that a variable length
+      list of un-named arguments can be passed to a function. Thus
+      <function>printVariableNumberOfArguments(self, *args)</function>
+      fits every signal that you care to connect it to.</para>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>order of handling</secondary>
+  </indexterm>
+  <para id="para-ch6-58">It's an interesting test to run this script
+      several times: you will notice that the order in which the
+      signals generated by <function>twoArguments()</function> arrive
+      at their destination is not fixed. This means that if a signal
+      is connected to two or more slots, the slots are not called in
+      any particular order. However, if two signals are connected to
+      two separate slots, then the slots are called in the order in
+      which the signals are emitted.</para>
+
+    <para id="para-ch6-59">The following combinations of arguments to the
+      <function>connect()</function> function are possible:</para>
+
+    <table>
+      <title>Matrix of
+        <classname>QObject</classname>.<function>connect()</function>
+        combinations.</title>
+      <tgroup cols = 3>
+        <colspec colwidth="50">
+        <colspec colwidth="100">
+        <colspec colwidth="*">
+        <thead>
+
+           <row>
+            <entry>Signal
+            </entry>
+            <entry>
+              Connected to
+            </entry>
+            <entry>
+              Syntax (Note that you can replace
+              <function>QObject.connect()</function> by
+              <function>self.connect()</function> everywhere.)
+            </entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>
+              C++
+            </entry>
+            <entry>
+              C++ slot of another object
+            </entry>
+            <entry>
+              QObject.connect(object1, SIGNAL("qtSignal()"), object2,
+              SLOT("qtSlot()"))
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              C++
+            </entry>
+            <entry>
+              C++ slot of &lsquo;self' object
+            </entry>
+            <entry>
+              QObject.connect(object1, SIGNAL("qtSignal()"), SLOT("qtSlot()"))
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              C++
+            </entry>
+            <entry>
+              Python slot of another object
+            </entry>
+            <entry>
+              QObject.connect(object1, SIGNAL("qtSignal()"), object2,
+              pythonFunction)
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              C++
+            </entry>
+            <entry>
+              Python slot of &lsquo;self' object
+            </entry>
+            <entry>
+              QObject.connect(object1, SIGNAL("qtSignal()"),
+              self.pythonFunction)
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              C++
+            </entry>
+            <entry>
+              C++ signal of another object
+            </entry>
+            <entry>
+              QObject.connect(object1, SIGNAL("qtSignal()"), object2,
+              SIGNAL("qtSignal()")
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              C++
+            </entry>
+            <entry>
+              C++ signal of &lsquo;self' object
+            </entry>
+            <entry>
+              QObject.connect(object1, SIGNAL("qtSignal()"), self,
+              SIGNAL("qtSignal()")
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              C++ slot of another object
+            </entry>
+            <entry>
+              QObject.connect(object1, PYSIGNAL("pySignal()"), object2,
+              SLOT("qtSlot()"))
+
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              C++ slot of &lsquo;self' object
+            </entry>
+            <entry>
+              QObject.connect(object1, PYSIGNAL("pySignal()"),
+              SLOT("qtSlot()"))
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              Python slot of another object
+            </entry>
+            <entry>
+              QObject.connect(object1, PYSIGNAL("pySignal()"),
+              object2.pythonFunction))
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              Python slot of &lsquo;self' object
+            </entry>
+            <entry>
+              QObject.connect(object1, PYTHON("pySignal()"),
+              self.pythonFunction))
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              C++ signal of another object
+            </entry>
+            <entry>
+              QObject.connect(object1, OYSIGNAL("pySignal()"), object2,
+              SIGNAL("qtSignal()")
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              C++ signal of &lsquo;self' object
+            </entry>
+            <entry>
+              QObject.connect(object1, PYSIGNAL("pySignal()"), self,
+              SIGNAL("qtSignal()")
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              Python signal of another object
+            </entry>
+            <entry>
+              QObject.connect(object1, PYSIGNAL("pySignal()"), object2,
+              PYSIGNAL("pySignal()")
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              Python
+            </entry>
+            <entry>
+              Python signal of &lsquo;self' object
+            </entry>
+            <entry>
+              QObject.connect(object1, PYSIGNAL("pySignal()"),
+              PYSIGNAL("pySignal()")
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+  </sect1>
+
+  <sect1><title>Disconnecting</title>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>disconnecting</secondary>
+  </indexterm>
+  <para id="para-ch6-60">What can be bound, can be severed, and even
+      for signals and slots there are divorce courts. You can
+      disconnect a signal from a slot using
+      <classname>QObject</classname>.<function>disconnect()</function>. 
+      Why would you want to disconnect signals? Not preparatory to
+      removing a connected widget, for the connections are severed
+      automatically when the signal recipient is deleted. I've never
+      needed <function>disconnect()</function> myself, but with a bit
+      of imagination, a likely scenario can be found.</para>
+
+    <para id="para-ch6-61">Imagine therefore that you are writing a monitoring
+      application. There are several data sources, but you want only
+      to look at one at a time. The data keeps flowing in from a host
+      of objects representing the sources. This is a scenario well
+      worth writing a small test for...</para>
+
+    <para id="para-ch6-62">First, we design the interface using
+      BlackAdder's designer module or Qt Designer. This is a simple
+      affair, with a combobox that contains the datasources, a
+      read-only multi-line edit control that will show the output of
+      the selected datasource, and a close button. The dialog window
+      will be the main window, too.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata  scale="40" align="center"  fileref="ch6/monitor.eps">
+      </imageobject>
+      <caption>
+        <para id="para-ch6-63">Designing the interface</para>
+      </caption>
+    </mediaobject>
+
+    <para id="para-ch6-64">Then, we use Designer to add an extra slot to the form,
+      <function>switchDataSource</function>, which will be called
+      whenever a new item is selected in the datasource combobox.
+      Drawing a simple line from the combobox to the form gives us the
+      opportunity to connect signal and slot:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch6/monitor_connections.eps">
+      </imageobject>
+      <caption>
+        <para id="para-ch6-65">Connecting the <function>activated(const QString&)</function>
+        signal to the <function>switchDataSource()</function> slot.</para>
+      </caption>
+    </mediaobject>
+
+    <para id="para-ch6-66">This raises an interesting point. If the
+      <function>activated(const QString&)</function> signal passes a
+      <classname>QString</classname> to the slot, shouldn't we define
+      the slot <function>switchDataSource()</function> in the Designer
+      as having an argument?</para>
+
+    <indexterm>
+  <primary>signals/slots</primary><secondary>gui designer</secondary>
+  </indexterm>
+  <para id="para-ch6-67">The answer is no&mdash; we will subclass the generated
+      python code, and in the subclass we will override the generated
+      slot with a function that has the requisite number of
+      arguments. Python does not know the concept of overloading, so
+      all functions with the same name are the same function. It is
+      actually impossible to define the number of arguments a slot has
+      in the Designer&mdash; you can only match signals to slots without
+      arguments.</para>
+
+    <para id="para-ch6-68">Having designed the form, we can generate it with a single
+      menu-choice and start subclassing it, adding all kinds of
+      interesting bits. First, we create the actual
+      datasources.</para>
+    <example>
+      <title>datasource.py &mdash; connecting and disconnecting signals and
+      slots</title>
+      <programlistingco>
+        <areaspec>
+          <area coords="5" id="i1">
+          <area coords="6" id="i2">
+          <area coords="9" id="i3">
+        </areaspec>
+        <programlisting>
+#
+# datasource.py &mdash; a monitor for different datasources
+#
+
+import sys, whrandom
+from time import *
+from qt import *
+
+from frmdatasource import frmDataSource
+        </programlisting>
+<indexterm>
+  <primary>whrandom</primary>
+  </indexterm>
+        <calloutlist>
+          <callout arearefs="i1">
+  <para id="para-ch6-69">The sys module is needed for
+          QApplication; whrandom is one of the two random modules
+          Python provides.</para>
+          </callout>
+<indexterm>
+  <primary>time</primary>
+  </indexterm>
+          <callout arearefs="i2">
+  <para id="para-ch6-70">The time module provides lots of time
+          related functions.</para>
+          </callout>
+          <callout arearefs="i3"><para id="para-ch6-71">This is the form we designed
+          and generated  with BlackAdder.</para>
+          </callout>
+        </calloutlist>
+      </programlistingco>
+
+      <programlistingco>
+        <areaspec>
+          <area coords="1" id="c1">
+          <area coords="13" id="f1">
+          <area coords="14" id="f1.b">
+          <area coords="16" id="f2">
+          <area coords="17" id="f2.b">
+          <area coords="19" id="f3">
+          <area coords="20" id="f3.b">
+        </areaspec>
+        <programlisting>
+COOKIES=["""That is for every schoolboy and schoolgirl for the next
+four hundred years. Have you any idea how much suffering you are going
+to cause. Hours spent at school desks trying to find one joke in A
+Midsummer Night's Dream? Years wearing stupid tights in school plays
+and saying things like 'What ho, my lord' and 'Oh, look, here comes
+Othello, talking total crap as usual' Oh, and that is Ken Branagh's
+endless uncut four-hour version of Hamlet.
+"", """I've got a cunning plan...""","""A Merry Messy Christmas"? All
+right, but the main thing is that it should be messy -- messy cake;
+soggy pudding; great big wet kisses under the mistletoe...
+ """]
+
+def randomFunction():
+    return str(whrandom.randrange(0, 100))
+
+def timeFunction():
+    return ctime(time())
+
+def cookieFunction():
+    return COOKIES[whrandom.randrange(0, len(COOKIES))]
+        </programlisting>
+        <calloutlist>
+        <callout arearefs="c1"><para id="para-ch6-72">A list of pithy quotes &mdash; global
+        to this script, so we can treat it like a kind of constant.</para>
+        </callout>
+        <callout arearefs="f1"><para id="para-ch6-73">We will define three functions
+              that provide some data. Later on, there's a generic
+              <classname>DataSource</classname> class that can use one
+              of these functions to compute some data. This function,
+              obviously, generates random numbers.</para>
+        </callout>
+
+        <callout arearefs="f1.b"><para id="para-ch6-74">There is no real, practical
+              reason to choose the whrandom module over the random
+              module. The <function>randrange(start, end,
+              step)</function> function returns a random integer
+              between start and end. Note that we let this function
+              return a <emphasis>string</emphasis>, not a number. All
+              data produced by the datasource should be in the same
+              format.</para>
+        </callout>
+        <callout arearefs="f2"><para id="para-ch6-75">This function will simply produce
+              the current date and time.</para>
+        </callout>
+<indexterm>
+  <primary>time()</primary>
+  </indexterm>
+        <callout arearefs="f2.b">
+  <para id="para-ch6-76">The <function>time()</function>
+              gives the the number of seconds elapsed since the
+              &lsquo;epoch' &mdash; what that means is OS-dependent. For Unix,
+              it's January 1, 1970. The <function>ctime()</function>
+              converts that to nice text.</para>
+        </callout>
+        <callout arearefs="f3"><para id="para-ch6-77">This last function will return a
+              cookie, one of the COOKIES list.</para>
+        </callout>
+        <callout arearefs="f3.b"><para id="para-ch6-78">Note how we use
+              <function>whrandom.randrange()</function> here to pick
+              one from a list &mdash; the start of the range is 0, the
+              length is the length of the cookies list.</para>
+        </callout>
+         </calloutlist>
+      </programlistingco>
+
+      <programlistingco>
+        <areaspec>
+          <area coords="1" id="d1">
+          <area coords="3" id="d2">
+          <area coords="5" id="d3">
+          <area coords="6" id="d4">
+          <area coords="8" id="d5">
+          <area coords="9" id="d6">
+        </areaspec>
+        <programlisting>
+class DataSource(QObject):
+
+    def __init__(self, dataFunction, *args):
+        apply(QObject.__init__, (self,) + args)
+        self.timer = self.startTimer(1000)
+        self.dataFunction = dataFunction
+
+    def timerEvent(self, ev):
+        self.emit(PYSIGNAL("timeSignal"), (self.dataFunction(),))
+        </programlisting>
+        <calloutlist>
+          <callout arearefs="d1"><para id="para-ch6-79">The
+              <classname>DataSource</classname> class is a generic
+              datasource. We base it on <classname>QObject</classname>
+              so we can emit signals from it.</para>
+          </callout>
+<indexterm>
+  <primary>function</primary><secondary>passing as an argument</secondary>
+  </indexterm>
+          <callout arearefs="d2">
+  <para id="para-ch6-80">The constructor of
+              <classname>DataSource</classname> takes a function as
+              the first parameter. This is the actual dataproducing
+              function. We saw their definitions above. Remember,
+              every function is an object in its own right &mdash; you can
+              pass them on as arguments, add them to object
+              dictionaries, etc.</para>
+          </callout>
+<indexterm>
+  <primary>timers</primary>
+  </indexterm>
+          <callout arearefs="d3">
+  <para id="para-ch6-81">Every second (1000
+              milliseconds) the timer will generate an event that
+              will be caught by the <function>timerEvent</function>
+              function.</para>
+          </callout>
+          <callout arearefs="d4"><para id="para-ch6-82">By creating a local name that
+              links to the passed function object, we can call this
+              function as if it were a plain member function of the
+              class.</para>
+          </callout>
+<indexterm>
+  <primary>timerEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>events</primary><secondary>timer events</secondary>
+  </indexterm>
+          <callout arearefs="d5">
+  <para id="para-ch6-83">The
+              <function>timerEvent</function> is called every second
+              because of the events generated by the timer
+              object.</para>
+          </callout>
+          <callout arearefs="d6"><para id="para-ch6-84">A Python signal is emitted, of
+              the name "timeSignal" which passes the result of the
+              <function>dataFunction</function> on.</para>
+          </callout>
+        </calloutlist>
+      </programlistingco>
+
+      <programlistingco>
+        <areaspec>
+          <area coords="1" id="dw1">
+          <area coords="6" id="dw2">
+          <area coords="12" id="dw3">
+          <area coords="13" id="dw4">
+          <area coords="14" id="dw5">
+          <area coords="18" id="dw6">
+          <area coords="19" id="dw7">
+          <area coords="20" id="dw8">
+          <area coords="23" id="dw9">
+          <area coords="28" id="dw10">
+        </areaspec>
+        <programlisting>
+class DataWindow(frmDataSource):
+
+    def __init__(self, *args):
+        apply(frmDataSource.__init__, (self,) + args)
+
+        self.sources = {
+            "random" : DataSource(randomFunction),
+            "time" : DataSource(timeFunction),
+            "cookies" : DataSource(cookieFunction)
+            }
+
+        self.cmbSource.insertStrList(self.sources.keys())
+        self.currentSource=self.sources.keys()[0]
+        self.connect(self.sources[self.currentSource],
+                     PYSIGNAL("timeSignal"),
+                     self.appendData)
+                     
+    def switchDataSource(self, source):
+        source=str(source)
+        self.disconnect(self.sources[self.currentSource],
+                     PYSIGNAL("timeSignal"),
+                     self.appendData)
+        self.connect(self.sources[source],
+                     PYSIGNAL("timeSignal"),
+                     self.appendData)
+        self.currentSource=source
+        
+    def appendData(self, value):
+        self.mleWindow.insertLine(value)
+        self.mleWindow.setCursorPosition(self.mleWindow.numLines(), 0)
+        </programlisting>
+        <calloutlist>
+
+          <callout arearefs="dw1">
+            <para id="para-ch6-85">The <classname>DataWindow</classname> class is a
+              subclass of the generated form &mdash; class
+              <classname>frmDataSource</classname>.
+            </para>
+          </callout>
+
+          <callout arearefs="dw2">
+            <para id="para-ch6-86">We create a Python dictionary, which takes
+              <classname>DataSource</classname> objects (each
+              instantiated with a different data generating function)
+              and maps them to distinct names.</para>
+
+
+
+
+          </callout>
+
+          <callout arearefs="dw3">
+            <para id="para-ch6-87">The <varname>self.cmbSource</varname> combobox is
+              defined in the generated form. We fill the combobox with
+              the set of keys to the dictionary. To do this, we use
+              <function>InsertStrList</function> and not
+              <function>InsertStringList</function>. A list of Python
+              strings is converted automatically to a
+              <classname>QStrList</classname>, while a
+              <classname>QStringList</classname> object must be constructed
+              separately.</para>
+          </callout>
+
+          <callout arearefs="dw4">
+            <para<varname>self.currentSource</varname> is a local
+            variable where we keep track of what datasource we're
+            looking at.</para>
+          </callout>
+
+          <callout arearefs="dw5">
+            <para id="para-ch6-88">Simply connect the "timeSignal" Python signal from
+            one of the objects in the dictionary of datasources to the
+            slot that will display the output.</para>
+          </callout>
+
+          <callout arearefs="dw6">
+            <para id="para-ch6-89">The <function>switchDataSource</function> function
+              is where interesting things happen. This function is
+              a slot that is called whenever the user selects
+              something from the combobox. The
+              <function>clicked()</function> signal of the
+              combobox was connected to the
+              <function>switchDataSource</function> slot
+              of the Designer.
+
+
+            </para>
+          </callout>
+
+          <callout arearefs="dw7">
+            <para id="para-ch6-90">The variable passed by the signal
+              connected to this slot is of the
+              <classname>QString</classname> type. The index to
+              the dictionary of data sources is a Python string. This
+              is one instance where we <emphasis>must</emphasis>
+              convert a <classname>QString</classname> to a Python
+              string.</para>
+          </callout>
+
+          <callout arearefs="dw8">
+            <para id="para-ch6-91">Using the cached current datasource, we disconnect
+              the signals it generates from the
+              <function>appendData</function> function.</para>
+          </callout>
+
+          <callout arearefs="dw9">
+            <para id="para-ch6-92">After the signal is disconnected, we can create a
+            new connection.</para>
+          </callout>
+
+          <callout arearefs="dw10">
+            <para id="para-ch6-93">This is the function that shows the data. It simply
+            adds every value that is passed on by the signal to the
+            multi-line edit widget, and then sets the cursor to the
+            last line. If this is not done, the display will not follow
+            the added data, and instead stay at the beginning.</para>
+          </callout>
+
+        </calloutlist>
+      </programlistingco>
+
+        <programlisting>
+def main(args):
+    a = QApplication(args)
+    QObject.connect(a,SIGNAL('lastWindowClosed()'),a,SLOT('quit()'))
+    w = DataWindow()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
+
+if __name__ == '__main__':
+    main(sys.argv)
+        </programlisting>
+    </example>
+
+    <para id="para-ch6-94">As you can see, connecting and
+      disconnecting signals and slots is a natural and intuitive
+      technique. Their use is not limited to connecting GUI widgets,
+      as signals and slots are also useful for the separation of the
+      data model of an application from its interface. In Part III, We
+      will investigate an application model based on the strict
+      separation of model and interface, using signals and slots to
+      tie everything together.</para>
+
+  </sect1>
+
+  <sect1 id="ch6ParserFormatter">
+    <title>A parser-formatter using signals and slots</title>
+
+    <para id="para-ch6-95">The use of signals and slots in the
+      previous section was an example of using signals and slots in
+      GUI building. Of course, you can use signals and slots to link
+      GUI widgets with each other, and most of your slot
+      implementations will be in subclasses of
+      <classname>QWidget</classname> &mdash; but the mechanism works
+      well under other circumstances. A GUI is not necessary.</para>
+
+    <indexterm>
+  <primary>xml</primary>
+  </indexterm>
+  <indexterm>
+  <primary>dom</primary>
+  </indexterm>
+  <indexterm>
+  <primary>sax</primary>
+  </indexterm>
+  <para id="para-ch6-96">In this section, I will show how signals
+      and slots make a natural extension to the event driven nature of
+      XML parsers. As you probably know, XML is a fairly simple
+      mark-up language that can be used to represent hierarchical
+      data. There are basically two ways to look at XML data. One is
+      to convert the data in one fell swoop into some hierarchical
+      representation (for example, dictionaries containing
+      dictionaries). This method is the DOM (data-object-model)
+      representation. Alternatively, you can parse the data character
+      by character, generating an event every time a certain chunk has
+      been completed; this is the SAX parser model.</para>
+
+    <indexterm>
+  <primary>xmllib</primary><secondary>introduction</secondary>
+  </indexterm>
+  <para id="para-ch6-97">Python contains support for both XML
+      handling models in its standard libraries. The currently
+      appreciated module is xml.sax, which can make use of the fast
+      expat parser. However, expat is not part of standard Python.
+      There is an older, deprecated module, xmllib, which uses regular
+      expressions for parsing. While deprecated, this module is still
+      the most convenient introduction to XML handling with Python.
+      It's also far more &lsquo;Pythonic' in feel than the Sax module,
+      which is based on the way Java does things.
+    </para>
+
+    <para id="para-ch6-98">We'll create a special module that will use
+      xmllib to parse an XML document and generate PyQt signals for
+      all elements of that document. It is easy to connect these
+      signals to another object (for instance, a PyQt
+      <classname>QListView</classname> which can show the XML document
+      in a treeview). But it would be just as easy to create a
+      formatter object that would present the data as HTML. A slightly
+      more complicated task would be to create a formatter object that
+      would apply XSLT transformations to the XML document &mdash;
+      that is, it would format the XML using stylesheets. Using
+      signals and slots, you can connect more than one transformation
+      to the same run of the parser. A good example would be a
+      combination of a GUI interface, a validator, and a statistics
+      calculator.</para>
+
+    <para id="para-ch6-99">The next example is very simple. It is easy to extend,
+    though, with special nodes for comments, a warning message
+    box for errors, and more columns for attributes.</para>
+
+    <example><title>An XML parser with signals and slots</title>
+      <programlistingco>
+
+        <areaspec>
+          <area coords="7" id="xmllib">
+          <area coords="10" id="true">
+        </areaspec>
+        <programlisting>
+#
+# qtparser.py &mdash; a simple parser that, using xmllib,
+# generates a signal for every parsed XML document.
+#
+
+import sys
+import xmllib
+from qt import *
+
+TRUE=1
+FALSE=0
+        </programlisting>
+<indexterm>
+  <primary>xml</primary><secondary>signals and slots</secondary>
+  </indexterm>
+        <calloutlist>
+          <callout arearefs="xmllib">
+
+  <para id="para-ch6-100">We import the deprecated
+              xmllib module. It is deprecated because the sax module,
+              which uses the expat library, is a lot faster.
+              The xmllib module is far easier to use, however, and since it
+              uses regular expressions for its parsing, it is
+              available everywhere, while the expat library must be
+              compiled separately.</para>
+          </callout>
+<indexterm>
+  <primary>booleans</primary>
+  </indexterm>
+          <callout arearefs="true">
+  <para id="para-ch6-101">It is often convenient to
+          define constants for the boolean values true and false.</para>
+          </callout>
+        </calloutlist>
+      </programlistingco>
+
+      <programlistingco>
+        <areaspec>
+          <area coords="1" id="class">
+          <area coords="3" id="constructor">
+          <area coords="7" id="start">
+        </areaspec>
+        <programlisting>
+class Parser(xmllib.XMLParser):
+
+    def __init__(self, qObject,  *args):
+        xmllib.XMLParser.__init__(self)
+        self.qObject=qObject
+
+    def start(self, document):
+        xmllib.XMLParser.feed(self, document)
+        xmllib.XMLParser.close(self)
+
+        </programlisting>
+        <calloutlist>
+            <indexterm>
+  <primary>xmllib.XMLParser</primary><secondary>subclassing</secondary>
+  </indexterm>
+          <callout arearefs="class">
+
+
+
+  <para id="para-ch6-102">This is the <classname>Parser</classname> class. It
+              inherits the <classname>XMLParser</classname> class from
+              the xmllib module. The <classname>XMLParser</classname>
+              class can be used in two ways: by overriding a set of
+              special methods that are called when the parser
+              encounters a certain kind of XML element, or by
+              overriding a variable, <varname>self.elements</varname>,
+              which refers to a dictionary of tag-to-method mappings.
+              Overriding <varname>self.elements</varname> is very
+              helpful if you are writing a parser for a certain DTD or
+              XML document type definition, though it is not the way
+              to go for a generic XML structure viewer (such as the
+              one we are making now).</para>
+
+
+          <para id="para-ch6-103">An example for a Designer ui file could contain the
+          following definition:</para>
+          <programlisting>
+self.elements={'widget'  : (self.start_widget,
+                            self.end_widget)
+              ,'class'   : (self.start_class,
+                            self.end_class)
+              ,'property': (self.start_property,
+                            self.end_property)
+              ,name'     : (self.start_name,
+                            self.end_name)}
+          </programlisting>
+
+            <para id="para-ch6-104">The keys to this dictionary are the actual tag
+              strings. The tuple that follows the key consists of the
+              functions that should be called for the opening and the
+              ending tag. If you don't want a function to be called,
+              enter None. Of course, you must implement these
+              functions yourself, in the derived parser class.</para>
+         </callout>
+            <indexterm>
+  <primary>multiple inheritance</primary>
+  </indexterm>
+          <callout arearefs="constructor">
+
+  <para id="para-ch6-105">The first argument (after self, of course) to the
+              constructor is a QObject. Multiple inheritance isn't a
+              problem in Python, generally speaking, but you cannot
+              multiply inherit from PyQt classes. Sip gets hopelessly
+              confused if you do so. So we pass a
+              <classname>QObject</classname> to the constructor of the
+              <classname>Parser</classname> class. Later, we will have
+              this <classname>QObject</classname> object emit the
+              necessary signals.</para>
+          </callout>
+
+          <indexterm>
+  <primary>xmllib.XMLParser</primary><secondary>feeding text</secondary>
+  </indexterm>
+
+        <callout arearefs="start">
+  <para id="para-ch6-106">The <function>start</function>
+            function takes a string as its parameter. This string
+            should contain the entire XML document. It is
+            also possible to rewrite this function to read a file line by
+            line; the default approach makes it difficult to work with
+            really large XML files. Reading a file line by line is a
+            lot easier on your computer's memory. You should call
+            <function>close()</function> after the last bit of text
+            has been passed to the parser.</para>
+
+        </callout>
+        </calloutlist>
+      </programlistingco>
+      <programlistingco>
+        <areaspec>
+        <area coords="2" id="data-handling">
+        <area coords="4" id="dh1">
+        <area coords="7" id="dh2">
+        <area coords="10" id="dh3">
+        <area coords="13" id="dh4">
+        <area coords="16" id="dh5">
+        <area coords="19" id="dh6">
+        <area coords="22" id="dh7">
+        <area coords="25" id="dh8">
+        <area coords="28" id="dh9">
+        <area coords="31" id="dh10">
+        <area coords="34" id="dh11">
+        <area coords="37" id="dh12">
+        <area coords="40" id="dh13">
+        </areaspec>
+        <programlisting>
+    #
+    # Data handling functions
+    #
+    def handle_xml(self, encoding, standalone):
+        self.qObject.emit(PYSIGNAL("sigXML"),
+                          (encoding, standalone))
+
+    def handle_doctype(self, tag, pubid, syslit, data):
+        self.qObject.emit(PYSIGNAL("sigDocType"),
+                         (tag, pubid, syslit, data,))
+
+    def handle_data(self, data):
+        self.qObject.emit(PYSIGNAL("sigData"),(data,))
+
+    def handle_charref(self, ref):
+        self.qObject.emit(PYSIGNAL("sigCharref"),(ref,))
+
+    def handle_comment(self, comment):
+        self.qObject.emit(PYSIGNAL("sigComment"),(comment,))
+
+    def handle_cdata(self, data):
+        self.qObject.emit(PYSIGNAL("sigCData"),(data,))
+
+    def handle_proc(self, data):
+        self.qObject.emit(PYSIGNAL("sigProcessingInstruction"),
+                         (data,))
+
+    def handle_special(self, data):
+        self.qObject.emit(PYSIGNAL("sigSpecial"), (data,))
+
+    def syntax_error(self, message):
+        self.qObject.emit(PYSIGNAL("sigError"),(message,))
+
+    def unknown_starttag(self, tag, attributes):
+        self.qObject.emit(PYSIGNAL("sigStartTag"),
+                         (tag,attributes))
+
+    def unknown_endtag(self, tag):
+        self.qObject.emit(PYSIGNAL("sigEndTag"),(tag,))
+
+    def unknown_charref(self, ref):
+        self.qObject.emit(PYSIGNAL("sigCharRef"),(ref,))
+
+    def unknown_entityref(self, ref):
+        self.qObject.emit(PYSIGNAL("sigEntityRef"),(ref,))
+        </programlisting>
+        <calloutlist>
+          <callout arearefs="data-handling">
+            <para id="para-ch6-107">The
+              xmllib.<classname>XMLParser</classname> class defines a
+              number of methods that should be overridden if you want
+              special behavior. Even though we will only use the
+              methods that are called when a document is started and
+              when a simple element is opened and closed, I've
+              implemented all possible functions here.</para>
+          </callout>
+          <indexterm>
+  <primary>xml</primary><secondary>header</secondary>
+  </indexterm>
+        <callout arearefs="dh1">
+
+  <para id="para-ch6-108">Every valid XML document should
+              start with a magic text that declares itself to be XML
+              &mdash; note that that the .ui Designer files don't
+              comply with this requirement. This method is fired (and
+              thus the signal is fired) when the parser encounters
+              this declaration. Normally, it looks like this:
+              <literal>&lt;?xml version="1.0"
+                standalone="no"?&gt;</literal>, with the minor
+              variation that standalone can also have the value "yes".
+          </para>
+        </callout>
+
+          <indexterm>
+  <primary>xml</primary><secondary>document type</secondary>
+  </indexterm>
+
+        <callout arearefs="dh2">
+
+  <para id="para-ch6-109">If an XML document has a
+              documenttype, this method is called. A doctype
+              declaration looks like this:</para>
+            <screen>
+&lt;!DOCTYPE book PUBLIC "-//Norman Walsh//DTD DocBk XML V3.1.4//EN"
+     "http://nwalsh.com/docbook/xml/3.1.4/db3xml.dtd"&gt;
+            </screen>
+
+            <para id="para-ch6-110">and points to a DTD &mdash; a
+              description of what's allowed in this particular kind of
+              XML document.
+          </para>
+        </callout>
+          <indexterm>
+  <primary>xml</primary><secondary>data</secondary>
+  </indexterm>
+        <callout arearefs="dh3">
+
+  <para id="para-ch6-111">There can be data in between the tags in an XML document,
+            just as with the text in a HTML document. This function is
+            called when the parser encounters such data.</para>
+        </callout>
+          <indexterm>
+  <primary>entities</primary>
+  </indexterm>
+        <callout arearefs="dh4">
+
+  <para id="para-ch6-112">In XML, you can use special
+              characters that are entered with  &amp;#, a number, and
+              closed with a semicolon. Python's xmllib will want to
+              translate this to an ASCII character. You cannot use
+              xmllib to parse documents that contain references to
+              Unicode characters.</para>
+        </callout>
+        <callout arearefs="dh5">
+          <para id="para-ch6-113">XML has the same kind of comments as HTML. Most
+          parsers simply pass the comments, but if you want to show
+          them (for instance, in a structured view of an XML document)
+          or if you want to preserve the contents of the file exactly,
+          you can connect a slot to the signal emitted by this function.
+          </para>
+        </callout>
+          <indexterm>
+  <primary>CDATA</primary>
+  </indexterm>
+
+        <callout arearefs="dh6">
+
+  <para id="para-ch6-114">CDATA is literal data enclosed
+              between <literal>&lt;![CDATA[</literal> and
+              <literal>]]&gt;</literal>. A file containing </para>
+            <screen>
+&lt;![CDATA[surely you will be allowed to
+starve to death in one of the royal parks.]]&gt;
+            </screen>
+
+            <para id="para-ch6-115">will present the quote
+              &lsquo;surely you will be allowed to starve to death in
+              one of the royal parks.' to any slot that is connected
+              to <function>sigCData</function>.</para>
+
+        </callout>
+        <callout arearefs="dh7">
+          <para id="para-ch6-116">This is called when the XML document
+              contains processing instructions. A processing
+              instruction begins with &lt;?. All special cases, such
+              as the XML declaration itself, are handled by other
+              methods.
+          </para>
+        </callout>
+        <callout arearefs="dh8">
+          <para id="para-ch6-117">You can declare entities in XML
+              &mdash; references to something externally defined.
+              Those start with &lt;!. The contents of the declaration
+              will be passed on in the <varname>data</varname>
+              argument.
+
+          </para>
+        </callout>
+        <callout arearefs="dh9">
+          <para id="para-ch6-118">XML is far less forgiving than HTML
+              (or at least, XML has both a stricter definition and
+              less easy-going parsers), and whenever an error is
+              encountered, such as forgetting to close a tag, this
+              method is called.
+          </para>
+        </callout>
+        <callout arearefs="dh10">
+          <para id="para-ch6-119">
+              <function>unknown_starttag</function> is the most
+              interesting method in the
+              <classname>xmllib.XMLParser</classname> class. This is
+              called whenever the xmllib parser encounters a plain tag
+              that is not present in its <varname>elements</varname>
+              dictionary. That is, it will be called for all elements
+              in our current implementation.</para>
+        </callout>
+        <callout arearefs="dh11">
+          <para id="para-ch6-120">Likewise,
+              <function>unknown_endtag</function> is called for the
+              corresponding ending tags.
+          </para>
+        </callout>
+        <callout arearefs="dh12">
+          <para id="para-ch6-121">Whenever the parser encounters an unresolvable numeric
+          character reference, this function is called.
+          </para>
+        </callout>
+          <indexterm>
+  <primary>entities</primary><secondary>unknown</secondary>
+  </indexterm>
+        <callout arearefs="dh13">
+
+  <para id="para-ch6-122">Unknown entities are forbidden in
+              XML &mdash; if you use an entity somewhere in your
+              document (which you can do by placing the name of the
+              entity between an ampersand and a semicolon), then it
+              must be declared. However, you might want to catch
+              occurrences of unknown entities and do something
+              special. That's why the function
+              <function>unknown_entityref</function> is implemented
+              here. By default <function>unknown_entityref</function>
+              calls the <function>syntax_error()</function> function
+              of <classname>xmllib.XMLParser</classname>.
+          </para>
+        </callout>
+      </calloutlist>
+      </programlistingco>
+
+      <para>The <classname>TreeView</classname> class will show the
+        contents of the XML file.</para>
+
+      <programlistingco>
+      <areaspec>
+        <area coords="1" id="tvclass">
+        <area coords="5" id="tvstack">
+        <area coords="6" id="tvdecoration">
+        <area coords="7" id="tvcols">
+        <area coords="9" id="tvf1">
+        <area coords="15" id="tvf2">
+        <area coords="21" id="tvf3">
+      </areaspec>
+      <programlisting>
+class TreeView(QListView):
+
+    def __init__(self, *args):
+        apply(QListView.__init__,(self, ) + args)
+        self.stack=[]
+        self.setRootIsDecorated(TRUE)
+        self.addColumn("Element")
+
+    def startDocument(self, tag, pubid, syslit, data):
+        i=QListViewItem(self)
+        if tag == None: tag = "None"
+        i.setText(0, tag)
+        self.stack.append(i)
+
+    def startElement(self, tag, attributes):
+        if tag == None: tag = "None"
+        i=QListViewItem(self.stack[-1])
+        i.setText(0, tag)
+        self.stack.append(i)
+
+    def endElement(self, tag):
+        del(self.stack[-1])
+      </programlisting>
+      <calloutlist>
+        <callout arearefs="tvclass">
+          <para id="para-ch6-123">The <classname>TreeView</classname>
+              class is a simple subclass of PyQt's versatile
+              <classname>QListView</classname> class.</para>
+        </callout>
+
+          <indexterm>
+  <primary>QListView</primary><secondary>treeview</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>treeview</primary>
+  </indexterm>
+
+        <callout arearefs="tvstack">
+  <para id="para-ch6-124">Because XML is a hierarchical file
+              format, elements are neatly nested in each other. In
+              order to be able to create the right treeview, we should
+              keep a stack of the current element depth. The last
+              element of the stack will be the parent element of all
+              new elements.</para>
+        </callout>
+        <callout arearefs="tvdecoration">
+          <para id="para-ch6-125">This option sets the beginning of
+              the tree at the first element, making it clear to the
+              user that it's an expandable tree instead of a simple
+              list.</para>
+        </callout>
+        <callout arearefs="tvcols">
+          <para id="para-ch6-126">We present only one column in the
+              listview &mdash; if you want to show the attributes of
+              elements, too, you might add a few more columns.</para>
+        </callout>
+        <callout arearefs="tvf1">
+          <para id="para-ch6-127">The
+              <function>startDocument</function> function is called
+              when the XML document is opened. It also starts the call
+              stack by creating the first element. The first
+              <classname>QListViewItem</classname> object has the
+              listview as a parent; all others with have a
+              <classname>QListViewItem</classname> object as parent.
+              The constructor of <classname>QListViewItem</classname>
+              is so overloaded that sip tends to get confused, so I
+              create the item and set its text separately.</para>
+        </callout>
+        <callout arearefs="tvf2">
+          <para id="para-ch6-128">Whenever an element is opened, a
+          <classname>QListViewItem</classname> item is created and
+          pushed on the stack, where it becomes the parent for newly
+          opened elements.</para>
+        </callout>
+        <callout arearefs="tvf3">
+          <para id="para-ch6-129">Conversely, when the element is
+              closed, it is popped <emphasis>from</emphasis> the
+              stack.</para>
+        </callout>
+
+      </calloutlist>
+      </programlistingco>
+<programlistingco>
+      <areaspec>
+        <area coords="11" id="qobject">
+        <area coords="12" id="parser">
+        <area coords="13" id="connections">
+        <area coords="20" id="reading">
+      </areaspec>
+      <programlisting>
+def main(args):
+
+    if (len(args) == 2):
+        app = QApplication(sys.argv)
+
+        QObject.connect(app, SIGNAL('lastWindowClosed()'),
+                        app, SLOT('quit()'))
+        w = TreeView()
+        app.setMainWidget(w)
+
+        o=QObject()
+        p=Parser(o)
+        QObject.connect(o, PYSIGNAL("sigDocType"),
+                           w.startDocument)
+        QObject.connect(o, PYSIGNAL("sigStartTag"),
+                           w.startElement)
+        QObject.connect(o, PYSIGNAL("sigEndTag"),
+                           w.endElement)
+
+        s=open(args[1]).read()
+        p.start(s)
+
+        w.show()
+        app.exec_loop()
+    else:
+        print "Usage: python qtparser.py FILE.xml"
+
+if __name__=="__main__":
+    main(sys.argv)
+        </programlisting>
+        <calloutlist>
+          <callout arearefs="qobject">
+            <para id="para-ch6-130">Here we create a
+              <classname>QObject</classname> which is used to emit all
+              necessary signals, since we cannot inherit from more
+              than one PyQt class at the same time. Note that by using
+              this technique, you don't have to subclass from
+              <classname>QObject</classname> in order to be able to
+              emit signals. Sometimes delegation works just as
+              well.</para>
+
+          </callout>
+          <callout arearefs="parser">
+            <para id="para-ch6-131">A parser object is created, with the
+              <classname>QObject</classname> object as its argument.</para>
+          </callout>
+          <callout arearefs="connections">
+            <para id="para-ch6-132">Before feeding the parser the text, all connections
+              we want are made from the <classname>QObject</classname>
+              object (which we passed to the parser to make sure it
+              can emit signals) to the <classname>TreeView</classname>
+              object that forms the main window.</para>
+
+
+          </callout>
+          <callout arearefs="reading">
+            <para id="para-ch6-133">The file whose name was given on the command
+              line is read and passed on to the parser. I have included
+              a very small test file, <filename>test.xml</filename>,
+              but you can use any Designer UI design file.</para>
+          </callout>
+        </calloutlist>
+
+      </programlistingco>
+    </example>
+
+    <para id="para-ch6-134">This is a very simple and convenient way
+      of working with XML files and PyQt gui's &mdash; but it's
+      generally useful, too. The standard way of working with XML
+      files and parsers allows for only one function to be called for
+      each tag. Using signals and slots, you can have as many slots
+      connected to each signal as you want. For instance, you can have
+      not only a gui, but also an analyzer that produces statistics
+      listening in on the same parsing run.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata  scale="60" align="center" fileref="ch6/parser.eps">
+      </imageobject>
+      <caption><para id="para-ch6-135">The result of parsing a Designer .ui file.</para>
+      </caption>
+    </mediaobject>
+
+    <para id="para-ch6-136">On a final note, there is one bug in this
+      code... See if you can find it, or consult
+     <xref linkend="ch2ListView"> for an explanation.</para>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para id="para-ch6-137">We have seen the use of signals and slots
+      in GUI's and in abstract data models. Using signals and slots is
+      appropriate if you are creating objects that should be kept as
+      separate from one another as possible, while still being able to
+      communicate with each other. Signals and slots are an efficient
+      and maintainable way of creating highly reusable software
+      components.</para>
+  </sect1>
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

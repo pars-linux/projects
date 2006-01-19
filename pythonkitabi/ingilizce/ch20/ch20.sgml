@@ -1,0 +1,294 @@
+<chapter id="ch20">
+
+  <title>Drag and drop</title>
+  
+  <indexterm>
+  <primary>drag and drop</primary>
+  </indexterm>
+  <indexterm>
+  <primary>dnd</primary>
+  </indexterm>
+  <para id="para-ch20-1">PyQt fully supports standard drag and drop
+    operations on all platforms. This includes both Windows OLE drag
+    and drop, and the two X11 standards: XDND (which uses MIME) and
+    the legacy Motif Drag'n'Drop protocol.</para>
+
+  <indexterm>
+  <primary>mime</primary>
+  </indexterm>
+  <para id="para-ch20-2">MIME, which you may know as a way to encode
+    all kinds of datatypes for e-mail, is used to encode the dragged
+    data in Qt. This is a very flexible standard, regulated by IANA
+    (http://www.isi.edu/in-notes/iana/assignments/media-types/). This
+    means that almost any kind of data can be handled by the Qt drag
+    and drop mechanism, not just text or images.</para>
+
+  <sect1><title>Handling drops</title>
+
+    <para id="para-ch20-3">Our <application>Kalam</application> editor
+      must be able to accepts drops from other applications, so we
+      will have to implement this functionality.</para>
+
+    <indexterm>
+  <primary>accepting drops</primary>
+  </indexterm>
+  <indexterm>
+  <primary>setAcceptDrops()</primary>
+  </indexterm>
+  <para id="para-ch20-4">Incoming drop operations are easy enough to
+      handle. Basically, you call
+      <function>self.setAcceptDrops(TRUE)</function> for the widget or
+      widgets that should accept drop events, and then actually handle
+      those drop events.</para>
+
+    <para id="para-ch20-5">The widget that <emphasis>should</emphasis>
+      accept the drops is our <classname>KalamView</classname> class.
+      But setting <function>self.setAcceptDrops(TRUE)</function> in
+      the constructor of <classname>KalamView</classname> won't work.
+      This is because <classname>KalamView</classname> doesn't
+      actually handle the drops; rather, they are handled by the
+      <classname>QMultiLineEdit</classname> class, which is
+      encapsulated by <classname>KalamView</classname>.</para>
+
+    <para id="para-ch20-6">The easiest solution is to extend the small
+      subclass of <classname>QMultiLineEdit</classname> (which we
+      already created) to handle drop events.</para>
+
+    <example>
+      <title>Handling drop events</title>
+      <programlisting>
+"""
+kalamview.py - the editor view component for Kalam
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+import kalamconfig
+from resources import TRUE, FALSE
+class KalamMultiLineEdit(QMultiLineEdit):
+
+    def __init__(self, *args):
+        apply(QMultiLineEdit.__init__,(self,) + args)
+        self.setAcceptDrops(TRUE)
+
+    def dragEnterEvent(self, e):
+        e.accept(QTextDrag.canDecode(e))
+
+    def dropEvent(self, e):
+        t=QString()
+        if QTextDrag.decode(e, t): # fills t with decoded text
+            self.insert(t)
+            self.emit(SIGNAL("textChanged()"), ())
+
+    def event(self, e):
+        if e.type() == QEvent.KeyPress:
+            QMultiLineEdit.keyPressEvent(self, e)
+            return TRUE
+        else:
+            return QMultiLineEdit.event(self, e)
+      </programlisting>
+    </example>
+
+    <para id="para-ch20-7">How does this bit of code work? First, you
+      can see that the custom widget accepts drop events:
+      <emphasis>self.setAcceptDrops(TRUE)</emphasis>.</para>
+
+    <indexterm>
+  <primary>dragEnterEvent()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTextDrag</primary>
+  </indexterm>
+  <para id="para-ch20-8">The <function>dragEnterEvent()</function>
+      method is fired whenever something is dragged over the widget.
+      In this function we can determine whether the object that is
+      dragged over our application is something we'd like to accept.
+      <!-- you have two "its" in the above sentence, making it pretty
+      unclear what they each refer to. Replace at least one with the
+      appropriate noun. Br: Better? --> If the function
+      <function>QTextDrag.canDecode()</function> returns true, then we
+      know we can get some text out of the data the drop event
+      carries. We accept the event, which means that whenever
+      the cursor enters the widget, the shape will change to indicate
+      that the contents can be dropped.</para>
+
+    <para id="para-ch20-9">If the user releases the mouse button, the
+      function <function>dropEvent()</function> is called. This
+      presents us with a <classname>QDropEvent</classname> object,
+      which we can decode to get the contents.</para>
+
+    <indexterm>
+  <primary>QFontDialog</primary>
+  </indexterm>
+  <para id="para-ch20-10">However, here we come across one of the
+      inconsistencies of the PyQt bindings to Qt. Sometimes a function
+      wants to return two values: a boolean to indicate whether the
+      operation was successful, and the result of the operation. In
+      the case of <classname>QFontDialog</classname>, the results are
+      returned in a tuple:</para>
+
+
+    <programlisting>
+        (font, ok) = QFontDialog.getFont(self, "FontDialog")
+    </programlisting>
+
+    <para id="para-ch20-11">Likewise,
+      <function>QTextDrag.decode</function> wants to return two
+      values: a boolean and a string. However, here you need to first
+      create a <classname>QString</classname>, and pass that to
+      <function>QTextDrag.decode</function>, which fills it with the
+      text, while returning a boolean indicating whether the decoding
+      went well.</para>
+
+    <para id="para-ch20-12">However, having got the text by hook or by
+      crook, we can insert it in the view, and tell the world that the
+      text has changed (so other views on the text can update
+      themselves).</para>
+
+    <para id="para-ch20-13">You can now select and drag that text to a
+      <application>Kalam</application> document. If you drag a file,
+      only the filename will be inserted, because a filename can also
+      be decoded as text. If you want to open the file instead, you
+      still have some work to do.</para>
+
+
+  </sect1>
+
+  <sect1><title>Initiating drags</title>
+
+    <para id="para-ch20-14">Initiating drag operations is a bit more
+      difficult, because you must determine when exactly a drag
+      begins. Users expect that holding down the mouse-button on the
+      object they want to drag and moving it should start dragging.
+      However, everyone moves the mouse very slightly, even if just
+      single-clicking on an object. Thus, we must determine how many
+      pixels the mouse pointer should move (while the first mouse
+      button is depressed) to enter a drag operation.</para>
+
+
+    <indexterm>
+  <primary>dragObject()</primary>
+  </indexterm>
+  <para id="para-ch20-15">We cannot do this using
+      <classname>QMultiLineEdit</classname>. A class like
+      <classname>QIconView</classname> offers special support for
+      starting drags by allowing you to re-implement the
+      <function>dragObject</function> function:</para>
+
+    <programlisting>
+class MyIconView(QIconView):
+
+      def dragObject(self):
+          return QTextDrag(self.currentItem().text(), self)
+    </programlisting>
+
+
+    <indexterm>
+  <primary>initiating drags</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QDragObject</primary>
+  </indexterm>
+  <para id="para-ch20-16">Once you have determined what should start
+      a drag (and this can be anything, really), starting a drag
+      operation is a simple matter of creating a new
+      <classname>QDragObject</classname>. This could be, for instance,
+      a <classname>QTextDrag</classname> or a
+      <classname>QImageDrag</classname>. Take care that you keep a
+      reference to the drag object&mdash;if you delete it, or allow it
+      to go out of scope, it will disappear.</para>
+
+    <para id="para-ch20-17">In the next example, simply moving a mouse
+      will start a drag operation:</para>
+
+
+      <example><title>Drag and drop</title>
+        <programlisting>
+#!/usr/bin/env python
+
+from sys import argv
+from qt import *
+
+
+class DropDemo(QListView):
+    def __init__(self,parent=None,name=None):
+        QListView.__init__(self,parent,name)
+        self.setAcceptDrops(1)
+        self.setGeometry(10,10,100,60)
+        self.addColumn("Column 1")
+        self.i = QListViewItem(self, "Hello")
+        self.ii = QListViewItem(self, "Hello 2")
+        r = self.itemRect(self.i)
+        r = self.itemRect(self.ii)
+        
+    def dragEnterEvent(self, event):
+        event.accept(QTextDrag.canDecode(event))
+  
+    def dropEvent(self, event):
+        text = QString()
+        pos = QPoint(event.pos().x(), event.pos().y() - self.header().height())
+        item = self.itemAt(pos)
+        text=QString()
+ 
+    def mouseMoveEvent(self, event):
+        self.startDrag()
+
+    def startDrag(self):
+        d = QTextDrag("blabla",self) # keep a reference to d
+        d.dragCopy()
+ 
+if __name__ == '__main__':
+    a = QApplication(argv)
+    w = DropDemo()
+    w.setCaption("Drag and Drop Test")
+    w.resize(120,80)
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
+        </programlisting>
+      </example>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para id="para-ch20-18">Having done all this work, it is probably
+      discouraging to note that drag and drop has already been
+      completely integrated into the
+      <classname>QMultiLineEdit</classname> class. This means that our
+      work was quite superfluous, though hopefully instructive.</para>
+
+    <para id="para-ch20-19">I have only touched upon the fringes of
+      this subject. If you want to create your own datatypes in order
+      to drag and drop complex objects (for instance animation cells,
+      or three-dimensional CAD drawings, or perhaps complete Python
+      object hierarchies), then you must implement new Mime types.
+      This goes way beyond the scope of this book; I suggest you first
+      read the Qt online documentation on the subject, and then start
+      experimenting.
+    </para>
+
+  </sect1>
+
+</chapter>
+
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

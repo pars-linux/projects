@@ -1,0 +1,849 @@
+<chapter id="ch9">
+
+  <title>Automatic testing with PyUnit</title>
+
+  <indexterm>
+  <primary>unittests</primary>
+  </indexterm>
+  <indexterm>
+  <primary>pyunit</primary>
+  </indexterm>
+  <para id="para-ch9-1">In <xref linkend="ch8">, we created an
+    application framework in which the GUI interface was separate from
+    the application logic. One of the reasons for this was to make it
+    easier to test the components in isolation. Testing your software
+    components separately is called unit-testing, and it has proven
+    over the past few years to be a very good way of ensuring software
+    quality. Python supports working with unit-tests out of the box:
+    since version 2.1, a special module,
+    <filename>unittest.py</filename>, is included in the standard
+    distribution. In this chapter, we will write a unittest for the
+    document module from the document-view framework.</para>
+
+  <sect1><title>About unittests</title>
+
+    <para id="para-ch9-2">Have you ever done maintenance on a large
+      application and broken something because you changed something,
+      somewhere? Or worse, only noticed the breakage when a user
+      mailed you? Have you ever begun writing an application, but were
+      unable to complete it because the whole castle of cards
+      collapsed due to excessive fragility?</para>
+
+    <para id="para-ch9-3">It has probably happened to you, and it
+      certainly has happened to me. Testing software is a boring
+      chore, and besides, everything has to be finished yesterday, or
+      today at the latest. However, <emphasis>not</emphasis> testing
+      will cost you a lot of time, too, and it's more fun to program
+      than to bug-hunt. It would be best if automated testing could be
+      made part of the edit-compile-crash cycle.</para>
+
+    <para id="para-ch9-4">This has occurred before to a lot of people,
+      but the honor of &lsquo;inventing' automatic unit-testing
+      belongs to Erich Gamma and Kent Beck - familiar names to
+      developers everywhere. They started writing unit-test frameworks
+      for SmallTalk, moving on to Java and other languages.</para>
+
+    <para id="para-ch9-5">The idea is simple but ingenuous: first the
+      developer writes his test, then the class that will make the
+      test work; the process is repeated until the created code fits
+      the application you're developing. All the while, you will get
+      instant feedback from a small GUI app that runs your tests and
+      shows you a green progressbar when everything works as intended,
+      and a horrible, unfriendly red progressbar when a test fails.
+      You can also run the unittests without a gui, but it isn't as
+      much fun.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center"  fileref="ch9/greenbar.eps">
+      </imageobject>
+      <caption><para id="para-ch9-6">All is well - the bar is green!</para>
+      </caption>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center"  fileref="ch9/redbar.eps">
+      </imageobject>
+      <caption><para id="para-ch9-7">Back to the drawing board; the bar is red, tests
+      have failed!</para>
+      </caption>
+    </mediaobject>
+
+    <para id="para-ch9-8">Writing tests takes a bit of getting used-to,
+      and it <emphasis>is</emphasis> something more easily learned when
+      working together with someone who has done it before. However,
+      once you get around to it, it is definitely addictive.</para>
+
+    <indexterm>
+  <primary>gui tests</primary>
+  </indexterm>
+  <para id="para-ch9-9">Unit-testing using the
+      <filename>unittest.py</filename> framework also departs from
+      what people are used to doing when testing: namely, writing
+      scripts that simulate user input, such as mouse-clicks. Those
+      scripting solutions are quite often so fragile that they are
+      worse than useless. It is far better to explicitly code tests
+      for the back-end of your application, guaranteeing that the
+      interaction between backend and GUI is correct, as opposed to
+      trying to deduce bugs from apparent errors at the GUI
+      front.</para>
+
+    <para id="para-ch9-10">In sum, the advantage of unit-testing is:
+      you know you can depend upon the behavior of your components,
+      and whenever you change a component, you will be alerted to that
+      change by failing tests. In short, you will be able to trust
+      your software at a relatively low level.</para>
+
+    <para id="para-ch9-11">There a few disadvantages, too. You might
+      be lulled into a false sense of security: if you change your
+      unit-tests along with the code, then you can no longer be sure
+      that your components fit your system, for you have just changed
+      their behavior.  A unittest is a kind of contract about the
+      behavior your code exposes to the outside world. Changing the
+      contract one-sidedly is a guarantee for breaking
+      relations.</para>
+
+    <para id="para-ch9-12">It's also quite difficult to find a good
+      division between unit-tests and functional tests. Functional
+      testing is mostly done from a user perspective; unit-tests test
+      the behavior of your classes, but functional tests test the
+      behavior of the application. There is currently no way to
+      automate functional testing.</para>
+
+    <para id="para-ch9-13">Cynics have noted that the running of
+      unittests has negated all the progress made in creating fast
+      compilers, and even virtually compilation-less languages such as
+      Python. Indeed, running a full testsuite can take a long time.
+      Fortunately, <application>Pyunit</application> is very
+      fast.</para>
+
+    <para id="para-ch9-14">Lastly, watching the bar stay green is
+      addictive in itself, and you might be tempted to run working
+      tests over and over again...</para>
+
+  </sect1>
+  <sect1><title>Starting out</title>
+
+    <para id="para-ch9-15">First, you need a copy of
+      <filename>unittest.py</filename>: this is included with Python
+      version 2.1, or available separately from
+      http://pyunit.sourceforge.net. Together with
+      <filename>unittest.py</filename> there is a module
+      <filename>unittestgui.py</filename>, which implements a simple
+      Tkinter interface to the testing framework.</para>
+
+<!-- XXX - reference to Opendocs web forum! -->
+
+    <indexterm>
+  <primary>unittests</primary><secondary>gui clients</secondary>
+  </indexterm>
+  <para id="para-ch9-16">Since the unittest gui isn't always
+      available &mdash; not every Python installation includes Tkinter
+      &mdash;I have rewritten the framework to use PyQt, and the PyQt
+      version is available with this book. This version is also more
+      stable when testing classes derived from
+      <classname>QObject</classname>&mdash; the Tkinter unittest GUI
+      has a nasty tendency to crash when running more than one test
+      that's based on a QObject. The Qt unittest gui is a drop-in
+      replacement, and the filename is
+      <filename>unittestgui.py</filename>.</para>
+
+    <para id="para-ch9-17"><filename>pyunit.py</filename> needs to be
+      on your Python path; additionally, you might want to execute
+      <filename>unittestgui.py</filename> by itself.  It is often
+      comfortable to create either an icon on your desktop for
+      <filename>unittestgui.py</filename>, or to write a small startup
+      script in your <filename>$HOME/bin</filename> directory.
+    </para>
+
+    <para id="para-ch9-18">Once you have the supporting odds and ends
+      in place, you can start writing tests for your
+      application.</para>
+
+  </sect1>
+
+  <sect1><title>A first testcase</title>
+
+    <indexterm>
+  <primary>unittests</primary><secondary>testcases</secondary>
+  </indexterm>
+  <para id="para-ch9-19">A testcase is a single class that contains
+      one or more methods that perform a single check each. It is
+      possible to check two different behaviors in one test method,
+      but that's a particularly bad idea&mdash; if the test fails, you
+      won't know exactly what went wrong, and where.</para>
+
+    <para id="para-ch9-20">The example class we want to test,
+      <filename>DocviewDoc</filename>, is to show a very simple
+      behavior: it must be creatable, and it must know whether it is
+      modified. That makes for two tests.
+    </para>
+
+    <indexterm>
+  <primary>TestCase</primary>
+  </indexterm>
+  <para id="para-ch9-21">To create a test, we have to subclass the
+      <classname>unittest.TestCase</classname> class. This class
+      provides some methods for the setting up and destroying of a
+      test environment and a default method,
+      <function>runTest</function>, that can contain the testing
+      code. A very simple test is defined as follows:</para>
+
+    <programlisting>
+class SimpleTest(unittest.TestCase):
+
+    def runTest(self):
+        assert 1=2, 'One is not two'
+    </programlisting>
+
+    <para id="para-ch9-22">We want to check whether the
+      <classname>DocviewDoc</classname> class can be instantiated.
+      This is not as trivial and silly as it may sound: a Python class
+      constructor can have a great and variable number of arguments,
+      and keeping classes instantiatable is quite important. First,
+      let's define a testcase:</para>
+
+
+    <programlisting>
+#
+# dvt1.py - a simple test of instantiating a document
+#
+import unittest
+from docviewdoc import DocviewDoc
+
+class DocviewDocTestCase(unittest.TestCase):
+    """DocviewDocTestCase test the DocviewDoc class.
+    """
+
+    def setUp(self):
+        print "setUp called"
+
+    def tearDown(self):
+        print "tearDown called"
+
+    def runTest(self):
+        """Check whether the document could be instantiated"""
+        doc=None
+        doc=DocviewDoc()
+        assert doc!=null, 'Could not instantiate DocviewDoc'
+    </programlisting>
+
+
+    <para id="para-ch9-23">Adding a docstring, always a good idea, is
+      particularly useful for  <classname>TestCase</classname>
+      classes, since this text will be available through the
+      <function>shortDescription()</function> function. It will be
+      displayed when the test is run - either on the command line or
+      in the gui.</para>
+
+    <indexterm>
+  <primary>unittests</primary><secondary>setting up and tearing down</secondary>
+  </indexterm>
+  <para id="para-ch9-24">The <function>setUp</function> method of
+      the <classname>TestCase</classname> class is executed before
+      <function>runTest</function>, and can be used to prepare the
+      environment. The <function>tearDown</function> method is called
+      after the test has run, whether successfully or not. You can use
+      it to clear away garbage that is left by the test. On the other
+      hand, if <function>setUp</function> fails, the entire test will
+      not run. I have included the functions here; you don't have to
+      write them if you don't need them.</para>
+
+    <para id="para-ch9-25">The test itself is very simple. First, we
+      give the variable <varname>doc</varname> a known value, namely
+      None. After that, a <classname>DocviewDoc</classname> is
+      instantiated. Using Python's standard
+      <function>assert</function> statement,  a check is made to see
+      whether the variable <varname>doc</varname> still points to
+      None&mdash;if so, instantiation failed.
+    </para>
+
+    <indexterm>
+  <primary>assert</primary>
+  </indexterm>
+  <indexterm>
+  <primary>optimizing bytecode</primary>
+  </indexterm>
+  <para id="para-ch9-26">Note that use of
+      <function>assert</function> means that running unit tests with
+      optimized bytecode (<filename>.pyo</filename> files) is useless.
+      Compiling Python to optimized bytecode removes all traces of
+      asserts (and the line-numbers that can be used for stack
+      traces). While the unittest framework includes a special,
+      home-brew, <function>assert</function> function that isn't
+      affected by optimized compilation, it is still better to test
+      plain Python. The stacktraces are far more useful, and
+      additionally, the unittest assert is less convenient.</para>
+
+    <para id="para-ch9-27">Python's <function>assert</function>
+      statement is very handy, and quite simple. It takes the form
+      of:</para>
+
+    <programlisting>
+      assert expression, message
+    </programlisting>
+
+    <indexterm>
+  <primary>long lines</primary>
+  </indexterm>
+  <indexterm>
+  <primary>line continuation</primary>
+  </indexterm>
+  <para id="para-ch9-28">Where the message will be printed and an
+      AssertionError raised when the expression turns out to be false.
+      <function>assert</function> is a statement, not a function. This
+      means that you shouldn't encase the expression and the message
+      in brackets. If the statement is too long for the line, you can
+      use a backslash as a line-continuation.</para>
+
+  </sect1>
+
+  <sect1>
+    <title>Collecting tests in a test suite</title>
+
+    <indexterm>
+  <primary>testsuite</primary>
+  </indexterm>
+  <indexterm>
+  <primary>TestRunner</primary>
+  </indexterm>
+  <para id="para-ch9-29">Executing this script isn't much use.
+      First, the test must be collected in a testsuite, and the
+      testsuite must then be run. A testsuite is a collection of
+      related tests, of the type
+      <classname>TestSuite</classname>.</para>
+
+    <para id="para-ch9-30">It is customary to create a function
+      <function>suite()</function> in every testfile that return a
+      suite with all the tests the file contains. This function is
+      then called by a <classname>TestRunner</classname> object.  This
+      will be either a <function>TextTestRunner</function>, if you run
+      your tests without a gui, or a gui TestRunner application, such
+      as the <application>QtTestRunner</application>. Defining a
+      testsuite is a simple matter of creating a
+      <classname>TestSuite</classname> object and adding tests:
+    </para>
+
+    <programlisting>
+def suite():
+    testSuite=unittest.TestSuite()
+    testSuite.addTest(DocviewDocTestCase())
+    return testSuite
+    </programlisting>
+
+    <para id="para-ch9-31">In order to be able to execute this file
+      it's handy to add a bit of executable code to the end:</para>
+
+    <programlisting>
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+    </programlisting>
+
+    <para id="para-ch9-32">Running the test will give you the
+      satisfaction of knowing that at least one piece of your
+      application is working:</para>
+
+    <screen>
+boud@calcifer:~/doc/pyqt > python ch9/dvt1.py
+runTest (__main__.DocviewDocTestCase) ...
+ok
+------------------------------------------------------------------------------
+Ran 1 test in 0.035s
+
+OK
+    </screen>
+
+    <para id="para-ch9-33">Or, if you want to see the green and pleasant bar, you can
+    run the gui testrunner. Enter the name of the testmodule
+    (<filename>dvt1</filename> in this case) in the textbox, followed
+    by the name of the function that returns the testsuite:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch9/start.eps">
+      </imageobject>
+      <caption><para id="para-ch9-34">Preparing a GUI test run.</para>
+      </caption>
+    </mediaobject>
+
+
+<!-- XXX: refer to webforum -->
+
+    <indexterm>
+  <primary>unittests</primary><secondary>versions</secondary>
+  </indexterm>
+  <para id="para-ch9-35">Then press run, and sit back. Please note
+      that the actual output you get might differ. The python
+      unittesting framework is in constant development. For the screen
+      output in this chapter, I used version 1.3.0, which is included
+      with the other sources that belong to this book. The unittest
+      gui has been brought up to date to the version of
+      <filename>unittest.py</filename> that's included with Python
+      2.2.</para>
+
+  </sect1>
+
+  <sect1><title>A more complicated test</title>
+
+    <para id="para-ch9-36">Remember, we have two tests to perform on the
+      <classname>DocviewDoc</classname> class. It would be a bit messy
+      and chaotic to write separate testcase classes for those two
+      tests. Additionally, in many cases you will have to prepare an
+      environment for those tests, and it would be a pity to duplicate
+      that code across many test classes.</para>
+
+    <para id="para-ch9-37">It is therefore possible to create more
+      than one testing method for each testcase. For each test method
+      a separate instance of the test object is created and added to
+      the test suite. These methods customarily start with
+      &lsquo;check', but that's not necessary.</para>
+
+    <programlisting>
+#
+# dvt2.py - a simple test of instantiating a document
+#
+import sys
+import unittest
+from docviewdoc import DocviewDoc
+
+class DocviewDocTestCase(unittest.TestCase):
+    """DocviewDocTestCase test the DocviewDoc class.
+    """
+    def checkInstantion(self):
+        """Check whether the document could be instantiated"""
+        doc=None
+        doc=DocviewDoc()
+        except:
+            self.fail("Could not instantiate document for reason: " +
+                 sys.exc_info()[0])
+        else:
+            assert doc!=None, 'Could not instantiate DocviewDoc'
+
+    def checkModifiable(self):
+        """Check whether the document could be modified"""
+        doc=DocviewDoc()
+        doc.slotModify()
+        assert doc.isModified(), 'Document could not be modified'
+
+    def checkUniverse(self):
+        """Check whether the universe is still sane"""
+        try:
+            val = 1 / 0
+        except ZeroDivisionError:
+            pass # all natural laws still hold
+        else:
+            fail ("The universe has been demolished and replaced with chaos.")
+
+def suite():
+    testSuite=unittest.TestSuite()
+    testSuite.addTest(DocviewDocTestCase("checkInstantion"))
+    testSuite.addTest(DocviewDocTestCase("checkModifiable"))
+    return testSuite
+
+
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+    </programlisting>
+
+    <para id="para-ch9-38">In this case,
+      <classname>DocviewDocTestCase</classname> contains two tests:
+      <function>checkInstantion</function> and
+      <function>checkModifiable</function>. This means that two
+      instances of <classname>DocviewDocTestCase</classname> are added
+      to the testsuite.</para>
+
+    <indexterm>
+  <primary>unittests</primary><secondary>exceptions</secondary>
+  </indexterm>
+  <para id="para-ch9-39">I've also added a small test of the universe, to show how to
+      test that your exceptions are fired when you feed your classes
+      illegal input. There are many cases in which you want your
+      code to raise an exception, rather than silently continuing to churn
+      out illegal data. In those cases, you will want the test to
+      succeed when the exception is raised. On the other hand, if the
+      exception is not raised, something happens, and the test
+      fails. That's exactly what the try...except...else block in
+      <function>testUniverse</function> does.</para>
+
+    <indexterm>
+  <primary>failing unittests</primary>
+  </indexterm>
+  <indexterm>
+  <primary>fail()</primary>
+  </indexterm>
+  <para id="para-ch9-40">You can thus use the <function>fail()</function> function to
+      let a test noisily fail with a message. There are two similar
+      functions: <function>failIf()</function> and
+      <function>failUnless()</function>, that cause the test to fail
+      if the tested expression is true and if the tested
+      expression is false, respectively:</para>
+
+    <programlisting>
+    def checkFailUnless(self):
+        self.failUnless(1==1, "One should be one.")
+
+    def checkFailIf(self):
+        self.failIf(1==2,"I don't one to be one, I want it to be two.")
+    </programlisting>
+
+    <para id="para-ch9-41">A shorter way to check that an exception is indeed raised,
+    is to use <function>assertRaises</function>:
+    </para>
+
+    <programlisting>
+def divide(a, b):
+    return a/b
+...
+def checkShortCircuitException(self):
+    self.assertRaises(ZeroDivisionError, divide, 1, 0)
+    </programlisting>
+
+    <indexterm>
+  <primary>assertRaises()</primary>
+  </indexterm>
+  <para id="para-ch9-42">The first argument is the exception that
+      should be raised. The second argument of
+      <function>assertRaises()</function> must be a callable object,
+      such as a function. The other arguments are simply the arguments
+      that should be passed to the function.</para>
+
+  </sect1>
+
+
+  <sect1><title>Large projects</title>
+
+    <indexterm>
+  <primary>unittests</primary><secondary>automating</secondary>
+  </indexterm>
+  <para id="para-ch9-43">In large projects, where you have many
+      tests, you will want to automate the assembly of testsuite as
+      much as possible. By creating a few Python scripts that work
+      with standardized testsuites (e.g., the function that returns
+      the testsuite is always <function>module.suite()</function>),
+      you can run all tests as often as you want to.</para>
+
+    <para id="para-ch9-44">You can already nest testsuites out of the
+      box, and by creating a master test class that reads a
+      configuration file and constructs a master test-suite, you can
+      test a whole system in one run.</para>
+
+    <para id="para-ch9-45">Take the following definition file, for
+      instance:</para>
+
+    <programlisting>
+#
+# unittests - unittests for the whole system.
+#
+# dvt1 tests the creation of a docviewdoc
+#dvt1.suite
+# dvt2 tests a whole lot more
+dvt2.suite
+    </programlisting>
+
+      <para id="para-ch9-46">If you use the following script, then all
+      tests that are defined in the form of module.function, where
+      module is on the Python path and function returns a
+      <classname>TestSuite</classname> object, will be combined in one
+      mega-<classname>TestSuite</classname>.</para>
+
+    <programlisting>
+#
+# systemtest.py - run all tests that are not commented out in unittests
+#
+
+import unittest
+
+def suite():
+    testSuite=unittest.TestSuite()
+    f=open("unittests")
+    for t in f.readlines():
+        t=t.strip() # remove all whitespace
+        if t[0]!="#": # a comment
+            testSuite.addTest(unittest.createTestInstance(t))
+
+    return testSuite
+
+
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+    </programlisting>
+
+    <para id="para-ch9-47">Note the use of the function
+      <function>unittest.createTestInstance</function>, which can
+      create a testcase or testsuite from a simple string. There's an
+      optional second argument, module, which points to the module
+      where the test can be found.</para>
+
+    <para id="para-ch9-48">Another function,
+      <function>unittest.makeSuite()</function> can scan a class for
+      functions that begin with a certain prefix, and combine them
+      into a testsuite. For instance, we could rewrite
+      <filename>dvt2.py</filename> into:</para>
+
+    <programlisting>
+#
+# dvt3.py - using makeSuite
+#
+import sys
+import unittest
+from docviewdoc import DocviewDoc
+
+def divide(a, b):
+    return a/b
+
+class DocviewDocTestCase(unittest.TestCase):
+    """DocviewDocTestCase test the DocviewDoc class.
+    """
+    def checkInstantion(self):
+        """Check whether the document could be instantiated"""
+        doc=None
+        doc=DocviewDoc()
+        assert doc!=None, 'Could not instantiate DocviewDoc'
+
+    def checkModifiable(self):
+        """Check whether the document could be modified"""
+        doc=DocviewDoc()
+        doc.slotModify()
+        assert doc.isModified(), 'Document could not be modified'
+
+def suite():
+    testSuite=unittest.makeSuite(DocviewDocTestCase, "check")
+    return testSuite
+
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+    </programlisting>
+
+    <para id="para-ch9-49">By always prefixing your tests with
+      &lsquo;check', you make sure they are all included. If you had
+      to add every test by hand, it would be only natural to forget
+      one or two over time. Eventually you would notice that a test
+      was not being executed. By that time you might have changed the
+      tested code so the original test fails. The purpose of unit
+      testing is always to be sure that everything works as you think
+      it should.</para>
+
+  </sect1>
+
+  <sect1><title>Testing signals and slots</title>
+
+    <indexterm>
+  <primary>unittests</primary><secondary>signals/slots</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>signals/slots</primary>
+  </indexterm>
+  <para id="para-ch9-50">It's quite difficult to work the signals
+      and slots mechanism into the unittest framework. This is not
+      surprising, since signals and slots quintessentially join
+      components together, and the unittests are meant to test each
+      component separately.</para>
+
+    <para id="para-ch9-51">However, you might want to test whether
+      calling a method on a certain object causes it to emit the right
+      signals. We need a bit of a custom framework for that purpose, a
+      kind of signal test.</para>
+
+    <para id="para-ch9-52">You can use the
+      <classname>ConnectionBox</classname> from the following script
+      for that purpose. It is a simple class, derived from
+      <classname>QObject</classname>, which has one slot,
+      <function>slotSlot()</function>, that can be connected to a
+      signal with any number of arguments.</para>
+
+    <para id="para-ch9-53">The arguments to the signal are stored in
+      the <classname>ConnectionBox</classname>, so they can be checked
+      later using the various assertion functions.</para>
+
+    <para id="para-ch9-54">I have provided three assertion functions,
+      one to check whether the signal did arrive
+      (<function>assertSignalArrived</function>), one to check whether
+      the number of arguments was right,
+      (<function>assertNumberOfArguments</function>), and one to check
+      the types of the arguments using the Python
+      <filename>types</filename>
+      (<function>assertArgumentTypes</function>). This provides
+      typenames for all built-in types, but objects created from all
+      user-defined classes (including PyQt classes), belong to the
+      <varname>InstanceType</varname>. This means that you cannot
+      check whether you got a <classname>QListViewItem</classname> or
+      a <classname>QListView</classname> from a PyQt signal using this
+      function.</para>
+
+    <para id="para-ch9-55">It would be a nice exercise to extend this
+      assert with checking objects using the
+      <classname>QObject</classname>.<function>className()</function>
+      method. Feel free...</para>
+
+    <programlisting>
+#
+# signals.py - unit-testing signals
+#
+import sys
+import unittest
+import types
+from docviewdoc import DocviewDoc
+from qt import *
+
+class ConnectionBox(QObject):
+
+    def __init__(self, *args):
+        apply(QObject.__init__,(self,)+args)
+        self.signalArrived=0
+        self.args=[]
+
+    def slotSlot(self, *args):
+        self.signalArrived=1
+        self.args=args
+
+    def assertSignalArrived(self, signal=None):
+        if  not self.signalArrived:
+            raise AssertionError, ("signal %s did not arrive" % signal)
+
+    def assertNumberOfArguments(self, number):
+        if number &lt;&gt; len(self.args):
+            raise AssertionError, \
+                  ("Signal generated %i arguments, but %i were expected" %
+                                    (len(self.args), number))
+
+    def assertArgumentTypes(self, *args):
+        if len(args) &lt;&gt; len(self.args):
+            raise AssertionError, \
+         ("Signal generated %i arguments, but %i were given to this function" %
+                                 (len(self.args), len(args)))
+        for i in range(len(args)):
+            if type(self.args[i]) != args[i]:
+                raise AssertionError, \
+                      ( "Arguments don't match: %s received, should be %s." %
+                                      (type(self.args[i]), args[i]))
+
+class SignalsTestCase(unittest.TestCase):
+    """This testcase tests the testing of signals
+    """
+    def setUp(self):
+        self.doc=DocviewDoc()
+        self.connectionBox=ConnectionBox()
+        
+    def tearaDown(self):
+        self.doc.disConnect()
+        self.doc=None
+        self.connectionBox=None
+        
+    def checkSignalDoesArrive(self):
+        """Check whether the sigDocModified signal arrives"""
+        self.connectionBox.connect(self.doc, PYSIGNAL("sigDocModified"),
+                              self.connectionBox.slotSlot)
+        self.doc.slotModify()
+        self.connectionBox.assertSignalArrived("sigDocModified")
+
+    def checkSignalDoesNotArrive(self):
+        """Check whether the sigDocModifiedXXX signal does not arrive"""
+        self.connectionBox.connect(self.doc, PYSIGNAL("sigDocModifiedXXX"),
+                                   self.connectionBox.slotSlot)
+        self.doc.slotModify()
+        try:
+            self.connectionBox.assertSignalArrived("sigDocModifiedXXX")
+        except AssertionError:
+            pass
+        else:
+            fail("The signal _did_ arrive")
+
+    def checkArgumentToSignal(self):
+        """Check whether the sigDocModified signal has the right
+           number of arguments
+        """
+        self.connectionBox.connect(self.doc, PYSIGNAL("sigDocModified"),
+                                   self.connectionBox.slotSlot)
+        self.doc.slotModify()
+        self.connectionBox.assertNumberOfArguments(1)
+
+    def checkArgumentTypes(self):
+        """Check whether the sigDocModified signal has the right 
+           type of arguments.
+        """
+        self.connectionBox.connect(self.doc, PYSIGNAL("sigDocModified"),
+                                   self.connectionBox.slotSlot)
+        self.doc.slotModify()
+        self.connectionBox.assertArgumentTypes(types.IntType)
+
+
+def suite():
+    testSuite=unittest.makeSuite(SignalsTestCase, "check")
+    return testSuite
+
+
+def main():
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+if __name__=="__main__":
+    main()
+    </programlisting>
+
+    <para id="para-ch9-56">Using this
+      <classname>ConnectionBox</classname>, you can test your
+      signals:</para>
+
+    <screen>
+boud@calcifer:~/doc/pyqt/ch9 > python signals.py
+Check whether the sigDocModified signal has the right number arguments ... ok
+Check whether the sigDocModified signal has the right type of arguments ... ok
+Check whether the sigDocModified signal arrives ... ok
+Check whether the sigDocModifiedXXX signal does not arrive ... ok
+------------------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+    </screen>
+
+  </sect1>
+  
+  <sect1><title>Conclusion</title>
+
+    <para id="para-ch9-57">I hope I have convinced you that writing
+      unittests is fun, rewarding, more productive and guaranteed to
+      give you a reputation for infallible code &mdash; because, in a
+      measure, that is what you will get for writing tests. As I said
+      in the introduction to this book, using Python is all about
+      using the best practices. And best in this context means
+      productive. If your way of working helps you make less mistakes,
+      the productivity benefit is enormous. Keep that bar
+      green!</para>
+  </sect1>
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

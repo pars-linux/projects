@@ -1,0 +1,1 @@
+PYTHONPATH=$HOME/doc/pyqt/ch19/kalam:$PYTHONPATH /usr/local/bin/python main.py

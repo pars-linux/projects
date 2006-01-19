@@ -1,0 +1,101 @@
+[File1]
+Active = 0
+Comments = 
+FileName = COPYING
+Position = 1
+Type = Other
+[File10]
+Active = 0
+Comments = 
+FileName = charmap/unidata/Blocks.txt
+Position = -1
+Type = Other
+[File11]
+Active = 0
+Comments = 
+FileName = charmap/__init__.py
+Position = 2
+Type = Python
+[File12]
+Active = 1
+Comments = 
+FileName = charmap/charmap.py
+Position = 3
+Type = Python
+[File13]
+Active = 0
+Comments = 
+FileName = dialogs/frmfindreplace.ui
+Position = 5
+Type = Form
+[File14]
+Active = 0
+Comments = 
+FileName = dialogs/frmsettings.ui
+Position = -1
+Type = Form
+[File15]
+Active = 0
+Comments = testing the editor
+FileName = test.py
+Position = 6
+Type = Python
+[File2]
+Active = 0
+Comments = 
+FileName = MANIFEST.in
+Position = 0
+Type = Other
+[File3]
+Active = 0
+Comments = 
+FileName = README
+Position = -1
+Type = Other
+[File4]
+Active = 0
+Comments = 
+FileName = edmund.py
+Position = -1
+Type = Python
+[File5]
+Active = 0
+Comments = 
+FileName = kalam
+Position = -1
+Type = Other
+[File6]
+Active = 0
+Comments = 
+FileName = kalam.bat
+Position = -1
+Type = Other
+[File7]
+Active = 0
+Comments = 
+FileName = setup.cfg
+Position = -1
+Type = Other
+[File8]
+Active = 0
+Comments = 
+FileName = setup.py
+Position = -1
+Type = Python
+[File9]
+Active = 0
+Comments = 
+FileName = startup.py
+Position = 4
+Type = Python
+[ProjectInfo]
+BackTrace = 1
+Comments = Kalam is an extensible editor written in Python
+Explorer = 0
+HierarchyView = 0
+Layout = 265,653,280,1
+MainScript = 0
+NrFiles = 15
+ProjectLanguage = Python
+PropertyEditor = 1
+RunFolder = 

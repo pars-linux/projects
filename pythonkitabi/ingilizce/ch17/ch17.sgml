@@ -1,0 +1,347 @@
+<chapter id="ch17">
+
+  <title>Printing</title>
+
+  <indexterm>
+  <primary>printing</primary>
+  </indexterm>
+  <para id="para-ch17-1">Printing: a subject that strikes fear into
+    the heart of even the most stalwart developer&mdash;and with good
+    reason. Getting a user's application data neatly on paper demands
+    a lot of skill.</para>
+
+  <para id="para-ch17-2">Common problems include different printer
+    capabilities, differences between fonts on screen and on the
+    printer, differing paper sizes, and platform differences in
+    getting the output to the printer.</para>
+
+  <para id="para-ch17-3">PyQt brings a measure of relief to some of
+    these problems, though not to all. It provides you with the
+    <classname>QPrinter</classname> object, which is a type of
+    <classname>QPaintDevice</classname> that has a built-in common
+    dialog for printer settings. This takes care of most problems
+    associated with font handling and printer capabilities.  With Qt 3
+    you can even send TrueType fonts to the printer. The hard
+    work&mdash;the layout of the page for paper&mdash;is still your
+    job.</para>
+
+  <indexterm>
+  <primary>postscript</primary>
+  </indexterm>
+  <para id="para-ch17-4">Printing on Unix/X11 requires creating
+    PostScript files and sending them to lpr. On Windows systems you
+    can use the built-in printer drivers. On a Unix system you can
+    always chicken out; if your application data is plain text or
+    source code, you can spool it directly to the printer, or via a
+    pretty-printing program such as a2ps.</para>
+
+
+  <para id="para-ch17-5">For the moment, we will not pursue that
+    option, and instead use <classname>QPrinter</classname> to add
+    printing capabilities to <application>Kalam</application>.</para>
+
+  <sect1><title>The <classname>QPrinter</classname> class</title>
+
+    <indexterm>
+  <primary>QPrinter</primary>
+  </indexterm>
+  <para id="para-ch17-6">Generally speaking, there will be only one
+      active printer attached to a user's system. This means that we
+      will keep a single reference to a
+      <classname>QPrinter</classname> object. Therefore, we might as
+      well create the <classname>QPrinter</classname> in the
+      <function>__init__()</function> method of the
+      <classname>KalamApp</classname> class.</para>
+
+    <programlisting>
+# kalamapp.py
+
+class KalamApp(QMainWindow):
+    """KalamApp is the toplevel application window of the kalam unicode editor
+    application.
+    """
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        ...
+        # Create the printer object
+        self.printer = QPrinter()
+        ...
+    </programlisting>
+
+    <indexterm>
+  <primary>QPrinter</primary><secondary>instantiation</secondary>
+  </indexterm>
+  <para id="para-ch17-7"><classname>QPrinter</classname> is more
+      configurable than most <classname>QPaintDevices</classname>. You
+      can set the printer, printer driver, paper size, number of
+      copies to be printed, and so on. You can set those configuration
+      options programmatically, but some of them can also be changed
+      by the user. If you call the <function>setup()</function> function on the
+      printer object, a printer setup dialog will popup:</para>
+
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch17/printersetup.eps">
+      </imageobject>
+      <caption><indexterm>
+  <primary>QPrinter</primary><secondary>setup</secondary>
+  </indexterm>
+  <para id="para-ch17-8">The printer setup dialog</para>
+      </caption>
+    </mediaobject>
+
+  </sect1>
+
+  <sect1><title>Adding printing to Kalam</title>
+
+    <para id="para-ch17-9">Adding a file menu entry and a toolbar
+      button for the print functionality is easy enough. We don't need
+      to have a separate printer setup and print dialog. We are going
+      to show the printing setup dialog every time a user wants to
+      print a document. Because we use one central
+      <classname>QPrinter</classname> object, settings remain valid
+      for the duration of the application. You might want to save the
+      printer settings to the configuration file (I haven't done that
+      here).</para>
+
+    <programlisting>
+    # fragment from kalamapp.py
+
+    def initActions(self):
+        self.actions = {}
+        ... 
+        self.actions["filePrint"] = QAction("Print",
+                                            QIconSet(QPixmap(fileprint)),
+                                             "&amp;Print",
+                                             QAccel.stringToKey("CTRL+P"),
+                                             self)
+        self.connect(self.actions["filePrint"],
+                     SIGNAL("activated()"),
+                     self.slotFilePrint)
+
+    ...
+
+    def initMenuBar(self):
+        self.fileMenu = QPopupMenu()
+        ...
+        self.actions["filePrint"].addTo(self.fileMenu)
+        ...
+        self.menuBar().insertItem("&amp;File", self.fileMenu)
+
+    ...
+
+    def initToolBar(self):
+        self.fileToolbar = QToolBar(self, "file operations")
+        ...
+        self.actions["filePrint"].addTo(self.fileToolbar)
+        
+    ...
+
+    def setActionsEnabled(self, *args):
+        enabled = self.docManager.numberOfDocuments()
+        ...
+        self.actions["filePrint"].setEnabled(enabled)
+       
+    ...
+
+    def slotFilePrint(self):
+        if self.printer.setup():
+            print "Printing"
+            
+    ...
+    </programlisting>
+
+    <para id="para-ch17-10">The printer setup dialog is shown whenever the
+    <function>slotFilePrint</function> method is called. Printing will commence
+    when the user presses "OK."
+    </para>
+
+  </sect1>
+
+  <sect1><title>Putting ink to paper</title>
+
+    <indexterm>
+  <primary>printing</primary><secondary>lines of text</secondary>
+  </indexterm>
+  <para id="para-ch17-11">The following is a very simplistic way of
+      dumping text onto paper. We merely run through all lines in the
+      active view and dump them on paper. If a line is too long for
+      the chosen paper-size, we'll just let it run of the paper, we
+      won't implement word-wrap.</para>
+
+      <!-- todo: Personally, I have no idea what "tant pis!" means. My guess is that most American
+      readers won't, either. Br: something like Dutch Jammer dan! or
+    perhaps 'it's a pity, but we won't do anything about it'. Is there
+    another English idiom for it?-->
+
+    <programlisting>
+    def slotFilePrint(self):
+        margin = 10
+        pageNo = 1
+
+        if self.printer.setup(self):
+            self.statusBar().message('Printing...')
+
+            view = self.workspace.activeWindow()
+            p = QPainter(self.printer)
+
+            p.setFont(QFont("courier", 10))
+
+            y = 0
+            fm = p.fontMetrics()
+            metrics = QPaintDeviceMetrics(self.printer)
+
+            for i in range(view.numLines()):
+                if margin + y > metrics.height() - margin:
+                    pageNo = pageNo + 1
+                    self.printer.newPage()
+                    y = 0
+
+                p.drawText(margin,
+                           margin + y,
+                           metrics.width(),
+                           fm.lineSpacing(),
+                           Qt.ExpandTabs | Qt.DontClip,
+                           view.textLine(i))
+                y = y + fm.lineSpacing()
+
+
+            self.statusBar().message('Printing completed',2000)
+        else:
+            self.statusBar().message('Printing aborted',2000)
+    </programlisting>
+
+    <indexterm>
+  <primary>printing</primary><secondary>paint device</secondary>
+  </indexterm>
+  <para id="para-ch17-12">You can see how printing text works. A <classname>QPrinter</classname>
+      object is a paint device, so we create a
+      <classname>QPainter</classname> for it.</para>
+
+      <!-- todo: Do you think the sentence "You can see how it works" is really necessary? I didn't
+      delete it because I felt odd about stranding the other sentence
+    in the paragraph.... Br: yes, that was my consideration, too. Is
+    this version better?-->
+
+    <indexterm>
+  <primary>printing</primary><secondary>font</secondary>
+  </indexterm>
+  <para id="para-ch17-13">Printing requires choosing a font. In all
+      probability, the user's screen font is not suitable for
+      printing. For instance, many people read text on screen in 12 or
+      14 point fonts, but prefer printing with 10 point fonts. In the
+      preceding code, a ten-point courier is chosen, though ideally
+      you would want the choice of printing font to be part of the
+      application settings.</para>
+
+      <!-- todo: Watch out regarding your use of the word "means." Above, the first sentence originally read "Printing means choosing a font."
+      Though your intent is obviously otherwise, that statement is certainly not true - that is, the sentence comes across sounding
+      more inclusive than you mean it too. While most people are smart enough to know the difference, obviously for a book it is best
+      to use less all-inclusive words. Br: Ok.-->
+
+      <!-- todo: I changed "here" to "In the preceding code." Is that right?  Sometimes the meaning of "here" is confusing, and the reader won't
+      know exactly where to look after reading "here". Br: that's Ok. -->
+
+    <indexterm>
+  <primary>fontmetrics</primary><secondary>printing</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>printing</primary><secondary>fontmetrics</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QPainter</primary><secondary>fontMetrics()</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>printing</primary><secondary>margins</secondary>
+  </indexterm>
+  <para id="para-ch17-14">Once the font is set, we can use
+      <function>QPainter.fontMetrics()</function> to retrieve the
+      height that each line will take on the paper. If the top margin
+      (<varname>margin</varname>) plus the current line position
+      (<varname>y</varname>) is greater than the height of the page,
+      it's time for a new page. The page height is retrieved with
+      <function>metrics.height()</function> which uses
+      <classname>QPaintDeviceMetrics</classname> to provide this kind of
+      practical information.</para>
+
+    <!-- todo : I understand what
+    you are saying here, but it's not clear what the *actual*
+    "practical
+    information" is. What does QPaintDeviceMetrics actually give to
+    the user, beyond retrieving the height of each line? anything? Br:
+    that wasn't clear - metrics is an instance of QPaintDeviceMetrics,
+    nor QFontMetrics.-->
+
+    <para id="para-ch17-15">Actually printing each line is no
+      different from painting text with a
+      <classname>QPainter</classname> on a
+      <classname>QPaintDevice</classname>. The
+      <function>drawText()</function> paints the text on the device.
+      You have to compute the x and y position, width and height of
+      the area covered by the text to determine where exactly the text
+      is printed.</para>
+
+      <!-- todo: Please break up the above paragraph into multiple
+    sentences. It's too much info to take in at once. Br: Ok.-->
+
+    <indexterm>
+  <primary>alignment</primary>
+  </indexterm>
+  <indexterm>
+  <primary>Qt.AlignmentFlags</primary>
+  </indexterm>
+  <para id="para-ch17-16">These are <varname>Qt.AlignmentFlags</varname>, so you can
+      mix and match <varname>AlignLeft</varname>,
+      <varname>AlignRight</varname>, <varname>AlignHCenter</varname>,
+      <varname>AlignTop</varname>, <varname>AlignBottom</varname>,
+      <varname>AlignVCenter</varname>, <varname>AlignCenter</varname>,
+      <varname>SingleLine</varname>, <varname>DontClip</varname>,
+      <varname>ExpandTabs</varname>, <varname>ShowPrefix</varname>,
+      <varname>WordBreak</varname>. In this case,
+      <varname>ExpandTabs</varname> is used to make sure any tabs in
+      the text are neatly printed, and <varname>DontClip</varname> is
+      used to prevent errors when a line is too long for the
+      page.</para>
+
+
+  </sect1>
+
+
+  <sect1><title>Conclusion</title>
+
+    <para id="para-ch17-17">This concludes a brief look at printing with Python and
+      PyQt. In summary, anything you are clever enough to paint
+      yourself on screen can be painted on paper. PyQt delivers you
+      from driver hell, and can help you with issues like printing
+      resolution&mdash; but you're still responsible for a lot of the work
+      yourself.</para>
+
+    <para id="para-ch17-18">This also concludes the development of
+      <application>Kalam</application>. In the next chapter we
+      internationalize the interface, and in the final we chapter create
+      installable packages so the world can replace their favorite
+      editor with our powerful alternative!</para>
+
+  </sect1>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->

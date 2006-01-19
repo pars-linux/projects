@@ -1,0 +1,864 @@
+<chapter id="ch24">
+  
+  <title>Introduction to Python</title>
+  
+  <indexterm>
+  <primary>python</primary><secondary>introduced</secondary>
+  </indexterm>
+  <para id="para-ch24-1">In this chapter I attempt to explain the
+    fundamentals of Python. Here I have the same difficulty as Bertie
+    Wooster faces when he tries to keep us abreast of the developments
+    in <citetitle>Much Obliged, Jeeves</citetitle>. If I start too
+    early, and begin at the very beginning, telling you all about how
+    a computer doesn't understand plain English, I'm likely to
+    irritate the coves who already know all about that, and just want
+    a quick update on the high-level datastructures of Python and the
+    current state of iterators and generators. However, that would
+    leave the birds who are just starting out wondering whether it was
+    such a good idea, after all, to pick up this book, and start
+    learning how to program.</para>
+
+  <para id="para-ch24-2">The fact is, writing an introduction to a
+    complete programming language &mdash; or the concept of
+    programming in itself &mdash; in just one chapter is the deuce of
+    a task. It can't really be done, I'm afraid to say. If you already
+    know a few programming languages, the on-line Python tutorial that
+    is included with BlackAdder (or with Python itself) will probably
+    suffice. If you haven't programmed all that much before, I highly
+    advise you to buy Marc Lutz' excellent book,
+    <citetitle>Learning&nbsp;Python</citetitle>, which is more like an
+    introduction to programming, with a focus on Python.</para>
+
+  <para id="para-ch24-3">Still with me? Then we had better take a
+    quick tour through Python &mdash; which is really one of the
+    easiest programming languages to master. Like ancient Gaul, and
+    like this book, I have divided this chapter into three sections.
+    The first tries to gently introduce the concept of programming to
+    people who need to be primed with the most basic concepts. This is
+    difficult for me to do, because I have been programming since I
+    was twelve years old, so bear with me. The second is about Rules.
+    Every programming language needs rules, and these are the rules
+    that you need to keep in mind while programming Python. The final
+    part gives an overview of the various constructions that Python
+    contains for your satisfaction and pleasure.</para>
+
+  <sect1><title>Programming fundamentals</title>
+
+    <para id="para-ch24-4">Please don't think that I can teach you
+      programming in just the space of this section &mdash; you need
+      to read some good books for that, such as Steve McConnel's
+      <citetitle>Code Complete</citetitle>. What I can do is show you
+      what the fuss is all about.</para>
+
+    <para id="para-ch24-5">Computers do not do anything of their own
+      volition: ultimately, someone has always told the machine what
+      to do. Even crashing, down to the ultimate Blue Screen of Death,
+      is caused by a computer blindly following instructions given by
+      a human being.</para>
+
+    <para id="para-ch24-6">Instructions can take the form of
+      mouseclicks on fancy icons or buttons, or of bits of text the
+      computer can understand. While there is still no computer that
+      can understand plain English, there are many sub-dialects of
+      English that a computer can understand. Python is one of these
+      &mdash; a mix between pidgin English and mathematical notation.
+      It is close to both the way computers work, and the way people
+      think.</para>
+
+    <indexterm>
+  <primary>programming</primary><secondary>introduced</secondary>
+  </indexterm>
+  <para id="para-ch24-7">Unless you have a speech-to-text interface
+      for your computer, you will have to type out all the
+      pidgin-English, and then tell the computer to read what you've
+      written, and do what you told it to. In a sense, you have to
+      write a kind of manual for the computer to read, on how to
+      perform a certain task.</para>
+
+    <para id="para-ch24-8">Let's start with a simple example: fire up
+      BlackAdder, and open the Python Interpreter window. If you start
+      typing at the <prompt>&gt;&gt;&gt;</prompt>, nothing will happen
+      &mdash; only by pressing the Enter key will Python realize that
+      it has been spoken to. Go ahead and type something &mdash; you
+      can't hurt the computer or your system, except if, by a fluke,
+      you type <userinput>import os</userinput>, followed by Enter and
+      <userinput>os.system("deltree c:")</userinput> &mdash; which
+      would radically clean out your C drive. So don't do this! On the
+      other hand, asking Python about the captain's age or the
+      contents of a bathtub that's being filled by two taps is all
+      right.</para>
+
+    <para id="para-ch24-9">Chances are very small that you will have
+      hit upon something Python understands by accident, for you are
+      strictly limited to the few <emphasis>keywords</emphasis> Python
+      actually knows about. Most of these keywords are concerned with
+      creating <emphasis>blocks</emphasis> of instructions, called
+      functions. Functions are used to construct more complex systems.
+      Other keywords are used for creating another kind of block,
+      called classes, which are combinations of information and
+      instructions.</para>
+
+
+    <para id="para-ch24-10">Let's construct a class that knows the
+      value of something (though not the price), and has a function
+      that does something to that value. Remember to press enter at
+      the end of each line, and don't type the three &gt; signs or the
+      three dots &mdash; Python does this for you.</para>
+
+    <screen>
+Python 2.1.1 (#1, Aug 11 2001, 20:14:53) [GCC 2.95.2 19991024
+(release)] on linux2 Type "copyright", "credits" or "license"
+for more information.
+&gt;&gt;&gt; class FirstClass:
+...     def __init__(self, value):
+...             self.item=value
+...     def printValue(self):
+...             print self.item
+...
+&gt;&gt;&gt; firstObject=FirstClass(value="BlackAdder goes forth")
+&gt;&gt;&gt; firstObject.printValue
+&lt;method FirstClass.printValue of FirstClass instance at 0x80db1f4&gt;
+&gt;&gt;&gt; firstObject.printValue()
+BlackAdder goes forth
+&gt;&gt;&gt;
+    </screen>
+
+    <para id="para-ch24-11">If you type neatly and without mistakes,
+      the contents of the Python interpreter window might look like
+      this. Let's look at what happens: we have defined a &lsquo;class'
+      &mdash; that's a combination of information and complex actions
+      that work on the contained information. The class has a name:
+      <varname>FirstClass</varname>. (It is customary to capitalize
+      the first letter of each word in a classname).</para>
+
+    <para id="para-ch24-12">A class in itself is only the
+      &lsquo;template', so to speak, while an object is the
+      &lsquo;document' &mdash; just as you can make documents out of
+      templates in a wordprocessor, you can make objects from
+      classes.</para>
+
+    <para id="para-ch24-13">Furthermore, the class has two
+      &lsquo;functions' &mdash; defined with the
+      <function>def</function> statement.
+    </para>
+
+    <para id="para-ch24-14">The first function,
+      <function>__init__</function>, is called when you want to create
+      an object. The function has two &lsquo;parameters' &mdash; that is,
+      two names associated with a value (which we call a &lsquo;variable'
+      because the value can change, though the name remains the same).
+      The first parameter refers to the object &mdash; it's always
+      called <varname>self</varname> in Python (though it is called
+      <varname>this</varname> in Java or C++). The second parameter is
+      the value we want the object to manage for us.</para>
+
+    <para id="para-ch24-15">You can use a dot &lsquo;.' to associate
+      variables with each other. The line &lsquo;self.item = value' means
+      that from now on the object we refer to with
+      <varname>self</varname> (but also, in another context, with
+      <varname>firstObject</varname>) knows that the name
+      <varname>item</varname> is associated with the value represented
+      by the parameter <varname>value</varname>.</para>
+
+    <para id="para-ch24-16">Cleverly, Python doesn't forget this, so
+      when you create an object with the name
+      <varname>firstObject</varname> and the
+      <emphasis>string</emphasis> value (that is to say, some text, as
+      opposed to a number) &lsquo;BlackAdder goes forth', you can later call
+      the <function>printValue()</function> function, which will be
+      able to do something with that value.</para>
+
+    <para id="para-ch24-17">In order to call&mdash;that is, ask Python to
+      execute&mdash; a function, you must add brackets after the
+      function name; the parameters always go between the brackets.
+      You don't have to put <varname>self</varname> between brackets, for
+      Python does this for you. If you don't add the brackets, you are
+      <emphasis>referring to</emphasis> the function, not asking
+      Python to execute it. Python then answers you with the revealing
+      sentence:</para>
+
+
+    <screen>
+&gt;&gt;&gt; firstObject.printValue
+&lt;method FirstClass.printValue of FirstClass instance at 0x80db1f4&gt;
+    </screen>
+
+    <para id="para-ch24-18">This tells you what kind of an object a
+      function is. <emphasis>Calling</emphasis> the function will
+      &lsquo;print' the value of <varname>item</varname> in your
+      window:</para>
+
+    <screen>
+&gt;&gt;&gt; firstObject.printValue()
+BlackAdder goes forth
+&gt;&gt;&gt;
+    </screen>
+
+    <para id="para-ch24-19">As I said, the <varname>self</varname> is
+      supplied by Python, because you call the function from the
+      object. That is, by prefixing the variable that points to the
+      object to the function name, with a dot in between. This is the
+      same as typing the following code (that is, calling the function
+      with the object as its first parameter). As such, the following
+      two expressions are equivalent:</para>
+
+    <screen>
+&gt;&gt;&gt;firstObject.printValue()
+BlackAdder goes forth
+&gt;&gt;&gt;FirstClass.printValue(firstObject)
+BlackAdder goes forth
+    </screen>
+
+    <para id="para-ch24-20">Of course, typing in all these
+      instructions correctly every time you want the computer to print
+      &lsquo;BlackAdder goes forth' is quite a chore. To get around this,
+      you can write a small text document (this is not the same as a
+      Word document!) using BlackAdder's text editor, and then ask
+      Python to execute it.</para>
+
+
+    <para id="para-ch24-23">To sum up: composition of complex wholes
+      from smaller parts using a debased variant of English, and
+      calling things names, is what programming is all about. The rest
+      is made up of rules &mdash;rules intended to make it easier for
+      computer the compute to determine what it should do, and more
+      difficult for you to explain yourself to the machine.</para>
+    
+    <warning>
+      <para id="para-ch24-21">Please be warned that if you execute
+        your programs (or scripts) from BlackAdder, all the output of
+        &lsquo;print' will disappear into the void. The output will
+        only be shown if you start your scripts using the debugger,
+        and have the Python Interpreter window open. If you merely
+        type in stuff in the Interpreter window you will see all
+        output.</para>
+    </warning>
+
+    <indexterm>
+  <primary>introduction</primary><secondary>to Python</secondary>
+  </indexterm>
+  <para id="para-ch24-22">If this section went over your head with
+      the airspeed of an unladen African swallow, don't worry. There
+      is much more to programming &mdash; more than I can explain in a
+      third of a chapter. Please read the Python tutorial that is
+      included with Python and with BlackAdder. It is well-written and
+      a little less hasty. Another good source is the free Livewires
+      Python course, which you can find in PDF format at:
+      http://www.livewires.org.uk/python/. I heartily recommend it as
+      the best introduction to the general idea of programming I've
+      ever read.</para>
+
+  </sect1>
+
+  <sect1><title>The Rules</title>
+
+    <indexterm>
+  <primary>python</primary><secondary>language rules</secondary>
+  </indexterm>
+  <para id="para-ch24-24">For a full treatment of the rules of
+      Python, see the Python Language Reference, which is available
+      online with BlackAdder and Python. This section will in a series
+      of short statements enumerate what makes Python Python.</para>
+
+    <sect2><title>Objects and references</title>
+
+      <indexterm>
+  <primary>objects</primary>
+  </indexterm>
+  <indexterm>
+  <primary>references</primary>
+  </indexterm>
+  <para id="para-ch24-25">Before Python 2.2, not all types were
+        classes, but now they are.</para>
+
+      <indexterm>
+  <primary>type declerations</primary>
+  </indexterm>
+  <para id="para-ch24-26">Moore's law has made type declarations
+        obsolete (with thanks to Paul Prescod).</para>
+
+      <para id="para-ch24-27">An object has a type (which you can
+        query with <function>type()</function>). A reference does not
+        have a type. You can use the same name to refer to two objects
+        in succession, but the first reference disappears as soon as
+        you've made the second.</para>
+
+      <para id="para-ch24-28">Objects disappear once the last
+        reference has gone (except if the reference is an explicit
+        weak reference). You can destroy a reference with
+        <function>del</function> &mdash; from that moment on, the name
+        doesn't exist anymore. If you set the reference to
+        <varname>None</varname>, the link to the object disappears,
+        but the reference remains in existence.</para>
+
+      <screen>
+&gt;&gt;&gt; a="aaa"
+&gt;&gt;&gt; print a
+aaa
+&gt;&gt;&gt; del a
+&gt;&gt;&gt; print a
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+NameError: name 'a' is not defined
+&gt;&gt;&gt; a="aaa"
+&gt;&gt;&gt; print a
+aaa
+&gt;&gt;&gt; a=None
+&gt;&gt;&gt; print a
+None
+&gt;&gt;&gt;
+      </screen>
+
+          <para id="para-ch24-29">Functions and classes are both also
+        objects.</para>
+
+          <indexterm>
+  <primary>object </primary><secondary>identity</secondary>
+  </indexterm>
+  <para id="para-ch24-30">Every object has one identity, which
+        you can retrieve with <function>id()</function>:</para>
+
+          <screen>
+&gt;&gt;&gt; a=A()
+&gt;&gt;&gt; id(a)
+135121324
+          </screen>
+
+      <indexterm>
+  <primary>__call__</primary>
+  </indexterm>
+  <indexterm>
+  <primary>callable types</primary>
+  </indexterm>
+  <para id="para-ch24-31">Some types are callable (i.e., put on a
+        line with an argument list between ()) and can return a value.
+        Callable types include classes, methods in clasess, functions
+        and objects that implement the special method
+        <function>__call__</function>.
+          </para>
+
+    </sect2>
+
+    <sect2><title>Formatting</title>
+
+      <indexterm>
+  <primary>block</primary>
+  </indexterm>
+  <indexterm>
+  <primary>indenting</primary>
+  </indexterm>
+  <para id="para-ch24-32">A block is first marked by a colon at
+        the end of the previous line, and is indented. The block ends
+        at the next dedent. (You should indent with four spaces, and
+        not use tabs.)</para>
+
+      <para id="para-ch24-33">Whatever is typed between brackets is
+        considered to be on one line. Dictionaries are delimited with
+        curlies {}, lists are delimited with brackets [] and tuples
+        (and lists of arguments to functions) are delimited with
+        ().</para>
+
+      <para id="para-ch24-34">A classname should start with a capital
+        letter; variable and function names should begin with a
+        lowercase letter.</para>
+
+      <para id="para-ch24-35">Only alphabetic characters (a-z, A-Z),
+        digits (0-9) and the underscore (_) are valid in variable
+        names, but a variable name should not start with a
+        digit.</para>
+
+      <indexterm>
+  <primary>visibility</primary>
+  </indexterm>
+  <para id="para-ch24-36">Names that start with one underscore (_)
+        are a bit private (not imported with <userinput>from module
+          import *</userinput>); names that start with two underscores
+        (__) are very private in scope (not visible with
+        <userinput>dir(object)</userinput>); names that start and end
+        with two underscores are system-defined.</para>
+
+      <screen>
+Python 2.1.1 (#1, Aug 11 2001, 20:14:53)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; class A:
+...     def __test():
+...             pass
+...
+&gt;&gt;&gt; dir(A)
+['_A__test', '__doc__', '__module__']
+&gt;&gt;&gt; a=A()
+&gt;&gt;&gt; dir (a)
+[]
+      </screen>
+
+    </sect2>
+
+    <sect2>
+      <title>Keywords</title>
+      <para id="para-ch24-37">The following keywords are reserved:
+      </para>
+      <screen>
+and       del       for       is        raise
+assert    elif      from      lambda    return
+break     else      global    not       try
+class     except    if        or        while
+continue  exec      import    pass      yield
+def       finally   in        print
+        </screen>
+
+    </sect2>
+
+    <sect2><title>Literals</title>
+
+      <indexterm>
+  <primary>keywords</primary>
+  </indexterm>
+  <indexterm>
+  <primary>literals</primary>
+  </indexterm>
+  <para id="para-ch24-38">Strings can be enclosed in single (' or
+        ") or triple (''' or """") quotes. Triple-quoted strings can
+        span lines, the linebreaks are part of the string. If you
+        prefix the string literal with u, it becomes a Unicode
+        string.</para>
+
+      <indexterm>
+  <primary>numbers</primary>
+  </indexterm>
+  <para id="para-ch24-39">Numbers can be integers, long integers,
+        floating point, and imaginary. If you divide integers or long
+        integers, you will not get a float, but the integer before the
+        decimal symbol (unless you <literal>import division from
+          future</literal> in Python 2.2).</para>
+
+      <para id="para-ch24-40">Python has the following operators:</para>
+
+      <screen>
++       &mdash;       *       **      /       %
+&lt;&lt;      &gt;&gt;      &amp;       |       ^       ~
+&lt;       &gt;       &lt;=      &gt;=      ==      !=      &lt;&gt;
+      </screen>
+
+      <indexterm>
+  <primary>operators</primary>
+  </indexterm>
+  <para id="para-ch24-41">The comparison operators
+        <function>&lt;&gt;</function> and <function>!=</function> are
+        alternate spellings of the same operator.
+        <function>!=</function> is the preferred spelling;
+        <function>&lt;&gt;</function> is obsolescent.</para>
+
+    </sect2>
+
+    <sect2 id="ch24PositionalArguments"><title>Methods and functions
+      </title>
+
+      <indexterm>
+  <primary>methods and functions</primary>
+  </indexterm>
+  <para id="para-ch24-42">Functions are callable objects that
+        return a value (if a function doesn't explicitly return a
+        value, it retuns <varname>None</varname>). Methods are the
+        same, but part of a class. A method's argument list always has
+        <varname>self</varname> (which refers to the class instance)
+        as its first argument.</para>
+
+      <para id="para-ch24-43">A function can be called with positional
+        arguments, or named arguments. When mixed, positional
+        arguments come first.
+      </para>
+
+      <para id="para-ch24-44">A variable number of positional
+        arguments is indicated by <varname>*args</varname>, and a
+        variable number of named arguments is indicated by
+        <varname>**args</varname>. You can access
+        <varname>*args</varname> as a tuple in your function, and
+        <varname>**args</varname> as a dictionary in your
+        function.</para>
+
+<screen>
+&gt;&gt;&gt; def f(a):
+...     print a
+...
+&gt;&gt;&gt; def ff(a, b):
+...     print a, b
+...
+&gt;&gt;&gt; def fff(*args):
+...     print args
+...
+&gt;&gt;&gt; def ffff(**args):
+...     print args
+...
+&gt;&gt;&gt; f(1)
+1
+&gt;&gt;&gt; ff(1, b=2)
+1 2
+&gt;&gt;&gt; fff(1,2,3)
+(1, 2, 3)
+&gt;&gt;&gt; ffff(a=1,b=2,c=3)
+{'b': 2, 'c': 3, 'a': 1}
+&gt;&gt;&gt;
+</screen>
+    </sect2>
+
+    <sect2><title>High level datatypes</title>
+
+      <para id="para-ch24-45">Python has three very high level
+        datatypes: tuples, lists and dictionaries.</para>
+
+      <indexterm>
+  <primary>tuple</primary>
+  </indexterm>
+  <para id="para-ch24-46">A tuple is any combination of unique
+        objects. You can't change the composition of items in a tuple
+        (i.e. substitute another object), although the objects
+        themselves can be changed.</para>
+
+      <screen>
+&gt;&gt;&gt; t=("a","b","c")
+&gt;&gt;&gt; t
+('a', 'b', 'c')
+&gt;&gt;&gt; t[2]="d"
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: object doesn't support item assignment
+&gt;&gt;&gt;
+      </screen>
+
+      <indexterm>
+  <primary>list</primary>
+  </indexterm>
+  <para id="para-ch24-47">A list is a list of objects. You can
+        change which objects are in a list, adding and deleting items
+        to your heart's delight.</para>
+      <screen>
+&gt;&gt;&gt; l=["a", "b", "c"]
+&gt;&gt;&gt; l[2]="d"
+&gt;&gt;&gt; l
+['a', 'b', 'd']
+&gt;&gt;&gt;
+      </screen>
+      <indexterm>
+  <primary>dictionary</primary>
+  </indexterm>
+  <para id="para-ch24-48">A dictiony is a keyed list. Keys, which
+        must be unchangeable (i.e. not lists) point to values. One
+        key, one value. There can be no duplicate keys in a
+        dictionary.</para>
+
+      <screen>
+&gt;&gt;&gt; d={"a": "aaa", "b": "bbb", "c": "ccc"}
+&gt;&gt;&gt; d
+{'b': 'bbb', 'c': 'ccc', 'a': 'aaa'}
+&gt;&gt;&gt; d[2]
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+KeyError: 2
+&gt;&gt;&gt; d["b"]
+'bbb'
+&gt;&gt;&gt; d["b"]="ddd"
+&gt;&gt;&gt; d
+{'b': 'ddd', 'c': 'ccc', 'a': 'aaa'}
+&gt;&gt;&gt;
+      </screen>
+
+    </sect2>
+  </sect1>
+
+  <sect1><title>Constructions</title>
+
+    <para id="para-ch24-49">Python, like all languages, gives you
+      constructions for looping, branching and jumping. In addition,
+      since Python 2.2, you can also use iterators and
+      generators.</para>
+
+    <sect2><title>Looping</title>
+      <para id="para-ch24-50">You do not use counters to loop in
+        Python. Rather, you use sequences of objects to loop over.
+        Those objects can of course also be be numbers, generated by
+        either <function>range</function> or
+        <function>xrange</function>:</para>
+
+
+
+      <screen>
+Python 2.1.1 (#1, Aug 11 2001, 20:14:53)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; aList=["a","b","c"]
+&gt;&gt;&gt; for item in aList:
+...     print item
+...
+a
+b
+c
+&gt;&gt;&gt; for counter in range(3):
+...     print counter
+...
+0
+1
+2
+&gt;&gt;&gt;
+      </screen>
+
+      <para id="para-ch24-51">Another loop repeats a block of
+        statements while a certain expression evaluates to
+        true:</para>
+
+      <screen>
+&gt;&gt;&gt; a=0
+&gt;&gt;&gt; while a < 3:
+...     print a
+...     a+=1
+...
+0
+1
+2
+      </screen>
+
+      <para id="para-ch24-52">The <function>break</function> statement
+        breaks execution out of a loop; the
+        <function>continue</function> statement continues immediately
+        with the next iteration.</para>
+
+      <para>Iterators define a <function>__iter__</function> and a
+        <function>next()</function> function to allow easy
+        looping:</para>
+
+      <programlisting>
+# iter.py - an iterator
+
+class MyIterator:
+
+    def __init__(self, start):
+        self.start = start
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.start < 10:
+            self.start += 1
+            return self.start
+        else:
+            raise StopIteration
+
+
+for i in MyIterator(1):
+    print i
+      </programlisting>
+
+      <para>Generators are functions that return a function that can
+        yield a result part-way compution, and resume later:</para>
+
+      <programlisting>
+# generator.py
+
+from __future__ import generators
+
+def MyGenerator():
+    count = 0
+    while count < 10:
+        yield count
+        count += 1
+
+gen = MyGenerator()
+try:
+    while 1:
+        print gen.next()
+except StopIteration:
+    print "finished"
+      </programlisting>
+
+      <para>Note how <function>yield</function> returns the number,
+        but <varname>count</varname> is still increased.</para>
+
+    </sect2>
+
+    <sect2<title>Branching</title>
+
+      <para id="para-ch24-53">The number zero, empty lists,
+        dictionaries, tuples and the object <varname>None</varname>
+        all evaluate to false; (almost) everything else is
+        true. You create branches using the <function>if</function>
+        statement.</para>
+
+      <screen>
+&gt;&gt;&gt; a=1
+&gt;&gt;&gt; if a:
+...     print "true"
+... else:
+...     print "false"
+...
+true
+&gt;&gt;&gt; if a==0:
+...     print "a was zero"
+... elif a == None:
+...     print "a was none"
+... else:
+...     print "a was zero nor none"
+...
+a was zero nor none
+      </screen>
+
+      <para id="para-ch24-54">The operator <function>==</function>
+        tests for equality, while <function>!=</function> (or the
+        deprecated <function>&lt;&gt;</function>) tests for
+        inequality. The operator <function>is</function> tests for
+        identity: that is, whether two references point to (unless you
+        <literal>import division from future</literal> in Python 2.2)
+        the same object:</para>
+
+      <screen>
+&gt;&gt;&gt; from qt import *
+&gt;&gt;&gt; a=QString("bla")
+&gt;&gt;&gt; b=QString("bla")
+&gt;&gt;&gt; a is b
+0
+&gt;&gt;&gt; c=a
+&gt;&gt;&gt; a is c
+1
+&gt;&gt;&gt; a="bla"
+&gt;&gt;&gt; b="bla"
+&gt;&gt;&gt; a is b
+1
+&gt;&gt;&gt; id(a)
+135455928
+&gt;&gt;&gt; id(b)
+135455928
+      </screen>
+
+      <para id="para-ch24-55">As you can see, Python does some
+        optimizations that reuse the same string object if the string
+        contents are the same.</para>
+
+    </sect2>
+
+    <sect2><title>Exceptions</title>
+      <para id="para-ch24-56">As every modern programming language
+        must have, Python contains an error catching construction.
+        This is the try: ... except... construction.</para>
+
+      <screen>
+&gt;&gt;&gt; try:
+...     1/0
+... except ZeroDivisionError:
+...     print "Zerodivisionerror"
+...
+Zerodivisionerror
+      </screen>
+
+      <para id="para-ch24-57">You can also create your own exceptions
+        that can carry significant data about the causes of the
+        error:</para>
+
+      <screen>
+&gt;&gt;&gt; class BlaError:
+...     def __init__(self, value):
+...             self.value = value
+...     def __str__(self):
+...             return repr(self.value)
+&gt;&gt;&gt; try:
+...     raise BlaError("Bla happened - that's bad!")
+... except BlaError, error:
+...     print error
+...
+Bla happened - that's bad!
+      </screen>
+
+      <para>If you want to catch several different exceptions, you
+        have to create a tuple of all the exceptions you want to
+        catch:</para>
+
+      <screen>
+>>> try:
+...     print "bla"
+... except (ValueError, ZeroDivisionError):
+...     print "that's bad"
+... 
+bla
+      </screen>
+
+      <para id="para-ch24-58">Finally, you can define something that
+        should happen when all errors have been handled in the
+        <function>finally</function> block:</para>
+
+      <screen>
+&gt;&gt;&gt; try:
+...     1/0
+... finally:
+...     print "finally"
+...
+finally
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 2, in ?
+ZeroDivisionError: integer division or modulo by zero
+      </screen>
+
+    </sect2>
+
+    <sect2><title>Classes</title>
+
+      <para id="para-ch24-59">Classes are defined with the
+        <function>class</function> keyword. Python classes can inherit
+        from zero, one, or more other classes, but from only one PyQt
+        class.</para>
+
+      <para id="para-ch24-60">Classes are initialized using the code
+        in the <function>__init__</function> method. There are other
+        special methods, like <function>__str__</function>, which
+        should return a string representation of the class. Consult
+        the Python language reference for a complete list of
+        these.</para>
+
+      <screen>
+&gt;&gt;&gt;class A:pass
+...
+&gt;&gt;&gt; class B(A):
+...     def __init__(self, val):
+...             self.val = val
+...     def __str__(self):
+...             return str(self.val)
+...
+&gt;&gt;&gt; b=B(10)
+&gt;&gt;&gt; print b
+10
+&gt;&gt;&gt;
+      </screen>
+
+    </sect2>
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para id="para-ch24-61">This concludes a very short tour of
+      Python. There is much more to the language, but this chapter
+      has described the basis. It's not nearly enough, of course, so
+      please consult the online documention, which is well-written
+      and reveals all. Furthermore, think about treating yourself to
+      an introduction like <citetitle>Learning
+        Python</citetitle>.</para>
+    
+  </sect1>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->
