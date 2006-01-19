@@ -1,0 +1,2112 @@
+<chapter id="ch14">
+ 
+  <title>Using Dialog Windows</title>
+
+  <indexterm>
+  <primary>dialog windows</primary>
+  </indexterm>
+  <para id="para-ch14-1">In this chapter we add a few dialog windows
+    to the <application>Kalam</application> program. Dialog windows
+    come in two basic flavors: modal and non-modal. Modal dialog
+    windows block the interface of you application. Settings dialog,
+    file dialogs and such are typically modal. Non-modal dialogs can
+    stay open while the user continues working in the application.
+    Search and replace or style dialogs are typical examples of
+    non-modal dialogs.</para>
+
+  <sect1><title>Modal: a preferences dialog</title>
+
+    <para id="para-ch14-2">We will start with a preferences dialog.
+      Nowadays, the taste is for dialogs with a strip of icons to the
+      left that somehow indicates what section should be shown. But we
+      will start out with a simple tabbed dialog that PyQt supports
+      out of the box, and for which we don't have to draw icons
+      (that's always the difficult bit, creating the artwork).</para>
+
+    <sect2><title>Designing the dialog</title>
+      
+      <indexterm>
+  <primary>designer</primary><secondary>creating a preferences dialog</secondary>
+  </indexterm>
+  <para id="para-ch14-3">So: time to fire up the designer module
+        of BlackAdder or Qt Designer!</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch14/settings-editor.eps">
+        </imageobject>
+        <caption>
+          <para id="para-ch14-4">The settings dialog - editor tab</para>
+        </caption>
+      </mediaobject>
+
+      <indexterm>
+  <primary>spin box</primary>
+  </indexterm>
+  <indexterm>
+  <primary>tabbed dialogs</primary>
+  </indexterm>
+  <indexterm>
+  <primary>dialog</primary><secondary>QTabDialog</secondary>
+  </indexterm>
+  <para id="para-ch14-5">I like to show a sample of what the user
+        selects in the dialog. In this tab, the user can select font,
+        text and background color for the editor windows. These
+        changes are reflected in the little label with the "Lorem
+        ipsum" text. There are two more options: a combobox for
+        selecting the wrapping mode (either no wrapping, wrap to the
+        maximum line width, or wrap to the width of the window), and a
+        spin box to set the maximum line width.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch14/settings-interface.eps">
+        </imageobject>
+        <caption>
+          <para id="para-ch14-6">The settings dialog - interface tab</para>
+      </caption>
+      </mediaobject>
+
+      <para id="para-ch14-7">Most users will not immediately get what
+        we mean with "Window view" - in the interface tab w show an
+        example of what we mean, too. I propose to make the "Look and
+        Feel" selection automatically active, so that doesn't need a
+        preview.</para>
+
+      <para id="para-ch14-8">To fill in the preview I've snapshotted
+        <application>Kalam</application> in all its variations and
+        scaled the pictures down a lot. Adding these pictures as
+        inline-image data to the dialog would make loading very slow,
+        since Python is not so quick in reading bytecode files. It is
+        better to create a <filename>pixmaps</filename> directory and
+        store the pictures there.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch14/settings-document.eps">
+        </imageobject>
+        <caption>
+          <para id="para-ch14-9">The settings dialog - document tab</para>
+        </caption>
+      </mediaobject>
+
+      <para id="para-ch14-10">As for the document, we need two
+        settings: the first is the document encoding. While
+        <application>Kalam</application> is meant to be a Unicode
+        editor for standard <emphasis>utf8</emphasis> files, people
+        might prefer things like iso-8859-1. This is mere
+        window-dressing&mdash;actually loading and saving in encodings
+        other than utf-8 will not be implemented for now. The second
+        option is about document endings. A text file should end with
+        a newline character, and we added code to make sure it does in
+        <xref linkend="ch12">&mdash;ultimately, this should be a
+        configuration option.</para>
+
+      <para id="para-ch14-11">Of course, during the course of
+        development we will expand the contents of these pages, adding
+        items when we need them. Someone once remarked that a
+        configuration dialog presents the history of design decisions
+        that were avoided during development&mdash;and it often feels
+        that way indeed.</para>
+
+    </sect2>
+
+    <sect2><title>Creating the settings dialog window</title>
+
+      <indexterm>
+  <primary>designer</primary><secondary>compiling a dialog</secondary>
+  </indexterm>
+  <para id="para-ch14-12">The first part of the drill is well
+        known: compile the <filename>frmsettings.ui</filename> file to
+        Python using <command>pyuic</command>.
+      </para>
+
+      <screen>
+pyuic -x frmsettings.ui > frmsettings.py
+      </screen>
+
+      <para id="para-ch14-13">You can either call this generated
+        dialog directly from <classname>KalamApp</classname>, or you
+        can subclass it and add some intelligence. Since intelligence
+        is what is needed to synchronize the switches between
+        interface paradigm, we will go ahead and add subclass the
+        design and add some.
+        </para>
+
+<programlisting>
+"""
+dlgsettings.py - Settings dialog for Kalam.
+
+See: frmsettings.ui
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+import os, sys
+from qt import *
+import kalamconfig
+
+from frmsettings import FrmSettings
+
+class DlgSettings(FrmSettings):
+
+    def __init__(self,
+                 parent = None,
+                 name = None,
+                 modal = 0,
+                 fl = 0):
+        FrmSettings.__init__(self, parent, name, modal, fl)
+
+        self.textFont = kalamconfig.get("textfont")
+        self.textBackgroundColor = kalamconfig.get("textbackground")
+        self.textForegroundColor = kalamconfig.get("textforeground")
+        self.MDIBackgroundColor = kalamconfig.get("mdibackground")
+
+        self.initEditorTab()
+        self.initInterfaceTab()
+        self.initDocumentTab()
+      </programlisting>
+
+      <indexterm>
+  <primary>designer</primary><secondary>subclassing a dialog</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>DlgSettings</primary>
+  </indexterm>
+  <para id="para-ch14-14">The <classname>DlgSettings</classname>
+        dialog is a subclass of <classname>FrmSettings</classname>,
+        which we created with Designer. In the constructor we create
+        four objects for housekeeping purposes, to store changed
+        settings until the user chooses to apply them by pressing OK,
+        or to cancel.</para>
+
+      <para id="para-ch14-15">These objects represent the editor font,
+        the editor text color, the editor background color and the
+        background color of the MDI workspace. As you can see from the
+        calls to <filename>kalamconfig</filename>, actually
+        implementing this dialog necessitated quite a few changes to
+        the <filename>kalamconfig</filename> module.</para>
+
+<!-- todo & XXX: ref to source: online or CD-Rom? -->
+      <indexterm>
+  <primary>apply()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>configuration</primary><secondary>generic get/set functions</secondary>
+  </indexterm>
+  <para id="para-ch14-16">The full source of
+        <filename>kalamconfig</filename> is not so interesting for
+        this chapter, but it is available with the rest of the code.
+        To summarize the development: all settings are now retrieved
+        and set through a single pair of get/set functions. There are
+        a lot more settings, too. If a setting requires special
+        handling, then the relevant get/set function is retrieved from
+        a dictionary (you can just as easily store references to
+        functions or classes in a dictionary as in strings, since
+        everything is considered an object) and executed with
+        <function>apply()</function>. If a setting is changed, a
+        signal is emitted from the <classname>QApplication</classname>
+        instance, which can be reached with the global variable
+        <varname>qApp</varname>. Note how the actual signal identifier
+        is constructed dynamically:</para>
+
+      <programlisting>
+#
+# kalamconfig.py
+# Get and set - set emits a signal via Config.notifier
+#
+customGetSetDictionary = {
+    "style" : (getStyle, setStyle),
+    "workspace" : (getWorkspace, setWorkspace),
+    "textfont" : (getTextFont, setTextFont),
+    "textforeground" : (getTextForegroundColor, setTextForegroundColor),
+    "textbackground" : (getTextBackgroundColor, setTextBackgroundColor),
+    "mdibackground" : (getMDIBackgroundColor, setMDIBackgroundColor),
+}
+
+def set(attribute, value):
+    if customGetSetDictionary.has_key(attribute):
+        apply(customGetSetDictionary[attribute][1], (value,))
+    else:
+        setattr(Config, attribute, value)
+    qApp.emit(PYSIGNAL("sig" + str(attribute) + "Changed"),
+                         (value,))
+
+def get(attribute):
+    if customGetSetDictionary.has_key(attribute):
+        value = apply(customGetSetDictionary[attribute][0])
+    else:
+        value = getattr(Config, attribute)
+    return value
+      </programlisting>
+
+      <indexterm>
+  <primary>signals/slots</primary><secondary>creating signals on the fly</secondary>
+  </indexterm>
+  <para id="para-ch14-17">But, let us continue with
+        <filename>dlgsettings.py</filename>. There are three tab
+        pages, and every tab pages has its own initialization function.</para>
+
+      <programlisting>
+    def initEditorTab(self):
+        self.txtEditorPreview.setFont(self.textFont)
+
+        pl = self.txtEditorPreview.palette()
+        pl.setColor(QColorGroup.Base, self.textBackgroundColor)
+        pl.setColor(QColorGroup.Text, self.textForegroundColor)
+        
+        self.cmbLineWrapping.setCurrentItem(kalamconfig.get("wrapmode"))
+        self.spinLineWidth.setValue(kalamconfig.get("linewidth"))
+
+        self.connect(self.bnBackgroundColor,
+                     SIGNAL("clicked()"),
+                     self.slotBackgroundColor)
+        self.connect(self.bnForegroundColor,
+                     SIGNAL("clicked()"),
+                     self.slotForegroundColor)
+        self.connect(self.bnFont,
+                     SIGNAL("clicked()"),
+                     self.slotFont)
+      </programlisting>
+
+      <indexterm>
+  <primary>palette</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPalette</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QColorGroup</primary>
+  </indexterm>
+  <para id="para-ch14-18">The editor tab shows a nice preview of
+        the font and color combination the user has chosen. Setting
+        these colors, however, is not as straightforward as you might
+        think. Qt widget colors are governed by a complex system based
+        around palettes. A palette (<classname>QPalette</classname>)
+        contains three color groups
+        (<classname>QColorGroup</classname>), one that is used if the
+        widget is active, one that is used if the widget is disabled,
+        and one that is used if the widget is inactive.</para>
+
+      <indexterm>
+  <primary>color roles</primary>
+  </indexterm>
+  <para id="para-ch14-19">A <classname>QColorGroup</classname> in its turn, is a set
+      of colors with certain roles:</para>
+  
+  <indexterm>
+    <primary>Foreground</primary>
+  </indexterm>
+  <indexterm>
+  <primary>Background</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Base</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Text</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Button</primary>
+  </indexterm>
+  <indexterm>
+    <primary>ButtonText</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Light</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Midlight</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Dark</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Mid</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Shadow</primary>
+  </indexterm>
+  <indexterm>
+    <primary>Highlight</primary>
+  </indexterm>
+  <indexterm>
+    <primary>HighlightedText</primary>
+  </indexterm>
+  
+  <itemizedlist>
+        <listitem>
+  <para id="para-ch14-20">Background - general
+            background color.</para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-21">Foreground - general
+            foreground color.</para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-22">Base - background color text
+            entry widgets
+          </para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-23">Text - the foreground color
+            used with Base.</para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-24">Button - general button
+            background color</para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-25">ButtonText - for button
+            texts</para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-26">Light - lighter than Button
+            color. </para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-27">Midlight - between Button
+            and Light. </para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-28">Dark - darker than Button.
+          </para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-29">Mid - between Button and
+            Dark. </para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-30">Shadow - a very dark color.
+          </para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-31">Highlight - a color to
+            indicate a selected or highlighted item. </para>
+        </listitem>
+        <listitem>
+  <para id="para-ch14-32">HighlightedText - a text
+            color that contrasts to Highlight.</para>
+        </listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>color</primary><secondary>calculation</secondary>
+  </indexterm>
+  <para id="para-ch14-33">All colors are normally calculated from
+        the Background color. Setting the background color of the
+        editor with the convenience function
+        <function>setBackgroundColor()</function> won't have an
+        effect; we must use the Base color in the relevant
+        <classname>QColorGroup</classname>.</para>
+
+      <indexterm>
+  <primary>palette</primary><secondary>retrieving the palette</secondary>
+  </indexterm>
+  <para id="para-ch14-34">This system is certainly quite complex,
+        but it allows for tremendous flexibility. Using it isn't too
+        arduous. First, we retrieve the palette from the editor
+        widget:</para>
+
+      <programlisting>
+        pl = self.txtEditorPreview.palette()
+        pl.setColor(QColorGroup.Base, self.textBackgroundColor)
+        pl.setColor(QColorGroup.Text, self.textForegroundColor)
+      </programlisting>
+      
+      <para id="para-ch14-35">Then we can use the function
+        <function>setColor</function>, which takes a colorgroup role
+        and a <classname>QColor</classname> as arguments. Note that if
+        we use these functions to change the colors of a widget after
+        it has been shown for the first time, we must call
+        <function>repaint(TRUE)</function> to force the widget to
+        redraw itself. Otherwise Qt's highly optimized drawing engine
+        becomes confused. This will be done in the slot function
+        that's connected to the <function>clicked()</function> signal
+        of the color choice buttons.</para>
+
+      <programlisting>
+    def initInterfaceTab(self):
+        self.initStylesCombo()
+        self.initWindowViewCombo()
+        self.lblBackgroundColor.setBackgroundColor(self.MDIBackgroundColor)
+        self.connect(self.bnWorkspaceBackgroundColor,
+                     SIGNAL("clicked()"),
+                     self.slotWorkspaceBackgroundColor)
+      </programlisting>
+
+      <para id="para-ch14-36">The preview for the interface style is
+        initialized in <function>initWindowViewCombo</function>. Note
+        that <classname>QLabel</classname> is rather more simple in
+        its needs than <classname>QMultiLineEdit</classname> as
+        regards colors. Here, you can just use the convenience
+        function <function>setBackgroundColor</function>
+        (<function>setEraseColor()</function> in Qt 3) to show the
+        preview color for the MDI workspace.</para>
+
+      <programlisting>
+    def initDocumentTab(self):
+        self.initEncodingCombo()
+        self.chkAddNewLine.setChecked(kalamconfig.get("forcenewline"))
+      </programlisting>
+
+      <para id="para-ch14-37">This must be the least complex tab, but
+        no doubt we will be adding to it during the course of our
+        development of <application>Kalam</application>.</para>
+
+      <programlisting>
+    def initStylesCombo(self):
+        self.cmbStyle.clear()
+        styles = kalamconfig.stylesDictionary.keys()
+        styles.sort()
+        try:
+            currentIndex = styles.index(kalamconfig.Config.style)
+        except:
+            currentIndex = 0
+            kalamconfig.setStyle(styles[0])
+        self.cmbStyle.insertStrList(styles)
+        self.cmbStyle.setCurrentItem(currentIndex)
+        self.connect(self.cmbStyle,
+                     SIGNAL("activated(const QString &)"),
+                     self.setStyle)
+      </programlisting>
+
+      <indexterm>
+  <primary>QStyle</primary>
+  </indexterm>
+  <para id="para-ch14-38">To make life a lot easer, we have
+        defined a dictionary that maps user-understandable style names
+        to <classname>QStyle</classname> classes in
+        <filename>kalamconfig</filename>. Note that we need, in order
+        to find out which one is the current style, not the result of
+        <function>kalamconfig.get("style")</function>, since that
+        returns a <classname>QStyle</classname> object, but the actual
+        string in the
+        <classname>Config</classname><varname>.style</varname>
+        variable.</para>
+
+      <programlisting>
+# kalamconfig.py - styles dictionary
+stylesDictionary = {
+    "Mac OS 8.5" : QPlatinumStyle,
+    "Windows 98" : QWindowsStyle,
+    "Motif" : QMotifStyle,
+    "Motif+" : QMotifPlusStyle,
+    "CDE" : QCDEStyle
+    }
+      </programlisting>
+
+      <indexterm>
+  <primary>dictionaries</primary><secondary>order</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>sort()</primary>
+  </indexterm>
+  <para id="para-ch14-39">The keys of this dictionary are used to
+        fill the style combo. Python dictionaries are unordered, and
+        to ensure that the same style is alwas at the same place in
+        the combobox, we have to sort the list of keys. Sorting a list
+        is done <emphasis>in place</emphasis> in Python, and that
+        means that calling
+        <function>sort()</function> on a list doesn't return a list.
+        If we'd written:</para>
+
+      <programlisting>
+        styles = kalamconfig.stylesDictionary.keys().sort()
+      </programlisting>
+
+      <para id="para-ch14-40">instead, styles would have been set to
+        <varname>None</varname>... Activating an entry in the styles
+        combobox emits a signal that is routed to the
+        <function>setStyle()</function> function:</para>
+
+      <programlisting>
+    def setStyle(self, style):
+        kalamconfig.set("style", str(style))
+        qApp.setStyle(kalamconfig.get("style")())
+      </programlisting>
+
+      <indexterm>
+  <primary>setStyle()</primary>
+  </indexterm>
+  <para id="para-ch14-41">Changing a style is instantaneous in
+        <application>Kalam</application>, if only because it is fun to
+        run through all the styles and see the
+        application changing under your fingers. Therefore, we
+        immediately update the style setting, and call
+        <function>qApp.setStyle()</function> to propagate the changes
+        to the application widgets.</para>
+
+      <programlisting>
+    def initWindowViewCombo(self):
+        self.cmbWindowView.clear()
+
+        workspaces = kalamconfig.workspacesDictionary.keys()
+        workspaces.sort()
+        try:
+            currentIndex = workspaces.index(kalamconfig.Config.workspace)
+        except:
+            currentIndex = 0
+            kalamconfig.setWorkspace(workspaces[0])
+        self.cmbWindowView.insertStrList(workspaces)
+        self.cmbWindowView.setCurrentItem(currentIndex)
+
+        self.connect(self.cmbWindowView,
+                     SIGNAL("activated(const QString &)"),
+                     self.setWorkspacePreview)
+      </programlisting>
+
+      <para id="para-ch14-42">Setting up the workspace selection
+        combobox is similar to setting up the styles combobox. The
+        only interesting point is the connection to
+        <function>setWorkspacePreview</function>. This function
+        updates the small image that shows what each option means.
+        These images were made from snapshots, and scaled down with
+        Pixie, a KDE graphics application (which is now
+        obsolete).</para>
+
+      <programlisting>
+    def setWorkspacePreview(self, workspace):
+        workspace = str(workspace) + ".png"
+        # XXX - when making installable, fix this path
+        pixmap = QPixmap(os.path.join("./pixmaps",
+                                      workspace))
+        self.pxViewSample.setPixmap(pixmap)
+      </programlisting>
+
+      <indexterm>
+  <primary>mess</primary>
+  </indexterm>
+  <para id="para-ch14-43">As you can see, application development
+        is messy, and I don't want to hide all the mess from you.
+        Later, when we make the application distributable in <xref
+                                                                   linkend="ch18">, we
+        will have to come back to this function and devise a way to
+        make <application>Kalam</application> retrieve its pictures
+        from the installation directory.</para>
+
+      <programlisting>
+    def initEncodingCombo(self):
+        self.cmbEncoding.clear()
+        encodings = kalamconfig.codecsDictionary.keys()
+        encodings.sort()
+        try:
+            currentIndex = encodings.index(kalamconfig.get("encoding"))
+        except:
+            currentIndex = 0
+            Config.encoding = encodings[0]
+
+        self.cmbEncoding.insertStrList(encodings)
+        self.cmbEncoding.setCurrentItem(currentIndex)
+      </programlisting>
+
+      <indexterm>
+  <primary>encodings</primary><secondary>in kalamconfig.py</secondary>
+  </indexterm>
+  <para id="para-ch14-44">The list of encodings is defined in
+        <filename>kalamconfig</filename>, just like the list of
+        styles and interface types:</para>
+
+      <programlisting>
+# kalamconfig.py - encodings dictionary
+
+codecsDictionary = {
+    "Unicode" : "utf8",
+    "Ascii": "ascii",
+    "West Europe (iso 8859-1)": "iso-8859-1",
+    "East Europe (iso 8859-2)": "iso-8859-2",
+    "South Europe (iso 8859-3)": "iso-8859-3",
+    "North Europe (iso 8859-4)": "iso-8859-4",
+    "Cyrilic (iso 8859-5)": "iso-8859-5",
+    "Arabic (iso 8859-6)": "iso-8859-6",
+    "Greek (iso 8859-7)": "iso-8859-7",
+    "Hebrew (iso 8859-8)": "iso-8859-8",
+    "Turkish (iso 8859-9)": "iso-8859-9",
+    "Inuit (iso 8859-10)": "iso-8859-10",
+    "Thai (iso 8859-11)": "iso-8859-11",
+    "Baltic (iso 8859-13)": "iso-8859-13",
+    "Gaeilic, Welsh (iso 8859-14)": "iso-8859-14",
+    "iso 8859-15": "iso-8859-15",
+    "Cyrillic (koi-8)": "koi8_r",
+    "Korean (euc-kr)": "euc_kr"}
+      </programlisting>
+
+      <para id="para-ch14-45">A <classname>QMultiLineEdit</classname> widget always used
+        Unicode internally, but these codecs are used as a default
+        setting for loading and saving files. Users load an
+        ascii file, edit it in Unicode, and save it back to ascii.
+        Theoretically, you can retrieve the users preferences from his
+        locale. The operating system defines the preferred
+        encoding, but people seldom work with one encoding, and
+        <application>Kalam</application> is meant to provide users with a
+        choice.</para>
+
+      <indexterm>
+  <primary>encoding</primary><secondary>Japanese</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>tiscii</primary>
+  </indexterm>
+  <indexterm>
+  <primary>jis</primary>
+  </indexterm>
+  <indexterm>
+  <primary>shift-jis</primary>
+  </indexterm>
+  <indexterm>
+  <primary>gbk</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTextCodec</primary>
+  </indexterm>
+  <para id="para-ch14-46">While the selection of codecs in Python is large, not all
+        important encodings are available from Python.
+        Japanese (jis, shift-jis, euc-jp), Chinese (gbk) and Tamil
+        (tscii) are only available in Qt (QTextCodec classes), and not in
+        Python. Codecs for the tiscii encoding used for Devagari are
+        not available anywhere. You can download separate Japanese
+        codecs for Python from
+        http://pseudo.grad.sccs.chukyo-u.ac.jp/~kajiyama/python/.
+        (euc-jp, shift_jis, iso-2022-jp)</para>
+
+      <indexterm>
+  <primary>Hebrew</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QHebrewCodec</primary>
+  </indexterm>
+  <para id="para-ch14-47"> Note also that iso-8859-8 is visually ordered, and you
+        need Qt 3.0 with the QHebrewCodec to translate iso-8859-8
+        correctly to Unicode.</para>
+
+      <programlisting>
+    def slotForegroundColor(self):
+        color = QColorDialog.getColor(self.textForegroundColor)
+        if color.isValid():
+            pl = self.txtEditorPreview.palette()
+            pl.setColor(QColorGroup.Text, color)
+            self.textForegroundColor = color
+            self.txtEditorPreview.repaint(1)
+
+    def slotBackgroundColor(self):
+        color = QColorDialog.getColor(self.textBackgroundColor)
+        if color.isValid():
+            pl = self.txtEditorPreview.palette()
+            pl.setColor(QColorGroup.Base, color)
+            self.textBackgroundColor = color
+            self.txtEditorPreview.repaint(1)
+
+    def slotWorkspaceBackgroundColor(self):
+        color = QColorDialog.getColor(self.MDIBackgroundColor)
+        if color.isValid():
+            self.MDIBackgroundColor = color
+            self.lblBackgroundColor.setBackgroundColor(color)
+      </programlisting>
+
+      <indexterm>
+  <primary>QColorDialog</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QColor</primary><secondary>invalid colors</secondary>
+  </indexterm>
+  <para id="para-ch14-48">Each of the color selection buttons is
+        connected to one of these color slot functions. Note that
+        <classname>QFontDialog</classname>, in contrast with
+        <classname>QColorDialog</classname>, returns a tuple
+        consisting of a <classname>QFont</classname> and a value that
+        indicates whether the user pressed OK or Cancel.
+        <classname>QColorDialog</classname> only returns a color; if
+        the color is invalid, then the user pressed Cancel. This can
+        be confusing, especially since an invalid
+        <classname>QColor</classname> is just black. Note that we have
+        to call <function>repaint(1)</function>, here, to make sure
+        the editor preview is updated.</para>
+
+      <programlisting>
+    def slotFont(self):
+        (font, ok) = QFontDialog.getFont(kalamconfig.getTextFont(),
+                                         self)
+        if ok:
+            self.txtEditorPreview.setFont(font)
+            self.textFont = font
+      </programlisting>
+
+      <indexterm>
+  <primary>QFontDialog</primary>
+  </indexterm>
+  <para id="para-ch14-49">The <classname>QFontDialog</classname>
+        <emphasis>does</emphasis> return a tuple&mdash;and if
+        <varname>ok</varname> is true, then we update the font of the
+        preview and also set the <varname>textFont</varname> variable
+        to reflect the users choice.</para>
+
+      <para id="para-ch14-50">Finally, there's a bit of code appended to
+      <classname>DlgSettings</classname>, to make it possible to run
+      the dialog on its own (to test all functionality):</para>
+
+      <programlisting>
+if __name__ == '__main__':
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL('lastWindowClosed()'),a,SLOT('quit()'))
+    w = DlgSettings()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
+      </programlisting>
+
+    </sect2>
+
+    <sect2><title>Calling the settings dialog window</title>
+
+      <para id="para-ch14-51">In order to be able to call the dialog window, we must
+      first create a new <classname>QAction</classname> and add it to
+      a likely menu. This is done in <classname>KalamApp</classname>:
+      </para>
+
+      <programlisting>
+# kalamapp.py
+    def initActions(self):
+        self.actions = {}
+        ...
+        #
+        # Settings actions
+        #
+
+        self.actions["settingsSettings"] = QAction("Settings",
+                                           "&amp;Settings",
+                                           QAccel.stringToKey(""),
+                                           self)
+        self.connect(self.actions["settingsSettings"],
+                     SIGNAL("activated()"),
+                     self.slotSettingsSettings)
+        ...
+
+    def initMenuBar(self):
+        ...
+        self.settingsMenu = QPopupMenu()
+        self.actions["settingsSettings"].addTo(self.settingsMenu)
+        self.menuBar().insertItem("&amp;Settings", self.settingsMenu)
+        ...
+      </programlisting>
+
+      <para id="para-ch14-52">The <varname>settingsSettings</varname>
+        is connected to a new slot in
+        <classname>KalamApp</classname>:</para>
+
+      <programlisting>
+    # Settings slots
+
+    def slotSettingsSettings(self):
+        dlg = DlgSettings(self,
+                          "Settings",
+                          TRUE,
+                          Qt.WStyle_Dialog)
+      </programlisting>
+
+      <indexterm>
+  <primary>dialog</primary><secondary>executing a dialog</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>dialog</primary><secondary>modal</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>windows flags</primary><secondary>WStyle_Dialog</secondary>
+  </indexterm>
+  <para id="para-ch14-53">The dialog window is constructed as a
+        function-local variable. That means that if the function
+        reaches its end, the <varname>dlg</varname> object is deleted.
+        A settings dialog is typically modal. Whether a dialog is
+        created modal or non-modal is determined in the constructor.
+        The first argument to
+        <function>DlgSettings.__init__()</function> is the parent
+        window, in this case <classname>KalamApp</classname>. The
+        second argument is a name. The third argument determines
+        whether the dialog is modal&mdash;TRUE means modal, FALSE
+        means non-modal. FALSE is also the default. The last argument
+        can be any combination of widget flags. For a dialog box,
+        <varname>Qt.WStyle_Dialog</varname> seems rather appropriate.
+        Note that in Qt 3, this flag is renamed to
+        <varname>Qt.WType_Dialog</varname> There are a whole lot of
+        flags (the following list is based on Qt 2 - there have been
+        some changes):</para>
+
+      <itemizedlist>
+        <listitem>
+          <indexterm>
+  <primary>widget flags</primary><secondary>(listed)</secondary>
+  </indexterm>
+  <para id="para-ch14-54">WType_TopLevel - a toplevel
+            window</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-55">WType_Modal - Makes the widget modal
+            and inplies WStyle_Dialog. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-56">WType_Popup - this widget is a popup
+            top-level window, it is modal, but has a window system
+            frame appropriate for popup menus. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-57">WType_Desktop - This widget is the
+            desktop - you can actually use PyQt to paint on you
+            desktop.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-58">WStyle_NormalBorder - The window has
+            a normal border.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-59">WStyle_DialogBorder - A thin dialog
+            (if you windowmanager on X11 supports that).</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-60">WStyle_NoBorder - gives a borderless
+            window. However, it is better to use WStyle_NoBorderEx
+            instead, because this flag will make the window completely
+            unusable on X11.
+          </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-61">WStyle_NoBorderEx - gives a
+            borderless window.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-62">WStyle_Title - The window jas a
+            title bar. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-63">WStyle_SysMenu - adds a window
+            system menu. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-64">WStyle_Minimize - adds a minimize
+            button. On Windows this must be combined with
+            WStyle_SysMenu to work. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-65">WStyle_Maximize - adds a maximize
+            button. See WStyle_Minimize. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-66">WStyle_MinMax - is equal to
+            WStyle_Minimize|WStyle_Maximize. On Windows this must be
+            combined with WStyle_SysMenu to work.
+          </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-67">WStyle_ContextHelp - adds a context
+            help button to dialogs. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-68">WStyle_Tool - A tool window is a
+            small window that contains tools (for instance, drawing
+            tools, or the step buttons of a debugger). The tool window
+            will always be kept on top of its parent, if there is
+            one.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-69">WStyle_StaysOnTop - the window
+            should stay on top of all other windows. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-70">WStyle_Dialog - indicates that the
+            window is a dialog window. The window will not get its own
+            taskbar entry and be kept on top of its parent by the
+            window system. This is the flag QDialog uses, and it is
+            not necessary for us to explicitly pass it to
+            <classname>DlgSettings</classname>.
+          </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-71">WDestructiveClose - makes Qt delete
+            this object when the object has accepted closeEvent().
+            Don't use this for dialog windows, or your application
+            will crash.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-72">WPaintDesktop - gives this widget
+            paint events for the desktop. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-73">WPaintUnclipped - makes all painters
+            operating on this widget unclipped. Children of this
+            widget, or other widgets in front of it, do not clip the
+            area the painter can paint on. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-74">WPaintClever - indicates that Qt
+            should not try to optimize repainting for the widget, but
+            instead pass the window system repaint events directly on
+            to the widget.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-75">WResizeNoErase - indicates that
+            resizing the widget should not erase it. This allows
+            smart-repainting to avoid flicker. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-76">WMouseNoMask - indicates that even
+            if the widget has a mask, it wants mouse events for its
+            entire rectangle.
+          </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-77">WNorthWestGravity - indicates that
+            the widget contents are north-west aligned and static. On
+            resize, such a widget will receive paint events only for
+            the newly visible part of itself. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-78">WRepaintNoErase - indicates that the
+            widget paints all its pixels. Updating, scrolling and
+            focus changes should therefore not erase the widget. This
+            allows smart-repainting to avoid flicker. </para>
+        </listitem>
+        <listitem>
+          <para id="para-ch14-79">WGroupLeader - makes this widget or
+            window a group leader. Modality of secondary windows only
+            affects windows within the same group. </para>
+        </listitem>
+
+      </itemizedlist>
+
+      <para id="para-ch14-80">You can combine these flags with the or
+        (or |) operator. <!-- this wording is unclear to me. "or-ing"
+        them ? Br: that's a technical term - combining with the 'or'
+        operator. This should be clearer.--></para>
+
+      <indexterm>
+  <primary>exec_loop()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>dialogs</primary><secondary>exec_loop()</secondary>
+  </indexterm>
+  <para id="para-ch14-81">Showing a modal dialog is a matter of
+        simply calling <function>exec_loop()</function>:
+      </para>
+
+      <programlisting>
+        dlg.exec_loop()
+        if dlg.result() == QDialog.Accepted:
+            kalamconfig.set("textfont", dlg.textFont)
+            kalamconfig.set("workspace", str(dlg.cmbWindowView.currentText()))
+            kalamconfig.set("style", str(dlg.cmbStyle.currentText()))
+            kalamconfig.set("textbackground", dlg.textBackgroundColor)
+            kalamconfig.set("textforeground", dlg.textForegroundColor)
+            kalamconfig.set("mdibackground", dlg.MDIBackgroundColor)
+            kalamconfig.set("wrapmode", dlg.cmbLineWrapping.currentItem())
+            kalamconfig.set("linewidth", int(str(dlg.spinLineWidth.text())))
+            kalamconfig.set("encoding", str(dlg.cmbEncoding.currentText()))
+            kalamconfig.set("forcenewline", dlg.chkAddNewLine.isChecked())
+      </programlisting>
+
+      <indexterm>
+  <primary>dialogs</primary><secondary>retrieving values from modal</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>dialogs</primary><secondary>result code</secondary>
+  </indexterm>
+  <para id="para-ch14-82">If the execution loop of a modal dialog
+        terminates, the dialog object is not destroyed, and you can
+        use the reference to the object to retrieve the contents of
+        its widgets. By calling <function>result()</function> on the
+        dialog object you can determine whether the user pressed OK or
+        Cancel.</para>
+
+      <para id="para-ch14-83">In this example, if the user presses OK,
+        all relevant settings in <filename>kalamconfig</filename> are
+        updated. This causes <filename>kalamconfig</filename> to emit
+        change signals that are caught by all relevant objects.</para>
+
+      <para id="para-ch14-84">The <varname>workspace</varname> object
+        is updated:</para>
+
+      <programlisting>
+    def initWorkSpace(self):
+        workspace = kalamconfig.get("workspace")(self)
+        workspace.setBackgroundColor(kalamconfig.get("mdibackground"))
+        self.connect(qApp,
+                     PYSIGNAL("sigmdibackgroundChanged"),
+                     workspace.setBackgroundColor)
+        self.setCentralWidget(workspace)
+        return workspace
+      </programlisting>
+
+      <para id="para-ch14-85">All <varname>view</varname> objects
+        are updated, too. Some of the changes can be directly
+        connected to the editor widget, the font setting, while others need
+        a bit of processing, like the wrap mode:</para>
+
+      
+      <programlisting>
+# kalamview.py - extract
+...
+import kalamconfig
+...
+class KalamView(QWidget):
+
+    def __init__(self, parent, doc, *args):
+        ...
+        self.editor.setFont(kalamconfig.get("textfont"))
+        self.setWordWrap(kalamconfig.get("wrapmode"))
+        self.setBackgroundColor(kalamconfig.get("textbackground"))
+        self.setTextColor(kalamconfig.get("textforeground"))
+        ...
+        self.connect(qApp,
+                     PYSIGNAL("siglinewidthChanged"),
+                     self.editor.setWrapColumnOrWidth)
+        self.connect(qApp,
+                     PYSIGNAL("sigwrapmodeChanged"),
+                     self.setWordWrap)
+        self.connect(qApp,
+                     PYSIGNAL("sigtextfontChanged"),
+                     self.editor.setFont)
+        self.connect(qApp,
+                     PYSIGNAL("sigtextforegroundChanged"),
+                     self.setTextColor)
+        self.connect(qApp,
+                     PYSIGNAL("sigtextbackgroundChanged"),
+                     self.setBackgroundColor)
+        ...
+
+    def setTextColor(self, qcolor):
+        pl = self.editor.palette()
+        pl.setColor(QColorGroup.Text, qcolor)
+        self.editor.repaint(TRUE)
+
+    def setBackgroundColor(self, qcolor):
+        pl = self.editor.palette()
+        pl.setColor(QColorGroup.Base, qcolor)
+        self.editor.setBackgroundColor(qcolor)        
+        self.editor.repaint(TRUE)
+        
+    def setWordWrap(self, wrapmode):
+
+        if wrapmode == 0:
+            self.editor.setWordWrap(QMultiLineEdit.NoWrap)
+        elif wrapmode == 1:
+            self.editor.setWordWrap(QMultiLineEdit.WidgetWidth)
+        else:
+            self.editor.setWordWrap(QMultiLineEdit.FixedColumnWidth)
+            self.editor.setWrapColumnOrWidth(kalamconfig.get("linewidth"))
+    ...
+      </programlisting>
+
+      <indexterm>
+  <primary>KalamView</primary>
+  </indexterm>
+  <para id="para-ch14-86">Not all changes can be activated while the
+        application is running. The workspace style is determined when
+        the application is restarted. It is nice and courteous to
+        inform the user so. The best place to do that is in
+        <function>slotSettingsSettings()</function>:</para>
+
+      <programlisting>
+    def slotSettingsSettings(self):
+        ...
+        if dlg.result() == QDialog.Accepted:
+            ...
+            workspace = str(dlg.cmbWindowView.currentText())
+            if kalamconfig.Config.workspace &lt;&gt; workspace:
+                kalamconfig.set("workspace", workspace)
+                QMessageBox.information(self,
+                                        "Kalam",
+                                        "Changes to the interface style " +
+                                        "will only be activated when you " +
+                                        "restart the application.")
+        ...
+      </programlisting>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="ch14Sect1SearchAndReplace"><title>Non-modal: Search and
+      replace</title>
+
+    <indexterm>
+  <primary>dialogs</primary><secondary>non-modal</secondary>
+  </indexterm>
+  <para id="para-ch14-87">In the previous section we constructed a
+      deviously complex (at least, it felt that way) modal dialog box.
+      Now we will attempt something comparable for a non-modal dialog
+      box.</para>
+
+    <sect2><title>Design</title>
+
+      <indexterm>
+  <primary>search and replace</primary>
+  </indexterm>
+  <indexterm>
+  <primary>replace</primary>
+  </indexterm>
+  <para id="para-ch14-88">What we are aiming for is a combined
+        "search" and "search and replace" dialog box. It should
+        conform to the following requirements:</para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch14-89">Two kinds of search: plain
+            text and regular expressions.</para>
+        </listitem>
+<!--        <listitem><para id="para-ch14-90">It should keep a history of
+            previous search and replace strings.</para>
+      </listitem> Br: I believe I forgot to implement this. -->
+        <listitem><para id="para-ch14-91">Search forward and
+            backward</para>
+        </listitem>
+        <listitem><para id="para-ch14-92">Case sensitive or
+            insensitive search</para>
+        </listitem>
+        <listitem><para id="para-ch14-93">Search from the beginning of
+            the text or the current cursor position</para>
+        </listitem>
+        <listitem><para id="para-ch14-94">Search on a selection or the
+            whole text.</para>
+        </listitem>
+        <listitem><para id="para-ch14-95">Choice between replace one
+            occurrence after another, or or all occurrences.</para>
+        </listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>designer</primary><secondary>designing a seach and replace dialog</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>find and replace</primary>
+  </indexterm>
+  <para id="para-ch14-96">A tall order? Certainly, but also quite
+        probably very instructive. A few minutes with the Designer
+        gives us the following, esthetically pleasing, dialog
+        box:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch14/frmfindreplace.eps">
+        </imageobject>
+        <caption>
+          <para id="para-ch14-97">The find and replace dialog.</para>
+        </caption>
+      </mediaobject>
+    </sect2>
+
+    <sect2><title>Integration in the application</title>
+
+      <indexterm>
+  <primary>dialogs</primary><secondary>calling a non-modal dialogs</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QAction</primary>
+  </indexterm>
+  <para id="para-ch14-98">Implementing all this functionality is
+        quite complex, so it is best to first make sure that we can
+        call the find and replace dialog window from the application.
+        This entails adding two <classname>QAction</classname>'s to
+        the action dictionary, an icon to
+        <filename>resources.py</filename>, and two new slots&mdash;and
+        creating the dialog, of course.</para>
+
+      <indexterm>
+  <primary>dialogs</primary><secondary>showing and hiding</secondary>
+  </indexterm>
+  <para id="para-ch14-99">You don't create, run and destroy a
+        non-modal dialog, like we did with the settings dialog.
+        Instead, you create it once, and show it whenever necessary.
+        The Close button on the dialog doesn't really close it; it
+        merely hides the window. In this case, the find and replace
+        dialog is created in the constructor of
+        <classname>KalamApp</classname>:</para>
+
+      <programlisting>
+...
+from dlgfindreplace import DlgFindReplace
+...
+class KalamApp(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        ...
+        # Create the non-modal dialogs
+        self.dlgFindReplace = DlgFindReplace(self, "Find and replace")
+      </programlisting>
+
+
+      <para id="para-ch14-100">There are two actions defined: one for
+        search, and one for find and replace. Again, the "find" icon
+        is the standard KDE 2 icon for find operations.</para>
+
+      <programlisting>
+    def initActions(self):
+        self.actions = {}
+
+        ...
+
+        #
+        # Edit actions
+        #
+
+        ...
+        self.actions["editFind"] = QAction("Find",
+                                           QIconSet(QPixmap(editfind)),
+                                           "&amp;Find",
+                                           QAccel.stringToKey("CTRL+F"),
+                                           self)
+        self.connect(self.actions["editFind"],
+                     SIGNAL("activated()"),
+                     self.slotEditFind)
+
+        self.actions["editReplace"] = QAction("Replace",
+                                           "&amp;Replace",
+                                           QAccel.stringToKey("CTRL+R"),
+                                           self)
+        self.connect(self.actions["editReplace"],
+                     SIGNAL("activated()"),
+                     self.slotEditReplace)
+      </programlisting>
+
+      <para id="para-ch14-101">By now, you probably know what comes
+        next: adding the actions to the menu bar, and to the toolbar.
+        Since there isn't an icon for replace, it cannot be added to
+        the toolbar:</para>
+
+      <programlisting>
+    def initMenuBar(self):
+        ...
+        self.editMenu = QPopupMenu()
+        ...
+        self.editMenu.insertSeparator()
+        self.actions["editFind"].addTo(self.editMenu)
+        self.actions["editReplace"].addTo(self.editMenu)
+        self.menuBar().insertItem("&amp;Edit", self.editMenu)
+        ...
+
+    def initToolBar(self):
+        ...
+        self.editToolbar = QToolBar(self, "edit operations")
+        ...
+        self.actions["editFind"].addTo(self.editToolbar)
+      </programlisting>
+
+      <para id="para-ch14-102">Because the combined find/find and
+        replace dialog has two modes, it is necessary to have two ways
+        of calling it&mdash;one for find, and one for find and
+        replace. The dialog should work on the current document and
+        the current view, but it is difficult to determine if
+        &lsquo;current' should be the current document and view when
+        the dialog is opened, as opposed to the document and view that
+        have focus. The user might, after all, change document and
+        view while the find dialog is open, or even close them. For
+        now, let's use the document and view that are open when the
+        dialog is shown.</para>
+
+      <programlisting>
+    def slotEditFind(self):
+        self.dlgFindReplace.showFind(self.docManager.activeDocument(),
+                                     self.workspace.activeWindow())
+
+    def slotEditReplace(self):
+        self.dlgFindReplace.showReplace(self.docManager.activeDocument(),
+                                        self.workspace.activeWindow())
+      </programlisting>
+
+      <indexterm>
+  <primary>hiding widgets</primary>
+  </indexterm>
+  <indexterm>
+  <primary>show()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>layout management</primary><secondary>showing and hiding widgets</secondary>
+  </indexterm>
+  <para id="para-ch14-103">The actual implementation in
+        <classname>DlgFindReplace</classname> of these show function
+        is quite simple. The Find option hides certain widgets, after
+        which the automatic layout management ensures that the dialog
+        looks as good as it should. The Find and Replace options makes
+        sure they are shown. The window caption is adapted, too. Note
+        that you must first call <function>show()</function> on the
+        entire dialog, and only then <function>show()</function> on
+        the previously hidden widgets, otherwise the layout manager
+        doesn't show the appearing widgets.</para>
+
+      <programlisting>
+    def showFind(self, document, view):
+        FrmFindReplace.show(self)
+        self.setCaption("Find in " + document.title())
+        self.bnReplaceNext.hide()
+        self.bnReplaceAll.hide()
+        self.grpReplace.hide()
+        self.initOptions(document, view)
+
+    def showReplace(self, document, view):
+        FrmFindReplace.show(self)
+        self.setCaption("Find and replace in " + document.title())
+        self.bnReplaceNext.show()
+        self.bnReplaceAll.show()
+        self.grpReplace.show()
+        self.initOptions(document, view)
+      </programlisting>
+
+      <para id="para-ch14-104">The result is pretty enough to show:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch14/kalamfind.eps">
+        </imageobject>
+        <caption>
+          <para id="para-ch14-105">The Find dialog.</para>
+        </caption>
+      </mediaobject>
+
+    </sect2>
+
+    <sect2><title>Implementation of the functionality</title>
+
+      <para id="para-ch14-106">Now that we can show the find and
+        replace dialog, it is time to implement some functionality.
+        Again, we subclass the generated design and add what we need.
+      </para>
+
+      <programlisting>
+"""
+dlgfindreplace.py - Findreplace dialog for Kalam.
+
+See: frmfindreplace.ui
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+import os, sys
+from qt import *
+
+import kalamconfig
+
+from resources import TRUE, FALSE
+from frmfindreplace import FrmFindReplace
+
+class DlgFindReplace(FrmFindReplace):
+    """ A full-featured search and replace dialog.
+    """
+    def __init__(self,
+                 parent = None,
+                 name = None):
+        FrmFindReplace.__init__(self, parent, name, FALSE, Qt.WStyle_Dialog)
+        
+        self.connect(self.bnFind,
+                     SIGNAL("clicked()"),
+                     self.slotFindNext)
+        self.connect(self.bnReplaceNext,
+                     SIGNAL("clicked()"),
+                     self.slotReplaceNext)
+        self.connect(self.bnReplaceAll,
+                     SIGNAL("clicked()"),
+                     self.slotReplaceAll)
+
+        self.connect(self.radioRegexp,
+                     SIGNAL("clicked()"),
+                     self.slotRegExp)
+        self.connect(self.chkCaseSensitive,
+                     SIGNAL("clicked()"),
+                     self.slotCaseSensitive)
+        self.connect(self.chkWholeText,
+                     SIGNAL("clicked()"),
+                     self.slotBeginning)
+        self.connect(self.chkSelection,
+                     SIGNAL("clicked()"),
+                     self.slotSelection)
+        self.connect(self.radioForward,
+                     SIGNAL("clicked()"),
+                     self.slotForward)
+        self.connect(self.radioBackward,
+                     SIGNAL("clicked()"),
+                     self.slotBackward)
+      </programlisting>
+      
+      <para id="para-ch14-107">In the constructor we connect all relevant
+      <function>clicked()</function> signals to their slots. The rest
+      of the initialization (such as determining which text or part
+      of text we will work on) is moved to the <function>show()</function>
+      function. The same instance of the dialog can be used for
+      different documents.</para>
+
+      <programlisting>
+    def showFind(self, document, view):
+        FrmFindReplace.show(self)
+        self.bnFind.setDefault(TRUE)
+        self.setCaption("Find in " + document.title())
+        self.bnReplaceNext.hide()
+        self.bnReplaceAll.hide()
+        self.grpReplace.hide()
+        self.cmbFind.setFocus()
+        self.init(document, view)
+
+
+    def showReplace(self, document, view):
+        FrmFindReplace.show(self)
+        self.setCaption("Find and replace in " + document.title())
+        self.bnReplaceNext.show()
+        self.bnReplaceNext.setDefault(TRUE)
+        self.bnReplaceAll.show()
+        self.grpReplace.show()
+        self.cmbFind.setFocus()
+        self.init(document, view)
+      </programlisting>
+
+      <para id="para-ch14-108">As we discussed above, there are two show functions
+        (<function>showFind()</function> and
+        <function>showReplace</function>), each hides or shows the
+        widgets that are relevant. The show functions also call the
+        initialization function <function>init()</function>.</para>
+
+      <programlisting>
+    def init(self, document, view):
+        self.document = document
+        self.view = view
+
+        if view.hasSelection():
+            self.chkSelection.setChecked(TRUE)
+
+        self.setFindExtent()
+
+      </programlisting>
+
+      <para id="para-ch14-109">The <function>init()</function>
+        function sets the document and view variables. Most of the
+        work is done directly on the view, making use of its
+        functionality for inserting, deleting and selecting text. This
+        is because whenever a string is found, it will be selected.
+        Asking the document to select a string will cause it to select
+        the string in all views of that document, which would be quite
+        confusing for the user.</para>
+
+
+      <para id="para-ch14-110">If there is already a selection present
+        in the view, the "find in selection" checkbox is checked. This
+        is convenient, because when a user presses find after having
+        selected a section of text, he most likely wants the search to
+        be performed in that selection only.</para>
+
+      <indexterm>
+  <primary>find and replace</primary><secondary>implementation</secondary>
+  </indexterm>
+  <para id="para-ch14-111">The function
+        <function>setFindExtent()</function> (which we will examine in
+        detail later in this section) determines which part of the
+        text should be searched: from the cursor position to the end,
+        to the beginning, or between the beginning and end of a
+        selection. The find routine keeps track of where it is within
+        a search extent, using the variable
+        <varname>self.currentPosition</varname>, which is initially
+        the same as the start position of the extent.</para>
+
+      <programlisting>
+    #
+    # Slot implementations
+    #
+    def slotRegExp(self):
+        if self.radioRegexp.isChecked():
+            self.radioForward.setChecked(TRUE)
+            self.grpDirection.setEnabled(FALSE)
+        else:
+            self.grpDirection.setEnabled(TRUE)
+      </programlisting>
+
+      <indexterm>
+  <primary>regular expressions</primary><secondary>Qt 2 vs Qt 3</secondary>
+  </indexterm>
+  <para id="para-ch14-112">If you are using Qt 2.3, you cannot use
+        regular expressions to search backwards. In Qt 3.0 the regular
+        expression object <classname>QRegExp</classname> has been
+        greatly extended, and can be used to search both forwards and
+        backwards. When <application>Kalam</application> was written,
+        Qt 3.0 was still in beta. Therefore, it was necessary to include
+        code to disable the forward/backward checkboxes whenever the
+        user selects the regular expressions search mode, and code to
+        make forward searching the default.</para>
+
+
+      <note><title>On regular expressions</title>
+
+        <indexterm>
+  <primary>regular expressions</primary><secondary>introduction</secondary>
+  </indexterm>
+  <para id="para-ch14-113">It is quite probable that you know
+          more about regular expressions than I do. I can't write them
+          for toffee, and I find reading regular expressions to be
+          even harder (despite the fact that I used to be a dab hand
+          at Snobol). Nonetheless, regular expressions are
+          indispensable when searching a text. Even I know how to use
+          $ to specify the end of input or \n to specify a new line.
+          Regular expressions are everywhere on a Unix system, and all
+          decent editors (as well as Python, Perl and most other
+          languages) support them. On Windows, you can enter regular
+          expressions in the search function of Word (or so I am
+          told).</para>
+
+        <para id="para-ch14-114">A regular expression is nothing more
+          than an algebraic notation for characterizing a set of
+          strings. An expression represents a pattern that the regular
+          expression engine can use to match text. Python comes with
+          its own highly capable, high performance regular expression
+          engine, compared with which the regular expression engine in
+          Qt 2.3 is a bit puny. The regular expression engine of Qt
+          3.0 has been improved a lot, and is nearly as good as the
+          Python one.</para>
+
+
+        <para id="para-ch14-115">According to the Qt online documentation, the Qt 2.3
+          <classname>QRegExp</classname> class recognized the
+          following primitives:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para id="para-ch14-116">c - the character 'c'
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-117">. - any character (but only one)
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-118">^ - matches start of input
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-119">$ - matches end of input
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-120">[] - matches a defined set of characters. For
+            instance, [a-z] matches all lowercase ASCII
+            characters. Note that you can give a range with a dash
+            (-) and negate a set with a caron (^ - [^ab] match
+            anything that does contain neither a nor b)/
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-121">c* -  matches a sequence of zero or more character c's
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-122">c+ -  matches a sequence of one or more character c's
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-123">c? - matches an optional character c
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-124">\c - escape code for special characters such
+              as \, [, *, +, . etc.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-125">\t - matches the TAB character (9)
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-126">\n - matches newline (10). For instance "else\n"
+            will find all occurrence of else that are followed with a
+            new line, and that are thus missing the obligatory closing
+            colon (:).
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-127">\r - matches return (13)
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-128">\s - matches a white space (defined as any character
+              for which QChar::isSpace() returns TRUE. This includes
+              at least ASCII characters 9 (TAB), 10 (LF), 11 (VT),
+              12(FF), 13 (CR) and 32 (Space)).
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-129">\d - matches a digit (defined as any character for
+              which QChar::isDigit() returns TRUE. This includes at
+              least ASCII characters '0'-'9').
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-130">\x1f6b - matches the character with unicode point
+              U1f6b (hexadecimal 1f6b). \x0012 will match the
+              ASCII/Latin1 character 0x12 (18 decimal, 12
+              hexadecimal).
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch14-131">\022 - matches the ASCII/Latin1 character 022 (18
+              decimal, 22 octal).
+            </para>
+          </listitem>
+        </itemizedlist>
+
+        <para id="para-ch14-132">Being constitutionally unable to explain exactly
+          <emphasis>how</emphasis> you go about creating regular
+          expressions that work, I can only refer you to the online
+          documentation of Python and Qt, and to the many tutorials
+          available on the web. Qt 3.0 comes with an excellent page on
+          regular expressions, too. Whenever I read Part I of Jurafsky
+          and Martin's book &lsquo;Speech and Language Processing', I have
+          the feeling that I understand regular expressions, and I
+          have never found that to be the case with any other text on the
+          subject.</para>
+
+        <indexterm>
+  <primary>regular expressions</primary><secondary>unicode</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>unicode</primary><secondary>regular expressions</secondary>
+  </indexterm>
+  <para id="para-ch14-133">As a last note: both Python and Qt regular expressions
+          work just fine with Unicode. Back to our code...</para>
+
+      </note>
+
+      <programlisting>
+    def slotCaseSensitive(self):
+        pass
+
+    def slotBeginning(self):
+        self.setFindExtent()
+
+    def slotSelection(self):
+        self.setFindExtent()
+
+    def slotForward(self):
+        self.setFindExtent()
+
+    def slotBackward(self):
+        self.setFindExtent()
+      </programlisting>
+
+      <para id="para-ch14-134">Whenever the user alters one of the options that influence
+      the direction or area of search, the extent must be adapted.</para>
+
+    <programlisting>
+    #
+    # Extent calculations
+    #
+    def setSelectionExtent(self):
+        self.startSelection = self.view.selectionStart()
+        self.endSelection = self.view.selectionEnd()
+
+        self.startPosition = self.startSelection
+        self.endPosition = self.endSelection
+
+    def setBackwardExtent(self):
+        # Determine extent to be searched
+        if (self.chkWholeText.isChecked()):
+            self.endPosition = self.view.length()
+        else:
+            self.endPosition = self.view.getCursorPosition()
+        self.startPosition = 0
+
+        if self.chkSelection.isChecked():
+            if self.view.hasSelection():
+                setSelectionExtent()
+
+        self.currentPosition = self.endPosition
+
+    def setForwardExtent(self):
+        # Determine extent to be searched
+        if (self.chkWholeText.isChecked()):
+            self.startPosition = 0
+        else:
+            self.startPosition = self.view.getCursorPosition()
+
+        self.endPosition = self.view.length()
+
+        if self.chkSelection.isChecked():
+            if self.view.hasSelection():
+                setSelectionExtent()
+
+        self.currentPosition = self.startPosition
+
+    def setFindExtent(self):
+        if self.radioForward.isChecked():
+            self.setForwardExtent()
+        else:
+            self.setBackwardExtent()
+      </programlisting>
+
+      <indexterm>
+  <primary>search direction</primary>
+  </indexterm>
+  <para id="para-ch14-135">Correctly determining which part of the
+        text should be searched is a fairly complex task. First, there
+        is an important difference between searching forwards and
+        backwards, if only because of the place where searching should
+        start. A further complication is caused by the option to
+        search either the whole text, or from the cursor position.
+        Note that begin and end mean the same thing with both
+        backwards and forwards searches; it is
+        <varname>currentPosition</varname>, where searching should
+        start, that is different between forward and backward
+        searches.</para> 
+
+
+      <programlisting>
+    def wrapExtentForward(self):
+        if QMessageBox.information(self.parent(),
+                                   "Kalam",
+                                   "End reached. Start from beginning?",
+                                   "yes",
+                                   "no",
+                                   None,
+                                   0,
+                                   1) == 0:
+            self.endPosition = self.startPosition
+            self.startPosition = 0
+            self.currentPosition = 0
+            self.slotFindNext()
+
+    def wrapExtentBackward(self):
+        if QMessageBox.information(self.parent(),
+                                   "Kalam",
+                                   "Begin reached. Start from end?",
+                                   "yes",
+                                   "no",
+                                   None,
+                                   0,
+                                   1) == 0:
+            self.startPosition = self.endPosition
+            self.endPosition = self.view.length()
+            self.currentPosition = self.startPosition
+            self.previousOccurrence()
+            self.slotFindNext()
+      </programlisting>
+      
+      <para id="para-ch14-136">Whenever the current extent has been searched, the user
+        should be asked whether he or she wants to search the rest of
+        the text. The functions above are different for
+        forwards and backwards searching, too.</para>
+
+
+      <programlisting>
+    #
+    # Find functions
+    #
+    def nextOccurrence(self):
+        findText = self.cmbFind.currentText()
+        caseSensitive = self.chkCaseSensitive.isChecked()
+        if self.radioRegexp.isChecked():
+            # Note differences with Qt 3.0
+            regExp = QRegExp(findText,
+                             caseSensitive)
+            pos, len = regExp.match(self.view.text(),
+                                    self.currentPosition,
+                                    FALSE)
+            return pos, pos+len
+        else:
+            pos = self.view.text().find(findText,
+                                        self.currentPosition,
+                                        caseSensitive)
+            return (pos, pos + findText.length())
+      </programlisting>
+      
+      <para id="para-ch14-137">Searching forwards can be done by plain text matching, or
+      with regular expressions.</para>
+
+      <indexterm>
+  <primary>QRegExp</primary>
+  </indexterm>
+  <indexterm>
+  <primary>re module</primary>
+  </indexterm>
+  <para id="para-ch14-138">Regular expressions are available from
+        both Python and PyQt. Python regular expressions (in the
+        <filename>re</filename> module) work on Python strings, while
+        PyQt regular expressions work on
+        <classname>QString</classname>s. It is relatively inefficient
+        to convert a <classname>QString</classname> to a Python
+        string, so we use <classname>QRegExp</classname> here (though
+        it is a little underpowered in its Qt 2.3 incarnation compared
+        to <filename>re</filename> and Qt 3.0's
+        <classname>QRegExp</classname>).</para>
+
+      <indexterm>
+  <primary>wildcard searches</primary>
+  </indexterm>
+  <para id="para-ch14-139">A <classname>QRegExp</classname> is
+        constructed from a string that contains the patterns that
+        should be matched, and two options. The first option
+        determines whether the search should be case sensitive; the
+        second determines whether or not the search is a wildcard
+        search. Wildcard searches work like the filename expansion on
+        a Unix command line, and are not terribly useful for searching
+        in a text.</para>
+
+      <indexterm>
+  <primary>QRegExp()</primary><secondary>match()</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QRegExp()</primary><secondary>find()</secondary>
+  </indexterm>
+  <para id="para-ch14-140"><classname>QRegExp</classname> has two
+        tools for searching: <function>match()</function> and
+        <function>find()</function>. Both take as parameters the
+        <classname>QString</classname> to be searched and the position
+        from which searching should start. However,
+        <function>match()</function> also returns the length of the
+        string that is found, and can take an optional parameter that
+        indicates whether the start position should match the regular
+        expression character "^" (start of input). You don't want this
+        for searching in editable text, so we make it FALSE by
+        default.</para>
+
+      <para id="para-ch14-141">Literal searching is a simple matter of
+        applying the <function>find()</function> method of
+        <classname>QString</classname> from the current
+        position.</para>
+
+      <para id="para-ch14-142">Looking for an occurrence returns
+        either -1, if nothing was found, or the begin and end
+        positions of the string that was found. Note that
+        <classname>QString</classname>.<function>find()</function>
+        doesn't return the length of the found string; we take the
+        <function>length()</function> of the search string to
+        determine the end position.</para>
+
+
+      <programlisting>
+    def previousOccurrence(self):
+        findText = self.cmbFind.currentText()
+        caseSensitive = self.chkCaseSensitive.isChecked()
+        pos = self.view.text().findRev(findText,
+                                       self.currentPosition,
+                                       caseSensitive)
+        return (pos, pos + findText.length())
+      </programlisting>
+
+      <para id="para-ch14-143">Qt 2.3 doesn't yet support backwards
+        searching with regular expressions, so the function
+        <function>previousOccurrence</function> is quite a bit
+        simpler. Instead of
+        <classname>QString</classname>.<function>find()</function>,
+        <classname>QString</classname>.<function>findRev()</function>
+        is used - this searches backwards.</para>
+
+      <programlisting>
+    def slotFindNext(self):
+        if self.radioForward.isChecked():
+            begin, end = self.nextOccurrence()
+            if begin > -1:
+                self.view.setSelection(begin,
+                                       end)
+                self.currentPosition = end
+                return (begin, end)
+            else:
+                if (self.chkSelection.isChecked() == FALSE and
+                    self.chkWholeText.isChecked() == FALSE):
+                    self.wrapExtentForward()
+                return (self.currentPosition, self.currentPosition)
+        else:
+            begin, end = self.previousOccurrence()
+            if begin > -1:
+                self.view.setSelection(begin,
+                                       end)
+                self.currentPosition = begin -1
+                return (begin, end)
+            else:
+                if (self.chkSelection.isChecked() == FALSE and
+                    self.chkWholeText.isChecked() == FALSE):
+                    self.wrapExtentBackward()
+                return (self.currentPosition, self.currentPosition)
+      </programlisting>
+
+      <para id="para-ch14-144">The <function>slotFindNext</function>
+        slot is the central bit of intelligence in this class.
+        Depending upon the selected direction, the next or previous
+        occurrence of the search string is searched. If an occurrence
+        is found (when <varname>begin</varname> is greater
+        than -1), it is selected, and the current position is moved.
+        If there are no more matches, the user is asked whether he or
+        she wants to go on with the rest of the document. </para>
+
+      <programlisting>
+    def slotReplaceNext(self):
+        begin, end = self.slotFindNext()
+        if self.view.hasSelection():
+            self.view.replaceSelection(self.cmbReplace.currentText())
+            return begin, end
+        else:
+            return -1, -1
+
+    def slotReplaceAll(self):
+        begin, end = self.slotReplaceNext()
+        while begin > -1:
+            begin, end = self.slotReplaceNext()
+            print begin, end
+      </programlisting>
+
+      <para id="para-ch14-145">Replacing is one part finding, one part
+        replacing. The <function>slotFindNext()</function> code is
+        reused, which is one good reason for creating a dialog that
+        has both a find and a find and replace mode.
+        <function>slotFindNext()</function> already selects the match,
+        so replacing is a simple matter of deleting the match and
+        inserting the replacement string. This is done with a new
+        function in <classname>KalamView</classname>:</para>
+
+      <programlisting>
+...
+class KalamView(QWidget):
+...
+    def replaceSelection(self, text):
+        self.editor.deleteChar()
+        self.editor.insert(text)
+        self.editor.emit(SIGNAL("textChanged()"),())
+      </programlisting>
+
+      <indexterm>
+  <primary>QMultiLineEdit</primary><secondary>text()</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QMultiLineEdit</primary><secondary>textChanged()</secondary>
+  </indexterm>
+  <para id="para-ch14-146">Messing about with the text in a
+        <classname>QMultiLineEdit</classname> widget has a few tricky
+        points. You should avoid trying to directly change the
+        <classname>QString</classname> that you retrieve with
+        <classname>QMultiLineEdit</classname>.<function>text()</function>&mdash; 
+        changing this string behind the editor's back is a sure recipe
+        for a beautiful crash. <classname>QMultiLineEdit</classname>
+        has several functions, such as
+        <function>deleteChar()</function> (which not only deletes
+        characters, but also the selection, if there is one), to alter
+        the contents. However, these functions don't emit the
+        <function>textChanged()</function> signal&mdash; you will have
+        to do that yourself. If we do not emit
+        <function>textChanged()</function>, other views on the same
+        document won't know of the changes, nor will the document
+        itself know it has been changed.</para>
+
+      <para id="para-ch14-147">Another interesting complication occurs
+        because <classname>QMultiLineEdit</classname>, the editor
+        widget used in <classname>KalamView</classname>, works with
+        line and column positioning, not with a position within the
+        string that represents the text. This makes it necessary to
+        create conversion functions between string index and editor
+        line / column position in <classname>KalamView</classname>,
+        which is potentially very costly business for long
+        files:</para>
+
+      <programlisting>
+...
+class KalamView(QWidget):
+...
+    def getLineCol(self, p):
+        i=p
+        for line in range(self.editor.numLines()):
+            if i < self.editor.textLine(line).length():
+                return (line, i)
+            else:
+                # + 1 to compensate for \n
+                i-=(self.editor.textLine(line).length() + 1) 
+        # fallback
+        return (0,0)
+
+    def setCursorPosition(self, p):
+        """Sets the cursor of the editor at position p in the text."""
+        l, c = self.getLineCol(p)
+        self.editor.setCursorPosition(l, c)
+
+    def getPosition(self, startline, startcol):
+        if startline = 0:
+            return startcol
+        if startline > self.editor.numLines():
+            return self.editor.text().length()
+        i=0
+        for line in range(self.editor.numLines()):
+            if line < startline:
+                i += self.editor.textLine(line).length()
+            else:
+                return i + startcol
+
+    def getCursorPosition(self):
+        """Get the position of the cursor in the text"""
+        if self.editor.atBeginning():
+            return 0
+        if self.editor.atEnd():
+            return self.editor.text().length()
+
+        l, c = self.editor.getCursorPosition()
+        return self.getPosition(l, c)
+      </programlisting>
+
+      <para id="para-ch14-148">The function
+        <function>getLineCol()</function> takes a single index
+        position as argument. It then loops through the lines of the
+        editor, subtracting the length of each line from a temporary
+        variable, until the length of the current line is greater than
+        the remaining number of characters. Then we have linenumber
+        and column.</para>
+
+      <para id="para-ch14-149">The same, but in reverse is necessary in
+        <function>getPosition</function> to find out how far into a
+        string the a certain line number and column position
+        is. There are a few safeguards and optimizations, but not
+        quite enough.</para>
+
+      <indexterm>
+  <primary>QTextEdit</primary><secondary>find</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QTextDocument</primary>
+  </indexterm>
+  <para id="para-ch14-150">Qt 3 offers the
+        <classname>QTextEdit</classname> class, which is vastly more
+        powerful than <classname>QMultiLineEdit</classname>. For
+        instance, <classname>QTextEdit</classname> sports a built-in
+        find function. Internally, <classname>QTextEdit</classname> is
+        associated with <classname>QTextDocument</classname>, which is
+        comparable to our <function>KalamDocument</function>. But you
+        can't get at <classname>QTextDocument</classname> (it's not
+        even documented, you need to read the Qt source code to find
+        out about it), so it's not a complete replacement for our
+        document-view architecture. The external rich text
+        representation of <classname>QTextEdit</classname> is a subset
+        of html, which makes it less suitable for a programmer's
+        editor. You have to choose: either colorized, fontified
+        text, and filter the html codes out yourself, or a plain text
+        editor. Fortunately, Qt 3 still includes
+        <classname>QMultiLineEdit</classname> for compatibility
+        reasons.</para>
+
+
+    </sect2>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+    <para id="para-ch14-151">In this chapter we have created two
+      really complex dialog windows, one that makes the rest of the
+      application inaccessible, and one that works in tandem with the
+      application. We have also investigated dynamically constructed
+      signals, color groups, widget flags and regular expressions. In
+      the next chapter we will add another level of functionality to
+      <application>Kalam</application>: macros.</para>
+  </sect1>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->

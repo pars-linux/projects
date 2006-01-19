@@ -1,0 +1,2882 @@
+<appendix id="sip">
+
+  <title>First Steps with Sip</title>
+
+  <subtitle>
+
+    <author>
+      <firstname>Jim</firstname>
+      <surname>Bublitz</surname>
+    </author>
+  </subtitle>
+
+  <para id="para-sip-1">Jim Bublitz knows far more about
+    <emphasis>sip</emphasis>, the tool used to wrap C++ libraries for
+    Python, than I do. For instance, he's the author of the bindings
+    to the KDE2 libraries. For these reasons, I asked him to write an
+    appendix on using sip.</para>
+
+  <sect1><title>Introduction</title>
+
+    <para id="para-sip-2">Wrapping C++ libraries for use from Python is
+      a profitable undertaking, given the wealth of functionality that
+      becomes available after doing so. Python, in contrast with Java,
+      has been designed from the outset to be easily extensible with
+      &lsquo;foreign' libraries written in C. C++, however, is a far more
+      complex language than C, and requires careful attention to the
+      creation, ownership and destruction of objects. Trolltech have
+      made the work even more complicated with the invention of a
+      special meta-object pre-compiler needed to get techniques like
+      signals and slots working.</para>
+
+    <para id="para-sip-3">These days it is not usual to wrap C++
+      libraries by hand. If only because of the size of the Qt
+      libraries, it probably isn't practical to write these bindings
+      manually, so an automated tool, <emphasis>sip</emphasis>, was
+      developed by Phil Thompson (the PyQt developer) to generate the
+      necessary binding code.</para>
+
+    <para id="para-sip-4">As you know, PyQt is a set of Python
+      bindings for the Qt libraries. That means that PyQt isn't a
+      translation of Qt into Python&mdash;instead, the &lsquo;bindings' let
+      you access and use the C++ Qt libraries from the Python language
+      via an intermediate wrapper library, which is also written (or
+      rather, generated) in C++.</para>
+
+    <para id="para-sip-5">The <emphasis>sip</emphasis> program
+      generates these C++ &lsquo;wrappers'. Wrappers are chunks of C++ code
+      that allow Python to pass data to and from other C++ code and to
+      invoke C++ methods or functions. <emphasis>Sip</emphasis> gets
+      its name (and some of it's architecture) from another wrapper
+      generator named <emphasis>swig</emphasis>. In fact,
+      <emphasis>sip</emphasis> started out as a small
+      <emphasis>swig</emphasis>, although it has grown a bit since
+      then.  It is specifically designed to generate Python bindings
+      for C++ libraries, while <emphasis>swig</emphasis> is more
+      general purpose, and can wrap C libraries for a variety of
+      scripting languages. Of course, <emphasis>sip</emphasis> also
+      offers some additional functionality, like support for signals
+      and slots, Python inheritance of C++ objects, and many other C++
+      language features:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para id="para-sip-6">Re-implementation of C++ virtual methods
+          in Python.</para>
+      </listitem>
+      <listitem>
+        <para id="para-sip-7">Sub-classing C++ classes from
+          Python.</para>
+      </listitem>
+      <listitem>
+        <para id="para-sip-8">Access to a C++ class's protected
+          methods.</para>
+      </listitem>
+      <listitem>
+        <para id="para-sip-9">Overloading of C++ functions and methods
+          with different parameter type signatures.</para>
+      </listitem>
+      <listitem>
+        <para id="para-sip-10">Automatic translation between C++
+          classes and similar (but more appropriate) Python
+          types.</para>
+      </listitem>
+    </itemizedlist>
+
+  </sect1>
+  
+  <sect1><title>How sip works</title>
+    
+    <para id="para-sip-11"><emphasis>Sip</emphasis> is in fact two
+      things: a program, <command>sip</command>, that can be used to
+      generate C++ wrapper code, and a small runtime library that
+      handles much of the C++ functionality, such as signals and
+      slots.</para>
+
+    <para id="para-sip-12">The program <command>sip</command> takes a
+      set of input files that are created by the developer (.sip
+      files) and uses them to generate a set of .h and .cpp files
+      which are compiled and installed into a C++ library that Python
+      knows how to communicate with.</para>
+
+    <para id="para-sip-13">In most cases, <command>sip</command>
+      generates all C++ code automatically, but in some special cases
+      it is necessary to manually write some wrapper code.</para>
+
+    <para id="para-sip-14">If you have the PyQt source distribution,
+      you'll notice that you have a set of files whose names end with
+      the <filename>.sip</filename> suffix, and another set of
+      <filename>.h</filename>/<filename>.cpp</filename> files whose
+      names begin with <filename>sip</filename>.</para>
+
+    <para id="para-sip-15">The
+      <filename>.h</filename>/<filename>.cpp</filename> C++ files were
+      generated from the <filename>.sip</filename> files using
+      <command>sip</command>. These C++ files were then compiled to
+      produce libraries that can be installed in the Python
+      <filename>site-packages</filename> directory. Python can use
+      these files to access the Qt library classes, methods and
+      variables.</para>
+  </sect1>
+
+  <sect1><title>Creating .sip files</title>
+
+    <para id="para-sip-16">The easiest way to understand the creation
+      of the .sip input files is to look at an example. The process
+      begins with the original header file from the library source
+      code distribution (in this case,
+      <filename>qmultilinedit.h</filename>) which is used as the
+      starting point in creating the <filename>.sip</filename> file.
+      It is a bit of a drudgery, since transforming a header file into
+      an input file for <command>sip</command> is mostly
+      handwork.</para>
+
+    <para id="para-sip-17">Shown is a fragment of the
+      <filename>qmultilinedit.sip</filename> file created from
+      <filename>qmultilinedit.h</filename>. If you look at the
+      original file in the PyQt sources, you will find at the top of
+      the complete <filename>qmultilinedit.sip</filename> some code
+      for generating documentation, which is omitted here.</para>
+
+<programlisting>
+class QMultiLineEdit : QTableView
+{
+%HeaderCode
+#include &lt;qmultilinedit.h&gt;
+%End
+
+public:
+  QMultiLineEdit(QWidget * /TransferThis/ = 0,const char * = 0);
+
+  int numLines() const;
+  virtual void removeLine(int);
+
+  void cursorPosition(int *,int *) const;
+%MemberCode
+  // The Python interface returns a tuple.
+
+  QMultiLineEdit *ptr;
+
+  if (sipParseArgs(&amp;sipArgsParsed,sipArgs,
+                   "m",
+                   sipThisObj,sipClass_QMultiLineEdit,
+                   &amp;ptr))
+  {
+    int line, col;
+
+    ptr -> QMultiLineEdit::cursorPosition(&amp;line,&amp;col);
+
+    return Py_BuildValue("(ii)",line,col);
+  }
+%End
+    </programlisting>
+
+
+    <para id="para-sip-18">Most of the process of creating a .sip file
+      is deleting all of the things SIP doesn't need or can't use.
+      Typically all comments are stripped from the .h file in creating
+      the .sip file, since they aren't necessary for SIP and are still
+      available in the original .h file. For PyQt, SIP only uses
+      methods and variables from specific parts of each class:</para>
+
+    
+    <table frame=all><title>C++ access specifiers and sip</title>
+      <tgroup cols=2 align=left colsep=1 rowsep=1>
+        <thead>
+          <row>
+            <entry>C++ access</entry>
+            <entry>Use in .sip file</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>public</entry>
+            <entry>methods and variables</entry>
+          </row>
+          <row>
+            <entry>protected</entry>
+            <entry>methods only</entry>
+          </row>
+          <row>
+            <entry>private</entry>
+            <entry>methods only</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+
+    <para id="para-sip-19">All private variables are deleted from the
+      C++ header (.h) file, as are all protected variables. Public
+      methods and variables are retained.</para>
+
+    <para id="para-sip-20">Normally all private methods are also
+      deleted, but there are one or two cases where they are useful.
+      For example, declaring a private copy constructor prevents SIP
+      from automatically generating a public copy constructor.</para>
+
+    <para id="para-sip-21">Next, all parameter names are deleted. For
+      instance:</para>
+
+    <programlisting>
+  ...
+  void cursorPosition( int *line, int *col ) const;
+  ...
+    </programlisting>
+
+    <para id="para-sip-22">becomes</para>
+
+    <programlisting>
+  ...
+  void cursorPosition(int *,int *) const;
+  ...
+    </programlisting>
+
+    <para id="para-sip-23"><command>sip</command> does not
+      &lsquo;understand' (or need) method parameter names, and in fact any
+      parameter names left in the <filename>.sip</filename> file will
+      cause a <command>sip</command> syntax error when
+      <command>sip</command> is run on the file. Note also that the
+      &lsquo;public' directive is removed from the class declaration line,
+      as is any Q_OBJECT declaration or any friend class declarations
+      when these are present. Any inline C++ code is also
+      removed.</para>
+
+    <para id="para-sip-24">In the
+      <classname>QMultiLineEdit</classname> constructor, the &lsquo;parent'
+      parameter name has been replaced with a
+      <function>/TransferThis/</function> directive. This directive
+      tells <command>sip</command> that if the parameter is not
+      <function>None</function> then ownership of the
+      <classname>QMultiLineEdit</classname> object is transferred from
+      PyQt to Qt. Therefore Qt is responsible for deleting this
+      <classname>QMultiLineEdit</classname> object at the appropriate
+      time. Failure to include this directive where needed would
+      result in a segmentation fault, usually when the program
+      terminates and Python tries to destroy the object which Qt has
+      already destroyed. A <function>/Transfer/</function> directive
+      is also available to serve a similar purpose for an an object
+      passed as a parameter to an ordinary function or method.</para>
+
+    <para id="para-sip-25">Directly following the class declaration is a
+      <function>%Headercode</function> declaration that references the
+      <filename>.h</filename> file that this <filename>.sip</filename> file
+      was derived from. The <function>%Headercode</function>
+      declaration goes inside the class definition because
+      <command>sip</command> generates a
+      <filename>.h</filename>/<filename>.cpp</filename> file for every
+      class. If there were multiple classes defined in
+      <filename>qmultilinedit.h</filename>, each class would require a
+      <function>%Headercode</function> declaration.
+      <command>Sip</command> itself doesn't use the
+      <filename>.h</filename> file, but the <command>sip</command>
+      generated code needs the <filename>.h</filename> file so it can
+      know about the Qt classes and methods being wrapped.</para>
+
+<!-- XXX - So, this is comparable to import in Python? -->
+
+  </sect1>
+
+  <sect1><title>Things <command>sip</command> can't do
+      automatically</title>
+
+    <para id="para-sip-26">In a lot of cases, <command>sip</command>
+      needs nothing but a stripped header file to do its work
+      on&mdash;but sometimes more is needed.</para>
+
+<!-- XXX - Are signals and slots done right automatically? -->
+<!-- PT: Yes -->
+
+    <sect2><title>Handwritten code</title>
+
+      <para id="para-sip-27">Look at the cursorPosition method.  It
+        does something Python can't do: it returns values via pointer
+        arguments (the two <varname>int *</varname> parameters) passed
+        to the method, instead of returning a tuple of values.</para>
+
+      <note><title>Call by reference and call by value</title>
+
+        <para>C and C++ (and Visual Basic and a host of other
+          programming languages) have two ways of passing arguments to
+          functions: by reference, or by value. If a function is
+          called with arguments by reference, changing the value of
+          the arguments will change their value outside the function.
+          Python only has call by (object) reference. If an object is
+          mutable, then changing it inside a function, will also
+          change the object outside a function:
+        </para>
+
+        <programlisting>
+&gt;&gt;&gt; def f(a):
+...     a.append("bla")
+... 
+&gt;&gt;&gt; a=["bla"]
+&gt;&gt;&gt; f(a)
+&gt;&gt;&gt; a
+['bla', 'bla']
+        </programlisting>
+
+        <para>When you can a Python function with an immutable object
+          like a string or an integer, the value of the reference
+          outside the function won't change:</para>
+
+        <programlisting>
+>>> 
+>>> def f(a):
+...     a="b"
+... 
+>>> a="a"
+>>> f(a)
+>>> a
+'a'
+>>> 
+        </programlisting>
+
+        <para>That's because the name of the argument and the name of
+          the variable are not aliases, they are two seperate names,
+          that might point to different objects, or to the same. As
+          soon as you assign a new string to the argument, the
+          references no longer point to the same name.</para>
+
+      </note>
+          
+      <programlisting>
+%MemberCode
+  // The Python interface returns a tuple.
+
+  QMultiLineEdit *ptr;
+
+  if (sipParseArgs(&amp;sipArgsParsed,sipArgs,
+                   "m",
+                   sipThisObj,
+                   sipClass_QMultiLineEdit,
+                   &amp;ptr))
+  {
+    int line, col;
+
+    ptr -> QMultiLineEdit::cursorPosition(&amp;line,&amp;col);
+
+    return Py_BuildValue("(ii)",line,col);
+  }
+%End
+      </programlisting>
+
+      <para id="para-sip-28">However, <command>sip</command> can't
+        determine whether these pointers contain data being sent to
+        the <function>cursorPosition</function> function, or data
+        being returned by <function>cursorPosition</function> to the
+        calling code. Since Python has nothing comparable to a C/C++
+        pointer, there is no automatic way to generate the wrapper for
+        this method. Inside knowledge of what the code actually does
+        is required to generate wrappers, and the developer has to
+        provide <command>sip</command> with this knowledge.</para>
+
+      <para id="para-sip-29">Immediately following the cursorPosition
+        method declaration is a <function>%MemberCode</function>
+        declaration. This allows the developer to tell
+        <command>sip</command> how to wrap this function by providing
+        most of the necessary C++ code. The contents of the
+        <function>%Membercode</function> block is, in fact, C++
+        code.</para>
+
+      <para id="para-sip-30">Looking at the
+        <function>%Membercode</function> block, <command>sip</command>
+        is instructed to first parse the arguments which Python will
+        pass to the wrapper code. The
+        <function>sipParseArgs</function> function is the most
+        important, and complex, function in the <command>sip</command>
+        library. The third parameter is a string that encodes the
+        number and types of the Python parameters that are expected,
+        with more information given in later parameters. In this case
+        the <function>sipParseArgs</function> is being told to expect
+        exactly one Python parameter which is a Python instance of the
+        <classname>QMultiLineEdit</classname> class which corresponds
+        to the value of <function>self</function>.</para>
+
+      <para id="para-sip-31">Next, some variables are defined
+        (<varname>line</varname>, <varname>col</varname>) to hold the
+        data <function>cursorPosition</function> will return.  The
+        member next calls the Qt/C++ version of
+        <classname>QMultiLineEdit</classname><function>::cursorPosition</function>, 
+        which will fill in the values pointed to by
+        <varname>&amp;line</varname> and
+        <varname>&amp;col</varname>.</para>
+
+      <para id="para-sip-32">Last, the code uses the
+        <function>Py_BuildValue</function> to return the
+        <varname>line</varname> and <varname>col</varname> values
+        obtained to the Python caller. In this case, since two values
+        are returned, the code places the two values in a tuple which
+        is returned to the Python program that called the method. Even
+        though a Python method can return 2 or more distinct values,
+        C++ can't, and the member code is in the C++ domain.</para>
+
+      <para id="para-sip-33">If you look at some of the code
+        <command>sip</command> generates, you'll find it looks very
+        much like the member code generated manually for the
+        cursorPosition method. There will be a number of references to
+        functions or methods which begin with &lsquo;sip' or
+        &lsquo;Py'. The &lsquo;Py'-prefixed calls are to code built
+        into Python itself. Python contains a library of functions
+        used to write wrappers/interfaces for C and C++ code. The
+        &lsquo;sip'-prefixed functions are calls to the
+        <command>sip</command> library, and occur in all
+        <command>sip</command>-generated code (including all of PyQt).
+        This is why you need to have the <command>sip</command>
+        library installed before you can use PyQt, even though you
+        don't need to run the <command>sip</command> program
+        itself.</para>
+    </sect2>
+
+    <sect2><title>Other limitations</title>
+
+      <para id="para-sip-34">Presently, <command>sip</command> can't
+        automatically generate code for methods which have parameters
+        or return values with types like <varname>int&</varname>,
+        <varname>int*</varname> or <varname>bool*</varname>.</para>
+
+      <para id="para-sip-35">In addition, <command>sip</command> can't
+        directly handle types based on C++ templates. In these cases
+        you have to used the <function>%MappedType</function>
+        directive to supply your own C++ code to explicitly handle how
+        such types are converted to and from Python objects. You still
+        use the C++ template type in parameters and return values of
+        functions and methods, <command>sip</command> will
+        automatically carry out the necessary conversions based on the
+        C++ code you provided.</para>
+
+      <!-- XXX - do we have to code that by hand in the .sip files? -->
+
+    </sect2>
+  </sect1>
+
+  <sect1><title>Where to look to start writing your own
+    wrappers/bindings</title>
+
+    <para id="para-sip-36">It's quite possible to use
+      <command>sip</command> to generate Python bindings for many
+      types of C++ code, and not just Qt or KDE related code. SIP is
+      most often used to wrap Qt-based third party libraries, like the
+      QWT widgets.</para>
+
+    <para id="para-sip-37">However, Describing that process is beyond
+      the scope of this book. This appendix is meant to help you get
+      to grips with sip, but the fine details of actually building the
+      wrapper library is very platform dependent.</para>
+
+    <para id="para-sip-38">If you want to explore further, download
+      the CVS sources for PyQt (see
+      <xref linkend="ch21InstallingSipAndPyQtWithoutBlackAdder">,
+      which include the make files for generating C++ files from .sip
+      files (the PyQt source distribution has this done for you
+      already and doesn't include these make files). The CVS sources
+      also contain the qtmod.sip-in file, which is used to tell
+      <command>sip</command> a number of things: the name of the
+      module to build, the .sip files needed to build the module,
+      version control, and the include files and linker information
+      needed to compile a particular set of .sip files into a module
+      Python can use. Since SIP, like PyQt, is open source, you can
+      also look at the <command>sip</command> source code itself. The
+      PyKDE mailing list also includes discussions of
+      <command>sip</command> usage and coding, and is a place where
+      you can post your questions.</para>
+  </sect1>
+
+  <sect1><title>Sip usage and syntax</title>
+
+    <subtitle>
+      <author>
+        <firstname>Wilken</firstname>
+        <surname>Boie</surname>
+      </author>
+
+    </subtitle>
+
+    <para id="para-sip-39">This section has been prepared from the sip
+      manual written by Wilken Boie, who has graciously given
+      permission to use it in this book.</para>
+
+    <sect2>
+      <title>Usage</title>
+
+      <sect3><title>Invocation, Command Line</title>
+
+        <cmdsynopsis>
+          <command>sip</command>
+          <arg>-h</arg>
+          <arg>-V</arg>
+          <arg>-c <replaceable>dir</replaceable></arg>
+          <arg>-d <replaceable>file</replaceable></arg>
+          <arg>-m <replaceable>file</replaceable></arg>
+          <arg>-I <replaceable>dir</replaceable></arg>
+          <arg>-s <replaceable>suffix</replaceable></arg>
+          <arg>-p <replaceable>module</replaceable></arg>
+          <arg><replaceable>file</replaceable></arg>
+        </cmdsynopsis>
+        
+        <para id="para-sip-40">
+          where:
+          <blockquote>
+            <table>
+              <title>Command line options</title>
+              <tgroup cols='2' align='left'><tbody>
+                  <row>	<entry>-h</entry> 
+                    <entry>display help message</entry></row>
+                  <row>	<entry>-V</entry> 
+                    <entry>display the SIP version
+                      number</entry></row>
+                  <row>	<entry>-c
+                      <replaceable>dir</replaceable></entry>
+                    <entry>the name of the code directory [default not
+                      generated]</entry></row>
+                  <row>	<entry>-d <replaceable>file</replaceable>
+                    </entry> 
+                    <entry>the name of the documentation file [default
+                      not generated]</entry></row>
+                  <row>	<entry>-m <replaceable>file</replaceable>
+                    </entry> 
+                    <entry>the name of the Makefile [default none
+                      generated]</entry></row>
+                  <row>	<entry>-I <replaceable>dir</replaceable>
+                    </entry> 
+                    <entry>look in this directory when including
+                      files</entry></row>
+                  <row>	<entry>-s
+                      <replaceable>suffix</replaceable></entry> 
+                    <entry>the suffix to use for C++ source files
+                      [default ".cpp"]</entry></row>
+                  <row>	<entry>-p
+                      <replaceable>module</replaceable></entry> 
+                    <entry>the name of the generated C++ module
+                      [default Module]</entry></row>
+                  <row>	<entry>file</entry> 
+                    <entry>the name of the specification file [default
+                      stdin]</entry></row>
+                </tbody></tgroup></table>
+          </blockquote>
+        </para>
+      </sect3>
+
+      <sect3>
+        <title>Limitations</title>
+        
+        <para id="para-sip-41">
+          The following limitations are SIP compile time options:
+          <itemizedlist spacing='compact'>
+            <listitem><para id="para-sip-42">Maximum number of
+                arguments to a function: 20</para></listitem>
+            <listitem><para id="para-sip-43">Maximum nesting depth of
+                <action moreinfo='refentry'>%If</action> directives:
+                10</para></listitem>
+            <listitem><para id="para-sip-44">Maximum number of nested
+                version qualifiers in the generated Python:
+                10</para></listitem>
+            <listitem><para id="para-sip-45">Maximum number of option
+                flags in function declarations: 5</para></listitem>
+          </itemizedlist>
+        </para>
+      </sect3>
+
+      <sect3>
+        
+        <title>Files</title>
+
+        <sect4>
+          <title>Source Files</title><blockquote>
+
+            <glosslist>
+              <glossentry><glossterm>
+                  <filename>*.sip</filename>
+                </glossterm><glossdef><para id="para-sip-46">
+                    and possibly further included files are processed
+                    by SIP. They are the source file(s) defining the
+                    wrapping. They closely resemble the header files
+                    they describe but also contain additional <link
+                                                                    linkend='Directives'>directives</link> for a range of special cases and purposes (e.g. production of documentation, treatment of different versions a wrapped libraries).
+                  </para></glossdef>
+              </glossentry>
+            </glosslist>
+          </blockquote>
+        </sect4>
+          
+        <sect4 id='fileswrap'>
+          <title>Files containing the wrapping</title>
+
+          <blockquote>
+            <glosslist>
+              <glossentry><glossterm>
+                  <anchor id='pycode'>
+                  <filename>$(module).py</filename>
+                </glossterm><glossdef>
+
+                  <para id="para-sip-47">is produced by SIP. It
+                    initializes the wrapping and imports the dynamic
+                    lib lib$(module)c.pyd which contains the actual
+                    C++ wrapping code.</para>
+
+                  <para id="para-sip-48">Code from <action
+                                                           moreinfo='refentry'>%PrePythonCode</action> and <action moreinfo='refentry'>%PythonCode</action> sections is also placed in this file as in the following example (assuming a module MOD wrapping classes A and B):</para>
+
+                  <screen> 
+# Python wrapper code 
+# Copying: Copyright (c) .... 
+import libMODc libMc.sipInitModule() 
+
+# here comes code from %PrePythonCode sections 
+
+class  A: 
+... 
+class B: 
+... 
+libMc.sipRegisterClasses() 
+# here comes code from %PythonCode sections
+                  </screen>
+                </glossdef>
+              </glossentry>
+              
+              <glossentry><glossterm>
+                  <filename>lib$(module)c.pyd</filename>
+                </glossterm><glossdef>
+                  <para id="para-sip-49">This dynamic library is
+                    compiled from the following, SIP generate
+                    intermediate files:</para>
+                </glossdef>
+              </glossentry>
+            </glosslist>
+          </blockquote>
+        </sect4>
+
+        <sect4 id='filestmp'>
+          <title>Intermediate Files</title>
+
+          <blockquote>
+            <glosslist>
+              <glossentry><glossterm>
+                  <filename>sip$(module)$(class).h</filename>,
+                  <filename>sip$(module)$(class).cpp</filename>
+                </glossterm><glossdef>
+
+                  <para id="para-sip-50">A pair of corresponding
+                    header and C++ files for each wrapped
+                    class.</para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry><glossterm>
+                  <filename>sip$(module)Decl$(module).h</filename>
+                </glossterm><glossdef><para id="para-sip-51">
+                    A global module header, which (beside all im- and
+                    exports) contains all <action
+                                                  moreinfo='refentry'>%ExportedHeaderCode</action> and <action moreinfo='refentry'>%HeaderCode</action> (from imported .sip files only <action moreinfo='refentry'>%ExportedHeaderCode</action>).
+                  </para></glossdef>
+              </glossentry>
+              
+              <glossentry><glossterm>
+                  <filename>$(module)cmodule.cpp</filename>
+                </glossterm><glossdef>
+                  <para id="para-sip-52">Which contains the module
+                    global and initialisation code.</para>
+                </glossdef>
+              </glossentry>
+            </glosslist>
+          </blockquote>
+        </sect4>
+
+        <sect4 id='filesaux'>
+          <title>Auxilliary Files</title>
+
+          <blockquote>
+            <glosslist>
+              <glossentry><glossterm>
+                  <replaceable>makefile_name</replaceable>
+                </glossterm><glossdef>
+
+                  <para id="para-sip-53">If SIP option <quote>-m
+                      <replaceable>makefile_name</replaceable></quote>
+                    is given, one of a set of makefile templates
+                    (defined in the SIP files) is seletected and
+                    instantiated with the appropriate module and class
+                    names. It is typically used to compile the
+                    wrapping.</para>
+                </glossdef>
+              </glossentry>
+              
+              <glossentry><glossterm>
+                  <anchor id='SipHelper'>
+                  <filename>sip_helper.cpp</filename>
+                </glossterm><glossdef>
+                  <para id="para-sip-54">All code from <action
+                                                               moreinfo='refentry'>%VersionCode</action> sections will be placed in this file. Typically it is compiled into <filename>sip_helper.exe</filename>, which then produces <filename>sip$(module)Version.h</filename>. This is included in all relevant files to maintain version information for the conditional sections.</para>
+
+                  <para id="para-sip-55">Why not just #include the
+                    necessary file that provides the version
+                    information and use the C++ test specified as part
+                    of the version definition in the .sip
+                    files?</para>
+
+                  <para id="para-sip-56">The answer is that moc can't
+                    handle C++ pre-processor commands, so the proxy
+                    header file must be run through the C++
+                    pre-processor beforehand. The code generated by
+                    moc is then &num;included by the main module
+                    code.</para>
+
+                  <para id="para-sip-57">The net result is that the
+                    header file specifying the version information is
+                    &num;included by the main module code and
+                    #included a second time - but the second time is a
+                    version that has already been run through the C++
+                    pre-processor and has therefore lost it's usual
+                    means of protecting itself from being #included
+                    twice.</para>
+
+                  <para id="para-sip-58">Unless the file follows
+                    certain rules (like having no function
+                    definitions) it is likely to make the C++ compiler
+                    complain. Therefore the solution is to use a
+                    generated file that isn't going to cause
+                    complaints.</para>
+
+                </glossdef>
+              </glossentry>
+
+              <glossentry><glossterm>
+                  <replaceable>docfile_name</replaceable>
+                </glossterm><glossdef>
+
+                  <para id="para-sip-59">If SIP option <quote>-m
+                      <replaceable>docfile_name</replaceable></quote>
+                    is given, documentation records are extracted from
+                    the SIP file(s) and written to
+                    <replaceable>docfile_name</replaceable>.</para>
+
+                </glossdef>
+              </glossentry>
+            </glosslist>
+          </blockquote>
+        </sect4>
+      </sect3>
+
+      <sect3>
+        <title>.sip File Syntax</title>
+
+        <sect4>
+          <title>General rules</title>
+
+          <para id="para-sip-60">
+            <itemizedlist spacing='compact'>
+              <listitem><para id="para-sip-61">All
+                  <action>%keywords</action> must start at beginning
+                  of line.</para></listitem>
+              <listitem><para id="para-sip-62">All
+                  <emphasis>_block_</emphasis>s must be closed by a
+                  matching <action moreinfo='refentry'>%End</action>
+                  directive.</para>
+              </listitem>
+              <listitem><para id="para-sip-63">Parameters are
+                  separated by whitespace, string parameters are
+                  enclosed by double quotes.</para></listitem>
+            </itemizedlist>
+          </para>
+        </sect4>
+
+        <sect4>
+          <title id='macros'>Macros</title>
+
+          <para id="para-sip-64">A number of macros can be used in the
+            .sip files (e.g. class definitions, makefile templates).
+            When SIP parses the definitions, the macros are replaced
+            by actual values as follows:
+            <blockquote><table>
+		<title>Macros in Makefile Templates</title>
+		<tgroup cols='2'><tbody>
+                    <row><entry>$$</entry>	<entry>a '$'
+                        character</entry></row>
+                    <row><entry>$C</entry>	<entry>Class
+                        name</entry></row>
+                    <row><entry>$S</entry>	<entry>Source
+                        files</entry></row>
+                    <row><entry>$O</entry>	<entry>Object
+                        files</entry></row>
+                    <row><entry>$c</entry>	<entry>C++ file
+                        suffix</entry></row>
+                    <row><entry>$o</entry>
+                      <entry>Object_file_suffix</entry></row>
+                    <row><entry>$m</entry>	<entry>C++ module
+                        name</entry></row>
+                    <row><entry>$P</entry>	<entry>Percent
+                        sign</entry></row>
+                  </tbody></tgroup</table></blockquote>
+          </para>
+        </sect4>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="Directives"><title>Directives</title>
+
+    <para>Sip has a number of directives that control the way C++ code
+      is generated. Since sip is essentially completely undocumented,
+      it was impossible to clearly describe all directives, or even to
+      be sure that this is an exhaustive list. Still, this list come
+      in useful. The directives are grouped according to function:
+      Documentation, Modules, Conditional Elements, C++ and Header
+      Code, Python Code sections, Mapped Classes, Special Python
+      methods and Other.</para>
+      
+    <sect2 id='DivDoc'><title>Documentation</title>
+
+      <refentry id='Copying'>
+        <refnamediv>
+          <refname>%Copying</refname>
+          <refpurpose>Start of software license
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%Copying</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Remarks</title>
+          <para id="para-sip-65">
+            If more than one is given, all blocks are included in the
+            order of evaluation. Copying blocks are not extracted from
+            imported modules.
+          </para>
+        </refsect1>
+      </refentry>
+            
+      <refentry id='Doc'>
+        <refnamediv>
+          <refname>%Doc</refname>
+          <refpurpose>Start of a documentation
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%Doc</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-66">
+            If <application>SIP</application> option <quote>-d
+              <replaceable>doc_file</replaceable></quote> is used,
+            these blocks are collected (in the order of evaluation)
+            from within the main module, but ignored on all imported
+            modules and put into the
+            <replaceable>doc_file</replaceable>.
+          </para>
+        </refsect1>
+      </refentry>
+
+      <refentry id='ExportedDoc'>
+        <refnamediv>
+          <refname>%ExportedDoc</refname>
+          <refpurpose>Start of an exported documentation
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%ExportedDoc</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-67">
+            If SIP option <quote>-d
+              <replaceable>doc_file</replaceable></quote> is used,
+            these blocks are collected from all modules (incl.
+            imported modules) and put into the
+            <replaceable>doc_file</replaceable>.
+          </para>
+        </refsect1>
+      </refentry>
+    </sect2>
+
+
+    <sect2 id='DivModul'><title>Modules</title>
+      <refentry id='Module'>
+        <refnamediv>
+          <refname>%Module</refname>
+          <refpurpose>Definition of the (main) modules
+            name</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%Module</command>
+            <arg
+                       choice=plain><replaceable>module_name</replaceable></arg>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-68">
+            The <replaceable>module_name</replaceable> must be defined
+            at least once. If multiple definitions are given the last
+            one is used. The produced wrapping consists of the
+            following files:
+          </para>
+          <blockquote><informaltable><tgroup cols='2'><tbody>
+                  <row>
+                    <entry><replaceable>module_name</replaceable>.py</entry>
+                    <entry>import this and have fun</entry>
+                  </row>
+                  <row>
+                    <entry>lib<replaceable>module_name</replaceable>c.pyd</entry>
+                    <entry>dynamic lib with the wrappers C
+                      code</entry>
+                  </row>
+                </tbody></tgroup</informaltable></blockquote>
+          <para id="para-sip-69">
+            Bear in mind, that you also need
+            <application>sip.lib</application> and of course a lib
+            with your classes to be wrapped.
+          </para>
+        </refsect1>
+      </refentry>
+            
+      <refentry id='Include'>
+        <refnamediv>
+          <refname>%Include</refname>
+          <refpurpose>Include a file</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%Include</command>
+            <arg
+                       choice='plain'><replaceable>include_file_name</replaceable></arg>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1>
+          <title>Description</title>
+          <para>Include a file.</para>
+        </refsect1>
+      </refentry>
+            
+      <refentry id='sipImport'>
+        <refnamediv>
+          <refname>%Import</refname>
+          <refpurpose>Import module (dynamic library)</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%Import</command>
+            <arg
+                       choice='plain'><replaceable>import_module_name</replaceable></arg>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-71">
+            The imported .sip file is parsed. <action
+                                                      moreinfo='refentry'>%ExportedHeaderCode</action> and <action moreinfo='refentry'>%ExportedDoc</action> sections are extracted. <action moreinfo='refentry'>%HeaderCode</action>, <action moreinfo='refentry'>%C++Code</action>, <action moreinfo='refentry'>%ExposeFunction</action>, <action moreinfo='refentry'>%Copying</action>, <action moreinfo='refentry'>%PrePyCode</action>, <action moreinfo='refentry'>%PyCode</action>, <action moreinfo='refentry'>%Doc</action> and <action moreinfo='refentry'>%Makefile</action> blocks are ignored.
+          </para>
+          <para id="para-sip-72">
+            The wrapping python file imports the dynamic lib
+            lib<replaceable>import_module_name</replaceable>c (as .pyd
+            or .dll) before
+            lib<replaceable>module_name</replaceable>c.
+          </para>
+          <para id="para-sip-73">
+            This does not mean that the imported lib is available as a
+            wrapped module as well. To achieve this, you have to
+            import <replaceable>import_module_name</replaceable>.py
+            too.</para>
+        </refsect1>
+      </refentry>
+    </sect2>
+
+          <!-- todo: is the above text followigng &&& meant to be commented out? -->
+
+    <sect2 id='DivCond'><title>Conditional Elements</title>
+      <refentry id='If'>
+        <refnamediv>
+          <refname>%If</refname>
+          <refpurpose>start of a conditional
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%If</command>
+            <arg
+                       choice='plain'><replaceable>condition</replaceable></arg>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-75">
+            The following (conditional) block is evaluated only if
+            <replaceable>condition</replaceable> is true. Currently
+            the only valid type of
+            <replaceable>condition</replaceable> is <action
+                                                            moreinfo='refentry'>Version()</action> (see below).
+          </para>
+        </refsect1>
+      </refentry>
+
+      <refentry id='End'>
+        <refnamediv>
+          <refname>%End</refname>
+          <refpurpose>Terminate
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%End</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-76">
+            All <emphasis>_block_</emphasis>s must be closed by a
+            matching <action>%End</action> directive.
+          </para>
+        </refsect1>
+      </refentry>
+
+      <refentry id='VersionFn'>
+        <refnamediv>
+          <refname>Version()</refname>
+          <refpurpose>Condition function for <action
+                                                     moreinfo='refentry'>%If</action> directive</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <funcsynopsis><funcprototype>
+              <funcdef><function>Version</function></funcdef>
+              <paramdef><replaceable>version_range</replaceable></paramdef>
+            </funcprototype></funcsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Parameters</title>
+          <para id="para-sip-77">
+            <replaceable>version_range</replaceable>: enclosed in
+            parenthesis one or both of
+            <replaceable>low_Bound</replaceable> and
+            <replaceable>high_bound</replaceable> separated by a '-'
+          </para>
+        </refsect1>
+        <refsect1><title>Remarks</title>
+          <para id="para-sip-78">
+            This is the only currently available type of condition for
+            <action moreinfo='refentry'>%If</action>.
+          </para>
+        </refsect1>
+        <refsect1><title>Examples</title>
+          <para
+                id="para-sip-79"><informalexample>
+<programlisting>
+%If Version(- Qt_2_00) 
+%If Version(Qt_1_43 -) 
+%If Version(Qt_2_00 - Qt_2_1_0)
+              
+</programlisting></informalexample></para>
+        </refsect1>
+      </refentry>
+            
+      <refentry id='Version'>
+        <refnamediv>
+          <refname>%Version</refname>
+          <refpurpose>Define version value(s) and evaluation
+            methods</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%Version</command>
+            <arg
+                       choice='plain'><replaceable>name</replaceable></arg>
+            <arg
+                       choice='plain'><replaceable>version_get_c</replaceable></arg>
+            <arg
+                       choice='plain'><replaceable>version_get_py</replaceable></arg>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Examples</title>
+          <para
+                id="para-sip-80"><informalexample>
+              <programlisting>
+%Version WS_WIN "defined(_WS_WIN_)" "libqtc.qtIsWin()"
+              </programlisting>
+</informalexample></para>
+        </refsect1>
+      </refentry>
+            
+            
+      <refentry id='PrimaryVersions'>
+        <refnamediv>
+          <refname>%PrimaryVersions</refname>
+          <refpurpose>Define list of primary versions</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%PrimaryVersions</command>
+            <arg
+                       choice='plain'><replaceable>list_of_primary_version</replaceable></arg>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Remarks</title>
+          <para id="para-sip-81">
+            The list must be enclosed by braces.
+          </para>
+        </refsect1>
+        <refsect1><title>Examples</title>
+          <para
+                id="para-sip-82"><informalexample>
+              <programlisting>
+%PrimaryVersions {Qt_1_43 Qt_2_00 Qt_2_1_0 Qt_2_2_0}
+              </programlisting></informalexample></para>
+        </refsect1>
+      </refentry>
+            
+      <refentry id='VersionCode'>
+        <refnamediv>
+          <refname>%VersionCode</refname>
+          <refpurpose>Start of a version code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%VersionCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-83">
+            The <action>%VersionCode</action> goes into
+            <filename>sip_helper.cpp</filename>, which will be
+            compiled into <filename>sip_helper.exe</filename>, which
+            will produce <filename>sip$(module)Version.h</filename>,
+            which will be included in (almost) all files. It should
+            contain #defines corresponding to each of the different
+            versions.
+          </para>
+        </refsect1>
+      </refentry>
+    </sect2>
+
+    <sect2 id='DivCode'><title>C++ and Header Code Sections</title>
+      <refentry id='HeaderCode'>
+        <refnamediv>
+          <refname>%HeaderCode</refname>
+          <refpurpose>Start of a C++ header code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%HeaderCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-84">
+            Header code is written to the global module header
+            <filename>sip$(module)Decl$(module).h</filename>. These
+            sections are collected from the main module (in the order
+            of evaluation) but ignored on all imported modules.
+          </para>
+        </refsect1>
+      </refentry>
+	
+      <refentry id='ExportedHeaderCode'>
+        <refnamediv>
+          <refname>%ExportedHeaderCode</refname>
+          <refpurpose>Start of an exported C++ header code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%ExportedHeaderCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-85">
+            The ExportedHeaderCode is written to the global module
+            header <filename>sip$(module)Decl$(module).h</filename>.
+            These sections are collected from all modules (incl.
+            imported modules).   <!-- todo: why does this para start
+            with "is written..." ? -->
+          </para>
+        </refsect1>
+      </refentry>
+      
+      <!--
+      <refentry id='ExposeFunction'>
+        <refnamediv>
+          <refname>%ExposeFunction</refname>
+          <refpurpose></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%ExposeFunction</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+	
+      <refentry id='CppCode'>
+        <refnamediv>
+          <refname>%C++Code</refname>
+          <refpurpose>Start of a C++ code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%C++Code</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+            
+      <refentry id='MemberCode'>
+        <refnamediv>
+          <refname>%MemberCode</refname>
+          <refpurpose>Start of a C++ member code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%MemberCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+            
+      <refentry id='VirtualCode'>
+        <refnamediv>
+          <refname>%VirtualCode</refname>
+          <refpurpose>Start of a C++ virtual code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%VirtualCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+            
+      <refentry id='VariableCode'>
+        <refnamediv>
+          <refname>%VariableCode</refname>
+          <refpurpose>Start of an access code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%VariableCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Remarks</title>
+          <para id="para-sip-90">
+            <action>%VariableCode</action> cannot be specified for
+            non-static class variables.
+          </para>
+        </refsect1>
+      </refentry>
+    </sect2>
+
+          
+    <sect2 id='DivPython'><title>Python Code Sections</title>
+      <refentry id='PythonCode'>
+        <refnamediv>
+          <refname>%PythonCode</refname>
+          <refpurpose>Start of a Python code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%PythonCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+            
+      <refentry id='PrePythonCode'>
+        <refnamediv>
+          <refname>%PrePythonCode</refname>
+          <refpurpose>Start of a pre-Python code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%PrePythonCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+      
+      -->
+    </sect2>
+            
+
+    <sect2 id='DivMapped'><title>Mapped Classes</title>
+      <para id="para-sip-93">A mapped class
+              <itemizedlist spacing='compact'>
+          <listitem><simpara> cannot have super classes, member
+              functions or constructors.</simpara></listitem>
+          <listitem><simpara> cannot have a <action
+                                                    moreinfo='refentry'>%ConvertToSubClassCode</action> directive.</simpara></listitem>
+          <listitem><simpara> must have exactly one <action
+                                                            moreinfo='refentry'>%ConvertFromClassCode</action> directive.</simpara></listitem>
+          <listitem><simpara> must have exactly one <action
+                                                            moreinfo='refentry'>%ConvertToClassCode</action> directive.</simpara></listitem>
+          <listitem><simpara> must have exactly one <action
+                                                            moreinfo='refentry'>%CanConvertToClassCode</action> directive</simpara></listitem>
+              </itemizedlist>
+      </para>
+      
+      <!--
+      <refentry id='ConvertFromClassCode'>
+        <refnamediv>
+          <refname>%ConvertFromClassCode</refname>
+          <refpurpose>Start of a from-class code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%ConvertFromClassCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+            
+      <refentry id='ConvertToClassCode'>
+        <refnamediv>
+          <refname>%ConvertToClassCode</refname>
+          <refpurpose>Start of a to-class code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%ConvertToClassCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+            
+      <refentry id='CanConvertToClassCode'>
+        <refnamediv>
+          <refname>%CanConvertToClassCode</refname>
+          <refpurpose>Start of a can-to-class code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%CanConvertToClassCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+            
+      <refentry id='ConvertToSubClassCode'>
+        <refnamediv>
+          <refname>%ConvertToSubClassCode</refname>
+          <refpurpose>Start of a to-sub-class code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%ConvertToSubClassCode</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+      </refentry>
+      -->
+      
+    </sect2>
+
+             <!-- todo: I'm not longer sure what I'm looking at. Why are there comments such as the above $$$ in the regular text?
+             Is this simply unfinished? I'm looking at all the empty paragraph tags following "description" above. Is somebody still
+             writing this? -->
+
+
+    <sect2 id='DivPySpec'><title>Special Python methods</title>
+
+      <para id="para-sip-98">Python special methods can be
+        implemented, but code must be supplied. The following
+        directives define additional sections in a class declaration
+        (like public, private etc.). A typical sip file section is as
+        follows:</para>
+
+      <programlisting>
+    class X
+    {
+        ...     
+        PyMethods:
+            __str__
+    %MemberCode
+                C++ code (no enclosing braces needed).
+                Number and kind of arguments and return value depend on method
+                (see specialPyMethod in sip.h).
+    %End
+        ...
+    }
+      </programlisting>
+      <refentry id='PyMethods'>
+        <refnamediv>
+          <refname>PyMethods</refname>
+          <refpurpose>Implement additional Python special
+            methods</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>PyMethods</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-99">
+            Within this section the following methods are legal:
+          </para><para id="para-sip-100">
+            __repr__, __str__, __cmp__, __hash__, __call__,
+            __richcompare__
+          </para>
+        </refsect1>
+      </refentry>
+            
+      <refentry id='PyNumberMethods'>
+        <refnamediv>
+          <refname>PyNumberMethods</refname>
+          <refpurpose>Implement numerical Python special
+            methods</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>PyNumberMethods</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-101">
+            Within this section the following methods are legal:
+          </para><para id="para-sip-102">
+            __add__, __sub__, __mul__, __div__, __mod__, __divmod__,
+            __pow__, __neg__, __pos__, __abs__, __nonzero__,
+            __invert__, __lshift__, __rshift__, __and__, __xor__,
+            __or__, __coerce__, __int__, __long__, __float__, __oct__,
+            __hex__, __iadd__, __isub__, __imul__, __idiv__, __imod__,
+            __ipow__, __ilshift__, __irshift__, __iand__, __ixor__,
+            __ior__
+          </para>
+        </refsect1>
+      </refentry>
+            
+      <refentry id='PySequenceMethods'>
+        <refnamediv>
+          <refname>PySequenceMethods</refname>
+          <refpurpose>Implement Python sequence special
+            methods</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>PySequenceMethods</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-103">
+            Within this section the following methods are legal:
+          </para><para id="para-sip-104">
+            __len__, __add__, __mul__, __getitem__, __setitem__,
+            __getslice__, __setslice__, __contains__, __iadd__,
+            __imul__
+          </para>
+        </refsect1>
+      </refentry>
+	
+      <refentry id='PyMappingMethods'>
+        <refnamediv>
+          <refname>PyMappingMethods</refname>
+          <refpurpose>Implement Python mapping special
+            methods</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>PyMappingMethods</command>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-105">
+            Within this section the following methods are legal:
+          </para><para id="para-sip-106">
+            __len__, __getitem__, __setitem__
+          </para>
+        </refsect1>
+      </refentry>
+    </sect2>
+            
+            
+    <sect2 id='DivOther'><title>Other</title>
+      <refentry id='Makefile'>
+        <refnamediv>
+          <refname>%Makefile</refname>
+          <refpurpose>The start of a Makefile code
+            <emphasis>_block_</emphasis></refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+          <cmdsynopsis>
+            <command>%Makefile</command>
+            <arg
+                       choice='plain'><replaceable>makefile_name</replaceable></arg>
+            <arg
+                       choice='plain'><replaceable>Object_file_suffix</replaceable></arg>
+          </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1><title>Description</title>
+          <para id="para-sip-107">
+            Multiple <action>%Makefile</action> blocks may be given,
+            each defining a makefile template. Using sip option
+            <quote>-m <replaceable>makefile_name</replaceable></quote>
+            selects and instantiates the appropriate makefile
+            definition (the one with the same
+            <replaceable>makefile_name</replaceable>). At this time
+            contained <link linkend='macros'>macros</link> are
+            replaced by the actual values.
+          </para>
+        </refsect1>
+      </refentry>
+    </sect2>
+  </sect1>
+  
+  <sect1 id='constructs'><title>Accepted C++ / Qt constructs</title>
+
+    <para>The following constructs can be handled by
+      <command>sip</command>: typedef, struct, class, public,
+      protected, private, signals, slots, virtual, const, static,
+      void, bool, char, short, unsigned, int, long, float, double and
+      enum. There are some restrictions:</para>
+
+      <glosslist>
+
+        <glossentry>
+          <glossterm>class</glossterm>
+          <glossdef>
+            <para id="para-sip-110"><itemizedlist
+                                                      spacing='compact'>
+                <listitem><simpara> Class definition can not be
+                    nested. </simpara></listitem>
+                <listitem><simpara> A class must not have private
+                    abstract functions. </simpara></listitem>
+                <listitem><simpara> Constructor must be in the public,
+                    private or protected sections.
+                  </simpara></listitem>
+                <listitem><simpara> Function must be in the public,
+                    private, protected, slot or signal sections.
+                  </simpara></listitem>
+                <listitem><simpara> Class variables must be in the
+                    public section. </simpara></listitem>
+                <listitem><simpara> Class enums must be in the public
+                    or protected sections.
+                  </simpara></listitem>
+              </itemizedlist></para>
+            <blockquote><title>Member functions</title>
+              <para id="para-sip-111">
+                Static functions must be public and cannot be virtual.
+              </para><para id="para-sip-112">
+                The syntax of class method declarations is as follows:
+              </para><para id="para-sip-113">
+                <blockquote><para id="para-sip-114">
+                    <replaceable>name</replaceable>
+                    ([<replaceable>arg</replaceable>]..) [const] [=0]
+                    [/<replaceable>optflag</replaceable>[,<replaceable>optflag</replaceable>]../] 
+                    ; [<replaceable>member_code</replaceable>]
+                  </para></blockquote>
+              </para><para id="para-sip-115"> Option flags can be
+                given in a comma separated list of
+                <replaceable>optflag</replaceable>s enclosed in
+                slashes. <replaceable>optflag</replaceable>s can be
+                boolean, or take a value. The following flags are
+                recognized: </para>
+              <table>
+                <title>Flags in member function declaration</title>
+                <tgroup cols='2'><tbody>
+                    <row>
+                      <entry>PyName=<replaceable>py_name</replaceable></entry>
+                      <entry>Use <replaceable>py_name</replaceable>
+                        instead of the C++ function name</entry>
+                    </row><row>
+                      <entry>ReleaseLock</entry>
+                      <entry>Release the python interpreter
+                        lock</entry>
+                    </row><row>
+                      <entry>PreHook=<replaceable>hook_function</replaceable></entry>
+                      <entry>Define
+                        <replaceable>hook_function</replaceable> to be
+                        called prior to the memberfunc</entry>
+                    </row><row>
+                      <entry>PostHook=<replaceable>hook_function</replaceable></entry>
+                      <entry>Define
+                        <replaceable>hook_function</replaceable> to be
+                        called after the memberfunc</entry>
+                    </row><row>
+                      <entry>Transfer</entry>
+                      <entry>Ownership is transferred</entry>
+                    </row><row>
+                      <entry>TransferThis</entry>
+                      <entry>Ownership of this is transferred</entry>
+                    </row><row>
+                      <entry>TransferBack</entry>
+                      <entry>Ownership is transferred back</entry>
+                    </row>
+                  </tbody></tgroup</table>
+            </blockquote>
+          </glossdef>
+        </glossentry>
+           
+        <glossentry>
+          <glossterm>protected</glossterm>
+          <glossdef>
+            <para id="para-sip-117">
+              If the function is protected, call the public wrapper.
+              Otherwise, explicitly call the real function and not any
+              version in the wrapper class (in case it is virtual).
+              This will prevent virtual loops.  You don't need to
+              worry about indirected objects for protected functions.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>signals</glossterm>
+          <glossdef>
+            <itemizedlist spacing='compact'>
+              <listitem><simpara> Arguments must be simple. Otherwise
+                  you have to supply your own C++ code.
+                </simpara></listitem>
+              <listitem><simpara> Virtual signals are not supported.
+                </simpara></listitem>
+            </itemizedlist>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>slots</glossterm>
+          <glossdef>
+            <itemizedlist spacing='compact'>
+              <listitem><simpara> Arguments must be simple. Otherwise
+                  you have to supply your own C++ code.
+                </simpara></listitem>
+            </itemizedlist>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>virtual</glossterm>
+          <glossdef>
+            <itemizedlist spacing='compact'>
+              <listitem><simpara> Static functions cannot be virtual.
+                </simpara></listitem>
+              <listitem><simpara> Virtual signals aren't supported.
+                </simpara></listitem>
+              <listitem><simpara> Arguments must be simple. Otherwise
+                  you have to supply your own C++ code.
+                </simpara></listitem>
+            </itemizedlist>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>const</glossterm>
+          <glossdef>
+            <itemizedlist spacing='compact'>
+              <listitem><simpara> Accepted for const function
+                  arguments and const functions.
+                </simpara></listitem>
+            </itemizedlist>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>static</glossterm>
+          <glossdef>
+            <itemizedlist spacing='compact'>
+              <listitem><simpara> <action
+                                          moreinfo='refentry'>%VariableCode</action> cannot be specified for non-static class variables. </simpara></listitem>
+              <listitem><simpara> Cannot mix static and non-static
+                  member functions with the same Python name.
+                </simpara></listitem>
+              <listitem><simpara> Static functions must be public and
+                  cannot be virtual. </simpara></listitem>
+            </itemizedlist>
+          </glossdef>
+        </glossentry>
+
+      </glosslist>
+    </sect1>
+
+    <sect1>
+      <title>SIPLIB Functions</title>
+
+      <sect2 id='pubsupport'><title>Public Support Functions</title>
+
+        <para id="para-sip-129">To use the
+          <application>SIPLIB</application> functions described here,
+          include <filename>sip.h</filename>. The source of these
+          functions is in <filename>siplib.c</filename>.</para>
+      </sect2>
+
+      <sect2 id='infofuncs'><title>Information functions</title>
+        <refentry id='sipGetCppPtr'>
+          <refnamediv>
+            <refname>sipGetCppPtr</refname>
+            <refpurpose>Get the C/C++ pointer from a wrapper and cast
+              it to the required type</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>const void *
+                  <function>sipGetCppPtr</function></funcdef>
+                <paramdef>sipThisType *
+                  <parameter>w</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>toClass</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-130">
+                A pointer to the appropriate C++ class or NULL in case
+                of an error.
+              </para>
+            </refsect2>
+            <refsect2><title>w</title>
+              <para id="para-sip-131">
+                A pointer to SIPs info about the Python object.
+              </para>
+            </refsect2>
+            <refsect2><title>toClass</title>
+              <para id="para-sip-132">
+                A pointer to the Python object.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+              
+        <refentry id='sipGetComplexCppPtr'>
+          <refnamediv>
+            <refname>sipGetComplexCppPtr</refname>
+            <refpurpose>Get the C/C++ pointer for a complex
+              object</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>const void *
+                  <function>sipGetComplexCppPtr</function></funcdef>
+                <paramdef>sipThisType *
+                  <parameter>w</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-134">
+              No access to protected functions or signals for object
+              not created from Python.
+            </para>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-135">
+                A pointer to the appropriate C++ class or NULL in case
+                of an error.
+              </para>
+            </refsect2>
+            <refsect2><title>w</title>
+              <para id="para-sip-136">
+                A pointer to SIPs info about the Python object.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+              
+        <refentry id='sipGetThisWrapper'>
+          <refnamediv>
+            <refname>sipGetThisWrapper</refname>
+            <refpurpose>Convert a C/C++ pointer to the object that
+              wraps it</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>sipThisType *
+                  <function>sipGetThisWrapper</function></funcdef>
+                <paramdef>const void *
+                  <parameter>cppPtr</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>pyClass</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-138">
+                Return the wrapped Python object or NULL if it wasn't
+                found.
+              </para>
+            </refsect2>
+            <refsect2><title>cppPtr</title>
+              <para id="para-sip-139">
+                The C++ pointer, used as a key to SIPs object map.
+              </para>
+            </refsect2>
+            <refsect2><title>pyClass</title>
+              <para id="para-sip-140">
+                if the wrapped object is a sub-class of the given
+                <parameter>pyClass</parameter> then we assume we are
+                returning the value of something like
+                QObject::parent() where the parent is something like a
+                QLabel.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+              
+        <refentry id='sipIsSubClassInstance'>
+          <refnamediv>
+            <refname>sipIsSubClassInstance</refname>
+            <refpurpose>See if a Python object is an instance of a
+              sub-class of a given base class</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>int
+                  <function>sipIsSubClassInstance</function></funcdef>
+                <paramdef>PyObject *
+                  <parameter>inst</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>baseclass</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-141">
+                True if Python object <parameter>inst</parameter> is
+                an instance of a sub-class of
+                <parameter>baseclass</parameter>, else false. 
+              </para>
+            </refsect2>
+            <refsect2><title>inst</title>
+              <para id="para-sip-142">
+                Pointer to the Python object instance.
+              </para>
+            </refsect2>
+            <refsect2><title>baseclass</title>
+              <para id="para-sip-143">
+                Pointer to the Python base class.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+      </sect2>
+
+      <sect2 id='convfuncs'>
+        <title>Conversions and argument parsing</title>
+        <refentry id='sipParseArgs'>
+          <refnamediv>
+            <refname>sipParseArgs</refname>
+            <refpurpose>Parse the arguments to a C/C++ function
+              without any side effects</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>int
+                  <function>sipParseArgs</function></funcdef>
+                <paramdef>int *
+                  <parameter>argsParsedp</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>sipArgs</parameter></paramdef>
+                <paramdef>char * <parameter>fmt</parameter></paramdef>
+                <paramdef>...</paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-144">
+                false (or 0) if an error occurred, else true (or 1).
+              </para>
+            </refsect2>
+            <refsect2><title>argsParsedp</title>
+              <para id="para-sip-145">
+                      Parsing stops if an error is encountered or all
+                arguments / format specifiers are exhausted. The
+                number of arguments parsed so far is stored here along
+                with error flags. <blockquote><table
+                                                               frame=all>
+                    <title>Error flags in sipParseArgs()</title>
+                    <tgroup cols=2>
+                      <colspec align='center' colwidth='100'>
+                      <colspec align='left' colwidth='200'>
+                      <thead>
+                        <row>
+                          <entry>Flag Name</entry>
+                          <entry>Meaning</entry>
+                        </row>
+                      </thead>
+                      <tbody>
+                        <row>
+                          <entry>PARSE_OK</entry>
+                          <entry>Parse is Ok so far</entry>
+                        </row><row>
+                          <entry>PARSE_MANY</entry>
+                          <entry>Too many arguments</entry>
+                        </row><row>
+                          <entry>PARSE_FEW</entry>
+                          <entry>Too few arguments</entry>
+                        </row><row>
+                          <entry>PARSE_TYPE</entry>
+                          <entry>Argument with a bad type</entry>
+                        </row><row>
+                          <entry>PARSE_MASK</entry>
+                          <entry>Mask covering the error flag
+                            bits</entry>
+                        </row>
+                      </tbody></tgroup>
+                  </table></blockquote>
+              </para>
+            </refsect2>
+            <refsect2><title>sipArgs</title>
+              <para id="para-sip-146">
+                A pointer to a tuple which supplies the arguments to
+                be parsed.
+              </para>
+            </refsect2>
+            <refsect2><title>fmt</title>
+              <para id="para-sip-147">
+                      Format string describing arguments. A leading
+                '-' in the format string disposes of the arguments on
+                a successful parse. A '|' in the format string
+                signifies that the following arguments are optional.
+                The following format specifiers are recognized:
+                <blockquote><table frame=all>
+                    <title>Format specifiers for
+                      sipParseArgs()</title>
+                    <tgroup cols=3>
+                      <colspec align='center' colwidth="30">
+                      <colspec align='left' colwidth="150">
+                      <colspec align='left' colwidth="*">
+                      <thead>
+                        <row>
+                          <entry>fmt</entry>
+                          <entry>Operand type</entry>
+                          <entry>expected C argument(s)</entry>
+                        </row>
+                      </thead>
+                      <tbody>
+                        <row>
+                          <entry>s</entry>
+                          <entry>String or None</entry>
+                          <entry>char **</entry>
+                        </row><row>
+                          <entry>S</entry>
+                          <entry>Slot name, return the name</entry>
+                          <entry>char **</entry>
+                        </row><row>
+                          <entry>G</entry>
+                          <entry>Signal name, return the name</entry>
+                          <entry>char **</entry>
+                        </row><row>
+                          <entry>I</entry>
+                          <entry>Class instance</entry>
+                          <entry>int (*convfunc)(PyObject *), PyObject
+                            **</entry>
+                        </row><row>
+                          <entry>O</entry>
+                          <entry>Python object of any type</entry>
+                          <entry>PyObject **</entry>
+                        </row><row>
+                          <entry>T</entry>
+                          <entry>Python object of given type</entry>
+                          <entry>PyTypeObject *, PyObject **</entry>
+                        </row><row>
+                          <entry>R</entry>
+                          <entry>Sub-class of QObject</entry>
+                          <entry>PyObject **</entry>
+                        </row><row>
+                          <entry>F</entry>
+                          <entry>Python callable object</entry>
+                          <entry>PyObject **</entry>
+                        </row><row>
+                          <entry>a</entry>
+                          <entry>Byte array or None</entry>
+                          <entry>char **, int *</entry>
+                        </row><row>
+                          <entry>c</entry>
+                          <entry>Character</entry>
+                          <entry>char *</entry>
+                        </row><row>
+                          <entry>i</entry>
+                          <entry>Integer</entry>
+                          <entry>int *</entry>
+                        </row><row>
+                          <entry>h</entry>
+                          <entry>Short integer</entry>
+                          <entry>short *</entry>
+                        </row><row>
+                          <entry>l</entry>
+                          <entry>Long integer</entry>
+                          <entry>long *</entry>
+                        </row><row>
+                          <entry>f</entry>
+                          <entry>Float</entry>
+                          <entry>float *</entry>
+                        </row><row>
+                          <entry>d</entry>
+                          <entry>Double float</entry>
+                          <entry>double *</entry>
+                        </row><row>
+                          <entry>v</entry>
+                          <entry>Void pointer</entry>
+                          <entry>void **</entry>
+                        </row>
+                      </tbody></tgroup></table></blockquote>
+              </para>
+            </refsect2>
+            <refsect2><title>...</title>
+              <para id="para-sip-148">
+                A variable number of pointers to the arguments which
+                will take the parsed values.
+              </para>
+            </refsect2>
+          </refsect1>
+          <refsect1><title>Examples</title>
+            <example><title id='sipParseArgs.example'>Interface for
+                QRegExp::match</title>
+            <programlisting>
+// Attempts to match in str, starting from position index. 
+// Returns the position of the match, or -1 if there was no match.
+// if len is not a null pointer, the length of the match is stored in *len. 
+int match(const char* str, int index=0, int*=0) const;
+%MemberCode
+    // The Python interface returns the position and length as a tuple.
+    const char *str;
+    int index = 0;
+
+    if (sipParseArgs(&amp;sipArgsParsed, sipArgs, "s|i", &amp;str, &amp;index))
+    {
+        int pos, len;
+        QRegExp *ptr;
+
+        if ((ptr = (QRegExp*) sipGetCppPtr(sipThis, sipClass_QRegExp)) == NULL)
+            return NULL;
+        pos = ptr -> QRegExp::match(str, index, &amp;len);
+        return Py_BuildValue("(ii)", pos, len);
+    }
+%End
+            </programlisting>
+            </example>
+          </refsect1>
+        </refentry>
+              
+        <refentry id='sipConvertToCpp'>
+          <refnamediv>
+            <refname>sipConvertToCpp</refname>
+            <refpurpose>Convert a Python instance of a class to a
+              C/C++ object pointer</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>sipConvertToCpp
+                  <function>sipConvertToCpp</function></funcdef>
+                <paramdef>PyObject *
+                  <parameter>sipSelf</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>baseclass</parameter></paramdef>
+                <paramdef>int *
+                  <parameter>iserrp</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-149">
+                A pointer to the C++ class or NULL in case of an error
+                (e.g. the instance's class is not derived from the
+                given <parameter>baseclass</parameter>).
+              </para>
+            </refsect2>
+            <refsect2><title>sipSelf</title>
+              <para id="para-sip-150">
+                A pointer to the Python object instance.
+              </para>
+            </refsect2>
+            <refsect2><title>baseclass</title>
+              <para id="para-sip-151">
+                The base class of the Python object instance.
+              </para>
+            </refsect2>
+            <refsect2><title>iserrp</title>
+              <para id="para-sip-152">
+                Store TRUE here if we had an error.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+
+        <refentry id='sipMapCppToSelf'>
+          <refnamediv>
+            <refname>sipMapCppToSelf</refname>
+            <refpurpose>Convert a C/C++ pointer to a Python
+              instance</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>
+                <funcdef>PyObject *
+                  <function>sipMapCppToSelf</function></funcdef>
+                <paramdef>const void *
+                  <parameter>cppPtr</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>pyClass</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-153">
+              If the C/C++ pointer is recognized, and it is an
+              instance of a sub-class of the expected class, then the
+              previously wrapped instance is returned. Otherwise a new
+              Python instance is created with the expected class. The
+              instance comes with a reference.
+            </para>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-154">
+                A pointer to the Python object instance (or Py_None if
+                a NULL pointer was passed in).
+              </para>
+            </refsect2>
+            <refsect2><title>cppPtr</title>
+              <para id="para-sip-155">
+                A pointer to the  C++ object.
+              </para>
+            </refsect2>
+            <refsect2><title>pyClass</title>
+              <para id="para-sip-156">
+                The expexted Python class.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+
+        <refentry id='sipConvertToVoidPtr'>
+          <refnamediv>
+            <refname>sipConvertToVoidPtr</refname>
+            <refpurpose>A convenience function to convert a C/C++ void
+              pointer from a Python object</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>
+                <funcdef>void *
+                  <function>sipConvertToVoidPtr</function></funcdef>
+                <paramdef>PyObject *
+                  <parameter>obj</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-157">
+                The C/C++ pointer (or NULL if the object was Py_None).
+              </para>
+            </refsect2>
+            <refsect2><title>obj</title>
+              <para id="para-sip-158">
+                The Python object
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+
+        <refentry id='sipConvertFromVoidPtr'>
+          <refnamediv>
+            <refname>sipConvertFromVoidPtr</refname>
+            <refpurpose>A convenience function to convert a C/C++ void
+              pointer to a Python object</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>
+                <funcdef>PyObject *
+                  <function>sipConvertFromVoidPtr</function></funcdef>
+                <paramdef>void * <parameter>val</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-159">
+                A pointer to the Python object (or Py_None if
+                <parameter>val</parameter> was a NULL pointer).
+              </para>
+            </refsect2>
+            <refsect2><title>val</title>
+              <para id="para-sip-160">
+                The C/C++ pointer.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+
+        <refentry id='sipConvertFromBool'>
+          <refnamediv>
+            <refname>sipConvertFromBool</refname>
+            <refpurpose>A convenience function to convert a C/C++
+              boolean to a Python object</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>
+                <funcdef>PyObject *
+                  <function>sipConvertFromBool</function></funcdef>
+                <paramdef>int <parameter>val</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-161">
+                Py_True or Py_False, depending on
+                <parameter>val</parameter>.
+              </para>
+            </refsect2>
+            <refsect2><title>val</title>
+              <para id="para-sip-162">
+                The value to evaluate.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+
+        <refentry id='sipCheckNone'>
+          <refnamediv>
+            <refname>sipCheckNone</refname>
+            <refpurpose>Check a None argument for a class pointer that
+              we might dereference</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>
+                <funcdef>void
+                  <function>sipCheckNone</function></funcdef>
+                <paramdef>int
+                  <parameter>willDeref</parameter></paramdef>
+                <paramdef>int *
+                  <parameter>isErr</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>classname</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-163">
+              Report a Python runtime error with this message:
+              <computeroutput><literal> Cannot pass None as a
+                  <parameter>classname</parameter> argument in this
+                  call </literal></computeroutput>
+            </para>
+            <refsect2><title>willDeref</title>
+              <para id="para-sip-164">
+                If this is TRUE, the error is generated.
+              </para>
+            </refsect2>
+            <refsect2><title>isErr</title>
+              <para id="para-sip-165">
+                Store TRUE here if the error is generated.
+              </para>
+            </refsect2>
+            <refsect2><title>classname</title>
+              <para id="para-sip-166">
+                This goes into the error message.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipBadVirtualResultType'>
+          <refnamediv>
+            <refname>sipBadVirtualResultType</refname>
+            <refpurpose>Report a Python member function with an
+              unexpected return type</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>void
+                  <function>sipBadVirtualResultType</function></funcdef>
+                <paramdef>char *
+                  <parameter>classname</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>method</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-167">Report a Python type error with
+              this mesage: <computeroutput><literal> Invalid result
+                  type from
+                  <parameter>classname</parameter>.<parameter>method</parameter>(); 
+                </literal></computeroutput>
+            </para>
+            <refsect2><title>classname</title>
+              <para id="para-sip-168">Classname used in error
+                message.</para>
+            </refsect2>
+            <refsect2><title>method</title>
+              <para id="para-sip-169">
+                Method name used in error message.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+              
+        <refentry id='sipBadSetType'>
+          <refnamediv>
+            <refname>sipBadSetType</refname>
+            <refpurpose>Report a Python class variable with an
+              unexpected type</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>void<function>sipBadSetType</function></funcdef>
+                <paramdef>char *
+                  <parameter>classname</parameter></paramdef>
+                <paramdef>char * <parameter>var</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-170">
+              Report a Python type error with this mesage:
+              <computeroutput><literal> Invalid type for variable
+                  <parameter>classname</parameter>.<parameter>var</parameter> 
+                </literal></computeroutput>
+            </para>
+            <refsect2><title>classname</title>
+              <para id="para-sip-171">
+                Classname used in error message.
+              </para>
+            </refsect2>
+            <refsect2><title>var</title>
+              <para id="para-sip-172">
+                Variable name used in error message.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+      </sect2>
+          
+      <sect2 id='rscfuncs'>
+        <title>Ressource handling</title>
+        <refentry id='sipReleaseLock'>
+          <refnamediv>
+            <refname>sipReleaseLock</refname>
+            <refpurpose>Release the interpreter lock and save the
+              current Python thread state</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>void
+                  <function>sipReleaseLock</function></funcdef>
+                <void>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-173">
+              Calls PyEval_SaveThread().
+            </para>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipAcquireLock'>
+          <refnamediv>
+            <refname>sipAcquireLock</refname>
+            <refpurpose>Acquire the interpreter lock and restore the
+              Python thread state</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>void
+                  <function>sipAcquireLock</function></funcdef>
+                <void>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-174">
+              Calls PyEval_RestoreThread().
+            </para>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipCondReleaseLock'>
+          <refnamediv>
+            <refname>sipCondReleaseLock</refname>
+            <refpurpose>Release the interpreter lock, if previously
+              acquired, and save Python thread state</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>void
+                  <function>sipCondReleaseLock</function></funcdef>
+                <paramdef>int
+                  <parameter>relLock</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-175">
+              Calls PyEval_SaveThread().
+            </para>
+            <refsect2><title>relLock</title>
+              <para id="para-sip-176">
+                Release the interpreter lock, if
+                <parameter>relLock</parameter> is true, calling
+                PyEval_SaveThread().
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipCondAcquireLock'>
+          <refnamediv>
+            <refname>sipCondAcquireLock</refname>
+            <refpurpose>Acquire the interpreter lock, if not already
+              acquired, and restore Python thread state</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>int
+                  <function>sipCondAcquireLock</function></funcdef>
+                <void>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-177">
+              Calls PyEval_RestoreThread().
+            </para>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-178">
+                Return TRUE if the lock could be aquired, else FALSE.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipMalloc'>
+          <refnamediv>
+            <refname>sipMalloc</refname>
+            <refpurpose>A Python 1.5 style memory allocator that
+              supports Python 1.5 and 1.6</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>ANY *
+                  <function>sipMalloc</function></funcdef>
+                <paramdef>size_t
+                  <parameter>nbytes</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-179">
+                Pointer to allocated memory block (or NULL).
+              </para>
+            </refsect2>
+            <refsect2><title>nbytes</title>
+              <para id="para-sip-180">
+                Number of bytes to allocate.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipFree'>
+          <refnamediv>
+            <refname>sipFree</refname>
+            <refpurpose>A Python 1.5 style memory de-allocator that
+              supports Python 1.5 and 1.6</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>void <function>sipFree</function></funcdef>
+                <paramdef>ANY * <parameter>mem</parameter></paramdef>
+                <paramdef>MMMM <parameter>MMMM</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>mem</title>
+              <para id="para-sip-181">
+                A pointer to the memory block to be freed.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+      </sect2>
+          
+      <sect2 id='callfuncs'><title>Calling Python</title>
+        <refentry id='sipEvalMethod'>
+          <refnamediv>
+            <refname>sipEvalMethod</refname>
+            <refpurpose>Call a Python method</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>PyObject *
+                  <function>sipEvalMethod</function></funcdef>
+                <paramdef>const sipPyMethod *
+                  <parameter>pm</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>args</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-182">
+                A pointer to the Python object which the methods
+                returns or NULL, if the method could not be found.
+              </para>
+            </refsect2>
+            <refsect2><title>pm</title>
+              <para id="para-sip-183">
+                A pointer to SIPs info about the method, usually taken
+                from SIPs method cache.
+              </para>
+            </refsect2>
+            <refsect2><title>args</title>
+              <para id="para-sip-184">
+                Pointer to a tuple with the parameters.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipCallHook'>
+          <refnamediv>
+            <refname>sipCallHook</refname>
+            <refpurpose>Call a hook</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>void
+                  <function>sipCallHook</function></funcdef>
+                <paramdef>char *
+                  <parameter>hookname</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-185">
+              From the __builtin__ module dictionary get the function
+              hook. Call the hook and discard any result.
+            </para>
+            <refsect2><title>hookname</title>
+              <para id="para-sip-186">
+                Character string with the hook function name.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+      </sect2>
+          
+      <sect2 id='qtfuncs'><title>Functions specifically for
+          signals/slots</title>
+        <para id="para-sip-187">
+          These functions are specific for the Qt support. They are in
+          the separate files <ulink
+                                    url='../../siplib/sipqt.h'>sipqt.h</ulink> and <ulink url='../../siplib/qtlib.cpp'>qtlib.cpp</ulink>.
+        </para>
+            
+        <refentry id='sipEmitSignal'>
+          <refnamediv>
+            <refname>sipEmitSignal</refname>
+            <refpurpose>Emit a Python or Qt signal</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>int
+                  <function>sipEmitSignal</function></funcdef>
+                <paramdef>sipThisType *
+                  <parameter>w</parameter></paramdef>
+                <paramdef>char * <parameter>sig</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>sigargs</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-188">
+                Return 0 if the signal was emitted or if there was an
+                error.
+              </para>
+            </refsect2>
+            <refsect2><title>w</title>
+              <para id="para-sip-189">
+              </para>
+            </refsect2>
+            <refsect2><title>sig</title>
+              <para id="para-sip-190">
+              </para>
+            </refsect2>
+            <refsect2><title>sigargs</title>
+              <para id="para-sip-191">
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipConvertRx'>
+          <refnamediv>
+            <refname>sipConvertRx</refname>
+            <refpurpose>Convert a Python receiver to a Qt
+              receiver</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>QObject *
+                  <function>sipConvertRx</function></funcdef>
+                <paramdef>sipProxy *(*)()
+                  <parameter>proxyfunc</parameter></paramdef>
+                <paramdef>sipThisType *
+                  <parameter>txThis</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>sigargs</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>rxobj</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>slot</parameter></paramdef>
+                <paramdef>char **
+                  <parameter>memberp</parameter></paramdef>
+                <paramdef>int *
+                  <parameter>iserr</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-192">
+              Convert a Python receiver (either a Python signal or
+              slot or a Qt signal or slot) to a Qt receiver.  It is
+              only ever called when the signal is a Qt signal.
+            </para>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-193">
+                Return NULL is there was an error.
+              </para>
+            </refsect2>
+            <refsect2><title>proxyfunc</title>
+              <para id="para-sip-194">
+              </para>
+            </refsect2>
+            <refsect2><title>txThis</title>
+              <para id="para-sip-195">
+              </para>
+            </refsect2>
+            <refsect2><title>sigargs</title>
+              <para id="para-sip-196">
+              </para>
+            </refsect2>
+            <refsect2><title>rxobj<</title>
+              <para id="para-sip-197">
+              </para>
+            </refsect2>
+            <refsect2><title>slot</title>
+              <para id="para-sip-198">
+              </para>
+            </refsect2>
+            <refsect2><title>memberp</title>
+              <para id="para-sip-199">
+              </para>
+            </refsect2>
+            <refsect2><title>iserr</title>
+              <para id="para-sip-200">
+                Set <parameter>*iserr</parameter> to TRUE if there was
+                an error.
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipConnectRx'>
+          <refnamediv>
+            <refname>sipConnectRx</refname>
+            <refpurpose>Connect a Qt or a Python signal</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>PyObject *
+                  <function>sipConnectRx</function></funcdef>
+                <paramdef>PyObject *
+                  <parameter>txobj</parameter></paramdef>
+                <paramdef>char * <parameter>sig</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>rxobj</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>slot</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <para id="para-sip-201">
+              Connect a Qt signal or a Python signal to a Qt slot, a
+              Qt signal, a Python slot or a Python signal. These are
+              all possible combinations.
+            </para>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-202">
+                Py_True or Py_False or NULL, if there was an error.
+              </para>
+            </refsect2>
+            <refsect2><title>txobj</title>
+              <para id="para-sip-203">
+              </para>
+            </refsect2>
+            <refsect2><title>sig</title>
+              <para id="para-sip-204">
+              </para>
+            </refsect2>
+            <refsect2><title>rxobj</title>
+              <para id="para-sip-205">
+              </para>
+            </refsect2>
+            <refsect2><title>slot</title>
+              <para id="para-sip-206">
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipGetRx'>
+          <refnamediv>
+            <refname>sipGetRx</refname>
+            <refpurpose>Convert a valid Python signal or slot to an
+              existing proxy Qt slot</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>QObject *
+                  <function>sipGetRx</function></funcdef>
+                <paramdef>sipThisType *
+                  <parameter>txThis</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>sigargs,</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>rxobj</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>slot</parameter></paramdef>
+                <paramdef>char **
+                  <parameter>memberp</parameter></paramdef>
+                <paramdef>int *
+                  <parameter>iserr</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-207">
+                NULL if there was an error.
+              </para>
+            </refsect2>
+            <refsect2><title>txThis</title>
+              <para id="para-sip-208">
+              </para>
+            </refsect2>
+            <refsect2><title>sigargs</title>
+              <para id="para-sip-209">
+              </para>
+            </refsect2>
+            <refsect2><title>rxobj</title>
+              <para id="para-sip-210">
+              </para>
+            </refsect2>
+            <refsect2><title>slot</title>
+              <para id="para-sip-211">
+              </para>
+            </refsect2>
+            <refsect2><title>memberp</title>
+              <para id="para-sip-212">
+              </para>
+            </refsect2>
+            <refsect2><title>iserr</title>
+              <para id="para-sip-213">
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+            
+        <refentry id='sipDisconnectRx'>
+          <refnamediv>
+            <refname>sipDisconnectRx</refname>
+            <refpurpose>Disconnect a Qt or Python signal from a Python
+              slot</refpurpose>
+          </refnamediv>
+          <refsynopsisdiv>
+            <funcsynopsis>
+              <funcprototype>  
+                <funcdef>PyObject *
+                  <function>sipDisconnectRx</function></funcdef>
+                <paramdef>PyObject *
+                  <parameter>txobj</parameter></paramdef>
+                <paramdef>char * <parameter>sig</parameter></paramdef>
+                <paramdef>PyObject *
+                  <parameter>rxobj</parameter></paramdef>
+                <paramdef>char *
+                  <parameter>slot</parameter></paramdef>
+              </funcprototype>
+            </funcsynopsis>
+          </refsynopsisdiv>
+          <refsect1><title>Description</title>
+            <refsect2><title>Return Value</title>
+              <para id="para-sip-214">
+              </para>
+            </refsect2>
+            <refsect2><title>txobj</title>
+              <para id="para-sip-215">
+              </para>
+            </refsect2>
+            <refsect2><title>sig</title>
+              <para id="para-sip-216">
+              </para>
+            </refsect2>
+            <refsect2><title>rxobj</title>
+              <para id="para-sip-217">
+              </para>
+            </refsect2>
+            <refsect2><title>slot</title>
+              <para id="para-sip-218">
+              </para>
+            </refsect2>
+          </refsect1>
+        </refentry>
+      </sect2>
+      <sect2 id='privatfuncs'>
+        <title>Private Functions</title>
+            
+        <para id="para-sip-219">The private functions, which should
+          only be called by generated code, are not documented here.
+          For further information see the headerfile
+          <filename>sip.h</filename>).</para>
+      </sect2>
+  </sect1>
+  
+</appendix>
+
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/appendix.ced"
+End:
+-->

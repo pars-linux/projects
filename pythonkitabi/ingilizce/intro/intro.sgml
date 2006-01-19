@@ -1,0 +1,507 @@
+<chapter id="introduction">
+  
+  <title>Introduction</title>
+  
+  <para id="para-intro-1">Developing decent software is difficult
+    &mdash; monstrously difficult, in fact. People are always looking
+    for miracle cures, silver bullets that will help them creating
+    great software in no time with no conscious effort. In fact,
+    almost everyone will agree to the existence of a &lsquo;software
+    crisis'. Projects <emphasis>do</emphasis> deliver too little
+    functionality, too late and often of a too low quality. Frederick
+    Brooks was the first to note this, in his famous book
+    <citetitle>The&nbsp;Mythical&nbsp;Man-Month</citetitle>. More's
+    the pity that there aren't any miraculous solutions for the many
+    problems that plague software development. </para>
+
+  <para id="para-intro-2">There is simply no single innovation that
+    will make you ten times more productive, no single innovation that
+    will ensure that whatever you do, you will produce bug-free
+    software and no single innovation that will make your applications
+    run will all the vim and vigor your users desire and
+    deserve.</para>
+  
+  <para id="para-intro-3">However, it is quite possible, by simply
+    using the best possible tools and  practices, to be far more
+    productive than would be possible by following the usual practices
+    and by using inferior tools.
+  </para>
+
+  <para id="para-intro-4">It's amazing how many software development
+    environments have been designed with something else than developer
+    productivity as the main goal. There's Visual Basic, which, while
+    infinitely more productive than previous attempts at creating a
+    rapid development environment for Windows, still is mainly
+    concerned with preventing people from creating applications that
+    can compete with Microsofts' own applications. Java, while quite
+    usable, tries far too hard to protect me from myself and my
+    colleagues &mdash;  like early versions of Pascal. C++ is
+    enormously large and complicated, because of its compatibility
+    goals with C &mdash; almost too big to learn to handle. In
+    contrast, Python was designed to be small, practical and to be as
+    open as possible to the developer.</para>
+
+  <para id="para-intro-5">In Python, all other considerations, are
+    secondary to considerations of development speed, code
+    maintainability and code reusability.</para>
+
+  <para id="para-intro-6">Python offers everything you need to put the
+    best practices into practice, like object oriented design, unit
+    testing and maintaining documentation in the code, but it doesn't
+    keep you from messing with the more messy parts of the operating
+    system &mdash; you can always use an extension module written in C
+    or C++ &mdash; or with the internals of Python itself. It is ideal
+    for rapid prototyping, but also for the development of large
+    applications by large teams of programmers.</para>
+
+  <para id="para-intro-7">Python code is meant to be readable.
+    Indenting correctly and neatly is not merely a good habit: it is
+    essential to delimit blocks of code. Likewise, there is little use
+    for comic-book swearing characters like &lsquo;!@#$#%$' that other
+    languages use to indicate the type of a variable, or even for
+    variable declarations and all those other things that keep you
+    from writing the logic of your application. The most famous
+    description of Python is that it's &lsquo;executable
+    pseudo-code'!</para>
+
+  <para id="para-intro-8">However, what Python has been lacking until
+    recently was a good development environment. Of course, since all
+    Python code is simple text, and since you don't need
+    pre-processors or compilers, you can get by with nothing more than
+    a text editor, like <application>XEmacs</application>
+    <application>Nedit</application>, or
+    <application>MultiEdit</application>. Indeed, I've used
+    <application>Nedit</application> exclusively for years &mdash; but
+    some project management facilities, a tighter integration with a
+    GUI builder and a good debugger can make life infinitely more
+    pleasant, and thus productive.</para>
+
+  <para id="para-intro-9"><application>BlackAdder</application> is
+    such an environment. Others are <application>Wing
+      IDE</application>, <application>PythonWorks</application>,
+    <application>PythonWin</application>,
+    <application>Komodo</application> and, perhaps,
+    <application>IDLE</application>. Of these, only
+    <application>BlackAdder</application> runs on both Windows and
+    Linux, includes a full-featured GUI designer and provides a
+    dependable debugger. Applications developed with Python and
+    BlackAdder can run on any Unix platform with X11 and on any
+    32-bits Windows platform (and in the near future on Apple's OS X,
+    too).</para>
+    
+  <sect1><title>Python</title>
+
+    <para id="para-intro-10">Python is a modern programming language, with strong
+      object-oriented features, a small set of basic functions and
+      large set of libraries. The most important features of Python
+      are:</para>
+
+    <itemizedlist>
+        <listitem>
+          <para id="para-intro-11">Compiled to byte-code, interpreted by a virtual
+            machine.</para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-12">High-level data structures: lists, tuples and
+            dictionaries</para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-13">Dynamic: you can even add new base-classes to an
+            existing object, run-time.</para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-14">Portable: the same Python bytecode
+          will run &mdash; depending on which version of Python you
+          use and which C or C++ extensions are used &mdash; on Unix,
+          Windows, MacOS, Amiga, Palm OS and many others.</para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-15">Extensible with modules written in
+          C or C++: there is <emphasis>no</emphasis> performance
+          penalty for calling native code, as there is when calling
+          native code from Java.</para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-16">An object-oriented programming
+          model, but also supports functional programming (a bit) and
+          old-fashioned structured programming.</para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-17">Enormous set of extension
+          libraries: for database access, high-performance
+          number-crunching, for sound-file analysis, for GUI
+          programming and countless other tasks.</para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-18">Built-in regular expression engine
+          that works on both regular and Unicode strings.
+          </para>
+        </listitem>
+        <listitem>
+          <para id="para-intro-19">Use of indentation instead of braces
+          <function>begin</function>/<function>end</function> pairs to
+          delimit blocks of code. This practically forces readable
+          code.</para>
+        </listitem>
+    </itemizedlist>
+
+    <para id="para-intro-20">Your Python code resides in files, ending
+      with <filename>.py</filename> suffix. These files can be grouped
+      in modules, in the form of directories with an indexfile called
+      <filename>__init__.py</filename>, and you can import elements
+      from modules and files in other files. There is one file you use
+      to start your application. It will usually simply import the
+      necessary modules and start the application explicitly in a
+      <function>main (args)</function> function.</para>
+
+    <para>Maybe the introduction is bit <emphasis>early</emphasis> to
+      start with actual code examples, but let's have an example of a
+      Python bootstrap script anyway:</para>
+
+    <example>
+      <title>Bootstrapping a Python application</title>
+      <programlistingco>
+        <areaspec>
+          <area coords="1" id="hashbang">
+          <area coords="6" id="impsys">
+          <area coords="7" id="impmyapp">
+          <area coords="9" id="defmain">
+          <area coords="13" id="ifname">
+        </areaspec>
+        <programlisting>
+#!/usr/bin/env python
+#
+# bootstrap.py
+#
+
+import sys
+from myapp import SomeClass
+
+def main(args):
+    class=SomeClass(args)
+    class.exec_loop()
+
+if __name__=="__main__":
+    main(sys.argv)
+        </programlisting>
+        <calloutlist>
+          <callout arearefs="hashbang"><para id="para-intro-21">The
+              so-called &lsquo;hash-bang' trick is useful on Unix systems
+              only. If the first line of any text file starts with #!,
+              then the system will try to execute the application that
+              follows the #! with the rest of the file as input. In
+              this case, the <command>env</command> utility starts
+              <command>python</command>, which runs the rest of the
+              script.</para>
+          </callout>
+          <callout arearefs="impsys"><para id="para-intro-22">The
+              standard Python module <command>sys</command> handles
+              tasks like passing on command-line arguments and lots of
+              other things. Here we import the module, so we can pass
+              the command-line arguments to the application. </para>
+          </callout>
+          <callout arearefs="impmyapp"><para id="para-intro-23">All
+              application code is in separate modules; the first of
+              these we import here.</para>
+          </callout>
+          <callout arearefs="defmain"><para id="para-intro-24">This is
+              the definition of the main function. By encapsulating
+              this code in a function, it won't get run if this file
+              were imported from another file.</para>
+          </callout>
+          <callout arearefs="ifname"><para id="para-intro-25">In this
+              line, we check if this is a top-level script, instead of
+              a file imported from another file. This is done by
+              looking at the variable <varname>__name__</varname>. If
+              this is the toplevel file, then the
+              <function>main(args)</function> is run.</para>
+          </callout>
+        </calloutlist>
+      </programlistingco>
+    </example>
+
+    <para id="para-intro-26">Python is, like Java, a language that is
+      compiled to bytecode. Python uses a virtual machine to run the
+      bytecode. This virtual machine is written in C and interprets
+      each byte-code instruction, translates it to real machine code
+      and then runs it. The Python virtual machine differs from the
+      Java virtual machine in that the byte-code instructions are a
+      bit more high-level, and that there are no JIT-compilers that
+      pre-compile chunks of byte-code to native machine code.</para>
+
+    <para id="para-intro-27">The translation from Python code to
+      byte-code only happens once: Python saves a compiled version of
+      your code in another file with the extension
+      <filename>.pyc</filename>, or an optimized compiled version of
+      your code that removes assert statements and line-number
+      tracking in a file with the extension
+      <filename>.pyo</filename>.</para>
+
+    <para id="para-intro-28">However, that is only done with Python
+      files that are imported from other files: the bootstrap script
+      will be compiled to bytecode every time you run it, but python
+      will create a <filename>myapp.pyc</filename> from a file
+      <filename>myapp.py</filename> (which is not shown here).</para>
+
+    <para id="para-intro-29">Interpreted languages, even byte-code
+      interpreted languages, have a reputation for sluggishness. On
+      the other hand, modern computers have a well-deserved reputation
+      for excessive processing power. The combination means that an
+      application written in a interpreted language can be fast enough
+      for almost any needs.</para>
+
+    <para id="para-intro-30">Certainly, anyone who has ever tried to
+      use a full-scale Java GUI application will know the exact
+      meaning of the expression &lsquo;slow as frozen treacle'. There
+      are several reasons for the abominable slowness of Java
+      applications, the most important of which is the fact that all
+      Java Swing gui elements are also written in Java. Every pixel is
+      put on screen by Java. Python, on the other hand, makes clever
+      use of available GUI libraries that are coded in C or C++ and
+      thus run as native machine code.</para>
+
+    <para id="para-intro-31">The ease with which Python can make use
+      of native libraries is one of its strong points. Thanks to this
+      extensibility, you can write the logic of your application in
+      Python, and later rewrite the bottlenecks in C or C++. But even
+      without writing extension libraries, I have never encountered
+      any problem with the performance of a Python application.
+    </para>
+    
+  </sect1>
+    
+   <sect1><title>GUI programming with Python</title>
+
+    <para id="para-intro-32">One area where you
+      <emphasis>do</emphasis> want the snappiest response possible is
+      your user interface. Users are notoriously impatient creatures,
+      and they are right. Responsiveness is important. Likewise,
+      conformance to platform standards is important, as is a well
+      thought-out programming model, to make <emphasis>your</emphasis>
+      life easier. You want to have as little GUI code to as possible,
+      because that means that there are less opportunities for bugs.
+      With these criteria, we can set out to select a good GUI
+      toolkit.</para>
+
+    <para id="para-intro-33">That it is possible at all to
+      <emphasis>select</emphasis> a GUI toolkit might come as a bit of
+      a surprise to Visual Basic developers, who cannot choose, but
+      have to use whatever Microsoft provides. There is a cornucopia
+      of GUI toolkits available for Unix/X11. Because Python is so
+      easily extensible with  C and C++ modules, a large part of them
+      is usable, &lsquo;bound to' is the technical term, from Python. Quite
+      a few of those toolkits are available on Windows too. Because
+      all computer intensive drawing and interaction code runs in
+      native machine code, outside the Python virtual machine, the
+      interface can be as responsive as the interface of an
+      application written in C or C++.</para>
+    
+    <para id="para-intro-34">The following GUI toolkits exist for Python:</para>
+
+    <table pgwide="1">
+      <title>GUI Toolkits for Python</title>
+      <tgroup cols=5>
+        <colspec colwidth="50">
+	<colspec colwidth="50">
+        <colspec colwidth="50">
+        <colspec colwidth="50">
+        <colspec colwidth="*">
+        <thead>
+          <row>
+            <entry>Gui Toolkit</entry>
+            <entry>Windows</entry>
+            <entry>Unix/X11</entry>
+            <entry>MacOS</entry>
+            <entry>Notes</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>Tkinter</entry>
+            <entry>Yes</entry>
+            <entry>Yes</entry>
+            <entry>Yes, mostly</entry>
+            <entry>Tkinter is the most ancient Python GUI toolkit. It
+              is based on tcl/tk, and has neither the real platform UI
+              look and feel, nor a real Python programming style. A
+              good resource is John Grayson's book, Python and Tkinter
+              programming.</entry>
+          </row>
+          <row>
+            <entry>PyQt</entry>
+            <entry>Yes</entry>
+            <entry>Yes</entry>
+            <entry>OS X only</entry>
+            <entry>PyQt is based on Qt, the cross-platform GUI toolkit
+              by Troll Tech. It's also, not so coincidentally, the
+              subject of this book.</entry>
+          </row>
+          <row>
+            <entry>wxPython</entry>
+            <entry>Yes</entry>
+            <entry>Yes</entry>
+            <entry>No</entry>
+            <entry>wxPython is based on the wxWindows toolkit.
+              wxWindows is a crossplatform wrapper around a native
+              toolkit of each platform: the standard Win32 controls on
+              Windows and GTK on Unix/X11.</entry>
+          </row>
+	   <row>
+            <entry>FxPy</entry>
+            <entry>Yes</entry>
+            <entry>Yes</entry>
+            <entry>No</entry>
+            <entry>One of the smaller - in terms of user base -
+              toolkits, it is based on the FOX toolkit. FxPy's main
+              feature is execution speed.</entry>
+          </row>
+          <row>
+            <entry>PyGTK (+PyGnome)</entry>
+            <entry>Yes (a bit)</entry>
+            <entry>Yes</entry>
+            <entry>(If you run a separate X Server on OS X)</entry>
+            <entry>PyGTK is based on GTK (formerly known as the Gimp
+              Toolkit). Not really intended for cross-platform work,
+              it has recently been ported (more or less) to Windows.
+            </entry>
+          </row>
+          <row>
+	      <entry>Pythonwin</entry>
+            <entry>Yes</entry>
+            <entry>No</entry>
+            <entry>No</entry>
+            <entry>Pythonwin is the - rather underdocumented - binding
+              to Microsofts MFC library. It's not portable, of
+              course.</entry>
+          </row>
+          
+        </tbody>
+      </tgroup>
+    </table>
+
+    <para id="para-intro-35">There are many others GUI toolkits
+      available, both dead and alive. For a complete listing, please
+      see Cameron Laird's notes on Python GUI's at:
+      http://starbase.neosoft.com/~claird/comp.lang.python/python_GUI.html. 
+      However, the really serious options for someone selecting a
+      toolkit are Tkinter, PyQt and wxPython. I have selected PyQt for
+      my own use, based on criteria of performance, programming model,
+      completeness of the assortment of widgets and ease of
+      installation. Oh, and because it was the most fun to use, of
+      course!</para>
+
+      <para id="para-intro-36">There were other considerations, of
+      course. Tkinter is often very slow - try running the IDLE IDE
+      that comes with Python. In contrast, PyQt is very snappy. The
+      Tcl-tk programming model that Tkinter is based on doesn't
+      translate as well to Python as the modified C++ programming
+      model of PyQt. PyQt has also been very well designed: I just
+      love the signal/slot mechanism of PyQt. There is also just about
+      every type of widget I need, and PyQt is easy to install.
+      WxPython, because it's a library (wxPython) based on a library
+      (wxWindows) based on a library (MFC or GTK) can be really
+      difficult to get up and running. Finally, the GUI designer in
+      BlackAdder (or the free equivalent Qt Designer) is a strong
+      point in favor of Qt, too.</para>
+
+    <para id="para-intro-37">The most important features of PyQt are:</para>
+    <para id="para-intro-38">
+    <itemizedlist>
+        <listitem><para id="para-intro-39">Based on Trolltechs C++ Qt
+            toolkit.</para>
+        </listitem>
+        <listitem><para id="para-intro-40">Runs on Windows and
+            Unix/X11 (and soon on Apple's OS X)</para>
+        </listitem>
+        <listitem><para id="para-intro-41">Uses the innovative
+            signals/slots paradigm to couple GUI items and
+            actions.</para>
+        </listitem>
+        <listitem><para id="para-intro-42">Binds almost the complete
+            Qt library</para>
+        </listitem>
+        <listitem><para id="para-intro-43">Allows subclassing of Qt
+            classes in Python</para>
+        </listitem>
+        <listitem><para id="para-intro-44">Allows applications to
+            mimic the look and feel of Windows, Motif, CDE, SGI and
+            MacOS 9, or take on a custom look and feel.</para>
+        </listitem>
+        <listitem><para id="para-intro-45">Comes with an enormous
+            inventory of advanced GUI controls, such as a canvas, an
+            editable table module and a rich text editor (in version
+            3.0).</para>
+        </listitem>
+    </itemizedlist>
+    </para>
+
+  </sect1>
+
+  <sect1><title>About the BlackAdder IDE</title>
+
+    <para id="para-intro-46">BlackAdder is growing into a rather nice development
+      environment for Python and PyQt applications. You can use it to
+      rapidly prototype interfaces, or to develop complete, complex
+      applications in a very short time.</para>
+
+    <para id="para-intro-47">The central feature of BlackAdder is the
+      editor, which is specially geared towards working with Python,
+      and includes folding, syntax highlighing and auto-indent. There
+      is also a simple but dependable debugger, a Python interpreter
+      window for when you want to make a quick test, and last, but not
+      least, an excellent gui designer.</para>
+
+    <para id="para-intro-48">Especially the gui designer is worthy of
+      serious attention. It is based on Qt Designer, which is a
+      standard part of the Qt library. It produces designs that can,
+      at your choice, be transformed into executable Python code or
+      compilable C++ code. This means that if you prototype your
+      application in BlackAdder and later, for whatever reason, decide
+      to move it to C++, you can keep all the interface work you've
+      done already.</para>
+
+    <para id="para-intro-49">Using Python and PyQt does not force you
+      to use BlackAdder: you can, if you live in the Unix world, use
+      the free, GPL, version of Qt, which includes the original Qt
+      Designer, the free version of PyQt and Python, to create the
+      same applications. On Windows or OS X, you can use the
+      non-commercial version of Qt with the free PyQt binaries - these
+      cannot be used to develop commercial applications, or in a
+      in-house commercial setting, but are completely identical to the
+      Unix/X11 GPL library in all other respects.</para>
+
+    <para id="para-intro-50">The GUI design files Qt Designer produces
+      and those of BlackAdder are completely compatible. Likewise,
+      using BlackAdder doesn't force you to use PyQt - you can just as
+      well create a Tkinter application with BlackAdder. You won't
+      find much use for the Designer module though, since that only knows
+      about the Qt widgets.</para>
+
+    <para id="para-intro-51">All in all,  BlackAdder combines all the
+      tools you need to develop good GUI apps in an extremely
+      convenient package, and the added productivity of this system is
+      well worth the small expense, especially if you intend to
+      develop commercial applications on Windows.</para>
+
+  </sect1>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

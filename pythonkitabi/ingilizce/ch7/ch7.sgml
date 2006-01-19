@@ -1,0 +1,1297 @@
+<chapter id="ch7">
+  <title>Qt Designer, BlackAdder and uic</title>
+
+  <indexterm>
+  <primary>visual gui design</primary>
+  </indexterm>
+  <indexterm>
+  <primary>designer</primary>
+  </indexterm>
+  <indexterm>
+  <primary>gui design</primary>
+  </indexterm>
+  <indexterm>
+  <primary>forms design</primary>
+  </indexterm>
+  <para id="para-ch7-1">BlackAdder is the most powerful Python GUI designer in
+    existence. In fact, it compares favorably with every other GUI
+    designer I have ever used. There are other GUI designers for Python,
+    notably Pythonworks by Secret Labs and Boa Constructor, but
+    Pythonworks gives you access to a only subset of the relatively
+    feeble Tkinter GUI toolkit, and Boa Constructor, for wxWindows,
+    is not integrated into a development environment.</para>
+
+  <para id="para-ch7-2">With BlackAdder's GUI designer you can create dialog
+    windows, custom widgets and wizards. In the next generation of
+    BlackAdder, which will be based on Qt 3.0, you can even create
+    complete main windows with menu's, toolbars and a main widget.
+    BlackAdder gives you access to a wide range of widgets, and makes
+    it possible to integrate your own widgets.</para>
+
+  <indexterm>
+  <primary>Qt Designer</primary>
+  </indexterm>
+  <para id="para-ch7-3">Note that everything mentioned in this chapter
+    holds equally true for Qt Designer. The combination of Qt, Qt
+    Designer, pyuic and PyQt gives you exactly the same power&mdash;
+    just not the same convenience.</para>
+
+  <para id="para-ch7-4">There are a number of unique features to the
+    GUI designer in BlackAdder:</para>
+
+  <itemizedlist>
+    <listitem>
+      <para id="para-ch7-5">The designer produces XML files that can
+        be compiled to Python or C++.</para>
+    </listitem>
+    <listitem>
+      <para id="para-ch7-6">You can create signal/slot connections in
+        the designer, thus tying together all aspects of interface
+        logic.</para>
+    </listitem>
+    <listitem>
+      <para id="para-ch7-7">You can use the layout management classes
+        of Qt (like <classname>QLayout</classname>). </para>
+    </listitem>
+    <listitem>
+      <para id="para-ch7-8">You can preview your work in any of the
+        native styles that Qt supports.</para>
+    </listitem>
+    <listitem>
+      <para id="para-ch7-9">You can add your own widgets &mdash; even
+        if they are written in Python instead of C++</para>
+    </listitem>
+  </itemizedlist>
+
+
+  <sect1>
+    <title>Introduction</title>
+
+    <para id="para-ch7-10">Working with the designer modules includes creating
+      files with your interface definition, compiling those files to
+      Python code, and then using that code in your application.</para>
+
+
+    <sect2><title>Starting out with the designer module</title>
+
+      <para id="para-ch7-11">Beginning this process is easy, at least as far as GUI design is
+        concerned! After choosing <guimenuitem>New</guimenuitem> from the
+      <guimenu>File</guimenu> menu, you will be presented with a dialog
+        that asks you to choose what kind of item you want to create:</para>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center" format="eps" fileref="ch7/newui.sgml">
+          </imageobject>
+          <caption>
+            <indexterm>
+  <primary>templates</primary>
+  </indexterm>
+  <para id="para-ch7-12">Selecting a template for a new GUI design.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch7-13">This dialog should be moderately familiar to developers
+        who have worked with other GUI designers, such as Visual Basic
+        and JBuilder. Currently, the available options are:</para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch7-14">Dialog</para>
+        </listitem>
+        <listitem><para id="para-ch7-15">Wizard</para>
+        </listitem>
+        <listitem><para id="para-ch7-16">Widget</para>
+        </listitem>
+        <listitem><para id="para-ch7-17">Configuration Dialog</para>
+        </listitem>
+        <listitem><para id="para-ch7-18">Dialog with Buttons (bottom)</para>
+        </listitem>
+        <listitem><para id="para-ch7-19">Dialog with Buttons (right)</para>
+        </listitem>
+        <listitem><para id="para-ch7-20">Tab-Dialog</para>
+        </listitem>
+      </itemizedlist>
+
+      <note><title>Adding templates</title>
+
+      <indexterm>
+  <primary>templates</primary><secondary>adding your own</secondary>
+  </indexterm>
+  <para id="para-ch7-21">You are not limited to these choices &mdash; the list is
+          infinitely extensible, because all valid designer files
+          (those ending in <filename>.ui</filename>) are also valid
+          templates for the designer. You can create a new
+          template using the Designer, and then copy the
+          <filename>.ui</filename> file to the
+          <filename>templates</filename> directory in the
+          <filename>BlackAdder/properties</filename> <!--(XXX: check
+          WIndows path)--> directory. The next time you want to create a
+          designer file, your template will be among the choices.  Of
+          the original choices, <emphasis>Configuration
+            Dialog</emphasis>, <emphasis> Dialog with Buttons
+            (Bottom)</emphasis>, <emphasis>Dialog with Buttons
+            (Right)</emphasis> and <emphasis>Tab Dialog</emphasis> are
+          based on <filename>.ui</filename> files, and are therefore
+          customizable.</para>
+      </note>
+
+      <para id="para-ch7-22">Dialog is relatively uninteresting. It is a base class for creating
+        modal and modeless dialog boxes.</para>
+
+     <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center"  format="eps" fileref="ch7/dialog_template.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch7-23">The Dialog template, which appears rather bare.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch7-24">Wizard is more interesting. This template, based on
+        <classname>QWizard</classname>, offers everything you need to create
+        these popular "hand-holding" forms.</para>
+
+     <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center"  format="eps" fileref="ch7/wizard_template.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch7-25">The wizard template.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <indexterm>
+  <primary>configuration dialogs</primary>
+  </indexterm>
+  <para id="para-ch7-26">Configuration Dialog is interesting, too. It is meant for
+        application-wide preference dialogs, with a listbox
+        containing configuration categories on the left, and a new set
+        of tabbed forms for each configuration category on the right.
+        Note that you can just as easily put pixmaps in a listbox as
+        text strings.  It is far more professional to give the user
+        icons to select from instead of text labels in a
+        listbox.</para>
+
+     <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center"  format="eps" fileref="ch7/config_dialog_template.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch7-27">The Configuration dialog template.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch7-28">The dialogs with buttons to the right or to the bottom are
+        useful, everyday dialogs. The included buttons are already
+        connected to the methods that close and cancel the dialog, and
+        the contents are already subject to layout management. Which
+        constellation you prefer is a matter of taste. For
+        instance, the KDE desktop standard calls for buttons at the
+        bottom; but Microsoft often puts the buttons that right-hand
+        side.</para>
+
+     <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center"  format="eps" fileref="ch7/dialog_but_right_template.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch7-29">The dialog-with-the-buttons-on-the-right template.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch7-30">The last default template is for creating a bottom-buttoned dialog
+        with a tab strip on top.</para>
+
+     <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center"  format="eps" fileref="ch7/tab_dialog_template.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch7-31">The tabbed dialog template.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+
+    </sect2>
+
+    <sect2>
+      <title>Creating a design</title>
+
+      <para id="para-ch7-32">I'm assuming that you are familiar with the concept of
+        drawing a gui on a grid. Click on the icon that represents the
+        widget you want, click on the grid, drag it to where you want,
+        and alter any properties you want. It's as simple as
+        that&mdash;I can't make it any more difficult for you.</para>
+
+     <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center"  format="eps" fileref="ch7/form_with_widgets.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch7-33">A partially filled-in form.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+
+      <sect3><title>Grouping widgets</title>
+
+      <indexterm>
+  <primary>widgets</primary><secondary>container vs plain</secondary>
+  </indexterm>
+  <para id="para-ch7-34">One thing to keep in mind is the
+          essential difference between container widgets and normal
+          widgets. Container widgets can hold other widgets in a
+          parent-child relation. One example is the groupbox around a
+          set of radio buttons. It is essential to create the radio
+          buttons inside the groupbox to make them a set; otherwise it
+          would be difficult to keep the selection unique. Thus, you
+          first create the groupbox, drag it to an agreeable size, and
+          then place the radiobuttons inside the groupbox.</para>
+
+     <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata  scale="40" align="center"  format="eps" fileref="ch7/object_hierarchy.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch7-35">A groupbox holding radio buttons.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      </sect3>
+
+      <sect3><title>Layout management</title>
+
+      <indexterm>
+  <primary>layout management</primary><secondary>visual design</secondary>
+  </indexterm>
+  <para id="para-ch7-36">A layoutmanager is a container, too, but
+          here the procedure is just the other way around. You first
+          create the widgets. Then, you select all widgets that should
+          be managed, and then select one of the layout managers
+          (horizontal, vertical or grid). Every time you add a new
+          widget to the container (or a spacer object) you will break
+          the layout and have to recreate it. You can also nest layout
+          managers, to create more complicated effects.</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch7/layout_managers_toolbar.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-37">The toolbar buttons for the
+                layout managers <guibutton>set size</guibutton>,:
+                <guibutton>horizontal</guibutton>,
+                <guibutton>vertical</guibutton>,
+                <guibutton>grid</guibutton>, <guibutton>break
+                  layout</guibutton> and <guibutton>add a
+                  spring</guibutton>.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para id="para-ch7-38">Layout management can be further
+          augmented by adding size hints to each widget. These hints
+          determine whether the widget should stretch as much as
+          possible, or stay the same size.</para>
+
+      </sect3>
+
+      <sect3>
+        <title>Tab order and accelerators</title>
+
+        <indexterm>
+  <primary>keyboard accelerators</primary>
+  </indexterm>
+  <indexterm>
+  <primary>accelerator keys</primary>
+  </indexterm>
+  <para id="para-ch7-39">A good GUI allows the user to do
+          everything with just the keyboard. For this, it is necessary
+          to give every control its own accelerator key. There are two
+          possibilities for creating these accelerators. Either the
+          widget has a label component of its own, in which case
+          typing an &amp; before the letter you want to make the
+          accelerator will suffice. Or, and this is more usual, the
+          widget is purely graphical, but can be associated with a
+          <classname>QLabel</classname>. Again, the &amp; defines the
+          accelerator, but you must still somehow link the label with
+          the widgets. This is done through the
+          <guimenu>buddy</guimenu> option in the properties sheet. If
+          you select the label, and then enter the name of the
+          associated widget in the buddy field, a link will be
+          made.</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/buddy.eps">
+            </imageobject>
+            <caption>
+              <indexterm>
+  <primary>buddy</primary>
+  </indexterm>
+  <para id="para-ch7-40">Selecting a buddy.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para id="para-ch7-41">BlackAdder can check for duplicate
+          accelerators. In the <guimenu>Edit</guimenu> menu, select
+          the option <guimenuitem>Check Accelerators</guimenuitem>.
+          There's a shortcut for this, too:
+            <keycombo>
+            <keycap>CTRL</keycap>
+            <keycap>R</keycap>
+            </keycombo> .</para>
+
+        <indexterm>
+  <primary>tab order</primary>
+  </indexterm>
+  <para id="para-ch7-42">Defining accelerators is one part of creating a GUI that
+          is usable with the keyboard only. The tab order is
+          important, too. If the user presses the <keycap>Tab</keycap>
+          key, the focus should shift to the next widget (from left to right),
+          instead of going hoppity-skip all over the form.</para>
+
+        <para id="para-ch7-43">Therefore, fixing the tab order should be the last thing you do
+           after completing a form. This is very
+          easy: press the right button on the toolbar, or
+          choose <guimenu>Tools</guimenu> <guimenuitem>Tab
+            Order</guimenuitem> (shortcut:
+            <keycombo>
+              <keycap>F4</keycap>
+            </keycombo>).
+          BlackAdder then superimposes small numbered circles on every
+          widget. You simply click on these widgets in the order you want the focus to follow, and BlackAdder does the rest. Life could not be
+          more simple!</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/taborder.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-44">Setting the tab order.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <indexterm>
+  <primary>designer</primary><secondary>setting the tab order</secondary>
+  </indexterm>
+  <para id="para-ch7-45">Setting the tab order right now becomes one of those
+          pleasurable little tasks that give a developer a bit of
+          thinking time.</para>
+
+      </sect3>
+    </sect2>
+
+  </sect1>
+
+  <sect1>
+    <title>Advanced Designer topics</title>
+
+    <para id="para-ch7-46">In this section, I will discuss more advanced topics in
+      working with BlackAdder Designer. These are: the connecting of
+      the individual widgets in your design using signals and slots,
+      the adding of custom widgets to the BlackAdder Designer palette,
+      and the actual generation and use of code with BlackAdder and
+      with the command-line utility pyuic. Finally, I will give some
+      attention to the generation of C++ code.</para>
+
+    <sect2>
+      <title>Defining signals and slots in Designer</title>
+
+      <indexterm>
+  <primary>designer</primary><secondary>signals and slots</secondary>
+  </indexterm>
+  <para id="para-ch7-47">The widgets on a form often have a relationship to each
+        other. For instance, the <guibutton>OK</guibutton> button should ask
+        the form to close. Clicking on a button should move selected
+        items from one <classname>QListView</classname> to another. As
+        you have seen before, the standard way of linking widgets in
+        PyQt is by connecting signals with slots. You can create these
+        connections by simply drawing a line in BlackAdder designer.
+      </para>
+
+
+      <para id="para-ch7-48">The first step is to create a design. Based on the
+        <emphasis>DIalog with Buttons (right)</emphasis> template, we
+        add two <classname>QListBox</classname>es and four buttons:</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/connect_design.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-49">Initial design.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+
+    <para id="para-ch7-50"> If you right-click on the form, and then choose
+      <guimenuitem>Connections</guimenuitem>, you will see that there
+      are already two connections made, namely between the
+      <guibutton>OK</guibutton> button and the
+      <guibutton>Cancel</guibutton> button. It is our task to create
+      more connections.</para>
+
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center"
+                         fileref="ch7/initial_connections.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-51">The two initial connections.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+
+    <para id="para-ch7-52">The goal of the buttons is to move items
+        from the left listbox to the right listbox, and back.
+        Double-arrowed buttons move everything, and single-arrowed
+        buttons move the selection. Select the connection button (
+        <inlinegraphic fileref="ch7/connection_button.eps">), and draw a line from the top button to any
+        place on the form. A dialog pops up that lets you select from
+        the signals of the button and the slots of the form. However,
+        there is no slot available that says something useful like
+        <function>slotAddAllFromLeftToRight()</function>!</para>
+
+      <indexterm>
+  <primary>designer</primary><secondary>adding slots</secondary>
+  </indexterm>
+  <para id="para-ch7-53">Does this mean that you are restricted to
+        the slots as defined in the PyQt library? Fortunately, no. You
+        can add your own slots &mdash; but only to the form, not to
+        the individual widgets. This is actually quite logical; later,
+        you will generate a Python class from the
+        <filename>.ui</filename> design. You then subclass the
+        generated Python code to add functionality.  Since you will
+        only subclass the form, the form is the only place you will be
+        able to add slots. If you want custom slots in your widgets,
+        you will have to add custom widgets to Designer.</para>
+
+      <para id="para-ch7-54">Your subclass will be a descendant of the
+        entire form, so you can only add functionality to the form,
+        not to the widgets. Of course, you can also create custom
+        widgets with custom signals and slots, and use those instead
+        of the standard <classname>QListBox</classname>. I will
+        discuss the technique for adding custom widgets in the next
+        section.</para>
+
+      <para id="para-ch7-55">Lets go ahead and add our custom slots to
+        the form. This is quite easy. Select the
+        <guimenuitem>Slots</guimenuitem> menu item from the
+        <guimenu>Edit</guimenu> menu, and press the <guibutton>New
+          Slot</guibutton> button. Now you can edit the text in the
+        <guibutton>Slot Properties</guibutton> text field. Type the
+        name of the slot, and then enter the
+        <emphasis>types</emphasis> of the arguments the slot should be
+        called with, between brackets. This is not useful in our case,
+        since we will call the slots with the
+        <function>clicked()</function> signal of the buttons, and
+        these don't pass on an argument.</para>
+
+      <para id="para-ch7-56">Define the following four slots:</para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch7-57">slotAddAll()</para>
+        </listitem>
+        <listitem><para id="para-ch7-58">slotAddSelection()</para>
+        </listitem>
+        <listitem><para id="para-ch7-59">slotRemoveAll()</para>
+        </listitem>
+        <listitem><para id="para-ch7-60">slotRemoveSelection()</para>
+        </listitem>
+      </itemizedlist>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/slot_defs.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-61">All slots are defined.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+      <para id="para-ch7-62">Now, you can connect the <function>clicked()</function> signal of
+        each button to the right slot.</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/connections.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-63">All connections are made.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+      <para id="para-ch7-64">The Access specifier in the slot definition dialog is only
+        important if you want to migrate your designs to C++ at some
+        time. "Public" means that all classes in your C++ program have
+        access to those slots; protected means that only the generated
+        class itself and its subclasses can access the slot.
+        &lsquo;Protected is as if the slotname were prefixed with a double
+        underscore in Python.</para>
+
+    </sect2>
+
+    <sect2>
+      <title>Adding your own widgets</title>
+
+      <para id="para-ch7-65">Not only can you add your own slots to the forms you
+        design with BlackAdder, but you can also create custom widgets,
+        and use those widgets in other designs. The design shown in
+        the previous section &mdash; two listboxes and a few buttons to move
+        items from left to right, and vice-versa &mdash; is something that's
+        quite often needed, and is a prime candidate to turn into a
+        widget.</para>
+
+      <para id="para-ch7-66">Open the <filename>connections.ui</filename> file, and
+        create a new <filename>.ui</filename> file based on the widget
+        template. Copy everything from the form to the widget, except,
+        of course, the <guibutton>OK</guibutton>,
+        <guibutton>Cancel</guibutton> and <guibutton>Help</guibutton>
+        buttons. Perhaps you will have to do the layout again; if so, use a
+        grid layout. Create the slots again, this time for the widget,
+        and connect them.</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/wdglistbox.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-67">The DoubleListBox widget design.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+      <para id="para-ch7-68">Choose <guimenuitem>Compile Form</guimenuitem> from the
+        <guimenu>File</guimenu> menu. This will generate a Python file that
+        implements your design. For now, this is enough. As I will show later,
+        you should subclass the generated Python file and add some real
+        logic, and perhaps a few signals.</para>
+
+      <para id="para-ch7-69">For now, we have a custom component, designed with BlackAdder and
+        implemented in Python. This component we will add to the BlackAdder
+        components palette, and use it in a dialog.</para>
+
+      <para id="para-ch7-70">Choose <guimenuitem>Edit Custom Widgets</guimenuitem> from the
+        <guisubmenu>Custom</guisubmenu> submenu in the <guimenu>Tools</guimenu>
+        menu. This will open a rather complicated dialog that lets you add new
+        widgets.</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/customwidget.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-71">Adding a custom widget.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+      <indexterm>
+  <primary>designer</primary><secondary>adding custom widgets</secondary>
+  </indexterm>
+  <para id="para-ch7-72">You must type the name of the Python class &mdash; in this case
+        <classname>DoubleListBox</classname> &mdash; in the Class text field. The
+        headerfile text field refers ostensibly to a C++ header file; but
+        BlackAdder assumes that it refers to a Python file. Enter
+        <filename>wdglistbox</filename>, if that is the name you saved your
+        custom widget under. Do not add the extension. The choice between local
+        and global only has a meaning for C++ and defines the type of
+        include.</para>
+
+      <para id="para-ch7-73">The rest of the fields are less vital. You can create a
+        pixmap that represents your widget; if you don't, the green
+        Trolltech logo will take be used a placeholder.  You can give
+        a default size hint and size policy. For example, if you want the double
+        listbox to take as much space as it can get, set both
+        policies to <emphasis>expanding</emphasis>. Our double listbox
+        cannot contain other widgets (it is not like a groupbox), and
+        therefore we don't check the <guibutton>Container
+          Widget</guibutton> checkbox.</para>
+
+      <para id="para-ch7-74">In the other tabs, we can enter the slots and signals that our
+        widget knows; this is only useful for slots and widgets that
+        have a meaning to the outside world. The four special slots defined in
+        the previous section are for internal use. In a subclass of
+        DoubleListBox, we might define a few extra signals, like:</para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch7-75">sigItemAdded(ListViewItem)</para>
+        </listitem>
+        <listitem><para id="para-ch7-76">sigItemDeleted(ListViewItem)</para>
+        </listitem>
+      </itemizedlist>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/customwidget.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-77">Adding signals to a custom widget.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+
+      <para id="para-ch7-78">Note that we give a listviewitem as an argument to these signals;
+        Python signals do have arguments, but they are untyped. Slots are not
+        relevant for this widget, and neither are properties.</para>
+
+      <para id="para-ch7-79">If you press <guibutton>OK</guibutton> a new item
+        will be added to the toolbars, which you can select and put on
+        a form. If you do so, you will see that the icon is also used
+        to represent the widget on the form, instead of a more
+        faithful representation of the widget. When you preview the
+        form, you won't see the widget either; but wen you generate the
+        form, everything will be all right.</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/frmdoublelistbox.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-80">A form using the DoubleListBox custom widget..</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+    </sect2>
+
+    <sect2>
+      <title>Layout management</title>
+
+      <indexterm>
+  <primary>designer</primary><secondary>layout management</secondary>
+  </indexterm>
+  <para id="para-ch7-81">It is possible to design your dialogs and
+        widgets by plonking down elements, sizing them to your liking
+        and placing them where you want, down to the last pixel. If
+        you fix the size of the form and the  font, you can have a
+        perfect layout &mdash; but it will also be a layout that your
+        users won't like. People want to resize dialogs, either to
+        have more data visible at the same time, or to minimize the
+        amount of space the dialog takes on their already crowded
+        screens. Visually impaired users want to change the font size
+        to something they <emphasis>can</emphasis> see. Furthermore,
+        there are vast differences in default fonts between Windows
+        systems and some other systems, like KDE, which define a
+        different default font dependent upon screen resolution. Your
+        pixel-precise dialog won't look so good if the user views it
+        with a font that he chooses, not in terms of pixel size, but
+        of points per inch &mdash; where an inch can have between 75
+        and 120 pixels. A twelve-point Helvetica has a lot more pixels
+        if generated for a resolution of 120 pixels to the inch, then
+        if it were generated for 75 pixels to the inch.</para>
+
+      <para id="para-ch7-82">All these are good reasons to let the
+        computer manage the layout for you. There are other reasons,
+        too. With complex forms, doing the layout yourself quickly
+        becomes a bore. If your application is used by people with a
+        right-to-left alphabet, like Hebrew or Arabic, the whole
+        layout should be mirrored. From version 3, Qt can do that for
+        you, if only you let Qt manage your layouts. The same goes for the
+        size of labels. If you pixel-position your controls to the
+        width of the labels, then there won't be room for languages
+        that use &lsquo;fichier' for &lsquo;file', or
+        &lsquo;annuleren' for &lsquo;cancel'.</para>
+
+      <para id="para-ch7-83">All these arguments have never before
+        swayed developers to use automatic layout management, but with
+        PyQt and BlackAdder, layout management is ridiculously easy
+        (and certainly easier than manual layout). This, at least,
+        should convert the developing masses to automatic
+        layouting!</para>
+
+      <para id="para-ch7-84">The Designer module of BlackAdder offers
+        three layout managers, and a helpful tool called the
+        <emphasis>spacer</emphasis>. The layout managers are:</para>
+
+      <itemizedlist>
+        <listitem><para id="para-ch7-85">horizontal</para>
+        </listitem>
+        <listitem><para id="para-ch7-86">vertical</para>
+        </listitem>
+        <listitem><para id="para-ch7-87">grid</para>
+        </listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>layout management</primary><secondary>nesting layouts using the designer</secondary>
+  </indexterm>
+  <para id="para-ch7-88">By nesting layouts, together with the
+        spacer and the sizepolicies and sizehints of each individual
+        widget, you can create almost any layout. A good rule of thumb
+        is perhaps that if your intended layout confuses the layout
+        managers of the Designer, then it will probably also confuse
+        your users.</para>
+
+      <para id="para-ch7-89">A good layout is one that can be easily
+        taken in with one look, and that neatly groups the various
+        bits of data in the form. A good layout will also be simple
+        enough that the form won't take an eternity to appear. Bear in
+        mind that Python has to load the form, lay it out, and, most
+        importantly, fill the various fields with relevant the data.
+        The last step can take a lot of time. I once had to create a
+        form that brought together about sixty pieces of information
+        from more than twenty database tables. My client was not
+        pleased when this form wouldn't appear in the required three
+        seconds.</para>
+
+
+      <para id="para-ch7-90">I've already discussed the classes behind
+        the horizontal, vertical and grid layout managers:
+        <classname>QLayout</classname>,
+        <classname>QBoxLayout</classname>,
+        <classname>QVBoxLayout</classname>,
+        <classname>QHBoxLayout</classname> and
+        <classname>QGridLayout</classname>.</para>
+
+      <para id="para-ch7-91">You can influence the layouts by
+        selecting them in the object hierarchy window. Interesting
+        properties include <emphasis>LayoutSpacing</emphasis> and
+        <emphasis>LayoutMargin</emphasis>. The first determines how
+        much room there is between widgets; the second determines how
+        much space the layout wants between itself and the border of
+        the window or other layouts.</para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/layoutprops.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-92">Layout manager properties.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+
+      <sect3><title>The Horizontal Layout Manager</title>
+
+        <para id="para-ch7-93">The horizontal layout manager lays the
+          widgets out in one row, like the individual menu's in a menu
+          bar, or the buttons at the bottom of a form based on the
+          <emphasis>Dialog With Buttons (Bottom)</emphasis> dialog.
+        </para>
+
+        <para id="para-ch7-94">There are few widgets that are
+          customarily laid out horizontally, most often widgets are
+          grouped in vertical columns. The columns themselves can be
+          grouped in a horizontal layout manager.
+        </para>
+
+      </sect3>
+
+      <sect3><title>The Vertical Layout Manager</title>
+
+        <para id="para-ch7-95">The vertical layout manager puts
+          widgets in one column. This can be very useful when creating
+          a groupbox that contains radio buttons or checkboxes. You
+          will very seldom want to layout radio buttons in a
+          horizontal row. Another use is the column of buttons in the
+          <emphasis>Dialog with Buttons (right)</emphasis> template.
+        </para>
+
+      </sect3>
+
+      <sect3><title>The Grid Layout Manager</title>
+        <para id="para-ch7-96">The Grid Layout managers lays out your
+          widgets in a square or oblong grid. If you want everything
+          in your form to be managed in a grid, then you can simply
+          select this layout manager from the toolbar, and then click
+          somewhere on the background of the form. The Designer module
+          is <emphasis>very</emphasis> clever, and will try to retain
+          your current, manually created layout as far as possible. It
+          can even create the difficult multi-column widgets
+          automatically.
+          </para>
+
+
+      </sect3>
+
+      <sect3><title>The Spacer object</title>
+
+       <para id="para-ch7-97">Of course, for all its cleverness, there
+          are situations when the Designer simply cannot determine
+          your meaning without some help. There is no Intention Layout
+          Manager! One useful tool to let the layout manager know your
+          intention is the spacer object. This is an invisible (at
+          runtime) widget that pushes other widgets away. You can use
+          a spacer either horizontally or vertically. If you use a
+          spacer at both sides of a widget, they will push the widget
+          to the middle. If you use only one spacer, it will push the
+          widget to the other side.
+          </para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/spacers.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-98">Playing with spacers.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+      </sect3>
+
+      <sect3><title>What widgets can do to get the space they want</title>
+
+        <indexterm>
+  <primary>layout mangement</primary><secondary>distributing available space</secondary>
+  </indexterm>
+  <para id="para-ch7-99">Not every widget wants to hog all the space
+          in a dialog. A combobox, for instance, has no reason to grow
+          vertically, while a vertical scrollbar doesn't need to get
+          any wider. You can set the horizontal and vertical
+          sizepolicies of your widgets in the Designer
+          module.</para>
+
+        <para id="para-ch7-100">However, this will not always produce the results
+          you want &mdash; in such a case, you might be reduced to setting
+          minimum and maximum pixel widths by hand. This may be necessary
+          if you have a listbox or combobox that expands without
+          limit because one of the entries is as long as a fantasy
+          trilogy without linebreaks. To curb the tendency of the
+          listbox to usurp all the space in the dialog, you should set
+          its maximum width to something sensible. Note also that,
+          alas, the layout management of the forms in the designer
+          doesn't work exactly the same as the layout management of
+          the running forms. You can see the difference in the preview
+          mode.
+        </para>
+
+        <para id="para-ch7-101">The sizepolicy works in concord with
+          the result of calls to the <function>sizeHint ()</function>
+          function &mdash; this function returns the size the widget
+          wants to be, and the <function>minimumSizeHint()</function>
+          function, which returns the absolute minimum size the widget
+          can be. The following hints can be used for setting the
+          sizepolicy of widgets:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para id="para-ch7-102">fixed &mdash; what
+              <function>sizeHint()</function> says is law &mdash;
+              smaller nor larger is acceptable.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-103">minimum &mdash; the result of
+              <function>sizeHint()</function> is sufficient. It cannot
+              be smaller, might be larger, but there's no use in
+              growing.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-104">maximum &mdash; what
+              <function>sizeHint()</function> returns is the max
+              &mdash; the widget should not be expanded, but might be
+              shrunk without detriment.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-105">preferred &mdash; the
+              <function>sizeHint()</function> size is best, but the
+              widget can be smaller without problems. It might be
+              larger, but there's no earthly reason why it should.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-106">minimumExpanding &mdash; the
+              widget wants as much space as it can get &mdash; the
+              more it gets, the better. No way it should shrink.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-107">Expanding &mdash; the widget wants
+              as much space as it can get, but it's still useful if it
+              get less than the result of
+              <function>sizeHint()</function>.
+            </para>
+          </listitem>
+        </itemizedlist>
+
+      </sect3>
+
+      <sect3><title>Creating a complex form</title>
+
+        <para id="para-ch7-108">
+          Let's try to create a really complicated form, just to see
+          what the automatic layout engine can do.
+        </para>
+
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata  scale="40" align="center"  format="eps" fileref="ch7/complex.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch7-109">A quite complex dialog.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para id="para-ch7-110">This dialog was created in the following steps:</para>
+
+        <orderedlist>
+          <listitem>
+            <para id="para-ch7-111">Create a new form &mdash; based
+              the simple Dialog Template.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-112">Create two pushbuttons and place
+              them at the right top.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-113">Create a vertical spacer item,
+              below the buttons.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-114">Collect the buttons and the spacer
+              in a rubber band and select the vertical layout manager.
+              Resize the layout to the height of the dialog.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-115">Create the three listboxes, and
+              resize them to roughly about the right size; put the
+              three line editors below.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-116">Select the listboxes and the
+              lineedits in a rubber band, and select the grid layout
+              &mdash; resize the complete layout about three-quarters
+              the height of the dialog.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-117">Create a groupbox below the
+              constellation of listboxes and edit controls, and put,
+              roughly vertically, three radio buttons in it. 
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-118">Select the groupbox and click on
+              the vertical layout manager button. Note that if you
+              have the object browser open, you won't see this layout
+              manager: the groupbox takes that function.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-119">Create two checkboxes, next to
+              each other, below the groupbox.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-120">Select the listboxes, and select
+              the horizontal layout manager.
+            </para>
+          </listitem>
+          <listitem>
+            <para id="para-ch7-121">Now select the form and then the
+              grid layout manager.
+            </para>
+          </listitem>
+        </orderedlist>
+
+          <para id="para-ch7-122">The result should be quite pleasing
+          &mdash; take a look at how Designer created the final grid
+          layout. Perhaps it would be better to encase the checkboxes
+          in a groupbox, too, but this is not essential. Some GUI
+          design guidelines urge you to envelop everything but the
+          <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+          buttons (and perhaps the <guibutton>Help</guibutton> button
+          if its in the same row or column) in a frame with a title.
+          Personally, I'm in favor of that recommendation, but in this
+          you may follow the dictates of your heart (or of your
+          primary platform).</para>
+
+        <para id="para-ch7-123">Ultimately, the layout management offered by the
+          Designer is useful and sufficient for most cases; in certain
+          cases you might want to experiment with coding the layout
+          management yourself. This is a lot more flexible, but it
+          takes a lot more time, too.</para>
+
+      </sect3>
+
+    </sect2>
+
+    <sect2>
+      <title>Generating and using Python code with pyuic</title>
+
+      <indexterm>
+  <primary>designer</primary><secondary>generating Python code</secondary>
+  </indexterm>
+  <para id="para-ch7-124">We have already converted a Designer
+        design to Python code. This can be done using either
+        BlackAdder, with the menu option <guimenuitem>Compile
+          Form</guimenuitem> from the <guimenu>File</guimenu> menu, or
+        with a stand-alone utility, such as
+        <filename>pyuic</filename>.</para>
+ <!--XXX: is this included in BlackAdder?-->
+
+      <para id="para-ch7-125">The stand-alone utility
+        <command>pyuic</command> has an interesting option that is
+        currently <!--XXX &mdash; check release  --> not present in
+        the BlackAdder IDE. Using the <parameter
+         class="command">-x</parameter> parameter, a small stub is
+        generated at the bottom of the file that enables you to run
+        the generated code directly.</para>
+
+      <para id="para-ch7-126">The resulting Python file has all the
+        hallmarks of generated code. That is to say, it is a mess you
+        won't want to edit by hand. Especially since it will be
+        regenerated every time you change your form.
+      </para>
+
+      <indexterm>
+  <primary>designer</primary><secondary>subclassing a design</secondary>
+  </indexterm>
+  <para id="para-ch7-127">The right way to work with these
+        generated files is to subclass them. If you have created a
+        form, for example <filename>frmcomplex.py</filename>, that
+        contains the generated class
+        <classname>FrmComplex</classname>, then your next step is to
+        create a new Python file, <filename>dlgcomplex.py</filename>,
+        which contains the following class definition:</para>
+
+      <example>
+        <title>dlgcomplex.py &mdash; a subclass of frmcomplex.py</title>
+        <programlistingco>
+          <areaspec>
+            <area coords="6" id="import">
+            <area coords="8" id="classdef">
+            <area coords="10" id="parentcall">
+            <area coords="12" id="subaccept">
+            <area coords="14" id="calltoparentaccept">
+            <area coords="18" id="calltoqtdialog">
+            <area coords="20" id="stub">
+            <area coords="23" id="createdialog">
+          </areaspec>
+        <programlisting>
+#
+# dglcomplex.py
+#
+import sys
+from qt import *
+from frmcomplex import FrmComplex
+
+class DlgComplex (FrmComplex):
+    def __init__(self, parent = None,name = None,modal = 0,fl = 0):
+        FrmComplex.__init__(self, parent, name, fl)
+
+    def accept(self):
+        print "OK is pressed"
+        FrmComplex.accept(self)
+
+    def reject(self):
+        print "Cancel pressed"
+        QDialog.reject(self)
+
+if __name__ == '__main__':
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL('lastWindowClosed()'),a,SLOT('quit()'))
+    w = DlgComplex()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
+        </programlisting>
+
+          <calloutlist>
+            <callout arearefs="import">
+              <para id="para-ch7-128">Importing the generated
+                class</para>
+            </callout>
+            <callout arearefs="classdef">
+              <para id="para-ch7-129">This form is a subclass of the
+                generated class</para>
+            </callout>
+            <callout arearefs="parentcall">
+              <para id="para-ch7-130">By passing
+                <parameter>self</parameter> to the parent class, all
+                references in the parent class will be routed
+                <emphasis>via</emphasis> the definitions in the
+                subclass.</para>
+            </callout>
+            <callout arearefs="subaccept">
+              <indexterm>
+  <primary>accept()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>reject()</primary>
+  </indexterm>
+  <para id="para-ch7-131">Any slot of method of QDialog
+                can be reimplemented in a subclass of QDialog. In this
+                case, the <function>accept()</function> and
+                <function>reject()</function> methods are
+                re-implemented to add custom behavior to the OK and
+                Cancel actions. Remember that we have already created
+                the connections between the
+                <function>clicked()</function> signals of these
+                buttons and these methods in the Designer.
+              </para>
+            </callout>
+            <callout arearefs="calltoparentaccept">
+              <para id="para-ch7-132">However, if you want to make use
+                of the default functionality of the
+                <classname>QDialog</classname> class, you must also
+                call the implementation of the subclassed function in
+                the parent class.
+              </para>
+            </callout>
+            <callout arearefs="calltoqtdialog">
+              <para id="para-ch7-133">Because the generated code in
+                FrmComplex doesn't really add anything, calling
+                <classname>QDialog</classname>.<function>reject()</function> 
+                works just as well.
+              </para>
+            </callout>
+            <callout arearefs="stub">
+              <para id="para-ch7-134">This is a stub main to test the
+                dialog.
+              </para>
+            </callout>
+            <callout arearefs="createdialog">
+              <para id="para-ch7-135">Make sure you instantiate the
+                right class: the <classname>DlgComplex</classname>,
+                not the <classname>frmComplex</classname>! Cutting and
+                pasting can lead to difficult-to-find bugs &mdash;I
+                have all too often copied the stub from the parent
+                file and forgot to change the classname...
+              </para>
+            </callout>
+          </calloutlist>
+        </programlistingco>
+      </example>
+
+      <para id="para-ch7-136">The next move is extending the constructor of
+        the derived class to set the initial values of the various
+        widgets.</para>
+
+      <example><title>Setting default values</title>
+        <programlisting>
+    def __init__(self, parent = None,name = None,modal = 0,fl = 0):
+        FrmComplex.__init__(self, parent, name, fl)
+
+        self.ListBox2.insertItem("That's a turnip")
+        self.ListBox2.insertItem("Further nonsense")
+
+        self.RadioButton1.setChecked(1)
+        </programlisting>
+      </example>
+
+      <indexterm>
+  <primary>designer</primary><secondary>setting initial values of dialogs</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>dialogs</primary><secondary>setting initial values</secondary>
+  </indexterm>
+  <para id="para-ch7-137">As you can see, it's simply a matter of
+        remembering what names you gave each widget, and inserting
+        stuff &mdash; no rocket science here.</para>
+
+      <para id="para-ch7-138">Accessing the values of each widget
+        after the user has pressed <guibutton>OK</guibutton> is just
+        as easy. A dialog may disappear from screen when the user
+        presses <guibutton>OK</guibutton>, but that does not mean that
+        the dialog has disappeared from memory. As long as there is a
+        variable that points to the dialog, you can access each and
+        every field.</para>
+
+    </sect2>
+
+    <sect2><title>Generating C++ code with uic</title>
+
+      <indexterm>
+  <primary>designer</primary>
+  </indexterm>
+  <para id="para-ch7-139">Qt is originally a C++ toolkit &mdash;
+        and if you acquire a license for Qt, be it the free, GPLed
+        Unix/X11 version or the (non-)commercial Windows/Unix license,
+        you can take the <filename>.ui</filename> files you have
+        created with BlackAdder and compile them to C++ using the
+        <command>uic</command> utility.</para>
+
+      <para id="para-ch7-140">C++ is a bit more complicated than
+        Python, and this is reflected in the more complex procedure
+        you need to follow when converting a <filename>.ui</filename>
+        to C++. First of all, you need to generate the
+        <emphasis>header</emphasis> files with the <command>uic -o
+          dialog.h dialog.ui</command> command. Next, you generate the
+        actual C++ implementation with the <command>uic -i dialog.h -o
+          dialog.cpp dialog.ui</command> command. The
+        <option>-i</option> tells <command>uic</command> to
+        <emphasis>include</emphasis> the header file,
+        <filename>dialog.h</filename>.</para>
+
+      <para id="para-ch7-141">From that moment on, the work is the
+        same as with Python. You subclass the generated code, adding
+        real implementation logic. Clever usage will include using
+        <command>make</command> to autogenerate the header and
+        implementation files to ensure that the design of the forms in
+        the compiled app always corresponds to the latest
+        designs.</para>
+
+    </sect2>
+
+  </sect1>
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->

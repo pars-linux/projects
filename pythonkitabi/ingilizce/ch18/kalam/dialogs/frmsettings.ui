@@ -1,0 +1,610 @@
+<!DOCTYPE UI><UI>
+<class>FrmSettings</class>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>FrmSettings</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>509</width>
+            <height>309</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Kalam settings</string>
+    </property>
+    <property stdset="1">
+        <name>sizeGripEnabled</name>
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="0"  column="1" >
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout5</cstring>
+            </property>
+            <vbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonOk</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;OK</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>default</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonCancel</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonHelp</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Help</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Vertical</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                    <property>
+                        <name>sizeHint</name>
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+            </vbox>
+        </widget>
+        <widget row="0"  column="0" >
+            <class>QTabWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>tabOptions</cstring>
+            </property>
+            <widget>
+                <class>QWidget</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>tabEditor</cstring>
+                </property>
+                <attribute>
+                    <name>title</name>
+                    <string>&amp;Editor</string>
+                </attribute>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>bnBackgroundColor</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>11</x>
+                            <y>93</y>
+                            <width>153</width>
+                            <height>35</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Paper color...</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>bnFont</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>11</x>
+                            <y>11</y>
+                            <width>153</width>
+                            <height>35</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Default &amp;Text font...</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>bnForegroundColor</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>11</x>
+                            <y>52</y>
+                            <width>153</width>
+                            <height>35</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Text color...</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QComboBox</class>
+                    <item>
+                        <property>
+                            <name>text</name>
+                            <string>Do not wrap</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property>
+                            <name>text</name>
+                            <string>Wrap to window width</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property>
+                            <name>text</name>
+                            <string>Wrap to line length</string>
+                        </property>
+                    </item>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>cmbLineWrapping</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>170</x>
+                            <y>192</y>
+                            <width>208</width>
+                            <height>22</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblLineWidth</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>11</x>
+                            <y>220</y>
+                            <width>153</width>
+                            <height>25</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Maximum &amp;Line length</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>spinLineWidth</cstring>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblWrapChoice</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>11</x>
+                            <y>192</y>
+                            <width>153</width>
+                            <height>22</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Line &amp;Wrapping</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>cmbLineWrapping</cstring>
+                    </property>
+                </widget>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer26</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Vertical</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                    <property>
+                        <name>sizeHint</name>
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget>
+                    <class>QSpinBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>spinLineWidth</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>170</x>
+                            <y>220</y>
+                            <width>63</width>
+                            <height>25</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>maxValue</name>
+                        <number>2000</number>
+                    </property>
+                    <property stdset="1">
+                        <name>value</name>
+                        <number>80</number>
+                    </property>
+                </widget>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer27</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                    <property>
+                        <name>sizeHint</name>
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget>
+                    <class>QMultiLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtEditorPreview</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>167</x>
+                            <y>12</y>
+                            <width>211</width>
+                            <height>171</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>wordWrap</name>
+                        <enum>WidgetWidth</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>readOnly</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget>
+                <class>QWidget</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>tabInterface</cstring>
+                </property>
+                <attribute>
+                    <name>title</name>
+                    <string>&amp;Interface</string>
+                </attribute>
+                <grid>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <widget row="0"  column="1" >
+                        <class>QComboBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>cmbStyle</cstring>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="0" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>lblStyle</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Look and feel</string>
+                        </property>
+                        <property stdset="1">
+                            <name>scaledContents</name>
+                            <bool>false</bool>
+                        </property>
+                        <property>
+                            <name>buddy</name>
+                            <cstring>cmbStyle</cstring>
+                        </property>
+                    </widget>
+                    <widget row="2"  column="1" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>pxViewSample</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>frameShape</name>
+                            <enum>WinPanel</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>frameShadow</name>
+                            <enum>Sunken</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>pixmap</name>
+                            <pixmap>image0</pixmap>
+                        </property>
+                        <property stdset="1">
+                            <name>scaledContents</name>
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget row="1"  column="0" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>lblViewManager</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Window view</string>
+                        </property>
+                        <property>
+                            <name>buddy</name>
+                            <cstring>cmbWindowView</cstring>
+                        </property>
+                    </widget>
+                    <widget row="1"  column="1" >
+                        <class>QComboBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>cmbWindowView</cstring>
+                        </property>
+                    </widget>
+                    <widget row="3"  column="0" >
+                        <class>QPushButton</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>bnWorkspaceBackgroundColor</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>sizePolicy</name>
+                            <sizepolicy>
+                                <hsizetype>4</hsizetype>
+                                <vsizetype>0</vsizetype>
+                            </sizepolicy>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Workspace &amp;Color...</string>
+                        </property>
+                    </widget>
+                    <widget row="3"  column="1" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>lblBackgroundColor</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>backgroundOrigin</name>
+                            <enum>WidgetOrigin</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>frameShape</name>
+                            <enum>Panel</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>frameShadow</name>
+                            <enum>Sunken</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string></string>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget>
+                <class>QWidget</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>tabDocument</cstring>
+                </property>
+                <attribute>
+                    <name>title</name>
+                    <string>&amp;Document</string>
+                </attribute>
+                <grid>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <spacer row="2"  column="1" >
+                        <property>
+                            <name>name</name>
+                            <cstring>Spacer7</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Vertical</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>sizeType</name>
+                            <enum>Expanding</enum>
+                        </property>
+                        <property>
+                            <name>sizeHint</name>
+                            <size>
+                                <width>20</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget row="1"  column="0"  rowspan="1"  colspan="2" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>chkAddNewLine</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Add a new line on saving a text if not already present.</string>
+                        </property>
+                        <property stdset="1">
+                            <name>checked</name>
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="1" >
+                        <class>QComboBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>cmbEncoding</cstring>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="0" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>lblEncoding</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>default &amp;Encoding</string>
+                        </property>
+                        <property>
+                            <name>buddy</name>
+                            <cstring>cmbEncoding</cstring>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image>
+        <name>image0</name>
+        <data format="XPM.GZ" length="50691">789cec9c5b5363b9ae80dfe757748ddea64e79e79eac87f3100810205c0201124e9d07d95e21106eb91272fefcd1b22413bae9cb9ea13af4ae9e94db7ccbb2254b96bd9c66fa5f7f7dea1e1f7cfaeb5f7f4ca638bd769fdc00c79ffef2b3bbbbe7fff9dffffebf3ffecc27b54ff97cee53295ffe54f8f3bffef813cd27f70972e1bf8c9d152e31fb69e01a712dc883708dd9e5946b36e3742eecb83d7d52ce87f1f091399f634e03e773da6e0e9963fb54b8c40c6791c3f87e285c637655e6a22bf07807816b2a9f5e0b8b7c7aa3ccf2aeaeccf3814b6119cf2f980b25e15be6a2f44f0317722a0f5bccd927cc7f205c2a24a1ff93b01366f9a45063c63be5623ed8d71376ccbec35ccc095f0b6b3beb4b2ae5228f2fe35592128f5762ae493bfa8c8bf94289fb438d59c78773e112cbdb9c72e2c2fcc7c235d17723ec84ef99cb9ef5fb2be64a5eecd9172e0b6f33d7d4de84392997c3fa75fdc049d43f1416fd764399fbdb91b0132e28737f7fc85cca89be3d66f21706de15f6c207cc5569f747199768beccd060d6f17c2e32cb1794793ee9957089e5a11f39c8a7205c63c60765f1c70e733529b37d87ccea2fdf0a8c517f5e59fa9f098b3ebfafcced765358f4c38532b7c393b0ceff5a59fa9f286329cce78eb9acfa9bccd5bcd8df52ae703bcf1713cfed18e2512ea87d695f58ec311791597e2a2cf6e05164b677c1acf6e0307268b745650ceb059e85c5bff62932fbaf242cf1f0da3f91f9d498757e69d87fcba8f6f85366d59f3e28b3bc8ded6c8f6f088b7e07c2ba1e66cadcdf5f0a8b3fc12a733b1e47e6f947791be207ec7fac88fd7e2732eb63ff51bc846f98b12ce385f55589feb06d6519df09ab3d0791b9ff19b3ea874e64d6e794c53f5e99c7f715e1b2f42f46e6f10f851366bc57ae1643ff3e73b55c0de785db14f6dc9ea681a33f6c222ce3835796fe7361d10727ca3c9e6d440ef2be2a2cfe00d527faf1307290b73de51adb3760aee6457e1499ed2930d7948f8513eeef6e9913e9ef1a9159fe4858e6978678548b713e5b9159fe4958ec875c643e8f97cc6a2fe423f3fcbac265691f46e6f6a9b0e8c31b659e8f2d33d7c43fee9e3951fb1e9911a53dc4a76aa37d6d66b5071e94591e5158edd95616fdadc8acef5458f4db81b2c8df44e6f500c26acf5859f49f44e6f10e986b629fdd8b1cdacdb5b0da5311167dae2c2ce3b92be644fabb91b0ae972d61b1c71be6e8cf22b3ad48ffd05e2baa7ffc5858c68342648ee74c58e7db8ecce3a5cad687f11e9875fe3088ccf24b65570ef27561b1c70c23b33fef9493b0bf18ed9f08df460efb915379b1cf379559de89fd499ed95685653c77cd8c62af0febb316e3eb9059e7631f94a5ff4458ec377365b1f72932db9b57667fb87361f57f5959fadf44e6fe5e59fc6985c55eb855e6fe7e3772e88f55657e7ff07bccd13f8f9183bc3d526679db1196f9f8b03e9392ced72f85c57e28450ef2a6252cf699d3c86c5f4599f5b94b65396f1cb3da6bce2273ff7d65ee6f5261898f9f28737fbc8dccef231565ee8fe7c26a7f5759fc21f228fadc5858fabbe0afc4c5f9d599d55ee82a4b3c92c81cef0d6517f2cd5e088bbd76a92cf68e23f3f8da5fec471d5fec874964d6b710167b4d6491bf8fccf705e9aff3b72fcce30d849119c3fb1ebef877292cf6f8cdc83c7e5d99e38f5d61b5672732fb63acccf2a6c2acf699e3c82c5f5796f72565b1cf9422b3fc4259c6af0acbfcecaeb2acd75499f3d5ea78a9cc87c78bfeb73561998fdf608ef6ce94b97f6a2287f581dbc2622f5a65b1771239c89b5d61b11f6e9459de5e45e6fd7eaeec79ffea0aa7dcdfdc294bfffbc86cdf9632fb23e5f5e06c41e47722f37abf5696fd4ee6672b624ff0978df148ef23877677212cf3314561b10fee22077938569678e59579bee69259ed058cccf60e95c5de9932f7b7e7c215b1271f99f5f794b9bfd98acce3cf85753d3d47e6f6a6b0d88f617fb45eedf3cfcadc0e5361d18f256519ff3632b77784653dc05c59ec4d22b33ed5aff1df5116fb6a91d9fe94d91598d399b0e86f077be9f229dfb7a59e59ed8596b0dad38eccfa7bc2aaff2232cf2751e678c136b3137f995964ce9f8132cb635e58fde722b3fe96b2ac0710d6f81d2bcb7ae3765f90ef03f19459ed4d97ca6925b43799d53eb852167dfdc869187f2a2cf6999cb2c863e4209f6e28b33e30c2eadf82b2f4b791437fa7fa34deda5ffd3d8a1ce4714f99f519d1efd5df2fccf29bca625f601ffd9d46e6768fc2eaef4e649eef4859f4f785753f388fccfe3c5116fd33e668efa532b7a7a2dfab7d8bc83c1fa72ce33d0a8b3d10ee1f3e557b4d5958ec812ab3fa07cacad21f84555f4e59d6532332b71785451f3e298bfc75646e4f85d59ea6b2f8ff387268b79e3915fb4cc8bfb4a2f698a6b0ceff3432eb9b08eb7ae94566fd47ca7db6f78a39ea7b881ce4fd8172bf1f58c64bd59e7164f67f58ff699cbfd91156fd7bcaac1f0e99551fec2b73bb3f891cf4bb6761d51759e4db91d9de7361b5e75199e54d2d32cb5f088bbd66a42cf2ecafb4aff685f5d4afa87e7314398c877361d5b71999dbfbc23afe7ee4d06eeaccaacfdc47667bbbc2aa3fe453bf6f0bf2feda608ee3ed316b7fe385c55e6385c53ee384fbcceda90183c61a67bc14fbbbbc4bf1e6b54fbfcdd6f079959abeb93203736d6eccd0dc52b933f72473457f3e98c70f50325b7eac8cd66e2b9771b06722feccfc3a353333177e320bf36c96d1df735327f90d73cff962364dc36c518f6db3639a5476cd1e3ddb372d73600e3f403922fb8e4ddb9c98d360d7a6e998b3503784b53e5fbbad5c2e823d5dd38b3ebd3439933705e122b594e8a76d53a63f2b148d4dfa5479ff34358a6942d25330a60940d2cfd93340b0e0d65fc89a07f09042dfcce08aea8159c035dcc0106ee18e7e4ee11e1ee0d1d460b46e5ba58c83ff2660600a53f2eb8ceab929c2132ce0199650373dd8804d68c0166cc38ec96c6fc22e9f3fb007fbe4fb161c649184438adc261cd1b36368c3c90728a7644b07ce604cf50edcc13979ff02bad0834b8a450ef250802294681ee5b5db1a8a390dfeab40156ae4f12da89a4b48cc2e34d020205dfdd1d14c1644063ded43fb704411e2783cc229b5f6282b9a482f257885966245cf68d42d1c7c80724df675f00687784bfe2fe21ddee3036548011f69fe4578c011c56b4c719bafdd562ed799ff704c67401327a60140f9d1a39564708a339c9b053ee12d2e4c0b9f71897543b6e386c4631f37b1815bb88d3bd8346d68d10e7004656c400577a1bffe827b644b1ef7b1850778489e3fc1233cc63645c2c305b6f1c43cc190da37cd60ddb672a19c25ffd1ea69e12936b18367747e24784e3f5f6013a6d885b239c35ee66f3ca513fd91e42f251e0f740ae63087792c4829d293139a7df69d68854a75bd75665f66cff76bac7d047ba94e327b005e7c6a1eac89fe2d58637a165e189af4ae3293783c5bb4d63a2abfeb35d626c7f1b09e28fd5dd65db016f3237bd29796dff59a6adadf7ee7c7072a2bf92131a2f7157a7ba4dbfb99bd82e1e731a477066ab70366189a537b6daf56627cc3cf03dfc0ad1daef6ff72bc973ab4a5f6d6dec5e7371f63cdfeccfacbfc8022d76662efc3cf0ff4cedfd2f8d113952bd9478adb0276ecc88e63fb18eeec84ee09b7d0b3533b33793ba3673bd436a69ac6c331ded821dc93ac9455bde68ede607b7680e5a06b48e317ec7cfdeb760df9a1317aa27bee104b66493742ca131c991bca088921bdf70fe906b605f760c9cb4f30b00be8d8e7d87e0c63ea67ed9272a30e038ace88ca06c5fd1c8ee9e79edda4e7d7b641f25ba4af1173a793e9859c1dd0788fd0315dbb658676db2c49fb8758bb3fa37e233f3a76876e2d358a02e5077928dbc14a71fdef9a84da07e4b14958d3535aeb3167b242b7e67bba91d1ae8635fb604a61dd376c33aba9ecc238abe11626e1db8dd5fc20bd940f638a721176b3ec344f76b29a93fff9e5adf3435aca597e609bd6681d6f630cb7a45e424aeb9ef203b75ed678e83fa0d3250d7f5abb0777d978704211dca032b2431c524437b328e23e793cf94cef90faeddb85b9c9c635436c67bbdfc758bb3fa37e233fba5c87f3837ec643ca8981c6cf901fe9939d172d7b005db3a0bbffadf609fd926c4ddb5df26c9a9d1f618c717667b687f6889e3d907f67ac67b51fff4cfbd9d886bca4fbd12369a33387cea0b5afdb35e447889149689d6e8577a8fb3762f89cbd7b65edc1dbdf68e7da0e7f7c6dc47ef997e7949b573fdaff3fa3fe7dfff858e5cbf3e377bdce7a253fd0cee98d688e17bfebf5d5abe707dd39eee806f6aec59cbdff98ffa02c3f800ddf2cabe7076e50c61c9b19bd1bbddb7e48f789913d861e6ed0fbdafaf7e6b5dbf00336c6bfffc006b668d7bac6e41df7439b8d6bbad9df93bde73efbb76a5cb9477dd0fa757ec08876b0927d7cbf7867f941e34e284b961f60edfd42f9812d6c583439bb435673cc1674d39b84ddeb07624b67d2b6d46d7b624fc3775a7d1aa3c5f9613bfffe9a31d9f75f6fdd83fe5e8d1f2047bf537f333fceccd49edb0b73fc591ce750b25da0d3f1e5de4ef7f2011adba39f2f6dcee66dc116bf9a1f258a4d99fcbc3a66859e544df2d97a99d90b5b0bfa776c0237afdae8e6ee0cd8551b5e8a59d82307f60cc6f68856c82f981f5f9e1fd836ce34cca5dd0f33d218a2c3ec37e6cc36f65edda5db689cb5dbce85ff0b23756f9c1fee0a6b6ee0aedd8d1bba5bbbd0b5e1eedcbd7b708f6e641237a68c94e7d0731337c13a45227113f3ea5c3367307553706e46ef70c79fadb505b6dd1cbbb0e19e4ccb0ee4f9af7e7e4cb3dff0c51ee5c9ca1a843bb770cf50c7334c61493e5dc98f109186d9724b57771b5fe687db740db7e5b6dd8e6bba5db747710ef9e2f6dd9e6bb90377e88edcb16b6b1e5af2b53b71a7363143ca95c9ea5a822ed9d1b19b5954dcd9eb365b77e7d4ef29fce65f1becaf981f5f9e1f213fe8632f205989e1c414cd8ebb705df74cbbd64e7c3e0ff1e8d94d77e9722e2fcf5f9d1faee08aaee4cad9d9e22aaeca5ec41357855ef64da4abb9c41bd3d5b542b96adddca11942d51a73fe6a2d3de2b607dc755decb95378fd1df3bdebc0b64737374d37a19d8eedffc5cf0f77caf1f0aff7e8a1779c1f00b46e57f2c3f5dc190e689c2defbdc8bfce0fdff7577ee0afb36f2371e4f5ef1de77e4831b050f1b7fecedfc7fca01baa7fc0ba19620e96745ebd3ac7a00b4bff080d3cf30f7e4472ad151b293f3c5244c6b0819443f6f6d7cb8faf9c1f213f7067358666ee27b0894d9c513c062bef428929f9a9bdf3337be2e7f68df38376a0216e51a9c1c03fe1cbdab8f30bb8a7ddeb3e6b37badf5b53a268b4fcb379a0d107307f95030945f5de0e4cd12f7ddd2f5fe5f03db411fdd8267ec3d7b16ed9fe5ffcfc80144edcdc36c0be5a7b1443bfe91bbee1cec543b1d0687dbfb5faecedfb070c7024678714bfed77e26ef252d0ceb3e898ded7d613e567c31ec209bd67e5569fd3fe774b3b6f1aecdf655dbf567ebc71fff81b3126efcd5f3dff47f78f9777ba775983bff8f9f11ee5f7fdfcdfb671f5fca861e29b3ebefffff33a9c1f35189be30fb0367fa9f38376aa8e3d825bdc87db77acc75f6f277d4bbff7cefabe51fba65d628dee491fa6bc3e975fe7079dd2fb7644eff123dffa19b559f8033882bc3ff4473f53ef47aa3181ec37a372b17456f263e00ff9fdf6277d6afed89cc013d4dcf34fd5fb913e3518c211baecfffdc26b7b4cf188f90109add9aff7dca31b57f385de92f856ef2f9ff9b63fb1c7fed477b08f1d981a0b537f062d7bbe762ffdb48f6f4381d6e49d9dd0393bc97e9fedcbfcc03916b3ff4fdd3d53ed4cddec65352cc96b796a2d5264ce89ae8cc522f649c2d3b3ba3fa7fbd70569b820b994ea6ee8cb5a2dcedeb086f20346700d35dfa35b5b26e770db4f70b96e2ffdc44f2dfc16f904764cf6cdd32ec563f5fc6891bffbb0b017ee1c8bfe92eebdd66fb8891fe3363837b517d482ee14b71d9829c564090bec93ec196c0038008aa71fbb05ddda2b406399224e58afaf7f694bc80f8bc32c3fd6ee97357d7c1b8f7ccee7e92c2950c9c3d6e7f9416b3dcb0a871d435ef223b7c050fb07633dd5d4d634c5acb667fec1cd294f8a54778c75619f21398a1cb468bddbec67d13b7ac39adfe747961f7dfb649f7c914ac93ec1f5e7e7071c7a4b9e9c60d375cd9e3ba59da49cad6fbf347bf6c283d98316edf3f56c07a3184cb31ed45ea128503cb27f0f89f6bb8e3d07a0f3a6a77abf9a1f727eacdd2f6bfa64f941b7ef2b3be102c5cff3c377fdd876f1cc5f40db57c1d0e94a67b1af419dbcdf85999b9b16d5c654cca5ed52bcbae1fbd50d92d9c84e65dacd96be9af581b68951f0b537ac59393fd6ed97b57d6a76d32776921a2e148fcfce8fef7c8a148db9f9c67af67a1a5feab7f55f95fc7d7efc407e7cefe3a67a467f4583ac757e47fbe6e77be7473d7b5ffb881f3a33bfd202d337a4bfe5af5a0ad07d3b3fbe73ff78f7cf77ce8f296e9b3e45aa18fe5da8a2c9ee3ecdf0ef4e64ff4ad42ebd55cfffbfbd2beb6a6347c2eff333a6de75aec7c1c099a706626cc76112aef7b7d2621ce0428c176c9f73fffb7c25b9bd80314bb0ddb9747414b95bbda8a5faf4559584842368e0ea5405fdbc2179b42ff68b63f90d5d712058f6bf1fd74a9e7b783e9e4e65e1411c57fdf9a2c88765da8744ece1d92533a6585f2f72cfeea164256831c2ab55b91f3c697dcd337a7252adf8fd623b5816ee143ef56528ca7b245f59dae7f64bf121776f3cace10f58367968d919d1bb39a2485662c1571dc38ec981afaa7c01eda16f099c95a53267759d8e54411f2b0b0d9dd157de83e1a023da48c6fa45cf9beb7a713043db3335682f05603e52913e462d3628cf1736020272866dd58a8d8567049b085ace856af110c705e0bf2cebf68033cb94571e1762a3a15c6d55c4af8cbf4353de9cab165a45a36cb7dce38ce89a3602139fdb7dd81e2fe28f55fad03b06940c255cc71f6d6e42f6da520ed44e4305e496f17bc80d2ed8481fe20ad43c3093b313e815a25f4fd489132dbb1dca8febfc151ce93ad024679ab0a966df28f97602a92dd33dca14898e28f22ca6146a3aa3fad0e92790807ce8510337c24ece439f9f68a0898e041b3c099e0be45b4609654c725e8f90893a9da1454be1fe700ee516fbee79fdaa6e4ffcd75ed0186fcc3aa6118282dc4998981134deb1dd87e414748304c159b9424a4f23c314d9035da531ee9fe08bc576c9a144643d9b7028a7e626ec9b35fc61c6a606abb2cf63d45e16321b89368ddaea8a2d4f11cedf729e33d4874c47d618967962c08796f1761a880cd2802b90c148fc0a90f5c6c37720073696bdc5d5da76298f3a92ef6b40abbf05f6227c6315baa291755f426bea9a9447f081de0a88937241cf2ce09cefe9020ed12299d8dee286d5825594f1d6bf712c65c6bd27b21616ce3dcb1fb02672fea9056973afc99eaa207b713406f6bb2c640a64fa73785b2463d8d2434296ee21c739c8deb487105f097e5b8fd8692f8e12169ee10f3d5d7fd0f7cc33ff57bc2661492dae516895468f7632d5ed6679a8af8cff5590de6ec51be6bfecf2b3ed1e11bebf3f7b7f1ce67e383b5bfbd03cd05c4a0f9ead17ee2b2d7ddb0bf4ab609f07d9f1580bf639c77d306201f685488767417bab0f84a5648e87f2b2637a41166319f1fda5d898ddf0cc697f547967fbc3cbf8f239cedae033a8befe799cd7ab6ca6f70ecfdb1f25833ed3e6d063549d13bf14784e5359499e8f3c74e89f5d5bf2e4d8f4c3315764801a7deb9173fa182c2afd7183ce68845e406ac4da994562798a8fd4fef845fbe3e9801aaea277cb3d7ae794dba4df5cca49fd579bb53fb4d73a1f9d878e13d287e753ffd546f1f1ea90faaf7edd7ff58e21e58fe4e123e58fdfc67ff5e6106cb7df23240d1f9be08f956391490dbf2b7fc47eec921f9787b536cb29d9aa78f1ec84cec248b38d88a063f7558927d0f7b4469e2ac0525d9cb7726afeb451acf92d85ecc333e28b550b7e746ed377f17d3d5152bdd217f0641d240b1f317f88f5883ad6fac0d4b8adeb3cb655da774c8a2fac865d73c017b0fb2358ab43ab6960aaa61f7c156614d7345828e73de511f764ac5ff5294f7d1a78ff5d17cf59b08c8257dcdea235354f60a91e481bb3134b58bc84a6c219d5c63b0a043bdd36ed8169c05ef74ff0feabe001323c5691a9e07c16ad9635233ca765e83575904cfeb07e7e91d4227aff9cbdc5990937555be5f0f5f7dea6042ecc3d9020230b59f1fd055f90f8ac666392e297313e2fa76cecdd9dfa53977cd634700ec7451997a028f812fc1c0143df71748716a94b8b7246d7cd88ce6ca4eb7852f0cfee19327f229fc5df4cfb34e10667ecc4d4e4bab98fee6575902c7cc4fc612a564693228e20c747ba81f608f359a2a9ff2b32f84adb9239157446d1bc6efd7c168f0feed9066455e6c2f43c76627c74d5ec39b3f698e2c37b780f808b88b3c6fbe8749587e2df750cdce4ec117abcace4431ea6f365a6f8d0b8b3c74d60a78beb6ac82b0b16b9cdafd11613ca1f6090b269f83e43fa24c617cbb85ed5f7d2591f4bf85606271464cc0dd2da272f3df8659515fee021918c0d42ce8f7cef67b9e16baeeab9256606dfe7d0190f44b68563e48cb3e86d1a9e87c0381e1b5a4623d59e197306d21101ad7a3a1a7b226c82df56fe7e579e6b199cd28754882f565b7a4d1d240b1fabed8fa91cb6177d61a895fcaa5132ceccbdba217fd518f6c2f595d79794dd63967f1cac7e76c6c08a3a48267f3cc85b35aa20233376e5934a0fee7bfff0b27a5e377ff9c93a48163ed6db1f7ca12219075f15d08facb4fb3c0fc9dc941e74b4b5760d7aabc7e766f38c6dcd8c17df4dab6620bf431d24933f44c7f45fdfe7ac9f8930f4bc7d66f7ec53b3abd19b49cf0416977e624fc61cc5e7cf4dd187a0f3e4b5e714d5f66b49947d7e1b1c40602286ded6d6c7c83df552dd46db482f8773f8bf24ba14f4a67e7837746e7091e7a90dd441b2f011f30747b68ede3fb227ba21ccaafad0956a61d6296a70256f80655adef2d3b2a286923163e85714c186e921077c8dfb0786848d657631f8bb2f7303a0cfe664be4a602992f9e2b530b618c63849d986ed9a3e74277f85212bb320dec20e2fa88364f287d5deda130d77e2f71d2b8a65065bbcfd343eb8092cf483fd11cfde8675076d54c6f281b0aacc0b917cfd45f423aff36ad1b5384f032a07f6872e06cb0e6d30119dda5dc8fc2dd812046bd42ece07d9143ef417bad21d59f35b52dd4d087fc0dec0d747ecad2ae0a325b28a9e874c6d353e48c15287b64f47b62b38802dd117a4c80c70d542edf7ec91cc23f4b3bcd1d6a2f5cacc0b23bc3006a2b2e6dc56a1b10ee41a9e5a3472b5e002f979b4768d2f428b025dbdcde083aed4f9c2df0f3efafb8fed858d8e7fb420cfc5d57968efc4cc4395bf8fd2dffc5a13a14556fc7dd4d6c2aec63f34bfc09ad8561da0a7eaf2299db88ee6657c24c8fef830c1e343f357f7c35daac9eef1918e9f7f10fef84d82e083cb7e6524bf42c0aef1918e9f53db5dd101d54274d7297fec3258d9e576a4233e0c917ea4fcb1d390f247a242b03fecb1ac76a33eed5ebf4af9c3db1fe74cee875fdf3e29f6478ec59b31a1c88f90eeba96b65807627fe05f495ff8f5af12627f7053466b65e556d55a3fbef70f0bcff00795ed9119bd475445555c7f0d97027fb8bfd4589594fd8891bec0fe3880e5f119edd0e483657c4013b6da7019f97fc8da656f4fa9a1cef431ddcccfe36d04cb6776ac26ee26f007df51470d11af7691aa09f5f87a73d1ef11b7ae1c1584e22cea45fed05d7dc627ebd6f7e392eaa8efb286281daebb4e4dd457aa2ceec1a60ed11e0b6b48ab4b3d0afc419a0eb9acfd1aa2db4ea9432d72bac3dd4d45772bfb43c4efd343f7d37517cab147a74fae9fd87177744edde5f5fc9623755d4f4712d7efa1a3ae5d1fed11ae8948d253b4c7116ae052dfcb35d4117c78fea8c4fb0fbc36ba81ecb904c9183e5e87f085b1e37ef0dd7c7ceefd23cb0eb1f3f75db9e1542a432c516ecdfa89ffa373366bd7c09446f56b993db1ffe034157cd853d9db99b5bbd75f645f438f8fb6be62c55f711cf001fe2079e8dbd6e2ac87b2b056dfdf723fa2e023371fbfde40cc87fd4be854a4923fbb9f7c8ce39119f8f79716d6bff7e9327fe893f7c1077d9ae3837e0011337ce82285dd214a317fe8ea5bf101c98b427956ef01f27ca4ff6c091f774cbe05041f22f137acfcf1edd3f878097f48efa31aea9b6a2cef6bfe305de60f9181983f648d77fd803ffc48cc5bd6723e88f1f1604dec17a77cb9797cf067799fd3a87fad6f808f96e0835a5e5a4bcff047569ffa7d367e31e23b3feb265fcfcfa90693ec851e1f53e6d7f9439f86750721216fc4c756f9e36ece1ff8e2b02fc45afe5097ea1b7d821eb69508bdb74e77f60cf8b8a01be06e04e6df72ca37a60949d174b3a9087c5ccfdfa7aaee27f8645e0ef7347fa03feeb2d96abce6ef7c09b9e9484a1f32f53b61acc44732d62fffe869babf73b2e2c3fdcf772113691a52d81ae9fee78989688d9edf9b23e58f04a4ea5cf7a075a5fc9188485d35a21ed796f0b17319f9a8a9c706ac5a1da5fcb1fb283e417b0c6cdce94aca1fbb4e67d818891d9ff2c7eea3df5fb1239e56394ef963b7a96a228c25fa7191197fb8d93eb469dc665419aea8160ddd98eb726c4b7c27ed4143f5c7f48a4e9a6e31056ff0a1ae50cf8f87fc544337f1fd15dac834a898865d0617b92377fcefbffffbafff03fc01e7d9</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>buttonOk</sender>
+        <signal>clicked()</signal>
+        <receiver>FrmSettings</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>buttonCancel</sender>
+        <signal>clicked()</signal>
+        <receiver>FrmSettings</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+</UI>

@@ -1,0 +1,367 @@
+<chapter id>
+  <title>Gui design in the baroque age</title>
+  
+  <para>One of the greatest achievements of GUI interfaces such as
+    CDE, Windows or MacOS is the uniform look and feel of
+    applications. Once a user has learnt to use one application
+    effectively, he will be familiar with the way
+    <emphasis>all</emphasis> applications work, on that platform. Of
+    course, there are also users who complain they forget exactly
+    which application they are working with, once all applications
+    look the same. Be that as it may, the current trend, perhaps
+    initiated with the wide variety of design for websites, is towards
+    ever-more distinctive and baroque interfaces. Indeed, we seem to
+    be entering the age of the 'designer' interface, and PyQt offers
+    everything we need to create database applications in the form of
+    an audio rack or spreadsheets in the form of a medieval book of
+    hours.</para>
+
+  <sect1>
+    
+    <title>Types of gui customization</title>
+
+    <para>Despite the slight badinage in the introduction, there can
+      be many good and valid reasons to design a gui for your
+      application that diverges from the platform standard. For
+      instance, while a word processor shouldn't look like the
+      medieval scribes desk, the paste-board gui used in an
+      application like Adobe FrameMaker is very effective, especially
+      since many layout designers are still familiar with the
+      glue-and-scissors approach of layouting. Likewise, designing an
+      mp3-player that looks a bit like an audio rack is effective
+      (making it look like an angry fish-eye less so). Generally
+      speaking, creating an interface that matches closely the real
+      world experience of your users is a good idea.</para>
+
+    <para>There's another area where custom gui's fit well, and that's
+      in the general redesign, or <emphasis>theming</emphasis> of the
+      whole set of widgets, to make them more aesthetically pleasing
+      to your users. PyQt already offers a selection of those themes.
+      Your user can decide whether they want their applications to
+      look like Motif, CDE, Silicon Graphics IRIX, Windows 95 or MacOS
+      9. Offering this choice means that the applications you make can
+      always blend in unobtrusively with the other applications your
+      users use. A toolkit like Tkinter does not offer this advantage:
+      a user will always be aware that he or she is not working with a
+      application native to his computing environment.</para>
+
+    <para>There are two ways to create a totally custom interface. You
+      can reimplement <classname>QWidget</classname> using pixmaps and
+      masks, or you can use the PyQt <classname>QStyle</classname>
+      mechanism to reimplement the drawing routines of the standard
+      widgets like <classname>QPushButton</classname>.</para>
+
+    <para>The first solution is appliccable for simple applications
+      like audio players or for applications that need to be totally
+      skinnable - again, like audio players. You need also to
+      reimplement <classname>QWidget</classname> if you have designed
+      a totally new type of widget, like Adobe did with the PageMager
+      paste-board. (Not that you couldn't simulate the pasteboard
+      quite easily with <classname>QCanvas</classname>, but you might
+      have an idea for a widget that's more complicated than
+      that.</para>
+
+    </sect1>
+
+
+    <sect1><title>Faking it with bitmaps</title>
+    
+      <para>The first stab at a totally cool gui will be an imitation
+        a remote control. A nice brushed steel background, with rounded
+        buttons and a deep bevel. The remote control used in this
+        instance is part of a system for medical imagery, and we want
+        to duplicate the actual control on screen so that the users
+        familiar with the hardware won't have to learn a new interface
+        for use with the software.
+      </para>
+    
+     <para>To create the interface we first make a scan of a picture
+        of the actual remote control unit. The gives us the picture
+        shown below:</para>
+     
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="40" align="center" fileref="ch5/remote.eps" scalefit="1">
+          </imageobject>
+          <caption><para>A scan of the remote control</para></caption>
+        </mediaobject>
+      </screenshot>
+    
+     <para>Not the subtle play of light on the buttons: there are no
+        two buttons the same. This means that we will have to cut out
+        each separate button, and save it in a separate file. The
+        buttons should give feedback to the user when depressed, so we
+        make a copy of each button and save, that too. Then, using a
+        bitmap manipulation program such as the Gimp, the highlight in
+        the up button is changed in to a bit of shadow, and the text
+        is shifted a few pixels to the right and left.</para>
+    
+     <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch5/gimp.eps" scalefit="1">
+        </imageobject>
+        <caption><para>Changing the shadows with the Gimp</para></caption>
+     </mediaobject>
+        
+        <para>This part of the proceedings is a bit of a bore: let's skip
+          drawing a few of those buttons, and start with the
+          implemantation. A real remote control doesn't have window
+          borders, so ours shouldn't have those, either. We can
+          achieve this effect by using window flags: first the
+          Qt.WStyle_Customize flag to indicate that we are customizing
+          the appearance of the window, and then the
+          Qt.WStyle_NoBorderEx flag to tell the window system that we
+          don't want borders.</para>
+      
+      <example>
+        <title>remote.py - remote control application</title>
+
+<programlisting>
+#
+# remote.py - remote control application
+#
+
+import os, sys
+from qt import *
+
+from view     import *
+
+class Window(QMainWindow):
+
+  def __init__(self, *args):
+    QMainWindow.__init__(self, None, 'RemoteControl', 
+            Qt.WStyle_Customize | Qt.WStyle_NoBorderEx)
+    self.initView()
+ 
+
+  def initView(self):
+    self.view = View(self, "RemoteControl")
+    self.setCentralWidget(self.view)
+    self.setCaption("Application")
+    self.view.setFocus()
+
+
+def main(argv):
+  app=QApplication(sys.argv)
+  window=Window()
+  window.show()
+  app.connect(app, SIGNAL('lastWindowClosed()'), app, SLOT('quit()'))
+  app.exec_loop()
+ 
+if __name__=="__main__":
+  main(sys.argv)
+
+</programlisting>
+        </example>
+
+      <para>Next, we create the main view:</para>
+
+      <example>
+        <title>view.py - the main view of the remote control
+          application
+        </title>
+
+<programlisting>
+#
+# view.py = the main view to go with remote.py
+#
+from qt import *
+from button import Button
+class View(QWidget):
+  buttondefs=[ ('register', 80, 111)
+             , ('freeze', 22, 388)
+             , ('minus', 22, 457)
+             , ('toolbox', 130 , 166)]
+
+  def __init__(self, *args):
+    apply(QWidget.__init__,(self,)+args)
+    self.setFixedSize(245,794)
+    self.setBackgroundPixmap(QPixmap("remote.gif"))
+    self.buttons=[]
+    for bndef in self.buttondefs:
+      print bndef
+      bn=Button(self, bndef[0], bndef[1], bndef[2], bndef[0]+'up.gif', bndef[0]+'down.gif')
+      self.buttons.append(bn)
+      QObject.connect(bn, PYSIGNAL("pressed"), self.Pressed)
+
+  def Pressed(self, name):
+    print "Button", name, "pressed."
+</programlisting>
+        </example>
+
+      <para>There is a class variable <varname>buttondef</varname>
+        that contains the set of buttons we will use. Each definition
+        consists of a base name from which the filenames of the up and
+        down buttons will be deduced and the X and Y position of the
+        button on the window. These hardcoded positions make it
+        impossible to use this technique together with layout
+        managers.</para>
+
+      <para>In the constructor a background image is set, using
+        <function>setBackgroundPixmap</function>: after that, all
+        actual button objects are created. The button objects are
+        instances of the button class:</para>
+
+      <example>
+        <title>button.py - the class that implements the pixmapped
+          buttons
+        </title>
+        
+<programlisting>
+#
+# button.py - pixmapped button definition to go with  remote.py
+#
+from qt import *
+
+class Button(QWidget): 
+  def __init__(self, parent, name, x, y, up, down, *args):
+    apply(QWidget.__init__,(self, parent)+args)
+    self.pxUp=QPixmap(up)
+    self.pxDown=QPixmap(down)
+    self.setBackgroundPixmap(self.pxUp)
+    self.name=name
+    self.x=x
+    self.y=y
+    self.move(x, y)
+    self.setFixedSize(self.pxUp.size())
+    
+  def mousePressEvent(self, ev):
+    self.setBackgroundPixmap(self.pxDown)
+    
+  def mouseReleaseEvent(self, ev):
+    self.setBackgroundPixmap(self.pxUp)
+    self.emit(PYSIGNAL("pressed"), (self.name, ))
+</programlisting>
+        </example>
+
+      <para>The button class is interesting because of its extreme
+        simplicity. All it really does is moving itself to the right
+        place and then waiting for mouse clicks. When a mouse button
+        is pressed the down pixmap is shown using
+        <function>setBackgroundPixmap()</function>, and when the mouse
+        button is released, the up pixmap is restored. In order to be
+        able to catch the press event in view.py, a signal is
+        generated.</para>
+
+      <para>Creating a set of graphics for the number displays and
+        updating those when the buttons are pressed is left as an
+        exercise for the reader - it is extremely tedious, I'm
+        afraid.</para>
+
+      <para>Using pixmaps to create a distinctive user interface does
+        work well for smaller projects, and in situations where every
+        detail, like lighting, has to be just right; but the tedium
+        involved in creating all individual pixmaps and the lack of
+        flexibility makes the technique unsuitable for more complex
+        interfaces.</para>
+      
+    </sect1>
+
+
+    <sect1><title>Creating themes with QStyle</title>
+
+      <para>We've just created a beautifully sculpted interface, with
+        all highlights exactly right. Of course, it also lacked all
+        flexibility. Fortunatly, PyQt offers complete access to the Qt
+        theming mechanism: using this mechanism we can get almost the
+        same effect, but in a more flexible and generic manner. </para
+
+        <para>The key class here is <classname>QStyle</classname>.
+        This class provides an enormous number of methods that are
+        used by Qt's widgets to express themselves on screen - and a
+        few hooks that you can use to intervene just before a widget
+        paints itself. Based on <classname>QStyle</classname> is
+        <classname>QCommonStyle</classname>, which implements most of
+        the actual drawing routines. On top of
+        <classname>QCommonStyle</classname> is a whole tree of styles,
+        for Motif, for Windows, for MacOS-platinum, for SGI and for
+        CDE. A desktop environment like KDE adds a whole host of other
+        styles - and we can add one, too, once we have designed it.
+      </para>
+
+      <sect2><title>Designing the style</title>
+
+        <para>Designing a succesful widget style is an artistic
+        endeavor that calls for sensitive handling and an acute
+        awareness of usability principles, as can easily be seen from
+        the thousands of horrible styles available from websites like
+        www.themes.org. But then, designing a user interface calls for
+        the same expertise. That's the reason most software houses
+        employ interaction designers and graphic artists. Software
+        developers who don't have access to those specialists can go
+        to the excellent books on interface design published by Apple
+        (freely downloadable) and Microsoft: the <emphasis>Macintosh
+          Human Interface Guidelines</emphasis> and
+        <emphasis>Microsoft Guidelines for Interface
+          design</emphasis>. The Interface Hall of Shame website has
+        some hilarious examples of interface design!</para>
+
+        <para>On the other hand, making something
+        <emphasis>look</emphasis> like something else is a lot easier.
+        For this project, I've pondered about a few example styles
+        that would illustrate the capabilities of the
+        <classname>QStyle</classname> mechanism: the old Athena widget
+        look and feel, or the old 'flat' MacOS look and feel. The new
+        Aqua style was right out - Apple would have sued me into the
+        poorhouse, I'm afraid. Perhaps the look of the rubber keyboard
+        or the old ZX-Spectrum? We'll try the old, flat MacOS look.
+        This one has the advantage of being visually simple. You can
+        of course complicate the implementation of a style enormously
+        by using complex gradients to fill buttons - or use bitmaps
+        and masks to fill widget backgrounds. The
+        <classname>QStyle</classname> is flexible enought that you can
+        use anything the <classname>QPainter</classname> class offers
+        to paint your widgets. On the other hand, some parts are
+        exceedingly difficult to adapt, as we shall see.</para>
+
+      </sect2>
+
+
+    <sect2><title>Setting up</title>
+      <para>The system that is used to implement custom styles changed
+completely between Qt 2 and Qt 3 - which is a pity, because at the
+time of writing this book the new styling system had not been completely
+finished, and the old system has been obsoleted.</para>
+    </sect2>
+
+
+      <sect2><title>Implementing the various widgets</title>
+      
+      <para>Frame styles are difficult to reimplement: this should be
+          done in polish/unpolish.</para>
+        </sect2>
+
+
+    <sect2><title>Using the new style</title>
+      <para>blabla</para>
+    </sect2>
+
+    <sect2><title>Adding pixmaps</title>
+      <para>blabla</para>
+    </sect2>
+
+  </sect1>
+
+
+
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

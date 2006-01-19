@@ -1,0 +1,637 @@
+<chapter id="ch11">
+
+  <title>User Interface Paradigms</title>
+
+  <para>In <xref linkend="ch10">, we created a general framework to
+    handle the complexities of applications that have more than one
+    document open at the same time &mdash; with possibly more than one view
+    on the same document, too. We also discussed the various paradigms
+    for representing those views in the application.</para>
+
+  <para>In this chapter, we will explore the actual implementation of
+    some of those paradigms, starting with a one of the most useful
+    and modern paradigms: the tabbed document model.</para>
+  
+  <sect1><title>Tabbed documents</title>
+
+    <para>Like most user interface paradigms, the tabbed document paradigm has been popularized
+      by current integrated development environments. A tabbed document
+      collects all open documents in one <!-- in one document? one what?! -->,
+      with a row of tabs to facilitate easy navigation of documents. This paradigm
+      has become so prevalent that even the old stalwart of user
+      interface conservatism, XEmacs, supports it.</para>
+
+    <para>It turns out to be remarkably easy to implement.
+      First, let's determine what we want to get out of this
+      component. It is the first of several generic components
+      that can take views &mdash; i.e. <classname>QWidget</classname>'s&mdash;
+      and show them in an application workspace. All view managers
+      should work to the same API, allowing the user to choose his
+      favorite way of working without giving us lots of work.</para>
+
+      <!-- todo : any chance you could re-word the above sentence so it doesn't say "work" three times? =) -->
+
+    <para>We will provisionally call the component that manages tabbed
+      views <classname>TabManager</classname>. The
+      <classname>TabManager</classname> is meant to be almost a
+      drop-in replacement for the <classname>QWorkspace</classname> we
+      used in the <xref linkend="ch10">. Therefore, it should support
+      most of the same functionality: adding, removing and listing
+      actual views. Other capabilities of
+      <classname>QWorkspace</classname> don't make sense: you cannot
+      tile or cascade tabbed windows. There must be some way to
+      indicate to the wrapping application whether the view manager
+      supports these capabilities.</para>
+
+    <para>PyQt offers a <classname>QTabWidget</classname>, which fits
+      the basics of our needs perfectly. However, in contrast with the
+      <classname>QWorkspace</classname>, where merely creating a
+      widget with the workspace as parent widget was enough to let it
+      be managed, <classname>QTabWidget</classname> wants us to
+      explicitly add pages, and thus widgets, to its list of tabs. For
+      the rest, <!-- todo : for the rest [of what] ? --> it also allows the addition and removal of pages.
+      We can also request a reference to the active view, and request to be
+      notified of page changes.</para> <!-- todo : can you think of a synonym for request here, to avoid repetition? Or doe we need to specifically
+      use that word? -->
+
+    <para><classname>QTabWidget</classname> is used in the
+      <classname>QTabDialog</classname> dialog window class, and makes
+      use of the <classname>QWidgetStack</classname> class,
+      which keeps a stack of widgets of which only one is shown at a
+      time, and <classname>QTabBar</classname>, which keeps a row of
+      tabs.
+
+      <!-- todo : i think the above would read smoother as two sentences, rather than one. -->
+
+      Tabs can be square or triangular (the latter is seldom
+      seen nowadays, for it is very ugly), and shown on the top or
+      bottom of the window.</para>
+
+    <para>Applications that handle documents that consist of several
+      (but not many) pages often show a row of
+      triangular tabs at the bottom of the window. You cannot set the
+      tabs to appear at the side of the window. That's a pity, since
+      it is a position that is quite often preferred by users.</para>
+
+    <para>Let us take a look at the implementation of a tabbed
+    document manager:</para>
+
+    <programlisting>
+"""
+tabmanager.py - tabbed document manager for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class TabManager(QTabWidget):
+
+    def __init__(self, *args):
+        apply(QTabWidget.__init__,(self, ) + args)
+        self.views=[]
+        self.setMargin(10)
+    </programlisting>
+
+    <para>The <classname>TabManager</classname> is derived from
+      <classname>QTabWidget</classname>. A simple python list of views
+      is kept, otherwise we would not be able to retrieve a list of
+      all open views for the 'windows' menu. The margin between tab
+      and document should really be a user-settable property, but we
+      won't develop a user preferences framework until chapter
+      <xref linkend="ch13">.</para>
+
+    <programlisting>
+    def addView(self, view):
+        if view not in self.views:
+            self.views.append(view)
+            self.addTab(view, view.caption())
+            self.showPage(view)
+    </programlisting>
+
+    <para>Adding a new view is a simple exercise. However, note
+      that until you actually call <function>showPage()</function> on
+      your view, the <classname>QTabWidget</classname> appears to be
+      innocent of your addition, and won't manage the layout of the
+      page. This means that when you create a new window
+      and resize the application window, the contents won't resize
+      with it. Simply drawing the tab widget's attention to the page
+      will suffice, however.</para>
+
+    <para>With PyQt's <classname>QWorkspace</classname> it was enough
+    to create a widget with the workspace as its parent: this is no
+    longer enough.
+
+    <!-- todo : above: enough for what? It's hard to know exactly what "enough" is in reference to. I realize that the general content of the preceding
+    paragraphs makes this clear, but within the sentence itself, "enough" isn't refering to anything in particular. This could potentially be confusing to
+    readers. -->
+
+    This means that we will have to adapt the
+    <classname>DocManager</classname> class to work with
+    <function>addView</function>. This is done in the private
+    <function>_createView()</function> function:</para>
+
+    <programlisting>
+    def _createView(self, document, viewClass):
+        view = viewClass(self._viewManager,
+                         document,
+                         None,
+                         QWidget.WDestructiveClose)
+        if self._docToViewMap.has_key(document):
+            index = len(self._docToViewMap[document]) + 1
+        else:
+            index = 1
+        view.setCaption(document.title() + " %s" % index)
+
+        self._viewManager.addView(view)
+
+        view.installEventFilter(self._parent)
+
+        if self._viewToDocMap == {}:
+            view.showMaximized()
+        else:
+            view.show()
+
+        return view
+    </programlisting>
+
+    <para>To return to the <classname>TabManager</classname>
+      class:</para>
+
+    <programlisting>
+    def removeView(self, view):
+        if view in self.views:
+            self.views.remove(view)
+            self.removePage(view)
+
+    def activeWindow(self):
+        return self.currentPage()
+
+    def windowList(self):
+        return self.views
+    </programlisting>
+
+    <para>The first of these three functions is new. Simply closing
+    a widget was enough to remove it when it was managed by the
+    <classname>QWorkspace</classname> object; now we must explicitly
+    remove it. This, too, demands a change in the
+    <classname>DocManager</classname> class, but fortunately, it's a simple change:</para>
+
+    <programlisting>
+    def _removeView(self, view, document):
+        try:
+            self._docToViewMap[document].remove(view)
+            self._viewManager.removeView(view)
+            del self._viewToDocMap[view]
+        except ValueError, e:
+            pass # apparently already deleted
+    </programlisting>
+
+    <para>Both <function>activeWindow()</function> and
+      <function>windowList</function> have been included to make the
+      interface of the tabmanager more similar to that of
+      <classname>QWorkspace</classname>. If you want to have
+      transparently interchangeable components, they must have the
+      same functions.</para>
+
+
+  <programlisting>
+    def cascade(self): pass
+
+    def tile(self): pass
+
+    def canCascade(self):
+        return FALSE
+
+    def canTile(self):
+        return FALSE
+    </programlisting>
+
+    <para>You cannot cascade nor tile a set of tab pages. The
+    functions are included, but merely to avoid runtime exceptions
+    when the application inadvertently does try to call them. The
+    functions <function>canCascade()</function> and
+    <function>canTile()</function> can be used to determine whether
+    this component supports this functionality.</para>
+
+  </sect1>
+
+  <sect1><title>Back to the MDI windows</title>
+
+    <para>Changing the document manager and the application
+      object to work with the <classname>TabManager</classname> class
+      makes them unable to work with the vanilla PyQt
+      <classname>QWorkspace</classname> class. We will have to wrap
+      this one in a class of our own that sports the same functions as
+      the <classname>TabManager</classname>  class. Fortunately, this
+      is not an onerous exercise.</para>
+
+    <programlisting>
+"""
+workspace.py - MDI workspace class for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class WorkSpace(QWorkspace):
+
+    def __init__(self, *args):
+        apply(QWorkspace.__init__,(self, ) + args)
+
+    def addView(self, view): pass
+
+    def removeView(self, view): pass
+
+    def canCascade(self):
+        return TRUE
+
+    def canTile(self):
+        return TRUE
+    </programlisting>
+
+    <para>That didn't hurt, did it? We added a mere four
+    functions to the interface for our view managers. Adding and
+    removing a view from a workspace doesn't need our active
+    intervention, so we can simply add stubs for
+    <function>addView</function> and
+    <function>removeView</function>. And a workspace can both cascade
+    and tile, so <function>canCascade()</function> and
+    <function>canTile()</function> return TRUE.</para>
+
+    <para>The other functions we had to define in
+    <classname>TabManager</classname>, like
+    <function>cascade()</function> or <function>windowList</function>
+    are part of <classname>QWorkspace</classname> &mdash; and we don't need
+    to reimplement them.</para>
+
+  </sect1>
+
+
+  <sect1><title>A row of split windows</title>
+
+    <indexterm>
+      <primary>QSplitter</primary>
+    </indexterm>
+
+    <para>This little class will arrange the views separated by
+      splitter bars. It is based on the
+      <classname>QSplitter</classname> class. <!-- todo : you seem to be saying that the "QSplitter class" is based on the "QSplitter class" ?? -->
+      I would advise you never to use it (in contrast to BlackAdder, which does use
+      this paradigm). <!-- todo : any particular reason why you don't advise using it? -->
+       It is a useful little introduction to
+      <classname>QSplitter</classname>, though.  <!-- todo: *what* is a useful introduction to Qsplitter? I thought you were talking about Qsplitter?!-->
+      A splitter is best
+      used if you have a list of items or icons on the left, and a
+      document pane to the right. Indeed, you might want to use one of
+      the other arrangements for showing more than one window in the
+      document pane, and separate the workspace from the selection
+      list using a <classname>QSplitter</classname>. If you do this,
+      the selection list functions as a kind of always-on windows menu.</para>
+
+
+    <programlisting>
+"""
+splitspace.py - splitter view manager for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+class SplitSpace(QSplitter):
+
+    def __init__(self, *args):
+        apply(QSplitter.__init__,(self, ) + args)
+        self.views=[]
+        
+    def addView(self, view):
+        self.views.append(view)
+    </programlisting>
+
+    <para>Clever and clean as Qt might be, it is not immune to the
+      inevitable inconsistencies caused by prolonged development. Some
+      classes, such as the <classname>QTabWidget</classname> we saw
+      above, have special insert or add methods for the insertion or
+      addition of child widgets; others, like
+      <classname>QWorkspace</classname> take care of their children if
+      those children are created with them as the parent. This also holds
+      for <classname>QSplitter</classname> &mdash; create a widget with a
+      <classname>QSplitter</classname> object as a parent, and it will
+      be automatically managed by the splitter. Therefore the
+      <function>addView()</function> function has little to do.</para>
+
+    <programlisting>
+    def removeView(self, view): pass
+
+    def activeWindow(self):
+        for view in self.views:
+            if view.hasFocus():
+                return view
+        return self.views[0]
+    </programlisting>
+
+    <para>In order to be able to figure out which of the widgets
+    managed by the splitter is the currently active one, we have to
+    loop over the list and retrieve the one with focus. If that
+    fails, we fall back on a hack: just return the first one.</para>
+
+    <programlisting>
+    def cascade(self): pass
+
+    def tile(self): pass
+
+    def canCascade(self):
+        return FALSE
+
+    def canTile(self):
+        return FALSE
+
+    </programlisting>
+
+  </sect1>
+
+
+  <sect1><title>A stack of documents</title>
+
+    <para>I said I wouldn't do an emacs-like stack of documents
+    without any surrounding GUI &mdash; but it was so easy. PyQt contains a
+    very basic class, <classname>QWidgetStack</classname>, which can
+    contain any number of widgets, though only one is shown at a
+    time. This class is used in <classname>QWizard</classname>,
+    <classname>QTabWidget</classname> and
+    <classname>QTabDialog</classname>, but it can be very useful on
+    itself, too.</para>
+
+    <!-- todo : is "useful on itself" what you meant to write? That sounds odd to me. Maybe this is a technical point I don't understand;
+    or did you mean something to the effect of "it can be very useful when used by itself, too." ? -->
+
+    <programlisting>
+"""
+stackspace.py - stacked view manager for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class StackSpace(QWidgetStack):
+
+    def __init__(self, *args):
+        apply(QWidgetStack.__init__,(self, ) + args)
+        self.views=[]
+
+    def addView(self, view):
+        self.views.append(view)
+        self.addWidget(view, len(self.views) - 1)
+        self.raiseWidget(view)
+
+    def removeView(self, view):
+        if view in self.views:
+            self.views.remove(view)
+            self.removeWidget(view)
+    </programlisting>
+
+    <para><classname>QWidgetStack</classname> is one of those classes
+    that wants its children to be explicitly added and removed. You
+    also have to give a numerical ID to identify the widget.</para>
+
+    <programlisting>
+    def activeWindow(self):
+        return self.visibleWidget()
+
+    def cascade(self): pass
+
+    def tile(self): pass
+
+    def canCascade(self):
+        return FALSE
+
+    def canTile(self):
+        return FALSE
+
+    def windowList(self):
+        return self.views
+
+    def activateView(self, view):
+        self.raiseWidget(view)
+    </programlisting>
+
+    <para>In contrast with all other view managers we have created up
+    to now, <classname>QWidgetStack</classname> does not
+    automatically raise a window when it gets focus. This means that
+    we have to add a new method to the view manager interface&mdash;
+    <function>activateView</function>. This has to be added to all
+    other view managers, too, and there is a small change necessary in
+    the application class <classname>MDIApp</classname>:</para>
+
+    <programlisting>
+    def slotWindowMenuActivated(self, index):
+        self.menuToWindowMap[index].setFocus()
+    </programlisting>
+
+    <para>becomes:</para>
+
+    <programlisting>
+    def slotWindowMenuActivated(self, index):
+        self.workspace.activateView(self.menuToWindowMap[index])
+    </programlisting>
+
+    <para>Of course, this is merely an example of the use of
+      <classname>QWidgetStack</classname>. If you want to present your
+      users with stacked document windows, you ought to
+      offer more than a mere 'window' menu for selecting
+      windows&mdash; A keyboard interface, for instance, or perhaps a listview
+      with icons for open documents to the left.</para>
+
+
+  </sect1>
+
+  <sect1><title>A more complex view management solution</title>
+
+    <para>In the previous section I suggested that it might be nice to
+    code up a view manager where the list of open views was shown in a
+    listbox on the left side. I could have have left this for you to do, but
+    I couldn't resist.</para>
+
+    <programlisting>
+"""
+listspace.py - stacked view manager with a list for the mdi framework
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+from qt import *
+from resources import TRUE, FALSE
+
+class ListSpace(QSplitter):
+    </programlisting>
+
+    <para>The <classname>ListSpace</classname> is based on
+    <classname>QSplitter</classname> &mdash; that way the user can decide
+    how wide he wants to have his list of window titles.</para>
+
+    <programlisting>
+    def __init__(self, *args):
+        apply(QSplitter.__init__,(self, ) + args)
+        self.viewlist=QListBox(self)
+        self.setResizeMode(self.viewlist,
+                           QSplitter.KeepSize)
+        self.stack=QWidgetStack(self)
+        self.views=[]
+        self.connect(self.viewlist,
+                     SIGNAL("highlighted(int)"),
+                     self.__activateViewByIndex)
+    </programlisting>
+
+    <para>First the <classname>QListBox</classname> is added to the
+      splitter, and then to the widget stack (which is used in the same way as
+      in the previous section). Here, I chose to use a
+      <classname>QListBox</classname>, because it offers a more
+      comfortable interface for the adding, changing and removing of
+      entries than a <classname>QListView</classname>. As soon as we
+      need the treeview, column header or multi-column capabilities of
+      <classname>QListView</classname>, the change will be simple
+      enough.</para>
+
+    <para>Because the <function>highlighted(int)</function> signal of
+    <classname>QListBox</classname> passed the index of the selected
+    entry in the listbox, not the actual view object, we have to pass
+    it through an internal function,
+    <function>__activateViewByIndex</function>, which maps the index
+    to the right view to activate.</para>
+
+    <!-- todo : "to the right view to activate" is a bit clumsy. Possibly re-word? -->
+
+    <programlisting>
+    def addView(self, view):
+        self.views.append(view)
+        self.viewlist.insertItem(view.caption(), len(self.views) - 1)
+        self.stack.addWidget(view, len(self.views) - 1)
+        self.stack.raiseWidget(view)
+        self.connect(view,
+                     PYSIGNAL("sigCaptionChanged"),
+                     self.setListText)
+
+    def setListText(self, view, caption):
+        i = self.views.index(view)
+        self.viewlist.changeItem(caption, i)
+
+    </programlisting>
+
+    <para>Of course, adding a view is now slightly more complicated,
+      because the caption of the view must also be inserted into
+      the listbox. Note that we have changed the code of
+      <classname>MDIView</classname> slightly: when its caption
+      changes, it now emits a signal, which we use here to keep the
+      text in the listview in sync. <!-- todo : i'm not sure what you mean by "in sync"; will this wording be clear to the reader?-->
+      This is done using the
+      <function>setListText</function> function, which uses the view
+      to determine the right entry in the listbox. Of course, the
+      mapping between the view object and the entry in the listbox
+      <emphasis>should</emphasis> be encapsulated in a subclass of
+      <classname>QListBox</classname>.</para>
+
+    <programlisting>
+    def removeView(self, view):
+        if view in self.views:
+            self.viewlist.removeItem(self.views.index(view))
+            self.stack.removeWidget(view)
+            self.views.remove(view)
+    </programlisting>
+
+    <para>Removing an item from a <classname>QListView</classname> is
+    rather difficult to do without clearing the entire listview and
+    building the contents anew.
+      <footnote>
+        <para>This is one area where the cleverness of PyQt makes life
+          a bit more difficult than you might like. In C++, you remove a
+          <classname>QListViewItem</classname> by
+          <function>deleting</function> it. The parent
+          <classname>QListView</classname> or
+          <classname>QListViewItem</classname> then forgets about the
+          child item, too. However, sip keeps a reference to the
+          <classname>QListViewItem</classname>; deleting the item
+          from Python won't make any difference&mdash;as long as the parent
+          keeps a reference to the child, sip will keep one, too.
+          There is a function <function>takeItem()</function>, but its
+          use is fraught with danger. You might want to try the
+          <function>item.parent().removeChild(item)</function> trick.</para>
+      </footnote>
+      Fortunately, the
+    <classname>QListBox</classname> class offers a handy
+    <function>remove()</function> function.</para>
+
+    <programlisting>
+    def activeWindow(self):
+        return self.stack.visibleWidget()
+
+    def cascade(self): pass
+
+    def tile(self): pass
+
+    def canCascade(self):
+        return FALSE
+
+    def canTile(self):
+        return FALSE
+
+    def windowList(self):
+        return self.views
+
+    def activateView(self, view):
+        self.stack.raiseWidget(view)
+
+    def __activateViewByIndex(self, index):
+        self.activateView(self.views[index])
+    </programlisting>
+
+    <para>Apart from <function>__activateViewByIndex()</function>, which
+    we discussed above, the rest of the code is a plain reflection of our view
+    manager API &mdash; in other words, nothing spectacular.</para>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para>In this chapter, we have created numerous different
+      ways of managing views on documents &mdash; from simple stacks, to
+      multiple child windows, to tabbed documents. What has been
+      missing is the paradigm in which creating a new view or document
+      requires adding a new top-level window to the desktop. This
+      paradigm doesn't quite fit into the framework we developed in
+      this chapter, and thus we will devote a separate chapter to its
+      principals.
+    </para>
+
+    <para>Of, course, having achieved this tremendous flexibility
+      means nothing to the user if he has to hack the source to use
+      it. In <xref linkend="ch13">, we will
+      investigate retrieving, setting and saving user options.</para>
+
+  </sect1>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->

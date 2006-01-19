@@ -1,0 +1,652 @@
+<chapter id="ch25">
+  
+  <title>Actions: menus, toolbars and accelerators</title>
+  
+  <indexterm>
+  <primary>QAction</primary>
+  </indexterm>
+  <indexterm>
+  <primary>toolbar</primary>
+  </indexterm>
+  <indexterm>
+  <primary>menubar</primary>
+  </indexterm>
+  <indexterm>
+  <primary>accelerator</primary>
+  </indexterm>
+  <indexterm>
+  <primary>command structure</primary>
+  </indexterm>
+  <para id="para-ch25-1">In this chapter we investigate adding the
+    command structure to the application framework we developed in
+    <xref linkend="ch8">.
+    This consists of <classname>QAction</classname> objects that are
+    added to toolbars and menu bars, and that can provide keyboard
+    accelerators.</para>
+
+  <para id="para-ch25-2">Creating <classname>QActions</classname> and
+    populating your toolbars and menus with them is not an exciting
+    task, but it is necessary for any GUI application. Let's take a
+    deeper look at the possibilities of actions, toolbars and
+    menus.</para>
+
+  <sect1><title>Actions</title>
+
+    <indexterm>
+      <primary>QAction</primary>
+    </indexterm>
+
+    <indexterm>
+  <primary>QAction</primary>
+  </indexterm>
+  <para id="para-ch25-3">We first encountered the
+      <classname>QAction</classname> class in <xref linkend="ch2">. To
+      recap briefly, <classname>QAction</classname> is a model of a
+      well-defined action that a user can perpetrate against your
+      application, or the data of your application models. This a very
+      powerful concept. Previously, you would have to create menu
+      items and connect them to slots, create toolbar items and
+      connect them to slots, and create keyboard shortcuts and connect
+      them to slots, <emphasis>too</emphasis>.</para>
+
+
+    <para id="para-ch25-4">Keeping everything synchronized is
+      difficult, and the whole process often leads to a horrible mess.
+      Combine this with the possibility that you might want to disable
+      some action&mdash;such as redo, when there's nothing to
+      redo&mdash;and you're suddenly writing lots of duplicated code.
+      And then, of course, you get to the point where your users want
+      to modify the contents of the toolbar...</para>
+
+    <para id="para-ch25-5">By bringing all the user-interface
+      characteristics of actions together in the
+      <classname>QAction</classname> class, most of the mess can be
+      avoided. The <classname>QAction</classname> class tracks the
+      following interface elements:</para>
+
+    <itemizedlist>
+        <listitem>
+          <para id="para-ch25-6">Pull-down menus text</para>
+        </listitem>
+          <indexterm>
+  <primary>tooltips</primary>
+        <listitem>
+  <para id="para-ch25-7">Tooltip text</para>
+        </listitem>
+          <indexterm>
+  <primary>what's this</primary>
+  </indexterm>
+        <listitem>
+  <para id="para-ch25-8">What's This text</para>
+        </listitem>
+          <indexterm>
+  <primary>statusbar</primary><secondary>tips</secondary>
+  </indexterm>
+        <listitem>
+  <para id="para-ch25-9">Statusbar tips</para>
+        </listitem>
+          <indexterm>
+  <primary>keyboard accelerators</primary>
+  </indexterm>
+        <listitem>
+  <para id="para-ch25-10">Keyboard accelerators</para>
+        </listitem>
+          <indexterm>
+  <primary>icons</primary>
+  </indexterm>
+        <listitem>
+  <para id="para-ch25-11">Associated icons</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch25-12">Enabled/disabled</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch25-13">Toggled on or off</para>
+        </listitem>
+      </itemizedlist>
+
+      <para id="para-ch25-14">For each of these properties, there is a set function;
+        although you can also set some properties in the constructor
+        of <classname>QAction</classname>. Here is an annotated example
+        of a complete <classname>QAction</classname>
+        definition:</para>
+
+      <example><title>Defining a complex toggle action</title>
+        <programlistingco>
+          <areaspec>
+            <area coords="1" id="action.constructor">
+            <area coords="2" id="iconset">
+            <area coords="3" id="settext">
+            <area coords="4" id="menutext">
+          <area coords="15" id="toggleaction">
+          <area coords="6" id="statustip">
+          <area coords="7" id="tooltip">
+          <area coords="8" id="whatsthis">
+          <area coords="13" id="accel">
+          <area coords="14" id="on">
+        </areaspec>
+        <programlisting>
+    planAction=QAction(self)
+    planAction.setIconSet(QIconSet(QPixmap(plan)))
+    planAction.setText("Plan")
+    planAction.setMenuText("&amp;Plan ...")
+    planAction.setOn(0)
+    planAction.setStatusTip("Enable the cunning plan")
+    planAction.setToolTip("Enables the cunning plan")
+    planAction.setWhatsThis(
+"""Plan
+
+Selecting plan enables the cunning plan 
+for this window.""")
+    planAction.setAccel(QAccel.stringToKey("CTRL+C"),)
+    planAction.setToggleAction(1)
+        </programlisting>
+        <calloutlist>
+          <callout arearefs="action.constructor">
+            <indexterm>
+  <primary>QAction</primary><secondary>annotated example</secondary>
+  </indexterm>
+  <para id="para-ch25-15">There are three constructors that
+              create a <classname>QAction</classname> with some of the
+              properties already set. However, I find it nicer to
+              create an empty <classname>QAction</classname> and set
+              everything by hand. Besides, the next thing we would
+              like to do is to read in the definition of a
+              <classname>QAction</classname> from an XML file or a
+              Python dictionary, and automatically generate the
+              actions. If you want to do this, it is just as easy to
+              set every property separately.</para>
+
+            <indexterm>
+  <primary>QAction</primary><secondary>grouping</secondary>
+  </indexterm>
+  <para id="para-ch25-16">One important parameter is the
+              <varname>parent</varname> to the
+              <classname>QAction</classname>. You can create groups of
+              <classname>QAction</classname>s &mdash;
+              <classname>QActionGroup</classname>s. A
+              <classname>QActionGroup</classname> is a type of
+              <classname>QAction</classname> that functions like a type
+              of <classname>QGroupBox</classname>: it can group
+              actions into mutually exclusive choices. The whole group
+              of actions can be added to a menu.</para>
+
+          </callout>
+          <callout arearefs="iconset">
+            <indexterm>
+  <primary>iconset</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QIconSet</primary>
+  </indexterm>
+  <para id="para-ch25-17">The set of icons you associate
+              with an action is used to paint the toolbar buttons.
+              They are also used to decorate the pull-down menus.
+              <classname>QIconSet</classname> can generate icons in
+              different sizes and with an active, normal or disabled
+              look all by itself, based on one icon&mdash;or you can
+              explicitly set icons of different sizes. You can provide
+              a user option to toggle
+              <classname>QMainWindow</classname>.<function>setUsesBigPixmaps</function> 
+              on or off. This decides whether the toolbars will be
+              drawn with big icons, or small ones.</para>
+
+          </callout>
+
+          <callout arearefs="settext">
+            <para id="para-ch25-18">This is a generic text that can be
+              used where a more specific text hasn't been set. For
+              instance, if you enable captions in toolbars with
+              <classname>QMainWindow</classname>.<function>setUsesTextLabel()</function>, 
+              then this text will be used. It will also be used for
+              pulldown menu texts, unless you set those explicitly
+              with <function>setMenuText()</function>. </para>
+          </callout>
+
+          <callout arearefs="menutext">
+            <para id="para-ch25-19">By setting the menutext
+              explicitly, you can add keyboard shortcuts (like alt-p
+              in this case), or the three dots that indicate that a
+              dialog window will open. You wouldn't want the shortcut
+              to show up on toolbar captions&mdash;they don't work
+              there, so you can set them in the menu text, by
+              prefixing an ampersand (&amp;) to the shortcut
+              letter.</para>
+          </callout>
+
+          <callout arearefs="toggleaction">
+            <para id="para-ch25-20">Sometimes, a certain action
+              toggles an application state on or off. Examples include
+              setting toolbar captions of toolbar icon sizes, or bold
+              or normal fonts. By grouping actions in action groups,
+              you can create mutually exclusive groups (such as
+              centered, justified or ragged text in a text
+              editor).</para>
+          </callout>
+
+          <callout arearefs="statustip">
+            <para id="para-ch25-21">This text appears in the statusbar
+              of the mainwindow when the user presses but doesn't
+              release the menu option or toolbar button associated
+              with the action.</para>
+          </callout>
+
+          <callout arearefs="whatsthis">
+            <para id="para-ch25-22">This is a longer text that appears
+              in the form of a yellow note when the user presses the
+              optional &lsquo;what's this' button, which appears on the
+              toolbar.</para>
+          </callout>
+
+          <callout arearefs="accel">
+            <para id="para-ch25-23">The keyboard accelerator that
+            activates this action&mdash;for instance, pressing the control
+            and the s key together&mdash;will trigger the
+            <function>activated()</function> signal, which might be
+            connected to the <function>save()</function> slot function.
+            It is easiest to construct this using
+            <classname>QAccel</classname>'s
+            <function>stringToKey()</function> function. Not only is
+            this very convenient, it can also be translated to
+            languages where a different shortcut key is preferred, by
+            using either pygettext or PyQt's
+            <function>tr()</function>. See <xref linkend="ch19"> for
+            more information on internationalizing an
+            application.</para>
+          </callout>
+
+          <callout arearefs="on">
+            <para id="para-ch25-24">Of course, if you create a toggle
+              action, it is nice to be able to set the initial
+              state&mdash;which is what this does.</para>
+          </callout>
+
+          </calloutlist>
+        </programlistingco>
+      </example>
+
+        <para id="para-ch25-25">The <classname>QAction</classname> class can emit two
+        signals:</para>
+
+  <indexterm>
+    <primary>activated()</primary>
+  </indexterm>
+  <indexterm>
+    <primary>toggled()</primary>
+  </indexterm>
+  
+  <itemizedlist>
+        <listitem>
+  <para id="para-ch25-26">activated()</para>
+        </listitem>
+        <listitem>
+  <para id="para-ch25-27">toggled(boolean)</para>
+        </listitem>
+      </itemizedlist>
+
+      <para id="para-ch25-28">By connecting these signals to the correct slots (either
+        directly in the document, or proxy slots defined in the
+        application interface), you have encapsulated the entire
+        behavior of your interface.</para>
+
+      <programlisting>
+        self.connect(planaction,
+                     SIGNAL("activated()"),
+                     self.slotExecuteCunningPlan)
+      </programlisting>
+
+      <para id="para-ch25-29">or, for a toggle action:</para>
+
+      <programlisting>
+        self.connect(planaction,
+                     SIGNAL("toggled(bool)"),
+                     self.slotActivateCunningPlan)
+      </programlisting>
+
+      <para id="para-ch25-30">All that remains, is to add the actions to pulldown menus
+      or toolbars:</para>
+
+      <programlisting>
+        self.planaction.addTo(self.planMenu)
+        self.planaction.addTo(self.toolBar)
+      </programlisting>
+  </sect1>
+  
+  <sect1><title>Menus</title>
+    
+    <indexterm>
+  <primary>QAction</primary><secondary>adding to the interface</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>action</primary><secondary>adding to the interface</secondary>
+  </indexterm>
+  <para id="para-ch25-31">Most of the time, you can simply add
+      actions or action groups to menus. This is what we did above, in
+      the docview framework. However, in some cases it is desirable to
+      have a dynamic list of menu options. This is a bit more
+      complicated. This is useful, for instance, in applications where
+      the user can open more than one window, or for lists of recently
+      opened files. In almost every other case, it is awfully
+      confusing to the user if menu options are added and removed at
+      the whim of the application.
+      </para>
+    
+    <indexterm>
+  <primary>aboutToShow()</primary>
+  </indexterm>
+  <para id="para-ch25-32">By connecting the
+      <function>aboutToShow()</function> signal of a menu to a slot
+      (for example, <function>slotWindowMenuAboutToShow</function>),
+      you can exercise precise control over the contents of the menu
+      by first clearing it, and then building it up again. Note the
+      use of <function>setItemChecked()</function> to place a
+      checkmark next to selected windows. This is something you get
+      for free with a <classname>QActionGroup</classname>, but
+      recreating a <classname>QActionGroup</classname> every time the
+      user selects the window menu is just as much a bore as
+      recreating the menu, if not more so.</para>
+
+    <programlisting>
+  def slotWindowMenuAboutToShow(self):
+        self.windowMenu.clear()
+        self.actions["windowNewWindow"].addTo(self.windowMenu)
+        self.actions["windowCascade"].addTo(self.windowMenu)
+	self.actions["windowTile"].addTo(self.windowMenu)
+        if self.workspace.windowList()==[]:
+            self.actions["windowAction"].setEnabled(FALSE)
+        else:
+            self.actions["windowAction"].setEnabled(TRUE)
+        self.windowMenu.insertSeparator()
+
+        i=0 # window numbering
+        self.menuToWindowMap={}
+        for window in self.workspace.windowList():
+            i+=1
+            index=self.windowMenu.insertItem(("&%i " % i) +
+                                             str(window.caption()),
+                                             self.slotWindowMenuActivated)
+            self.menuToWindowMap[index]=window
+            if self.workspace.activeWindow()==window:
+                self.windowMenu.setItemChecked(index, TRUE)
+
+    def slotWindowMenuActivated(self, index):
+        self.menuToWindowMap[index].setFocus()
+      </programlisting>
+
+    <para id="para-ch25-33">We will investigage the creation of
+      application frameworks containing more than one window in
+      chapter <xref linkend="ch10">.</para>
+    
+  </sect1>
+  
+  <sect1><title>Toolbars</title>
+    
+    <indexterm>
+  <primary>toolbar</primary><secondary>adding a combobox to</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>combobox</primary><secondary>adding to a toolbar</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QComboBox</primary><secondary>adding to a toolbar</secondary>
+  </indexterm>
+  <para id="para-ch25-34">As you can see, once you have defined your
+      set of <classname>QAction</classname>s, you have little to worry
+      about concerning the definition of menus and toolbars. However,
+      if you want other widgets beyond simple buttons in your
+      toolbars, you cannot use <classname>QAction</classname> or
+      <classname>QActionGroup</classname>. One popular addition to a
+      toolbar is a combobox. Adding the combobox means quite a bit of
+      work:</para>
+
+    <programlisting>
+        self.fileToolbar.addSeparator()
+        self.labelSelector=QLabel("Font: ", self.fileToolbar)
+        self.comboSelector=QComboBox(self.fileToolbar)
+        self.comboSelector.insertStrList(["Times","Arial","Cyberbit"], 1)
+        self.comboSelector.setEditable(FALSE)
+        self.connect(self.comboSelector,
+                     SIGNAL("activated(int)"),
+                     self.slotFontChanged)
+        QWhatsThis.add(self.comboSelector,"""Font Selection
+Select the font that expresses your
+personality best.""")
+    </programlisting>
+
+    <para id="para-ch25-35">First, we give the widget a bit more room
+      by adding a separator. Then we need a label, so people will know
+      what the contents of the combobox represent. Of course, a
+      combobox must be populated with relevant items (font names in
+      this case). We ensure that people can't add items to the list,
+      nor change the names of existing items, by setting
+      <varname>editable</varname> to false. Finally, the activated
+      signal is connected to a likely slot and a &lsquo;what's this' text is
+      added. The result looks like this:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch25/docview.eps">
+      </imageobject>
+      <caption><para id="para-ch25-36">A toolbar with a combobox added.</para>
+      </caption>
+    </mediaobject>
+
+    <indexterm><primary>What's this</primary>
+    </indexterm>
+
+    <indexterm>
+  <primary>what's this</primary>
+  </indexterm>
+  <para id="para-ch25-37">That &lsquo;what's this' text leads us to a
+      special button offered by PyQt. This is the little
+      arrow-plus-question-mark that activates the &lsquo;What's This' mode.
+      When the user selects this button, he or she can click on any
+      interface element. A yellow note with a bit of explanation is
+      then shown. This is particularly welcome when your toolbar icons
+      are non-intuitive.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch8/whatsthis.eps">
+      </imageobject>
+      <caption><para id="para-ch25-38">Help with an unhelpful icon</para>
+      </caption>
+    </mediaobject>
+
+    <para id="para-ch25-39">Achieving this demands two steps: actually
+      setting the help text in the <classname>QAction</classname>, and
+      adding the appropriate button to the toolbar:</para>
+
+    <programlisting>
+      QWhatsThis.whatsThisButton(self.fileToolbar)
+    </programlisting>
+
+    <indexterm>
+  <primary>QMimeSourceFactory</primary>
+  </indexterm>
+  <para id="para-ch25-40">If you want to embed a small picture of
+      the icon in the yellow note, you use PyQt's
+      <classname>QMimeSourceFactory</classname>. The trick is to first
+      set the text to the widget, with an embedded
+      <emphasis>img</emphasis> link pointing towards an identifier in
+      the text. This identifier will be used to look up an image in
+      the application-wide default mime source factory.</para>
+
+    <para id="para-ch25-41">You can use source factories for every
+      kind of data for which a mime-type exists, but they are most
+      often used for simple pictures that have to be embedded in rich
+      text. Rich text in Qt is text which is marked up with a subset
+      of html. The &lt;img&gt; tags don't point to an URL, but to the
+      contents of the mime source factory.
+   </para>
+    
+    <programlisting>
+self.actions["fileQuit"].setWhatsThis(
+  """&lt;img source="filequit"&gt;Quit&lt;br&gt;&lt;br&gt;
+By selecting quit you leave the application.
+If your document was changed, you will be
+asked to save it, so it's quite safe to do.""")
+
+QMimeSourceFactory.defaultFactory().setPixmap('filequit',
+                                              QPixmap(filequit))
+    </programlisting>
+        
+    <para id="para-ch25-42">You can add this code to the
+      <function>initActions()</function> method of the
+      <classname>DocviewApp</classname> in the document-view
+      framework. Mime source factories are very capable beasts. We can
+      feed the factory just the <classname>QPixmap</classname> which
+      is derived from the XPM data in the resources.</para>
+    
+  </sect1>
+  
+  <sect1><title>Keyboard accelerators</title>
+    
+    <indexterm>
+  <primary>keyboard accelerators</primary>
+  </indexterm>
+  <para id="para-ch25-43">The old vi or Emacs lags amongst us know
+      this already, just as the WordPerfect veterans know: regardless
+      of what Rob Pike, designer of the Plan9 operating system, says,
+      using a keyboard can actually be preferable to grabbing the
+      mouse for every trifle. Giving the vast majority of interface
+      actions in your application a keyboard accelerator is therefore
+      a Good Thing, and is highly encouraged.</para>
+    
+    <indexterm>
+  <primary>keyboard shortcut</primary>
+  </indexterm>
+  <indexterm>
+  <primary>accelerator</primary>
+  </indexterm>
+  <para id="para-ch25-44">Note the subtle difference between a
+      keyboard accelerator and a keyboard shortcut. Shortcuts are
+      generally combinations of the Alt key and a letter. They are
+      indicated in menus and dialogs by an underscore, and created
+      by simply prefixing an ampersand (&amp;) to the shortcut
+      letter. Shortcuts only function in the context of a menu or
+      dialog box: that's why Alt-F generally opens the file menu,
+      but Alt-Q doesn't close the application unless the file menu
+      happens to be open. Accelerators are important and every
+      menu option and every widget on a dialog ought to be
+      associated with one.</para>
+    
+    
+    <indexterm>
+  <primary>shortcut</primary>
+  </indexterm>
+  <para id="para-ch25-45">Accelerators, on the other hand, are
+      generally combinations of CTRL and some other key (or,
+      for the WordPerfect-conditioned octopodi amongst us, all
+      modifiers together; CTRL-SHIFT-ALT-F12, anyone?). If the focus
+      of your application is on the document (or on a text field in a
+      dialog box), then your user will want to use shortcuts for
+      everything.</para>
+    
+    <para id="para-ch25-46">There are a number of standard
+      accelerators, such as CTRL-X for the cut action, but every
+      application is free to add to that store. You associate
+      accelerators with <classname>QAction</classname>s, with the
+      <function>setAccel</function> function. For actions that are not
+      associated with <classname>QAction</classname>s, you can create
+      <classname>QAccel</classname> objects on their own, and connect
+      them to a slot of your choice.</para>
+        
+    <indexterm>
+  <primary>QAccel</primary>
+  </indexterm>
+  <indexterm>
+  <primary>stringToKey()</primary>
+  </indexterm>
+  <para id="para-ch25-47"><classname>QAccel</classname> offers one
+      especially handy class method, <function>stringToKey</function>,
+      which takes a string describing an accelerator and returns and
+      integer value that represents a key combination to PyQt. The
+      format is very clear: "Ctrl+O", for instance. Even better,
+      because this is a <emphasis>string</emphasis>, you can translate
+      this string using pygettext or PyQt's <function>tr()</function>
+      to localize the keyboard shortcuts for different countries. This
+      is not possible if you use the Qt constants that represent keys,
+      such as <emphasis>Qt.CTRL + Qt.Key_O</emphasis>.</para>
+    
+  </sect1>
+  
+  <sect1>
+    <title>Setting an application icon</title>
+    
+    <indexterm>
+  <primary>icon</primary><secondary>setting an application icon</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>application</primary><secondary>setting an icon</secondary>
+  </indexterm>
+  <para id="para-ch25-48">The icing on the cake: of course you want
+      your application to be represented by its very own icon.
+      However, this is not very simple. You first need to get a
+      friendly artist to create a nice icon for you, and set the icon
+      of the toplevel widget to it:</para>
+        
+    <programlisting>
+class DocviewApp(QMainWindow):
+    """
+    DocviewApp combines DocviewDoc and DocviewView
+    into a single window, single document application.
+    """
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        self.setIcon(QPixmap(appicon))
+    </programlisting>
+
+    <para id="para-ch25-49">This is the icon that will be shown in the
+      titlebar and on the taskbar. The application icon that will be
+      used for shortcuts on the desktop is a different story
+      altogether.</para>
+
+    <para id="para-ch25-50">There is absolutely no standard way of
+      setting the icon that is used for a shortcut on the Unix
+      desktop. If you target Gnome, KDE or any of the other Unix
+      desktop environments, you will have to delve into .desktop files
+      and other things. Still, it is possible to create a working
+      .desktop file, for instance for KDE:</para>
+
+    <programlisting>
+[Desktop Entry]
+Exec=python main.py
+Icon=appicon
+Type=Application
+DocPath=framework/index.html
+MapNotify=true
+
+Name=SDI framework
+Name[nl]=SDI raamwerk
+    </programlisting>
+
+    <para id="para-ch25-51">This one is for the KDE desktop, and
+      exactly where this should go is a deployment issue. The same
+      file should, theoretically, also be usable for Gnome.</para>
+
+    <para id="para-ch25-52">On the other hand, setting a default icon
+      for Windows applications is quite impossible, since Windows
+      expects the icon to be part of the application binary.</para>
+    
+  </sect1>
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

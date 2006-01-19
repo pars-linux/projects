@@ -1,0 +1,422 @@
+<appendix id="pyqwt">
+  <title>PyQwt: Python Bindings for Qwt</title>
+
+  <subtitle>
+    <author>
+      <firstname>Gerard</firstname>
+      <surname>Vermeulen</surname>
+    </author>
+  </subtitle>
+
+  <para>Using sip, it is possible to wrap any C++ library. Jim
+    Bublitz, for instance, has wrapped the core libraries of KDE 2,
+    and Gerard Vermeulen has wrapped the Qwt toolkit. This appendix
+    has been written by Gerard Vermeulen to introduce this extension
+    library.</para>
+
+  <para id="para-qwt-1">PyQwt is a set of Python bindings for the Qt
+    Widgets for Technics toolkit, which is freely downloadable at
+    http://qwt.sourceforge.net. PyQwt is equally free, and available
+    from http://gerard.vermeulen.free.fr.</para>
+  
+  <para id="para-qwt-2">Behind the innocuous trigram
+    'Qwt' a complex set of widgets is hiding. This extension library,
+    written by Josef Wilgen with the aid of many others, fills in a
+    noticeable gap in the Qt library: data visualisation. This toolkit
+    features fast plotting of 
+    <literal>Numerical Python arrays</literal> (and Python lists or
+    tuples) of Python floats.</para>
+  
+  <para id="para-qwt-3">Remember how we created a rolling chart in
+    <xref linkend="ch16"> when we investigated
+    <classname>QPainter</classname>s? It was quite an interesting job,
+    but for serious applications you'd need a stronger package.</para>
+
+
+    <!-- todo: see XXX. There are multiple instances throughout the chapter, as I am sure you are
+    aware =-> -->
+
+  <para id="para-qwt-4">Fortunately, Python possesses a very strong
+    array manipulation package: the Numerical Python Extensions (or,
+    affectionately, <application>numpy</application>, available at
+    http://www.pfdubois.com/numpy), which, when paired with the Qwt
+    extensions, gives you the power to create complex graphing and
+    charting applications.</para>
+
+  <sect1 id="sectNumPy"> <title>NumPy</title>
+
+    <para id="para-qwt-6">The Numerical Python Extensions, also called
+      NumPy or Numeric, turn Python into an ideal tool for
+      experimental numerical and scientific computing (better than
+      specialized programs like MatLab, Octave, RLab or SciLab). NumPy
+      is useful for everybody who analyzes data with the help of a
+      spreadsheet program like Microsoft Excel&mdash;it is not just
+      for mathematicians and scientists who crunch lots of
+      data.</para>
+
+    <para id="para-qwt-7">NumPy defines a new data type, <literal>NumPy
+        array</literal>, and a very complete set of operators and
+      functions to manipulate <literal>NumPy arrays</literal>. All the
+      functionality of NumPy can be obtained in pure Python, but NumPy
+      gives you speed and elegance.</para>
+
+    <para id="para-qwt-8">In the following, I assume that
+      you have installed NumPy on your system. Doing so is not really
+      difficult. There are binary packages for Windows, or source
+      packages for all platforms. A source package is installed using
+      distutils (see <xref linkend="ch18">), by typing</para>
+
+    <screen>
+root@calcifer:/home/boud# python setup_all.py install
+    </screen>
+
+      <para id="para-qwt-9">Once numpy is installed, you can start
+      Python (or open the Interpreter window in BlackAdder) and import
+      the NumPy extension:</para>
+
+
+    <programlisting>
+[packer@slow packer]$ python
+Python 2.1.1 (#1, Aug 20 2001, 08:17:33) 
+[GCC 2.95.3 19991030 (prerelease)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; from Numeric import *
+&gt;&gt;&gt;
+    </programlisting>
+
+
+    <para id="para-qwt-10">A <literal>NumPy array</literal> looks like
+      a list and can be created from a list (in fact, from any
+      sequency type: list, tuple or string).</para>
+
+    <para id="para-qwt-11">Let's create and print a 1-dimensional
+      <literal>NumPy array</literal> of Python floats:</para>
+
+
+    <programlisting>
+&gt;&gt;&gt; a = array([1.0, 4.0, 9.0, 16.0, 25.0, 36.0, 49.0, 64.0, 81.0, 100.0])
+&gt;&gt;&gt; print a
+[   1.    4.    9.   16.   25.   36.   49.   64.   81.  100.]
+&gt;&gt;&gt;
+    </programlisting>
+
+    <para id="para-qwt-12">This creates a 1-dimensional <literal>NumPy
+        array</literal>. All elements in the list should have the same
+      data type.</para>
+
+    <para id="para-qwt-13">A 2-dimensional <literal>NumPy array</literal> is created
+      from a list of sub-lists: </para>
+
+    <programlisting>
+&gt;&gt;&gt; b = array([[0.0, 1.0], [2.0, 3.0]])
+&gt;&gt;&gt; print b
+[[ 0.  1.]
+ [ 2.  3.]]
+&gt;&gt;&gt;
+    </programlisting>
+
+    <para id="para-qwt-14">The sub-lists should have the same length,
+      and all the elements in all the sub-lists should have the same
+      data type.</para> <para id="para-qwt-15">You can show off with
+      <literal>NumPy array</literal>s of even higher dimensions (up to
+      40, by default). For example, a 3-dimensional <literal>NumPy
+        array</literal> is created from a list of sub-lists of
+      sub-sub-lists:</para>
+
+    <programlisting>
+&gt;&gt;&gt; c = array([[[0.0, 1.0], [2.0, 3.0]], [[4.0, 5.0], [6.0, 7.0]]])
+&gt;&gt;&gt; print c
+[[[ 0.  1.]
+  [ 2.  3.]]
+ [[ 4.  5.]
+  [ 6.  7.]]]
+&gt;&gt;&gt;
+    </programlisting>
+
+    <para id="para-qwt-16">The sub-lists should have the same length, the sub-sub-lists
+      should have the same length, and all elements of all sub-sub-lists
+      should have the same data type.</para>
+
+    <para id="para-qwt-17">In the following, I am going to compare the functionality of
+      <literal>NumPy arrays</literal> and lists. Here is an easier
+      method to create a <literal>NumPy array</literal>:</para>
+
+    <programlisting>
+&gt;&gt;&gt; ax = arange(0.0, 5.0, 0.5)
+&gt;&gt;&gt; print ax
+[ 0.   0.5  1.   1.5  2.   2.5  3.   3.5  4.   4.5]
+&gt;&gt;&gt;
+    </programlisting>
+
+    <para id="para-qwt-18">The function call <function>arange(0.0, 5.0, 0.5)</function>
+      returns an array with elements ranging from 0.0 to 5.0
+      (non-inclusive) in steps of 0.5. Here is a similiar function to
+      return a list with the same properties: </para>
+
+    <programlisting>
+def lrange(start, stop, step):
+    start, stop, step = float(start), float(stop), float(step)
+    size = int(round((stop-start)/step))
+    result = [start] * size
+    for i in xrange(size):
+        result[i] += i * step
+    return result
+    </programlisting>
+
+    <para id="para-qwt-19">After copying and pasting the function definition in your
+      Python interpreter, do:</para>
+
+    <programlisting>
+&gt;&gt;&gt; lx = lrange(0.0, 5.0, 0.5)
+&gt;&gt;&gt; print lx
+[0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5]
+    </programlisting>
+
+
+    <para id="para-qwt-20">Why are <literal>NumPy arrays</literal> better than lists?
+      The full answer is speed and elegance. To compare lists and
+      <literal>NumPy arrays</literal> with respect to elegance, lets
+      use a simple function:</para>
+
+    <programlisting>
+def lorentzian(x):
+    return 1.0/(1.0+(x-2.5)**2)
+    </programlisting>
+
+    <para id="para-qwt-21">To calculate a list, ly, containing the function values for
+    each element of ly, we can do:</para>
+
+    <programlisting>
+&gt;&gt;&gt; ly = [0.0]*len(lx)
+&gt;&gt;&gt; for i in range(len(lx)): ly[i] = lorentzian(lx[i])
+...
+    </programlisting>
+
+    <para id="para-qwt-22">Do you know that you can get rid of the loop? The following is
+      more elegant and slightly faster:</para>
+
+    <programlisting>
+&gt;&gt;&gt; ly = map(lorentzian, lx)
+    </programlisting>
+
+    <para id="para-qwt-23"><literal>NumPy arrays</literal> are even more elegant, and they
+      allow:</para>
+
+    <programlisting>
+&gt;&gt;&gt; ay = lorentzian(ax)
+    </programlisting>
+
+    <para id="para-qwt-24">Almost magic, isn't it? I wrote the function lorentzian(x)
+      assuming that x is Python float. If you call lorentzian with a
+      <literal>NumPy array</literal> as argument, it returns a
+      <literal>NumPy array</literal>. This does not work with
+      lists:</para>
+
+    <programlisting>
+&gt;&gt;&gt; ly = lorentzian(lx)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "&lt;stdin&gt;", line 2, in lorentzian
+TypeError: unsupported operand type(s) for -
+&gt;&gt;&gt;
+    </programlisting>
+
+    <para id="para-qwt-25">To compare speed, we create a list, xl, and a <literal>NumPy
+        array</literal>, xa, with 100000 elements and use the profile
+      module to time the statements <literal>yl = map(lorentzian,
+        xl)</literal> and <literal>ya =
+        lorentzian(xa)</literal>:</para>
+
+    <programlisting>
+&gt;&gt;&gt; import profile
+&gt;&gt;&gt; xl = lrange(0, 10, 0.0001)
+&gt;&gt;&gt; xa = arange(0, 10, 0.0001)
+&gt;&gt;&gt; profile.run('yl = map(lorentzian, xl)')
+         100002 function calls in 2.200 CPU seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   100000    1.000    0.000    1.000    0.000 &lt;stdin&gt;:1(lorentzian)
+        1    1.200    1.200    2.200    2.200 &lt;string&gt;:1(?)
+        0    0.000             0.000          profile:0(profiler)
+        1    0.000    0.000    2.200    2.200 profile:0(yl = map(lorentzian, xl))
+
+
+&gt;&gt;&gt; profile.run('ya = lorentzian(xa)')
+         3 function calls in 0.090 CPU seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.090    0.090    0.090    0.090 &lt;stdin&gt;:1(lorentzian)
+        1    0.000    0.000    0.090    0.090 &lt;string&gt;:1(?)
+        0    0.000             0.000          profile:0(profiler)
+        1    0.000    0.000    0.090    0.090 profile:0(ya = lorentzian(xa))
+
+
+&gt;&gt;&gt;
+    </programlisting>
+
+    <para id="para-qwt-26">On my computer, the Numerical Python extensions are almost
+      25 times faster than pure Python!</para>
+
+
+    <para id="para-qwt-27">There exists a scientific plotting program,
+      <application>SciGraphica</application>
+      (http://scigraphica.sourceforge.net), which allows you to
+      manipulate your data in a spreadsheet. The underlying engine is
+      a python interpreter with the NumPy. Each column in the
+      spreadsheet is in reality a <literal>NumPy array</literal>. This
+      clearly demostrates the power of this extension. If you want to
+      know more about NumPy, you can consult the excellent
+      documentation at http://www.pfdubois.com/numpy, the homepage of
+      NumPy.</para>
+
+
+      <!-- todo: see second sentence above: is "with the NumPy" correct? (as in, should Numpy
+      be referred to in that manner? -->
+
+  </sect1>
+
+<sect1 id="sectPyQwt"><title>PyQwt</title>
+
+    <para id="para-qwt-28">Qwt and PyQwt exists for both Linux/Unix and Windows. Qwt is
+      a set of plotting widgets. Installing these is currently not
+      quite as comfortable as installing numpy, but the instructions
+      in the package are excellent:</para>
+
+    <screen>
+boud@calcifer:~/src > tar -xzf qwt-0.3.0.tar.gz
+boud@calcifer:~/src > cd qwt-0.3.0
+boud@calcifer:~/src/qwt-0.3.0 > ls
+CHANGES  COPYING  CVS  doc  Doxyfile  Doxyfile.users  examples
+      include  INSTALL  makefiles  propagate  qwt.pro  README
+      README.QT  src
+boud@calcifer:~/src/qwt-0.3.0 > cp makefiles/linux-g++ ./Makefile
+boud@calcifer:~/src/qwt-0.3.0 > make
+...
+ln -s libqwt.so.0.3.0 libqwt.so
+ln -s libqwt.so.0.3.0 libqwt.so.0
+ln -s libqwt.so.0.3.0 libqwt.so.0.3
+boud@calcifer:~/src/qwt-0.3.0 > nc README
+boud@calcifer:~/src/qwt-0.3.0 > su
+Password:
+root@calcifer:/home/boud/src/qwt-0.3.0 > mv libqwt.* /usr/local/lib
+root@calcifer:/home/boud/src/qwt-0.3.0 > mkdir /usr/local/include/qwt
+    </screen>
+
+    <para id="para-qwt-29">This did the trick&mdash;at least on my system! Now you just
+      have to instal the Python bindings. This is even easier, since
+      PyQwt now uses Distutils to get itself installed. However, note
+      that you need to have a <emphasis>source</emphasis> installation
+      of PyQt if you intend to build PyQwt from source. There are
+      currently binary packages for Windows and some versions of
+      Linux, like Mandrake.</para>
+
+    <para id="para-qwt-30">PyQwt has a number of illustrative demo scripts&mdash;here, I
+      picked one to demonstrate to you the way it works.</para>
+
+    <programlisting>
+#!/usr/bin/env python
+
+#
+# qwtdemo.py
+#
+# Demonstrates that you can plot NumPy arrays and lists of Python floats.
+# NumPy arrays are more elegant and more than 20 times faster than lists.
+
+import sys
+
+from qt import *
+from qwt import *
+from Numeric import *
+
+def drange(start, stop, step):
+    start, stop, step = float(start), float(stop), float(step)
+    size = int(round((stop-start)/step))
+    result = [start]*size
+    for i in xrange(size):
+        result[i] += i*step
+    return result
+        
+def lorentzian(x):
+    return 1.0/(1.0+(x-5.0)**2)
+
+
+class ListArrayDemo(QWidget):
+    def __init__(self, *args):
+        apply(QWidget.__init__, (self,) + args)
+
+        # create a plot widget for NumPy arrays
+        self.aplot = QwtPlot('Plot -- NumPy arrays', self)
+        # calculate 2 NumPy arrays
+        xa = arange(0.0, 10.0, 0.01)
+        ya = lorentzian(xa)
+        # insert a curve, make it red and copy the arrays
+        ca = self.aplot.insertCurve('y = lorentzian(x)')
+        self.aplot.setCurvePen(ca, QPen(Qt.red))
+        self.aplot.setCurveData(ca, xa, ya)
+
+        # create a plot widget for lists of Python floats
+        self.lplot = QwtPlot('Plot -- List of Python floats', self)
+        # calculate 2 lists of Python floats
+        xl = drange(0.0, 10.0, 0.01)
+        yl = map(lorentzian, xl)
+        # insert a curve, make it blue and copy the lists
+        cl = self.lplot.insertCurve('y = lorentzian(x)')
+        self.lplot.setCurvePen(cl, QPen(Qt.blue))
+        self.lplot.setCurveData(cl, xl, yl)
+
+    def resizeEvent(self, e):
+        x = e.size().width()
+        y = e.size().height()/2
+    	self.aplot.resize(x, y)
+	self.aplot.move(0, 0)
+        self.lplot.resize(x, y)
+        self.lplot.move(0, y)
+
+# admire	
+app = QApplication(sys.argv)
+demo = ListArrayDemo()
+app.setMainWidget(demo)
+demo.resize(400, 600)
+demo.show()
+app.exec_loop()
+    </programlisting>
+    
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" fileref="appendices/qwtdemo.eps">
+        </imageobject>
+        <caption>
+          <para id="para-qwt-31">Output of qwtdemo.py</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>As you can see, the core of the Qwt library is the
+      <classname>QwtPlot</classname> widget - an object that knows how
+      to plot, but can be used as any other Qt widget.</para>
+
+  </sect1>
+</appendix>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../appendix.ced"
+End:
+-->

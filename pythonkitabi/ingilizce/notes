@@ -1,0 +1,65 @@
+Printing issues to look out for:
+  orphans and widows
+  font size for programlistings
+  location of sidebars (not running in the text)
+  quality of the images, and their position
+  captions in italic
+  if at all possible, not set in Times New Roman!
+
+
+Write a small sidebar on 'what's self' - explain about namespace, about
+the fact that Python code itself is organized as a dictionary. Parent class hierarchy traversal, etc.
+
+
+Topics from the mailing list:
+
+* compiling and installing from source
+* overloading and overloading conflicts with sip
+* running on embedded Qt
+* internationalisation
+* event filtes
+* insertion order in QListView
+* sip
+
+Note: fit in a chapter about event handling, since I haven't discussed
+it at all.
+
+Session management
+
+sip : comments + directive overview
+
+Discuss session management
+
+Phil:class A():
+>>> from qt import *
+>>> a=QPlatinumStyle()
+>>> print a
+<qt.QPlatinumStyle instance at 0x8308f94>
+>>> print a.className()
+QObject
+>>> print isinstance(a, QPlatinumStyle)
+1
+
+drag and drop (buglet).
+
+QTransaltor, self.tr bug
+
+QTable
+
+installation issues?
+
+Ask for subscription to the Ba mailing list
+
+QGList.locate index error with layout.py - removing children from
+a layout (removeChild doesn't work)
+
+Note that inserting items in a qlistview will insert them into the top
+(reverse from what you might expect)
+
+BlackAdder: no shortcuts (as in Eric) in the debugger. variable 
+        Treeview doesn't work. Output of print etc. disappears. There should 
+        be an output window. How do I set a breakpoint? Doesn't seem
+        to register. Dedent doesn't work.
+
+New notes: if a script contains an error, only the exit status
+is given, not the error.

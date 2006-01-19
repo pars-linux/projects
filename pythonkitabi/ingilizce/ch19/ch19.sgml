@@ -1,0 +1,392 @@
+<chapter id="ch19">
+  <title>Internationalizing an Application</title>
+
+  <indexterm>
+  <primary>i18n</primary>
+  </indexterm>
+  <indexterm>
+  <primary>l10n</primary>
+  </indexterm>
+  <indexterm>
+  <primary>localisation</primary>
+  </indexterm>
+  <indexterm>
+  <primary>internationalisation</primary>
+  </indexterm>
+  <indexterm>
+  <primary>translation</primary>
+  </indexterm>
+  <para id="para-ch19-1">For more than a century people have been
+    uttering the platitude that the world is getting smaller all the
+    time. That's nonsense: it's getting bigger. Although most computer
+    users are still able to work with English-only applications, even
+    speakers of <emphasis>really</emphasis> obscure languages, like
+    Limbu, own computers and would like some applications in their own
+    language.</para>
+
+  <para id="para-ch19-2">An open-source effort like KDE offers
+    more-or-less complete translations of the entire desktop,
+    including all applications in dozens of languages. And, for a
+    consideration, you can get a version of Windows in your own
+    language, too, even if that language is Basque.</para>
+
+  <para id="para-ch19-3">Of course, there are other aspects to the
+    internationalization of an application, like date and number
+    formats, currency, keyboard, preferred dialog layout and so on.
+    Some of these aspects are handled by Qt - like reversing the
+    dialog layout if the current script is right-to-left. Others, like
+    the date and number formats are handled by Python's
+    <filename>locale</filename> module - which is alas severely
+    underdocumented.</para>
+
+  <indexterm>
+  <primary>gettext</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QTranslator</primary>
+  </indexterm>
+  <para id="para-ch19-5">Translating texts on screen can be handled
+    either by PyQt - using the <classname>QTranslator</classname>
+    class, or by Python itself - using the
+    <filename>gettext</filename> module. PyQt's
+    <classname>QTranslator</classname> is far more convenient in use,
+    but <filename>gettext</filename> is based on the wide-spread GNU
+    gettext library, which is also used by KDE for its
+    translations.</para>
+
+  <sect1>
+    <title>Translating screen texts</title>
+
+    <para id="para-ch19-6">The first task is to surround all
+      translatable text with the method <function>self.tr()</function>
+      - every <classname>QObject</classname> - derived class has that
+      method. You don't have to do that manually with designs you have
+      generated with the Designer module or
+      <application>Qt&nbsp;Designer</application>. However, for Kalam,
+      it's a fair bit of work - I'll only show a fragment here:</para>
+
+    <programlisting>
+# fragment from kalamapp.py
+ ...
+    def initActions(self):
+        self.actions = {}
+        self.actions["fileNew"] = \
+              QAction(self.tr("New"),
+                      QIconSet(QPixmap(filenew)),
+                      self.tr("&amp;New"),
+                      QAccel.stringToKey(self.tr("CTRL+N",
+                                                 "File|New"))
+                      self)
+        self.connect(self.actions["fileNew"],
+                     SIGNAL("activated()"),
+                     self.slotFileNew)
+
+
+        self.actions["fileOpen"] = \
+              QAction(self.tr("Open"),
+                      QIconSet(QPixmap(fileopen)),
+                      self.tr("&amp;Open"),
+                      QAccel.stringToKey(self.tr("CTRL+O",
+                                                 "File|Open")),
+                      self)
+        self.connect(self.actions["fileOpen"],
+                     SIGNAL("activated()"),
+                     self.slotFileOpen)
+ ...
+    </programlisting>
+
+    <para id="para-ch19-7">You must not only mark all text that will
+      appear on screen, but also all accelerator keys, otherwise
+      translators won't be able to translate them. The extra argument
+      to <function>tr()</function> gives the translator some extra
+      context.</para>
+
+    <indexterm>
+  <primary>tr()</primary>
+  </indexterm>
+  <para id="para-ch19-8">The <function>tr()</function> serves two
+      purposes: at first, it used as a recognition point for a small
+      utility that extracts the strings to create message catalogs -
+      files full of translatable text that you can send your Limbu
+      speaking friends to translate for you.</para>
+
+    <para id="para-ch19-9">Secondly, when you run the application,
+      <function>tr()</function> looks in a message database to find
+      the right string. This is a very fast operation, so you don't
+      have to worry about performance loss.</para>
+
+    <indexterm>
+  <primary>lupdate</primary>
+  </indexterm>
+  <para id="para-ch19-10">After you've marked all translatable
+      strings, you can use a utility to generate translatable message
+      files. Qt's utility&mdash;either <command>lupdate</command> or
+      <command>findtr</command>&mdash;can only work with strings marked with
+      <function>tr()</function>, and only with double-quoted
+      strings.</para>
+
+      <indexterm>
+  <primary>tr()</primary><secondary>Qt 2 vs Qt 3</secondary>
+  </indexterm>
+
+  <para id="para-ch19-11">There is a significant, though quite
+        esoteric, difference between the way Qt2 and Qt3 handle the
+        <function>tr()</function>. This means that when you use a
+        version of PyQt designed to work with Qt 2, the
+        <function>tr()</function> doesn't work out of the box. You
+        need to add a <function>tr()</function> to all your classes
+        that calls <function>qApp.translate()</function>. This is what
+        is done in the current <application>Kalam</application> code,
+        because I wrote and developed the book using PyQt 2.5.</para>
+
+      <para>Another important difference: in Qt 3, you can also use
+        <function>trUtf8()</function>, if the source text is in the
+        utf-8 encoding. That means that if your translators produce
+        utf-8 encoded files, instead of plain two-byte Unicode text,
+        you should use this function, instead of
+        <function>tr()</function>. With PyQt 3 for Qt 3,
+        <function>trUtf8*()</function> will be used automatically by
+        <command>pyuic</command>.</para>
+
+    <indexterm>
+  <primary>pyuic</primary><secondary>tr()</secondary>
+  </indexterm>
+  <para id="para-ch19-12">You can also tell
+      <application>pyuic</application> to use another function instead
+      of <function>tr()</function> - for instance, the Python
+      pygettext.py default <function>_()</function>. If you do that,
+      with the command:</para>
+
+      <screen>
+pyuic -tr _ frmsettings.ui 
+      </screen>
+
+    <para id="para-ch19-13">there will be one important difference: by
+      default, the translation function <function>tr()</function> has
+      class-local scope, i.e. it is prefixed with
+      <varname>self</varname>. But a custom translation function has
+      global scope - exactly what you need for the Python
+      implementation of gettext.</para>
+
+    <para id="para-ch19-14">So, you can either do:</para>
+
+    <screen>
+boud@calcifer:~/doc/pyqt/ch19/kalam > pygettext.py --keyword=tr kalamapp.py
+    </screen>
+
+    <para id="para-ch19-15">Which creates a file called
+      <filename>messages.pot</filename>, or:</para>
+
+    <screen>
+boud@calcifer:~/doc/pyqt/ch19/kalam > findtr kalamapp.py  
+    </screen>
+
+    <indexterm>
+  <primary>KBabel</primary>
+  </indexterm>
+  <para id="para-ch19-16">The resulting files are almost identical -
+      except for the minor detail of order. You should make a copy of
+      these files for every language you need a translation for, and
+      send them to your translators. They can use any editor, or a
+      specialised application like <application>KBabel</application>
+      to translate the text, and send it back in the form of a
+      translated <filename>.pot</filename> file.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch19/kbabel.eps">
+      </imageobject>
+      <caption><para id="para-ch19-17">KBabel</para>
+      </caption>
+    </mediaobject>
+
+    <indexterm>
+  <primary>msfmt.py</primary>
+  </indexterm>
+  <para id="para-ch19-18">The result can be compiled to
+      <filename>.mo</filename> files using the
+      <filename>msgfmt.py</filename> utility which should hide
+      somewhere in you Python installation.</para>
+
+    <indexterm>
+  <primary>message catalogs</primary>
+  </indexterm>
+  <para id="para-ch19-19">Finally, you can use these message catalog
+      by loading it and installing a global function
+      <function>_()</function>. (That should have been the function
+      you used to mark your strings):</para>
+
+    <programlisting>
+import gettext
+gettext.install('kalam')
+    </programlisting>
+
+    <para id="para-ch19-20">Or for message catalogs in the Unicode
+      encoding:</para>
+
+    <programlisting>
+import gettext
+gettext.install('kalam', '/usr/share/locale', unicode=1)
+    </programlisting>
+
+    <para id="para-ch19-21">Here, the path should point to a locale directory where all
+      message files can be found.</para>
+
+    <indexterm>
+  <primary>Qt Linguist</primary>
+  </indexterm>
+  <indexterm>
+  <primary>Linguist</primary>
+  </indexterm>
+  <para id="para-ch19-22">If you are working with Qt 3.0, you can
+      also use a new tool: <application>Qt Linguist</application>.
+      This extracts the messages to a special, xml-based, format, and
+      you can create message catalogs with a nice GUI frontend.</para>
+
+    <para id="para-ch19-23">To use <application>Qt
+        Linguist</application>, you need to make a Qt project file
+      containing the following text:</para>
+    
+    <screen>
+SOURCES = configtest.py \
+dlgfindreplace.py \
+dlgsettings.py \
+docmanager.py \
+docmanagertest.py \
+edmund.py \
+frmfindreplace.py \
+frmsettings.py \
+kalamapp.py \
+kalamconfig.py \
+kalamdoc.py \
+kalamview.py \
+macromanager.py \
+macromanagertest.py \
+main.py \
+resources.py \
+sitecustomize.py \
+startup.py 
+
+TRANSLATIONS = kalam_nl.ts
+
+    </screen>
+
+    <para id="para-ch19-24">And run the following command:</para>
+
+    <screen>
+boud@calcifer:~/doc/pyqt/ch19/kalam > lupdate kalam.pro
+    </screen>
+
+    <para id="para-ch19-25">After spewing out a lot of warnings (this
+      tool expects C++, not python) a file in xml format is created
+      which  you can edit with an editor or with
+      <application>Qt&nbsp;Linguist</application>.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch19/linguist.eps">
+      </imageobject>
+      <caption>
+        <para id="para-ch19-26">The Qt Linguist screen</para>
+      </caption>
+    </mediaobject>
+
+    <indexterm>
+  <primary>.qm files</primary>
+  </indexterm>
+  <para id="para-ch19-27">If the translator is finished, he or she
+      can choose "release" in the menubar and generate a
+      <filename>.qm</filename> message catalog.</para>
+
+    <indexterm>
+  <primary>translator</primary>
+  </indexterm>
+  <para id="para-ch19-28">Using this catalog in your application is
+      a simple matter of installing the appropriate translator:</para>
+
+    <example><title>Installing the translator</title>
+    <programlisting>
+#!/usr/bin/env python
+"""
+main.py - application starter
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+import sys, locale
+
+from qt import *
+
+from kalamapp import KalamApp
+from kalamdoc import KalamDoc
+from kalamview import KalamView
+import kalamconfig
+
+from resources import TRUE, FALSE
+
+def main(args):
+    app=QApplication(args)
+
+    translator = QTranslator(app)
+    translator.load("kalam_" + locale.getlocale()[0] + ".qm",
+                    kalamconfig.get("libdir","."))
+    app.installTranslator(translator)
+
+    kalam = KalamApp()
+    app.setMainWidget(kalam)
+    kalam.show()
+    if len(args) > 1:
+        for arg in args[1:]:
+            document=KalamDoc()
+            document.open(arg)
+            kalam.docManager.addDocument(document, KalamView)
+    app.exec_loop()
+    
+if __name__=="__main__":
+    main(sys.argv)
+    </programlisting>
+    </example>
+
+    <indexterm>
+  <primary>locale</primary>
+  </indexterm>
+  <para id="para-ch19-29">Two remarks: note how we use the
+      <filename>locale</filename> module to determine the language of
+      the user. This returns a tuple containing a language code and a
+      character set that correspond the user locale, as set by the
+      operating system: <varname>['en_US', 'ISO8859-1']</varname>. If
+      you always use the language code as the second part for your
+      filename, then Qt will be able to determine which translation
+      file to load.</para>
+
+    <para id="para-ch19-30">Note also that the location of that
+      message file is determined by a configuration option. Standard
+      Unix <filename>.mo</filename> files tend to go into
+      <filename>/usr/share/locale/</filename>, but there is no
+      corresponding standard for Qt <filename>.qm</filename> messages,
+      and you might as well put those in the application installation
+      directory. Where that is, will be determined in the next
+      chapter.</para>
+
+  </sect1>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"~/doc/pyqt/chapter.ced"
+End:
+-->

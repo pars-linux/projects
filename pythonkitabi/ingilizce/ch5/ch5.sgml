@@ -1,0 +1,1452 @@
+<chapter id="ch5">
+  <title>Gui Design in the Baroque Age</title>
+
+  <para id="para-ch5-1">One of the greatest achievements of GUI
+    interfaces such as CDE, Windows or MacOS is the uniform look and
+    feel of the applications. Once a user has learned to use one
+    application effectively, he will be familiar with the way
+    <emphasis>all</emphasis> applications work on that platform. Of
+    course, there are also users who complain they forget exactly
+    which application they are working with when all applications look
+    the same. Be that as it may, the current trend, perhaps initiated
+    with the wide variety of design for websites, is toward ever-more
+    distinctive and baroque interfaces. Indeed, we seem to be entering
+    the age of the &lsquo;designer' interface, and PyQt offers everything we
+    need to create database applications in the form of an audio rack
+    or spreadsheets in the form of a medieval book of hours.</para>
+
+  <sect1>
+
+    <title>Types of gui customization</title>
+
+    <indexterm>
+  <primary>gui design</primary>
+  </indexterm>
+  <para id="para-ch5-2">Despite the slight banter in the
+      introduction, there are many valid reasons to design a gui for
+      your application that diverges from the platform standard. For
+      instance, while a word processor shouldn't look like the desk of
+      a medieval scribe, the paste-board gui used in an application
+      like Adobe FrameMaker is very effective, especially since many
+      layout designers are still familiar with the glue-and-scissors
+      approach of creating a layout. Likewise, designing an mp3-player
+      that looks a bit like an audio rack is effective (while making
+      it look like an angry fish-eye is less so). Generally speaking,
+      creating an interface that matches closely the real world
+      experience of your users is a good idea.</para>
+
+    <indexterm>
+  <primary>theming</primary>
+  </indexterm>
+  <para id="para-ch5-3">There is another area where a custom gui
+      would fit well: the general redesign, or
+      <emphasis>theming</emphasis> of the whole set of widgets, to
+      make them more esthetically pleasing to your users. Qt already
+      offers a selection of those themes. Your user can decide whether
+      they want their applications to look like Motif, CDE, Silicon
+      Graphics IRIX, Windows 95 or MacOS 9. Offering this choice means
+      that the applications you make can always blend in unobtrusively
+      with the other applications your users use. A toolkit like
+      Tkinter does not offer this advantage; a user will always be
+      aware that he or she is not working with a application native to
+      his computing environment.</para>
+
+    <para id="para-ch5-4">There are two ways to create a totally
+      custom interface. You can reimplement
+      <classname>QWidget</classname> using pixmaps and masks, or you
+      can use the PyQt <classname>QStyle</classname> mechanism to
+      reimplement the drawing routines of the standard widgets like
+      <classname>QPushButton</classname>.</para>
+
+    <para id="para-ch5-5">The first solution is applicable for simple
+      applications like audio players or for applications that need to
+      be totally skinnable (again, like audio players). You need also
+      to reimplement <classname>QWidget</classname> if you have
+      designed a totally new type of widget, like Adobe did with the
+      PageMager paste-board. (You can also simulate the pasteboard
+      quite easily with <classname>QCanvas</classname>, but you might
+      have an idea for a widget that's more complicated than
+      this.)</para>
+
+    </sect1>
+
+
+  <sect1><title>Faking it with bitmaps</title>
+
+      <indexterm>
+  <primary>theming</primary><secondary>with bitmaps</secondary>
+  </indexterm>
+  <para id="para-ch5-6">The first stab at a totally cool gui will
+      be an imitation of a remote control. This will involve a nice
+      brushed steel background with rounded buttons and a deep bevel.
+      The remote control used in this instance is part of a system for
+      medical imagery, and we want to duplicate the actual control on
+      screen so that users familiar with the hardware won't have to
+      learn a new interface for use with the software.
+      </para>
+
+     <para id="para-ch5-7">To create the interface, I first scanned a
+      picture of the actual remote control unit. This gives us the
+      picture shown below:</para>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="40" align="center" fileref="ch5/remote.eps" scalefit="1">
+          </imageobject>
+          <caption><para id="para-ch5-8">A scan of the remote control.
+            Thanks to Cameron Laird for permission to use this
+            image.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+    <indexterm>
+  <primary>gimp</primary>
+  </indexterm>
+  <para id="para-ch5-9">Note the subtle play of light on the buttons: no
+      two buttons are the same. The photo-realistic effect would be very
+      hard to achieve without using an actual photograph.  This means
+      that we will have to cut out each separate button, and save it
+      in a separate file. The buttons should give feedback to the user
+      when depressed, so we make a copy of each button and save that,
+      too. Then, using a bitmap manipulation program such as the Gimp,
+      the highlight in the up button is changed to a bit of shadow,
+      and the text is shifted a few pixels to the right and
+      left.</para>
+
+     <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch5/gimp.eps" scalefit="1">
+        </imageobject>
+        <caption><para id="para-ch5-10">Changing the shadows with the Gimp</para></caption>
+     </mediaobject>
+
+        <indexterm>
+  <primary>window flags</primary>
+  </indexterm>
+  <para id="para-ch5-11">This part of the proceedings is a bit
+      of a bore: let's skip drawing a few of those buttons, and start
+      with the implementation. A real remote control doesn't have
+      window borders, so ours shouldn't have those, either. We can
+      achieve this effect by using window flags: first the
+      <varname>Qt.WStyle_Customize</varname> flag to indicate that we
+      are customizing the appearance of the window, and then the
+      <varname>Qt.WStyle_NoBorderEx</varname> flag to tell the window
+      system that we don't want borders.</para>
+
+      <example>
+        <title>remote.py - remote control application</title>
+
+<programlisting>
+#
+# remote.py - remote control application
+#
+
+import os, sys
+from qt import *
+
+from view     import *
+
+class Window(QMainWindow):
+
+  def __init__(self, *args):
+    QMainWindow.__init__(self, None, 'RemoteControl',
+            Qt.WStyle_Customize | Qt.WStyle_NoBorderEx)
+    self.initView()
+
+
+  def initView(self):
+    self.view = View(self, "RemoteControl")
+    self.setCentralWidget(self.view)
+    self.setCaption("Application")
+    self.view.setFocus()
+
+
+def main(argv):
+  app=QApplication(sys.argv)
+  window=Window()
+  window.show()
+  app.connect(app, SIGNAL('lastWindowClosed()'), app, SLOT('quit()'))
+  app.exec_loop()
+
+if __name__=="__main__":
+  main(sys.argv)
+
+</programlisting>
+        </example>
+
+      <indexterm>
+  <primary>window</primary><secondary>no borders</secondary>
+  </indexterm>
+  <para id="para-ch5-12">Next, we create the main view:</para>
+
+      <example>
+        <title>view.py - the main view of the remote control
+          application
+        </title>
+
+<programlisting>
+#
+# view.py = the main view to go with remote.py
+#
+from qt import *
+from button import Button
+class View(QWidget):
+  buttondefs=[ ('register', 80, 111)
+             , ('freeze', 22, 388)
+             , ('minus', 22, 457)
+             , ('toolbox', 130 , 166)]
+
+  def __init__(self, *args):
+    apply(QWidget.__init__,(self,)+args)
+    self.setFixedSize(245,794)
+    self.setBackgroundPixmap(QPixmap("remote.gif"))
+    self.buttons=[]
+    for bndef in self.buttondefs:
+      print bndef
+      bn=Button(self, bndef[0], bndef[1], bndef[2], bndef[0]+'up.gif', bndef[0]+'down.gif')
+      self.buttons.append(bn)
+      QObject.connect(bn, PYSIGNAL("pressed"), self.Pressed)
+
+  def Pressed(self, name):
+    print "Button", name, "pressed."
+</programlisting>
+        </example>
+
+      <para id="para-ch5-13">There is a class variable <varname>buttondef</varname>
+        that contains the set of buttons we will use. Each definition
+        consists of a base name from which the filenames of the up and
+        down buttons will be deduced, and the X and Y position of the
+        button on the window. These hardcoded positions make it
+        impossible to use this technique together with layout
+        managers.</para>
+
+      <indexterm>
+  <primary>setBackgroundPixmap</primary>
+  </indexterm>
+  <para id="para-ch5-14">A background image is set in the constructor, using
+        <function>setBackgroundPixmap</function>; after this, all
+        actual button objects are created. The button objects are
+        instances of the button class:</para>
+
+      <example>
+        <title>button.py - the class that implements the pixmapped
+          buttons
+        </title>
+
+<programlisting>
+#
+# button.py - pixmapped button definition to go with  remote.py
+#
+from qt import *
+
+class Button(QWidget):
+  def __init__(self, parent, name, x, y, up, down, *args):
+    apply(QWidget.__init__,(self, parent)+args)
+    self.pxUp=QPixmap(up)
+    self.pxDown=QPixmap(down)
+    self.setBackgroundPixmap(self.pxUp)
+    self.name=name
+    self.x=x
+    self.y=y
+    self.move(x, y)
+    self.setFixedSize(self.pxUp.size())
+
+  def mousePressEvent(self, ev):
+    self.setBackgroundPixmap(self.pxDown)
+
+  def mouseReleaseEvent(self, ev):
+    self.setBackgroundPixmap(self.pxUp)
+    self.emit(PYSIGNAL("pressed"), (self.name, ))
+</programlisting>
+        </example>
+
+      <para id="para-ch5-15">The button class is interesting because of its extreme
+      simplicity. All it really does is move itself to the right
+      place and then wait for mouse clicks. When a mouse button is
+      pressed, the down pixmap is shown, using
+      <function>setBackgroundPixmap()</function>. When the mouse
+      button is released, the up pixmap is restored. In order to be
+      able to catch the press event in view.py, a signal is
+      generated.</para>
+
+      <para id="para-ch5-16">Creating a set of graphics for the number displays and
+        updating those when the buttons are pressed has been left out of this book.
+        (It's extremely tedious, I'm afraid to say).</para>
+
+      <para id="para-ch5-17">Using pixmaps to create a distinctive user interface
+        works well for smaller projects, and in situations where every
+        detail has to be just right. However, the tedium
+        involved in creating the individual pixmaps, and the lack of
+        flexibility, makes the technique unsuitable for more complex
+        interfaces.</para>
+
+    </sect1>
+
+
+    <sect1><title>Creating themes with QStyle</title>
+
+      <indexterm>
+  <primary>QStyle</primary>
+  </indexterm>
+  <para id="para-ch5-18">We've just created a beautifully sculpted interface, with
+        all the highlights exactly right. Of course, the process lacked any
+        flexibility. Fortunately, PyQt offers complete access to the Qt
+        theming mechanism. Using this mechanism we can achieve almost the
+        same effect, but in a more flexible and generic manner. </para
+
+        <para id="para-ch5-19">The key class here is <classname>QStyle</classname>.
+        This class provides an enormous number of methods that are
+        used by Qt's widgets to express themselves on screen &mdash; and a
+        few hooks that you can use to intervene just before a widget
+        paints itself.
+        <classname>QCommonStyle</classname> is based on <classname>QStyle</classname>,
+        and implements most of
+        the actual drawing routines. On top of
+        <classname>QCommonStyle</classname> is a whole tree of styles
+        for Motif, Windows, MacOS-platinum, SGI and
+        CDE. A desktop environment like KDE adds a whole host of other
+        styles - and we can add one, too, once we have designed it.
+      </para>
+
+      <sect2><title>Designing the style</title>
+
+        <indexterm>
+  <primary>widget styles</primary><secondary>designing</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>interface design</primary>
+  </indexterm>
+  <para id="para-ch5-20">Designing a successful widget style is an artistic
+        endeavor that calls for sensitive handling and an acute
+        awareness of usability principles, as can easily be seen from
+        the thousands of horrible styles available from websites like
+        www.themes.org. But then, designing a user interface calls for
+        the same expertise. That's the reason most software houses
+        employ interaction designers and graphic artists. Software
+        developers who don't have access to these specialists can
+        refer to the excellent books on interface design published by
+        Apple and Microsoft. These are the <emphasis>Macintosh Human
+          Interface Guidelines</emphasis>
+        (http://www.devworld.apple.com/techpubs/mac/HIGuidelines/HIGuidelines-2.html) 
+        and <emphasis>Microsoft Guidelines for Interface
+          design</emphasis>, respectively. The Interface Hall of Shame
+        website (http://www.iarchitect.com/mshame.htm) has some
+        hilarious examples of interface design!</para>
+
+
+        <para id="para-ch5-21">On the other hand, making something
+        <emphasis>look</emphasis> like something else is a lot easier.
+        For this project, I've pondered a few example styles
+        that would illustrate the capabilities of the
+        <classname>QStyle</classname> mechanism: the old Athena widget
+        look and feel, or the old &lsquo;flat' MacOS look and feel. The new
+        Aqua style was right out, for legal reasons.
+
+      
+        Perhaps the look of the rubber keyboard
+        or the old ZX-Spectrum? For my example, we'll try the old, flat MacOS look.
+        This one has the advantage of being visually simple. You can
+        complicate the implementation of a style enormously
+        by using complex gradients to fill buttons, or bitmaps
+        and masks to fill widget backgrounds. The
+        <classname>QStyle</classname> is flexible enough that you can
+        use anything the <classname>QPainter</classname> class offers
+        to paint your widgets. On the other hand, some parts are
+        exceedingly difficult to adapt, as we shall see.</para>
+
+      </sect2>
+
+
+    <sect2><title>Setting up</title>
+
+      <indexterm>
+  <primary>QStyle</primary><secondary>Qt2 vs Qt3</secondary>
+  </indexterm>
+  <para id="para-ch5-22">The system that is used to implement custom styles changed
+        completely between Qt 2 and Qt 3, which is a pity, because at
+        the time of writing this book the new styling system had not
+        been completely finished (and not wrapped for PyQt), but the
+        old system has been removed.</para>
+
+      <para id="para-ch5-23">New styles are implemented by subclassing one of the
+        descendants of <classname>QStyle</classname> (this holds for
+        both systems).</para>
+
+      <indexterm>
+  <primary>polish()</primary>
+  </indexterm>
+  <para id="para-ch5-24">Under the old system, most of the widget drawing code
+        would have been placed in the <function>polish()</function>
+        and <function>unpolish()</function> methods of the style
+        implementation.</para>
+
+      <indexterm>
+  <primary>QStyle</primary><secondary>Qt 2 example</secondary>
+  </indexterm>
+  <para id="para-ch5-25">The new system demands that you re-implement the
+        primitive drawing functions, such as
+        <function>drawItem()</function>,
+        <function>drawPrimitive()</function> or
+        <function>drawComplexControl</function>.</para>
+
+      <para id="para-ch5-26">In both cases, you can decide to either use bitmaps for
+        buttons and backgrounds.  This is shown in the
+        <filename>themes.py</filename> example in your
+        <application>BlackAdder</application> or
+        <application>PyQt</application> distribution. Alternatively, you can
+        write your own drawing routines. It is surprising that
+        Python is fast enough to allow re-implementing the most basic
+        drawing routines.</para>
+
+    </sect2>
+
+      <sect2><title>A Qt 2 custom style</title>
+
+      <example><title>A Qt 2 custom style - a minimalist
+          implementation of the classic Mac style in PyQt.</title>
+        <programlisting>
+#
+# macstyle.py - A minimalist implementation of the Mac Classic style for PyQt
+# and Qt 2.
+# Use with styletester.py
+#
+from qt import *
+import time
+FALSE=0
+TRUE=1
+
+
+class MacStyle(QWindowsStyle):
+
+    def __init__(self):
+        QWindowsStyle.__init__(self)
+        self.setButtonDefaultIndicatorWidth(0)
+
+    def polish(self, object):
+
+        # Overloading doesn't work here, for Python cannot distinguish
+        # between QApplication and QWidget - Python can only overload based
+        # on the number of arguments.
+
+        if isinstance(object, QApplication):
+            self.polish_qapplication(object)
+        elif isinstance(object, QWidget):
+            self.polish_qwidget(object)
+        else:
+            QPlatinumStyle.polish(self, object)
+
+    def unPolish(self, object):
+        if isinstance(object, QApplication):
+            self.unPolish_qapplication(object)
+        elif isinstance(object, QWidget):
+            self.unPolish_qwidget(object)
+        else:
+            QPlatinumStyle.unPolish(self, object)
+
+    def polish_qapplication(self, app):
+        # Set a font that's an approximation of Chicago: keep a ref to
+        # the old font
+        self.oldFont=app.font()
+        app.setFont(QFont("chicago",
+                            app.font().pointSize()-2, QFont.Bold),
+                            TRUE)
+
+        # keep a reference to the old color palette, otherwise
+        # it cannot be restored
+        self.oldPalette=app.palette()
+        # create a new palette - black, white and 50% gray for text and buttons
+
+        # color definitions
+        white=QColor("white")
+        lightgray=QColor(210,210,210)
+        gray=QColor(190,190,190)
+        darkgray=QColor(120,120,120)
+        black=QColor("black")
+
+        active=QColorGroup()
+        #
+        # Basic colors
+        #
+        active.setColor(QColorGroup.Background,
+                        white) # general background color
+        active.setColor(QColorGroup.Foreground,
+                        black) # general foreground color
+        active.setColor(QColorGroup.Base,
+                        white) # lighter background for text widgets
+        active.setColor(QColorGroup.Text,
+                        black) # foreground to go with Base
+        active.setColor(QColorGroup.Button,
+                        white) # button background color
+        active.setColor(QColorGroup.ButtonText,
+                        black) # button text color
+        #
+        # Used for bevels and shadows
+        #
+        active.setColor(QColorGroup.Light,
+                        lightgray ) # a bit lighter than Button
+        active.setColor(QColorGroup.Midlight,
+                        gray)
+        active.setColor(QColorGroup.Dark,
+                        darkgray) # depressed button state
+        active.setColor(QColorGroup.Mid,
+                        gray) # mid tone
+        active.setColor(QColorGroup.Shadow,
+                        black) # shadow tone
+        #
+        # Selections
+        #
+        active.setColor(QColorGroup.Highlight,
+                        black)
+        active.setColor(QColorGroup.HighlightedText,
+                        white)
+        #
+        # Text color that shows well on Dark
+        #
+        active.setColor(QColorGroup.BrightText,
+                        white)
+
+
+        disabled=QColorGroup(active)
+
+        disabled.setColor(QColorGroup.Base, gray)
+        disabled.setColor(QColorGroup.Text, darkgray)
+
+        inactive=QColorGroup(active)
+
+        inactive.setColor(QColorGroup.Text, darkgray)
+        self.newPalette=QPalette(active, disabled, inactive)
+
+        app.setPalette(self.newPalette, TRUE)
+
+    def unPolish_qapplication(self, app):
+        # Restore the old palette
+        app.setFont(self.oldFont,  TRUE)
+        app.setPalette(self.oldPalette, TRUE)
+
+    def polish_qwidget(self, w):
+        # Hook to set attributes of certain widgets
+        # the polish function will set some widgets to transparent mode, to get the
+        # full benefit from the nice pixmaps in the color group.
+        if w.inherits("QTipLabel"):
+            return
+
+        if w.inherits("QLCDNumber"):
+            return
+
+        if not w.isTopLevel():
+            if w.inherits("QLabel") \
+               or w.inherits("QButton") \
+               or w.inherits("QComboBox") \
+               or w.inherits("QGroupBox") \
+               or w.inherits("QSlider") \
+               or w.inherits("QTabWidget") \
+               or w.inherits("QPanel"):
+                w.setAutoMask(TRUE)
+
+
+    def unPolish_qwidget(self, w):
+        # Undo what we did in polish_qwidget
+        if w.inherits("QTipLabel"):
+            return
+
+        if w.inherits("QLCDNumber"):
+            return
+
+        if not w.isTopLevel():
+            if w.inherits("QLabel") \
+               or w.inherits("QButton") \
+               or w.inherits("QComboBox") \
+               or w.inherits("QGroupBox") \
+               or w.inherits("QSlider") \
+               or w.inherits("QTabWidget") \
+               or w.inherits("QPanel"):
+                w.setAutoMask(FALSE)
+
+    #
+    # Panel, rectangles and lines
+    #
+
+    def drawPopupPanel(self, painter,x, y, w, h, colorGroup, lineWidth, fill):
+        self.drawPanel(painter, x, y, w, h, colorGroup, FALSE, lineWidth, fill)
+
+    def drawPanel(self, painter, x, y, w, h, colorGroup, sunken, lineWidth, fill):
+
+        oldpen=painter.pen()
+        oldbrush=painter.brush()
+
+        if sunken:
+            painter.setPen(QPen(colorGroup.foreground(), 2, QPen.DotLine))
+        else:
+            painter.setPen(QPen(colorGroup.foreground(), 2))
+        if fill:
+            oldbrush=painter.brush()
+            painter.setPen(colorGroup.foreground())
+            painter.setBrush(fill)
+
+        painter.drawRect(x + 2, y + 2, w - 2, h - 2)
+
+        painter.setPen(oldpen)
+        painter.setBrush(oldbrush)
+
+    def drawRect(self, painter, x, y, w, h, color, lineWidth, fill):
+        qDrawPlainRect(painter, x, y, w, h, color, lineWidth, fill)
+
+    def drawRectStrong(self, painter, x, y, w, h, colorGroup,
+                             sunken, lineWidth, midLineWidth, fill):
+        qDrawPlainRect(painter, x, y, w, h, colorGroup.foreground(),
+                       sunken, lineWidth *2, fill)
+
+    def drawSeparator(self, painter, x1, y1, x2, y2, colorGroup,
+                            sunken, lineWidth, midLineWidth):
+        painter.save()
+        painter.setPen(colorGroup.foreground, lineWidth)
+        painter.drawLine(x1, y1, x2, y2)
+        painter.restore()
+
+    def drawroundrect(self, painter, x, y, w, h):
+        painter.drawRoundRect(x, y, w, h, 5, 50)
+
+    def roundRectRegion(self, rect, r):
+        x=rect.x()
+        y=rect.y()
+        right=x1+rect.right()
+        bottom=y1+rect.bottom()
+        a=QPointArray([8, x+r, y, right-r, y,
+                      right, y + r, right, bottom-r,
+                      right-r, bottom, x+r, bottom,
+                      x, bottom-r, x, y+r])
+        region=QRegion(a)
+
+        d=r*2-1
+        region.unite(QRegion(x, y, r*2, r*2, QRegion.Ellipse))
+        region.unite(QRegion(right - d, y, r*2, r*2, QRegion.Ellipse))
+        region.unite(QRegion(x, bottom-d, r*2, r*2, QRegion.Ellipse))
+        region.unite(QRegion(right-d, bottom-d, r*2, r*2, QRegion.Ellipse))
+        return region
+
+    #
+    # Tab
+    #
+
+    def drawTab(self, painter, tabBar, tab, selected):
+        a=QPointArray(10)
+        a.setPoint(0, 0, -1)
+        a.setPoint(1, 0, 0)
+        # Nasty! r is a private member of QTab. We shouldn't access it.
+        y=tab.r.height()-2
+        x=y/2
+        x=x+1
+        a.setPoint(2, x, y-1)
+        x=x+1
+        a.setPoint(3, x, y)
+        x=x+1
+        y=y+1
+        a.setPoint(3, x, y)
+        a.setPoint(4, x, y)
+
+        right=tab.r.width()-1
+        for i in range(5):
+            a.setPoint(9-i, right - a.point(i)[0], a.point(i)[1])
+
+        for i in range(10):
+            a.setPoint(i, a.point(i)[0], tab.r.height() - 1 - a.point(i)[1])
+
+        a.translate(tab.r.left(), tab.r.top())
+
+        if selected:
+            painter.setBrush(tabBar.colorGroup().background())
+        else:
+            painter.setBrush(tabBar.colorGroup().light())
+
+        painter.setPen(tabBar.colorGroup().foreground())
+        painter.drawPolygon(a)
+        painter.setBrush(Qt.NoBrush)
+
+    def drawTabMask(self, painter, tabbar, tab, selected):
+        painter.drawRect(tab.r)
+
+    #
+    # Sliders
+    #
+
+    def drawSlider(self, painter, x, y, w, h, colorGroup,
+                         orientation, tickAbove, tickBelow):
+        pass
+
+    def drawSliderMask(self, painter, x, y, w, h,
+                             orientation, tickAbove, tickBelow):
+        painter.fillRect(x, y, w, h, Qt.color1)
+
+    def drawSliderGrooveMask(self, painter, x, y, w, h, coord, orientation):
+
+        colorGroup=QColorGroup(Qt.color1, Qt.color1, Qt.color1, Qt.color1,
+                               Qt.color1, Qt.color1, Qt.color1, Qt.color1,
+                               Qt.color0)
+        if orientation==Qt.Horizontal:
+            painter.fillRect(x, y, w, h, Qt.color1)
+        else:
+            painter.fillRect(x, y, w, h, Qt.color1)
+
+    #
+    # Buttons and pushbuttons
+    #
+
+    def drawButton(self, painter, x, y, w, h, colorGroup,
+                   sunken=FALSE, fill=None):
+        oldBrush=painter.brush()
+
+        if fill != None:
+            painter.setBrush(fill)
+
+        self.drawroundrect(painter, x, y, w, h)
+
+        painter.setBrush(oldBrush)
+
+
+    def drawPushButtonlabel (self, button, painter):
+        QWindowsStyle.drawPushButonLabel(self, button, painter)
+
+    def drawPushButton(self, button, painter):
+
+        colorGroup=button.colorGroup()
+        (x1, y1, x2, y2)=button.rect().coords()
+        painter.setPen(colorGroup.foreground())
+        painter.setBrush(QBrush(colorGroup.button(),
+                                Qt.NoBrush))
+
+        if button.isDown():
+            brush=QBrush()
+            brush.setColor(colorGroup.highlight())
+            brush.setStyle(QBrush.SolidPattern)
+            fill=brush
+        elif button.isOn():
+            brush=QBrush()
+            brush.setColor(colorGroup.mid())
+            brush.setStyle(QBrush.SolidPattern)
+            fill=brush
+        else:
+            fill=colorGroup.brush(colorGroup.Button)
+
+        if button.isDefault():
+            painter.setPen(QPen(Qt.black, 3))
+            self.drawroundrect(painter, x1, y1, x2-x1+1, y2-y1+1)
+            painter.setPen(QPen(Qt.black, 1))
+            x1=x1+4
+            y1=y1+4
+            x2=x2-4
+            y2=y2-4
+
+        if button.isOn() or button.isDown():
+            sunken=TRUE
+        else:
+            sunken=FALSE
+
+        self.drawButton(painter, x1, y1, x2-x1+1, y2-y1+1,
+                        colorGroup, sunken, fill)
+
+        if button.isMenuButton():
+            dx=(y1-y2-4)/3
+            self.drawArrow(painter, Qt.DownArrow, FALSE,
+                           x2-dx, dx, y1, y2-y1,
+                           colorGroup, button.isEnabled())
+
+        if painter.brush().style != Qt.NoBrush:
+            painter.setBrush(Qt.NoBrush)
+
+
+    def drawPushButtonLabel(self, button, painter):
+        r=button.rect()
+        (x, y, w, h)=r.rect()
+
+        (x1, y1, x2, y2)=button.rect().coords()
+        dx=0
+        dy=0
+        if button.isMenuButton():
+            dx=(y2-y1)/3
+        if dx or dy:
+            p.translate(dx,dy)
+
+        x=x+2
+        y=y+2
+        w=w-4
+        h=h-4
+        g=button.colorGroup()
+        if button.isDown() or button.isOn():
+            pencolour=button.colorGroup().brightText()
+        else:
+            pencolour=button.colorGroup().buttonText()
+        self.drawItem(painter, x, y, w, h,
+                          Qt.AlignCenter|Qt.ShowPrefix,
+                          g, button.isEnabled(),
+                          button.pixmap(), button.text(), -1,
+                          pencolour)
+
+        if dx or dy:
+            painter.translate(-dx,-dy)
+
+    def drawBevelButton(self, painter, x, y, w, h, colorGroup,
+                        sunken=FALSE, fill=None):
+        self.drawButton(painter, x, y, w, h, colorGroup, sunken, fill)
+
+    def buttonRect(self, x, y, w, h):
+        return QRect(x+3, y+2, w-6, h-4)
+
+    def drawButtonMask(self, p, x, y, w, h):
+        self.drawroundrect(p, x, y, w, h)
+
+
+
+    #
+    # Radio Button
+    #
+
+    def drawExclusiveIndicator(self, painter, x, y, w, h, colorGroup,
+                                     on, down, enabled):
+        painter.eraseRect(x, y, w, h)
+        painter.drawEllipse(x, y, w, h)
+
+        if on:
+            painter.setBrush(QBrush(colorGroup.foreground(), \
+            QBrush.SolidPattern))
+            
+            painter.drawEllipse(x + 3, y + 3, w - 6, h -6)
+
+    def drawExclusiveIndicatorMask(self, painter, x, y, w, h, on):
+        painter.fillRect(x, y, w, h, QBrush(Qt.color1))
+
+    #
+    # Checkbox
+    #
+
+    def drawIndicator(self, painter, x, y, w, h, colorGroup,
+                            state, down, enabled):
+        painter.save()
+
+        if enabled:
+            painter.setPen(QPen(colorGroup.foreground(), 1, \
+                           QPen.SolidLine))
+        else:
+            painter.setPen(QPen(colorGroup.mid(), 1, QPen.SolidLine))
+
+        if state==QButton.Off:
+            painter.setBrush(QBrush(colorGroup.background(), \
+                                    QBrush.SolidPattern))
+        elif state==QButton.NoChange:
+            painter.setBrush(QBrush(colorGroup.dark(), \
+                             QBrush.SolidPattern))
+        else:
+            painter.setBrush(QBrush(colorGroup.background(), \
+                             QBrush.SolidPattern))
+
+        painter.drawRect(x, y, w, h)
+
+        if state==QButton.On:
+            painter.drawLine(x, y, x + w, y + h)
+            painter.drawLine(x, y + h - 1, x + w - 1, y)
+        painter.restore()
+
+    def drawIndicatorMask(self, painter, x, y, w, h, state):
+        painter.fillRect(x, y , w + 3, h, QBrush(Qt.color1))
+
+    #
+    # Menu bar
+    #
+
+    def drawMenuBarItem(self, painter, x, y, w, h, menuItem, \
+                        colorGroup, enabled, active):
+        """
+        Not subclassable?
+        """
+        self.drawItem(painter, x, y, w, h,
+                      Qt.AlignCenter | Qt.ShowPrefix | Qt.DontClip | \
+                      Qt.SingleLine, colorGroup, menuItem.pixmap(), \
+                      menuItem.text(), -1, QColorGroup.buttonText())
+
+
+    #
+    # These items are not (yet) implemented in PyQt
+    #
+
+    def drawPopupMenuItem (self, painter, checkable, maxpmw, tab,
+                                 menuItem, palette, act, enabled,
+                                 x, y, w, h):
+        """
+        Not implemented in PyQt
+        """
+        pass
+
+    def extraPopupMenuItemWidth (self, checkable, maxpmw,
+                                       menuItem, fontMetrics):
+        """
+        Not implemented in PyQt
+        """
+        pass
+
+    def popupMenuItemHeight (self, checkable, menuItem, fontMetrics):
+        """
+        Not implemented in PyQt
+        """
+        pass
+
+        </programlisting>
+      </example>
+
+    </sect2>
+
+    <sect2><title>Using styles from PyQt</title>
+
+      <para id="para-ch5-27">Using these custom styles in your own application
+        is as simple as using the built-in styles. I have adapted the
+        small <filename>themes.py</filename> example that comes with
+        <application>BlackAdder</application> or
+        <application>PyQt</application> to show off the new custom
+        styles:</para>
+
+      <example><title>Testing styles</title>
+        <programlisting>
+#
+# styletester.py - a testbed for styles.
+# Based on Phil's adaption of my translation of the
+# Qt themes example app.
+#
+
+FALSE=0
+TRUE=1
+
+import os, sys
+from qt import *
+from macstyle import MacStyle
+
+class ButtonsGroups(QVBox):
+
+  def __init__(self, parent=None, name=None):
+    QVBox.__init__(self, parent, name)
+
+    # Create widgets which allow easy layouting
+    box1=QHBox(self)
+    box2=QHBox(self)
+
+    # first group
+
+    # Create an exclusive button group
+    grp1=QButtonGroup( 1
+                     , QGroupBox.Horizontal
+                     , "Button Group 1 (exclusive)"
+                     , box1
+                     )
+    grp1.setExclusive(TRUE)
+
+    # insert 3 radiobuttons
+    rb11=QRadioButton("&amp;Radiobutton 1", grp1)
+    rb11.setChecked(TRUE)
+    QRadioButton("R&amp;adiobutton 2", grp1)
+    QRadioButton("Ra&amp;diobutton 3", grp1)
+
+    # second group
+
+    # Create a non-exclusive buttongroup
+    grp2=QButtonGroup( 1
+                     , QGroupBox.Horizontal
+                     , "Button Group 2 (non-exclusive)"
+                     , box1
+                     )
+    grp2.setExclusive(FALSE)
+
+    # insert 3 checkboxes
+    QCheckBox("&amp;Checkbox 1", grp2)
+    cb12=QCheckBox("C&amp;heckbox 2", grp2)
+    cb12.setChecked(TRUE)
+    cb13=QCheckBox("Triple &amp;State Button", grp2)
+    cb13.setTristate(TRUE)
+    cb13.setChecked(TRUE)
+
+    # third group
+
+    # create a buttongroup which is exclusive for radiobuttons and
+    # non-exclusive for all other buttons
+    grp3=QButtonGroup( 1
+                     , QGroupBox.Horizontal
+                     , "Button Group 3 (Radiobutton-exclusive)"
+                     , box2
+                     )
+    grp3.setRadioButtonExclusive(TRUE)
+
+    # insert three radiobuttons
+    self.rb21=QRadioButton("Rad&amp;iobutton 1", grp3)
+    self.rb22=QRadioButton("Radi&amp;obutton 2", grp3)
+    self.rb23=QRadioButton("Radio&amp;button 3", grp3)
+    self.rb23.setChecked(TRUE)
+
+    # insert a checkbox...
+    self.state=QCheckBox("E&amp;nable Radiobuttons", grp3)
+    self.state.setChecked(TRUE)
+    # ...and connect its SIGNAL clicked() with the SLOT slotChangeGrp3State()
+    self.connect(self.state, SIGNAL('clicked()'),self.slotChangeGrp3State)
+
+    # fourth group
+
+    # create a groupbox which lays out its childs in a column
+    grp4=QGroupBox( 1
+                    , QGroupBox.Horizontal
+                    , "Groupbox with normal buttons"
+                    , box2
+                    )
+
+    # insert two pushbuttons...
+    QPushButton("&amp;Push Button", grp4)
+    bn=QPushButton("&amp;Default Button", grp4)
+    bn.setDefault(TRUE)
+    tb=QPushButton("&amp;Toggle Button", grp4)
+
+    # ...and make the second one a toggle button
+    tb.setToggleButton(TRUE)
+    tb.setOn(TRUE)
+
+  def slotChangeGrp3State(self):
+    self.rb21.setEnabled(self.state.isChecked())
+    self.rb22.setEnabled(self.state.isChecked())
+    self.rb23.setEnabled(self.state.isChecked())
+
+
+class LineEdits(QVBox):
+
+  def __init__(self, parent=None, name=None):
+    QVBox.__init__(self, parent, name)
+
+    self.setMargin(10)
+
+    # Widget for layouting
+    row1=QHBox(self)
+    row1.setMargin(5)
+
+    # Create a label
+    QLabel("Echo Mode: ", row1)
+
+    # Create a Combobox with three items...
+    self.combo1=QComboBox(FALSE, row1)
+    self.combo1.insertItem("Normal", -1)
+    self.combo1.insertItem("Password", -1)
+    self.combo1.insertItem("No Echo", -1)
+    self.connect(self.combo1, SIGNAL('activated(int)'), self.slotEchoChanged)
+
+    # insert the first LineEdit
+    self.lined1=QLineEdit(self)
+
+    # another widget which is used for layouting
+    row2=QHBox(self)
+    row2.setMargin(5)
+
+    # and the second label
+    QLabel("Validator: ", row2)
+
+    # A second Combobox with again three items...
+    self.combo2=QComboBox(FALSE, row2)
+    self.combo2.insertItem("No Validator", -1)
+    self.combo2.insertItem("Integer Validator", -1)
+    self.combo2.insertItem("Double Validator", -1)
+    self.connect(self.combo2, SIGNAL('activated(int)'),
+                 self.slotValidatorChanged)
+
+    # and the second LineEdit
+    self.lined2=QLineEdit(self)
+
+    # yet another widget which is used for layouting
+    row3=QHBox(self)
+    row3.setMargin(5)
+
+    # we need a label for this too
+    QLabel("Alignment: ", row3)
+
+    # A combo box for setting alignment
+    self.combo3=QComboBox(FALSE, row3)
+    self.combo3.insertItem("Left", -1)
+    self.combo3.insertItem("Centered", -1)
+    self.combo3.insertItem("Right", -1)
+    self.connect(self.combo3, SIGNAL('activated(int)'),
+                 self.slotAlignmentChanged)
+
+    # and the lineedit
+    self.lined3=QLineEdit(self)
+
+    # give the first LineEdit the focus at the beginning
+    self.lined1.setFocus()
+
+  def slotEchoChanged(self, i):
+    if i == 0:
+      self.lined1.setEchoMode(QLineEdit.EchoMode.Normal)
+    elif i == 1:
+      self.lined1.setEchoMode(QLineEdit.EchoMode.Password)
+    elif i == 2:
+      self.lined1.setEchoMode(QLineEdit.EchoMode.NoEcho)
+
+    self.lined1.setFocus()
+
+  def slotValidatorChanged(self, i):
+    if i == 0:
+      self.validator=None
+      self.lined2.setValidator(self.validator)
+    elif i == 1:
+      self.validator=QIntValidator(self.lined2)
+      self.lined2.setValidator(self.validator)
+    elif i == 2:
+      self.validator=QDoubleValidator(-999.0, 999.0, 2, self.lined2)
+      self.lined2.setValidator(self.validator)
+
+    self.lined2.setText("")
+    self.lined2.setFocus()
+
+  def slotAlignmentChanged(self, i):
+    if i == 0:
+      self.lined3.setAlignment(Qt.AlignLeft)
+    elif i == 1:
+      self.lined3.setAlignment(Qt.AlignCenter)
+    elif i == 2:
+      self.lined3.setAlignment(Qt.AlignRight)
+
+    self.lined3.setFocus()
+
+
+class ProgressBar(QVBox):
+
+  def __init__(self, parent=None, name=None):
+    QVBox.__init__(self, parent, name)
+
+    self.timer=QTimer()
+
+    self.setMargin(10)
+
+    # Create a radiobutton-exclusive Buttongroup which aligns its childs
+    # in two columns
+    bg=QButtonGroup(2, QGroupBox.Horizontal, self)
+    bg.setRadioButtonExclusive(TRUE)
+
+    # insert three radiobuttons which the user can use to set the speed 
+    # of the progress and two pushbuttons to start/pause/continue and 
+    # reset the  progress
+    self.slow=QRadioButton("&amp;Slow", bg)
+    self.start=QPushButton("S&amp;tart", bg)
+    self.normal=QRadioButton("&amp;Normal", bg)
+    self.reset=QPushButton("&amp;Reset", bg)
+    self.fast=QRadioButton("&amp;Fast", bg)
+
+    # Create the progressbar
+    self.progress=QProgressBar(100, self)
+
+    # connect the clicked() SIGNALs of the pushbuttons to SLOTs
+    self.connect(self.start, SIGNAL('clicked()'), self.slotStart)
+    self.connect(self.reset, SIGNAL('clicked()'), self.slotReset)
+
+    # connect the timeout() SIGNAL of the progress-timer to a SLOT
+    self.connect(self.timer, SIGNAL('timeout()'), self.slotTimeout)
+
+    # Let's start with normal speed...
+    self.normal.setChecked(TRUE)
+
+  def slotStart(self):
+    # If the progress bar is at the beginning...
+    if self.progress.progress() == -1:
+      # ...set according to the checked speed-radionbutton the number of 
+      # steps which are needed to complete the process
+      if self.slow.isChecked():
+        self.progress.setTotalSteps(10000)
+      elif self.normal.isChecked():
+        self.progress.setTotalSteps(1000)
+      else:
+        self.progress.setTotalSteps(50)
+
+      # disable the speed-radiobuttons:
+      self.slow.setEnabled(FALSE)
+      self.normal.setEnabled(FALSE)
+      self.fast.setEnabled(FALSE)
+
+    # If the progress is not running...
+    if not self.timer.isActive():
+      # ...start the time (and so the progress) with an interval fo 1ms...
+      self.timer.start(1)
+      # ...and rename the start/pause/continue button to Pause
+      self.start.setText("&amp;Pause")
+    else:
+      # ...stop the timer (and so the progress)...
+      self.timer.stop()
+      # ...and rename the start/pause/continue button to Continue
+      self.start.setText("&amp;Continue")
+
+  def slotReset(self):
+    # stop the timer and progress
+    self.timer.stop()
+
+    # rename the start/pause/continue button to Start...
+    self.start.setText("&amp;Start")
+    # ...and enable this button
+    self.start.setEnabled(TRUE)
+
+    # enable the speed-radiobuttons
+    self.slow.setEnabled(TRUE)
+    self.normal.setEnabled(TRUE)
+    self.fast.setEnabled(TRUE)
+
+    # reset the progressbar
+    self.progress.reset()
+
+  def slotTimeout(self):
+    p = self.progress.progress()
+
+    # If the progress is complete...
+    if p == self.progress.totalSteps():
+      # ...rename the start/pause/continue button to Start...
+      self.start.setText("&amp;Start")
+      # ...and disable it...
+      self.start.setEnabled(FALSE)
+      # ...and return
+      return
+
+    # If the progress is not complete increase it
+    self.progress.setProgress(p+1)
+
+
+class ListBoxCombo(QVBox):
+
+  def __init__(self, parent=None, name=None):
+    QVBox.__init__(self, parent, name)
+
+    self.setMargin(5)
+
+    row1=QHBox(self)
+    row1.setMargin(5)
+
+    # Create a multi-selection ListBox...
+    self.lb1=QListBox(row1)
+    self.lb1.setMultiSelection(TRUE)
+
+    # ...insert a pixmap item...
+    self.lb1.insertItem(QPixmap("qtlogo.png"))
+    # ...and 100 text items
+    for i in range(100):
+      str=QString("Listbox Item %1").arg(i)
+      self.lb1.insertItem(str)
+
+    # Create a pushbutton...
+    self.arrow1=QPushButton(" -> ", row1)
+    # ...and connect the clicked SIGNAL with the SLOT slotLeft2Right
+    self.connect(self.arrow1, SIGNAL('clicked()'), self.slotLeft2Right)
+
+    # create an empty single-selection ListBox
+    self.lb2=QListBox(row1)
+
+  def slotLeft2Right(self):
+    # Go through all items of the first ListBox
+    for i in range(self.lb1.count()):
+      item=self.lb1.item(i)
+      # if the item is selected...
+      if item.selected():
+        # ...and it is a text item...
+        if not item.text().isEmpty():
+          # ...insert an item with the same text into the second ListBox
+          self.lb2.insertItem(QListBoxText(item.text()))
+        # ...and if it is a pixmap item...
+        elif item.pixmap():
+          # ...insert an item with the same pixmap into the second ListBox
+          self.lb2.insertItem(QListBoxPixmap(item.pixmap()))
+
+
+
+class Themes(QMainWindow):
+
+  def __init__(self, parent=None, name=None, f=Qt.WType_TopLevel):
+    QMainWindow.__init__(self, parent, name, f)
+
+    self.appFont=QApplication.font()
+
+    self.tabwidget=QTabWidget(self)
+
+    self.buttonsgroups=ButtonsGroups(self.tabwidget)
+    self.tabwidget.addTab(self.buttonsgroups,"Buttons/Groups")
+    self.hbox=QHBox(self.tabwidget)
+    self.hbox.setMargin(5)
+    self.linedits=LineEdits(self.hbox)
+    self.progressbar=ProgressBar(self.hbox)
+    self.tabwidget.addTab(self.hbox, "Lineedits/Progressbar")
+    self.listboxcombo=ListBoxCombo(self.tabwidget)
+    self.tabwidget.addTab(self.listboxcombo, "Listboxes/Comboboxes")
+
+    self.setCentralWidget(self.tabwidget)
+
+    self.style=QPopupMenu(self)
+    self.style.setCheckable(TRUE)
+    self.menuBar().insertItem("&amp;Style", self.style)
+
+    self.sMacStyle=self.style.insertItem("&amp;Classic Mac", self.styleMac)
+    self.sPlatinum=self.style.insertItem("&amp;Platinum", self.stylePlatinum)
+    self.sWindows=self.style.insertItem("&amp;Windows", self.styleWindows)
+    self.sCDE=self.style.insertItem("&amp;CDE", self.styleCDE)
+    self.sMotif=self.style.insertItem("M&amp;otif", self.styleMotif)
+    self.sMotifPlus=self.style.insertItem("Motif P&amp;lus", \
+    self.styleMotifPlus)
+    self.style.insertSeparator()
+    self.style.insertItem("&amp;Quit", qApp.quit, Qt.CTRL | Qt.Key_Q)
+
+    self.help=QPopupMenu(self)
+    self.menuBar().insertSeparator()
+    self.menuBar().insertItem("&amp;Help", self.help)
+    self.help.insertItem("&amp;About", self.about, Qt.Key_F1)
+    self.help.insertItem("About &amp;Qt", self.aboutQt)
+
+    self.style=MacStyle()
+    qApp.setStyle(self.style)
+    self.menuBar().setItemChecked(self.sMacStyle, TRUE)
+
+  # In the following we cannot simply set the new style as we can in C++.  
+  # We need to keep the old style alive (if it is a Python one) so that it's
+  # unPolish methods can still be called when the new style is set.
+
+  def styleMac(self):
+    newstyle=MacStyle()
+    qApp.setStyle(newstyle)
+    self.style=newstyle
+    self.selectStyleMenu(self.sMacStyle)
+
+  def stylePlatinum(self):
+    newstyle=QPlatinumStyle()
+    qApp.setStyle(newstyle)
+    self.style=newstyle
+    p=QPalette(QColor(239, 239, 239))
+    qApp.setPalette(p, TRUE)
+    qApp.setFont(self.appFont, TRUE)
+    self.selectStyleMenu(self.sPlatinum)
+
+  def styleWindows(self):
+    newstyle=QWindowsStyle()
+    qApp.setStyle(newstyle)
+    self.style=newstyle
+    qApp.setFont(self.appFont, TRUE)
+    self.selectStyleMenu(self.sWindows)
+
+  def styleCDE(self):
+    newstyle=QCDEStyle(TRUE)
+    qApp.setStyle(newstyle)
+    self.style=newstyle
+    self.selectStyleMenu(self.sCDE)
+
+    p=QPalette(QColor(75, 123, 130))
+    p.setColor(QPalette.Active, QColorGroup.Base, QColor(55, 77, 78));
+    p.setColor(QPalette.Inactive, QColorGroup.Base, QColor(55, 77, 78));
+    p.setColor(QPalette.Disabled, QColorGroup.Base, QColor(55, 77, 78));
+    p.setColor(QPalette.Active, QColorGroup.Highlight, Qt.white);
+    p.setColor(QPalette.Active, QColorGroup.HighlightedText, \
+    QColor(55, 77, 78));
+    p.setColor(QPalette.Inactive, QColorGroup.Highlight, Qt.white);
+    p.setColor(QPalette.Inactive, QColorGroup.HighlightedText, \
+    QColor(55, 77, 78));
+    p.setColor(QPalette.Disabled, QColorGroup.Highlight, Qt.white);
+    p.setColor(QPalette.Disabled, QColorGroup.HighlightedText, \
+    QColor(55, 77, 78));
+    p.setColor(QPalette.Active, QColorGroup.Foreground, Qt.white);
+    p.setColor(QPalette.Active, QColorGroup.Text, Qt.white);
+    p.setColor(QPalette.Active, QColorGroup.ButtonText, Qt.white);
+    p.setColor(QPalette.Inactive, QColorGroup.Foreground, Qt.white);
+    p.setColor(QPalette.Inactive, QColorGroup.Text, Qt.white);
+    p.setColor(QPalette.Inactive, QColorGroup.ButtonText, Qt.white);
+    p.setColor(QPalette.Disabled, QColorGroup.Foreground, Qt.lightGray);
+    p.setColor(QPalette.Disabled, QColorGroup.Text, Qt.lightGray);
+    p.setColor(QPalette.Disabled, QColorGroup.ButtonText, Qt.lightGray);
+    qApp.setPalette(p, TRUE)
+    qApp.setFont(QFont("times", self.appFont.pointSize()), TRUE)
+
+  def styleMotif(self):
+    newstyle=QMotifStyle(TRUE)
+    qApp.setStyle(newstyle)
+    self.style=newstyle
+    p=QPalette(QColor(192, 192, 192))
+    qApp.setPalette(p, TRUE)
+    qApp.setFont(self.appFont, TRUE)
+    self.selectStyleMenu(self.sMotif)
+
+  def styleMotifPlus(self):
+    newstyle=QMotifPlusStyle(TRUE)
+    qApp.setStyle(newstyle)
+    self.style=newstyle
+    p=QPalette(QColor(192, 192, 192))
+    qApp.setPalette(p, TRUE)
+    qApp.setFont(self.appFont, TRUE)
+    self.selectStyleMenu(self.sMotifPlus)
+
+  def about(self):
+    QMessageBox.about(self, "Qt Themes Example",
+			"&lt;p&gt;This example demonstrates the concept of "
+			"&lt;b&gt;generalized GUI styles &lt;/b&gt; first \
+                         introduced "
+			" with the 2.0 release of Qt.&lt;/p&gt;" )
+
+  def aboutQt(self):
+    QMessageBox.aboutQt(self, "Qt Themes Testbed")
+
+  def selectStyleMenu(self, s):
+    self.menuBar().setItemChecked(self.sMacStyle, FALSE)
+    self.menuBar().setItemChecked(self.sPlatinum, FALSE)
+    self.menuBar().setItemChecked(self.sCDE, FALSE)
+    self.menuBar().setItemChecked(self.sMotifPlus, FALSE)
+    self.menuBar().setItemChecked(self.sMotif, FALSE)
+    self.menuBar().setItemChecked(self.sWindows, FALSE)
+    self.menuBar().setItemChecked(s, TRUE)
+
+
+def main(argv):
+  QApplication.setColorSpec(QApplication.CustomColor)
+  QApplication.setStyle(QWindowsStyle())
+  a=QApplication(sys.argv)
+
+  themes=Themes()
+  themes.setCaption('Theme (QStyle) example')
+  themes.resize(640,400)
+  a.setMainWidget(themes)
+  themes.show()
+
+  return a.exec_loop()
+
+if __name__=="__main__":
+  main(sys.argv)
+
+        </programlisting>
+      </example>
+
+
+      <para id="para-ch5-28">As you can see, it's a lot of work to
+        create a style from scratch, and in this case, the result is
+        not very impressive, but very retro, especially if we also use
+        the classic Chicago font:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="50" align="center" fileref="ch5/themes.eps">
+        </imageobject>
+        <caption><para id="para-ch5-29">Some Qt widgets with an
+            ancient Mac look.</para>
+        </caption>
+      </mediaobject>
+
+
+    </sect2>
+
+  </sect1>
+
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

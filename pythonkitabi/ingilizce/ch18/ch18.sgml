@@ -1,0 +1,727 @@
+ <chapter id="ch18">
+  <title>Delivering your Application</title>
+  
+  <sect1><title>Introduction</title>
+
+    <indexterm>
+  <primary>installation</primary>
+  </indexterm>
+  <para id="para-ch18-1">Packaging your software for installation is
+      a difficult, nasty, unpleasant, arduous, error-prone task. It is
+      awfully enticing to just give up, zip up your Python source code
+      together with a README file, and leave it at that.</para>
+
+    <para id="para-ch18-2">In some cases, doing just that might be
+      wise: if your intended users are technically knowledgeable, you
+      can ask them to install Python, edit system variables, and mess
+      around until everything works. Typically, though, more than this
+      is expected.</para>
+
+    <indexterm>
+  <primary>installation</primary><secondary>platforms</secondary>
+  </indexterm>
+  <para id="para-ch18-3">The first problem of packaging an
+      application for installation arises because of the wide variety
+      of platforms a PyQt application will run on: Classic Unix,
+      Linux, the free BSDs, Windows in its infinite variety and
+      finally OS X. Depending upon your target audience, one or more
+      of these platforms can be dropped. If your application is open
+      source, you might be able to get other developers to package
+      your application for their platform.</para>
+
+    <indexterm>
+  <primary>distutils</primary>
+  </indexterm>
+  <indexterm>
+  <primary>freeze</primary>
+  </indexterm>
+  <indexterm>
+  <primary>installer</primary>
+  </indexterm>
+  <indexterm>
+  <primary>squeeze</primary>
+  </indexterm>
+  <indexterm>
+  <primary>py2exe</primary>
+  </indexterm>
+  <indexterm>
+  <primary>wise</primary>
+  </indexterm>
+  <indexterm>
+  <primary>rpm</primary>
+  </indexterm>
+  <indexterm>
+  <primary>dpkg</primary>
+  </indexterm>
+  <para id="para-ch18-4">The second problem is that Python has
+      several methods of packaging applications. The standard is
+      <application>Distutils</application>, which comes with the
+      Python distribution. Then there is
+      <application>freeze</application>, Gordon McMillan's
+      <application>Installer</application>, Fredrik Lundh's
+      <application>Squeeze</application> (which is packaged with the
+      <application>PythonWorks</application> IDE), and finally Thomas
+      Heller's <application>py2exe</application> (which makes use of
+      <application>Distutils</application>). There are also generic
+      commercial solutions, such as <application>Wise</application> or
+      <application>InstallShield</application> (both for Windows) and
+      <application>InstallAnywhere</application> (for all platforms
+      that support Java). Furthermore, there are free alternatives,
+      such as rpm or dpgk for Unix. This breadth of choice alone
+      points to the fact that creating installation packages is a
+      difficult problem that has yet to be solved.</para>
+
+    <para id="para-ch18-5">Distutils is the standard Python solution
+      and comes with Python 2.x. It appears to be more geared to
+      distribution modules and libraries, and less to distributing
+      applications. If you want something that generates stand-alone
+      executables of an application, you might want to try Gordon
+      McMillan's Installer (http://www.mcmillan-inc.com/builder.html).
+      BlackAdder will probably provide an installation utility in a
+      future version, and it will probably be based on
+      Distutils.</para>
+
+    <para id="para-ch18-6">The third problem (they do mount up) is
+      that you cannot assume that your user has Python installed. You
+      must choose whether you want your users to install Python
+      themselves, or package a complete Python installation with your
+      application. The first option is perfectly feasible on Linux,
+      because installing Python using either rpm or apt-get is easy
+      enough. The second option might be feasible on Windows, as
+      Python for windows comes with a very nice and easy installer. Of
+      course, Windows users are generally a bit lazier than Unix
+      users, and might not want to install another package before they
+      can start using your application.</para>
+
+    <para id="para-ch18-7">The fourth problem is the presence, or
+      absence, of PyQt. Again, most modern Linux distributions include
+      PyQt, so users can just grab the rpm or deb package, and go. As
+      for Windows, you can freely redistribute the runtime components
+      that come with BlackAdder, if you have bought the professional
+      version or the non-commercial PyQt and Qt libraries.</para>
+
+    <para id="para-ch18-8">The fifth problem arises if you have used
+      third-party modules that require separate compilation for each
+      platform, and separate installation.</para>
+
+    <para id="para-ch18-9">A sixth problem arises if you have written
+      extensions in C or C++ as part of your application or library,
+      and want to distribute those, too.</para>
+
+    <para id="para-ch18-10">Finally, it's difficult to achieve even a
+      little integration with the user's desktop. All user interface
+      platforms Qt supports - Windows, KDE, Gnome, CDE, OS X and
+      others have wildly different standards for menu options, desktop
+      icons, mime-type integration (for those open file with
+      application menu's). This is, perhaps, the hardest, as it
+      requires knowledge of all relevant desktop environments.</para>
+    
+
+    <indexterm>
+  <primary>installation</primary><secondary>dependencies</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>dependencies</primary>
+  </indexterm>
+  <para id="para-ch18-11">This chapter will cover the creation of
+      source packages, Windows installers and Unix rpms using the
+      standard <application>Distutils</application> package. This
+      requires that the user has already installed Python, PyQt, and
+      any other libraries. The Redhat Package Manager (rpm) on Linux
+      can be told to check for these dependencies. On Windows, it's a
+      matter of forcing your users to read the manual. I don't
+      describe the process of packaging your own C or C++ extensions,
+      though it is possible. Consult the Distutils manual for more
+      information.</para>
+
+  </sect1>
+  <sect1><title>Packaging source</title>
+
+    <indexterm>
+  <primary>packaging</primary>
+  </indexterm>
+  <para id="para-ch18-12">If you merely want to deliver the source
+      to your PyQt application, you might as well create a nice
+      package structure. You can zip the source-code up or tar it
+      down, and deliver it. You'd package the code with a clear README
+      file that details what settings should be altered in either the
+      <filename>.profile</filename> (or <filename>.bashrc</filename>),
+      or, for Windows, to add a variable to the environment using the
+      friendly dialog window Control Panel provides.</para>
+
+
+    <indexterm>
+  <primary>PYTHONPATH</primary>
+  </indexterm>
+  <para id="para-ch18-13">One of those settings will probably be the
+      PYTHONPATH variable. If the application is divided into several
+      modules (as <application>Kalam</application> is), the PYTHONPATH
+      must include the top-level directory where the source is
+      installed. It is not a good idea to install application source
+      into the Python modules directory.</para>
+
+    <example>
+      <title>README</title>
+    <screen>
+   Kalam - the undocumented, extensible editor.
+
+Kalam is an editor written in Python and PyQt as an example
+application to accompany the third part of the book "Gui programming
+with Python and Qt", published by OpenDocs.
+
+You can extend Kalam with macro's written in Python. See edmund.py
+for an example. Consult either the book, or the file kalamconfig.py
+to configure Kalam, using, for instance startup.py.
+
+   Installation
+
+In order to run Kalam, the kalam main directory needs to be on the
+Python path. On Unix, you can add something like:
+PYTHONPATH=/path/to/kalam/directory:$PYTHONPATH to .bashrc. On
+Windows, you must edit that system variable using the Control Panel.
+
+   Requirements:
+
+you must have Python (>2.0) and PyQt (>2.4) installed. PyQt depends
+on sip. You can get Python from www.python.org and PyQt from
+www.thekompany.com.
+
+Boudewijn Rempt
+boud@rempt.xs4all.nl
+      </screen>
+    </example>
+
+    <indexterm>
+  <primary>README</primary>
+  </indexterm>
+  <para id="para-ch18-14">This is the easiest way out for you as a
+      developer. You can also use Python's distutils to create a
+      source distribution of your application. Since this is the first
+      step to a binary distribution, it's a good idea to use
+      distutils, even for source-only distributions.</para>
+
+  </sect1>
+
+  <sect1><title>Starting with distutils.</title>
+
+    <indexterm>
+  <primary>distutils</primary><secondary>introduction</secondary>
+  </indexterm>
+  <para id="para-ch18-15">Once you've collected all the bits and
+      bobs for your application, you start using distutils by writing
+      a special Python script, customarily named
+      <filename>setup.py</filename>. You can make your
+      <filename>setup.py</filename> script as complex as you want, but
+      typically it is quite simple.</para>
+
+    <indexterm>
+  <primary>setup.py</primary>
+  </indexterm>
+  <indexterm>
+  <primary>distutils</primary><secondary>setup.py</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>installation</primary><secondary>setup.py</secondary>
+  </indexterm>
+  <para id="para-ch18-16">The <filename>setup.py</filename> script will
+      then call <function>setup</function> from
+      <filename>distutils.core</filename> with lots of arguments, including
+      meta-data about the application or module to install, and a list
+      of stuff to install.</para>   
+
+    <para id="para-ch18-17">The developer uses the
+      <filename>setup.py</filename> script to create the package, and
+      the user uses it to install the package.</para>
+
+    <sect2><title>setup.py</title>
+
+    <example>
+      <title>setup.py - a sample setup script</title>
+
+      <programlisting>
+#!/usr/bin/env python
+
+from distutils.core import setup
+
+setup(name = "kalam",
+      version = "1.0",
+      description = "Kalam - the extensible Python editor",
+      author = "Boudewijn Rempt",
+      author_email = "boud@rempt.xs4all.nl",
+      url = "http://www.valdyas.org",
+      packages = ["charmap",
+                  "kalamlib",
+                  "typometer",
+                  "workspace",
+                  ""],
+      data_files = [("kalam/data", ["data/Blocks.txt"]),
+                    ("kalam/pixmaps", ["pixmaps/listspace.png",
+                                       "pixmaps/splitspace.png",
+                                       "pixmaps/stackspace.png",
+                                       "pixmaps/tabmanager.png",
+                                       "pixmaps/workspace.png"])],
+      scripts = ["kalam","kalam.bat"],
+      long_description = """
+Kalam is a plain-text editor. It is written in Python using
+the PyQt GUI toolkit as an example and tutorial for the book
+GUI programming with Python and Qt, published by Opendocs.
+"""          
+      )    
+      </programlisting>
+    </example>
+
+      <para id="para-ch18-18">The <filename>setup.py</filename> is the
+        place to specify all executable parts of your application, and
+        some metadata. Let's examine all parts:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para id="para-ch18-19"><varname>name</varname>: the name of
+            the application</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-20"><varname>version</varname>: the
+            version number (major, minor, wee number)</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-21"><varname>description</varname>: a
+            short description of the application</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-22"><varname>author</varname>: the
+            person responsible for the application</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-23"><varname>author_email</varname>: his
+            email address</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-24"><varname>url</varname>: website
+            where the application is hosted</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-25"><varname>packages</varname>: a list
+            of Python modules (directories that contain a set of
+            Python files listed in a <filename>__init__.py</filename>
+            file). In the case of <application>Kalam</application>
+            these are the modules for the character map, the
+            type-o-meter and the set of workspace options. The
+            additional module, kalamlib, contains all the real
+            <application>Kalam</application> code.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-26"><varname>py_modules</varname>: a
+            list of Python files. Note that if you include both the
+            <varname>packages</varname> and
+            the<varname>py_modules</varname> keyword only the latter
+            will be used.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-27"><varname>data_files</varname>: this
+            is a list of files that are not executable code. These
+            files will be installed in a default place, like
+            <filename>/usr/share</filename> on Linux. You must also
+            include all these files in <varname>MANIFEST.in</varname>,
+            otherwise they won't be packaged.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-28"><varname>scripts</varname>: this is
+            a list of python script files. If you use
+            #!/usr/bin/python as the first line of a script to make it
+            executable on Unix, Distutils will change that to the
+            location of Python on the user's machine.</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-29"><varname>long_description</varname>:
+            a longer description of the application. This is used when
+            you create an rpm package.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para id="para-ch18-30">There are other options more concerned with
+        distributing C or C++ extension modules you have
+        created. I don't cover them here.</para>
+
+      <para id="para-ch18-31">Finally, a word of warning: if you are experimenting with
+        <filename>setup.py</filename>, you will notice that a file called
+        <filename>MANIFEST</filename> has been created. Always remove this
+        file after creating a distribution. It is a kind of
+        cache that lists the set of files that should be included;
+        if you change this set, distutils will still read
+        <filename>MANIFEST</filename> instead of your changes in
+        <filename>setup.py</filename>.</para>
+
+    </sect2>
+
+    <sect2><title>MANIFEST.in</title>
+
+      <indexterm>
+  <primary>MANIFEST.in</primary>
+  </indexterm>
+  <indexterm>
+  <primary>distutils</primary><secondary>MANIFEST.in</secondary>
+  </indexterm>
+  <para id="para-ch18-32">Despite the <varname>data_files</varname> option to
+        <function>setup()</function>, it is still necessary to provide
+        a second file that contains a list of extra, non-Python
+        files that need to be distributed. This file is called
+        <filename>MANIFEST.in</filename> (mind the capitalization),
+        and employs its own set of keywords to specify files to
+        include or exclude.</para>
+
+      <example>
+        <title>MANIFEST.in</title>
+        <screen>
+include kalam
+include kalam.bat
+recursive-include data *
+recursive-include pixmaps *
+recursive-include dialogs *
+        </screen>
+      </example>
+
+      <para id="para-ch18-33">Here, we include the <filename>kalam</filename> starter script
+        and the <filename>kalam.bat</filename> and batch file. Then we
+        recursively include everything in the directories
+        <filename>data</filename>, <filename>pixmaps</filename> and
+        <filename>dialogs</filename>. (The latter is not absolutely
+        necessary for running the application, but it can't hurt to
+        give people access to our dialog designs.)</para>
+
+      <para id="para-ch18-34">The options available for
+        <filename>MANIFEST.in</filename> are:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para id="para-ch18-35">include pat1 pat2 ...</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-36">exclude pat1 pat2 ...</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-37">recursive-include dir pat1 pat2 ...</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-38">recursive-exclude dir pat1 pat2 ...</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-39">global-include pat1 pat2 ...</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-40">global-exclude pat1 pat2 ...</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-41">prune dir</para>
+        </listitem>
+        <listitem>
+          <para id="para-ch18-42">graft dir</para>
+        </listitem>
+      </itemizedlist>
+
+    </sect2>
+
+    <sect2><title>setup.cfg</title>
+
+      <indexterm>
+  <primary>setup.cfg</primary>
+  </indexterm>
+  <indexterm>
+  <primary>distutils</primary><secondary>setup.cfg</secondary>
+  </indexterm>
+  <para id="para-ch18-43">The <filename>setup.py</filename> script takes myriad
+        command-line options. You can also create a
+        <filename>setup.cfg</filename> file that contains the most
+        important options. Amongst those options are a number that tell the
+        installer to install the application in a
+        specific place. The user might need to edit these to reflect
+        his preferences. For Unix, a good default is:
+      </para>
+
+      <programlisting>
+[install]
+install_lib=/usr/local/share/kalam
+install_data=/usr/local/share/kalam
+install_scripts=/usr/local/bin
+      </programlisting>
+
+      <para id="para-ch18-44">All Python files (everything that is mentioned in the
+        <varname>py_modules</varname> or <varname>packages</varname>
+        argument in <filename>setup.py</filename>) will be installed
+        in the install_lib directory. Everything that is mentioned in
+        the <varname>data_files</varname> argument will be installed
+        in the install_data directory. Likewise, everything that is
+        included in the <varname>scripts</varname> argument will be
+        installed in install_scripts.</para>
+
+    </sect2>
+
+    <sect2><title>Creating the source distribution</title>
+
+      <indexterm>
+  <primary>packaging</primary><secondary>building the package</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>distutils</primary><secondary>building the package</secondary>
+  </indexterm>
+  <para id="para-ch18-45">We are now ready to create the source distribution. This is a
+        simple, one-line command:</para>
+
+      <screen>
+boud@calcifer:~/src/kalam > python setup.py sdist
+      </screen>
+
+      <para id="para-ch18-46">The distutils will then spew a lot of text on the screen,
+        and deliver your package in a subdirectory named
+        <filename>dist</filename>:</para>
+      <screen>
+boudewijn@maldar:~/doc/pyqt/ch18/kalam > python setup.py sdist
+running sdist
+reading manifest template 'MANIFEST.in'
+writing manifest file 'MANIFEST'
+creating kalam-1.0
+creating kalam-1.0/charmap
+creating kalam-1.0/data
+creating kalam-1.0/dialogs
+creating kalam-1.0/kalamlib
+creating kalam-1.0/pixmaps
+creating kalam-1.0/typometer
+creating kalam-1.0/workspace
+making hard links in kalam-1.0...
+hard linking README -> kalam-1.0
+hard linking edmund.py -> kalam-1.0
+hard linking kalam -> kalam-1.0
+hard linking kalam.bat -> kalam-1.0
+hard linking setup.cfg -> kalam-1.0
+hard linking setup.py -> kalam-1.0
+hard linking sitecustomize.py -> kalam-1.0
+hard linking startup.py -> kalam-1.0
+hard linking charmap/__init__.py -> kalam-1.0/charmap
+hard linking charmap/charmap.py -> kalam-1.0/charmap
+hard linking data/Blocks.txt -> kalam-1.0/data
+hard linking dialogs/frmfindreplace.ui -> kalam-1.0/dialogs
+hard linking dialogs/frmsettings.ui -> kalam-1.0/dialogs
+hard linking kalamlib/__init__.py -> kalam-1.0/kalamlib
+hard linking kalamlib/configtest.py -> kalam-1.0/kalamlib
+hard linking kalamlib/dlgfindreplace.py -> kalam-1.0/kalamlib
+hard linking kalamlib/dlgsettings.py -> kalam-1.0/kalamlib
+hard linking kalamlib/docmanager.py -> kalam-1.0/kalamlib
+hard linking kalamlib/docmanagertest.py -> kalam-1.0/kalamlib
+hard linking kalamlib/frmfindreplace.py -> kalam-1.0/kalamlib
+hard linking kalamlib/frmsettings.py -> kalam-1.0/kalamlib
+hard linking kalamlib/kalamapp.py -> kalam-1.0/kalamlib
+hard linking kalamlib/kalamconfig.py -> kalam-1.0/kalamlib
+hard linking kalamlib/kalamdoc.py -> kalam-1.0/kalamlib
+hard linking kalamlib/kalamview.py -> kalam-1.0/kalamlib
+hard linking kalamlib/macromanager.py -> kalam-1.0/kalamlib
+hard linking kalamlib/macromanagertest.py -> kalam-1.0/kalamlib
+hard linking kalamlib/main.py -> kalam-1.0/kalamlib
+hard linking kalamlib/resources.py -> kalam-1.0/kalamlib
+hard linking pixmaps/fileprint.xpm -> kalam-1.0/pixmaps
+hard linking pixmaps/find.png -> kalam-1.0/pixmaps
+hard linking pixmaps/listspace.png -> kalam-1.0/pixmaps
+hard linking pixmaps/listspace.xpm -> kalam-1.0/pixmaps
+hard linking pixmaps/splitspace.png -> kalam-1.0/pixmaps
+hard linking pixmaps/splitspace.xpm -> kalam-1.0/pixmaps
+hard linking pixmaps/stackspace.png -> kalam-1.0/pixmaps
+hard linking pixmaps/stackspace.xpm -> kalam-1.0/pixmaps
+hard linking pixmaps/tabmanager.png -> kalam-1.0/pixmaps
+hard linking pixmaps/tabmanager.xpm -> kalam-1.0/pixmaps
+hard linking pixmaps/workspace.png -> kalam-1.0/pixmaps
+hard linking pixmaps/workspace.xpm -> kalam-1.0/pixmaps
+hard linking typometer/__init__.py -> kalam-1.0/typometer
+hard linking typometer/typometer.py -> kalam-1.0/typometer
+hard linking workspace/__init__.py -> kalam-1.0/workspace
+hard linking workspace/listspace.py -> kalam-1.0/workspace
+hard linking workspace/splitspace.py -> kalam-1.0/workspace
+hard linking workspace/stackspace.py -> kalam-1.0/workspace
+hard linking workspace/tabmanager.py -> kalam-1.0/workspace
+hard linking workspace/workspace.py -> kalam-1.0/workspace
+creating dist
+tar -cf dist/kalam-1.0.tar kalam-1.0
+gzip -f9 dist/kalam-1.0.tar
+removing 'kalam-1.0' (and everything under it)
+boudewijn@maldar:~/doc/pyqt/ch18/kalam >
+      </screen>
+
+      <para id="para-ch18-47">That's it&mdash;a nice, clean and complete source distribution
+        of <application>Kalam</application>. You can generate both zip
+        archives and gzipped tarballs by providing options on the
+        command line:</para>
+
+      <screen>
+boudewijn@maldar:~/doc/pyqt/ch18/kalam > python setup.py sdist  --formats=gztar,zip
+      </screen>
+
+      <para id="para-ch18-48">The options are zip, gztar, bztar, ztar and tar, for
+        zipfiles, gzipped tarfiles, bzipped tarfiles, compressed
+        tarfiles and plain tar files.</para>
+
+    </sect2>
+
+    <sect2><title>Installing a source archive</title>
+
+      <indexterm>
+  <primary>distutils</primary><secondary>installing a package</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>installation</primary><secondary>of your application</secondary>
+  </indexterm>
+  <para id="para-ch18-49">Installing a source archive is a simple matter of
+        unpacking the archive and executing the following command:</para>
+
+      <screen>
+ boudewijn@maldar:~/doc/pyqt/ch18/kalam/dist/kalam-1.0 > python setup.py install
+      </screen>
+
+      <para id="para-ch18-50">Distutils will copy everything to the location
+        designated in <filename>setup.cfg</filename>, and
+        <application>kalam</application> will be ready to run!.</para>
+    </sect2>
+
+
+
+  </sect1>
+
+
+  <sect1><title>Creating Unix RPM packages</title>
+
+    <indexterm>
+  <primary>RPM</primary>
+  </indexterm>
+  <indexterm>
+  <primary>distutils</primary><secondary>RPM</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>installation</primary><secondary>creating rpms</secondary>
+  </indexterm>
+  <para id="para-ch18-51">It is very easy to create installable RPM packages with
+      distutils. RPM is one of the two or three standard package
+      formats in the Unix world (the others are compressed or
+      gzipped tar archives and Debian packages) and most Linux
+      distributions support it.</para>
+
+    <para id="para-ch18-52">RPM has strong support for dependency checking. This
+      means you can create a package that cannot be installed
+      unless certain other packages have been installed first.
+      You can even demand that those packages are of a certain version
+      number.</para>
+
+    <para id="para-ch18-53">Creating an RPM takes just one command:</para>
+
+    <screen>
+boudewijn@maldar:~/doc/pyqt/ch18/kalam > python setup.py bdist_rpm
+    </screen>
+
+    <para id="para-ch18-54">To ensure a really nice RPM, a few options should be
+      set. The best place to set these is in the <filename>setup.cfg</filename>
+      file:</para>
+
+    <programlisting>
+[bdist_rpm]
+release = 1
+packager = Boudewijn Rempt &lt;boud@rempt.xs4all.nl&gt;
+doc_files = README
+        COPYING
+provides = kalam
+requires = python pyqt
+distribution_name = SuSE 7.2
+    </programlisting>
+
+    <para id="para-ch18-55">Most of the options merely provide some extra meta-data, but
+      the <varname>provides</varname> and <varname>requires</varname>
+      options are needed by RPM to do its dependency checking. In this
+      case, <application>Kalam</application> requires both
+      <application>Python</application> and PyQt to be present, which is
+      hardly a surprise! You can make these requirements more specific
+      by also asking for a version number:</para>
+
+    <programlisting>
+requires = python-2.2 pyqt-2.5
+    </programlisting>
+
+    <indexterm>
+  <primary>RPM</primary><secondary>writing spec files</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>spec files</primary>
+  </indexterm>
+  <para id="para-ch18-56">RPM is a complicated package format in
+      itself, and you can customize the installation process
+      considerably by using <filename>.spec</filename> file. The book
+      Maximum RPM (freely available at http://www.rpmdp.org/rpmbook/)
+      gives detailed information on writing these files. At the moment
+      distutils writes the file for you, based on the options in
+      <filename>setup.py</filename> and
+      <filename>setup.cfg</filename>. A future release of distutils
+      will support using your own <filename>.spec</filename>
+      files.</para>
+
+
+
+  </sect1>
+
+  <sect1><title>Windows installers</title>
+
+    <indexterm>
+  <primary>distutils</primary><secondary>Windows installation</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>windows</primary><secondary>creating installation packages</secondary>
+  </indexterm>
+  <para id="para-ch18-57">As long as you haven't created any C or
+      C++ extensions yourself, creating an executable Windows
+      installer is as simple as calling:</para>
+
+    <screen>
+boudewijn@maldar:~/doc/pyqt/ch18/kalam > python setup.py bdist_wininst
+    </screen>
+
+    <para id="para-ch18-58">You can do this on a Unix system, too. The
+      resulting executable, <filename>kalam-1.0.win32.exe</filename>,
+      is a self-extracting, self-installing zip archive (this means
+      that you need to have the <command>zip</command> utility
+      installed in order to be able to build the package, since
+      <command>zip</command> is not part of Python). Of course, before
+      creating this archive, you must edit
+      <filename>setup.cfg</filename> to make sure your application
+      ends up in a folder that conforms to the Windows way of
+      life.</para>
+
+  </sect1>
+
+  <sect1><title>Desktop integration</title>
+
+    <indexterm>
+  <primary>installation</primary><secondary>desktop integration</secondary>
+  </indexterm>
+  <para id="para-ch18-59">Integrating your application in the users
+      desktop environment demands some knowledge of that environment.
+      For instance, if you have created an application for KDE, you
+      should install the files to the correct place in the
+      <filename>/opt/kde2</filename> directory. You need to provide
+      the <filename>.desktop</filename> files. The demands differ for
+      Gnome, and they differ again for Windows and OS X, and they
+      differ between versions of each OS, so I can't very well give
+      guidelines for this part.</para>
+
+  </sect1>
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"~/doc/pyqt/chapter.ced"
+End:
+-->

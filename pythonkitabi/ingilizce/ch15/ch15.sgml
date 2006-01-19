@@ -1,0 +1,1238 @@
+<chapter id="ch15">
+
+  <title>A Macro Language for <application>Kalam</application></title>
+
+  <indexterm>
+  <primary>macros</primary>
+  </indexterm>
+  <para id="para-ch15-1">One thing that separates a run-of-the-mill
+    application from a real tool&mdash;one that users will take refuge
+    in day after day&mdash;is a good macro facility. Python, which was
+    designed with ease of use in mind, is a natural choice for a macro
+    language. Nine out of ten secretaries would choose Python over the
+    WordPerfect macro language or Visual Basic, given the choice!
+    Isn't it fortunate that we have already begun developing our
+    application in Python?</para>
+
+
+  <para id="para-ch15-2">This chapter deals with integrating a Python
+    based macro facility in <application>Kalam</application>. In the
+    course of this chapter we investigate the execution of Python code
+    while dynamically adding actions and menu items. We also cover
+    granting user access to a predefined API of our application
+    objects.</para>
+
+  <para id="para-ch15-3">Of course, the underlying mechanics of a
+    macro facility are not particular to any GUI toolkit. And if you
+    decide to convert your application to C++, you can still embed
+    Python, wrap the API using <application>sip</application>, and
+    allow your users to execute the same macros. We handle powerful
+    stuff in this chapter, and it's well worth the effort. </para>
+
+
+  <sect1><title>Executing Python code from Python</title>
+
+    <indexterm>
+  <primary>eval()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>exec()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>execfile()</primary>
+  </indexterm>
+  <para id="para-ch15-4">There are three basic ways to execute
+      Python code that is not directly (i.e. imported as a module)
+      part of your application. Single statements can be executed with
+      <function>eval()</function>; we already encountered
+      <function>eval()</function> in <xref linkend="ch13">. Strings
+      that contain more than a single statement of Python code can be
+      executed with <function>exec()</function>, while Python code
+      that is saved in a file can be executed with
+      <function>execfile()</function>.</para>
+
+    <indexterm>
+  <primary>compile()</primary>
+  </indexterm>
+  <para id="para-ch15-5">Both <function>eval()</function> and
+      <function>exec()</function> can be fed either plain text strings
+      or pre-compiled Python byte code. You can create blobs of byte
+      code with the <function>compile()</function> function, but you
+      don't have to&mdash;it is simply a little more efficient to use
+      bytecode if you execute the same code more than once. The
+      <function>evalfile()</function> function reads in a file and
+      executes the contents, which must be plain text. You cannot feed
+      <function>execfile</function> compiled Python byte code.</para>
+
+    <para id="para-ch15-6">Please note that
+      <function>eval()</function>, <function>exec()</function>,
+      <function>execfile()</function> and
+      <function>compile()</function> are the real ginger: this is what
+      your Python interpreter uses to execute your code.</para>
+
+    <para id="para-ch15-7">The mere ability to execute random bits of
+      code is quite powerful in itself, but code only becomes truly
+      useful if it no longer exists in a void, but can call other,
+      pre-existing bits of code.</para>
+
+    <para id="para-ch15-8">The code we execute with
+    <function>eval()</function>, <function>exec()</function> and
+    <function>execfile()</function> should be brought into relation
+    with the other Python modules that exist in the library, and with
+    the code of our application. Not only that, but preferably also
+    with the <emphasis>state</emphasis>, that is, the variables and
+    objects, of the application that asks <function>eval()</function>,
+    <function>exec()</function> and <function>execfile()</function> to
+    execute the code.</para>
+
+
+    <indexterm>
+  <primary>globals</primary>
+  </indexterm>
+  <para id="para-ch15-9">To that end, <function>eval()</function>,
+      <function>exec()</function> and <function>execfile()</function>
+      take two parameters. The first, <varname>globals</varname>, is a
+      dictionary that represents the <emphasis>global</emphasis>
+      namespace. You can retrieve the global namespace of your
+      application with the function <function>globals()</function>.
+      The global namespace contains all imported classes, built-in
+      functions and all global
+      variables, but you can also construct a restricted global
+      environment dictionary yourself.</para>
+
+    <indexterm>
+  <primary>locals</primary>
+  </indexterm>
+  <para id="para-ch15-10">The second argument,
+      <varname>locals</varname>, is a dictionary that represents the
+      <emphasis>local</emphasis> namespace. You can retrieve it with
+      <function>locals()</function>. The <varname>locals</varname>
+      dictionary contains whatever names are local to the function
+      your application is currently in. You can also create a
+      restricted (or expanded) <varname>locals</varname> dictionary
+      yourself.</para>
+
+    <warning>
+      <para id="para-ch15-11">If you mess about with the globals and
+        locals dictionary, be prepared to encounter what the Python
+        Language Reference calls "undefined behavior". For instance,
+        if you execute a bit of code with an empty locals dictionary,
+        you cannot add new names to the namespace. This means that
+        import won't work, for instance, or even variable assignments.
+        Generally speaking, it is best to simply pass the
+        globals dictionary, which means that the locals dictionary
+        used by the executed code will be a copy of the globals
+        dictionary.</para>
+
+    </warning>
+
+
+    <indexterm>
+  <primary>globals</primary><secondary>examined</secondary>
+  </indexterm>
+  <para id="para-ch15-12">Let's compare these locals and globals
+      from an interactive Python session:</para>
+
+    <screen>
+Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; globals()
+{'__doc__': None, '__name__': '__main__',
+ '__builtins__': &lt;module '__builtin__' (built-in)&gt;}
+&gt;&gt;&gt; def f():
+...     a=1
+...     print "locals: ", locals()
+...
+&gt;&gt;&gt; globals()
+{'f': &lt;function f at 0x8124a94&gt;, '__doc__': None,
+ '__name__': '__main__',
+ '__builtins__': &lt;module '__builtin__' (built-in)&gt;}
+&gt;&gt;&gt; f()
+locals:  {'a': 1}
+&gt;&gt;&gt;
+    </screen>
+
+    <indexterm>
+  <primary>locals</primary><secondary>examined</secondary>
+  </indexterm>
+  <para id="para-ch15-13">First, we take a look at the contents of
+      the <varname>globals</varname> dictionary when Python is first
+      started. Then, we define a simple function
+      <function>f</function>, that creates a variable
+      <varname>a</varname>, which contains the value 1 and which
+      prints the <varname>locals</varname> dictionary. Retrieving the
+      value of <varname>globals</varname> shows that
+      <function>f</function> is now part of
+      <varname>globals</varname>. Running <function>f</function> shows
+      that <varname>a</varname> is the only member of
+      <varname>locals</varname>.</para>
+
+    <para id="para-ch15-14">By default, the <varname>globals</varname>
+      and <varname>locals</varname> arguments of
+      <function>eval()</function>, <function>exec()</function> and
+      <function>execfile()</function> contain the current contents of
+      <varname>globals</varname> and <varname>locals</varname>, but
+      you can alter this&mdash; for instance, to restrict access to
+      certain application objects.</para>
+
+    <sect2><title>Playing with <function>eval()</function></title>
+
+      <para id="para-ch15-15"><function>eval()</function> functions as
+        if it executes a single line of code in the Python
+        interpreter: it returns a value that represents the result of
+        the evaluated expression. If the statement you give to
+        <function>eval()</function> raises an exception, the
+        surrounding code gets that exception, too. Playing around with
+        <function>eval()</function> will give you a feeling for what
+        it can do for you.</para>
+
+      <figure>
+        <title>Playing with <function>eval()</function></title>
+        <screen>
+boud@calcifer:~/doc/pyqt/ch15 &gt; python
+Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; eval
+&lt;built-in function eval&gt;
+&gt;&gt;&gt; eval("1==1")
+1
+&gt;&gt;&gt; import string
+&gt;&gt;&gt; eval("string.split('bla bla bla')")
+['bla', 'bla', 'bla']
+&gt;&gt;&gt; eval("string.split('bla bla bla')", {}, {})
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "&lt;string&gt;", line 0, in ?
+NameError: There is no variable named 'string'
+&gt;&gt;&gt; eval("""from qt import *
+... s=QString("bla bla bla")
+... print str(s).split()
+... """)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "&lt;string&gt;", line 1
+    from qt import *
+       ^
+SyntaxError: invalid syntax
+&gt;&gt;&gt;
+      </screen>
+      </figure>
+      <indexterm>
+  <primary>eval()</primary>
+  </indexterm>
+  <para id="para-ch15-16">First, we take a look at what "eval" is
+        for a beast. A built-in function. OK, let's try it out. Yes, 1
+        equals 1 evaluates to 1, which means TRUE -
+        <function>eval</function> neatly returns the result of the
+        code it executes. Next, having imported the
+        <filename>string</filename> module, we use it to split a
+        string. Here, <function>eval()</function> has access to the
+        global namespace, which means it can access the module we just
+        imported, so <function>string.split()</function> evaluates
+        just fine. However, if we try to evaluate the same expression,
+        but with empty global and local dictionaries, we get a
+        <varname>NameError</varname> exception - suddenly
+        <function>string</function> isn't known anymore. Trying to
+        evaluate something more complicated, something that is not a
+        single expression that returns a value (even if it's only
+        <varname>None</varname>)  doesn't work at all - which is why
+        <function>exec()</function> exists.</para>
+
+    </sect2>
+
+    <sect2><title>Playing with <function>exec</function></title>
+
+      <indexterm>
+  <primary>exec()</primary>
+  </indexterm>
+  <para id="para-ch15-17">First, <function>exec</function> is
+        really a statement, not a function, so it doesn't return
+        anything.  Just as with <function>eval()</function>,
+        exceptions are propagated outside the code block you execute.
+        You can feed <function>exec</function> a string, a compiled
+        code object or an open file. The file will be parsed until an
+        EOF (end-of-file) occurs, and executed. The same rules hold
+        for the global and local namespace dictionaries as with
+        <function>eval()</function> - but keep in mind that running
+        <function>exec</function> might add new items to those
+        namespaces.</para>
+
+      <figure><title>Playing with <function>exec</function></title>
+        <screen>
+boud@calcifer:~/doc/pyqt/ch15 &gt; python
+Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; globals()
+{'__doc__': None, '__name__': '__main__',
+ '__builtins__': &lt;module '__builtin__' (built-in)&gt;}
+&gt;&gt;&gt; code = """
+... import qt
+... s = qt.QString("bla bla bla")
+... print string.split(str(s))
+... """
+&gt;&gt;&gt; exec code
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "&lt;string&gt;", line 4, in ?
+NameError: There is no variable named 'string'
+&gt;&gt;&gt; import string
+&gt;&gt;&gt; exec code
+['bla', 'bla', 'bla']
+&gt;&gt;&gt; globals()
+{'__doc__': None, 'string': &lt;module 'string' from
+'/usr/lib/python2.0/string.pyc'&gt;, '__name__':
+ '__main__', '__builtins__': &lt;module '__builtin__'
+ (built-in)&gt;, 'qt': &lt;module 'qt' from
+'/usr/lib/python2.0/site-packages/qt.py'&gt;,
+ 'code': '\012import qt\012s = qt.QString("bla bla bla")\012print
+string.split(str(s))\012', 's': &lt;qt.QString instance at 0x8278af4&gt;}
+&gt;&gt;&gt;
+        </screen>
+      </figure>
+
+      <para id="para-ch15-18">First, we create a string that contains
+        the bit of Python we want to execute. Note how it imports the
+        <filename>qt</filename> module, and how it uses the
+        <filename>string</filename> module. Executing the code doesn't
+        work: it throws a <varname>NameError</varname> because
+        <filename>string</filename> isn't known. Importing
+        <filename>string</filename> into the global namespace makes it
+        also available to <function>exec</function>, of course.
+        Executing the <varname>code</varname> string now succeeds, and
+        a quick peek in <varname>globals</varname> learns us that the
+        module <filename>qt</filename> has been added.</para>
+    </sect2>
+
+    <sect2><title>Playing with <function>execfile()</function></title>
+
+      <indexterm>
+  <primary>execfile()</primary>
+  </indexterm>
+  <para id="para-ch15-19">The <function>execfile()</function>
+        statement is rarely used; after all, it can't do anything
+        beyond what the plain <function>exec</function> statement
+        already does. <function>execfile()</function> functions
+        exactly the same as <function>exec</function>, except that the
+        first argument must be a filename (it doesn't need to be an
+        open file object). Note that <function>execfile()</function>
+        differs from <literal>import</literal> in that it doesn't
+        create a new module in the global namespace. Note the
+        difference between <function>execfile()</function> and
+        <literal>import</literal> in the following output:</para>
+
+      <figure><title>Playing with
+      <function>execfile()</function></title>
+        <screen>
+Python 2.0 (#1, Mar  1 2001, 02:42:21)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+>>> execfile("main.py")
+Initializing configuration
+{'kalam': &lt;kalamapp.KalamApp instance at 0x825f014>,
+ 'app': &lt;qt.QApplication instance at 0x814a2a4>, 'args': ['']}
+Saving configuration
+>>> import main
+>>> globals()
+{..., 'main': &lt;module 'main' from 'main.py'>, ... }
+        </screen>
+      </figure>
+
+      <para id="para-ch15-20">In the middle of all the
+        <filename>qt</filename> classes the <filename>main</filename>
+        module of <application>Kalam</application> imports into
+        <varname>globals</varname>, we find the
+        <filename>main</filename> module itself, which isn't there if
+        we just <filename>execfile</filename>
+        <filename>main.py</filename>.</para>
+
+    </sect2>
+
+  </sect1>
+
+ <sect1><title>Integrating macros with a GUI</title>
+
+    <para id="para-ch15-21">Before we can start defining what we allow
+      our users to do to <application>Kalam</application>, we need to
+      build the core macro execution functionality. The first step is
+      to make sure users can execute the contents of a
+      document.</para>
+
+    <sect2><title>Executing the contents of a document</title>
+
+      <indexterm>
+  <primary>QAction</primary>
+  </indexterm>
+  <para id="para-ch15-22">Unless you have skipped all previous
+        occasions of creating and adding an action to the menubar and
+        the toolbar, you will know by now how to do so. I have
+        supplied the slot code that executes the contents of the
+        currently active document. You will find the complete code in
+        the <filename>kalamapp.py</filename> file that belongs to this
+        chapter.</para>
+
+      <programlisting>
+# kalamapp.py
+...
+class KalamApp(QMainWindow):
+...
+    # Macro slots
+...
+    def slotMacroExecuteDocument(self):
+        if self.docManager.activeDocument() == None:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "No document to execute as a macro ")
+            return
+
+        try:
+            bytecode = compile(str(self.docManager.activeDocument().text()),
+                               "&lt;string&gt;",
+                               "exec")
+        except Exception, e:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "Could not compile " +
+                                 self.docManager.activeDocument().title() +
+                                 "\n" + str(e))
+        try:
+            exec bytecode # Note: we don't yet have a separate namespace
+                          # for macro execution
+        except Exception, e:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "Error executing " +
+                                 self.docManager.activeDocument().title() +
+                                 "\n" + str(e))
+...
+      </programlisting>
+
+      <indexterm>
+  <primary>executing arbitrary code</primary>
+  </indexterm>
+  <indexterm>
+  <primary>KalamDoc</primary><secondary>execute as code</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>KalamApp</primary><secondary>execute document as code</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>compile()</primary>
+  </indexterm>
+  <para id="para-ch15-23">We are being a bit careful here, and
+        thus compile the code first to check for syntax errors. These,
+        along with execution errors, will be shown in a dialog box.
+        Note that anything you print from here will go to standard
+        output&mdash;that is, a black hole if you run
+        <application>Kalam</application> by activating an icon, or the
+        terminal window if you run <application>Kalam</application>
+        from the shell prompt. It would be a logical step to redirect
+        any output to a fresh <classname>Kalam</classname> document
+        (this is what <application>Emacs</application> does). It is
+        quite easy to achieve. You can reassign the standard and error
+        output channels to any object you want, as long as it has a
+        <function>write()</function> function that accepts a string.
+        We might want to add a <function>write()</function> function
+        to <classname>KalamDoc</classname>.</para>
+
+      <indexterm>
+  <primary>output redirection</primary>
+  </indexterm>
+  <para id="para-ch15-24">The implementation of
+        <function>write()</function> in
+        <classname>KalamDoc</classname> is very simple:</para>
+
+      <programlisting>
+# kalamdoc.py - fragment
+...
+    def write(self, text, view = None):
+        self.text().append(text)
+        self.emit(PYSIGNAL("sigDocTextChanged"),
+                  (self._text, view))
+      </programlisting>
+
+      <indexterm>
+  <primary>write()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>KalamDoc</primary><secondary>write()</secondary>
+  </indexterm>
+  <para id="para-ch15-25">Having done that, redirecting all output
+        is easy:</para>
+
+      <programlisting>
+        ...
+    def slotMacroExecuteDocument(self):
+        ...
+            import sys
+            document = self.docManager.createDocument(KalamDoc, KalamView)
+            document.setTitle("Output of " + title)
+            oldstdout = sys.stdout
+            oldstderr = sys.stderr
+
+            sys.stdout = document
+            sys.stderr = document
+
+            exec bytecode # Note: we don't yet have a separate namespace
+                          # for macro execution
+
+            sys.stdout = oldstdout
+            sys.stderr = oldstderr
+        ...
+      </programlisting>
+
+      <indexterm>
+  <primary>output redirection</primary>
+  </indexterm>
+  <para id="para-ch15-26">It is necessary to save the "real"
+        standard output and standard error channels in order to be
+        able to restore them when we are done printing to the output
+        document. Otherwise all output, from anywhere inside Kalam,
+        would go forever to that document, with nasty consequences if
+        the user were to remove the document.</para>
+
+      <para id="para-ch15-27">Until we create a namespace specially
+        for executing macros, everything runs locally to the function
+        that executes the macro. That is, you can use
+        <varname>self</varname> to refer to the current instance of
+        <classname>KalamApp</classname>.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch15/macro.eps">
+        </imageobject>
+        <caption>
+          <para id="para-ch15-28">Executing a bit of code from a
+            document.</para>
+        </caption>
+      </mediaobject>
+
+      <indexterm>
+  <primary>MacroManager</primary>
+  </indexterm>
+  <para id="para-ch15-29">Of course, littering the
+        <classname>KalamApp</classname> with macro execution code
+        isn't the best of ideas. This leads us to the creation of a
+        macro manager class, <classname>MacroManager</classname>,
+        which keeps a dictionary of compiled code objects that can be
+        executed at will. I won't show the unit tests here: it is
+        available with the full source code.</para>
+
+      <programlisting>
+"""
+macromanager.py - manager class for macro administration and execution
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+
+from qt import *
+import sys
+
+class MacroError(Exception):pass
+
+class NoSuchMacroError(MacroError):
+
+    def __init__(self, macro):
+        ERR = "Macro %s is not installed"
+        self.errorMessage = ERR % (macro)
+
+    def __repr__(self):
+        return self.errorMessage
+
+    def __str__(self):
+        return self.errorMessage
+
+
+class CompilationError(MacroError):
+
+    def __init__(self, macro, error):
+        ERR = "Macro %s could not be compiled. Reason: %s"
+        self.errorMessage = ERR % (macro, str(error))
+        self.compilationError = error
+
+    def __repr__(self):
+        return self.errorMessage
+
+    def __str__(self):
+        return self.errorMessage
+
+class ExecutionError(MacroError):
+
+    def __init__(self, error):
+        ERR = "Macro could not be executed. Reason: %s"
+        self.errorMessage = ERR % (str(error))
+        self.executionError = error
+
+    def __repr__(self):
+        return self.errorMessage
+
+    def __str__(self):
+        return self.errorMessage
+      </programlisting>
+
+      <indexterm>
+  <primary>exception hierarchy</primary>
+  </indexterm>
+  <para id="para-ch15-30">First, a couple of exceptions are
+        defined. We want to separate the GUI handling of problems with
+        the macro from the actual execution, so that whenever
+        something goes wrong, an exception is thrown.</para>
+
+      <programlisting>
+class MacroAction(QAction):
+
+    def __init__(self, code, *args):
+        apply(QAction.__init__,(self,) + args)
+        self.code = code
+        self.bytecode = self.__compile(code)
+        self.locations=[]
+        self.connect(self,
+                     SIGNAL("activated()"),
+                     self.activated)
+
+    def activated(self):
+        self.emit(PYSIGNAL("activated"),(self,))
+
+    def addTo(self, widget):
+        apply(QAction.addTo,(self, widget))
+        self.locations.append(widget)
+
+    def removeFrom(self, widget):
+        QAction.removeFrom(self, widget)
+        del self.locations[widget]
+
+    def remove(self):
+        for widget in self.locations:
+            self.removeFrom(widget)
+
+    def __compile(self, code):
+        try:
+            bytecode = compile(code,
+                               "&lt;string&gt;",
+                               "exec")
+            return bytecode
+        except Exception, e:
+            raise CompilationError(macroName, e)
+
+    def execute(self, out, err, globals, locals):
+        try:
+            oldstdout = sys.stdout
+            oldstderr = sys.stderr
+            
+            sys.stdout = out
+            sys.stderr = err
+            exec self.bytecode in globals
+            sys.stdout = oldstdout
+            sys.stderr = oldstderr
+        except Exception, e:
+            print e
+            print sys.exc_info
+            sys.stdout = oldstdout
+            sys.stderr = oldstderr
+            raise ExecutionError(e)
+      </programlisting>
+
+      <indexterm>
+  <primary>QAction</primary>
+  </indexterm>
+  <para id="para-ch15-31">By encapsulating each macro in a
+        <classname>QAction</classname>, it will become very easy to
+        assign shortcut keys, menu items and toolbar buttons to a
+        macro.</para>
+
+      <indexterm>
+  <primary>MacroAction</primary>
+  </indexterm>
+  <indexterm>
+  <primary>environment</primary>
+  </indexterm>
+  <para id="para-ch15-32">The <classname>MacroAction</classname>
+        class also takes care of compilation and execution. The
+        environment, consisting of the <varname>globals</varname> and
+        <varname>locals</varname> dictionaries, is passed in the
+        <function>execute()</function> function. We also pass two
+        objects that replace the standard output and standard error
+        objects. These can be Kalam documents, for instance. Note how
+        we carefully restore the standard output and standard error
+        channels. The output of the print statement in the exception
+        clause will go to the redefined channel (in this instance, the
+        kalam document).</para>
+
+
+      <programlisting>
+class MacroManager(QObject):
+
+    def __init__(self, parent = None, g = None, l = None, *args):
+        """ Creates an instance of the MacroManager.
+        Arguments:
+        g = dictionary that will be used for the global namespace
+        l = dictionary that will be used for the local namespace
+        """
+        apply(QObject.__init__,(self, parent,) + args)
+
+        self.macroObjects = {}
+
+        if g == None:
+            self.globals = globals()
+        else:
+            self.globals = g
+
+        if l == None:
+            self.locals = locals()
+        else:
+            self.locals = l
+      </programlisting>
+
+      <para id="para-ch15-33">All macros should be executed in the
+        same environment, which is why the macromanager can be
+        constructed with a <varname>globals</varname> and a
+        <varname>locals</varname> environment. This environment will
+        be used later to create a special API for the macro execution
+        environment, and it will include access to the window (i.e.
+        the <classname>KalamApp</classname> object) and to the
+        document objects (via the <classname>DocManager</classname>
+        object).</para>
+
+      <programlisting>
+    def deleteMacro(self, macroName):
+        del self.macroObjects[macroName]
+
+    def addMacro(self, macroName, macroString):
+        action = MacroAction(macroString, self.parent())
+        self.macroObjects[macroName] = action
+        self.connect(action,
+                     PYSIGNAL("activated"),
+                     self.executeAction)
+        return action
+
+    def executeAction(self, action):
+        action.execute(sys.stdout,
+                       sys.stderr,
+                       self.globals,
+                       self.locals)
+      </programlisting>
+
+      <indexterm>
+  <primary>macros</primary><secondary>adding, removing, executing</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>MacroManager</primary><secondary>executeAction()</secondary>
+  </indexterm>
+  <para id="para-ch15-34">The rest of the
+        <classname>MacroManager</classname> class is simple, including
+        methods to delete and add macros, and to execute a named
+        macro. Note how the <varname>activated</varname> signal of the
+        <classname>MacroAction</classname> is connected to the
+        <function>executeAction</function> slot. This slot then calls
+        <function>execute()</function> on the macro action with
+        standard output and standard error as default output channels.
+        A macro can, of course, create a new document and divert
+        output to that document.</para>
+
+      <para id="para-ch15-35">The <classname>MacroManager</classname>
+        is instantiated as part of the startup process of the main
+        application:</para>
+
+      <programlisting>
+    # kalamapp.py
+    def initMacroManager(self):
+        g=globals()
+        self.macroManager = MacroManager(self, g)
+      </programlisting>
+
+      <indexterm>
+  <primary>MacroManager</primary><secondary>initialisation</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>macros</primary><secondary>API</secondary>
+  </indexterm>
+  <para id="para-ch15-36">Initializing the macromanager will also
+        entail deciding upon a good API for the macro extensions. This
+        will be covered in a later section.</para>
+
+      <para id="para-ch15-37">Adapting the
+        <function>slotMacroExecuteDocument()</function> slot function
+        to use the <classname>MacroManager</classname> is quite
+        straightforward:</para>
+
+      <programlisting>
+    # kalamapp.py
+    def slotMacroExecuteDocument(self):
+        if self.docManager.activeDocument() == None:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "No document to execute as a macro ")
+            return
+
+        title = self.docManager.activeDocument().title()
+        
+        try:
+            macroText = str(self.docManager.activeDocument().text())
+            self.macroManager.addMacro(title, macroText)
+        except CompilationError, e:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "Could not compile " +
+                                 self.docManager.activeDocument().title() +
+                                 "\n" + str(e))
+            return
+        
+        try:
+            doc, view = self.docManager.createDocument(KalamDoc, KalamView)
+            doc.setTitle("Output of " + title)
+            self.macroManager.executeMacro(title, doc, doc)
+        except NoSuchMacroError, e:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "Error: could not find execution code.")
+        except ExecutionError, e:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "Error executing " + title +
+                                 "\n" + str(e))            
+        except Exception, e:
+            QMessageBox.critical(self,
+                                 "Kalam",
+                                 "Unpleasant error %s when trying to run %s." \
+                                 % (str(e), title))
+      </programlisting>
+
+      <para id="para-ch15-38">Note the careful handling of exceptions.
+        You don't want your application to crash or become unstable
+        because of a silly error in a macro.</para>
+
+    </sect2>
+
+
+    <sect2><title>startup macros</title>
+
+      <para id="para-ch15-39">Executing the contents of a document is
+        very powerful in itself&mdash;especially since we have access
+        to the complete <classname>KalamApp</classname> object, from
+        which we can reach the most outlying reaches of
+        <application>Kalam</application>.</para>
+
+      <indexterm>
+  <primary>macros</primary><secondary>startup macros</secondary>
+  </indexterm>
+  <para id="para-ch15-40">It would be very unpleasant for a user
+        to have to load his macros as a document every time he wants
+        to execute a macro. Ideally, a user should be able to define a
+        set of macros that run at start-up, and be able to
+        add macros to menu options and the keyboard.</para>
+
+      <para id="para-ch15-41">Solving the first problem takes care of
+        many other problems in one go. Users who are capable of
+        creating macros are probably able to create a startup macro
+        script that loads all their favorite macros.</para>
+
+      <para id="para-ch15-42">We define two keys in the configuration
+        file, <varname>macrodir</varname> and
+        <varname>startupscript</varname>. These are the name and
+        location of the Python script that is executed when
+        <application>Kalam</application> is started. We start a user
+        macro after all standard initialization is complete:
+        </para>
+
+        <programlisting>
+# kalamapp.py - fragment
+...
+class KalamApp(QMainWindow):
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+        ...
+        # Run the startup macro script
+        self.runStartup()
+
+    ...
+
+    def runStartup(self):
+        """Run a Python script using the macro manager. Which script is
+        run is defined in the configuration variables macrodir and startup.
+
+        All output, and eventual failures are shown on the command-line.
+        """
+        try:
+            startupScript = os.path.join(kalamconfig.get("macrodir"),
+                                         kalamconfig.get("startupscript"))
+            startup = open(startupScript).read()
+            self.macroManager.addMacro("startup", startup)
+            self.macroManager.executeMacro("startup")
+        except Exception, e:
+            print "Could not execute startup macro", e
+        </programlisting>
+
+      <indexterm>
+  <primary>KalamConfig</primary>
+  </indexterm>
+  <para id="para-ch15-43">A sample startup script might start
+      <application>Kalam</application> with an empty document:</para>
+
+      <programlisting>
+# startup.py - startup script for Kalam
+print "Kalam startup macro file"
+self.docManager.createDocument(KalamDoc, KalamView)
+      </programlisting>
+
+      <indexterm>
+  <primary>macros</primary><secondary>access to application objects</secondary>
+  </indexterm>
+  <para id="para-ch15-44">It is already possible to do anything
+        you want using these macro extensions, but life can be made
+        easier by providing shortcut functions: a special macro API.
+        We will create one in the next section. However, a serious
+        macro writer would have to buy a copy of this book in order to
+        be able to use all functionality, because hiding the
+        underlying GUI toolkit would remove far too much power from
+        his hands. </para>
+      </sect2>
+
+  </sect1>
+
+  <sect1><title>Creating a macro API from an application</title>
+
+    <para id="para-ch15-45">Enabling users to execute any bit of
+      Python code they might have lying around, from a document, the
+      menu or keyboard, isn't enough to macro-enable
+      <application>Kalam</application>. For this, we must offer a
+      clean and clear set of functions that can be used to manipulate
+      the data and interface of our application. This is the hardest
+      part, actually. If you can't accomplish this, you might as well
+      tell users to hack your application directly.</para>
+
+    <para id="para-ch15-46">One problem is already apparent in the startup script we
+      created in the previous section. The macro writer needs to
+      call a nebulous entity named <varname>self</varname>, but how
+      is he to know that this is a reference to the application
+      itself?</para>
+
+    <indexterm>
+  <primary>macros</primary><secondary>adding to globals</secondary>
+  </indexterm>
+  <para id="para-ch15-47">It would be more effective to allow access
+      to the application using a logical name. The solution is to add
+      an extra entry to the namespace that is used to initialize the
+      macro manager. This is as simple as adding a key to a
+      dictionary. Let's revisit the
+      <function>initMacroManager()</function> function and add the
+      current <varname>KalamApp</varname> object:</para>
+
+    <programlisting>
+    def initMacroManager(self):
+        g=globals()
+        g["kalam"]=self
+        self.macroManager = MacroManager(self, g)
+    </programlisting>
+
+    <para id="para-ch15-48">Another, and perhaps slightly less hackish
+      way of adding items to the global namespace is the use of the
+      <function>global</function> keyword:</para>
+
+    <programlisting>
+    def initMacroManager(self):
+        global kalam
+        kalam = self
+        self.macroManager = MacroManager(self, globals())
+    </programlisting>
+
+    <indexterm>
+  <primary>global (keyword)</primary>
+  </indexterm>
+  <para id="para-ch15-49">By declaring a variable
+      <varname>global</varname>, it becomes part of the global
+      namespace. Passing that namespace to <function>exec</function>
+      gives all executed code access to the variable.</para>
+
+
+    <sect2><title>Accessing the application itself</title>
+
+      <indexterm>
+  <primary>macros</primary><secondary>access to application</secondary>
+  </indexterm>
+  <para id="para-ch15-50">As an example, I have created a few
+        functions that simplify the creation of new documents and
+        macro's. Because a macro is wrapped in
+        <classname>MacroAction</classname>, which is a subclass of
+        <classname>QAction</classname>, it's very easy to add them to
+        the menu.</para>
+
+    
+
+      <programlisting>
+    # kalamapp.py
+    #
+    # Macro API
+    #
+    def installMacro(self,
+                     action,
+                     menubar = None,
+                     toolbar = None):
+        """
+        Installs a certain macro action in the menu and/or the toolbar
+        """
+        if menubar != None:
+            action.addTo(menubar)
+        if toolbar != None:
+            action.addTo(toolbar)
+
+    def removeMacro(self, action):
+        action.remove()
+
+    def createDocument(self):
+        doc, view = self.docManager.createDocument(KalamDoc, KalamView)
+        return (doc, view)
+
+    def createMacro(self, name, code):
+        return self.macroManager.addMacro(name, code)
+      </programlisting>
+
+      <para id="para-ch15-51">These methods are part of the
+      <classname>KalamApp</classname> class, but it would be nice
+      to not have to prefix class with <varname>kalam</varname> from
+      every macro. So these functions are added to the global
+      namespace, too:</para>
+
+      <programlisting>
+    def initMacroManager(self):
+        g=globals()
+        g["kalam"]=self
+        g["docManager"]=self.docManager
+        g["workspace"]=self.workspace
+        g["installMacro"]=self.installMacro
+        g["removeMacro"]=self.removeMacro
+        g["createDocument"]=self.createDocument
+        g["createMacro"]=self.createMacro
+        self.macroManager = MacroManager(self, g)
+      </programlisting>
+
+      <indexterm>
+  <primary>installMacro</primary>
+  </indexterm>
+  <indexterm>
+  <primary>removeMacro</primary>
+  </indexterm>
+  <indexterm>
+  <primary>createDocument</primary>
+  </indexterm>
+  <indexterm>
+  <primary>createMacro</primary>
+  </indexterm>
+  <indexterm>
+  <primary>edmund.py</primary>
+  </indexterm>
+  <para id="para-ch15-52">Later, we will be writing a nice macro
+        that resides in a file called <filename>edmund.py</filename>.
+        Here's how the <filename>startup.py</filename> script uses the
+        API to install the macro:</para>
+
+      <programlisting>
+#
+# startup.py - Kalam startup macro file"
+#
+edmund = createMacro("edmund", open("edmund.py").read())
+edmund.setMenuText("Edmund")
+edmund.setText("Edmund")
+edmund.setToolTip("Psychoanalyze Edmund")
+edmund.setStatusTip("Psychoanalyze Edmund")
+installMacro(edmund, kalam.macroMenu)
+      </programlisting>
+
+      <para id="para-ch15-53">Using the <varname>kalam</varname> instance of
+        <classname>KalamApp</classname>, the macro writer has access
+        to all menus.  In this case the edmund macro is added to the
+        macro menu, <varname>kalam.macroMenu</varname>.</para>
+
+    </sect2>
+
+    <sect2><title>Accessing application data</title>
+
+      <indexterm>
+  <primary>macros</primary><secondary>access to application data</secondary>
+  </indexterm>
+  <para id="para-ch15-54">This application collects its data in the
+      <classname>KalamDoc</classname> object and shows it using the
+      <classname>KalamView</classname> object. By giving a user access
+      to the entire internal object model via the
+      <classname>DocManager</classname> object, we make it possible to
+      script the creation, modification and saving of documents.
+      </para>
+
+    </sect2>
+
+
+    <sect2><title>Accessing and extending the GUI</title>
+
+      <para id="para-ch15-55">The function
+        <function>installMacro</function>, which we have already seen,
+        is used to add a macro to any menubar or toolbar. What text
+        the macro shows, what tooltips, what icon and what accelerator
+        key is all determined by the settings of the underlying
+        <function>QAction</function> object. In the example above, we
+        didn't set a shortcut or an icon.
+        </para>
+
+      <para id="para-ch15-56">By not hiding the underlying gui toolkit, clever
+        users can do almost anything to your application. It would be
+        a trivial exercise to integrate a Python class browser into
+        <application>Kalam</application>, especially since I have
+        already made a PyQt based standalone class browser, which you
+        can find at http://www.valdyas.org/python. However, let's not
+        be so serious and sensible, and implement something a little
+        more frivolous.</para>
+
+    </sect2>
+
+    <sect2><title><application>Kalam</application> rivals
+    <application>Emacs</application>: an <application>Eliza
+    macro</application>
+      </title>
+
+      <indexterm>
+  <primary>eliza</primary>
+  </indexterm>
+  <indexterm>
+  <primary>Emacs</primary>
+  </indexterm>
+  <para id="para-ch15-57">One of the first extensions to the
+        <application>Emacs</application> editor, way back in the
+        beginning of the eighties, was an
+        <application>Eliza</application> application. A kind of
+        Rogerian psychoanalyst that took the user's input, analyzed it
+        a bit, and said something comprehensible back.</para>
+
+      <para id="para-ch15-58">This is actually a very nice example of
+        working with documents in an editor, since the macro must be
+        aware (more or less) of what the user typed in, and be able
+        react to the pressing of the Enter key. Surely having all the
+        power of Python at our disposal means that we can at least
+        achieve equal status with the doyen of editors!</para>
+
+      <indexterm>
+  <primary>Edmund</primary>
+  </indexterm>
+  <para id="para-ch15-59">So, without further ado, I present
+        Edmund - who doesn't really listen, but does answer back, in
+        his accustomed vein:</para>
+
+      <programlisting>
+import random
+
+class Edmund(QObject):
+    """
+    An Edmund macro for the Kalam Editor.
+
+    Of course, if I really re-implemented Eliza, the responses would bear
+    some relevance to the input. Anyway.
+    """
+
+    def __init__(self, *args):
+        QObject.__init__(self)
+        self.responses = [
+            "First Name?",
+            "Come on, you MUST have a first name.",
+            "Sod Off?",
+            "Madam, without you, life was like a broken pencil...pointless.",
+            "So what you are saying, Percy, is something you have never" +
+            " seen is slightly less blue than something else . . that you " +
+            "have never seen?",
+            "I'm afraid that might not be far enough. " +
+            "Apparently the head Mongol and the Duke are good friends. " +
+            "They were at Eton together.",
+            "Ah ah, not so fast! Not that it would make any difference. " +
+            "We have the preliminary sketches...",
+            "You have absolutely no idea what irony is, have you Baldrick?",
+            "Baldric, you wouldn't recognize a subtle plan if it painted  " +
+            "itself purple and danced naked on a harpsichord singing " +
+            "'subtle plans are here again'.",
+            "Baldric, you have the intellectual capacity of a dirty potato.",
+            "Ah, yes. A maternally crazed gorilla would come in handy " +
+            "at this very moment.",
+            "That would be as hard as finding a piece of hay in an " +
+            "incredibly large stack of needles.",
+            "Normal procedure, Lieutenant, is to jump 200 feet in the air " +
+            "and scatter oneself over a wide area.",
+            "I think I'll write my tombstone - Here lies Edmund Blackadder" +
+            ", and he's bloody annoyed.",
+            "As a reward, Baldrick, take a short holiday. " +
+            ".... Did you enjoy it?"
+    ]
+
+        self.doc, self.view = createDocument()
+        self.doc.setTitle("Talk to Edmund BlackAdder")
+        self.connect(self.view,
+                     PYSIGNAL("returnPressed"),
+                     self.respond)
+        self.view.append("Welcome\n")
+        self.view.goEnd()
+
+    def respond(self):
+        input = str(self.view.textLine(self.view.numLines() - 2))
+        if input.find("love") > 0:
+            response = self.responses[3]
+        elif input.find("dead") > 0:
+            response = self.responses[15]
+        elif input.find("fear") > 0:
+            response = self.responses[5]
+        else:
+            choice = random.randrange(0,len(self.responses),1)
+            response = self.responses[choice]
+        self.view.append(response + "\n\n")
+        self.view.goEnd()
+
+edmund = Edmund()
+      </programlisting>
+
+      <para id="para-ch15-60">Of course, this is an extremely
+        primitive form of amusement, but you get the idea. By
+        accessing the API's of the <classname>KalamDoc</classname> and
+        <classname>KalamView</classname> classes, the macro author can
+        do all kinds of fun things, like reading out lines of the text
+        or adding text to the document. 
+        </para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="50" align="center" fileref="ch15/edmund.eps">
+        </imageobject>
+        <caption><para id="para-ch15-61">Talking heart to heart with your computer.</para>
+        </caption>
+      </mediaobject>
+
+
+    </sect2>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para id="para-ch15-62">Adding Python as a macro language to an application has been
+      fun, and has given the user a lot of power. If you want to
+      restrict your users, you might want to investigate the bastion
+      and restricted execution environments that Python offers.</para>
+
+  </sect1>
+
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->

@@ -1,0 +1,537 @@
+<chapter id="ch22">
+
+  <title>Interface</title>
+
+  <indexterm>
+  <primary>blackadder</primary>
+  </indexterm>
+  <para id="para-ch22-1">In this chapter we quickly walk through the
+    various components of the BlackAdder IDE. Once you have BlackAdder
+    installed, you can start it by typing <command>ba</command> at the
+    Unix shell prompt, or double-clicking the new icon on your
+    desktop. You'll be greeted by a stylish splash screen, followed by
+    the BlackAdder application window.</para>
+
+  <note><para id="para-ch22-2">Please keep in mind that this chapter
+      was written using the <emphasis>beta</emphasis> version of
+      BlackAdder. As a result, certain aspects of BlackAdder were not yet
+      in their final form. For instance, the toolbar icons are expected to
+      change.</para>
+
+  </note>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="30" align="center" fileref="ch22/ba1.eps">
+      </imageobject>
+      <caption><para id="para-ch22-3">BlackAdder and its &lsquo;About'
+          dialog.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+  <indexterm>
+  <primary>blackadder</primary><secondary>finding Python</secondary>
+  </indexterm>
+  <para id="para-ch22-4">If, on the other hand, you are confronted by
+    a window telling you that the Python interpreter has died, you
+    will probably need to correctly set the path to the Python
+    interpreter executable (either <command>python</command> or
+    <command>python.exe</command> on Windows), as described in 
+    <xref linkend="ch21-installing-linux">.</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="50" align="center" fileref="ch22/ba2.eps">
+      </imageobject>
+      <caption><para id="para-ch22-5">Python has given the ghost.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+  <para id="para-ch22-6">However, if all is well, you can start
+    exploring your new development environment.</para>
+
+  <sect1><title>Menubar</title>
+
+    <indexterm>
+  <primary>blackadder</primary><secondary>menus</secondary>
+  </indexterm>
+  <para id="para-ch22-7">The BlackAdder menubar combines
+      functionality for the editing of Python source code and the
+      creation of GUI forms.</para>
+
+    <para id="para-ch22-8">The <guimenu>Tools</guimenu>,
+      <guimenu>Layout</guimenu> and <guimenu>Preview</guimenu> menus
+      contain commands for the creation of forms, while
+      <guimenu>Run</guimenu> is used to start and debug Python
+      scripts. <guimenu>File</guimenu> and <guimenu>Edit</guimenu>
+      have commands for both tasks.</para>
+
+    <para id="para-ch22-9">You can hide or unhide various important
+      parts of BlackAdder with options from the
+      <guimenu>Window</guimenu> menu. These are the project Explorer,
+      the Property Editor, the Object Hierarchy window, the Traceback
+      viewer and the Python interpreter window.</para>
+
+  </sect1>
+
+  <sect1><title>Toolbars</title>
+
+<!-- XXX: button images might change! -->
+
+    <para id="para-ch22-10">BlackAdder possesses an imposing array of
+      toolbars. I'd certainly advise you to not emulate this example
+      in your own application!</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="60" align="center" fileref="ch22/toolbar.eps">
+      </imageobject>
+      <caption><para id="para-ch22-11">The BlackAdder collection of toolbars.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    <indexterm>
+  <primary>blackadder</primary><secondary>toolbars</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>toolbars</primary><secondary>blackadder</secondary>
+  </indexterm>
+  <para id="para-ch22-12">Most of the toolbars are used when
+      designing forms, as they represent different widgets and layout
+      strategies. These widget buttons really belong in a floating
+      tool palette, but let's gloss over that user interface design
+      nicety.</para>
+
+    <para id="para-ch22-13">Going from left to right and top to bottom
+      on the previous image, we encounter the following
+      toolbars:</para>
+
+
+    <sect2><title>File toolbar</title>
+
+      <para id="para-ch22-14">This toolbar contains buttons that can be
+        used to create, open and save BlackAdder projects, single
+        Python scripts and dialog designs. The last two buttons are
+        used to compile either the current dialog design, or all
+        dialog designs in the current project. In this case,
+        compilation means that the XML-based designs are converted to
+        usable Python code. Running a project also means that all form
+        designs will be compiled to Python.</para>
+
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="60" align="center" fileref="ch22/tb1.eps">
+      </imageobject>
+      <caption><para id="para-ch22-15">The file toolbar.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+    </sect2>
+
+    <sect2><title>Edit toolbar</title>
+
+    <para id="para-ch22-16">Undo, redo, cut, copy and paste are all fairly
+      standard functions, and work on both widgets in dialog design
+      mode, and on text in the editor.</para>
+
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="60" align="center" fileref="ch22/tb2.eps">
+      </imageobject>
+      <caption><para id="para-ch22-17">The edit toolbar.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+    </sect2>
+
+    <sect2><title>Execution toolbar</title>
+
+    <para id="para-ch22-18"> This toolbar contains buttons to start
+      scripts and projects, debug scripts and projects, restart
+      debugging, continue running while debugging, single stepping,
+      clear the breakpoints in the currently edited script, clear all
+      breakpoints set in the whole project, and cancel or stop
+      debugging.</para>
+
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="60" align="center" fileref="ch22/tb3.eps">
+      </imageobject>
+      <caption><para id="para-ch22-19">The execution toolbar.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    </sect2>
+    
+    <sect2><title>Layout manager toolbar</title>
+      
+      <para id="para-ch22-20">On the next row we find the layout
+        manager toolbar. Again, from left to right, there are buttons
+        to resize widgets, insert a horizontal, vertical and grid
+        layout manager, remove the current layout manager and insert a
+        spacer object (the spacer is the the curious springy
+        thing).</para>
+      
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="60" align="center" fileref="ch22/tb4.eps">
+          </imageobject>
+          <caption><para id="para-ch22-21">The layout toolbar.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+    
+    <sect2><title>Widgets</title>
+      
+      <para id="para-ch22-22">Next follows a set of buttons that insert
+        display widgets in your design: a textlabel, a picture label,
+        and LCD number, a line, a progressbar, and finally, a textview
+        and a more complex textbrowser (this is a small html browser
+        in itself). These last two buttons are used to insert rich
+        text widgets.</para>
+      
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="60" align="center" fileref="ch22/tb5.eps">
+          </imageobject>
+          <caption><para id="para-ch22-23">The first widget toolbar.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+    
+    <sect2><title>Help</title>
+      
+      <para id="para-ch22-24">The lonely button on the last toolbar of
+        the second row gives you help if you first click on the
+        button, and then on the object you want help with. By clicking
+        it and then subsequently clicking on all toolbar buttons,
+        you'll discover that I haven't been lying to you in this
+        section.</para>
+      
+      <screenshot>
+    <mediaobject>
+          <imageobject>
+            <imagedata scale="60" align="center" fileref="ch22/tb6.eps">
+          </imageobject>
+          <caption><para id="para-ch22-25">The help toolbar.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+      
+    </sect2>
+    
+    <sect2><title>Pointer toolbar</title>
+      
+      <para id="para-ch22-26">The first toolbar on the third row has
+        three buttons. The first resets your cursor to a pointer. This
+        is useful if you want to select a widget in your design, but
+        have previously pressed another button. The second allows you
+        to graphically connect signals and slots between elements on
+        screen. The last button helps you put all the components of
+        your design in the right tab order.</para>
+      
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="60" align="center" fileref="ch22/tb7.eps">
+          </imageobject>
+          <caption><para id="para-ch22-27">The pointer toolbar.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    
+    <sect2><title>More widget toolbars</title>
+
+      <para id="para-ch22-28">The last four toolbars contain more
+        widgets: pushbutton, toolbutton, radio button and checkbox.
+        Then we have group box, button group, frame and tab-bar, next
+        listbox, treeview, iconview  and table. Finally you get
+        line-editor, spin box, multi-line editor, slider and
+        dial.</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="60" align="center" fileref="ch22/tb8_11.eps">
+      </imageobject>
+      <caption><para id="para-ch22-29">The widget toolbars.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    <para id="para-ch22-30">You can also add your own widgets to the
+        palette. If you do so, you will discover BlackAdder has given
+        you a new, and last, button bar.</para>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1><title>Project management</title>
+
+    <indexterm>
+  <primary>project</primary><secondary>managing with BlackAdder</secondary>
+  </indexterm>
+  <para id="para-ch22-31">A BlackAdder project is a simple entity: a
+      grouping of Python scripts and GUI form designs, and perhaps a
+      few extraneous files and folders. You start a project by
+      choosing <guimenuitem>New Project</guimenuitem> from the
+      <guimenu>File</guimenu> menu.</para>
+
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="45" align="center" fileref="ch22/ba3.eps">
+      </imageobject>
+      <caption><para id="para-ch22-32">Creating a new project.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    <para id="para-ch22-33">In this example, we create a project for the editor we
+      develop in Part III of this book.</para>
+
+
+    <para id="para-ch22-34">After you have created the project, you
+      can add items to the project <!-- todo: should this say "items
+      to items"? a typo? Br: yes, a typo. --> by choosing
+      <guimenu>File</guimenu>-<guimenuitem>Add file to
+        project</guimenuitem>, or by creating new files.</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch22/ba4.eps">
+      </imageobject>
+      <caption><para id="para-ch22-35">Adding a file to a project.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    <para id="para-ch22-36">Project files (ending in the
+      <filename>.bap</filename> extension) are saved by default in the
+      directory you started BlackAdder from. Using
+      <guimenu>File</guimenu>-<guimenuitem>Save&nbsp;Project&nbsp;As</guimenuitem>, 
+      you can save your project file wherever you want.</para>
+
+    <para id="para-ch22-37">The project explorer shows all files that
+      are part of your project, and all Python files that can be found
+      on the default Python path.</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch22/ba5.eps">
+      </imageobject>
+      <caption><para id="para-ch22-38">The Project Explorer in BlackAdder.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    <para id="para-ch22-39">By choosing
+      <guimenu>Window</guimenu>-<guimenuitem>Close
+        Project</guimenuitem> you can close your project again. If you
+      close BlackAdder and restart it, it will automatically open your
+      projects again. Every project has its own window in BlackAdder.
+      You can have more than one project open at a time, each in a
+      separate MDI window, and each with its own set of panes. (Again,
+      this is not a good example to emulate; see
+       <xref linkend="ch11"> for a discussion of document/view
+      paradigms).</para>
+
+  </sect1>
+
+  <sect1><title>BlackAdder Configuration</title>
+
+    <indexterm>
+  <primary>blackadder</primary><secondary>configuration</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>configuration</primary><secondary>blackadder</secondary>
+  </indexterm>
+  <para id="para-ch22-40">By choosing <guimenu>Edit</guimenu> -
+      <guimenuitem>Preferences</guimenuitem> you open the preferences
+      dialog window. Here you can alter BlackAdder's configuration
+      options.</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="40" align="center" fileref="ch22/ba6.eps">
+      </imageobject>
+      <caption><para id="para-ch22-41">The configuration dialog.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    <indexterm>
+  <primary>ruby</primary>
+  </indexterm>
+  <para id="para-ch22-42">As you can see, there are six tab panels:
+      General, Python, Ruby, Editor, Form Editor and Debugger. In its
+      current incarnation, BlackAdder supports not only Python, but
+      also another scripting language: Ruby
+      (http://www.ruby-lang.org/en/). Ruby was created by the Japanese
+      hacker Yukihiro Matsumoto, and is quite akin to Python. In this
+      book I don't concern myself with the Ruby bindings to Qt.</para>
+
+    <para id="para-ch22-43">Most of the options are quite
+      self-explanatory. You can ask BlackAdder to not show its splash
+      screen, to automatically open the most recently opened project
+      file, to alter the font used in the editor and interpreter
+      windows, to show a grid in the forms editor, and whether or not
+      to show certain categories of variables in the debugger.</para>
+
+    <indexterm>
+  <primary>indenting</primary><secondary>with four spaces</secondary>
+  </indexterm>
+  <para id="para-ch22-44">One thing I advise you to change is the
+      default indentation width in the Editor tab. Python source code
+      is best appreciated when you write it using an indentation level
+      of four spaces and no tabs. The auto-indent is also
+      helpful.</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+          <imagedata scale="40" align="center" fileref="ch22/ba7.eps">
+      </imageobject>
+      <caption><para id="para-ch22-45">Decent editor settings.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+  </sect1>
+
+  <sect1><title>Editing</title>
+
+    <indexterm>
+  <primary>scintilla</primary>
+  </indexterm>
+  <para id="para-ch22-46">The BlackAdder editor is based on Neil
+      Hodgson's Scintilla editor, which is also available for Linux
+      and Windows as a stand-alone editor, called SciTE
+      (http://www.scintilla.org/SciTE.html).</para>
+
+    <indexterm>
+  <primary>syntax highlighting</primary>
+  </indexterm>
+  <para id="para-ch22-47">This editor has a few very nice features.
+      The syntax highlighting for Python (and many other languages) is
+      nearly instantaneous. It also offers auto-indent. This means
+      that you never have to press TAB to indent another level&mdash;
+      the editor knows when to indent based on the contents of the
+      previous line.</para>
+
+    <indexterm>
+  <primary>code folding</primary>
+  </indexterm>
+  <para id="para-ch22-48">You can also fold in functions and
+      classes. In the gray vertical bar on the left of the editor
+      pane, there are small horizontal lines, akin to minus signs.
+      These correspond to <function>class</function>,
+      <function>def</function> and other block statements. You can
+      click on the minus sign, and suddenly the whole block disappears
+      under its first line, and a thin line is drawn over the width of
+      the pane, indicating the fold:</para>
+
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+          <imagedata scale="40" align="center" fileref="ch22/ba8.eps">
+      </imageobject>
+      <caption><para id="para-ch22-49">Folding in action.</para>
+      </caption>
+    </mediaobject>
+  </screenshot>
+
+    <para id="para-ch22-50">The Scintilla editor component has other
+      interesting features, such as Python tooltips, but these weren't
+      integrated in the beta version of BlackAdder I used to write
+      this book.
+    </para>
+
+  </sect1>
+
+  <sect1><title>Python shell</title>
+
+    <indexterm>
+  <primary>interpreter window</primary>
+  </indexterm>
+  <para id="para-ch22-51">As a final feature, BlackAdder offers a
+      Python shell in a separate window. This is mainly useful for
+      quickly trying out certain ideas. You activate it by choosing
+      <guimenuitem>Python Interpreter</guimenuitem> in the
+      <guimenu>Window</guimenu> menu.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="40" align="center" fileref="ch22/ba9.eps">
+        </imageobject>
+        <caption><para id="para-ch22-52">Python shell window.</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <para id="para-ch22-53">BlackAdder doesn't have an output window,
+      but if you run your scripts in the debugger, all output will
+      appear in the Python shell window.</para>
+
+    <para id="para-ch22-54">Even more interestingly, your debugged
+      script runs in the same interpreter as this window. This means
+      that if you are debugging a script, you can alter the value of
+      any variable from the shell window, just by assigning it. You
+      can even call class methods or other functions.</para>
+
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <para>That concludes the tour of the BlackAdder interface - at
+      least, the interface as it was during the last Beta. BlackAdder
+      is quite a traditional IDE, and it should take no effort at all
+      to get comfortable with it.</para>
+
+  </sect1>
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

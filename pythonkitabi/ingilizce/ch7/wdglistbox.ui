@@ -1,0 +1,227 @@
+<!DOCTYPE UI><UI>
+<class>DoubleListBox</class>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>DoubleListbox</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>480</width>
+            <height>410</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form1</string>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="1"  column="1" >
+            <class>QPushButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>bnAllRight</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                </sizepolicy>
+            </property>
+            <property stdset="1">
+                <name>maximumSize</name>
+                <size>
+                    <width>40</width>
+                    <height>32767</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&gt;&gt;</string>
+            </property>
+        </widget>
+        <widget row="2"  column="1" >
+            <class>QPushButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>bnMoveRight</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>1</hsizetype>
+                    <vsizetype>0</vsizetype>
+                </sizepolicy>
+            </property>
+            <property stdset="1">
+                <name>maximumSize</name>
+                <size>
+                    <width>40</width>
+                    <height>32767</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&gt;</string>
+            </property>
+        </widget>
+        <widget row="3"  column="1" >
+            <class>QPushButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>bnMoveLeft</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>1</hsizetype>
+                    <vsizetype>0</vsizetype>
+                </sizepolicy>
+            </property>
+            <property stdset="1">
+                <name>maximumSize</name>
+                <size>
+                    <width>40</width>
+                    <height>32767</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&lt;</string>
+            </property>
+        </widget>
+        <widget row="4"  column="1" >
+            <class>QPushButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>bnAllLeft</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>1</hsizetype>
+                    <vsizetype>0</vsizetype>
+                </sizepolicy>
+            </property>
+            <property stdset="1">
+                <name>maximumSize</name>
+                <size>
+                    <width>40</width>
+                    <height>32767</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&lt;&lt;</string>
+            </property>
+        </widget>
+        <spacer row="0"  column="1" >
+            <property>
+                <name>name</name>
+                <cstring>Spacer2</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Vertical</enum>
+            </property>
+            <property stdset="1">
+                <name>sizeType</name>
+                <enum>Expanding</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget row="0"  column="0"  rowspan="6"  colspan="1" >
+            <class>QListBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ListBox1</cstring>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>StyledPanel</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Sunken</enum>
+            </property>
+        </widget>
+        <spacer row="5"  column="1" >
+            <property>
+                <name>name</name>
+                <cstring>Spacer1_2</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Vertical</enum>
+            </property>
+            <property stdset="1">
+                <name>sizeType</name>
+                <enum>Expanding</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget row="0"  column="2"  rowspan="6"  colspan="1" >
+            <class>QListBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ListBox2</cstring>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>bnAllRight</sender>
+        <signal>clicked()</signal>
+        <receiver>DoubleListbox</receiver>
+        <slot>slotAddAll()</slot>
+    </connection>
+    <connection>
+        <sender>bnMoveRight</sender>
+        <signal>clicked()</signal>
+        <receiver>DoubleListbox</receiver>
+        <slot>slotAddSelected()</slot>
+    </connection>
+    <connection>
+        <sender>bnMoveLeft</sender>
+        <signal>clicked()</signal>
+        <receiver>DoubleListbox</receiver>
+        <slot>slotRemoveSelected()</slot>
+    </connection>
+    <connection>
+        <sender>bnAllLeft</sender>
+        <signal>clicked()</signal>
+        <receiver>DoubleListbox</receiver>
+        <slot>slotRemoveSelected()</slot>
+    </connection>
+    <slot access="public">slotRemoveSelected()</slot>
+    <slot access="public">slotAddAll()</slot>
+    <slot access="public">slotAddSelected()</slot>
+    <slot access="public">slotRemoveAll()</slot>
+</connections>
+</UI>

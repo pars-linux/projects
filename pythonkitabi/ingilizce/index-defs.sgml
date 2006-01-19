@@ -1,0 +1,3821 @@
+<index><title>Index</title>
+
+  <!-- This file contains the indexterm tags for the whole book -->
+
+  <!-- BOOK -->
+
+  <!-- CH1 -->
+  
+<indexterm zone="para-ch1-8">
+  <primary>Versions of PyQt, Qt and Python</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-12">
+  <primary>Hello World</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-22">
+  <primary>qt module layout</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-27">
+  <primary>event loop</primary><secondary>exec_loop</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch1-29">
+  <primary>calling conventions</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-39">
+  <primary>setCentralWidget()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-40">
+  <primary>signals and slots</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-42">
+  <primary>quit()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-50">
+  <primary>garbage collection</primary><secondary>reference counting</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch1-51">
+  <primary>designing forms</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-56">
+  <primary>layout management</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-59">
+  <primary>ui files</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-59">
+  <primary>compiling forms designs</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-60">
+  <primary>subclassing forms desigsn</primary>
+</indexterm>
+            
+<indexterm zone="para-ch1-60">
+  <primary>visual design</primary>
+</indexterm>
+            
+
+<!-- CH2 -->
+
+  <indexterm zone="para-ch2-38">
+    <primary>svg</primary><secondary>scalable vector graphics</secondary>
+  </indexterm>
+
+<indexterm zone="para-ch2-1">
+  <primary>hierarchy</primary><secondary>class</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-2">
+  <primary>QObject</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-2">
+  <primary>introspection</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-3">
+  <primary>hierarchy</primary><secondary>module</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-4">
+  <primary>hierarchy</primary><secondary>ownership</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-13">
+  <primary>signals/slots vs events</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>events vs signals/slots</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-13">
+  <primary>signals/slots</primary><secondary>events</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>events</primary><secondary>signals/slots</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>QEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>QPaintEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>QFocusEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>QMouseEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>QWheelEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-14">
+  <primary>QKeyEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-15">
+  <primary>paintEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-15">
+  <primary>mouse events</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-15">
+  <primary>events</primary><secondary>handling mouse events</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-18">
+  <primary>application classes</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-18">
+  <primary>main window</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-19">
+  <primary>QApplication</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-20">
+  <primary>QMainWindow</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-21">
+  <primary>QAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-26">
+  <primary>MDI</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-26">
+  <primary>multiple document interface</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-27">
+  <primary>QWorkSpace</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-30">
+  <primary>QWidget </primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-33">
+  <primary>double buffering</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-33">
+  <primary>blitting</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-33">
+  <primary>QPixMap</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-34">
+  <primary>QColor</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-34">
+  <primary>RGB</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-34">
+  <primary>HSV</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-34">
+  <primary>Color</primary><secondary>QColor</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-34">
+  <primary>Color</primary><secondary>RGB</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-34">
+  <primary>Color</primary><secondary>HSV</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-34">
+  <primary>Color</primary><secondary>X11 color names</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-36">
+  <primary>setBackGroundColor</primary><secondary>setEraseColor</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-36">
+  <primary>SetEraseColor</primary><secondary>setBackgroundColor</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-37">
+  <primary>setBackgroundMode</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-38">
+  <primary>QBitmap</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-38">
+  <primary>QImage</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-38">
+  <primary>QPixmap</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-38">
+  <primary>QPicture</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-39">
+  <primary>QPainter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-43">
+  <primary>QPrinter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-40">
+  <primary>Paint devices</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-46">
+  <primary>QPaintDevice</primary><secondary>QApplication</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-49">
+  <primary>fonts</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-51">
+  <primary>fonts</primary><secondary>system</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-51">
+  <primary>fonts</primary><secondary>layout management</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-52">
+  <primary>fonts</primary><secondary>QFont</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-52">
+  <primary>QFont</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-53">
+  <primary>QFont</primary><secondary>encoding</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-54">
+  <primary>QFont</primary><secondary>Qt2 vs Qt3</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-55">
+  <primary>QFont</primary><secondary>script</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-56">
+  <primary>QFont</primary><secondary>setting the application font</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-57">
+  <primary>QFontInfo</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-58">
+  <primary>QFontMetrics</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-59">
+  <primary>fonts</primary><secondary>font selectiondialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-60">
+  <primary>basic widgets</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-61">
+  <primary>QStyle</primary><secondary>CDE</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-62">
+  <primary>QStyle</primary><secondary>Motif</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-63">
+  <primary>QStyle</primary><secondary>Motif+</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-64">
+  <primary>QStyle</primary><secondary>Platinum</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-65">
+  <primary>QStyle</primary><secondary>SGI</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-66">
+  <primary>QStyle</primary><secondary>Windows</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-67">
+  <primary>frames</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-68">
+  <primary>QPushButton</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-68">
+  <primary>QCheckBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-68">
+  <primary>QRadioButton</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-68">
+  <primary>QToolButton</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-70">
+  <primary>QLabel</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-70">
+  <primary>label</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-73">
+  <primary>focus</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-73">
+  <primary>setFocus()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-75">
+  <primary>radio buttons</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-75">
+  <primary>QRadioButton</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-76">
+  <primary>QButtonGroup</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-76">
+  <primary>QVButtonGroup</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-76">
+  <primary>QHButtonGroun</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-76">
+  <primary>setChecked()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-78">
+  <primary>QCheckBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-78">
+  <primary>tri-state checkbox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-81">
+  <primary>QListBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-82">
+  <primary>listbox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-82">
+  <primary>QListBox</primary><secondary>associating entries with objects</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-82">
+  <primary>listbox</primary><secondary>associating entries with data</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-85">
+  <primary>QComboBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-86">
+  <primary>QLineEdit</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-86">
+  <primary>password</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-87">
+  <primary>QMultiLineEdit</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-88">
+  <primary>QTextEdit</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-89">
+  <primary>QPopupMenu</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-89">
+  <primary>QPopupMenu</primary><secondary>QAction</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-90">
+  <primary>QProgressBar</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-90">
+  <primary>QProgressDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-91">
+  <primary>QTimer</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-91">
+  <primary>QSlider</primary>
+</indexterm>
+
+
+<indexterm zone="para-ch2-93">
+  <primary>QDial</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-94">
+  <primary>ZX-Spectrum</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-95">
+  <primary>QScrollBar</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-94">
+  <primary>QLCDNumber</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-96">
+  <primary>QSizeGrip</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-97">
+  <primary>QSpinBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-98">
+  <primary>QToolButton</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-99">
+  <primary>advanced widgets</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-101">
+  <primary>QSimpleRichText</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-101">
+  <primary>QTextView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-101">
+  <primary>QTextBrowser</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-101">
+  <primary>QStyleSheet</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-102">
+  <primary>QTextEdit</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-104">
+  <primary>QListView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-104">
+  <primary>QListViewItem</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-105">
+  <primary>QListView</primary><secondary>example</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-106">
+  <primary>QListView</primary><secondary>order of QListViewItems</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-107">
+  <primary>QIconView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-107">
+  <primary>QIconViewItem</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-108">
+  <primary>QSplitter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-109">
+  <primary>QCanvas</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-109">
+  <primary>QCanvasView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-109">
+  <primary>QCanvasItem</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-120">
+  <primary>QTable</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-120">
+  <primary>QTableItem</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-120">
+  <primary>QTableView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-123">
+  <primary>layout management</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-128">
+  <primary>QLayout</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-129">
+  <primary>layout management</primary><secondary>QMainWindow</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-131">
+  <primary>QSizePolicy</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-133">
+  <primary>size policies</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-143">
+  <primary>QHBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-144">
+  <primary>QVBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-145">
+  <primary>QGrid</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-146">
+  <primary>QGroupBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-147">
+  <primary>QLayout</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-148">
+  <primary>layout management</primary><secondary>nesting</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-149">
+  <primary>layout management</primary><secondary>layout items</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-150">
+  <primary>QSpacerItem</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-151">
+  <primary>QBoxLayout</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-152">
+  <primary>QGridLayout</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-154">
+  <primary>layout management</primary><secondary>adding and removing widgets</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-156">
+  <primary>setGeometry()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-157">
+  <primary>standard dialogs</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-158">
+  <primary>QDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-160">
+  <primary>QMessageBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-160">
+  <primary>message box</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-166">
+  <primary>QTabDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-166">
+  <primary>tabbed dialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-167">
+  <primary>QWizard</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-168">
+  <primary>QFileDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-168">
+  <primary>standard dialogs</primary><secondary>file dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-170">
+  <primary>QFontDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-170">
+  <primary>standard dialogs</primary><secondary>font dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-173">
+  <primary>QColorDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-173">
+  <primary>standard dialogs</primary><secondary>color dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-175">
+  <primary>QInputDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-175">
+  <primary>standard dialogs</primary><secondary>input dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-176">
+  <primary>QProgressDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-176">
+  <primary>standard dialogs</primary><secondary>progress dialog</secondary>
+</indexterm>
+     
+<indexterm zone="para-ch2-177">
+  <primary>utility classes</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-178">
+  <primary>non-gui classes</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-182">
+  <primary>file handling</primary><secondary>python vs qt</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-183">
+  <primary>high-level datastructures</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-185">
+  <primary>QList</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-185">
+  <primary>QByteArray</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-185">
+  <primary>QMap</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-201">
+  <primary>IO handling</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-201">
+  <primary>streams</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-201">
+  <primary>asynchronous IO</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-204">
+  <primary>QDate</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-205">
+  <primary>QTime</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-206">
+  <primary>QDateTime</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-206">
+  <primary>time module</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-207">
+  <primary>sleep()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-208">
+  <primary>QMimeSource</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-209">
+  <primary>QMimeSourceFactory</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-210">
+  <primary>mimetools</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-210">
+  <primary>MimeWriter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-212">
+  <primary>QMimeSourceFactory</primary><secondary>example</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-213">
+  <primary>regular expressions</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-219">
+  <primary>QString</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-221">
+  <primary>threads</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-225">
+  <primary>threads</primary><secondary>gui</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch2-226">
+  <primary>QUrl</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-230">
+  <primary>QXML</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-230">
+  <primary>xml handling</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-230">
+  <primary>xmllib</primary>
+</indexterm>
+            
+<indexterm zone="para-ch2-231">
+  <primary>network</primary>
+</indexterm>
+           
+<!-- CH3 -->
+
+<indexterm zone="para-ch3-1">
+  <primary>memory leak</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-2">
+  <primary>object creation</primary><secondary>python vs C++</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-3">
+  <primary>object</primary><secondary>defined</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-6">
+  <primary>reference</primary><secondary>defined</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-8">
+  <primary>object</primary><secondary>id hash</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-9">
+  <primary>circular references</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-11">
+  <primary>object</primary><secondary>shadow</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-11">
+  <primary>object creation</primary><secondary>wrapping</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-17">
+  <primary>object creation</primary><secondary>ownership</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-19">
+  <primary>object</primary><secondary>creation</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-19">
+  <primary>object</primary><secondary>deletion</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-21">
+  <primary>object</primary><secondary>keeping it alive</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-25">
+  <primary>object</primary><secondary>parent-child</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-25">
+  <primary>QObject</primary><secondary>example</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-27">
+  <primary>QObject</primary><secondary>ownership</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-27">
+  <primary>parent()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-27">
+  <primary>removeChild()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-30">
+  <primary>children()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-33">
+  <primary>iterators</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-33">
+  <primary>iterator()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-39">
+  <primary>sip</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-40">
+  <primary>reference counting</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-41">
+  <primary>objects</primary><secondary>no parent-child</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-42">
+  <primary>signals and slots</primary><secondary>reference counting</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-46">
+  <primary>references</primary><secondary>weak</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-49">
+  <primary>introspection</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-49">
+  <primary>object</primary><secondary>introspection</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch3-49">
+  <primary>className()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch3-51">
+  <primary>class attributes</primary>
+</indexterm>
+                    
+<!-- CH4 -->
+
+<indexterm zone="para-ch4-1">
+  <primary>strings</primary>
+</indexterm>
+            
+<indexterm zone="para-ch4-2">
+  <primary>strings</primary><secondary>quoting</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-4">
+  <primary>QString</primary>
+</indexterm>
+            
+<indexterm zone="para-ch4-4">
+  <primary>QCString</primary>
+</indexterm>
+            
+<indexterm zone="para-ch4-5">
+  <primary>strings</primary><secondary>unicode</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-7">
+  <primary>strings</primary><secondary>conversion</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-9">
+  <primary>QString</primary><secondary>saving to a file</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-13">
+  <primary>QCString</primary><secondary>simple strings</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-15">
+  <primary>QCString</primary><secondary>null bytes</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-17">
+  <primary>QCString</primary><secondary>equivalent to Python strings</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-20">
+  <primary>assert</primary>
+</indexterm>
+            
+<indexterm zone="para-ch4-23">
+  <primary>QString</primary><secondary>null bytes</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-24">
+  <primary>strings</primary><secondary>using for binary data</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-25">
+  <primary>unicode</primary>
+</indexterm>
+            
+<indexterm zone="para-ch4-27">
+  <primary>unicode</primary><secondary>flaws</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-29">
+  <primary>unicode</primary><secondary>input methods</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-31">
+  <primary>unicode</primary><secondary>conversion</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-34">
+  <primary>unicode</primary><secondary>creating a unicode string</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-39">
+  <primary>encoding</primary><secondary>default encoding</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-43">
+  <primary>encoding </primary><secondary>available encodings</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-45">
+  <primary>unicode</primary><secondary>loading from file</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-46">
+  <primary>unicode</primary><secondary>characters</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-49">
+  <primary>unicode</primary><secondary>escaped encoding</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-50">
+  <primary>locale</primary>
+</indexterm>
+            
+<indexterm zone="para-ch4-52">
+  <primary>unicode</primary><secondary>and Qt</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-54">
+  <primary>QString</primary><secondary>and unicode</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch4-56">
+  <primary></primary>
+</indexterm>
+            
+
+<!-- CH5 -->
+
+<indexterm zone="para-ch5-2">
+  <primary>gui design</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-3">
+  <primary>theming</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-6">
+  <primary>theming</primary><secondary>with bitmaps</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch5-9">
+  <primary>gimp</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-11">
+  <primary>window flags</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-12">
+  <primary>window</primary><secondary>no borders</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch5-14">
+  <primary>setBackgroundPixmap</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-18">
+  <primary>QStyle</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-20">
+  <primary>widget styles</primary><secondary>designing</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch5-20">
+  <primary>interface design</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-22">
+  <primary>QStyle</primary><secondary>Qt2 vs Qt3</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch5-24">
+  <primary>polish()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch5-25">
+  <primary>QStyle</primary><secondary>Qt 2 example</secondary>
+</indexterm>
+   
+<!-- CH6 -- >
+
+<indexterm zone="para-ch6-1">
+  <primary>signals and slots</primary><secondary>explored</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-2">
+  <primary>signals and slots</primary><secondary>concepts</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-3">
+  <primary>callbacks</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-4">
+  <primary>apply()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-9">
+  <primary>registry</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-17">
+  <primary>observer pattern</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-17">
+  <primary>design patterns</primary><secondary>Observer</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-18">
+  <primary>Sketch</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-20">
+  <primary>moc</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-23">
+  <primary>signals/slots</primary><secondary>vs events</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-25">
+  <primary>signals/slots</primary><secondary>where to use</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-26">
+  <primary>events</primary><secondary>where to use</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-27">
+  <primary>signals/slots</primary><secondary>C++ vs Python defined</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-29">
+  <primary>connect()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-30">
+  <primary>disconnect()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-30">
+  <primary>emit()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-37">
+  <primary>SLOT()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-37">
+  <primary>SIGNAL()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-37">
+  <primary>PYSIGNAL()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-46">
+  <primary>signals/slots</primary><secondary>arguments</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-47">
+  <primary>signals/slots</primary><secondary>complete example</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-50">
+  <primary>signals/slots</primary><secondary>connecting to a Python function</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-53">
+  <primary>PYSIGNAL</primary><secondary>arguments</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-57">
+  <primary>signals/slots</primary><secondary>variable number of arguments</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-58">
+  <primary>signals/slots</primary><secondary>order of handling</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-60">
+  <primary>signals/slots</primary><secondary>disconnecting</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-67">
+  <primary>signals/slots</primary><secondary>gui designer</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-69">
+  <primary>whrandom</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-70">
+  <primary>time</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-76">
+  <primary>time()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-80">
+  <primary>function</primary><secondary>passing as an argument</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-81">
+  <primary>timers</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-83">
+  <primary>timerEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-83">
+  <primary>events</primary><secondary>timer events</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-96">
+  <primary>xml</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-96">
+  <primary>dom</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-96">
+  <primary>sax</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-97">
+  <primary>xmllib</primary><secondary>introduction</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-100">
+  <primary>xml</primary><secondary>signals and slots</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-101">
+  <primary>booleans</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-102">
+  <primary>xmllib.XMLParser</primary><secondary>subclassing</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-105">
+  <primary>multiple inheritance</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-106">
+  <primary>xmllib.XMLParser</primary><secondary>feeding text</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-108">
+  <primary>xml</primary><secondary>header</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-109">
+  <primary>xml</primary><secondary>document type</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-111">
+  <primary>xml</primary><secondary>data</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-112">
+  <primary>entities</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-114">
+  <primary>CDATA</primary>
+</indexterm>
+            
+<indexterm zone="para-ch6-122">
+  <primary>entities</primary><secondary>unknown</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-124">
+  <primary>QListView</primary><secondary>treeview</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch6-124">
+  <primary>treeview</primary>
+</indexterm>
+                     
+
+<!-- CH7 -- >
+
+<indexterm zone="para-ch7-1">
+  <primary>visual gui design</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-1">
+  <primary>designer</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-1">
+  <primary>gui design</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-1">
+  <primary>forms design</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-3">
+  <primary>Qt Designer</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-12">
+  <primary>templates</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-21">
+  <primary>templates</primary><secondary>adding your own</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-26">
+  <primary>configuration dialogs</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-34">
+  <primary>widgets</primary><secondary>container vs plain</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-36">
+  <primary>layout management</primary><secondary>visual design</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-39">
+  <primary>keyboard accelerators</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-39">
+  <primary>accelerator keys</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-40">
+  <primary>buddy</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-42">
+  <primary>tab order</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-45">
+  <primary>designer</primary><secondary>setting the tab order</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-47">
+  <primary>designer</primary><secondary>signals and slots</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-53">
+  <primary>designer</primary><secondary>adding slots</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-72">
+  <primary>designer</primary><secondary>adding custom widgets</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-81">
+  <primary>designer</primary><secondary>layout management</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-88">
+  <primary>layout management</primary><secondary>nesting layouts using the designer</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-99">
+  <primary>layout mangement</primary><secondary>distributing available space</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-124">
+  <primary>designer</primary><secondary>generating Python code</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-127">
+  <primary>designer</primary><secondary>subclassing a design</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-131">
+  <primary>accept()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-131">
+  <primary>reject()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch7-137">
+  <primary>designer</primary><secondary>setting initial values of dialogs</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-137">
+  <primary>dialogs</primary><secondary>setting initial values</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch7-139">
+  <primary>designer</primary>
+</indexterm>
+            
+
+<!-- CH8 -->
+
+<indexterm zone="para-ch8-1">
+  <primary>framework</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-4">
+  <primary>MVC</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-11">
+  <primary>document-view framework</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-15">
+  <primary>framework</primary><secondary>example of document-view</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch8-20">
+  <primary>QAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-21">
+  <primary>toolbars</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-21">
+  <primary>statusbar</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-21">
+  <primary>menubar</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-24">
+  <primary>QMessageBox</primary><secondary>information()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch8-25">
+  <primary>statusbar</primary><secondary>setting a message</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch8-30">
+  <primary>framework</primary><secondary>handling events</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch8-34">
+  <primary>framework</primary><secondary>macros</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch8-35">
+  <primary>framework</primary><secondary>scripting</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch8-35">
+  <primary>CORBA</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-35">
+  <primary>DCOM</primary>
+</indexterm>
+            
+<indexterm zone="para-ch8-35">
+  <primary>DCOP</primary>
+</indexterm>
+            
+<!-- CH9 -->
+
+
+<indexterm zone="para-ch9-1">
+  <primary>unittests</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-1">
+  <primary>pyunit</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-9">
+  <primary>gui tests</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-16">
+  <primary>unittests</primary><secondary>gui clients</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch9-19">
+  <primary>unittests</primary><secondary>testcases</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch9-21">
+  <primary>TestCase</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-24">
+  <primary>unittests</primary><secondary>setting up and tearing down</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch9-26">
+  <primary>assert</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-26">
+  <primary>optimizing bytecode</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-28">
+  <primary>long lines</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-28">
+  <primary>line continuation</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-29">
+  <primary>testsuite</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-29">
+  <primary>TestRunner</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-35">
+  <primary>unittests</primary><secondary>versions</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch9-39">
+  <primary>unittests</primary><secondary>exceptions</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch9-40">
+  <primary>failing unittests</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-40">
+  <primary>fail()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-42">
+  <primary>assertRaises()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch9-43">
+  <primary>unittests</primary><secondary>automating</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch9-50">
+  <primary>unittests</primary><secondary>signals/slots</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch9-50">
+  <primary>signals/slots</primary>
+</indexterm>
+
+<!-- CH10 -->
+
+<indexterm zone="para-ch10-1">
+  <primary>frameworks</primary><secondary>complex</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-4">
+  <primary>mdi</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-4">
+  <primary>QWorkSpace</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-4">
+  <primary>QDockWindow</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-6">
+  <primary>multiple toplevel windows</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-6">
+  <primary>gimp</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-9">
+  <primary>tabbed documents</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-13">
+  <primary>framework</primary><secondary>document/view</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-20">
+  <primary>testcase</primary><secondary>document/view</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-27">
+  <primary>closing windows</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-29">
+  <primary>exception hierarchy</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-31">
+  <primary>windows flags</primary><secondary>WDestructiveClose</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-36">
+  <primary>QWorkSpace</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-37">
+  <primary>saving data</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-38">
+  <primary>closing a document</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-39">
+  <primary>event filters</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-43">
+  <primary>closeEvent()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-47">
+  <primary>menubar</primary><secondary>creating</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-47">
+  <primary>statusbar</primary><secondary>creating</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-47">
+  <primary>toolbar</primary><secondary>creating</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-47">
+  <primary>menu</primary><secondary>dynamic</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-47">
+  <primary>window menu</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-47">
+  <primary>aboutToShow()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-53">
+  <primary>opening a document</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-56">
+  <primary>qApp</primary><secondary>quit()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-59">
+  <primary>menu</primary><secondary>dynamic</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-60">
+  <primary>events</primary><secondary>vs signals/slots</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-61">
+  <primary>event</primary><secondary>filter</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-64">
+  <primary>QMessageBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch10-65">
+  <primary>QMessageBox</primary><secondary>specifying buttons</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch10-66">
+  <primary>QMessageBox</primary><secondary>warning()</secondary>
+</indexterm>
+
+<!-- CH11 -->
+
+<indexterm zone="para-ch11-1">
+  <primary>interface paradigms</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-3">
+  <primary>tabbed documents</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-5">
+  <primary>TabManager</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-6">
+  <primary>QTabWidget</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-7">
+  <primary>QTabBar</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-11">
+  <primary>QTabWidget</primary><secondary>showPage()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch11-17">
+  <primary>MDI Windows</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-18">
+  <primary>QWorkSpace</primary><secondary>generic wrapper</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch11-20">
+  <primary>QSplitter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-23">
+  <primary>QWidgetStack</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-28">
+  <primary>interface paradigms</primary><secondary>complex</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch11-30">
+  <primary>QListBox</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-33">
+  <primary>sip</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-33">
+  <primary>deleting listview items</primary>
+</indexterm>
+            
+<indexterm zone="para-ch11-33">
+  <primary>QListViewItem</primary><secondary>deleting an item</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch11-33">
+  <primary>object</primary>
+</indexterm>
+
+
+<!-- CH12 -->
+
+           
+<indexterm zone="para-ch12-4">
+  <primary>kalam</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-6">
+  <primary>QMultiLineEdit</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-6">
+  <primary>QTextEdit</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-7">
+  <primary>QMultiLineEdit</primary><secondary>document-view</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch12-9">
+  <primary>event()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-9">
+  <primary>TAB</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-9">
+  <primary>catching TAB presses</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-9">
+  <primary>QEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-13">
+  <primary>QMultiLineEdit </primary><secondary>textChanged()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch12-19">
+  <primary>signals/slots</primary><secondary>disconnect()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch12-21">
+  <primary>KalamDoc</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-22">
+  <primary>QString</primary><secondary>mutability</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch12-22">
+  <primary>strings</primary><secondary>mutability</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch12-31">
+  <primary>KalamDoc</primary><secondary>loading and saving text</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch12-32">
+  <primary>QFile</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-33">
+  <primary>open()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-34">
+  <primary>operator overloading</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-37">
+  <primary>undo</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-37">
+  <primary>redo</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-39">
+  <primary>KalamView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-41">
+  <primary>KalamApp</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-42">
+  <primary>icons</primary>
+</indexterm>
+            
+<indexterm zone="para-ch12-44">
+  <primary>QAction</primary>
+</indexterm>
+                                    
+                        
+<!-- CH13 -->
+
+
+<indexterm zone="para-ch13-1">
+  <primary>configuration</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-3">
+  <primary>windows</primary><secondary>registry</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-3">
+  <primary>registry</primary><secondary>configuration options</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-4">
+  <primary>Unix</primary><secondary>dot files</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-5">
+  <primary>home directory</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-9">
+  <primary>ConfigParser</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-3">
+  <primary>ini files</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-10">
+  <primary>_winreg</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-12">
+  <primary>windows</primary><secondary>determining the os</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-12">
+  <primary>determining the os</primary>
+  </indexterm>
+  
+  <indexterm zone="para-ch13-14">
+    <primary>configuration data</primary><secondary>handling data in the application</secondary>
+  </indexterm>
+  
+  <indexterm zone="para-ch13-15">
+    <primary>singleton</primary>
+  </indexterm>
+  
+  <indexterm zone="para-ch13-15">
+    <primary>global variables</primary>
+  </indexterm>
+
+  <indexterm zone="para-ch13-26">
+    <primary>setattr</primary>
+  </indexterm>
+            
+<indexterm zone="para-ch13-16">
+  <primary>class variables</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-19">
+  <primary>global configuration repository</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-21">
+  <primary>kalamconfig.py</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-21">
+  <primary>Config (class)</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-23">
+  <primary>Java</primary><secondary>properties</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-24">
+  <primary>configuration data</primary><secondary>loading and saving</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-28">
+  <primary>integer type</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-30">
+  <primary>dir()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-31">
+  <primary>writeConfig()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-35">
+  <primary>setFont()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-35">
+  <primary>setting the font</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-36">
+  <primary>geometry management</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-36">
+  <primary>session management</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-36">
+  <primary>QSessionManager</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-40">
+  <primary>widget styles</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-42">
+  <primary>qApp</primary><secondary>style()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-43">
+  <primary>__init__</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-43">
+  <primary>__class__</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-43">
+  <primary>__name__</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-45">
+  <primary>eval()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-50">
+  <primary>viewmanager</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-55">
+  <primary>configuration</primary><secondary>saving on exit</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch13-57">
+  <primary>QSettings</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-64">
+  <primary></primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-64">
+  <primary>HKEY_CURRENT_USER</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-64">
+  <primary>HKEY_LOCAL_MACHINE</primary>
+</indexterm>
+            
+<indexterm zone="para-ch13-67">
+  <primary>configuration file format</primary>
+</indexterm>
+            
+
+<!-- CH14 -->
+
+<indexterm zone="para-ch14-5">
+  <primary>spin box</primary>
+</indexterm>
+
+
+<indexterm zone="para-ch14-1">
+  <primary>dialog windows</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-3">
+  <primary>designer</primary><secondary>creating a preferences dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-5">
+  <primary>tabbed dialogs</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-5">
+  <primary>dialog</primary><secondary>QTabDialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-12">
+  <primary>designer</primary><secondary>compiling a dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-14">
+  <primary>designer</primary><secondary>subclassing a dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-14">
+  <primary>DlgSettings</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-16">
+  <primary>apply()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-16">
+  <primary>configuration</primary><secondary>generic get/set functions</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-17">
+  <primary>signals/slots</primary><secondary>creating signals on the fly</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-18">
+  <primary>palette</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-18">
+  <primary>QPalette</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-18">
+  <primary>QColorGroup</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-19">
+  <primary>color roles</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-20">
+  <primary>Background</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-21">
+  <primary>Foreground</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-23">
+  <primary>Text</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-24">
+  <primary>Button</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-22">
+  <primary>Base</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-25">
+  <primary>ButtonText;</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-26">
+  <primary>Light</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-27">
+  <primary>Midlight</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-28">
+  <primary>Dark</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-29">
+  <primary>Mid</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-30">
+  <primary>Shadow</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-31">
+  <primary>Highlight</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-32">
+  <primary>HighlightedText</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-34">
+  <primary>palette</primary><secondary>retrieving the palette</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-33">
+  <primary>color</primary><secondary>calculation</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-38">
+  <primary>QStyle</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-39">
+  <primary>dictionaries</primary><secondary>order</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-39">
+  <primary>sort()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-41">
+  <primary>setStyle()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-43">
+  <primary>mess</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-44">
+  <primary>encodings</primary><secondary>in kalamconfig.py</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-46">
+  <primary>encoding</primary><secondary>Japanese</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-46">
+  <primary>tiscii</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-46">
+  <primary>jis</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-46">
+  <primary>shift-jis</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-46">
+  <primary>gbk</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-46">
+  <primary>QTextCodec</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-47">
+  <primary>Hebrew</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-47">
+  <primary>QHebrewCodec</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-48">
+  <primary>QColorDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-48">
+  <primary>QColor</primary><secondary>invalid colors</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-49">
+  <primary>QFontDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-53">
+  <primary>dialog</primary><secondary>executing a dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-53">
+  <primary>dialog</primary><secondary>modal</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-53">
+  <primary>windows flags</primary><secondary>WStyle_Dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-54">
+  <primary>widget flags</primary><secondary>(listed)</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-81">
+  <primary>exec_loop()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-81">
+  <primary>dialogs</primary><secondary>exec_loop()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-82">
+  <primary>dialogs</primary><secondary>retrieving values from modal</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-82">
+  <primary>dialogs</primary><secondary>result code</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-86">
+  <primary>KalamView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-87">
+  <primary>dialogs</primary><secondary>non-modal</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-88">
+  <primary>search and replace</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-88">
+  <primary>replace</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-96">
+  <primary>designer</primary><secondary>designing a seach and replace dialog</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-96">
+  <primary>find and replace</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-98">
+  <primary>dialogs</primary><secondary>calling a non-modal dialogs</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-98">
+  <primary>QAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-99">
+  <primary>dialogs</primary><secondary>showing and hiding</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-103">
+  <primary>hiding widgets</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-103">
+  <primary>show()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-103">
+  <primary>layout management</primary><secondary>showing and hiding widgets</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-111">
+  <primary>find and replace</primary><secondary>implementation</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-112">
+  <primary>regular expressions</primary><secondary>Qt 2 vs Qt 3</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-113">
+  <primary>regular expressions</primary><secondary>introduction</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-133">
+  <primary>regular expressions</primary><secondary>unicode</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-133">
+  <primary>unicode</primary><secondary>regular expressions</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-135">
+  <primary>search direction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-138">
+  <primary>QRegExp</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-138">
+  <primary>re module</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-139">
+  <primary>wildcard searches</primary>
+</indexterm>
+            
+<indexterm zone="para-ch14-140">
+  <primary>QRegExp()</primary><secondary>match()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-140">
+  <primary>QRegExp()</primary><secondary>find()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-146">
+  <primary>QMultiLineEdit</primary><secondary>text()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-146">
+  <primary>QMultiLineEdit</primary><secondary>textChanged()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-150">
+  <primary>QTextEdit</primary><secondary>find</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch14-150">
+  <primary>QTextDocument</primary>
+</indexterm>
+            
+<!-- CH15 -->
+
+<indexterm zone="para-ch15-1">
+  <primary>macros</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-4">
+  <primary>eval()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-4">
+  <primary>exec()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-4">
+  <primary>execfile()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-5">
+  <primary>compile()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-9">
+  <primary>globals</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-10">
+  <primary>locals</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-12">
+  <primary>globals</primary><secondary>examined</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-13">
+  <primary>locals</primary><secondary>examined</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-16">
+  <primary>eval()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-17">
+  <primary>exec()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-19">
+  <primary>execfile()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-22">
+  <primary>QAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-23">
+  <primary>executing arbitrary code</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-23">
+  <primary>KalamDoc</primary><secondary>execute as code</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-23">
+  <primary>KalamApp</primary><secondary>execute document as code</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-23">
+  <primary>compile()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-24">
+  <primary>output redirection</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-25">
+  <primary>write()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-25">
+  <primary>KalamDoc</primary><secondary>write()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-26">
+  <primary>output redirection</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-29">
+  <primary>MacroManager</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-30">
+  <primary>exception hierarchy</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-31">
+  <primary>QAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-32">
+  <primary>MacroAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-32">
+  <primary>environment</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-34">
+  <primary>macros</primary><secondary>adding, removing, executing</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-34">
+  <primary>MacroManager</primary><secondary>executeAction()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-36">
+  <primary>MacroManager</primary><secondary>initialisation</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-36">
+  <primary>macros</primary><secondary>API</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-40">
+  <primary>macros</primary><secondary>startup macros</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-43">
+  <primary>KalamConfig</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-44">
+  <primary>macros</primary><secondary>access to application objects</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-47">
+  <primary>macros</primary><secondary>adding to globals</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-49">
+  <primary>global (keyword)</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-50">
+  <primary>macros</primary><secondary>access to application</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-52">
+  <primary>installMacro</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-52">
+  <primary>removeMacro</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-52">
+  <primary>createDocument</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-52">
+  <primary>createMacro</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-52">
+  <primary>edmund.py</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-54">
+  <primary>macros</primary><secondary>access to application data</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch15-57">
+  <primary>eliza</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-57">
+  <primary>Emacs</primary>
+</indexterm>
+            
+<indexterm zone="para-ch15-59">
+  <primary>Edmund</primary>
+</indexterm>
+            
+<!-- CH16 -->
+
+
+<indexterm zone="para-ch16-1">
+  <primary>painting</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-2">
+  <primary>QCanvas</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-2">
+  <primary>QPainter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-5">
+  <primary>paint devices</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-6">
+  <primary>QPainter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-6">
+  <primary>QPaintDevice</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-7">
+  <primary>QPrinter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-9">
+  <primary>QPicture</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-10">
+  <primary>QPixMap</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-10">
+  <primary>bitBlt()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-11">
+  <primary>printing</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-11">
+  <primary>QPrinter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-12">
+  <primary>painting</primary><secondary>example</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-13">
+  <primary>typometer.py</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-12">
+  <primary>charting</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-12">
+  <primary>graphing</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-13">
+  <primary>constants</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-15">
+  <primary>scaling</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-15">
+  <primary>painting</primary><secondary>scaling</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-17">
+  <primary>float</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-19">
+  <primary>QPainter</primary><secondary>painting on</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-20">
+  <primary>QPainter</primary><secondary>begin()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-23">
+  <primary>scrolling</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-25">
+  <primary>gradient</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-25">
+  <primary>color</primary><secondary>gradient</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-31">
+  <primary>QTimer</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-33">
+  <primary>TypoChart</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-35">
+  <primary>widget</primary><secondary>delete</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-35">
+  <primary>windows flags</primary><secondary>WType_TopLevel</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-35">
+  <primary>windows flags</primary><secondary>WDestructiveClose</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-37">
+  <primary>QCanvas</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-38">
+  <primary>QCanvasItem</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-38">
+  <primary>QCanvasView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-40">
+  <primary>QCanvasItem</primary><secondary>subclassing</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-42">
+  <primary>bounding box</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-43">
+  <primary>overlapping</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-44">
+  <primary>QCanvasSprite</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-45">
+  <primary>QCanvasText</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-47">
+  <primary>unicode</primary><secondary>character picker</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-49">
+  <primary>unicode</primary><secondary>website</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-50">
+  <primary>unicode</primary><secondary>Blocks.txt</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-54">
+  <primary>collision detection</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-57">
+  <primary>QCanvasText</primary><secondary>show()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-58">
+  <primary>QCanvasText</primary><secondary>object ownership</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-60">
+  <primary>QCanvas</primary><secondary>resize()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-61">
+  <primary>QCanvasView</primary><secondary>update()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-64">
+  <primary>QCanvasView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-65">
+  <primary>QCanvasView</primary><secondary>user input</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-66">
+  <primary>QCanvasView</primary><secondary>drawing a cursor</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-67">
+  <primary>QCanvasRectangle</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-69">
+  <primary>QScrollView</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-70">
+  <primary>contentsMousePressEvent</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-70">
+  <primary>event</primary><secondary>contentsMousePressEvent</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-76">
+  <primary>hourglass</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-76">
+  <primary>cursor</primary><secondary>hourglass</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-76">
+  <primary>cursor</primary><secondary>wristwatch</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-76">
+  <primary>setCursor()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-79">
+  <primary>input methods</primary>
+</indexterm>
+            
+<indexterm zone="para-ch16-81">
+  <primary>keyPressEvent()</primary><secondary>reimplementing</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch16-82">
+  <primary>IME</primary>
+</indexterm>
+
+<!-- CH17 -->
+
+            
+<indexterm zone="para-ch17-1">
+  <primary>printing</primary>
+</indexterm>
+            
+<indexterm zone="para-ch17-4">
+  <primary>postscript</primary>
+</indexterm>
+            
+<indexterm zone="para-ch17-6">
+  <primary>QPrinter</primary>
+</indexterm>
+            
+<indexterm zone="para-ch17-7">
+  <primary>QPrinter</primary><secondary>instantiation</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-8">
+  <primary>QPrinter</primary><secondary>setup</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-11">
+  <primary>printing</primary><secondary>lines of text</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-12">
+  <primary>printing</primary><secondary>paint device</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-13">
+  <primary>printing</primary><secondary>font</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-14">
+  <primary>fontmetrics</primary><secondary>printing</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-14">
+  <primary>printing</primary><secondary>fontmetrics</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-14">
+  <primary>QPainter</primary><secondary>fontMetrics()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-14">
+  <primary>printing</primary><secondary>margins</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch17-16">
+  <primary>alignment</primary>
+</indexterm>
+            
+<indexterm zone="para-ch17-16">
+  <primary>Qt.AlignmentFlags</primary>
+</indexterm>
+            
+<!-- CH18 -->
+
+<indexterm zone="para-ch18-1">
+  <primary>installation</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-3">
+  <primary>installation</primary><secondary>platforms</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>distutils</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>freeze</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>installer</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>squeeze</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>py2exe</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>wise</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>rpm</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-4">
+  <primary>dpkg</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-11">
+  <primary>installation</primary><secondary>dependencies</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-11">
+  <primary>dependencies</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-12">
+  <primary>packaging</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-13">
+  <primary>PYTHONPATH</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-14">
+  <primary>README</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-15">
+  <primary>distutils</primary><secondary>introduction</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-16">
+  <primary>setup.py</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-16">
+  <primary>distutils</primary><secondary>setup.py</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-16">
+  <primary>installation</primary><secondary>setup.py</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-32">
+  <primary>MANIFEST.in</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-32">
+  <primary>distutils</primary><secondary>MANIFEST.in</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-43">
+  <primary>setup.cfg</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-43">
+  <primary>distutils</primary><secondary>setup.cfg</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-45">
+  <primary>packaging</primary><secondary>building the package</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-45">
+  <primary>distutils</primary><secondary>building the package</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-49">
+  <primary>distutils</primary><secondary>installing a package</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-49">
+  <primary>installation</primary><secondary>of your application</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-51">
+  <primary>RPM</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-51">
+  <primary>distutils</primary><secondary>RPM</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-51">
+  <primary>installation</primary><secondary>creating rpms</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-56">
+  <primary>RPM</primary><secondary>writing spec files</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-56">
+  <primary>spec files</primary>
+</indexterm>
+            
+<indexterm zone="para-ch18-57">
+  <primary>distutils</primary><secondary>Windows installation</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-57">
+  <primary>windows</primary><secondary>creating installation packages</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch18-59">
+  <primary>installation</primary><secondary>desktop integration</secondary>
+</indexterm>
+                        
+
+<!-- CH19 -->
+
+
+<indexterm zone="para-ch19-1">
+  <primary>i18n</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-1">
+  <primary>l10n</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-1">
+  <primary>localisation</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-1">
+  <primary>internationalisation</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-1">
+  <primary>translation</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-4">
+  <primary>locale</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-5">
+  <primary>gettext</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-5">
+  <primary>QTranslator</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-8">
+  <primary>tr()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-10">
+  <primary>lupdate</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-11">
+  <primary>tr()</primary><secondary>Qt 2 vs Qt 3</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch19-12">
+  <primary>pyuic</primary><secondary>tr()</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch19-16">
+  <primary>KBabel</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-18">
+  <primary>msfmt.py</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-19">
+  <primary>message catalogs</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-22">
+  <primary>Qt Linguist</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-22">
+  <primary>Linguist</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-27">
+  <primary>.qm files</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-28">
+  <primary>translator</primary>
+</indexterm>
+            
+<indexterm zone="para-ch19-29">
+  <primary>locale</primary>
+</indexterm>
+            
+<!-- CH20 -->
+
+
+<indexterm zone="para-ch20-1">
+  <primary>drag and drop</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-1">
+  <primary>dnd</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-2">
+  <primary>mime</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-4">
+  <primary>accepting drops</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-4">
+  <primary>setAcceptDrops()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-8">
+  <primary>dragEnterEvent()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-8">
+  <primary>QTextDrag</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-10">
+  <primary>QFontDialog</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-15">
+  <primary>dragObject()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-16">
+  <primary>initiating drags</primary>
+</indexterm>
+            
+<indexterm zone="para-ch20-16">
+  <primary>QDragObject</primary>
+</indexterm>
+            
+
+<!-- CH21 -->
+
+
+<indexterm zone="para-ch21-1">
+  <primary>installing BlackAdder</primary>
+</indexterm>
+            
+<indexterm zone="para-ch21-8">
+  <primary>ODBC</primary>
+</indexterm>
+            
+<indexterm zone="para-ch21-13">
+  <primary>installing Blackadder</primary><secondary>Linux</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-4">
+  <primary>installing BlackAdder</primary><secondary>Windows</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-18">
+  <primary>installing</primary><secondary>sip</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-18">
+  <primary>installing </primary><secondary>pyqt</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-25">
+  <primary>versions</primary><secondary>dependencies between sip, PyQt and PyKDE</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-27">
+  <primary>compiling</primary><secondary>sip</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-27">
+  <primary>sip</primary><secondary>compiling</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-27">
+  <primary>sip</primary><secondary>installing</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-31">
+  <primary>compiling</primary><secondary>problems</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-34">
+  <primary>sip</primary><secondary>installing on Windows</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-34">
+  <primary>pyqt</primary><secondary>installing on Windows</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch21-35">
+  <primary>non-commercial Qt</primary>
+</indexterm>
+            
+<indexterm zone="para-ch21-38">
+  <primary>SciTEX</primary>
+</indexterm>
+            
+<!-- CH22 -->
+
+
+<indexterm zone="para-ch22-1">
+  <primary>blackadder</primary>
+</indexterm>
+            
+<indexterm zone="para-ch22-4">
+  <primary>blackadder</primary><secondary>finding Python</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-7">
+  <primary>blackadder</primary><secondary>menus</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-12">
+  <primary>blackadder</primary><secondary>toolbars</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-12">
+  <primary>toolbars</primary><secondary>blackadder</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-31">
+  <primary>project</primary><secondary>managing with BlackAdder</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-40">
+  <primary>blackadder</primary><secondary>configuration</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-40">
+  <primary>configuration</primary><secondary>blackadder</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-42">
+  <primary>ruby</primary>
+</indexterm>
+            
+<indexterm zone="para-ch22-44">
+  <primary>indenting</primary><secondary>with four spaces</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch22-46">
+  <primary>scintilla</primary>
+</indexterm>
+            
+<indexterm zone="para-ch22-47">
+  <primary>syntax highlighting</primary>
+</indexterm>
+            
+<indexterm zone="para-ch22-48">
+  <primary>code folding</primary>
+</indexterm>
+            
+<indexterm zone="para-ch22-51">
+  <primary>interpreter window</primary>
+</indexterm>
+            
+
+<!-- CH23 -->
+
+
+<indexterm zone="para-ch23-1">
+  <primary>debugging</primary>
+</indexterm>
+            
+<indexterm zone="para-ch23-4">
+  <primary>pdb</primary>
+</indexterm>
+            
+<indexterm zone="para-ch23-10">
+  <primary>eric</primary>
+</indexterm>
+            
+<indexterm zone="para-ch23-10">
+  <primary>debugging</primary><secondary>eric</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch23-10">
+  <primary>QCanvas</primary>
+</indexterm>
+            
+<indexterm zone="para-ch23-15">
+  <primary>breakpoints</primary>
+</indexterm>
+            
+<indexterm zone="para-ch23-15">
+  <primary>debugging</primary><secondary>breakpoints</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch23-28">
+  <primary>debugging</primary><secondary>techniques</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch23-35">
+  <primary>Practice of Programming</primary>
+</indexterm>
+            
+<indexterm zone="para-ch23-39">
+  <primary>mailing list</primary>
+</indexterm>
+            
+
+<!-- CH24 -->
+
+
+<indexterm zone="para-ch24-1">
+  <primary>python</primary><secondary>introduced</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch24-7">
+  <primary>programming</primary><secondary>introduced</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch24-22">
+  <primary>introduction</primary><secondary>to Python</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch24-24">
+  <primary>python</primary><secondary>language rules</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch24-25">
+  <primary>objects</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-25">
+  <primary>references</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-26">
+  <primary>type declerations</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-30">
+  <primary>object </primary><secondary>identity</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch24-31">
+  <primary>__call__</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-31">
+  <primary>callable types</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-32">
+  <primary>block</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-32">
+  <primary>indenting</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-36">
+  <primary>visibility</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-38">
+  <primary>keywords</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-38">
+  <primary>literals</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-39">
+  <primary>numbers</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-41">
+  <primary>operators</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-42">
+  <primary>methods and functions</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-46">
+  <primary>tuple</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-47">
+  <primary>list</primary>
+</indexterm>
+            
+<indexterm zone="para-ch24-48">
+  <primary>dictionary</primary>
+</indexterm>
+            
+<!-- CH25 -->
+
+
+<indexterm zone="para-ch25-1">
+  <primary>QAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-1">
+  <primary>toolbar</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-1">
+  <primary>menubar</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-1">
+  <primary>accelerator</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-1">
+  <primary>command structure</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-3">
+  <primary>QAction</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-7">
+  <primary>tooltips</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-8">
+  <primary>what's this</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-9">
+  <primary>statusbar</primary><secondary>tips</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-10">
+  <primary>keyboard accelerators</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-11">
+  <primary>icons</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-15">
+  <primary>QAction</primary><secondary>annotated example</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-16">
+  <primary>QAction</primary><secondary>grouping</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-17">
+  <primary>iconset</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-17">
+  <primary>QIconSet</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-26">
+  <primary>activated()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-27">
+  <primary>toggled()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-31">
+  <primary>QAction</primary><secondary>adding to the interface</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-31">
+  <primary>action</primary><secondary>adding to the interface</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-32">
+  <primary>aboutToShow()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-34">
+  <primary>toolbar</primary><secondary>adding a combobox to</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-34">
+  <primary>combobox</primary><secondary>adding to a toolbar</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-34">
+  <primary>QComboBox</primary><secondary>adding to a toolbar</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-37">
+  <primary>what's this</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-40">
+  <primary>QMimeSourceFactory</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-43">
+  <primary>keyboard accelerators</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-44">
+  <primary>keyboard shortcut</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-44">
+  <primary>accelerator</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-45">
+  <primary>shortcut</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-47">
+  <primary>QAccel</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-47">
+  <primary>stringToKey()</primary>
+</indexterm>
+            
+<indexterm zone="para-ch25-48">
+  <primary>icon</primary><secondary>setting an application icon</secondary>
+</indexterm>
+            
+<indexterm zone="para-ch25-48">
+  <primary>application</primary><secondary>setting an icon</secondary>
+</indexterm>
+
+
+<!-- INTRO -->
+
+
+<indexterm zone="para-intro-1">
+  <primary>introduction</primary><secondary>to the book</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-1">
+  <primary>software crisis</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-1">
+  <primary>Frederick Brooks</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-4">
+  <primary>python</primary><secondary>advantages of</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-8">
+  <primary>editors</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-9">
+  <primary>ides</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-10">
+  <primary>python</primary><secondary>features</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-21">
+  <primary>python</primary><secondary>first application</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-26">
+  <primary>python</primary><secondary>compared to Java</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-27">
+  <primary>compiling</primary><secondary>Python</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-29">
+  <primary>python</primary><secondary>performance</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-30">
+  <primary>Java</primary><secondary>Swing</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-32">
+  <primary>gui libraries</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-36">
+  <primary>tkInter</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-36">
+  <primary>PyQt</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-36">
+  <primary>PyGTK</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-36">
+  <primary>wxPython</primary>
+</indexterm>
+            
+<indexterm zone="para-intro-37">
+  <primary>PyQt</primary><secondary>features</secondary>
+</indexterm>
+            
+<indexterm zone="para-intro-46">
+  <primary>BlackAdder</primary>
+</indexterm>
+            
+
+<!-- SIP -->
+
+<indexterm zone="para-sip-1">
+  <primary>sip</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-2">
+  <primary>C++</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-2">
+  <primary>wrapping C++ libraries</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-5">
+  <primary>C++ wrappers</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-6">
+  <primary>sip</primary><secondary>features</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-11">
+  <primary>sip</primary><secondary>generator</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-11">
+  <primary>sip</primary><secondary>library</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-12">
+  <primary>header files</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-14">
+  <primary>.sip files</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-16">
+  <primary>.sip files</primary><secondary>creating</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-19">
+  <primary>private variables</primary><secondary>wrapping with sip</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-19">
+  <primary>sip</primary><secondary>private variables</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-23">
+  <primary>Q_OBJECT</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-24">
+  <primary>TransferThis</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-25">
+  <primary>Headercode</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-27">
+  <primary>sip</primary><secondary>hand-written code</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-27">
+  <primary>pointers</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-27">
+  <primary>pass by reference</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-29">
+  <primary>MemberCode</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-32">
+  <primary>Py_BuildValue</primary>
+</indexterm>
+            
+<indexterm zone="para-sip-34">
+  <primary>sip</primary><secondary>limitations</secondary>
+</indexterm>
+            
+<indexterm zone="para-sip-36">
+  <primary>library wrappers</primary><secondary>creating your own</secondary>
+</indexterm>
+            
+<!-- DOCUMENTATION -->
+
+<indexterm zone="para-documentation-1">
+  <primary>documentation</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-5">
+  <primary>KDE shortcuts</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-14">
+  <primary>#include</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-15">
+  <primary>const</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-17">
+  <primary>public members</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-18">
+  <primary>slots</primary><secondary>C++ in Python</secondary>
+</indexterm>
+            
+<indexterm zone="para-documentation-19">
+  <primary>properties</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-20">
+  <primary>::</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-22">
+  <primary>constants</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-22">
+  <primary>Qt pseudo-class</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-23">
+  <primary>static methods</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-25">
+  <primary>signals</primary><secondary>translating C++ definition to Python</secondary>
+</indexterm>
+            
+<indexterm zone="para-documentation-31">
+  <primary>Null</primary>
+</indexterm>
+            
+<indexterm zone="para-documentation-31">
+  <primary>pointer</primary><secondary>zero</secondary>
+</indexterm>
+            
+<indexterm zone="para-documentation-31">
+  <primary>zero</primary><secondary>pointer</secondary>
+</indexterm>
+
+<!-- QWT -->
+        
+
+<indexterm zone="para-qwt-1">
+  <primary>qwt</primary>
+</indexterm>
+            
+<indexterm zone="para-qwt-1">
+  <primary>charting</primary>
+</indexterm>
+            
+<indexterm zone="para-qwt-1">
+  <primary>plotting</primary>
+</indexterm>
+            
+<indexterm zone="para-qwt-1">
+  <primary>Qt Widgets for Technics</primary>
+</indexterm>
+            
+<indexterm zone="para-qwt-2">
+  <primary>Numerical Python</primary>
+</indexterm>
+            
+<indexterm zone="para-qwt-2">
+  <primary>numpy</primary>
+</indexterm>
+            
+<indexterm zone="para-qwt-7">
+  <primary>array</primary><secondary>numpy</secondary>
+</indexterm>
+            
+<indexterm zone="para-qwt-22">
+  <primary>lists</primary><secondary>vs numpy arrays</secondary>
+</indexterm>
+            
+<indexterm zone="para-qwt-27">
+  <primary>scigraphica</primary>
+</indexterm>
+            
+<indexterm zone="para-qwt-28">
+    <primary>PyQwt</primary><secondary>installing</secondary>
+  </indexterm>
+  
+  <indexterm zone="para-qwt-31">
+    <primary>PyQwt</primary><secondary>demonstration</secondary>
+</indexterm>
+            
+    
+</index>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-general-insert-case:lower
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-default-dtd-file:"~/doc/pyqt/index-defs.ced"
+End:
+-->

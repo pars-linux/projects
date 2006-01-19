@@ -1,0 +1,440 @@
+<!DOCTYPE UI><UI>
+<class>FrmFindReplace</class>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>FrmFindReplace</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>556</width>
+            <height>363</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Seach and Replace</string>
+    </property>
+    <property stdset="1">
+        <name>icon</name>
+        <pixmap>image0</pixmap>
+    </property>
+    <property stdset="1">
+        <name>sizeGripEnabled</name>
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="0"  column="0"  rowspan="1"  colspan="2" >
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>grpFind</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string> Find </string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0" >
+                    <class>QComboBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>cmbFind</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>editable</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>insertionPolicy</name>
+                        <enum>AtTop</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>autoCompletion</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>duplicatesEnabled</name>
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="1"  column="0"  rowspan="1"  colspan="2" >
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>grpReplace</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string> Replace </string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0" >
+                    <class>QComboBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>cmbReplace</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>editable</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>insertionPolicy</name>
+                        <enum>AtTop</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>autoCompletion</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>duplicatesEnabled</name>
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="0"  column="2"  rowspan="4"  colspan="1" >
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout3</cstring>
+            </property>
+            <vbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>bnFind</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Find next</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>default</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>bnReplaceNext</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>replace &amp;Next</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>bnReplaceAll</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>replace &amp;All</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Vertical</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                    <property>
+                        <name>sizeHint</name>
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>bnClose</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Close</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>false</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>default</name>
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <widget row="3"  column="1" >
+            <class>QButtonGroup</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>grpMatching</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string> Search type </string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>radioLiteral</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Literal</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>radioRegexp</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Regular expression</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="3"  column="0" >
+            <class>QButtonGroup</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>grpDirection</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string> Search direction </string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="1"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>radioBackward</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Backward</string>
+                    </property>
+                </widget>
+                <widget row="0"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>radioForward</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Forward</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="2"  column="0"  rowspan="1"  colspan="2" >
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>grpOptions</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string> Options </string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0" >
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>chkCaseSensitive</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Case sensitive search</string>
+                    </property>
+                </widget>
+                <widget row="2"  column="0" >
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>chkSelection</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Seach in selection</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>chkWholeText</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>backgroundOrigin</name>
+                        <enum>WidgetOrigin</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Search whole text</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image>
+        <name>image0</name>
+        <data format="XPM.GZ" length="545">789c6590c16ac3300c86ef790a13ddc27093ba1e19658fb0b2e360eca0288e934257d8bac3287bf749729d192672f0f7f14b96b369cccbf3936936d5e7052f0b199af1c334e3d7e9f4fdfaf678adeaeedec8b7355d7d57d5d690399cdf839c81cfd06a092e0977ed4e9363c2beeb9de09090b6e405e78413976014749d6b9df6a2a047ffe0513008f62e8f3a0a92cfa328611e35094e5346cb05003615dae400061a56ab0e46921a45867073443c86885d40d45db85115b75b56519dc4b49b8331da9c5335407107518efdbf77fe7379bfdb8ae53b16c023ac0ed320882a730e0ba98edf638ba4fe535ebe685727efb16b927b7ff6d52f51507c68</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>bnClose</sender>
+        <signal>clicked()</signal>
+        <receiver>FrmFindReplace</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>cmbFind</tabstop>
+    <tabstop>cmbReplace</tabstop>
+    <tabstop>chkCaseSensitive</tabstop>
+    <tabstop>chkWholeText</tabstop>
+    <tabstop>chkSelection</tabstop>
+    <tabstop>radioLiteral</tabstop>
+    <tabstop>radioRegexp</tabstop>
+    <tabstop>radioForward</tabstop>
+    <tabstop>radioBackward</tabstop>
+    <tabstop>bnFind</tabstop>
+    <tabstop>bnReplaceNext</tabstop>
+    <tabstop>bnReplaceAll</tabstop>
+    <tabstop>bnClose</tabstop>
+</tabstops>
+</UI>

@@ -1,0 +1,1106 @@
+<chapter id="ch13">
+
+  <title>Application Configuration</title>
+
+  <indexterm>
+  <primary>configuration</primary>
+  </indexterm>
+  <para id="para-ch13-1">Every user has a preferred way of doing
+    things &mdash; and a good application should be accommodating
+    enough that important choices&mdash;such as what font to
+    use&mdash; can be set by the user. Of course, no one likes
+    applying their favorite settings every time they start an
+    application, so we will need to store the settings, too. This
+    chapter deals with settings &mdash; retrieving, storing and using.
+  </para>
+
+  <para id="para-ch13-2">Unfortunately, different platforms have
+    vastly differing traditions for the storing of user preferences.
+    You can either use the platform standard, or create your own
+    solution.</para>
+
+  <sect1><title>Platform differences</title>
+
+    <indexterm>
+  <primary>windows</primary><secondary>registry</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>registry</primary><secondary>configuration options</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>ini files</primary>
+  </indexterm>
+  <para id="para-ch13-3">On a Windows system, most applications
+      store user preferences in a central database, called the
+      Registry. This book is not the place to argue about the wisdom
+      or folly of keeping all application and system settings in one
+      database, which can only be accessed with specialized tools.
+      Most modern windows applications no longer use the once
+      prevalent <filename>.ini</filename> standard. Using
+      <filename>.ini</filename>, an application could store settings
+      in a file in either the installation directory, the
+      <filename>windows</filename> directory, or in one of two
+      configuration files: <filename>win.ini</filename> or
+      <filename>system.ini</filename>. Windows has only recently
+      become a multi-user system, so it is still difficult to
+      determine where to store user specific settings. In Windows
+      2000, I suggest the <filename>C:\Documents and
+        Settings\{Username}\Local Settings\Application Data</filename>
+      directory. In the registry, there is the HKEY_USER
+      branch.</para>
+
+    <indexterm>
+  <primary>Unix</primary><secondary>dot files</secondary>
+  </indexterm>
+  <para id="para-ch13-4">The Unix standard is not so much a standard
+      as a gentle guide. You can store system-wide application
+      settings in the <filename>/etc</filename> directory, or one of
+      its subdirectories, or in the <filename>/usr/share</filename>
+      directory together with resources... Or in
+      <filename>/usr/local/share</filename> &mdash; or in any number
+      of other places.</para>
+
+    <indexterm>
+  <primary>home directory</primary>
+  </indexterm>
+  <para id="para-ch13-5">User settings on a Unix system are
+      generally stored in so-called dot files, or dot directories.
+      These are files or directories that start with a dot (.) and are
+      thus &lsquo;invisible' when the user asks for the contents of a
+      directory using <filename>ls</filename> (or browses the
+      directory with a filemanager like konqueror). The dot-files or
+      dot-directories are located in the home directory of the user. A
+      Unix home directory can be compared to the user's directory
+      under <filename>C:\Documents And Settings</filename> in Windows
+      2000. It is generally found under <filename>/home</filename>.
+      You can retrieve the location of this directory with:</para>
+
+    <programlisting>os.environ["HOME"]
+    </programlisting>
+
+    <para id="para-ch13-6">This returns None when HOME is not set. If
+      you are developing for KDE, you might want to store the user
+      settings in
+      <filename>$HOME/.kde/share/config/</filename>instead, and the
+      application settings in
+      <filename>$KDEDIR/share/apps</filename>.</para>
+
+  </sect1>
+
+  <sect1><title>The Python way of handling configuration
+      settings</title>
+
+<!-- Br: I changed this para -->
+    <para id="para-ch13-7">Qt 3.0 offers a nice and integrated way of
+      handling configuration settings. The Qt 3.0 way of working
+      wasn't quite ready when I was writing this chapter, so I've just
+      added a forward-looking statement in the last section of this
+      chapter on how things will work Qt 3.0 is bound to Python.</para>
+
+    <para>Creating a configuration management framework is an
+      interesting exercise in its own right, so, after exploring the
+      standard modules Python offers, we'll build a simple framework
+      that neatly fits <application>kalam</application>
+      ourselves.</para>
+
+<!-- end changes -->
+
+    <para id="para-ch13-8">For now, the choice is between taking the
+      easy way out, or conducting a really nice cross-platform
+      solution. The easy way out is to store all settings in a
+      settings file, both on Unix and on Windows. We can store this
+      file in $HOME/.kalamrc, and prompt the Windows users to enter a
+      setting for HOME in their control panel.</para>
+
+    <indexterm>
+  <primary>ConfigParser</primary>
+  </indexterm>
+  <para id="para-ch13-9">To store user settings the "right" way, the
+      editor will have to determine if it is running on a Windows or
+      Unix system. On Windows, the editor will store all configuration
+      files in the registry (using the Python module
+      <filename>_winreg</filename>), and on Linux in a dot file in the
+      users home directory. We can structure the dot file with the
+      Python <filename>ConfigParser</filename> module, which can read
+      and write files of the old Windows <filename>.ini</filename>
+      format.</para>
+
+    <indexterm>
+  <primary>_winreg</primary>
+  </indexterm>
+  <para id="para-ch13-10">As the name implies,
+      <filename>_winreg</filename> is a very low-level library, and
+      only suitable to build something on top that is more complete.
+      Furthermore, the way in which <filename>ConfigParser</filename>
+      deals with settings, while very elegant, is not really
+      compatible with <filename>_winreg</filename>. We will first take
+      a look at the easy way out: after all, within the foreseeable
+      future we'll have Qt 3.0's <classname>QConfig</classname>, which
+      will obsolete our own efforts.</para>
+
+    <para id="para-ch13-11">If you want to keep your application
+      firmly in the Python domain&mdash;perhaps with a view to later
+      translate the application to another GUI toolkit&mdash;you can
+      use <filename>ConfigParser</filename> and
+      <filename>_winreg</filename> (for Windows and Unix,
+      respectively). You can determine which platform your application
+      runs on with the following check:</para>
+
+    <programlisting>
+if sys.platform=="win32":
+    import _winreg
+    # handle reading and writing of configuration data using
+    # the registry
+else:
+    import ConfigParser
+    # handle reading and writing of configuration data using
+    # the configuration files that are structured like windows
+    # .ini files.
+    </programlisting>
+
+    <indexterm>
+  <primary>windows</primary><secondary>determining the os</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>determining the os</primary>
+  </indexterm>
+  <para id="para-ch13-12">Discussing these standard Python library modules is a bit
+      beyond the scope of this book. You can find descriptions of them in the
+      Python Library Reference. Regardless of the solution you choose, you
+      should be able to use the same central configuration object &mdash; an
+      object which we are now going to develop.</para>
+
+  </sect1>
+
+  <sect1><title>Implementing configurations settings for
+      <application>Kalam</application></title>
+
+    <para id="para-ch13-13">Working with configuration settings can be
+      divided into two main procedures: giving your application
+      classes access to the configuration data, and loading and saving
+      that data. We'll start by looking at the first problem, and then
+      at loading and saving. In the next chapter, we'll round out
+      <application>Kalam</application> by creating a preferences
+      dialog.</para>
+
+    <sect2><title>Handling configuration data in your
+        application</title>
+
+      <indexterm>
+    <primary>configuration data</primary><secondary>handling data in the application</secondary>
+  </indexterm>
+  <para id="para-ch13-14">Before we start saving and restoring
+        configuration settings, we should have a clear idea of how to
+        handle them in the application. Configuration data typically
+        must be available everywhere in the application, because all
+        objects must be able to query and store settings at
+        will.</para>
+
+      <indexterm>
+    <primary>singleton</primary>
+  </indexterm>
+  <indexterm>
+    <primary>global variables</primary>
+  </indexterm>
+  <para id="para-ch13-15">In other languages, such as Visual
+        Basic, you would use a module with global variables to store
+        configuration data; in a language like Java or C++, you would
+        use a singleton object&mdash;that is, an object with a hidden
+        constructor that can only be instantiated once. Python,
+        however, does not support these constructions.</para>
+
+
+      <indexterm>
+  <primary>class variables</primary>
+  </indexterm>
+  <para id="para-ch13-16">Of course, there is an alternative. In a sense,
+        class definitions are global. Every module that imports a
+        certain class gets exactly the same class. Keep in mind that a
+        class is just an object, of the type
+        <varname>class</varname>. You can associate variables not only
+        with an object, as in:</para>
+
+
+    <programlisting>
+class SomeClass:
+
+   def __init__(self):
+       self.someVariable=1
+
+someInstance=SomeClass()
+print someInstance.someVariable
+    </programlisting>
+
+    <para id="para-ch13-17">But also with a class:</para>
+
+    <programlisting>
+class SomeClass:
+
+    classVariable=1
+
+print SomeClass.classVariable
+    </programlisting>
+
+      <para id="para-ch13-18">These class variables are accessed via the
+        <emphasis>name</emphasis> of the class, instead of the name of
+        an instance of that class. Class variables are shared by all
+        instances of a class.</para>
+
+      <indexterm>
+  <primary>global configuration repository</primary>
+  </indexterm>
+  <para id="para-ch13-19">The ideal solution to creating a
+        "global" configuration repository is to define a class that
+        contains all configuration data as class variables. It's also
+        possible to encapsulate the configuration data repository in a
+        single class variable. You cannot call functions on a
+        class - there is no equivalent to the &lsquo;static' methods of
+        Java. If we need functions to work on the configuration data,
+        we must either define those functions at module level, or as
+        functions of an object that is a class variable of the
+        configuration module. An example would be a function to create
+        a <classname>QFont</classname> out of a fontname
+        string.</para>
+
+
+      <para id="para-ch13-20">Well &mdash; that was the theory. Let's
+        now look at the code needed to implement configuration data
+        for <application>Kalam</application>. It's pretty similar to
+        the snippets we saw above:</para>
+
+      <programlisting>
+"""
+kalamconfig.py - Configuration class for the Kalam Unicode Editor
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+
+import sys, os
+from qt import *
+
+
+class Config:
+
+    APPNAME = "kalam"
+    APPVERSION = "ch13"
+    CONFIGFILE = ".kalam-ch13"
+
+    currentStyle="Platinum"
+    viewmanager="tabmanager"
+
+    app_x=0
+    app_y=0
+    app_w=640
+    app_h=420
+
+    fontfamily="courier"
+    pointsize=12
+    weight=50
+    italic=0
+    encoding=22
+
+
+def getApplicationFont():
+    return QFont(Config.fontfamily,
+                 Config.pointsize,
+                 Config.weight,
+                 Config.italic,
+                 Config.encoding )
+      </programlisting>
+
+      <indexterm>
+  <primary>kalamconfig.py</primary>
+  </indexterm>
+  <indexterm>
+  <primary>Config (class)</primary>
+  </indexterm>
+  <para id="para-ch13-21">As you can see, it's just a simple matter of a class with a bunch
+        of class variables that represent pertinent values.
+        However,
+        because these values will be saved to a file, you cannot
+        associate real objects with the keys. To make it easier to
+        retrieve a font based on the values stored in
+        the configuration file, there is module-level helper function,
+        <function>getApplicationFont()</function>, which constructs a
+        <classname>QFont</classname> on the fly.</para>
+
+      <para id="para-ch13-22">A similar function exists to set the font:</para>
+
+      <programlisting>
+def setApplicationFont(qfont):
+     Config.fontfamily = qfont.family()
+     Config.pointsize = qfont.pointSize()
+     Config.weight = qfont.weight()
+     Config.italic = qfont.italic()
+     Config.encoding = qfont.encoding()
+      </programlisting>
+
+      <indexterm>
+  <primary>Java</primary><secondary>properties</secondary>
+  </indexterm>
+  <para id="para-ch13-23">As you can see, we store our settings in
+        a flat namespace, in which every key must be unique. This is
+        just like the properties system used in Java, but more complex
+        systems can be very useful. For instance, the Windows registry
+        is one gigantic tree, and even the files created by
+        <filename>ConfigParser</filename> have sections and
+        subsections. For highly complex configuration needs, there is
+        the <filename>shlex</filename> Python module, which you can
+        use to define configuration languages.</para>
+
+    </sect2>
+
+
+    <sect2><title>Saving and loading the configuration data</title>
+
+      <indexterm>
+  <primary>configuration data</primary><secondary>loading and saving</secondary>
+  </indexterm>
+  <para id="para-ch13-24">Retrieving and saving the configuration
+        data can be made as complex or easy as you want. We have
+        already discussed the possibility of using
+        <filename>_winreg</filename> or
+        <filename>ConfigParser</filename> for the saving and
+        retrieving of configuration data.</para>
+
+      <para id="para-ch13-25">What we are going to, however, is far
+        more simple. When we load the settings, we just read every
+        line in the configuration file, and add a variable to the
+        <classname>Config</classname> class that represents the
+        value:</para>
+
+      <programlisting>
+def readConfig(configClass = Config):
+    sys.stderr.write( "Initializing configuration\n")
+    try:
+        for line in open(os.path.join(os.environ["HOME"],
+                                      Config.CONFIGFILE)).readlines():
+            k, v=tuple(line.split("="))
+            v=v[:-1]
+            if v=="None\n":
+                v=None
+            elif type:
+               try:
+                    v=int(v)
+                except ValueError:
+                    pass
+            setattr(configClass, k, v)
+    except IOError:
+        sys.stderr.write( "Creating first time configuration\n")
+      </programlisting>
+
+      <indexterm>
+    <primary>setattr</primary>
+  </indexterm>
+  <para id="para-ch13-26">To add the variable to the
+        <classname>Config</classname> we use the standard Python
+        function <function>setattr()</function> &mdash; this function
+        is one of the delights that make Python so dynamic.</para>
+
+      <para id="para-ch13-27">Note the special treatment of the value
+        that is represented by "None" in the configuration file: if
+        "None" is encountered the value of the configuration key is
+        set to a real None object. This contrast with the situation
+        where the value is simply empty: then the value is set to an
+        empty string ("").</para>
+
+      <indexterm>
+  <primary>integer type</primary>
+  </indexterm>
+  <para id="para-ch13-28">Currently, the configuration file format
+        only supports two types: strings and integers. The distinction
+        is made by brute force: we simply try to convert the value to
+        an integer, and if we succeed, it stays an integer. If the
+        conversion raises a <varname>ValueError</varname>, we assume
+        the value should remain a string.</para>
+
+      <para id="para-ch13-29">By now you might be wondering
+        <emphasis>when</emphasis> we will be reading in the
+        configuration values. The simple answer is that we will do so
+        when the <filename>KalamConfig</filename> module is first
+        imported. At the bottom of the module the function
+        <function>readConfig(Config)</function> is called, and is only
+        executed once:</para>
+
+      <programlisting>
+readConfig()
+      </programlisting>
+
+      <indexterm>
+  <primary>dir()</primary>
+  </indexterm>
+  <para id="para-ch13-30">Saving the configuration values to disk
+        is a simple matter of looping over the contents of the
+        attributes of the <classname>Config</classname> class &mdash;
+        that is, the <varname>__dict__</varname>,
+        <varname>__methods__</varname> and
+        <varname>__members__</varname> dictionaries that are part of
+        the object's hidden attributes. We retrieve these with the
+        <function>dir()</function> function:</para>
+
+      <programlisting>
+def writeConfig(configClass = Config):
+    sys.stderr.write( "Saving configuration\n")
+    configFile=open(os.path.join(os.environ["HOME"],".kalamrc"),"w+")
+    for key in dir(Config):
+        if key[:2]!='__':
+            val=getattr(Config, key)
+            if val==None or val=="None":
+                line=str(key) + "=\n"
+            else:
+                line=str(key) + "=" + str(val) + "\n"
+            configFile.write(line)
+    configFile.flush()
+      </programlisting>
+
+      <indexterm>
+  <primary>writeConfig()</primary>
+  </indexterm>
+  <para id="para-ch13-31">The actual values are retrieved with
+        the opposite of <function>setattr()</function>:
+        <function>getattr()</function>. As a first check, attributes
+        with a double underscore as prefix are not saved: those are
+        internal attributes to the <classname>Config</classname>
+        class. If the value is the <varname>None</varname> object, we
+        print the string "None". Because it is quite possible that
+        some values are <classname>QString</classname> objects, and
+        because you cannot save these, everything is converted to a plain
+        Python string.</para>
+
+      <para id="para-ch13-32">Finally, you might need functions that get and set more
+      complex objects in the <classname>Config</classname>. These can
+      be simple module level functions that work on the class:</para>
+
+
+      <programlisting>
+def getTextFont():
+    return QFont(Config.fontfamily,
+                 Config.pointsize,
+                 Config.weight,
+                 Config.italic,
+                 Config.encoding )
+
+def setTextFont(qfont):
+     Config.fontfamily = qfont.family()
+     Config.pointsize = qfont.pointSize()
+     Config.weight = qfont.weight()
+     Config.italic = qfont.italic()
+     Config.encoding = qfont.encoding()
+      </programlisting>
+
+    </sect2>
+
+    <sect2><title>Using configuration data from the application</title>
+
+      <para id="para-ch13-33">By now we have a simple configuration
+        data mechanism, and it's time to use it. Earlier we defined a
+        few settings: the position and size of the application window,
+        the widget style that is to be used, and the interface
+        paradigm. First, we will write some code to actually use these
+        settings. Then we will write code to save changes when the
+        application is closed.</para>
+
+      <sect3><title>Font settings</title>
+
+      <para id="para-ch13-34">The font to be used in the editor window can be
+        set and retrieved with the get and set functions we defined
+        above. The <classname>KalamView</classname> class is the place
+        to use this setting.</para>
+
+      <programlisting>
+"""
+from qt import *
+import kalamconfig
+from resources import TRUE, FALSE
+
+class KalamView(QWidget):
+
+    def __init__(self, parent, doc, *args):
+        apply(QWidget.__init__,(self, parent) + args)
+        ...
+        self.editor=QMultiLineEdit(self)
+        self.editor.setFont(kalamconfig.getTextFont())
+        self.layout.addWidget(self.editor)
+      </programlisting>
+
+        <indexterm>
+  <primary>setFont()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>setting the font</primary>
+  </indexterm>
+  <para id="para-ch13-35">We import the configuration module,
+          <emphasis>not</emphasis> the <classname>Config</classname>
+          class from the configuration module. After creating the
+          editor widget, we simply set the font with a call to
+          <function>self.editor.setFont(kalamconfig.getTextFont())</function>.
+          </para>
+
+      </sect3>
+
+      <sect3><title>Window geometry</title>
+
+        <indexterm>
+  <primary>geometry management</primary>
+  </indexterm>
+  <indexterm>
+  <primary>session management</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QSessionManager</primary>
+  </indexterm>
+  <para id="para-ch13-36">Applying the geometry is just as easy.
+          It's very pleasant for users when an application pops up its
+          windows at the same place and in the same size as the user
+          left them. This is part of session management, which is very
+          advanced in the KDE environment, but less so for Windows. Qt
+          3 offers support for session management with
+          <classname>QSessionManager</classname> and
+          <classname>QApplication</classname>, but we'll take care of
+          session management ourselves at this time.</para>
+
+        <para id="para-ch13-37">Setting the correct size and position
+          of a window, and also the correct widget style, is done in
+          the central application object,
+          <classname>KalamApp</classname>:</para>
+
+        <programlisting>
+from qt import *
+...
+
+import kalamconfig
+...
+
+class KalamApp(QMainWindow):
+    """KalamApp is the toplevel application window of the kalam unicode editor
+    application.
+    """
+    def __init__(self, *args):
+        apply(QMainWindow.__init__,(self, ) + args)
+
+        ...
+
+        self.initSettings()
+
+        ...
+
+    #
+    # GUI initialization
+    #
+    def initSettings(self):
+        qApp.setStyle(kalamconfig.getStyle())
+        self.setGeometry(kalamconfig.Config.app_x,
+                         kalamconfig.Config.app_y,
+                         kalamconfig.Config.app_w,
+                         kalamconfig.Config.app_h)
+
+        </programlisting>
+
+        <para id="para-ch13-38">Here, too, we import the
+          <filename>kalamconfig</filename> module. The function
+          <function>initSettings()</function> is called from the
+          constructor {<function>__init__()</function>}
+          </para>
+
+        <para id="para-ch13-39">This function will be extended with
+          other application level settings during development of
+          <application>Kalam</application>.</para>
+      </sect3>
+
+      <sect3><title>Determining the widget style</title>
+
+        <indexterm>
+  <primary>widget styles</primary>
+  </indexterm>
+  <para id="para-ch13-40"> First, we set the desired widget
+          style. Users can also set the widget style using a
+          command-line option, and Qt can even figure out which style
+          fits best with a users platform. But some people have strong
+          preferences, and will want to configure their preferred
+          style. It is easy enough to determine and use the platform
+          default if no special style is set.
+          </para>
+
+        <para id="para-ch13-41">The <function>getStyle()</function> and
+          <function>setStyle</function> are quite interesting, from a
+          Python point of view:</para>
+
+        <programlisting>
+def __extractStyle(style):
+    if type(style) == InstanceType:
+        return style.__class__.__name__
+    elif type(style) == StringType:
+        return style
+    else:
+        return "QPlatinumStyle"
+        </programlisting>
+
+        <indexterm>
+  <primary>qApp</primary><secondary>style()</secondary>
+  </indexterm>
+  <para id="para-ch13-42">I wanted this to be as flexible as
+          possible, showing the dynamic nature of Python. The
+          <function>__extractStyle</function> function takes the
+          current style object that is used by the application. We
+          find this by calling <function>qApp.style()</function>.
+          <varname>qApp</varname> is a global variable that points to
+          the <classname>QApplication</classname> object.</para>
+
+        <indexterm>
+  <primary>__init__</primary>
+  </indexterm>
+  <indexterm>
+  <primary>__class__</primary>
+  </indexterm>
+  <indexterm>
+  <primary>__name__</primary>
+  </indexterm>
+  <para id="para-ch13-43">An instance in Python has a number of
+          &lsquo;hidden' fields and methods that each have a special
+          meaning. One of these is <function>__init__()</function>,
+          which is called when the object is first created. Another is
+          <varname>__class__</varname>, which returns the class that
+          the object was created from. You can use this to make more
+          instances, but in this case
+          we are interested in the string that contains the name of
+          the class. You can retrieve the name with another &lsquo;hidden'
+          variable of
+          the <classname>class</classname> class:
+          <varname>__name__</varname>.</para>
+
+        <programlisting>
+def setStyle(style):
+    if type(style) == types.StringType:
+        Config.currentStyle = style
+    elif type(style) == types.InstanceType:
+        Config.currentStyle = __extractStyle(style)
+      </programlisting>
+
+      <para id="para-ch13-44">Setting the style in the context of
+      <filename>kalamconfig</filename> means setting the
+      "currentStyle" attribute of <classname>Config</classname> to a
+      string that represents the style. If the input to
+      <function>setStyle()</function> is already a string (that is, if the type
+      is <varname>types.StringType</varname>), then we simply set
+      it. Otherwise, we use the function defined above to get a string
+      that equals the name of the style class.</para>
+
+      <programlisting>
+def getStyle():
+    # Basic sanity check - you don't want to eval arbitrary code
+    if not hasattr(Config, "currentStyle"):
+        print "ok", repr(qApp.style())
+        Config.currentStyle = __extractStyle(qApp.style())
+
+    if (Config.currentStyle[0] != "Q" or
+        Config.currentStyle[-5:] != "Style"  or
+        Config.currentStyle.find(" ") > 0):
+        Config.currentStyle = "QPlatinumStyle"
+
+    try:
+        # you shouldn't use eval for this, but it is a nice opportunity
+        # for showing how it works. Normally you'd use a dictionary of
+        # style names.
+        return eval(Config.currentStyle)()
+    except NameError, e:
+        print "No such style: defaulting to Platinum"
+        return QPlatinumStyle()
+      </programlisting>
+
+
+      <indexterm>
+  <primary>eval()</primary>
+  </indexterm>
+  <para id="para-ch13-45">Getting a <classname>QStyle</classname>
+          object of the right type is a bit more complex. Of course,
+          you will most often use a simple dictionary that maps style
+          names to style classes:</para>
+
+      <programlisting>
+        styleDict = { "platinum": QPlatinumStyle, ...}
+      </programlisting>
+
+      <para id="para-ch13-46">This is not particularly flexible. Here,
+          we use <function>eval</function> to create an object from
+          the name of a class. Look carefully at:</para>
+
+      <programlisting>
+        return eval(Config.currentStyle)()
+      </programlisting>
+
+        <para id="para-ch13-47">This means that, if the variable
+          <varname>Config.currentStyle</varname> contains a string
+          that is equal to classname and that is known to Python (that is,
+          it can be found in one of the imported modules),
+          <function>eval()</function> will return that class. The
+          brackets after eval make an instance of the class.</para>
+
+        <para id="para-ch13-48">Beware: using
+          <function>eval</function> is <emphasis>dangerous</emphasis>.
+          For example, what if someone hacked your
+          <filename>.kalam-ch13</filename> configuration file and set
+          the entry <literal>currentStyle</literal> to
+          <literal>os.rmdir('/')</literal>? If you were fool enough to
+          run <application>Kalam</application> as root on Unix, you'd
+          lose your system&mdash;irretrievably.</para>
+
+        <para id="para-ch13-49">This is why I checked the existence
+          and believability of the <varname>currentStyle</varname>
+          string before
+          <function>eval</function>-ing it. I only used
+          <function>eval</function> to show you that it exists&mdash;
+          for your own sake, don't use <function>eval</function>
+          trivially! We'll return to <function>eval</function> and its
+          friends in <xref linkend="ch15">.</para>
+
+      </sect3>
+
+      <sect3><title>Setting the viewmanager</title>
+
+        <indexterm>
+  <primary>viewmanager</primary>
+  </indexterm>
+  <para id="para-ch13-50">The last task we handle in this
+          chapter is the choosing of the view manager. The available
+          choices include tabbed windows, mini-windows, splitters,
+          stacks &mdash; the lot. This time, we will use a dictionary
+          that maps viewmanager names to actual classes. This is only
+          to show you how it works - in general, it's a good rule to
+          not mix and match approaches as we have done here, but to
+          choose one method, and stick to it.</para>
+
+    
+        <programlisting>
+"""
+kalamconfig.py - Configuration class for the Kalam Unicode Editor
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+
+import sys, os, types
+from qt import *
+
+import tabmanager, listspace, splitspace, stackspace, workspace
+
+workspacesDictionary = {
+    "tabmanager" : tabmanager.TabManager,
+    "listspace"  : listspace.ListSpace,
+    "splitspace" : splitspace.SplitSpace,
+    "stackspace" : stackspace.StackSpace,
+    "workspace"  : workspace.WorkSpace,
+    }
+
+class Config:
+...
+        </programlisting>
+
+        <para id="para-ch13-51">First, a dictionary
+          (<varname>workspacesDictionary</varname>) is created that
+          contains a mapping from strings to the actual classes. Of
+          course, in order to be able to access those classes, they
+          will have to be imported.</para>
+
+        <programlisting>
+def getViewManager():
+    try:
+        return workspacesDictionary[Config.viewmanager]
+    except:
+        return tabmanager.TabManager
+
+def setViewManager(viewmanager):
+    Config.viewmanager = viewmanager.__class__.__name__
+        </programlisting>
+
+        <para id="para-ch13-52">These two functions get and set the
+          viewmanager style. If the style given in
+          <classname>Config</classname> doesn't exist, a
+          <varname>KeyError</varname> will be raised, in which case we
+          simply return a sensible default.</para>
+
+        <para id="para-ch13-53">The
+          <function>getViewManager()</function> is called from the
+          <function>initWorkSpace()</function> function in
+          <filename>kalamapp.py</filename>:</para>
+
+        <programlisting>
+    ...
+    def initWorkSpace(self):
+        workspace = kalamconfig.getViewManager()(self)
+        self.setCentralWidget(workspace)
+        return workspace
+    ...
+        </programlisting>
+
+      </sect3>
+    </sect2>
+
+    <sect2><title>Catching the changes when the application closes</title>
+
+      <para id="para-ch13-54">The configuration should be written to a file
+      when the app closes. There are two places where
+      <application>Kalam</application> can end:
+      <function>slotFileQuit()</function>, and in the eventhandler
+      <function>eventFilter()</function>.</para>
+
+      <programlisting>
+    ...
+    #
+    # Slot implementations
+    #
+
+    def slotFileQuit(self):
+        try:
+            self.docManager.closeAllDocuments()
+        except:
+            return
+        kalamconfig.writeConfig()
+        qApp.quit()
+    ...
+    #
+    # Toplevel event filter
+    #
+    ...
+    def eventFilter(self, object, event):
+        if (event.type() == QEvent.Close):
+            if (object&lt;&gt;self):
+                if self.docManager.closeView(object):
+                    event.accept()
+                else:
+                    event.ignore()
+            else:
+                try:
+                    self.docManager.closeAllDocuments()
+                    kalamconfig.writeConfig()
+                    event.accept()
+                except Exception, e:
+                    event.ignore()
+        return QWidget.eventFilter(self, object, event)
+     ...
+      </programlisting>
+
+      <indexterm>
+  <primary>configuration</primary><secondary>saving on exit</secondary>
+  </indexterm>
+  <para id="para-ch13-55">After all, it is simply a matter of calling
+      <function>writeConfig()</function> at the right moment.</para>
+
+    </sect2>
+
+  </sect1>
+
+
+  <sect1><title>Settings in Qt 3.0</title>
+
+    <para id="para-ch13-56">Qt 3.0 will have built-in cross-platform
+      solutions for the management of configuration settings. Note
+      that what I discuss here is based on the beta release of Qt 3.0,
+      and thus is subject to change. It is also not a completely
+      satisfactory solution, since you still need to be aware of the
+      type of platform you're running on, whether Windows (all 32 bits
+      flavors), Apple's OS X or any Unix with X11.</para>
+
+    <indexterm>
+  <primary>QSettings</primary>
+  </indexterm>
+  <para id="para-ch13-57">The Qt 3.0 system is built around the
+      <classname>QSettings</classname> class. On Windows systems, all
+      settings are saved in the registry; on Linux or other Unices
+      settings are saved in a file. The exact location
+      of the file is determined by a "search path". This is a list of
+      directories, similar to the $PATH environment variable, that
+      lists all places Qt will look for a configuration file.</para>
+
+    <para id="para-ch13-58"><classname>QSettings</classname> saves all
+      settings in a hierarchical tree format, conforming to the layout
+      of the Windows registry. You cannot use keys longer than 255
+      Unicode characters or values longer than 16.300 characters
+      (silly limitation, but there you are). The complete
+      path&mdash;i.e., all keys plus the value&mdash;must fit into the
+      memory of a Commodore 64 (that is, 64 kb). You can exceed these
+      limits if you are targeting only Unix. It remains to be seen
+      what the limitations will be on OS X, but since OS X is Unix
+      based, you can assume it will follow the general Unix scheme of
+      configuration files.</para>
+
+ 
+
+    <para id="para-ch13-59">Let's translate the Kalam example above to
+      <classname>QSettings</classname>. Note that this is untested
+      code: I've merely extrapolated from the known C++ interface to
+      what I assume will become the PyQt interface.
+      (<classname>QSetting</classname> wasn't in the subset of Qt 3
+      classes that were implemented when I finished this text). Note
+      also that there are two ways of using
+      <classname>QSettings</classname>. You can either read all
+      settings from the registry or configuration file and assign them
+      as attributes to the <classname>Config</classname> object, or
+      you can open a <classname>QSettings</classname> object and add
+      <emphasis>that</emphasis> to Config; then you can query the
+      settings object directly every time you need a value.</para>
+
+    <para id="para-ch13-60">The first approach has a few advantages:
+      it is compatible with current code, you can approach settings
+      with a simple <varname>Config.geometry.app_x</varname> variable,
+      and if the user removes the configuration file, your app can
+      merrily continue.</para>
+
+    <para id="para-ch13-61">The second approach, which is advised by
+      Trolltech, also has advantages. It is simpler to write, does not
+      demand much startup time, and does not fill the memory with data
+      that is not (yet) needed. Furthermore, the app can dynamically
+      react to changes in the configuration file.</para>
+
+    <para id="para-ch13-62">I chose the first approach, as it fits
+      better with <application>Kalam</application>. Besides, it gives
+      me the chance to show the interesting bits and bobs of
+      <classname>QSettings</classname> without touring
+      <application>Kalam</application> again.</para>
+
+    <programlisting>
+"""
+kalamconfig.py - Configuration class for the Kalam Unicode Editor
+
+copyright: (C) 2001, Boudewijn Rempt
+email:     boud@rempt.xs4all.nl
+"""
+
+import sys, os, types
+from qt import *
+
+
+class Config:
+    defaults = {
+        "APPNAME" : "kalam",
+        "APPVERSION" : "ch13",
+        "viewmanager" : "tabmanager",
+        "app_x" : 0,
+        "app_y" : 0,
+        "app_w" : 640,
+        "app_h" : 420},
+        "fontfamily" : "courier",
+        "pointsize" : 12,
+        "weight" : 50,
+        "italic" : 0,
+        "encoding" : 22
+        }
+
+def init(self):
+    Config.settings = QSettings()
+    Config.settings(QSettings.Windows,
+                    "/kalam")
+    Config.settings(QSettings.Unix,
+                    "/usr/local/share/kalam")
+
+def readConfig(configClass = Config):
+    for key in configClass.defaults.keys():
+        v = configClass.settings.readEntry("/kalam/" + key)
+        configClass.key = v
+
+
+def writeConfig(configClass = Config):
+    sys.stderr.write( "Saving configuration\n")
+    for key in dir(Config):
+        if key[:2]!='__':
+            val=getattr(Config, key)
+            configClass.settings.writeEntry("/kalam/" + key, val)
+
+...
+    </programlisting>
+
+    <para id="para-ch13-63">As you can see, there is an initialization
+      phase (<function>init()</function>), that creates a
+      <varname>settings</varname> objects. This is the one place where
+      <classname>QSettings</classname> is not platform independent,
+      and you have to add a search path.</para>
+
+    <indexterm>
+  <primary></primary>
+  </indexterm>
+  <indexterm>
+  <primary>HKEY_CURRENT_USER</primary>
+  </indexterm>
+  <indexterm>
+  <primary>HKEY_LOCAL_MACHINE</primary>
+  </indexterm>
+  <para id="para-ch13-64">Windows and Unix use different search
+      paths. The Windows search path refers to the registry key under
+      "/Software", and Qt looks through the main branches in the
+      following order &mdash; and whenever it encounters a duplicate
+      setting, it takes the last one read.: HKEY_CURRENT_USER,
+      HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_LOCAL_MACHINE.
+    </para>
+
+    <para id="para-ch13-65">On Unix, the sequence is comprised of the
+      path you added yourself, then <filename>$QTDIR/etc</filename>,
+      and then <filename>$HOME/.qt</filename>. That's also the 
+      directory where all Qt applications will save their
+      configuration files. Your application
+      settings are thus saved in a file that is named from the
+      combination of the first key you save under ("kalam" in this
+      case), and the suffix <filename>rc</filename>. And that file is
+      places in the <filename>.qt</filename> directory in the user's
+      home directory.</para>
+
+
+
+    <para id="para-ch13-66">The class <classname>QSettings</classname>
+      also offers functions to retrieve strings, lists, doubles,
+      integers and boolean values from the configuration database, as
+      well as functions to add, remove and list keys and
+      subkeys.</para>
+
+  </sect1>
+
+  <sect1><title>Conclusion</title>
+
+    <indexterm>
+  <primary>configuration file format</primary>
+  </indexterm>
+  <para id="para-ch13-67">To conclude this chapter, I want to show
+      you the result of our labors: the configuration file
+      <filename>$HOME/.kalam-ch13</filename>:</para>
+
+      <programlisting>
+APPNAME=kalam
+APPVERSION=ch13
+CONFIGFILE=.kalam-ch13
+app_h=420
+app_w=640
+app_x=0
+app_y=0
+currentStyle=QWindowsStyle
+encoding=22
+fontfamily=courier
+italic=0
+pointsize=12
+viewmanager=tabmanager
+weight=50
+      </programlisting>
+
+      <para id="para-ch13-68">By simply editing the values in this
+      file, you can control the appearance of
+      <application>Kalam</application> to a good extent - power at
+      your fingertips!</para>
+  </sect1>
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->

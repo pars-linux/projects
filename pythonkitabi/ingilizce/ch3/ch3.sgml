@@ -1,0 +1,950 @@
+<chapter id="ch3">
+  <title>Python Objects and Qt Objects</title>
+
+  <indexterm>
+  <primary>memory leak</primary>
+  </indexterm>
+  <para id="para-ch3-1">This chapter delves into the construction of
+    Python and C++ objects. This is a complex topic, and not really
+    required if you are only interested in getting started with your
+    project. However, when you feel that your objects are disappearing
+    from under your hands, or if you're leaking memory like a sieve,
+    then this is the place to turn to.
+    </para>
+
+  <sect1>
+    <title>Pointers and references</title>
+
+    <indexterm>
+  <primary>object creation</primary><secondary>python vs C++</secondary>
+  </indexterm>
+  <para id="para-ch3-2">In order to be able to determine the
+      relations between Python objects and C++ objects it is necessary
+      to first gain a good understanding of <emphasis>what</emphasis>
+      an object is, exactly, and what constitutes a reference to an
+      object.
+    </para>
+    
+    <indexterm>
+  <primary>object</primary><secondary>defined</secondary>
+  </indexterm>
+  <para id="para-ch3-3">In C++, an object is simply a chunk of
+      memory that contains executable bytes and data bytes. The
+      executable bytes represent the functions, and the data bytes
+      represent the values of the object variables. Of course, this is
+      a simplified representation: the functions are shared by all
+      objects of the same class, and there is some serious (and
+      platform dependent) pointer logic needed to find them. But,
+      basically, a C++ object is simply a stretch of memory that has
+      to be allocated explicitly by the developer (using
+      <function>new()</function>), and also deallocated explicitly by
+      the developer, with <function>delete()</function>.
+    </para>
+
+    <para id="para-ch3-4">The object can be accessed by other parts of
+      the application as long as its location in memory is known: the
+      variable that contains the location is a pointer. If a
+      programmer knows the size of an object, he can do fancy things
+      (such as loop through the memory by adding the size of the
+      object to the pointer) to get at the location of the next
+      object.
+    </para>
+
+    <para id="para-ch3-5">However, once the pointer variable is lost,
+      there's no longer a certain way of getting at the location of
+      the object, and there's no way to delete the object&mdash;the
+      memory will remain occupied for as long as the application runs,
+      and there's <emphasis>no</emphasis> way it can be useful! This
+      is called a memory leak, and is undoubtedly a bad thing. </para>
+
+    <indexterm>
+  <primary>reference</primary><secondary>defined</secondary>
+  </indexterm>
+  <para id="para-ch3-6">One of the strengths of Python is that the
+      programmer is freed of the responsibility of explicitly deleting
+      objects. Python manages all objects for you. It does this by
+      keeping track of <emphasis>references</emphasis> to every
+      object. A reference is a variable, or an entry in a list that
+      represents an object. For instance, run: </para>
+
+    <example>
+      <title>refs.py - showing object references</title>
+      <programlisting>
+#
+# refs.py
+#
+class theClass: pass
+
+anObject=theClass()
+aList=[anObject]
+aDictionary={"key": anObject}
+
+print anObject
+print aList
+print aDictionary
+      </programlisting>
+    </example>
+
+    <para id="para-ch3-7">This will result in one object with three references, as you
+      can see from the result of the <function>print</function>
+      statements:</para>
+
+<screen>
+<__main__.theClass instance at 0x81d9cb4>
+[<__main__.theClass instance at 0x81d9cb4>]
+{'key': <__main__.theClass instance at 0x81d9cb4>}
+</screen>
+
+    <indexterm>
+  <primary>object</primary><secondary>id hash</secondary>
+  </indexterm>
+  <para id="para-ch3-8">The object instance (0x81dcb4 is the object's id hash) will
+      only be deleted when the last reference is deleted. It is
+      possible for references to disappear by going out of scope. If
+      the references are created inside a function, then as soon as
+      the function is finished running, the references disappear.
+      References to variables can also be attached to both classes (a
+      class is an object in Python), and to objects. In the first
+      case, if the class disappears, then the references disappear. In
+      the second case, if the last reference to the object disappears,
+      all references that object &lsquo;has' to other objects disappear,
+      too.</para>
+
+  </sect1>
+
+  <sect1>
+    <title>Circular references</title>
+
+    <indexterm>
+  <primary>circular references</primary>
+  </indexterm>
+  <para id="para-ch3-9">You can cause a memory leak in Python by creating circular
+      references, or by never deleting the last reference to
+      an object. The latest versions of Python support a garbage
+      collector that can detect circular references and clean them
+      up. It's quite difficult to create circular references, but it's
+      very easy to accidentally keep references lying about. The next
+      snippet shows the circularity of referring from A to B to A...
+      </para>
+
+    <example><title>circular.py - circululululular references</title>
+      <programlisting>
+#
+# circular.py - circululululular references in Python
+#
+class B: pass
+
+class A:
+
+    def __init__(self):
+        self.b=B()
+        self.b.a=self
+
+a=A()
+
+print a
+print a.b
+print a.b.a
+print a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a.b.a
+      </programlisting>
+    </example>
+
+    <screen>
+boudewijn@maldar:~/doc/opendoc/ch3 > python circular.py
+<__main__.A instance at 0x8199bb4>
+<__main__.B instance at 0x8199c04>
+<__main__.A instance at 0x8199bb4>
+<__main__.A instance at 0x8199bb4>
+    </screen>
+
+    <para id="para-ch3-10">If you delete the instance <varname>a</varname>, you
+      only make the objects inaccessible; because <varname>b</varname>
+      still refers to <varname>a</varname>, there's a reference for
+      the reference counter, and <varname>a</varname> will not be
+      destroyed. Thus <varname>b</varname> will not be destroyed either,
+      which means the reference to <varname>a</varname> remains in
+      existence &mdash; ad infinitum! (Or at least until the Python
+      interpreter shuts down.)</para>
+
+  </sect1>
+
+  <sect1><title>Qt objects, Python objects and shadow objects</title>
+
+    <indexterm>
+  <primary>object</primary><secondary>shadow</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>object creation</primary><secondary>wrapping</secondary>
+  </indexterm>
+  <para id="para-ch3-11">What happens when you create a Qt object
+      from Python? A Qt object is an instance of a C++ class, but in
+      order to be able to manipulate that object from Python, there
+      needs to be a Python object, too. The answer is that both are
+      created: a C++ object that contains the real functionality, and
+      a Python object that "wraps" the C++ object.</para>
+
+    <para id="para-ch3-12">Thus, when you call
+      <function>QWidget()</function> from Python, three things are
+      created:</para>
+
+    <itemizedlist>
+
+      <listitem><para id="para-ch3-13">The C++ QWidget instance.
+          Actually it will be a sipQWidget instance which is a
+          sub-class of QWidget - it is needed to be a catcher for
+          QWidget's virtual methods and to expose its protected
+          methods and enums.</para>
+      </listitem>
+
+        <listitem><para id="para-ch3-14">the Python object
+          shadow/proxy which is a thin wrapper around the C++ instance
+          and which has a unique Python type.</para>
+      </listitem>
+
+      <listitem><para id="para-ch3-15"> the Python class instance that
+          you actually deal with in your script. Its instance
+          dictionary contains a reference (named
+          <varname>__sipThis__</varname>) to the shadow object.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para id="para-ch3-16">The two Python objects are needed because
+      the programmer wants a class instance, but a Python class
+      instance doesn't provide you with the capability of wrapping a
+      C++ pointer.</para>
+
+    <indexterm>
+  <primary>object creation</primary><secondary>ownership</secondary>
+  </indexterm>
+  <para id="para-ch3-17">In fact, both the Qt library and the PyQt
+      library can create C++ objects. These are passed between them.
+      For instance, an object could be created by PyQt and passed to
+      Qt, or it could be created by Qt and passed to Python. Both Qt
+      and Python have the concept of deleting things &mdash; so there
+      has to be a method of making sure that C++ instances are deleted
+      properly. If both try to delete the same instance your program
+      crashes, if neither do then you get memory leaks. Therefore
+      there is the concept of ownership: the current owner (PyQt or
+      Qt) is responsible for deleting the C++ instance. Ownership of
+      an instance may be transferred between PyQt and C++ during the
+      life of the instance.</para>
+
+    <para id="para-ch3-18">Mostly you won't need to concern yourself
+      with this problem, since PyQt knows exactly when to transfer
+      ownership of C++ instances automatically.. Complications arise
+      if you create <classname>QObject</classname> derived objects
+      that &lsquo;own', through the <classname>QObject</classname>
+      parent-child mechanism, other objects. (This ownership of
+      objects by other objects is one of the places where Qt deviates
+      from the C++ standard practice, where the object that creates
+      another object should also take care of deleting it.)</para>
+
+  </sect1>
+
+  <sect1 id="ch3-sect1-ownership"><title>References and ownership</title>
+    
+    <indexterm>
+  <primary>object</primary><secondary>creation</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>object</primary><secondary>deletion</secondary>
+  </indexterm>
+  <para id="para-ch3-19">Let's investigate the actual creation and
+      deletion of object - both Python and Qt have a role to play here
+      - a role they mostly perform without surprising the programmer.
+      Still, there are circumstances you should be aware of.</para>
+
+
+    <example><title>qtrefs1.py &mdash; about Qt reference counting</title>
+      <programlisting>
+#
+# qtrefs1.py
+#
+
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        topbutton=QPushButton("A swiftly disappearing button", None)
+        topbutton.show()
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+      </programlisting>
+    </example>
+
+    <para id="para-ch3-20">Here, we create a window, and in the
+      constructor (the <function>__init__</function> method), we
+      create a QPushButton. That button really should appear as a
+      second toplevel window - but it doesn't. The reason is that the
+      only reference to the object is the variable
+      <varname>topbutton</varname>, and that variable goes out of
+      scope once the constructor method finishes. The reference ceases
+      to exist, and so the object is deleted.</para>
+
+    <indexterm>
+  <primary>object</primary><secondary>keeping it alive</secondary>
+  </indexterm>
+  <para id="para-ch3-21">If we want to keep the button alive, we
+      should keep the reference alive. The easiest way to do that is
+      to associate the button more closely with the containing window
+      object. It is customary to refer to the containing object with
+      the variable <varname>self</varname>. Python passes a reference
+      to an object as the first argument to any instance method. This
+      reference is usually named self.</para>
+
+    <para id="para-ch3-22">So, if we adapt the preceding example as follows, we keep
+      the object:</para>
+
+    <example><title>qtrefs2.py - keeping a Qt widget alive</title>
+      <programlisting>
+#
+# qtrefs2.py
+#
+
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        self.topbutton=QPushButton("A nice and steady button",
+                                   None)
+        self.topbutton.show()
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+        </programlisting>
+      </example>
+
+    <para id="para-ch3-23">Does this mean that you always need to keep
+      a reference to all Qt objects yourself? This would make creating
+      complex applications quite a drag! Fortunately, sip is more
+      clever than it seems. <classname>QObject</classname> derived
+      objects stand in a owner-ownee (or parent-child) relation to
+      each other. Sip knows this, and creates references to child
+      objects on the fly, and decreases those references if the
+      parents are deleted. (The Qt library does something similar if
+      you program in C++. This gives a kind of Java-like flavor to C++
+      which is not appreciated by everyone).</para>
+
+    <para id="para-ch3-24">To keep a widget's child alive, enter the
+      parent object in the <varname>parent</varname> argument of the
+      child constructor, in this case, this is the second argument to
+      the <classname>QPushButton</classname> constructor:</para>
+
+    <example><title>qtrefs3.py - Qt parents and children</title>
+      <programlisting>
+#
+# qtrefs3.py
+#
+
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        parentedButton=QPushButton("A nice and steady button "
+                                  + "that knows its place",
+                                  self)
+        parentedButton.resize(parentedButton.sizeHint())
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app,
+                SLOT("quit()"))
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+        </programlisting>
+      </example>
+
+    <indexterm>
+  <primary>object</primary><secondary>parent-child</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>QObject</primary><secondary>example</secondary>
+  </indexterm>
+  <para id="para-ch3-25">Note however these two important
+      side-effects: The first is that this button, now that it is
+      owned by the main window, appears <emphasis>inside</emphasis>
+      the main window. The second is that you no longer need to
+      explicitly call the function <function>show()</function> on the
+      button.</para>
+
+    <para id="para-ch3-26">As another side-effect of explicitly
+      parenting objects, you need to be aware of who owns an object
+      before you can be sure that it will be deleted: your Python
+      application or another Qt object.</para>
+
+    <indexterm>
+  <primary>QObject</primary><secondary>ownership</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>parent()</primary>
+  </indexterm>
+  <indexterm>
+  <primary>removeChild()</primary>
+  </indexterm>
+  <para id="para-ch3-27">The trick is to determine who exactly owns
+      the widget in question. Everything that is derived from
+      <classname>QObject</classname> has the function
+      <function>parent()</function>, which can be used to determine
+      the owner of a widget. You can use the function
+      <function>removeChild</function> to remove the widget itself.
+      Using <function>parent()</function> is often easier than
+      remembering who exactly owned the widget you want to get rid
+      of.</para>
+
+    <programlisting>
+self.parent().removeChild(self)
+    </programlisting>
+
+    <para id="para-ch3-28">If you execute this incantation, the poor widget will be
+      orphaned, and a Python <function>del</function> statement on the
+      Python reference will definitively remove the child.</para>
+
+    <example>
+      <title>Eradicating a widget</title>
+      <programlisting>
+#
+# qtrefs4.py - removing a widget
+#
+
+import sys
+from qt import *
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        self.parentedButton=QPushButton("A nice and steady button "
+                                   + "that knows its place",
+                                   self)
+        self.parentedButton.resize(self.parentedButton.sizeHint())
+        self.connect(self.parentedButton,
+                     SIGNAL("clicked()"),
+                     self.removeButton)
+
+    def removeButton(self):
+        self.removeChild(self.parentedButton)
+        del self.parentedButton
+
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+      </programlisting>
+    </example>
+
+    <para id="para-ch3-29">Pressing the button will remove it, first by removing
+      the ownership relation between <varname>win</varname> and
+      <varname>self.parentedButton</varname> and then removing the
+      Python reference to the object.</para>
+
+    <indexterm>
+  <primary>children()</primary>
+  </indexterm>
+  <para id="para-ch3-30">It is possible to retrieve the children of a certain QObject
+      object by calling <function>children</function> on QObject. Sip
+      is clever enough to return the Python wrapper object associated with that
+      instance (rather than the actual C++ object instance).</para>
+
+    <example id="ch3ExampleChildren">
+      <title>children.py - getting the children from a single
+        parent</title>
+      <programlisting>
+#
+# children.py
+#
+
+import sys
+from qt import *
+
+def printChildren(obj, indent):
+    children=obj.children()
+    if children==None:
+        return
+    for child in children:
+        print indent, child.name(), child.__class__
+        printChildren(child, indent + "  ")
+
+class PyPushButton(QPushButton): pass
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        mainwidget=QWidget(self, "mainwidget")
+        layout=QVBoxLayout(mainwidget, 2, 2, "layout")
+        button1=QPushButton("button1", mainwidget, "button1")
+        button2=PyPushButton("button2", mainwidget, "button2")
+        layout.addWidget(button1)
+        layout.addWidget(button2)
+
+        self.setCentralWidget(mainwidget)
+        printChildren(self, "  ")
+
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+
+if __name__=="__main__":
+        main(sys.argv)
+        </programlisting>
+        </example>
+
+    <para id="para-ch3-31">Running children.py will give the following output:</para>
+
+<screen>
+boudewijn@maldar:~/doc/opendoc > python children.py
+   hide-dock qt.QObject
+   mainwidget qt.QWidget
+     layout qt.QVBoxLayout
+     button1 qt.QPushButton
+     button2 __main__.PyPushButton
+   unnamed qt.QObject
+     unnamed qt.QObject
+     unnamed qt.QObject
+       unnamed qt.QObject
+       unnamed qt.QObject
+     unnamed qt.QObject
+</screen>
+
+    <para id="para-ch3-32">What you cannot see here is the parallel structure of
+      <classname>QLayoutItems</classname> that proxy for the widgets.
+      For that you need to use the
+      <classname>QLayoutIterator</classname> that is provided by the
+      <function>iterator()</function> method of
+      <classname>QListViewItem</classname>. Here,
+      <function>next()</function>, both returns the next item, and
+      moves the iterator onwards.</para>
+
+    <example><title>Iterating over children</title>
+      <programlisting>
+#
+# children.py
+#
+
+import sys
+from qt import *
+
+def printChildren(obj, indent):
+    iter = obj.iterator()
+    while iter.current():
+        print "current:", iter.current()
+        print "next:", iter.next()
+
+class PyPushButton(QPushButton): pass
+
+class MainWindow(QMainWindow):
+
+    def __init__(self, *args):
+        apply(QMainWindow.__init__, (self, ) + args)
+        mainwidget=QWidget(self, "mainwidget")
+        layout=QVBoxLayout(mainwidget, 2, 2, "layout")
+        button1=QPushButton("button1", mainwidget, "button1")
+        button2=PyPushButton("button2", mainwidget, "button2")
+        button3=PyPushButton("button3", mainwidget, "button3")
+        layout.addWidget(button1)
+        layout.addWidget(button2)
+        layout.addWidget(button3)
+        
+        self.setCentralWidget(mainwidget)
+        printChildren(layout, "  ")
+        
+def main(args):
+    app=QApplication(args)
+    win=MainWindow()
+    win.show()
+    app.connect(app, SIGNAL("lastWindowClosed()")
+                , app
+                , SLOT("quit()")
+                )
+    app.exec_loop()
+  
+if __name__=="__main__":
+        main(sys.argv)
+      </programlisting>
+    </example>
+        
+    <screen>
+boud@calcifer:~/doc/pyqt/src/qt2/ch3 &gt; python layoutchildren.py
+current: &lt;qt.QLayoutItem instance at 0x82ba8b4&gt; 
+next: &lt;qt.QLayoutItem instance at 0x82ba9dc&gt;
+current: &lt;qt.QLayoutItem instance at 0x82ba9dc&gt; 
+next: &lt;qt.QLayoutItem instance at 0x82baa8c&gt;
+current: &lt;qt.QLayoutItem instance at 0x82baa8c&gt; 
+next: None
+    </screen>
+
+    <indexterm>
+  <primary>iterators</primary>
+  </indexterm>
+  <indexterm>
+  <primary>iterator()</primary>
+  </indexterm>
+  <para id="para-ch3-33">Finally, let's test the ownership rules of
+      Qt and Python objects using the interactive Python interpreter.
+      In the following example, we create an object
+      <varname>self.o</varname>, owned by PyQt, and then a child
+      object is created, not owned by the instance of class
+      <classname>A</classname>, but as a Qt child of object
+      <varname>self.o</varname>. Thus, PyQt owns <varname>a</varname>
+      and <varname>self.o</varname>, and Qt owns
+      <varname>child</varname>, and <varname>child</varname> doesn't
+      get deleted, even when the Python reference goes out of
+      scope.</para>
+
+      <screen>
+&gt;&gt;&gt; from qt import QObject
+&gt;&gt;&gt; class A:
+...     def __init__(self):
+...             self.o=QObject()
+...             child = QObject(self.o)
+... 
+&gt;&gt;&gt; a=A()
+&gt;&gt;&gt; print a
+&lt;__main__.A instance at 0x821cdac&gt;
+&gt;&gt;&gt; print a.o
+&lt;qt.QObject instance at 0x821ce04&gt;
+&gt;&gt;&gt; print a.o.children()
+[&lt;qt.QObject instance at 0x821cf54&gt;]
+&gt;&gt;&gt; 
+    </screen>
+
+    <para id="para-ch3-34">On the other hand, the following won't
+      work, because as soon as the execution flow leaves the
+      constructor, <varname>o</varname> is garbage collected, and
+      <varname>child</varname>, is then garbage-collected, too, since
+      it isn't owned by a Qt object, and Python doesn't have a
+      reference to it anymore, either.</para>
+
+    <screen> &gt;&gt;&gt; class B:
+...        def ___init__(self):
+...             o=QObject()
+...             child = QObject(o)
+... 
+&gt;&gt;&gt; b=B()
+&gt;&gt;&gt; b.o
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+AttributeError: o
+    </screen>
+
+    <para id="para-ch3-35">On the other hand, it isn't necessary to
+      keep a Python reference to all created objects: as long as the
+      ultimate parent object is owned by PyQt, everything will go
+      well:</para>
+
+    <screen>
+&gt;&gt;&gt; class C:
+...        def __init__(self):
+...             self.o = QObject()
+...             self.child = QObject(self.o)
+... 
+&gt;&gt;&gt; c = C()
+&gt;&gt;&gt; c.o
+&lt;qt.QObject instance at 0x8263f54&gt;
+&gt;&gt;&gt; c.o.children()
+[&lt;qt.QObject instance at 0x821d334&gt;]
+&gt;&gt;&gt; c.child
+&lt;qt.QObject instance at 0x821d334&gt;
+&gt;&gt;&gt; 
+</screen>
+
+    <para id="para-ch3-36">As you see, it isn't necessary to keep a reference to
+      <varname>child</varname>,- because PyQt is the owner of the
+      first object (because it has no Qt parent but a reference to a
+      Python object) but Qt is the owner of the second widget (because
+      it <emphasis>does</emphasis> have a parent) and so the C++
+      instance (qt.QObject instance at 0x821d334) is not deleted when
+      the corresponding Python object goes out of scope.</para>
+
+    <para id="para-ch3-37">What if your Python class were a subclass of
+      <classname>QObject</classname>?:</para>
+
+    <screen>
+&gt;&gt;&gt; class D(QObject):
+...        def __init__(self):
+...             QObject.__init__(self)
+...             o=QObject(self)
+...             child = QObject(o)
+... 
+&gt;&gt;&gt; d=D()
+&gt;&gt;&gt; d.children()
+[&lt;qt.QObject instance at 0x821d614&gt;]
+&gt;&gt;&gt; d.children()[0].children()
+[&lt;qt.QObject instance at 0x821d7c4&gt;]
+&gt;&gt;&gt; 
+    </screen>
+
+    <para id="para-ch3-38">As you can see, <varname>o</varname> doesn't get deleted,
+      nor <varname>child</varname> - both are owned by Qt and will be
+      deleted as soon as object <varname>d</varname> is deleted. You
+      can still reach these objects by using the
+      <function>children()</function> function
+      <classname>QObject</classname> provides.</para>
+
+    <indexterm>
+  <primary>sip</primary>
+  </indexterm>
+  <para id="para-ch3-39">This layer between Python and Qt is implemented in the
+      <emphasis>sip</emphasis> library &mdash; sip not only generates
+      the wrapper code, but is a library in its own right, containing
+      functionality for the passing of object references between C++
+      and Python.</para>
+
+    <indexterm>
+  <primary>reference counting</primary>
+  </indexterm>
+  <para id="para-ch3-40">Sip is also responsible for the reference counting
+      mechanisms. In most cases, Sip is clever enough to closely
+      simulate Python behavior for C++ Qt objects. As you saw in the previous example,
+      contrary to what happens in C++, when you remove the last
+      reference to a C++ object, it will be automatically deleted by
+      Sip.</para>
+
+
+
+  </sect1>
+
+  <sect1><title>Other C++ objects</title>
+
+    <indexterm>
+  <primary>objects</primary><secondary>no parent-child</secondary>
+  </indexterm>
+  <para id="para-ch3-41">There are many kinds of objects that do not
+      fit in a parent-child relationship, because they are not derived
+      from <classname>QObject</classname>, such as
+      <classname>QFont</classname> or <classname>QColor</classname>.
+      You must keep references to these objects yourself for as long
+      as you need them, or you will lose the objects. (This doesn't
+      differ from normal Python objects, of course &mdash; it will
+      only be surprising if you come from C++ programming to
+      Python.)</para>
+
+  </sect1>
+
+  <sect1>
+    <title>Connecting signals and slots</title>
+
+    <indexterm>
+  <primary>signals and slots</primary><secondary>reference counting</secondary>
+  </indexterm>
+  <para id="para-ch3-42">If you have worked with pointers in C++ or object references
+      in other languages, then you will probably have been wondering
+      whether creating signal/slot connections also means creating
+      object references. Remember, object A can register interest in
+      some signals Object B emits.</para>
+
+    <para id="para-ch3-43">This means that somewhere there must be code that object B
+      calls when it wants to emit that signal; and that there must be
+      code that is called to notify object A. In order for that to be
+      possible, a reference must be stored to object A. This is known
+      as the observer pattern:</para>
+
+    <example><title>sigslot.py - a simple signals/slots implementation
+        in Python, following the Observer pattern</title>
+      <programlisting>
+#
+# sigslot.py - a simple signals/slots implementation in Python
+#
+
+class ClassA:
+
+    def __init__(self):
+        self.interestedObjects=[]
+
+
+    def connect(self, obj):
+        self.interestedObjects.append(obj)
+
+    def sendSignal(self):
+        for obj in self.interestedObjects:
+            obj.slot("This is a signal from ClassA")
+
+class ClassB:
+
+    def slot(self, message):
+        print "Object with ID", id(self), "Got signal: message"
+
+objectA=ClassA()
+objectB=ClassB()
+objectA.connect(objectB)
+objectC=ClassB()
+objectA.connect(objectC)
+objectD=ClassB()
+objectA.connect(objectD)
+
+objectA.sendSignal()
+      </programlisting>
+    </example>
+
+    <para id="para-ch3-44">In this exceedingly simplified
+      implementation of the signals and slots concept, objectA
+      actually stores the references to interested objects. If the
+      PyQt signals and slots mechanism were implemented like this,
+      objects would not be deleted unless the all objects they had
+      connections to were deleted as well. This puts a burden on the
+      programmer, who would have to remember to sever all connections
+      by hand. We all know what happens when a programmer has to
+      remember cleaning up after him...</para>
+
+    <para id="para-ch3-45">Fortunately, the implementation of signals
+      and slots in sip is not quite so basic. Sip works together with
+      the signals and slots implementation in Qt, which is highly
+      complex, and involves fooling around with a special-purpose
+      macro processor. This, at least, Python developers are
+      spared.</para>
+
+    <indexterm>
+  <primary>references</primary><secondary>weak</secondary>
+  </indexterm>
+  <para id="para-ch3-46">Sip keeps special proxy objects around to
+      handle the signal/slot connections. If you use a recent version
+      of Python (>2.1), the actual connections will not need real
+      references, but can work with the new-fangled weak reference
+      concept. Weak references are references that don't count for the
+      purpose of reference counting.</para>
+
+    <para id="para-ch3-47">This is good, because your application will
+      not crash if a signal is emitted that was connected to a slot in
+      a deleted object &mdash; and created connections will not keep
+      objects alive.</para>
+
+    <para id="para-ch3-48"><xref linkend="ch6"> deals with signals and
+      slots in far more depth.</para>
+
+    </sect1>
+
+
+  <sect1 id="ch3ObjectAndClassIntroSpection">
+    <title>Object and class introspection</title>
+
+    <indexterm>
+  <primary>introspection</primary>
+  </indexterm>
+  <indexterm>
+  <primary>object</primary><secondary>introspection</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>className()</primary>
+  </indexterm>
+  <para id="para-ch3-49">Both Python and Qt offer a great deal of
+      object introspection functionality &mdash; that is, methods of
+      determining at runtime what kind of class an object is an
+      instance of, or what methods an object implements. It has often
+      been difficult to make Python and Qt introspection mesh well.
+      One example is the
+      <classname>QObject</classname>.<function>className()</function>,
+      which returns the name of the class of an object. Until PyQt
+      version 2.5, this function always returned
+      <classname>QObject</classname>, instead of the Python class
+      name. Since that version, however, it returns the true class
+      name:</para>
+
+    <example><title>Object introspection using Qt</title>
+      <screen>
+Python 2.1 (#1, Apr 17 2001, 20:50:35) [GCC 2.95.2 19991024
+(release)] on linux2 Type "copyright", "credits" or "license"
+for more information. 
+&gt;&gt;&gt; from qt import *
+&gt;&gt;&gt; t=QTimer() 
+&gt;&gt;&gt; t.className() 'QTimer'
+&gt;&gt;&gt; class A(QTimer): pass ... 
+&gt;&gt;&gt; a=A()
+&gt;&gt;&gt; a.className() 'A' 
+&gt;&gt;&gt; a.inherits('QTimer') 1
+      </screen>
+    </example>
+
+    <para id="para-ch3-50">For interesting Python introspection functions you should
+      consult the Python language reference &mdash; but the equivalent
+      using Python idioms of the above session would be:</para>
+
+    <example><title>Object introspection using Python</title>
+      <screen>
+        &gt;&gt;&gt; t.__class__ &lt;class qt.QTimer at 0x8232cc4&gt;
+        &gt;&gt;&gt; a.__class__ &lt;class __main__.A at 0x826c2ac&gt;
+        &gt;&gt;&gt; a.__class__.__bases__ (&lt;class qt.QTimer at
+        0x8232cc4&gt;,)
+      </screen>
+    </example>
+
+    <indexterm>
+  <primary>class attributes</primary>
+  </indexterm>
+  <para id="para-ch3-51">Object introspection is especially useful if you dabble in
+      the black art known as meta-programming &mdash; that is,
+      creating a program that run-time constructs some of the classes
+      it needs. Heaps of fun &mdash; but not always innocent
+      fun.</para>
+
+
+  </sect1>
+
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->
+

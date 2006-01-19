@@ -1,0 +1,928 @@
+<!doctype book public "-//OASIS//DTD DocBook V4.1//EN"
+ [ <!entity ch1 system "ch1/ch1.sgml">
+   <!entity ch2 system "ch2/ch2.sgml">
+   <!entity ch3 system "ch3/ch3.sgml">
+   <!entity ch4 system "ch4/ch4.sgml">
+   <!entity ch5 system "ch5/ch5.sgml">
+   <!entity ch6 system "ch6/ch6.sgml">
+   <!entity ch7 system "ch7/ch7.sgml"> 
+   <!entity ch8 system "ch8/ch8.sgml"> 
+   <!entity ch9 system "ch9/ch9.sgml"> 
+   <!entity ch10 system "ch10/ch10.sgml"> 
+   <!entity ch11 system "ch11/ch11.sgml">
+   <!entity ch12 system "ch12/ch12.sgml">
+   <!entity ch13 system "ch13/ch13.sgml">
+   <!entity ch14 system "ch14/ch14.sgml">
+   <!entity ch15 system "ch15/ch15.sgml">
+   <!entity ch16 system "ch16/ch16.sgml">
+   <!entity ch17 system "ch17/ch17.sgml">
+   <!entity ch18 system "ch18/ch18.sgml">
+   <!entity ch19 system "ch19/ch19.sgml">
+   <!entity ch20 system "ch20/ch20.sgml">
+   <!entity ch21 system "ch21/ch21.sgml">
+   <!entity ch22 system "ch22/ch22.sgml">
+   <!entity ch23 system "ch23/ch23.sgml">
+   <!entity ch24 system "ch24/ch24.sgml">
+   <!entity ch25 system "ch25/ch25.sgml">
+   <!entity introduction system "intro/intro.sgml">
+   <!entity sip system "appendices/sip.sgml">
+   <!entity documentation system "appendices/documentation.sgml">
+   <!entity qwt system "appendices/qwt.sgml">
+   <!entity indexdefs system "index-defs.sgml">
+   <!entity index system "index.sgml">
+ ]
+>
+<book>
+  <title>GUI Programming with Python: QT Edition</title>
+  
+  <bookinfo>
+    <author>
+      <firstname>Boudewijn</firstname>
+      <surname>Rempt</surname>
+      <authorblurb>
+
+        <para id="para-book-1">Boudewijn Rempt started programming with a 16KB
+          Sinclair ZX&ndash;Spectrum <emphasis>circa</emphasis> 1982&mdash;and
+          has never stopped since, not even when he studied
+          linguistics at Leyden University, where he became acquainted
+          with languages like SNOBOL.</para>
+
+        <para id="para-book-2">He has worked on large Oracle
+          applications, an ERP system written entirely in Visual
+          Basic, and is now writing a platform for mobile agents in
+          Java and an application for linguistic fieldwork in Python
+          and PyQt.</para>
+        
+        <para id="para-book-3">He currently lives in Deventer, a small
+          provincial town in the Netherlands that goes back about 1500
+          years, with his wife, three daughters and three cats.</para>
+        
+      </authorblurb>
+    </author>
+    
+    <pubdate>July 2001</pubdate>
+    <edition>GUI Programming with Python: QT Edition</edition>
+    
+    <copyright>
+      <year>2001</year>
+      <holder>Commandprompt, Inc</holder>
+    </copyright>
+    
+    <legalnotice>
+      <para id="para-book-4">Copyright (c) 2001 by Command Prompt,
+        Inc. This material may be distributed only subject to the
+        terms and conditions set forth in the Open Publication
+        License, v1.0 or later (the latest version is presently
+        available at http://www.opencontent.org/openpub/).</para>
+      
+      <para id="para-book-5">&lsquo;Distribution of substantively modified
+        versions of this document is prohibited without the explicit
+        permission of the copyright holder.' to the license reference
+        or copy.</para>
+      
+      <para id="para-book-6">&lsquo;Distribution of the work or derivative
+        of the work in any standard (paper) book form is prohibited
+        unless prior permission is obtained from the copyright
+        holder.' to the license reference or copy.</para>
+    </legalnotice>
+    
+    <legalnotice>
+      <para id="para-book-7">Although every reasonable effort has been made to
+        incorporate accurate and useful information into this book,
+        the copyright holders make no representation about the
+        suitability of this book or the information therein for any
+        purpose. It is provided <quote>as is</quote> without expressed
+        or implied warranty.</para>
+    </legalnotice>
+
+
+  </bookinfo>
+
+  <dedication>
+    <para id="para-book-8">This book is dedicated to Irina.</para>
+  </dedication>
+
+  <preface id="preface">
+
+    <title>Preface</title>
+
+    <para id="para-book-9">The main topic of this book is application
+      development using PyQt, a library extension to the Python
+      programming language &mdash; a library that is meant to form the
+      basis for GUI programming. PyQt is free software, but there is
+      also a commercial IDE available, BlackAdder, that is specially
+      written to assist working with PyQt. I will show you the ins and
+      outs of PyQt by developing a complete and complex application.</para>
+
+    <para id="para-book-10">Like most thirty&ndash;somethings who
+      started programming in their teens, I've worked with a lot of
+      different technologies. I started with Sinclair Basic, going on
+      to Turbo Pascal and SNOBOL &mdash; I have developed for Windows
+      in pure C, with Borland Pascal and with Visual Basic. I've done
+      my stretch with Oracle Forms, and served as a Java developer. On
+      Linux, I've wet my feet with Free Pascal, with C++, using XForms
+      and Qt. And just when I was getting fond of Qt and C++, I found
+      out about Python &mdash; a few years ago now. I found
+      programming with PyQt to be a lot more fun than anything else,
+      and productive fun, too.</para>
+
+    <para id="para-book-11">For sheer productivity, nothing beats
+      Python and PyQt. And while there's always something new to learn
+      or explore in Python, if you're in the mood, it's easy and
+      pleasant to write useful applications from the first day. No
+      other programming language or library has ever given me
+      that.</para>
+
+    <para id="para-book-12">So, when Cameron Laird, during a
+      discussion on the comp.lang.python newsgroup suggested that I'd
+      write a book on this particular way of developing GUI
+      applications with Python, I started to think &mdash; and more
+      than think. I started to contact publishers, until one day Shawn
+      Gordon of TheKompany brought me into contact with Joshua Drake
+      of Opendocs. I started writing text and code almost
+      immediately.</para>
+
+    <para id="para-book-13">Joshua's patience has been monumental
+      &mdash; I should have written this book between February and
+      May, but it took me until November. All I can say for myself is
+      that a lot of effort has gone into the book. I discuss most of
+      the concepts and classes of the Qt library, which might be
+      useful not only to Python developers, but also to C++
+      developers, and I have written a <emphasis>lot</emphasis> of
+      example scripts.</para>
+
+    <para id="para-book-14">Where Bruce Eckel (of <citetitle>Thinking
+        in Java</citetitle> fame) favors small example programs
+      because they clearly illustrate the matter in hand, John Grayson
+      in <citetitle>Python and Tkinter</citetitle> argues that larger
+      real-life applications are more useful because they don't hide
+      the complexity that is a part of any programming effort.</para>
+    
+    <para id="para-book-15">Both are right, of course, so I decided to
+      give you both small examples and one really large one. Part I
+      and II of this book  concern themselves with concepts: here the
+      examples are small, often amounting to less than one page of
+      code. Part III takes you through the development of a complete,
+      complex application. In this case an editor, but one with a lot
+      of extra features. I think it's a very good way of learning what
+      developing complex applications entails - I spare you none of
+      the nasty details that software development entails.</para>
+
+    <para id="para-book-16">I have tried to keep to a very clear style
+      of coding, with few or none of the clever hacks that are
+      possible in Python &mdash; like adding the methods of one class
+      to another, or creating lists of function objects. The purpose
+      is to tell you about writing real applications using Python and
+      Qt. Clever hacking has its place, but is best savored on its
+      own.</para>
+
+    <para id="para-book-17">The emphasis of the book is also firmly on
+      application development, not on creating graphics per se &mdash;
+      although several techniques are mentioned here and there that
+      have to do with creating charts and graphs.</para>
+
+    <sect1 id="PrefaceUsingPyqt"><title>Who is using PyQt</title>
+
+      <para id="para-book-18">The combination of Python and Qt is
+        extremely powerful, and is used in a wide variety of
+        applications. People are scripting OpenGL applications with
+        it, creating complex 3D models, animation applications,
+        writing database applications, games, utilities and hardware
+        monitoring applications. It is used in open source projects,
+        but also by large companies, like Disney Television and Media.
+        If you're not working on embedded software, hardware drivers
+        or a new operating system, chances are that PyQt is the right
+        choice for you, too.</para>
+
+    </sect1>
+
+    <sect1 id="prefaceIntendedFor"><title>For whom is this book
+        intended</title>
+
+      <para id="para-book-19">This is the first book on Python and Qt.
+        There have been quite a few books on C++ and Qt, but you would
+        need to be fairly adept at mentally searching and replacing
+        C++ language constructs to be able to use those books for
+        pleasure and profit if your chosen language is Python. The
+        same holds for the extensive html documentation that comes
+        with the C++ Qt library.</para>
+
+      <para id="para-book-20">With the growing popularity of Python,
+        PyQt and BlackAdder, people will start using these tools who
+        don't want to translate C++ to Python to figure out what they
+        are supposed to do.</para>
+
+      <para id="para-book-21">This is the first group of people for
+        whom I've written this book: beginning software developers who
+        have chosen Python because it allows them to become productive
+        quickly with a language and an environment that have been
+        designed to accommodate &lsquo;subject specialists'. That is, people
+        who need to get an application done to help them with their
+        work, but who are not developers by profession.</para>
+
+        <!-- todo: please break above paragraph into more than one
+      sentence. Br: hoc ille. -->
+
+      <para id="para-book-22">Then there are the experienced
+        developers, people who have been coding in Visual Basic,
+        Delphi or Java, and who, like the first group, now need
+        something a lot more productive and portable. They will be
+        able to grasp the concepts quickly, but may find a lot of use
+        in the advanced code examples and the in-depth discussion of
+        issues particular to PyQt.</para>
+
+      <para id="para-book-23">Another group of possible readers
+        consists of C++ developers who have turned to Python as a
+        rapid prototyping language. Prototyping with the same GUI
+        library they will use for their final C++ application will
+        give them a definite advantage, as most of the prototype code
+        will remain useful.</para>
+
+      <para id="para-book-24">Finally there are people who are more
+        experienced in Python than I am, but who want to get
+        acquainted with one of the best-designed GUI toolkits
+        available for the language&mdash;there is a lot of interesting
+        content to be found in this book for them, too.</para>
+
+      <para id="para-book-25">My aim in writing this book was to
+        create a genuine vademecum for Python, PyQt and GUI
+        programming. If you keep referring to this book a year after
+        you've acquired it, if you can find the answer to most of your
+        daily and quite a few of your exceptional problems, and if you
+        tend to keep this book in the vicinity of your desk, then I
+        will have succeeded.</para>
+
+    </sect1>
+
+    <sect1 id="prefaceHowToRead"><title>How to read this book</title>
+
+      <para id="para-book-26">Like ancient Gaul, this book is divided
+        in three parts. The first part details the installation of
+        PyQt and of BlackAdder. Then the book takes you through a tour
+        of the interface of BlackAdder. You might want to read this
+        part in order. There is also a small chapter that introduces
+        programming with Python, in case you are not already familiar
+        with the language.</para>
+
+      <para id="para-book-27">The second part deals with the concepts
+        behind Python and PyQt. You don't need to read this part in
+        order, but the chapters will give you a solid feel for the lay
+        of the land, and will enable you to find your way in the PyQt
+        or Qt class documentation (which is copious and excellent).
+        Also, if you run into inexplicable behavior, you might want to
+        consult, for instance, the chapter on objects and references.
+        The order of the chapters doesn't matter a whole lot.</para>
+
+      <para id="para-book-28">Part three is where the real fun starts.
+        From humble, but solid, beginnings, we will build, chapter by
+        chapter, a very real application. This part is probably best
+        read in order, but there are occasional excursional chapters
+        that you might want to read before anything else, such as the
+        chapter on unit testing.</para>
+
+      <para id="para-book-29">Finally, there are the appendices.
+        <xref linkend="readingDocumentation"> is useful if you don't
+        know anything about C++, but still want to read the C++-based
+        Qt documentation. The second appendix,
+        <xref linkend="sip">, tells you how to wrap your own C++
+        extension libraries &mdash; possibly based on Qt &mdash; using
+        sip, the same tool that is used to create PyQt. <xref
+        linkend="pyqwt"> deals with PyQwt and NumPy, an
+        extension library for plotting and graphic.</para>
+
+    </sect1>
+
+    <sect1 id="prefaceConventions"><title>Conventions</title>
+
+      <para id="para-book-30">Code is always printed in a monospaced
+        font - like this:
+      </para>
+
+      <programlisting>
+class Test:
+    def printTest(self):
+        print self
+      </programlisting>
+
+      <para id="para-book-31">This also holds for references to bits
+        of code in the running text. If I cite a function in the text,
+        it is done like this: <function>printTest()</function> &mdash;
+        i.e., I generally don't quote the parameter list. This makes
+        it easier to follow the run of the text</para>
+
+      <para id="para-book-32">Even though PyQt is a cross-platform
+        toolkit (and I've tested most of the examples on Windows,
+        too), all development has been done on two Linux computers: my
+        laptop &lsquo;maldar', and my main system, &lsquo;calcifer',
+        named after one of the main characters in Diana Wynne Jones'
+        <citetitle>Howl's Moving Castle</citetitle>. Because
+        BlackAdder wasn't ready when I wrote this book, I used XEmacs
+        and Bash (the command line shell) to create and test all
+        examples. That's why you will often see prompts in
+        illustrations, and not so often screenshots of
+        BlackAdder:</para>
+
+      <screen>
+boudewijn@maldar:~/doc/pyqt/ch3 > python sigslot.py
+Object with ID 135113236 Got signal: message
+Object with ID 135115668 Got signal: message
+Object with ID 135318532 Got signal: message
+boudewijn@maldar:~/doc/pyqt/ch3 >
+      </screen>
+
+      <para id="para-book-33">If you are using Windows, you can use a
+        DOS box to emulate the <application>Bash</application> shell,
+        but it won't be quite as convenient.</para>
+
+      <para id="para-book-34">Finally, it is a widely-honored
+        convention in programming literature, and especially in Python
+        books, to make allusions and puns that are related to the
+        punny names of the product. By rights I should have filled my
+        code with witty allusions to the British comedy series
+        <citetitle>Monty Python</citetitle> and
+        <citetitle>BlackAdder</citetitle>. However, excellent and
+        essential as these are, it's been long years since I last
+        watched those on the television, and I don't feel quite up to
+        it. I've done my best, but don't expect too much!</para>
+
+    <para id="para-book-35">A note on versions: when I wrote this book
+        I mostly used the stable 2.x versions of Qt,  but as soon as
+        betas of Qt 3.x became available, I started integrating
+        information about its improvements in the text. I will note
+        wherever one version is different from the other. On the
+        Opendocs webforum for this book you'll find versions of the
+        examples both for Qt 2.x and Qt 3.x.</para>
+
+<!-- XXX link to webforum? -->
+
+    </sect1>
+
+    <sect1 id="prefaceAck"><title>Acknowledgments</title>
+
+      <para id="para-book-36">Writing a book started out fun, but it
+        soon became far more work than I imagined. My wife, Irina, and
+        my children, Naomi, Rebecca and Menna were very patient with
+        me when I locked myself in the study day after day, night
+        after night. But my children <emphasis>have</emphasis> asked
+        me never to write a book again. For now I'm inclined to agree,
+        but we'll see.</para>
+
+      <para id="para-book-37">Phil Thompson wrote the software that
+        this book is all about &mdash; and has fixed bugs faster than
+        I could write chapters. Cameron Laird is responsible for
+        egging me on to start writing, and Shawn Gordon for
+        introducing me to Joshua Drake, who dared to take the book on.
+        Michael Holloway, the editor, has fixed lots of bad English
+        and made this book a better book.</para>
+
+      <para id="para-book-38">Neelakantan Krishmaswami is ultimately
+        responsible for getting me to look at Python at all &mdash;
+        everyone needs someone else to help him over the
+        indentation-is-block-marking hurdle, and Neel helped
+        me.</para>
+
+      <para id="para-book-39">Jim Bublitz and Wilken Boie have
+        contributed largely to
+        <xref linkend="sip"> &mdash; Jim by writing the introduction,
+        and Wilken by writing the overview of directives. Gerard
+        Vermeulen wrote <xref linkend="pyqwt">. I've been editing
+        their texts, though, so any mistakes are mine. Cameron Laird
+        gave persmission to use the graphics of a remote control for
+        <xref linkend="ch5">. Bruce Sass took the time to explain
+        about Debian packaging. Steve Purcell helped with the chapter
+        on unit-testing.</para>
+
+      <para id="para-book-40">The following people have helped me
+        learn about Python, Qt and the combination in the past years,
+        on the PyKDE mailing list (set up by Torsten Horstmann) and
+        the Python newsgroups: Aditya Bhambri, Albert Wagner, Anshul
+        Shekhon, Arun Sharma, Corrin Lakeland, David C. Morrill, David
+        Eller, Deirdre Saoirse, Dirk Reisnauer, Henning Schroeder,
+        Johannes Sixt, Jonathan Perez, Karan Vasudeva, Maik Roeder,
+        Marco Bubke, Martin P. Holland, Neal Becker, Pete Ware, Peter
+        Torstensen, Reiner Wichert, Richard Jones, Steve Noble, Toby
+        Sargeant and Gerrit Sere.
+      </para>
+
+      <para id="para-book-41">Finally, many people have read the
+        drafts and helped me write a better book by sending me their
+        comments - sometimes very long and detailed: Andre Gosselin,
+        Andy Anderson, Brent Burley, Christopher Farly, Damon Lynch,
+        Dave Turner, Dincer Aydin, Mark Summerfield, Robert Hicks,
+        Sean Ahern and Yigal Duppen.
+      </para>
+
+    </sect1>
+
+  </preface>
+
+  &introduction;
+
+  <part id="part1">
+    <title>Introduction to the BlackAdder IDE</title>
+
+    <partintro>
+
+<!-- XXX - link to webforum. Refer to BlackAdder demo copy?  -->
+
+      <para id="para-book-42">There are several possibilities for
+        starting out with Python and PyQt. You can buy BlackAdder, the
+        PyQt IDE, or you can download the freely available components
+        &mdash; Python, Qt and PyQt and use your own tools to write
+        your application.</para>
+
+      <para id="para-book-43">In this part I'll first guide you
+        through the installation of BlackAdder or PyQt. Then we make a
+        brief tour of the interface of BlackAdder. A very short
+        introduction to Python and the first concepts of programming
+        follows, and we conclude with a chapter on using the
+        BlackAdder debugger.</para>
+      
+    </partintro>
+
+    &ch21; <!-- Installation -->
+    &ch22; <!-- Interface -->
+    &ch24; <!-- Introduction to Python - does this fit here? -->
+    &ch23; <!-- debugging -->
+
+  </part>
+
+  <part id="part2">
+    <title>PyQt fundamentals</title>
+
+    <partintro>
+
+      <para id="para-book-44">In this part we will take a look at the
+        concepts behind BlackAdder, Python and Qt. After a short
+        introduction, we will begin an in-depth investigation of the
+        core concept of PyQt: signals and slots. String handling and
+        object creation are the topics of the next two chapters. The
+        basic layout of the Qt class library will be explored,
+        illustrated with trivial and not-so-trivial examples. Finally,
+        we explain how to create GUI designs using the designer
+        module.</para>
+
+    </partintro>
+
+    &ch1;  <!-- Concepts -->
+    &ch6;  <!-- Signals and Slots in depth -->
+    &ch4;  <!-- String objects in Python and Qt -->
+    &ch3;  <!-- Python Objects and Qt Objects -->
+    &ch2;  <!-- Qt Class Hierarchy -->
+    &ch7;  <!-- Qt Designer, BlackAdder and uic-->
+  </part>
+
+  <part id="part3">
+    <title>Creating real applications with PyQt</title>
+
+    <partintro>
+      <para id="para-book-45">The last part describes the complete
+        development of an application &mdash; from the architectural
+        beginnings, to the final release as an installable package.
+        Along the way we will visit the most remote corners of the
+        PyQt library &mdash; although we won't use every single widget
+        that PyQt offers us.
+      </para>
+    </partintro>
+
+    &ch8;  <!-- introduction framework and architecture -->
+    &ch25; <!-- Qactions -->
+    &ch9;  <!-- unit testing -->
+    &ch10; <!-- complex frameworks: MDI and MTI -->
+    &ch11; <!-- user interface paradigms -->
+    &ch12; <!-- implementing application funcionality -->
+    &ch13; <!-- configuration files -->
+    &ch14; <!-- dialog windows -->
+    &ch15; <!-- A macro language -->
+    &ch16; <!-- painters and canvases -->
+    &ch5;  <!-- Custom styles -->
+    &ch20; <!-- about drag and drop -->
+    &ch17; <!-- Printing -->
+    &ch19; <!-- Internationalisation-->
+    &ch18; <!-- Delivering your application -->
+
+
+    <chapter><title>Envoi</title>
+
+      <para id="para-book-46">And that's it &mdash; apart from the
+        appendices. There is a lot more I would like to write about,
+        for example, a chapter on using the
+        <application>mxODBC</application> database driver together
+        with Qt's <classname>QTable</classname>. I would have liked a
+        chapter dedicated to <classname>QEvent</classname> and
+        <classname>QEventLoop</classname>. More discussion of Qt's
+        great <classname>QTextEdit</classname> text editor, would have
+        been nice (but I had already started on a Python
+        implementation of an editor widget with
+        <classname>QScrollView</classname>). A small example game or
+        an editor implemented entirely in Python would be fun. Oh, and
+        the Qt OpenGL module has been wrapped too. Wait! I don't want
+        to stop writing&mdash;the subject is large, and there is
+        something new to discover every day... Well, all I can say,
+        since I have to stop now, is: have fun, and meet me at the
+        webforum Opendocs provides for this book, comp.lang.python, or
+        on the PyKDE mailing list.</para>
+
+<!-- XXX - refer to URL of webforum -->
+
+    </chapter>
+
+  </part>
+  <part id="appendices">
+
+    <title>Appendices</title>
+    &documentation; <!-- reading the Qt C++ documentation -->
+    &qwt; <!-- extension libraries -->
+    &sip; <!-- first steps with sip XXX -->
+
+  </part>
+
+  <bibliography id="bibliography">
+
+    <para id="para-book-52">This bibliography covers the sources I
+      have used while writing this book. Most of the books are fairly
+      to extremely well known, such as Code Complete or Design
+      Patters. It's the closest the programming field has to a
+      canon.</para>
+
+    <para id="para-book-53">A lot of the generally recommended books,
+      such as Fowler's Refactoring are not really suited to Python.
+      These books (and this holds for Design Patterns as well) are
+      more concerned with C++ or Java &mdash; that is, rather
+      low-level languages where the developer has to do a lot
+      himself.</para>
+
+    <biblioentry>
+      <author>
+        <surname>Brooks</surname>
+        <firstname>Frederick</firstname>
+      </author>
+      <copyright>
+        <year>1995</year>
+        <holder>Addison-Wesley Publishing Company</holder>
+      </copyright>
+      <title>The Mythical Man-Month</title>
+      <subtitle>Essays on Software Engineering</subtitle>
+      <publisher>
+        <publishername>Addison-Wesley Publishing Company</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <author>
+        <surname>Caesar</surname>
+        <firstname>Gaius Iulius</firstname>
+      </author>
+      <copyright>
+        <year>1954</year>
+        <holder>P. Noordhoff N.V.</holder>
+      </copyright>
+      <title>De Bello Gallico</title>
+      <title>Bewerkt door Dr. J.J.E. Hondius</title>
+      <edition>Zesde Uitgave</edition>
+    </biblioentry>
+
+    <biblioentry>
+      <author>
+        <surname>Driem</surname>
+        <firstname>George van</firstname>
+      </author>
+      <copyright>
+        <year>1987</year>
+        <holder>Mouton de Gruyter</holder>
+      </copyright>
+      <title>A Grammar of Limbu</title>
+      <publisher>
+        <publishername>Mouton de Gruyter</publishername>
+      </publisher>
+    </biblioentry>
+
+
+    <biblioentry>
+      <author>
+        <surname>Eckel</surname>
+        <firstname>Bruce</firstname>
+      </author>
+      <copyright>
+        <year>2000</year>
+        <holder>Prentice Hall</holder>
+      </copyright>
+      <title>Thinking in Java</title>
+      <subtitle>second edition</subtitle>
+    </biblioentry>
+
+    <biblioentry>
+      <author>
+        <surname>Finseth</surname>
+        <firstname>Craig A.</firstname>
+      </author>
+      <copyright>
+        <year>1999</year>
+        <holder>Craig A. Finseth</holder>
+      </copyright>
+      <title>The Craft of Text Editing</title>
+      <subtitle> or Emacs for the Modern World</subtitle>
+      <edition>http://www.finseth.com/~fin/craft</edition>
+    </biblioentry>
+
+    <biblioentry>
+      <author>
+        <surname>Grayson</surname>
+        <firstname>John E.</firstname>
+      </author>
+      <copyright>
+        <year>2000</year>
+        <holder>Manning</holder>
+      </copyright>
+      <pubdate>2000</pubdate>
+      <title>Python and Tkinter Programming</title>
+      <publisher>
+        <publishername>Manning</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <authorgroup>
+        <author><firstname>Erich</firstname><surname>Gamma</surname></author>
+        <author><firstname>Richard</firstname><surname>Helm</surname></author>
+        <author><firstname>Ralph</firstname><surname>Johnson</surname></author>
+        <author><firstname>Jonh</firstname><surname>Vlissides</surname></author>
+      </authorgroup>
+      <copyright><year>1995</year>
+        <holder>Addison-Wesley Publishing Company</holder></copyright>
+      <title>Design patterns</title>
+      <subtitle>Elements of Reusable Object-Oriented
+        Software</subtitle>
+      <publisher>
+        <publishername>Addison-Wesley Publishing
+          Company</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <authorgroup>
+        <author>
+          <surname>Hunt</surname>
+          <firstname>Andrew</firstname>
+        </author>
+        <author>
+          <surname>Thomas</surname>
+          <firstname>David</firstname>
+        </author>
+        <author>
+          <surname>Cunningham</surname>
+          <firstname>Ward</firstname>
+        </author>
+      </authorgroup>
+      <copyright>
+        <year>2000</year>
+        <holder>Addison-Wesley Publishing Company</holder>
+      </copyright>
+      <title>The Pragmatic Programmer</title>
+      <subtitle>From Journeyman to Master</subtitle>
+      <publisher>
+        <publishername>Addison-Wesley Publishing
+          Company</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+        <author>
+          <surname>Jones</surname>
+          <firstname>Diana Wynne</firstname>
+        </author>
+      <copyright>
+        <year>1988</year>
+        <holder></holder>
+      </copyright>
+      <title>Howl's Moving Castle</title>
+      <publisher>
+        <publishername>Methuen</publishername>
+      </publisher>
+    </biblioentry>
+
+
+    <biblioentry>
+      <authorgroup>
+        <author><firstname>Daniel</firstname>
+          <surname>Jurafsky</surname></author>
+        <author><firstname>James H.</firstname
+            ><surname>Martin</surname></author>
+      </authorgroup>
+      <title>Speech and Language Processing</title>
+      <subtitle>An Introduction to Natural Language Processing,
+        Computational Lingusitics and Speech Recognition</subtitle>
+      <copyright><year>2000</year>
+        <holder>Prentice Hall</holder></copyright>
+      <publisher>
+        <publishername>Prentice Hall</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <author>
+        <surname>Lutz</surname>
+        <firstname>Mark</firstname>
+      </author>
+      <copyright>
+        <year>1996</year>
+        <holder>O'Reilly &amp; Associates</holder>
+      </copyright>
+      <title>Programming Python</title>
+      <publisher>
+        <publishername>O'Reilly &amp; Associates</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <author>
+        <surname>&mdash;</surname>
+      </author>
+      <copyright>
+        <year>2000</year>
+        <holder>O'Reilly &amp; Associates</holder>
+      </copyright>
+      <title>Learning Python</title>
+      <publisher>
+        <publishername>O'Reilly &amp; Associates</publishername>
+      </publisher>
+    </biblioentry>
+
+
+    <biblioentry>
+      <authorgroup>
+      <author>
+        <surname>McCaughan</surname>
+        <firstname>Gareth</firstname>
+      </author>
+      <author>
+        <surname>James</surname>
+        <firstname>Rhodri</firstname>
+      </author>
+
+      <author>
+        <surname>Wright</surname>
+        <firstname>Paul</firstname>
+      </author>
+      </authorgroup>
+      <copyright>
+        <year>2001</year>
+        <holder>Scripture Union</holder>
+      </copyright>
+      <title>Livewires Python Course</title>
+      <publisher>
+        <publishername>Scripture Union</publishername>
+      </publisher>
+      <edition>http://www.livewires.org.uk/python/</edition>
+    </biblioentry>
+
+
+    <biblioentry>
+      <author>
+        <surname>McConnell</surname>
+        <firstname>Steve</firstname>
+      </author>
+      <copyright>
+        <year>1993</year>
+        <holder>Microsoft Press</holder>
+      </copyright>
+      <title>Code Complete</title>
+      <publisher>
+        <publishername>Microsoft Press</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <author><surname>Oualline</surname>
+        <firstname>Steve</firstname></author>
+      <copyright>
+        <year>1995</year>
+        <holder>O'Reilly &amp; Associates</holder>
+      </copyright>
+      <title>Practical C++ Programming</title>
+      <publisher>
+        <publishername>O'Reilly &amp; Associates</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <biblioset relation=article>
+        <author><surname>Rempt</surname>
+          <firstname>Boudewijn</firstname></author>
+        <title>Python's PyQt Toolkit</title>
+        <pubdate>January 2001</pubdate>
+        <copyright><year>2001</year><holder>CMP</holder></copyright>
+        <pagenums>88-95</pagenums>
+      </biblioset>
+      <biblioset relation=journal>
+        <title>Dr Dobbs Journal</title>
+        <issuenum>320</issuenum>
+        <publisher>
+          <publishername>CMP</publishername>
+        </publisher>
+        <editor><firstname>Jonathan</firstname
+            ><surname>Erickson</surname></editor>
+      </biblioset>
+    </biblioentry>
+
+    <biblioentry>
+      <authorgroup>
+        <author>
+          <firstname>van Rossum</firstname>
+          <surname>Guido</surname>
+        </author>
+        <author><firstname>Drake</firstname><surname>Fred L.</surname></author>
+      </authorgroup>
+      <copyright><year>2001</year>
+        <holder>PythonLabs</holder></copyright>
+      <title>Python Language Reference</title>
+      <edition>http://www.python.org/doc/current/ref/ref.html</edition>
+    </biblioentry>
+
+
+    <biblioentry>
+      <authorgroup>
+        <author>
+          <firstname>van Rossum</firstname>
+          <surname>Guido</surname>
+        </author>
+        <author><firstname>Drake</firstname><surname>Fred L.</surname></author>
+      </authorgroup>
+      <copyright><year>2001</year>
+        <holder>PythonLabs</holder></copyright>
+      <title>Python Tutorial</title>
+      <edition>http://www.python.org/doc/current/tut/tut.html</edition>
+    </biblioentry>
+
+
+    <biblioentry>
+      <biblioset relation=article>
+        <author><surname>Stevens</surname>
+          <firstname>Al</firstname></author>
+        <title>YAPP</title>
+        <subtitle>Yet Another Programming Paradigm</subtitle>
+        <issuenum>329</issuenum>
+        <pubdate>October 2001</pubdate>
+        <copyright><year>2001</year><holder>CMP</holder></copyright>
+        <pagenums>105-111</pagenums>
+      </biblioset>
+      <biblioset relation=journal>
+        <title>Dr Dobbs Journal</title>
+        <publisher>
+          <publishername>CMP</publishername>
+        </publisher>
+        <editor><firstname>Jonathan</firstname
+            ><surname>Erickson</surname></editor>
+      </biblioset>
+    </biblioentry>
+
+    <biblioentry>
+      <authorgroup>
+        <author><firstname>Aaron</firstname>
+          <surname>Watters</surname></author>
+        <author><firstname>Guido</firstname
+            ><surname>van Rossum</surname></author>
+        <author><firstname>James C.</firstname>
+          <surname>Ahlstrom</surname></author>
+      </authorgroup>
+      <title>Internet Programming with Python</title>
+      <copyright><year>1996</year>
+        <holder>M&amp;T Books</holder></copyright>
+      <publisher>
+        <publishername>M&amp;T Books</publishername>
+      </publisher>
+    </biblioentry>
+
+    <biblioentry>
+      <author><firstname>Pelham Grenville</firstname>
+        <surname>Wodehouse</surname></author>
+      <title>Much Obliged, Jeeves</title>
+      <copyright><year>1981 (1971)</year>
+        <holder>The Estate of P.G. Wodehouse</holder></copyright>
+      <publisher>
+        <publishername>Penguin Books</publishername>
+      </publisher>
+    </biblioentry>
+
+  </bibliography>
+
+  &index;
+</book>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-general-insert-case:lower
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-default-dtd-file:"~/doc/pyqt/book.ced"
+End:
+-->

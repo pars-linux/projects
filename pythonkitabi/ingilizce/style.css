@@ -1,0 +1,50 @@
+.modcontent   { font-family: Arial, Helvetica, Sans-Serif; color: #000000; font-size: 10px; }
+.contentlg    { font-family: Arial, Helvetica, Sans-Serif; color: #000000; font-size: 14px; }
+.content      { font-family: Arial, Helvetica, Sans-Serif; color: #000000; font-size: 12px; }
+.contentsm    { font-family: Arial, Helvetica, Sans-Serif; color: #000000; font-size: 11px; }
+.alert        { font-family: Arial, Helvetica, Sans-Serif; color: #d00000; font-size: 12px; }
+.inverselg    { font-family: Arial, Helvetica, Sans-Serif; color: #ffffff; font-size: 14px; }
+.inverse      { font-family: Arial, Helvetica, Sans-Serif; color: #ffffff; font-size: 12px; }
+.inversesm    { font-family: Arial, Helvetica, Sans-Serif; color: #ffffff; font-size: 11px; }
+.copy         { font-family: Arial, Helvetica, Sans-Serif; color: #000000; font-size: 10px; }
+
+P             { font-family: Arial, Helvetica, Sans-Serif; color: #000000; font-size: 12px; }
+H4            { font-family: Arial, Helvetica, Sans-Serif; color: #000000; font-size: 12px; }
+
+A             { font-family: Arial, Helvetica, Sans-Serif; color: #000040; }
+A:visited     { font-family: Arial, Helvetica, Sans-Serif; color: #000040; }
+A:active      { font-family: Arial, Helvetica, Sans-Serif; color: #000040; }
+A:hover       { font-family: Arial, Helvetica, Sans-Serif; color: #000040; }
+
+A.contentlink             { color: #000040; text-decoration: underline; }
+A.contentlink:visited     { color: #000040; text-decoration: underline; }
+A.contentlink:active      { color: #000040; text-decoration: underline; }
+A.contentlink:hover       { color: #000040; text-decoration: underline; }
+
+A.content             { color: #000040; text-decoration: none; }
+A.content:visited     { color: #000040; text-decoration: none; }
+A.content:active      { color: #000040; text-decoration: none; }
+A.content:hover       { color: #000040; text-decoration: underline; }
+
+A.contentsm             { color: #000040; text-decoration: underline; }
+A.contentsm:visited     { color: #000040; text-decoration: underline; }
+A.contentsm:active      { color: #000040; text-decoration: underline; }
+A.contentsm:hover       { color: #000040; text-decoration: underline; }
+
+A.inverse             { color: #ffffff; text-decoration: none; }
+A.inverse:visited     { color: #ffffff; text-decoration: none; }
+A.inverse:active      { color: #ffffff; text-decoration: none; }
+A.inverse:hover       { color: #ffffff; text-decoration: underline; }
+
+A.inverselg             { color: #ffffff; text-decoration: none; }
+A.inverselg:visited     { color: #ffffff; text-decoration: none; }
+A.inverselg:active      { color: #ffffff; text-decoration: none; }
+A.inverselg:hover       { color: #ffffff; text-decoration: underline; }
+
+A.smlink       { color: #000000; }
+
+A.alert         { font-family: Arial, Helvetica, Sans-Serif; color: #d00000; font-size: 12px; text-decoration: underline; }
+A.alert:link    { font-family: Arial, Helvetica, Sans-Serif; color: #d00000; font-size: 12px; text-decoration: underline; }
+A.alert:hover   { font-family: Arial, Helvetica, Sans-Serif; color: #f00000; font-size: 12px; text-decoration: underline; }
+A.alert:active  { font-family: Arial, Helvetica, Sans-Serif; color: #f00000; font-size: 12px; text-decoration: underline; }
+A.alert:visited { font-family: Arial, Helvetica, Sans-Serif; color: #d00000; font-size: 12px; text-decoration: underline; }

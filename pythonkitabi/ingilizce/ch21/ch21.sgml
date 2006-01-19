@@ -1,0 +1,377 @@
+<chapter id="ch21">
+  <title>Installation</title>
+
+  <indexterm>
+  <primary>installing BlackAdder</primary>
+  </indexterm>
+  <para id="para-ch21-1">In this chapter I briefly describe how to
+    install BlackAdder on Windows and Linux. After that, compiling
+    PyQt from source is described in a little more detail.</para>
+
+  <para id="para-ch21-2">Of course, a book generally has a longer life
+    than a certain version of a software package, so installation
+    details might have changed between time of writing and time of
+    buying&mdash;so don't forget to read the README files!</para>
+
+  <sect1><title>Installing BlackAdder</title>
+
+    <para id="para-ch21-3">PyQt can be used on Windows, Unix/X11 and
+      soon OS X, but BlackAdder is only available for Windows and
+      Unix/X11 (due to licensing restrictions).</para>
+
+    <sect2><title>Windows</title>
+
+      <indexterm>
+        <primary>installing BlackAdder</primary><secondary>Windows</secondary>
+      </indexterm>
+      
+      <para id="para-ch21-4">To install BlackAdder on Windows you need the following components:</para>
+    
+      <indexterm>
+        <primary>ODBC</primary>
+      </indexterm>
+      
+      <itemizedlist>
+        <listitem><para id="para-ch21-5">Python. (Be careful to choose
+            the version of Python that is right for your version of
+            BlackAdder.)</para>
+        </listitem>
+        <listitem><para id="para-ch21-6">BlackAdder.</para>
+        </listitem>
+        <listitem><para id="para-ch21-7">The BlackAdder Qt module.</para>
+        </listitem>
+        <listitem>
+            <para id="para-ch21-8">And eventually, the Egenix MX ODBC module, if you want to do database work.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para id="para-ch21-9">Now it's simply a matter of installing
+        the components, one after another. Every component is provided
+        in a comfortable Windows installer package.</para>
+
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="45" align="center" fileref="ch21/install_ba_win.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch21-10"><application>Installing
+                BlackAdder</application></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch21-11">BlackAdder will now be ready to run
+        &mdash; a friendly icon has appeared on your desktop, just
+        begging to be clicked.</para>
+
+    </sect2>
+
+    <sect2 id="ch21-installing-linux"><title>Linux</title>
+
+      <para id="para-ch21-12">There are rpm packages for a lot of
+        distributions: Mandrake, RedHat and SuSE. Additionally, there
+        is a .tgz package for Slackware.</para>
+
+      <indexterm>
+  <primary>installing Blackadder</primary><secondary>Linux</secondary>
+  </indexterm>
+  <para id="para-ch21-13">Installing BlackAdder does not differ
+        from installing any other package for your favorite
+        distribution &mdash; you can use a fancy gui like
+        <application>KPackage</application>, or type </para>
+
+      <screen>
+boud@calcifer:~/tmp > rpm --install BA-personal-1.0Beta3-1_tkc_suse71.i386.rpm
+      </screen>
+
+      <para id="para-ch21-14">on the command line, if you're
+        installing the 3.1 beta for SuSE Linux. The actual name of the
+        rpm will vary, of course.</para>
+
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="50" align="center" fileref="ch21/install_ba_rpm.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch21-15"><application>KPackage with the
+                BlackAdder rpm</application></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch21-16">Additionally, you might want to set two
+        environment variables in your <filename>.bashrc</filename>
+        file. Installing BlackAdder and Python in the default location
+        isn't necessary, but if you deviate from the standard
+        BlackAdder installation directory, you need to set the
+        following variables.</para>
+
+
+      <screen>
+export BLACKADDERDIR=/usr/lib/BlackAdder export
+BLACKADDERPYTHON=/usr/local/bin/python
+      </screen>
+
+      <para id="para-ch21-17">Now, simply typing "ba" on the command
+        line will start BlackAdder.</para>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="ch21InstallingSipAndPyQtWithoutBlackAdder"><title>Installing 
+      sip and PyQt without BlackAdder</title>
+
+    <indexterm>
+  <primary>installing</primary><secondary>sip</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>installing </primary><secondary>pyqt</secondary>
+  </indexterm>
+  <para id="para-ch21-18">All components that combine to form a PyQt
+      development environment are also freely available. Python, Qt,
+      Qt Designer, sip, PyQt and editors are all available as open
+      source. If you use Linux&mdash;and particularly if you use a
+      modern and complete distribution like SuSE or
+      Redhat&mdash;everything you need is included on your
+      distribution media, including PyQt. There are also Debian
+      packages of PyQt available. Installing these ready-made packages
+      is very easy, but they are not always completely up-to-date. In
+      the next section, I will discuss building PyQt from source,
+      which is necessary if you want to always run the latest version
+      of PyQt.</para>
+
+    <para id="para-ch21-19">Windows users who want to use PyQt without
+      BlackAdder have some downloading to do, but all components are
+      available as binary packages that come with easy to use Windows
+      installers.</para>
+
+    <para>Installing PyQt from source on Windows falls outside the
+      scope of this book, partly because it is quite complicated, and
+      partly because I don't have a C++ compiler for Windows. The Qt
+      library essentially demands Visual C++.</para>
+
+    <para id="para-ch21-20">You can also access the PyQt CVS
+      repository (the central place where the most current code is
+      kept &mdash; also at http://www.thekompany.com). Compiling PyQt
+      from CVS source entails creating the C++ bindings code from the
+      sip definition files, and then carrying on as if you had
+      downloaded the source. Keep in mind that CVS versions of
+      software are not expected to work!</para>
+
+    <sect2><title>Building from source on Linux</title>
+
+      <para id="para-ch21-21">Assuming you already have an
+        installation of Python and Qt, you first need to gather the
+        following packages if you want to build PyQt from
+        source:</para>
+
+
+      <itemizedlist>
+        <listitem><para id="para-ch21-22">sip</para>
+        </listitem>
+        <listitem><para id="para-ch21-23">PyQt</para>
+        </listitem>
+        <listitem><para id="para-ch21-24">Eventually: PyKDE</para>
+        </listitem>
+      </itemizedlist>
+
+      <indexterm>
+  <primary>versions</primary><secondary>dependencies between sip, PyQt and PyKDE</secondary>
+  </indexterm>
+  <para id="para-ch21-25">Be careful to choose versions of
+        packages that fit each other. You can compile PyQt with most
+        versions of Qt, but Python 2.1 will give better results than
+        Python 2.0, and so on.</para>
+
+      <para id="para-ch21-26">You need to compile and install sip
+        before compiling PyQt. After unpacking the sip tar archive,
+        you will need to give the following commands:</para>
+
+      <screen>
+        boud@calcifer:~/src/sip-2.5 > ./configure; make
+      </screen>
+
+      <indexterm>
+  <primary>compiling</primary><secondary>sip</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>sip</primary><secondary>compiling</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>sip</primary><secondary>installing</secondary>
+  </indexterm>
+  <para id="para-ch21-27">And, when building is complete, become
+        superuser and type:</para>
+
+      <screen>
+        root@calcifer:/home/boud/src/sip-2.5 > make install
+      </screen>
+
+      <para id="para-ch21-28">If your Python or Qt installation is in
+        an odd place, then chances are that the
+        <filename>configure</filename> script cannot find it. In that
+        case, you should give their locations on the command
+        line:</para>
+
+      <screen>
+        boud@calcifer:~/src/sip-2.5 > ./configure \
+        --with-qt-dir=/opt/qt \ --with-python=/usr/local/bin/python
+      </screen>
+
+      <para id="para-ch21-29">This will build the sip library and
+        executable, and install them (most likely in
+        <filename>/usr/local/</filename>). With this done, it is time
+        to do the same with PyQt. This time, the make command will
+        take a long time to run, because PyQt is a very large set of
+        bindings, and the GNU C++ compiler isn't the fastest
+        around.</para>
+
+      <screen>
+        boud@calcifer:~/src/PyQt-2.5 > ./configure; make ...
+        boud@calcifer:~/src/PyQt-2.5 > su Password:
+        root@calcifer:/home/boud/src/PyQt-2.5 > make install
+      </screen>
+
+      <para id="para-ch21-30">The whole process might take a while,
+        but should not pose any problem. Sometimes, however, things go
+        wrong...</para>
+
+
+      <sect3><title>Problems with compilation</title>
+
+        <indexterm>
+  <primary>compiling</primary><secondary>problems</secondary>
+  </indexterm>
+  <para id="para-ch21-31">While not really
+          <emphasis>difficult</emphasis>, compiling from source is an
+          exercise to be attempted only by the technically adept.
+          Certain problems have cropped up throughout the life of
+          PyQt, only to be solved in later versions. Other problems
+          have been caused by the version of the GNU C++ compiler used
+          in certain releases of Redhat: gcc 2.96.</para>
+
+        <para id="para-ch21-32">If you are experiencing problems, you
+          probably have several versions of Python or Qt on your
+          system, and the compilation configuration process inevitably
+          picks the wrong one &mdash; for instance Qt 2.3.1 for sip
+          and then Qt 3.0.0 for PyQt. Murphy's law cannot be avoided!
+          This hurts compilation &mdash; but is easily avoided by
+          giving the right versions at the ./configure command
+          line.</para>
+
+        <para id="para-ch21-33">If you have determined that this is
+          not the problem, your best bet will be to subscribe to the
+          PyQt mailinglist: http://mats.gmd.de/mailman/listinfo/pykde,
+          where most of us have found succor more than once.</para>
+
+      </sect3>
+
+    </sect2>
+
+    <sect2><title>Windows</title>
+
+      <indexterm>
+  <primary>sip</primary><secondary>installing on Windows</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>pyqt</primary><secondary>installing on Windows</secondary>
+  </indexterm>
+  <para id="para-ch21-34">You can develop applications on Windows
+        systems with PyQt using only gratis software. Life will
+        certainly be more difficult than if you buy BlackAdder,
+        because you miss the nice integration of editor, debugger and
+        operating system. Another issue is licensing: if you buy the
+        professional edition of BlackAdder, you can write commercial
+        software. If you use the non-commercial version of the Qt
+        library and the separately available packages of sip and PyQt,
+        you are not allowed to sell your programs: you are not even
+        allowed to use your software yourself in a commercial setting.
+        However, if you want to develop PyQt on windows without
+        spending any money, you need the following components:</para>
+
+          <indexterm>
+  <primary>non-commercial Qt</primary>
+  </indexterm>
+
+      <itemizedlist>
+        <listitem><para id="para-ch21-35">The Non-commercial licensed Qt
+            library from http://www.trolltech.com. This a full version
+            of Qt. You cannot build commercial applications with this
+            library, and you cannot use your software in a commercial
+            setting. Additionally, you must make the source to your
+            software available. See
+            http://www.trolltech.com/products/download/freelicense/noncommercial-dl.html 
+            for more information.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para id="para-ch21-36">You also need the precompiled PyQt
+            for Windows library from
+            http://www.thekompany.com/projects/pykde/. This is made
+            available under the same license as the non-commercial
+            version of Qt. You don't need to download a separate copy
+            of sip.           
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Of course, Python is needed, too! Get it from
+            http://www.python.org.</para>
+        </listitem>
+
+      </itemizedlist>
+
+      <para id="para-ch21-37">You also need a nice editor to type your
+        Python code with. notepad just won't do - SciTE, which uses
+        the same editor component as BlackAdder, is very powerful and
+        pleasant to use. Get SciTE from
+        http://www.scintilla.org/SciTE.html. (SciTE is also available
+        for Linux.)</para>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="50" align="center" fileref="ch21/scite.eps">
+          </imageobject>
+          <caption>
+            <indexterm>
+  <primary>SciTEX</primary>
+  </indexterm>
+  <para id="para-ch21-38"><application>The SciTE
+                editor.</application></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para id="para-ch21-39">You job is then reduced to manually
+        installing Python, Qt, PyQt, and an editor. Then you can get
+        started on developing your application.</para>
+
+    </sect2>
+
+  </sect1>
+
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->

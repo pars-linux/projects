@@ -1,0 +1,1387 @@
+<chapter id="ch16">
+  
+  <title>Drawing on Painters and Canvases</title>
+
+  <indexterm>
+  <primary>painting</primary>
+  </indexterm>
+  <para id="para-ch16-1">Constructing windows out of predefined
+    widgets is all very nice, but the real exciting stuff occurs when
+    you have to leave the beaten track and push the pixels around
+    yourself. This happens when you want to create diagram editors,
+    drawing applications, games (especially games!), complex page
+    layout engines (like an html renderer), charts, and plots.</para>
+
+  <indexterm>
+  <primary>QCanvas</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPainter</primary>
+  </indexterm>
+  <para id="para-ch16-2">Python and PyQt form a good basis for this
+    kind of work, because Qt already has two very powerful and
+    optimized drawing engines: the <classname>QCanvas</classname>
+    class and the <classname>QPainter</classname>.
+    <classname>QCanvas</classname> is extremely useful if your drawing
+    can be composed from separate elements, and if you want to be able
+    to track events that occur on those individual elements, such as
+    mouse clicks.</para>
+
+  <para id="para-ch16-3"><classname>QPainter</classname> offers finer
+    control of what you put on screen, at the cost of losing control
+    over the individual elements that make up the drawing.
+    <classname>QPainter</classname> is more suited to drawing charts,
+    bit-mapped drawings and plots. If you want real plotting power,
+    you should investigate PyQwt, which is introduced in 
+    <xref linkend="pyqwt"></para>
+
+  <para id="para-ch16-4">Both <classname>QCanvas</classname> and
+    <classname>QPainter</classname> are very powerful. In fact, they
+    are even used in assembling software used to create animated
+    films. Animation means a lot of intensive work for your computer,
+    though, and Python can not always cope&mdash;even on the most
+    modern machines. In such cases, it is quite easy to replace the
+    Python class with a Qt-based C++ object (you won't have to
+    translate your whole Python application). See <xref linkend="sip">
+    for information on the wrapping of new C++ objects with sip.</para>
+
+
+  <sect1><title>Working with painters and paint devices</title>
+
+    <indexterm>
+  <primary>paint devices</primary>
+  </indexterm>
+  <para id="para-ch16-5">In <xref linkend="ch2"> we introduced
+      <classname>QPainter</classname>, for creating our little
+      scribbling example application, <filename>event1.py</filename>.
+      In this section we will take a closer look at the organization
+      and use of the PyQt painting mechanism.</para>
+
+    <indexterm>
+  <primary>QPainter</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPaintDevice</primary>
+  </indexterm>
+  <para id="para-ch16-6">Painting in PyQt involves the cooperation
+      of two classes: a <classname>QPainter</classname> and a
+      <classname>QPaintDevice</classname>. The first is a very
+      efficient abstraction of various drawing operations. It provides
+      the brushes and the letterpress, so to speak. The second
+      provides the &lsquo;paper' on which to draw.</para>
+
+    <indexterm>
+  <primary>QPrinter</primary>
+  </indexterm>
+  <para id="para-ch16-7">There are four subclasses of
+      <classname>QPaintDevice</classname>:
+      <classname>QWidget</classname>, <classname>QPicture</classname>,
+      <classname>QPixMap</classname> and
+      <classname>QPrinter</classname>.</para>
+
+    <para id="para-ch16-8">You use hand-coded painting with a
+      <classname>QPainter</classname> object on a
+      <classname>QWidget</classname> to determine the look of a widget.
+      The place for the painting code is in re-implementations of the
+      <function>paintEvent()</function> function.</para>
+
+    <indexterm>
+  <primary>QPicture</primary>
+  </indexterm>
+  <para id="para-ch16-9"><classname>QPicture</classname> is a kind
+      of event recorder: it records every
+      <classname>QPainter</classname> action, and can replay them. You
+      can also save those actions to a platform independent file. This
+      is useful if you want to implement rolling charts with a limited
+      replay functionality (although <emphasis>I</emphasis> would
+      prefer to save the underlying data and reconstruct the chart
+      every time). You cannot alter anything in the sequence of events
+      once it is recorded. Starting with Qt 3,
+      <classname>QPicture</classname> has become quite powerful, with
+      the ability to load and save industry standard
+      <filename>.svg</filename> files - the scalable vector graphics
+      format.</para>
+
+    <indexterm>
+  <primary>QPixMap</primary>
+  </indexterm>
+  <indexterm>
+  <primary>bitBlt()</primary>
+  </indexterm>
+  <para id="para-ch16-10">Painting on a
+      <classname>QPixMap</classname> is extraordinarily useful.
+      Painting is always a bit slow, especially if it is done line by
+      line, dot by dot, and character by character. This can result in
+      visible lag or flickering if you paint directly on an exposed
+      <classname>QWidget</classname>. By first painting the complete
+      drawing on a <classname>QPixMap</classname> object, and then
+      using the <function>bitBlt()</function> function to move the
+      picture in one swoop the the widget, you will avoid this
+      flickering. <classname>bitBlt()</classname> really
+      <emphasis>is</emphasis> fast.</para>
+
+    <indexterm>
+  <primary>printing</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QPrinter</primary>
+  </indexterm>
+  <para id="para-ch16-11">Finally, being able to paint on a
+      <classname>QPrinter</classname> object means that anything you
+      can draw on-screen can also be printed. However, printing is
+      still quite a difficult subject &mdash; even if PyQt can
+      generate your PostScript for you, you still have to layout
+      everything yourself. You cannot, for instance, send the contents
+      of a <classname>QSimpleRichText</classname> widget to a printer
+      just like that... We'll discuss the basics of printing in
+      <xref linkend="ch17">.</para>
+
+    <sect2 id="ch16PaintingExample"><title>A painting example</title>
+
+      <indexterm>
+  <primary>painting</primary><secondary>example</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>charting</primary>
+  </indexterm>
+  <indexterm>
+  <primary>graphing</primary>
+  </indexterm>
+  <para id="para-ch16-12">There is little we can do using
+        <classname>QPainter</classname> and
+        <classname>QPaintDevices</classname> in our
+        <application>Kalam</application> project &mdash; but after
+        long and hard thinking I thought a rolling chart that counts
+        how many characters the user types per minute might be a nice,
+        although completely useless (and possibly frustrating) except
+        for <emphasis>real</emphasis> productivity freaks.</para>
+
+
+      <example>
+        <title>typometer.py - A silly type-o-meter that keeps a
+          running count of how many characters are added to a certain
+          document and shows a chart of the typerate...</title>
+      <programlisting>
+"""
+typometer.py
+
+A silly type-o-meter that keeps a running count of how many characters there
+are in a certain document and shows a chart of the count...
+"""
+import sys, whrandom
+from qt import *
+
+FIVE_SECONDS = 1000 * 5 #  5 seconds in milli-seconds
+AVERAGE_TYPESPEED = 125 # kind of calibration
+BARWIDTH = 3
+
+TRUE=1
+FALSE=0
+          </programlisting>
+        </example>
+
+        <indexterm>
+  <primary>typometer.py</primary>
+  </indexterm>
+  <indexterm>
+  <primary>constants</primary>
+  </indexterm>
+  <para id="para-ch16-13">No surprises here&mdash;just some
+        declarations. I like to work with names instead of magic
+        numbers, and to conform to practice in other programming
+        languages, those names are in all-caps, even though they are
+        not constants.</para>
+
+        <programlisting>
+class TypoGraph(QPixmap):
+    """ TypoGraph is a subclass of QPixmap and draws a small graph of
+    the current wordcount of a text.
+    """
+    def __init__(self, count, w, h, *args):
+        apply(QPixmap.__init__, (self, w, h) + args)
+        self.count = count
+        self.maxCount = AVERAGE_TYPESPEED
+        if count != 0:
+            self.scale = float(h) / float(count)
+        else:
+            self.scale = float(h) / float(AVERAGE_TYPESPEED)
+        self.col = 0
+        self.fill(QColor("white"))
+        self.drawGrid()
+      </programlisting>
+
+      <para id="para-ch16-14">The general design of this chart drawing
+        code consists of two parties: a specialized pixmap, descended
+        from <classname>QPixmap</classname>, that will draw the chart
+        and keep track of scrolling, and a widget that show the chart
+        and can be used everywhere where you might want to use a
+        widget.</para>
+
+      <indexterm>
+  <primary>scaling</primary>
+  </indexterm>
+  <indexterm>
+  <primary>painting</primary><secondary>scaling</secondary>
+  </indexterm>
+  <para id="para-ch16-15">In the constructor of
+        <classname>TypoGraph</classname>, the specialized
+        <classname>QPixMap</classname>, certain initial variables are
+        set. One point of attention is scaling. The chart will have a
+        certain fixed vertical size. It is quite possible that the
+        plotted values won't fit into the available pixels.</para>
+
+      <para id="para-ch16-16">This means that we have to scale the
+        values to fit the pixels of the chart. This is done by
+        arbitrarily deciding upon a maximum value, and dividing the
+        height of the chart by that value. Any value greater than the
+        maximum will go off the chart, but if you can type more than
+        125 characters in five seconds, you deserve to fly off the
+        chart!</para>
+
+      <indexterm>
+  <primary>float</primary>
+  </indexterm>
+  <para id="para-ch16-17">Because the scaling can be smaller than
+        one but greater than zero, we need to use
+        <emphasis>float</emphasis> numbers for our scale. Floats are
+        notoriously slow, but believe me, your computer can handle
+        more floats than you can throw at it per second, so you won't
+        feel the penalty for not using integers.</para>
+
+      <para id="para-ch16-18">Finally, we fill the pixmap with a
+        background color (white in this case) and draw a nice
+        grid:</para>
+
+      <programlisting>
+    def drawGrid(self):
+        p = QPainter(self)
+        p.setBackgroundColor(QColor("white"))
+        h = self.height()
+        w = self.width()
+        for i in range(1, h, h/5):
+            p.setPen(QColor("lightgray"))
+            p.drawLine(0, i, w, i)
+      </programlisting>
+
+      <indexterm>
+  <primary>QPainter</primary><secondary>painting on</secondary>
+  </indexterm>
+  <para id="para-ch16-19">This is the first encounter with
+        <classname>QPainter</classname>. The basic procedure for
+        working with painter objects is very simple: you create a
+        painter for the right paintdevice. Here the paintdevice is
+        <varname>self</varname> &mdash; our specialized
+        <classname>QPixMap</classname>. After having created the
+        <classname>QPainter</classname> you can mess about drawing
+        lines, setting colors or throwing more complex shapes on the
+        paper. Here, we draw four lines at equal distances using a
+        light-gray pen. The distance is computed by letting the
+        <function>range</function> function use the height of the
+        widget divided by the number of rows we want as a
+        stepsize.</para>
+
+      <indexterm>
+  <primary>QPainter</primary><secondary>begin()</secondary>
+  </indexterm>
+  <para id="para-ch16-20">If you wish to use several different
+        painter objects, you might want to use the
+        <function>begin()</function> and <function>end()</function>
+        methods of the <classname>QPainter</classname> class. In
+        normal use, as here, the <function>begin()</function> function
+        is called when the <classname>QPainter</classname> is created,
+        and <function>end()</function> when it is destroyed. However,
+        because the reference goes out of scope,
+        <function>end()</function> is called automatically, so you
+        won't have to call <function>end()</function> yourself.</para>
+
+      <programlisting>
+    def text(self):
+        return QString(str(self.count))
+      </programlisting>
+
+      <para id="para-ch16-21">The function <function>text()</function>
+        simply returns a <classname>QString</classname> object
+        containing the last plotted value. We will use this to set the
+        caption of the chart window.</para>
+
+      <programlisting>
+    def update(self, count):
+        """
+        Called periodically by a timer to update the count.
+        """
+        self.count = count
+
+        h = self.height()
+        w = self.width()
+
+        p = QPainter(self)
+        p.setBackgroundColor(QColor("white"))
+
+        p.setBrush(QColor("black"))
+        
+        if self.col >= w:
+            self.col = w
+            # move one pixel to the left
+            pixmap = QPixmap(w, h)
+            pixmap.fill(QColor("white"))
+            bitBlt(pixmap, 0, 0,
+                   self, BARWIDTH, 0, w - BARWIDTH, h)
+            
+            bitBlt(self, 0, 0, pixmap, 0, 0, w, h)
+            for i in range(1, h, h/5):
+                p.setPen(QColor("lightgray"))
+                p.drawLine(self.col - BARWIDTH , i, w, i)
+        else:
+            self.col += BARWIDTH
+
+        y = float(self.scale) * float(self.count)
+        # to avoid ZeroDivisionError
+        if y == 0: y = 1
+
+        # Draw gradient
+        minV = 255
+        H = 0
+        S = 255
+
+        vStep = float(float(128)/float(y))
+        for i in range(y):
+            color = QColor()
+            color.setHsv(H, S, 100 + int(vStep * i))
+            p.setPen(QPen(color))
+            p.drawLine(self.col - BARWIDTH, h-i, self.col, h-i)
+      </programlisting>
+
+
+      <para id="para-ch16-22">The <function>update()</function>
+        function is where the real meat of the charting pixmap is. It
+        draws a gradiented bar that scrolls left when the right side
+        is reached (that is, if the current column has arrived at or
+        gone beyond the width of the pixmap).</para>
+
+      <indexterm>
+  <primary>scrolling</primary>
+  </indexterm>
+  <para id="para-ch16-23">The scrolling is done by creating a new,
+        empty <classname>QPixmap</classname> and blitting the right
+        hand part of the old pixmap onto it. When writing this code, I
+        noticed that you cannot blit a pixmap onto itself. So, after
+        we've created a pixmap that contains the old pixmap minus the
+        first few vertical lines, we blit it back, and add the grid to
+        the now empty right hand side of the pixmap.</para>
+
+      <para id="para-ch16-24">The height of the bar we want to draw is
+        computed by multiplying the value
+        (<varname>self.count</varname>) with the scale of the chart.
+        If the result is 0, we make it 1.</para>
+
+      <indexterm>
+  <primary>gradient</primary>
+  </indexterm>
+  <indexterm>
+  <primary>color</primary><secondary>gradient</secondary>
+  </indexterm>
+  <para id="para-ch16-25">We draw the bar in steps, with each step
+        having a subtly differing color from the one before it. The
+        color gradient is determined by going along the
+        <emphasis>value</emphasis> range of a hue-saturation-value
+        color model. Value determines darkness, with 0 being
+        completely dark, and 255 completely light. We don't use the
+        complete range, but step directly from 100 (fairly dark) to
+        228 (quite bright). The step is computed by dividing the value
+        range we want (128) by the height of the bar. Every bar is
+        going from 100 to 228.</para>
+
+      <para id="para-ch16-26">Then we step through the computed height
+        of the bar, drawing a horizontal line with the length of the
+        bar thickness &mdash; <varname>BARWIDTH</varname>.</para>
+
+      <para id="para-ch16-27">Computing gradients is fairly costly,
+        but it is still possible to type comfortably when this chart
+        is running: a testimony to the efficient design of
+        <classname>QPainter</classname>. If your needs are more
+        complicated, then <classname>QPainter</classname> offers a
+        host of sophisticated drawing primitives (and not so
+        primitives, like shearing, scaling, resizing and the drawing
+        of quad beziers).</para>
+
+      <para id="para-ch16-28">The <classname>TypoGraph</classname> is
+        completely generic: it draws a nicely gradiented graph of any
+        values that you feed the update function. There's some testing
+        code included that uses a simple timer to update the chart
+        with a random value.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="60" align="center" fileref="ch16/typometer.eps">
+        </imageobject>
+        <caption>
+          <para id="para-ch16-29">A stand-alone chart</para>
+        </caption>
+      </mediaobject>
+
+      <para id="para-ch16-30">More application-specific is the
+        <classname>TypoMeter</classname> widget, which keeps track of
+        all open <application>Kalam</application> documents, and shows
+        the right chart for the currently active document.</para>
+
+      <programlisting>
+class TypoMeter(QWidget):
+
+    def __init__(self, docmanager, workspace, w, h, *args):
+        apply(QWidget.__init__, (self,) + args)
+
+        self.docmanager = docmanager
+        self.workspace = workspace
+
+        self.resize(w, h)
+        self.setMinimumSize(w,h)
+        self.setMaximumSize(w,h)
+
+        self.h = h
+        self.w = w
+
+        self.connect(self.docmanager,
+                     PYSIGNAL("sigNewDocument"),
+                     self.addGraph)
+        self.connect(self.workspace,
+                     PYSIGNAL("sigViewActivated"),
+                     self.changeGraph)
+        self.graphMap = {}
+        self.addGraph(self.docmanager.activeDocument(),
+                      self.workspace.activeWindow())
+
+        self.timer = QTimer(self)
+        self.connect(self.timer,
+                     SIGNAL("timeout()"),
+                     self.updateGraph)
+        self.timer.start(FIVE_SECONDS, FALSE)
+      </programlisting>
+
+      <indexterm>
+        <primary>QTimer</primary>
+      </indexterm>
+
+      <indexterm>
+  <primary>QTimer</primary>
+  </indexterm>
+  <para id="para-ch16-31">In order to implement this feature, some
+        new signals had to be added to the document manager and the
+        workspace classes. Note also the use of the
+        <classname>QTimer</classname> class. A timer is created with
+        the current object as its parent; a slot is connected to the
+        <function>timeout()</function> signal, and the timer is
+        started with a certain interval. The <varname>FALSE</varname>
+        parameter means that the timer is supposed to keep running,
+        instead of firing once, when the timeout is reached.</para>
+
+      <programlisting>
+    def addGraph(self, document, view):
+        self.currentGraph = TypoGraph(0,
+                                      self.h,
+                                      self.w)
+        self.graphMap[document] = (self.currentGraph, 0)
+        self.currentDocument = document
+
+
+    def changeGraph(self, view):
+        self.currentGraph = self.graphMap[view.document()][0]
+        self.currentDocument = view.document()
+        bitBlt(self, 0, 0,
+               self.currentGraph,
+               0, 0,
+               self.w,
+               self.h)
+
+    def updateGraph(self):
+
+        prevCount = self.graphMap[self.currentDocument][1]
+        newCount = self.currentDocument.text().length()
+        self.graphMap[self.currentDocument] = (self.currentGraph, newCount)
+
+        delta = newCount - prevCount
+
+        if delta < 0: delta = 0 # no negative productivity
+
+        self.currentGraph.update(delta)
+
+        bitBlt(self, 0, 0,
+               self.currentGraph,
+               0, 0,
+               self.w,
+               self.h)
+        self.setCaption(self.currentGraph.text())
+      </programlisting>
+
+      <para id="para-ch16-32">The actual keeping track of the
+        type-rate is done in this class, not in the
+        <classname>TypoChart</classname> class. In making good use of
+        Python's ability to form tuples on the fly, a combination of
+        the <classname>TypoChart</classname> instance and the last
+        count is kept in a dictionary, indexed by the document.</para>
+
+      <indexterm>
+  <primary>TypoChart</primary>
+  </indexterm>
+  <para id="para-ch16-33">Using the last count and the current
+        length of the text, the <emphasis>delta</emphasis> (the
+        difference) is computed and fed to the chart. This updates the
+        chart, and the chart is then blitted onto the widget &mdash; a
+        <classname>QWidget</classname> is a paintdevice, after
+        all.</para>
+
+      <programlisting>
+    def paintEvent(self, ev):
+        p = QPainter(self)
+        bitBlt(self, 0, 0,
+               self.currentGraph,
+               0, 0,
+               self.w,
+               self.h)
+
+class TestWidget(QWidget):
+
+    def __init__(self, *args):
+        apply(QWidget.__init__, (self,) + args)
+        self.setGeometry(10, 10, 50, 250)
+        self.pixmap = TypoGraph(0, self.width(), self.height())
+        self.timer = self.startTimer(100)
+
+    def paintEvent(self, ev):
+        bitBlt(self, 0, 0, self.pixmap, 0, 0, self.width(), self.height())
+
+    def timerEvent(self, ev):
+        self.pixmap.update(whrandom.randrange(0, 300))
+        bitBlt(self, 0, 0, self.pixmap, 0, 0, self.width(), self.height())
+
+if __name__ == '__main__':
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL('lastWindowClosed()'),a,SLOT('quit()'))
+    w = TestWidget()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
+      </programlisting>
+
+      <para id="para-ch16-34">Finally, this is some testing code, not
+        for the <classname>TypoMeter</classname> class, which can only
+        work together with <application>Kalam</application>, but for
+        the <classname>TypoChart</classname> class. It is difficult to
+        use the unit testing framework from <xref linkend="ch9">
+        here&mdash; after all, in the case of graphics work, the proof
+        of the pudding is in the eating, and it's difficult to assert
+        things about pixels on the screen.</para>
+
+      <indexterm>
+  <primary>widget</primary><secondary>delete</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>windows flags</primary><secondary>WType_TopLevel</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>windows flags</primary><secondary>WDestructiveClose</secondary>
+  </indexterm>
+  <para id="para-ch16-35">The code to show the type-o-meter on
+        screen is interesting, since it shows how you can
+        destructively delete a widget. The
+        <classname>QAction</classname> that provides the menu option
+        "show type-o-meter" is a toggle action, and changing the
+        toggle emits the <function>toggled(bool)</function> signal.
+        This is connected to the following function (in
+        <filename>kalamapp.py</filename>: </para>
+
+      <programlisting>
+    def slotSettingsTypometer(self, toggle):
+        if toggle:
+            self.typowindow = TypoMeter(self.docManager,
+                                        self.workspace,
+                                        100,
+                                        100,
+                                        self,
+                                        "type-o-meter",
+                                        Qt.WType_TopLevel or Qt.WDestructiveClose)
+            self.typowindow.setCaption("Type-o-meter")
+            self.typowindow.show()
+        else:
+            self.typowindow.close(TRUE)
+      </programlisting>
+
+      <para id="para-ch16-36">Destroying this popup-window is
+        important, because you don't want to waste processing power on
+        a widget that still exists and is merely hidden. The character
+        picker popup we will create in the next section will be
+        hidden, not destroyed.</para>
+
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="ch16Canvas"><title>QCanvas</title>
+
+    <indexterm>
+  <primary>QCanvas</primary>
+  </indexterm>
+  <para id="para-ch16-37">The other way of pushing pixels on the
+      screen is using the <classname>QCanvas</classname> class. This
+      is rather more complicated than simply painting what you want,
+      but offers the unique capability of accessing the individual
+      elements of the composition. Not only that, but you can also
+      determine whether elements overlap each other, set them moving
+      across the canvas at a predefined rate, and show and hide them
+      at will.</para>
+
+    <indexterm>
+  <primary>QCanvasItem</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QCanvasView</primary>
+  </indexterm>
+  <para id="para-ch16-38">In working with
+      <classname>QCanvas</classname>, three classes play an essential
+      role: the <classname>QCanvas</classname> itself, which is a
+      receptacle for <classname>QCanvasItem</classname> objects
+      &mdash; or rather, their descendants, and one or more
+      <classname>QCanvasView</classname> widgets are used to show the
+      canvas and its contents on screen.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="ch16/canvas.eps">
+      </imageobject>
+      <caption>
+        <para id="para-ch16-39">the relation between QCanvas,
+          QCanvasItems and QCanvasView</para>
+      </caption>
+    </mediaobject>
+
+
+    <indexterm>
+  <primary>QCanvasItem</primary><secondary>subclassing</secondary>
+  </indexterm>
+  <para id="para-ch16-40">The class <classname>QCanvasItem</classname>
+      is rather special: you cannot instantiate objects from it, nor
+      can you directly subclass it. You <emphasis>can</emphasis>
+      instantiate and subclass the subclasses of
+      <classname>QCanvasItem</classname>:
+      <classname>QCanvasPolygonalItem</classname>,
+      <classname>QCanvasSprite</classname> and
+      <classname>QCanvasText</classname>.</para>
+    
+    <para id="para-ch16-41">Even
+      <classname>QCanvasPolygonalItem</classname> itself is not
+      terribly useful: the derived classes
+      <classname>QCanvasEllipse</classname>,
+      <classname>QCanvasLine</classname>,
+      <classname>QCanvasPolygon</classname> and
+      <classname>QCanvasRectangle</classname> can be used to draw
+      ellipses, lines, polygons and rectangles on the canvas.
+      Interestingly, these items can have a non-square bounding
+      box.</para>
+
+    <indexterm>
+  <primary>bounding box</primary>
+  </indexterm>
+  <para id="para-ch16-42">This means that two circles won't touch if
+      they overlap the box that contains them: only if the circles
+      themselves touch. This is quite special, and if you create new
+      derivations of these classes yourself, you should take care to
+      carefully calculate the area your object occupies.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="ch16/bounding.eps">
+      </imageobject>
+      <caption>
+        <indexterm>
+  <primary>overlapping</primary>
+  </indexterm>
+  <para id="para-ch16-43">Overlapping and non-overlapping circles.</para>
+      </caption>
+    </mediaobject>
+
+    <indexterm>
+  <primary>QCanvasSprite</primary>
+  </indexterm>
+  <para id="para-ch16-44">A <classname>QCanvasSprite</classname>
+      should be familiar to anyone who has ever played with an 8-bit
+      home computer. A <classname>QCanvasSprite</classname> is an
+      animated pixmap, and can move (like any
+      <classname>QCanvasItem</classname>) across the canvas under its
+      own steam. You fill the <classname>QCanvasSprite</classname>
+      with a <classname>QPixMapArray</classname>. This class contains
+      a list of <classname>QPixmap</classname>s and a list of
+      <classname>QPoint</classname>s. These define how the sprite
+      looks and where its hot spots are. If you want to create a game
+      using PyQt you'll probably want to use this class.</para>
+    
+    <indexterm>
+  <primary>QCanvasText</primary>
+  </indexterm>
+  <para id="para-ch16-45">Lastly, the
+      <classname>QCanvasText</classname> can draw a single line of
+      text on the canvas. Let me repeat that: you can not create a
+      whole column of text, put it in a
+      <classname>QCanvasText</classname> object, and paste it on the
+      canvas. This makes creating a PageMaker clone just a little bit
+      more difficult.</para>
+    
+    <para id="para-ch16-46">Nevertheless, it is
+      <classname>QCanvasText</classname> which we are going to use in
+      the next section. Another example of the use
+      <classname>QCanvasText</classname> is the
+      <application>Eric</application> debugger, which is part of the
+      PyQt source distribution.</para>
+
+  <sect2>
+    <title>A simple Unicode character picker</title>
+
+      <indexterm>
+  <primary>unicode</primary><secondary>character picker</secondary>
+  </indexterm>
+  <para id="para-ch16-47">The goal of this example is to provide a
+        point-and-click way of entering characters from the
+        <emphasis>complete</emphasis> unicode range in
+        <application>Kalam</application>. The Unicode range is divided
+        into a few hundred scripts. What I want is a window that shows
+        a clickable table of one of those scripts, with a combo-box
+        that allows me to select the script I need. And when I click
+        on a character, that character should be inserted into the
+        current document.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="20" fileref="ch16/charmap.eps">
+        </imageobject>
+        <caption><para id="para-ch16-48">A Unicode character picker</para>
+        </caption>
+      </mediaobject>
+
+      <indexterm>
+  <primary>unicode</primary><secondary>website</secondary>
+  </indexterm>
+  <para id="para-ch16-49">The underlying data can be retrieved from the Unicode
+        consortium website. They provide a file,
+        <filename>Blocks.txt</filename>, that gives you the range each
+        script occupies:</para>
+
+      <screen>
+# Start Code; End Code; Block Name
+0000; 007F; Basic Latin
+0080; 00FF; Latin-1 Supplement
+0100; 017F; Latin Extended-A
+0180; 024F; Latin Extended-B
+0250; 02AF; IPA Extensions
+02B0; 02FF; Spacing Modifier Letters
+0300; 036F; Combining Diacritical Marks
+...
+F900; FAFF; CJK Compatibility Ideographs
+FB00; FB4F; Alphabetic Presentation Forms
+FB50; FDFF; Arabic Presentation Forms-A
+FE20; FE2F; Combining Half Marks
+FE30; FE4F; CJK Compatibility Forms
+FE50; FE6F; Small Form Variants
+FE70; FEFE; Arabic Presentation Forms-B
+FEFF; FEFF; Specials
+FF00; FFEF; Halfwidth and Fullwidth Forms
+FFF0; FFFD; Specials
+      </screen>
+
+      <indexterm>
+  <primary>unicode</primary><secondary>Blocks.txt</secondary>
+  </indexterm>
+  <para id="para-ch16-50">This file can be used to fill a combobox
+        with all different scripts:</para>
+
+      <example>
+        <title>charmap.py - a Unicode character selection
+        widget</title>
+
+      <programlisting>
+"""
+charmap.py - A unicode character selector
+
+copyright: (C) 2001, Boudewijn Rempt
+email:         boud@rempt.xs4all.nl
+"""
+
+import string, os.path
+from qt import *
+
+TRUE=1
+FALSE=0
+
+class CharsetSelector(QComboBox):
+
+    def __init__(self, datadir, *args):
+        apply(QComboBox.__init__,(self,)+args)
+        self.charsets=[]
+        self.connect(self,
+                     SIGNAL("activated(int)"),
+                     self.sigActivated)
+
+        f=open(os.path.join(datadir,"Blocks.txt"))
+        f.readline() # skip first line
+        for line in f.readlines():
+            try:
+                self.charsets.append((string.atoi(line[0:4],16)
+                                      ,string.atoi(line[6:10],16)))
+                self.insertItem(line[12:-1])
+            except: pass
+
+    def sigActivated(self, index):
+        begin, start=self.charsets[index]
+        self.emit(PYSIGNAL("sigActivated"),(begin, start))
+      </programlisting>
+      </example>
+
+      <para id="para-ch16-51">This is simple enough: the location of
+        <filename>Blocks.txt</filename> is retrieved, and each line is
+        read. Every line represents one script, and for every line an
+        entry is inserted into the <classname>QComboBox</classname>.
+        In a separate list, <varname>self.charsets</varname>, we keep
+        a tuple with the begin and the end of each range, converted to
+        integers from their hexadecimal representation. Python is a
+        great language for this kind of data massaging.</para>
+
+      <para id="para-ch16-52">Whenever the user selects an item from the combobox, a
+        signal is emitted, <varname>sigActivated</varname>, that
+        carries the begin and endpoint of the range.</para>
+
+      <sect3><title>The canvas</title>
+
+        <para id="para-ch16-53">Working with
+          <classname>QCanvas</classname> entails handling two classes:
+          <classname>QCanvas</classname> and
+          <classname>QCanvasView</classname>. In this section, we'll
+          lay out the Unicode table on the
+          <classname>QCanvas</classname>. From PyQt 3.0 onwards, the
+          canvas classes are in a separate module:
+          <filename>qtcanvas</filename>, which has to be imported
+          separately.</para>
+
+
+        <indexterm>
+  <primary>collision detection</primary>
+  </indexterm>
+  <para id="para-ch16-54">You can think of a
+          <classname>QCanvas</classname> as a virtually boundless
+          two-dimensional paste-board, which you can fill with
+          <classname>QCanvasItems</classname>. The main difference
+          between a <classname>QCanvas</classname> with
+          <classname>QCanvasItem</classname>s on it and a
+          <classname>QWidget</classname> with a lot of sub-widgets, is
+          that the first is a lot more efficient in terms of
+          memory-use, and offers easy collision detection. Of course,
+          <classname>QCanvasItem</classname>s are not widgets, so you
+          don't have easy event handling &mdash; but you can fake it
+          easily enough, by catching mouse presses on individual
+          <classname>QCanvasItem</classname>s.</para>
+
+        <para id="para-ch16-55">Here, we will create a
+          <classname>QCanvasText</classname> for every Unicode
+          glyph. In the <classname>QCanvasView</classname>
+          mouse-clicks on those items will be caught.</para>
+
+        <programlisting>
+class CharsetCanvas(QCanvas):
+
+    def __init__(self, parent, font, start, end, maxW, *args):
+        apply(QCanvas.__init__,(self, ) + args)
+        self.parent=parent
+        self.start=start
+        self.end=end
+        self.font=font
+        self.drawTable(maxW)
+
+    def drawTable(self, maxW):
+        self.maxW=maxW
+        self.items=[]
+        x=0
+        y=0
+
+        fontMetrics=QFontMetrics(self.font)
+        cell_width=fontMetrics.maxWidth() + 3
+        if self.maxW < 16 * cell_width:
+            self.maxW = 16 * cell_width
+        cell_height=fontMetrics.lineSpacing()
+
+        for wch in range(self.start, self.end + 1):
+            item=QCanvasText(QString(QChar(wch)),self)
+            item.setFont(self.font)
+
+            item.setX(x)
+            item.setY(y)
+            item.show()
+
+            self.items.append(item)
+
+            x=x + cell_width
+            if x >= self.maxW:
+                x=0
+                y=y+cell_height
+
+        if self.parent.height() > y + cell_height:
+            h = self.parent.height()
+        else:
+            h = y + cell_height
+
+        self.resize(self.maxW + 20, h)
+        self.update()
+
+    def setFont(self, font):
+        self.font=font
+        self.drawTable(self.maxW)
+        </programlisting>
+
+        <para id="para-ch16-56">Most of the real work is done in the
+          <function>drawTable()</function> method. The
+          <varname>maxW</varname> parameter determines how wide the
+          canvas will be. However, if there is not place enough for at
+          least sixteen glyphs, the width is adjusted.</para>
+
+        <indexterm>
+  <primary>QCanvasText</primary><secondary>show()</secondary>
+  </indexterm>
+  <para id="para-ch16-57">Then the
+          <classname>QCanvasText</classname> items are created, in a
+          plain loop, starting at the beginning of the character set
+          and running to the end. You must give these items an initial
+          position and size, and explicitly call
+          <function>show()</function> on each item. If you forget to
+          do this, all you will see is a very empty canvas.</para>
+
+        <indexterm>
+  <primary>QCanvasText</primary><secondary>object ownership</secondary>
+  </indexterm>
+  <para id="para-ch16-58">You will also be greeted by an equally
+          empty canvas if you do not keep a Python reference to the
+          items &mdash; here a list of
+          <classname>QCanvasText</classname> items is kept in
+          <varname>self.items</varname>.</para>
+
+        <para id="para-ch16-59">If the end of a line is reached,
+          drawing continues on the next line.</para>
+
+        <indexterm>
+  <primary>QCanvas</primary><secondary>resize()</secondary>
+  </indexterm>
+  <para id="para-ch16-60">An <emphasis>essential</emphasis>
+          step, and one which I tend to forget myself, is to resize
+          the <classname>QCanvas</classname> after having determined
+          what space the items take. You can place items outside the
+          confines of the canvas, and they won't show unless you
+          resize the canvas to include them.</para>
+
+        <indexterm>
+  <primary>QCanvasView</primary><secondary>update()</secondary>
+  </indexterm>
+  <para id="para-ch16-61">Finally, you must
+          <function>update()</function> the
+          <classname>QCanvas</classname> &mdash; otherwise you still
+          won't see anything. This method updates all
+          <classname>QCanvasView</classname> objects that show this
+          canvas.</para>
+
+        <para id="para-ch16-62">Setting the font involves drawing the
+          table anew. This is more efficient than applying the font
+          change to each individual <classname>QCanvasText</classname>
+          item &mdash; even though that is perfectly possible. The
+          reason is that if the font metrics change, for instance
+          because the new font is a lot larger, you will have to check
+          for collisions and adjust the location of all items anyway.
+          That would take not only a lot of time, it would also demand
+          complex and unmaintainable code. Simple is good, as far as
+          I'm concerned.</para>
+
+        <para id="para-ch16-63">This little table shows almost nothing
+          of the power of <classname>QCanvas</classname> &mdash; you
+          can animate the objects, determine if they overlap, and lots
+          more. It offers everything you need, for instance, to write
+          your very own <emphasis>Asteroids</emphasis> clone...</para>
+
+      </sect3>
+
+      <sect3><title>The view on the canvas</title>
+
+        <indexterm>
+  <primary>QCanvasView</primary>
+  </indexterm>
+  <para id="para-ch16-64">Putting stuff on a canvas
+          is useless, unless you can also see what you've done. You
+          can create one or more <classname>QCanvasView</classname>
+          objects that show the contents of canvas. Each view can show
+          a different part, but every time you call
+          <function>update()</function> (or
+          <function>advance()</function>, which advances all animated
+          objects), all views are updated.</para>
+
+        <indexterm>
+  <primary>QCanvasView</primary><secondary>user input</secondary>
+  </indexterm>
+  <para id="para-ch16-65">The most important work your
+          <classname>QCanvasView</classname> subclasses have is to
+          react on user input. Here, we draw a cursor rectangle round
+          selected glyphs and emit signals for every
+          mousepress.</para>
+
+        <programlisting>
+class CharsetBrowser(QCanvasView):
+
+    def __init__(self, *args):
+        apply(QCanvasView.__init__,(self,)+args)
+
+    def setCursor(self, item):
+        self.cursorItem=QCanvasRectangle(self.canvas())
+        self.cursorItem.setX(item.boundingRect().x() -2)
+        self.cursorItem.setY(item.boundingRect().y() -2)
+        self.cursorItem.setSize(item.boundingRect().width() + 4,
+                                item.boundingRect().height() + 4)
+
+        self.cursorItem.setZ(-1.0)
+        self.cursorItem.setPen(QPen(QColor(Qt.gray), 2, Qt.DashLine))
+        self.cursorItem.show()
+        self.canvas().update()
+
+    def contentsMousePressEvent(self, ev):
+        try:
+            items=self.canvas().collisions(ev.pos())
+            self.setCursor(items[0])
+            self.emit(PYSIGNAL("sigMousePressedOn"), (items[0].text(),))
+        except IndexError:
+            pass
+
+    def setFont(self, font):
+        self.font=font
+        self.canvas().setFont(self.font)
+        </programlisting>
+
+        <indexterm>
+  <primary>QCanvasView</primary><secondary>drawing a cursor</secondary>
+  </indexterm>
+  <para id="para-ch16-66">First, the drawing of the cursor. You
+          can see that you don't need to create your canvas items in
+          the <classname>QCanvas</classname> class or its derivatives.
+          Here, it is done in the <function>setCursor()</function>
+          method. This method is called with the activated
+          <classname>QCanvasText</classname> item as its
+          parameter.</para>
+
+        <indexterm>
+  <primary>QCanvasRectangle</primary>
+  </indexterm>
+  <para id="para-ch16-67">A new item is created, a
+          <classname>QCanvasRectangle</classname> called
+          <varname>self.cursorItem</varname>. It's an instance, not a
+          local variable, because otherwise the rectangle would
+          disappear once the item goes out of scope (because the function
+          finishes).</para>
+
+        <para id="para-ch16-68">The location and dimensions of the
+          rectangle are determined. It will be a two-pixel wide, gray,
+          dashed line exactly outside the current glyph. Of course, it
+          must be shown, and the canvas must call
+          <function>update()</function> in order to notify the
+          view(s). Note that you can retrieve a canvas shown by
+          <classname>QCanvasView</classname> with the
+          <function>canvas()</function> function.</para>
+
+        <indexterm>
+  <primary>QScrollView</primary>
+  </indexterm>
+  <para id="para-ch16-69">If you consult PyQt's documentation
+          (or the C++ Qt documentation) on
+          <classname>QCanvasView</classname>, you will notice that it
+          is not very well endowed with useful functions.
+          <classname>QCanvasView</classname> is a type of specialized
+          <classname>QScrollView</classname>, and this class offers
+          lots of useful methods (for example, event handling methods
+          for mouse events).</para>
+
+        <indexterm>
+  <primary>contentsMousePressEvent</primary>
+  </indexterm>
+  <indexterm>
+  <primary>event</primary><secondary>contentsMousePressEvent</secondary>
+  </indexterm>
+  <para id="para-ch16-70">One of these methods,
+          <function>contentsMousePressEvent</function>, is highly
+          useful. It is called whenever a user clicks somewhere on the
+          canvas view. You can then use the coordinates of the click
+          to determine which <classname>QCanvasItem</classname>
+          objects were hit. The coordinates of the mouse click can be
+          retrieved with the <function>pos()</function> function of
+          the <varname>ev</varname>
+          <classname>QMouseEvent</classname>. You then check which
+          <classname>QCanvasItem</classname> objects were hit using
+          the collision detection <classname>QCanvas</classname>
+          provides with the <function>collisions()</function>.</para>
+
+        <para id="para-ch16-71">The result is a list of items. Because
+          we <emphasis>know</emphasis> that there are no overlapping
+          items on our canvas, we can simply take the first
+          <classname>QCanvasText</classname> item: that's
+          <varname>items[0]</varname>. Now we have the selected glyph.
+          The <function>setCursor()</function> function is called to
+          draw a rectangle around the glyph. Then a signal is emitted,
+          which can be caught by other widgets. This signal is
+          ultimately responsible for getting the selected character in
+          the <application>Kalam</application> document.</para>
+
+
+
+      </sect3>
+
+      <sect3><title>Tying the canvas and view together</title>
+
+        <para id="para-ch16-72">The <classname>CharMap</classname>
+          widget is a specialized <classname>QWidget</classname> that
+          contains the three components we developed above.</para>
+
+        <para id="para-ch16-73">A vertical layout manager contains the
+          selection combobox and the
+          <classname>CharsetBrowser</classname>
+          <classname>QCanvasView</classname> widget. Every time a new
+          script is selected, a new
+          <classname>CharsetCanvas</classname> is created &mdash; this
+          is easier than erasing the contents of the existing
+          canvas.</para>
+
+
+        <programlisting>
+class CharMap(QWidget):
+    def __init__(self,
+                 parent,
+                 initialFont = "arial",
+                 datadir = "unidata",
+                 *args):
+
+        apply(QWidget.__init__, (self, parent, ) + args)
+        self.parent=parent
+        self.font=initialFont
+        self.box=QVBoxLayout(self)
+        self.comboCharset=CharsetSelector(datadir, FALSE, self)
+        self.box.addWidget(self.comboCharset)
+        self.charsetCanvas=CharsetCanvas(self, self.font, 0, 0, 0)
+        self.charsetBrowser=CharsetBrowser(self.charsetCanvas, self)
+        self.box.addWidget(self.charsetBrowser)
+
+        self.setCaption("Unicode Character Picker")
+
+        self.connect(qApp,
+                     PYSIGNAL("sigtextfontChanged"),
+                     self.setFont)
+
+
+        self.connect(self.comboCharset,
+                     PYSIGNAL("sigActivated"),
+                     self.slotShowCharset)
+
+        self.connect(self.charsetBrowser,
+                     PYSIGNAL("sigMousePressedOn"),
+                     self.sigCharacterSelected)
+
+        self.resize(300,300)
+        self.comboCharset.sigActivated(self.comboCharset.currentItem())
+        </programlisting>
+
+        <para id="para-ch16-74">In the constructor of
+          <classname>CharMap</classname> both the selector combobox
+          and the canvasview are created. We create an initial canvas
+          for the view to display. The
+          <varname>qApp.sigtextfontChanged</varname> signal is used to
+          redraw the character map when the application font changes.
+          Recall how we synthesized signals for all configuration
+          options in <xref linkend="ch13">, and used the
+          globally available <varname>qApp</varname> object to emit
+          those signals.</para>
+
+        <programlisting>
+    def setFont(self, font):
+        self.font=font
+        self.charsetBrowser.setFont(font)
+
+    def sigCharacterSelected(self, text):
+        self.emit(PYSIGNAL("sigCharacterSelected"), (text,))
+        </programlisting>
+
+        <para id="para-ch16-75">Every time a user selects a character, the
+          <varname>sigCharacterSelected</varname> signal is emitted.
+          In <classname>KalamApp</classname>, this signal is connected
+          to the a slot function that inserts the character in the
+          current view or window.</para>
+
+        <programlisting>
+    def slotShowCharset(self, begin, end):
+        self.setCursor(Qt.waitCursor)
+        
+        self.charTable=CharsetCanvas(self,
+                                     self.font,
+                                     begin,
+                                     end,
+                                     self.width() - 40)
+        self.charsetBrowser.setCanvas(self.charTable)
+        self.setCursor(Qt.arrowCursor)        
+        </programlisting>
+
+        <indexterm>
+  <primary>hourglass</primary>
+  </indexterm>
+  <indexterm>
+  <primary>cursor</primary><secondary>hourglass</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>cursor</primary><secondary>wristwatch</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>setCursor()</primary>
+  </indexterm>
+  <para id="para-ch16-76">Drawing a character map can take a
+          while, especially if you select the set of Chinese
+          characters, which has a few tens of thousands of entries. In
+          order to not disquiet the user, we set a waiting
+          cursor&mdash;this is a small wristwatch on most versions of
+          Unix/X11, and the familiar sand-timer on Windows. Then a new
+          canvas is created and the canvas view is told to display
+          it.</para>
+
+        <warning>
+          <title>Saving Unicode files</title>
+
+<!-- BR: I made a change -->
+
+          <para id="para-ch16-77">Recall <xref linkend="ch4"> on
+            Unicode&mdash; if you implement this character map and
+            want to save your carefully created Thai letter, you will
+            be greeted by an encoding error.</para>
+
+          <para id="para-ch16-78">To avoid that, you need to use of the
+            <function>unicode</function> function instead of
+            <function>str()</function> when converting the
+            <classname>KalamDoc</classname>.<varname>text</varname>
+            <classname>QString</classname> variable to Python
+            strings.</para>
+<!-- end of change -->
+        </warning>
+
+
+<!-- XXX: check whether this renders right! -->
+        <note>
+          <title>Input methods and foreign keyboards</title>
+
+          <indexterm>
+  <primary>input methods</primary>
+  </indexterm>
+  <para id="para-ch16-79">If you have played around with the
+            version of Kalam that belongs to this chapter, you will no
+            doubt have noticed that writing a letter in, say, Tibetan,
+            is not quite as easy as just banging on the keyboard (to
+            say nothing of writing Chinese, which demands advanced
+            hunting and picking skills).</para>
+
+          <para id="para-ch16-80">A character map like we just made is
+            useful for the occasional phonetic or mathematics character,
+            but not a substitute for the real stuff: specific keyboard
+            layouts for alphabetic scripts, like Cyrillic or Thai, and
+            input method editors for languages like Chinese.</para>
+
+          <indexterm>
+  <primary>keyPressEvent()</primary><secondary>reimplementing</secondary>
+  </indexterm>
+  <para id="para-ch16-81">Properly speaking, it's the job of
+            the Operating System or the GUI system to provide this
+            functionality. Specialized keyboard layouts are fairly
+            easy to come by, at least in the Unix/X11 world. My KDE 2
+            desktop has lots of keyboard layouts &mdash; perhaps you
+            have to buy them in the Windows world. Still, it's not
+            worthwhile to create special keyboard layouts in
+            PyQt.</para>
+
+          <para>It is possible to create your own keyboard layouts in
+            PyQt: re-implement the
+            <function>keyPressEvent()</function> of the view class and
+            use each pressed key as an index into a dictionary that
+            maps plain keyboard key definitions to, say, Tibetan
+            Unicode characters. This is the same technique we used in 
+            <xref linkend="ch12"> to make sure tab characters
+            ended up in the text</para>
+
+          <programlisting>
+            keymap={Qt.Key_A: QString(u"\u0270")}
+
+            def keyPressEvent(self, ev):
+                if keymap.has_key(ev.key()):
+                    self.insert(keymap[ev.key()])
+                else:
+                    QMultiLineEdit.keyPressEvent(self, ev)
+          </programlisting>
+
+          <indexterm>
+  <primary>IME</primary>
+  </indexterm>
+  <para id="para-ch16-82">Input method editors (IME's) are
+            more difficult. Installing the free Chinese or Japanese
+            IME's on Unix/X11 is a serious challenge. Getting your
+            applications to work with them is another challenge. There
+            are, however, special Chinese, Korean and Japanese
+            versions of Qt to deal with these problems. As for
+            Windows, I think you need a special Chinese, Korean or
+            Japanese version of Windows.</para>
+
+          <para id="para-ch16-83">It can be worthwhile to implement a
+            Chinese IME, for instance, yourself:</para>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata scale="40" align="center" fileref="ch16/pinyin.eps">
+            </imageobject>
+            <caption>
+              <para id="para-ch16-84">A Chinese input method editor
+                written in Python and PyQt.</para>
+            </caption>
+          </mediaobject>
+
+          <para id="para-ch16-85">You can find the code for a
+            stand-alone Pinyin-based Chinese IME at
+            http://www.valdyas.org/python/qt2.html &mdash; it's also a
+            nice example of using large Python dictionaries (every
+            Mandarin Chinese syllable is mapped to a list characters
+            with that pronunciation, and Emacs cannot syntax-color the
+            file containing the dictionary).</para>
+
+        </note>
+
+      </sect3>
+    </sect2>
+  </sect1>
+  <sect1>
+    <title>Conclusion</title>
+
+    <para id="para-ch16-86">In this chapter we briefly investigated
+      two ways of creating two-dimensional graphics with Python and
+      Qt. If you possess a suitable 3d accelerated graphics card, you
+      can also use the OpenGL Qt extensions from Python and create
+      complex three-dimensional scenes with PyQt. I can't help you
+      with that task &mdash; I've never worked with three-dimensional
+      graphics myself, and besides, my computer isn't up to it.</para>
+
+  </sect1>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"/home/boud/doc/pyqt/chapter.ced"
+End:
+-->
