@@ -1,103 +1,105 @@
 <chapter id="ch1">
-  <title>Qt Concepts</title>
+  <title>Qt Kavramları</title>
   
-  <para id="para-ch1-1">This chapter describes the way Python and Qt
-    bind together, using the PyQt wrapper library. Concepts peculiar
-    to PyQt and Qt such as signals and slots, inheritance and gui
-    design, are introduced by building steadily more complex versions
-    of the hackneyed <emphasis>hello world</emphasis> example
-    application.</para>
+    <para id="para-ch1-1">Bu bölüm Python ve Qt'un PyQt önyüzü kullanılarak
+     birbirine nasıl bağlanacağını anlatmaktadır. Sinyaller ve slotlar,
+     inheritance FIXME: inheritance ???, arayüz dizaynı gibi PyQt ve Qt'a has 
+     kavramlar sürekli daha karmaşıklaşan <emphasis>merhaba dünya</emphasis>
+     gibi basit klişe programlarla anlatılacaktır.
+    </para>
 
   <sect1>
     <title>
-      Python, Qt and PyQt
+      Python, Qt ve PyQt
     </title>
 
-    <para id="para-ch1-2">Unlike a tool like Visual Basic, which
-      consists of a GUI engine with a scripting language built-in,
-      Python does not have a native GUI interface. But there are many
-      GUI libraries available for Python &mdash; examples are
-      wxPython, Tkinter, PyGTK, PyFLTK, FoxPy, and PyQt. PyQt is based
-      on Qt, an advanced GUI library for Windows and Unix written in
-      C++ by Eirik Eng and Arnt Gulbrantsen of Trolltech in Norway.
-      It's quite easy to wrap C++ or C libraries so they can be used
-      from Python &mdash; and when Phil Thompson was looking around
-      for a good GUI library for Python he decided to wrap Qt,
-      producing PyQt. PyQt forms the basis for the BlackAdder rapid
-      development environment.</para>
+    <para id="para-ch1-2">Visual Basic gibi bütünleşik bir Grafiksel Kullanıcı 
+    Arayüzü (GUI) motoru içeren betik dillerinin aksine Python'un bir garfiksel
+    arayüzü yoktur. Fakat Python &mdash; için wxPython, Tkinter, PyGTK, PyFLTK,
+    FoxPy, and PyQt gibi birçok GUI kütüphanesi vardır. PyQt, Norveç'teTrolltech
+    için Eirik Eng ve Arnt Gulbrantsen tarafından C++ dili ile yazılan Windows 
+    ve Unix ortamında kullanılabilen Qt tabanlıdır.
+    Python &mdash; tarafından kullanılabilmesi için C++ ya da C kütüphanelerini
+    bağlamak kolaydı ve Phil Thompson Python için bir GUI kütüphanesi arıyordu.
+    Ve Qt kütüphanesini kullanarak PyQt'u üretmeye karar verdi. PyQt, BlackAdder
+    hızlı geliştirme ortamının (RAD) da temelini oluşturur.</para>
 
-    <para id="para-ch1-3">Qt is very advanced: the library offers a
-      large set of well-designed screen objects, or widgets, and many
-      utility classes. In addition, Qt has a clean object-oriented
-      design that is easy to grasp and intuitive to use. PyQt
-      applications can run without any change, without recompiling,
-      both on Windows and Unix/X11 systems &mdash; and soon on Apple's
-      OS X, too.</para>
+    <para id="para-ch1-3">
+     Qt çok geniş ölçelki iyi dizayn edilmiş görsel ögeler, parçacıklar ve birçok
+     faydalı sınıf sunan çok gelişmiş bir kütüphanedir.
+     Bunlara ek olarak, Qt kavraması kolay ve sezilerek kullanılabilecek çok temiz
+     bir nesne tabanlı yapıyla dizayn edilmiştir. PyQt ile yazılan programlar
+     değişiklik yapılmadan, yendien derlenmeden Windows ve Unix/X11
+     sistemlerde &mdash; çalışmaktadır ve yakında Apple OS X sistemlerde de çalışabilecektir.
+    </para>
 
-    <para id="para-ch1-4">PyQt widgets can be drawn in
-      <emphasis>styles</emphasis>, to make them appear exactly like
-      the native widgets of the operating system the application runs
-      on (or like something different altogether, if you want).</para>
+    <para id="para-ch1-4">PyQt görsel parçacıkları (widget) <emphasis>stiller(styles)</emphasis>
+      kullanılarak çizilebilir (isteğe bağlı olarak diğer stiller de kullanılabilir)
+      ki bu yazılan programın çalıştığı sistemin kullandığı
+      doğal parçacıklar gibi görünebilmesini sağlar.
+    </para>
 
-    <para id="para-ch1-5">There are two kinds of objects in the Qt
-      library&mdash; visual and non-visual. The mother of all visual
-      objects is QWidget, widget being the term Qt uses for what the
-      Windows world usually calls <emphasis>control</emphasis>. There
-      are simple widgets such as labels and buttons, and complex widgets
-      such as canvas views. Even dialog windows are descended from
-      <classname>QWidget</classname>.</para>
+    <para id="para-ch1-5">Qt kütüphanesinde&mdash; iki çeşit nesne vardır;
+      görsel nesneler ve görsel olmayan nesneler. Tüm görsel nesnelerin anası
+      QWidget'tir. Qt'da kullanılan widget (bundan böyle parçacık olarak kullanılacaktır)
+      sözcüğü Windows dünyasında <emphasis>control</emphasis> olarak adlandırılır.
+      Etiketler (labels) ve düğmeler(buttons) gibi basit parçacıkların yanında canvas gibi
+      daha kompleks parçacıklar da vardır. Tabii ki diyalog pencereleri de
+      <classname>QWidget</classname> parçacığından oluşturulmaktadır.
+    </para>
 
-    <para id="para-ch1-6"><classname>QWidget</classname> and many
-      other, but not all, Qt classes derive from the
-      <classname>QObject</classname> base class &mdash; a class like
-      <classname>QLayout</classname> <emphasis>is</emphasis> derived
-      from <classname>QObject</classname>, but
-      <classname>QPixmap</classname> is not. Whether a class is
-      derived from <classname>QObject</classname> is determined by
-      whether there is a need for signals and slots, and whether the
-      created objects must be placed in an ownership hierarchy.</para>
+    <para id="para-ch1-6"><classname>QWidget</classname> ve diğer birçok 
+      Qt sınıfı -hepsi değil- <classname>QObject</classname> temel sınıfından
+      &mdash; elde edilmektedir. Örneğin <classname>QLayout</classname> sınıfı
+      <emphasis>da</emphasis> <classname>QObject</classname> sınıfından elde
+      edilmektedir.Fakat <classname>QPixmap</classname> sınıfı <classname>QObject</classname>
+      sınıfından oluştrulmaz. Bir sınıfın <classname>QObject</classname> sınıfından
+      elde edilip edilmeyeceğini sinyal (signal) ve slotlara (slot) gerek duyup duymaması
+      ve oluşturulan nesnenin sahiplik hiyerarşisi içerisinde olup olmaması belirler.
+    </para>
     
-    <para id="para-ch1-7">Scripting languages like Python have a
-      reputation for bad performance, but PyQt applications perform very
-      well indeed; there is just a thin wrapper between the GUI objects
-      and Python. Those GUI objects do most of the heavy work of pixel
-      shifting, and they are written in well-optimized C++. If you try
-      to do things like writing your own DTP layout engine from scratch
-      using the Qt drawing primitives, you might be hindered by the
-      slowness inherent in a byte-code interpreted language like Python,
-      but on the whole, your application will be as responsive as one
-      written in pure C++, and you'll have a working application where
-      you would still be hacking the first prototype in C++.</para>
+    <para id="para-ch1-7">Python gibi betik dilleri kötü performans
+      gösterdikleri gibi bir izlenime sahiptir. Fakat PyQt uygulamaları
+      gerçekten çok iyi performans göstermektedir. Python ile GUI nesneleri
+      arasında çok ince/küçük bir bağlayıcı vardır. GUI nesneleri piksel seçme
+      işinin ağır kısmını yaparlar ve zaten çok iyi optimize edilmiş C++ 
+      ile yazılmışlardır.
+      Eğer kendi DTP FIXME: DTP?? yerleşim motorunuzu Qt çizim tabanından FIXME:tabanından?
+      yazmak gibi birşey denerseniz Python gibi byte-code yorumlayan dillerde yavaşlık
+      engeleyici görünebilir. Fakat aslında bütün olarak bakıldığında yazdığınız uygulama
+      sadece C++ ile yazılmış gibi hızlı yanıt verir. Üstelik ilk yazdığınız C++ prototip
+      üzerinde hala kodlamaya devam ederken bile çalışan bir uygulamanız olur.
+     </para>
     
 
 <!-- BR: I made a change -->
       <indexterm>
-  <primary>Versions of PyQt, Qt and Python</primary>
+  <primary>PyQt, Qt ve Python Sürümleri</primary>
   </indexterm>
-    <note><title>A note on versions</title>
+    <note><title>Sürümler üzerine bir not</title>
 
-  <para id="para-ch1-8">PyQt consists of at least three
-        components, Python, Qt and PyQt itself. Additionally, there is
-        PyKDE, the bindings to the KDE Desktop Environment for Unix.
-        That's four components with almost unrelated version
-        numbering. Qt has been through three versions to date, just
-        like PyQt. However, PyQt 3.x can be compiled against Qt 1.x, Qt
-        2.x <emphasis>and</emphasis> Qt 3.x.
+  <para id="para-ch1-8">PyQt enaz üç bileşenden oluşur;Python, Qt ve PyQt'un kendisi.
+     Ek olarak, PyKDE (Unix KDE Masaüstü Ortamı için bağlayıcılar) vardır.
+     Bu dört bileşenin sürüm numaraları genellikle birbiriyle ilişkisizdir.
+     Qt'un belirli bir zamanda üç sürümü vardır aynen PyQt gibi. Bununla birlikte,
+     PyQt 3.x, Qt 1.x, Qt 2.x <emphasis>ve</emphasis>Qt 3.x ile derlenebilir.
       </para>
 
-      <para id="para-ch1-9">The differences between versions of PyQt
-        consist of the range of versions of Qt supported, and certain
-        matters of organization and some implementation
-        details.</para>
+      <para id="para-ch1-9">PyQt sürümleri arasındaki farklılık Qt'un
+    desteklediği sürümler oranında, organizasyona ve yürütmeye bağlı
+    detaylara bağlı olarak oluşmaktadır.
+     </para>
 
-      <para id="para-ch1-10">The relation between PyQt and Python is
-        even more nebulous: PyQt works best with the latest version of
-        Python, but earlier versions are known to work, too.</para>
+      <para id="para-ch1-10">Aslında PyQt ile Python arasındaki ilişki göründüğünden
+    daha belirsizdir şöyle ki: PyQt en iyi Python'un son sürümü ile çalışmaktadır ama
+    önceki sürümlerle de çalıştığı bilinmektedir.
+    </para>
 
-      <para id="para-ch1-11">Anyway, just keep in mind that PyQt 3.x
-        can use Qt 2.x or Qt 3.x. This book was mostly written using
-        PyQt 2.x for Qt 2.x, but I've tried to include as much
-        information about PyQt 3.x and Qt 3.x as I could.</para>
+      <para id="para-ch1-11">Neyse sadece PyQt 3.x sürümünün Qt 2.x or Qt 3.x
+    kullanabildiğini aklımzda tutalım. Bu kitap çoğunlukla Qt 2.x için  PyQt 2.x
+    kullanılarak yazıldı fakat elimden geldiğince PyQt 3.x ve Qt 3.x ile ilgili
+    bilgiler de vermeye çalıştım.
+    </para>
 
     </note>
 <!-- END CHANGE -->
@@ -106,52 +108,52 @@
 
   <sect1 id="ch1HelloWorld">
     <title>
-      As simple as they come
+      Göründüğü kadar kolay
     </title>
 
     <indexterm>
-  <primary>Hello World</primary>
+  <primary>Merhaba Dünya</primary>
   </indexterm>
-  <para id="para-ch1-12">Nothing like getting the feet wet: let's investigate the
-      structure of a PyQt application by putting together the minimal
-      set of components that can show something on screen, slowly
-      expanding it to show more features.</para>
+  <para id="para-ch1-12">Büyük işlere soyunmadan önce mümkün olan en az bileşenden
+   oluşan, daha sonra yavaş yavaş özelliklerini geliştireceğimiz ve ekranda birşeyler
+   gösteren bir PyQt uygulamasının yapısını inceleyelim.
+  </para>
 
-    <para id="para-ch1-13">A tiny PyQt applications has the following elements:</para>
+    <para id="para-ch1-13">Basit bir PyQt uygulaması şu elemanları içerir:</para>
 
 
     <itemizedlist>
       <listitem>
         <para id="para-ch1-14">
-          an application object
+         bir uygulama(program) nesnesi
         </para>
       </listitem>
       <listitem>
         <para id="para-ch1-15">
-          a main window (which has a central widget), <emphasis>or</emphasis>
+         bir ana pencere (main window) ki onun bir merkezi parçacığı vardır.<emphasis>ya da</emphasis>
         </para>
       </listitem>
       <listitem>
         <para id="para-ch1-16">
-          a main widget
+          bir ana parçacık (main widget)
         </para>
       </listitem>
     </itemizedlist>
 
-    <para id="para-ch1-17">This is the traditional &rdquo;Hello World&rdquo; button
-      application, with as little code as possible:</para>
+    <para id="para-ch1-17">Bu geleneksel &rdquo;Merhaba Dünya&rdquo; olarak
+      adlandırılan, bir düğme içeren uygulamadır ve mümkün olan en az kod ile yazılmıştır:</para>
 
     <mediaobject>
       <imageobject>
         <imagedata scale="80" align="center" fileref="ch1/hello1.eps">
       </imageobject>
       <caption>
-        <para id="para-ch1-18">Hello World</para>
+        <para id="para-ch1-18">Merhaba Dünya</para>
       </caption>
     </mediaobject>
 
     <example>
-      <title>hello1.py &mdash; hello world</title>
+      <title>hello1.py &mdash; merhaba dünya</title>
       <programlistingco>
         <areaspec>
           <area coords="4" id="hello1impsys">
@@ -177,30 +179,30 @@ app.exec_loop()
         </programlisting>
         <calloutlist>
           <callout arearefs="hello1impsys">
-            <para id="para-ch1-19">We need to import the Python
-              <emphasis>sys</emphasis> package, because the
-              <classname>QApplication</classname> object wants to look
-              at the command-line arguments the script is started
-              with. For instance, starting the script with
+            <para id="para-ch1-19">Öncelikle Python
+              <emphasis>sys</emphasis> paketini import ile çağırmalıyız.
+            Çünkü <classname>QApplication</classname> nesnesi komut satırından betiği
+            çalıştırmak için verilecek argümanlara bakmak ister.
+	      Örnek olrak, betiğimizi
               <userinput>python hello1.py -style=platinum</userinput>
-              starts the script with the look and feel of Mac-OS 8.5,
-              by passing the &ldquo;-style=platinum&rdquo; option
-              through to the QApplication object.</para>
+	      komutu ile başlatırsak &ldquo;-style=platinum&rdquo;
+	      argümanını QApplication nesnesine göndermiş ve uygulamamızın
+	      Mac-OS 8.5 gibi stilinde görünmesini sağlamış oluruz.
+         </para>
 
-            <para id="para-ch1-20">One of the niceties of Qt is that
-              you have access to all supported widget styles on all
-              platforms. (Except for the Aqua style - that is only
-              available on OS X, because Apple doesn't want it to
-              spread to other platforms.)</para>
+            <para id="para-ch1-20">Qt'un güzelliklerinden biri de
+             size tüm desteklediği parçacık sitillerini (widget styles)
+	     tüm platformlarda kullanma şansı vermesdir. Aqua stili yalnızca OS X
+	     platformunda kullanılabilir. Çünkü Apple bu sitilin diğer platformlara
+	     yayılmasını istememektedir.</para>
           </callout>
           <callout arearefs="hello1impqt">
-            <para id="para-ch1-21">Next, we have to import the qt
-              library. While it is possible to import only explicitly
-              the elements from the library we need, it's just as easy
-              and efficient to import the whole library. But we could
-              have said: <programlisting> from qt import QApplication,
-                QPushButton </programlisting>
-            </para>
+	  <para id="para-ch1-21">Ardından Qt kütüphanesini çağırmak(import) zorundayız.
+	  Aslında bu kütüphane içerisinden sadece bize gereken elemanları çağırmamız da mümkündür.
+	  Ama bu işin en kolay ve en verimli şekli tüm kütüphaneyi çağırmaktır.
+	  Fakat tabii ki <programlisting> from qt import QApplication, QPushButton </programlisting>
+	  şeklinde de kütüphane içerisinden istediğimiz elemanları çağırabiliriz.
+          </para>
 <!-- BR: I made a change -->
             <indexterm>
   <primary>qt module layout</primary>
