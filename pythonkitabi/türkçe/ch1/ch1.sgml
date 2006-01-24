@@ -207,46 +207,43 @@ app.exec_loop()
             <indexterm>
   <primary>qt module layout</primary>
   </indexterm>
-  <para id="para-ch1-22">From version 3.x of PyQt, the
-              library has been split into several separate modules.
-              The <varname>Qt</varname> module still gets you all the
-              basic stuff, but more advanced functionality, such as
-              the canvas, is divided over separate modules,
-              <varname>qtcanvas</varname> for
-              <classname>QCanvas</classname>, for instance.</para>
+  <para id="para-ch1-22">PyQt'un 3x sürümünden sonra,
+              kütüphane bazı bağımsız modüllere ayrıldı.
+              <varname>Qt</varname> modülü hala temel ögeler için yeterlidir.
+              Ancak, canvas(yerleşim,plan) gibi daha gelişmiş işlevsellik içeren modüller
+              bağımsız modüllere ayrıldı.Örn: <classname>QCanvas</classname> modülü
+              <varname>qtcanvas</varname> olarak çağrılmalıdır.
+  </para>
 <!-- END OF CHANGE -->
           </callout>
           <callout arearefs="hello1createapp">
-            <para id="para-ch1-23">After importing the necessary
-              modules, we create a Qt application object. This object
-              handles the dispatching of events from the mouse and
-              keyboard to the various widgets of the application.
-              Never try to create more than one
-              <classname>QApplication</classname> object, not even if
-              you embed Python and PyQt in a C++ Qt application. In
-              that case, the C++ application should create the
-              <classname>QApplication object</classname> and pass a
-              reference to the embedded Python interpreter.</para>
+            <para id="para-ch1-23">Gerekli modülleri çağırdıktan sonra
+              bir Qt application nesnesi oluştururuz. Bu nesne
+              uygulamanın değişik parçacıklarından gelen fare ve klavye
+	      olaylarını yakalar.
+              Asla birden fazla <classname>QApplication</classname> nesnesi oluşturmayın.
+	      Eğer Python ve PyQt'u bir C++ Qt uygulaması içerisine gömecekseniz
+	      <classname>QApplication object</classname> nsnesini C++ application
+	      oluşturmalı ve gömülü Python yorumlayıcısına bir referans geçmelidir.
+	    </para>
           </callout>
           <callout arearefs="hello1button">
-            <para id="para-ch1-24">To keep things simple, we do not create a separate
-              window object, but rather simply a pushbutton, of the type
-              <classname>QPushButton</classname>. The first argument
-              to the creation of the
-              <classname>QPushButton</classname> is the text that is
-              shown on the button. Since this is the only widget of
-              the application, it doesn't have a parent.  This is what
-              the <varname>None</varname> argument means &mdash;
-              there is no parent, and the
-              <classname>QPushButton</classname> is the root of the
-              application widget tree.</para>
+            <para id="para-ch1-24">Yazdığımız kodu basit tutmak için,
+           bağımsız pencere nesneleri oluşturmadık. Sadece <classname>QPushButton</classname>
+	   sınıfını kullanarak basit bir düğme (pushbutton) oluşturduk.
+	   <classname>QPushButton</classname> nesnesini oluştururken kullandığımız
+	   ilk argüman düğmenin üzerinde gösterilen metin/Merhaba Dünya (text) dır.
+           Bu nesne uygulamanın tek parçacığı olduğundan bir ebeveyni yoktur. Bu nedenle
+            <varname>None</varname> argümanı alarak &mdash;
+             bir ebeveyninin olmadığı kod içerisinde bildirilmiştir. Başka bir deyişle,
+              <classname>QPushButton</classname> parçacığı uygulamanın parçacık ağacında kök parçacıktır.
+      </para>
           </callout>
           <callout arearefs="hello1setmainwidget">
-            <para id="para-ch1-25">However, we still need to apprise
-              the <classname>QApplication</classname> object of that
-              fact &mdash; this is done by telling the
-              <classname>QApplication</classname> that our button is
-              the main widget:</para>
+            <para id="para-ch1-25">Bununla birlikte, hala
+              <classname>QApplication</classname> nesnesine bu gerçeği
+              bildirmek zorundayız &mdash; bunu da <classname>QApplication</classname>
+	      nesnesine düğmenin ana parçacık olduğunu anlatarak sağlarız:</para>
 
             <programlisting>
 app.setMainWidget(button)
@@ -254,65 +251,67 @@ app.setMainWidget(button)
 
           </callout>
           <callout arearefs="hello1show">
-            <para id="para-ch1-26">Then we <function>show()</function>
-              the button to the world.</para>
+            <para id="para-ch1-26">Ve <function>show()</function>
+              fonksiyonu ile düğmeyi tim dünyaya gösterme zamanı geldi.</para>
           </callout>
             <indexterm>
   <primary>event loop</primary><secondary>exec_loop</secondary>
   </indexterm>
           <callout arearefs="hello1execloop">
-  <para id="para-ch1-27">Until the application objects
-              starts the event loop, nothing will appear on screen.
-              The call <function>app.exec_loop()</function> does
-              return a value, but we can safely disregard it.</para>
+  <para id="para-ch1-27">Uygulama nesneleri olay döngüsünü başlatana kadar
+	  tabii ki ekranda birşey görünmeyecektir.
+               Aslında <function>app.exec_loop()</function> fonksiyonu bir değerle döner
+              ama bunu güvenli bir şekilde gözardı edebiliriz.</para>
           </callout>
         </calloutlist>
       </programlistingco>
     </example>
     <note>
-      <para id="para-ch1-28">Note that this is one of the few
-        instances where a method name differs between Python and C++:
-        the C++ method is called <function>exec()</function>, which is
-        a reserved word in Python. Except for a few cases like this,
-        reading the C++ documentation for Python use demands little
-        more than a simple mental substitution.</para>
+      <para id="para-ch1-28">Method adları konusunda Python ve C++ arasındaki
+	      birkaç farktan biri olan bu farkı unutmayalım:
+        C++ dilinde bu method <function>exec()</function> olarak kullanılır.
+	exec() Python dilinde depolanmış (gömülü) sözcüklerden biridir.
+	Bu ve buna benzer birkaç sınıf dışında Python içinde kullanmak için
+	C++ dökümanlarını okumak/kullanmak sadece ufak bir zihinsel çaba (yerine kullanma)
+	ile kolayca yapılabilir.
+      </para>
 
       <indexterm>
   <primary>calling conventions</primary>
   </indexterm>
-  <para id="para-ch1-29">Experienced Pythoneers will also note
-        that the parameters in PyQt function calls are positional
-        &mdash; not by keyword. In the old Tkinter GUI toolkit most
-        function calls take the form:</para>
+  <para id="para-ch1-29">İleri düzey Python geliştiricileri şunu da unutmamalıdır ki
+       PyQt fonksiyon çağrıları aynı zamanda konumsaldır &mdash; not by keyword. FIXME : not by keyword -anlamadım??
+       Eski Tkinter GUI kütüphanesinde birçok fonsiyon çağrıları şu şekilde yapılırdı:</para>
 
         <programlisting>
 b = Button(root, text=label, command=func)
         </programlisting>
 
-        <para id="para-ch1-30">where PyQt wants:</para>
+        <para id="para-ch1-30">PyQt ise böyle ister:</para>
 
         <programlisting>
 b = QPushButton(root, label, func)
         </programlisting>
 
-      <para id="para-ch1-31">Just something to be aware of: keyword
-        parameters can be added in any old order, but positional
-        parameters have to be in the right position.</para>
+      <para id="para-ch1-31">Ek bilgi olsun diye şöyle diyebiliriz: 
+      anahtar sözcük (keyword) parametreler eski düzende eklenebilir fakat
+	konumsal parametreleri doğru yere koymak zorunludur.
+      </para>
 
     </note>
 
   </sect1>
   <sect1 id="ch1-sect1-better-hello">
     <title>
-      A better Hello World
+     Daha Gelişmiş bir Merhaba Dünya Uygulaması
     </title>
 
-    <para id="para-ch1-32">Of course, you will never write a script
-      like the previous one in earnest. While it works, it doesn't
-      even show the correct way of setting up a PyQt application. A
-      far superior structure is as follows:</para>
+    <para id="para-ch1-32">Tabii ki, ciddi anlamda bir önceki gibi
+      bir betiği bir daha yazmayacaksınız. Sadece çalıştığını gördük, 
+      O örnek bir PyQt uygulamasını ayarlamanın doğru yolunu size göstermez.
+      Saha gelişmiş bir yapıyı şimdiki örneğimizde göreceksiniz:</para>
 
-    <example><title>hello2.py &mdash; a better hello world</title>
+    <example><title>hello2.py &mdash; Daha Gelişmiş bir Merhaba Dünya Uygulaması</title>
       <programlisting>
 import sys
 from qt import *
@@ -343,18 +342,19 @@ if __name__=="__main__":
       </programlisting>
     </example>
 
-    <para id="para-ch1-33">This is more like it! While still boring
-      and trivial, this small program shows several important aspects
-      of programming with Python and Qt: the subclassing of Qt classes
-      in Python, the use of windows and widgets, and the use of
-      signals and slots.</para>
+    <para id="para-ch1-33">Bu örnek tabii ki daha iyi. Hala sıkıcı ve önemsiz olmasına rağmen
+       bu küçük program Python ve Qt ile programlama yapmanın birkaç önemli boyutunu size gösterir:
+       Qt sınıflarını Python içerisinde altsınıflama (subclassing), pencere ve parçacıkların kullanımı,
+       sinyaller(signals) ve slotların (slots) kullanımı gibi.</para>
 
-    <para id="para-ch1-34">In most PyQt applications you will create a
-      custom main window class, based on QMainWindow, and at least one
-      custom main view widget, based on any Qt widget &mdash; it could
-      be a listview, an editor window or a canvas, or, as in this
-      case, a simple button. Although PyQt allows you to subclass
-      almost any Qt class, you can't base a Python class on more than
+    <para id="para-ch1-34">Birçok PyQt uygulamasında QMainWindow kullanarak
+	    bir ana pencere sınıfı oluşturacaksınız ve tabii ki Qt parçacıkları (widgets) &mdash; ile
+      en az bir tane görünen ana parçacık oluşturacaksınız.
+      Bu ana parçacık bir liste görünümü (listview) bir düzenleyici penceresi (editor window)
+      ya da tuval (canvas) da olabilir. Tabii ki örneğimizde olduğu gibi basit bir düğme (button)
+      de olabilir.
+      Bununla birlikte PyQt neredeyse tüm Qt sınıfları için altsınıflar oluşturmanıza izin verir.
+      FIXME: nedir bu?  you can't base a Python class on more than
       one Qt class at a time.</para>
 
     <para id="para-ch1-35">That is, multiple inheritance of Qt classes
