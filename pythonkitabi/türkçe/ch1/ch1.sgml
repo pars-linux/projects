@@ -357,64 +357,62 @@ if __name__=="__main__":
       FIXME: nedir bu?  you can't base a Python class on more than
       one Qt class at a time.</para>
 
-    <para id="para-ch1-35">That is, multiple inheritance of Qt classes
-      is not supported. This is seldom (if ever) a problem&mdash;try
-      to imagine what a widget that looks like a checkbox and a
-      radiobutton at the same time. Using two widgets in one custom
-      widgets is another matter, called delegation, and is fully
-      supported.</para>
+    <para id="para-ch1-35">Çünkü çoklu miras Qt sınıfları tarafından desteklenmez.
+	    Bu nadiren problem olur&mdash; ki bir parçacığın aynı anda hem checkbox
+	    hem de radiobutton olduğunda nasıl görüneceğini düşünün.
+	    Bir kişisel parçacık içerisinde iki parçacığın kullanımı da başka bir durumdur
+	    ki çağrılmış yetkilendirme tam olarak desteklenir. </para>
 
-    <para id="para-ch1-36">In this script we have subclassed
-      <classname>QMainWindow</classname> to create a custom window
-      that contains a pushbutton as its central widget. Almost always,
-      a window will have the usual frills around the borders &mdash;
-      menus, toolbars and statusbars. This is what QMainWindow is
-      designed for. We didn't define any menu items, so the window is
-      still a bit bare.</para>
+    <para id="para-ch1-36">Bu betikte <classname>QMainWindow</classname> sınıfını
+	    altsınıflayarak merkez parçacık olarak bir pushbutton içeren
+	    bir kişiselleştirilmiş pencere oluşturduk. Neredeyse herzaman 
+	bir pencere normal olarak kenarlıklar, menüler, araç çubukları içerir.
+	QMainWindow  da zaten bunun için dizayn edilmiştir.
+	Bu örnekte herhangi bir menü ögesi tanımlamadığımızdan pencere hala
+	biraz eksik/çıplak görünüyor.</para>
 
-    <para id="para-ch1-37">The central part of a window&mdash;the
-      letterbox, so to speak&mdash;is where the application-specific
-      functionality appears. This is, of course, our button.
-      <classname>QMainWindow</classname> manages the resizing of its
-      central widget automatically, as you might have noticed when
-      dragging the borders of the window. Also, note the difference in
-      geometry between this version of Hello World and the previous
-      one: this is caused by the automatic layout handling that
-      <classname>QMainWindow</classname> provides.</para>
+    <para id="para-ch1-37">Pencerenin merkez bölümü posta kutusu gibi görünen yerdir.
+      Uygulamamıza özel işlevsellik de burada ortaya çıkıyor.
+      Burada tabii ki düğmemiz var.
+      <classname>QMainWindow</classname> sınıfı merkezi ögeyi boyutlandırma işini 
+      otomatik olarak yapar. Pencere kenarlıklarını sürükleyip büyütürken dikkat 
+      edin merkezi parcacık da büyür. Ayrıca önceki Merhaba Dünya ugulamamızla
+      şimdiki uygulamamızın şekli arasındaki farka dikkat edin:
+      Bu farklılığa <classname>QMainWindow</classname> sınıfının
+      otomatik yerleştirme işini kendiliğinden üstlenmesi neden olmaktadır.</para>
 
     <mediaobject>
       <imageobject>
         <imagedata scale="60" align="center" fileref="ch1/hello2.eps">
       </imageobject>
-      <caption><para id="para-ch1-38">A better hello world</para></caption>
+      <caption><para id="para-ch1-38">Daha Gelişmiş bir Merhaba Dünya Uygulaması</para></caption>
     </mediaobject>
 
     <indexterm>
   <primary>setCentralWidget()</primary>
   </indexterm>
-  <para id="para-ch1-39">You set the central part of the window with the
-      setCentralWidget() method:</para>
+  <para id="para-ch1-39">Pencerenin merkezi kısmını ayarlamak için şu satırı (method) kullandık:
+      setCentralWidget() </para>
 
     <programlisting>
 self.setCentralWidget(self.button)
     </programlisting>
 
     <indexterm>
-  <primary>signals and slots</primary>
+  <primary>sinyaller (signals) ve slotlar (slots)</primary>
   </indexterm>
-  <para id="para-ch1-40">An application can have zero, one, or more
-      windows &mdash; and an application shouldn't close down until
-      the last window is closed. <classname>QApplication</classname>
-      keeps count of the number of windows still open and will try to
-      notify the world when the last one is closed. This is done
-      through the signals/slots system. While this system will be
-      discussed in depth in a later chapter, it's sufficiently
-      important to warrant some consideration here.</para>
+  <para id="para-ch1-40">Bir uygulama hiç pencere kullanmayabileceği gibi bir ya da
+      birden fazla pencere de kullanabilir ve tabii ki bir uygulama açılan
+      son pencere kapatılmadan kapanmamalıdır. <classname>QApplication</classname>
+      nesnesi açık olan pencere sayısını hesaplar ve son pencere kapandığında dünyayı uyarmayı bekler.
+      Bu işlev de tabii ki sinyal ve slot sistemi tarafından yerine getirilir.
+      Bu sistem ilerleyen bölümlerde daha derinlemesine anlatılacaktır. Ancak burada 
+      bazı noktalar hakkında çeşitli bilgiler vermek gerekiyor.</para>
 
-    <para id="para-ch1-41">Basically, objects can register an interest in each other,
-      and when something interesting happens, all interested objects
-      are notified. In this case, the QApplication object wants to
-      know when the last window is closed, so it can quit.</para>
+    <para id="para-ch1-41">Basit bir şekilde anlatacak olursak;
+      nesneler birbiri ile ilgilidir ve bir olay meydana geldiğinde ilgili
+      tüm nesneler uyarılır. Örneğimizde, QApplication nesnesi kapanmak için
+      son pencerenin ne zaman kapandığını bilmek istiyor.</para>
 
     <programlisting>
 app.connect(app, SIGNAL("lastWindowClosed()"),
@@ -424,19 +422,16 @@ app.connect(app, SIGNAL("lastWindowClosed()"),
     <indexterm>
   <primary>quit()</primary>
   </indexterm>
-  <para id="para-ch1-42">Let's analyze this line: the
-      <varname>app</varname> object makes a connection between a
-      signal <function>lastWindowClosed()</function> (which is sent by
-      the application object itself), and its own
-      <function>quit()</function> function. Using signals and slots
-      from Python is extremely convenient, both for gui work and in
-      more abstract situations where a decoupling between objects is
-      desirable.</para>
+  <para id="para-ch1-42">Bu satırı analiz edelim:
+      <varname>app</varname> nesnesi <function>lastWindowClosed()</function>
+      (application nesnesi tarafından kendisine gönderilir) sinyali ile kendi
+      <function>quit()</function> fonksiyonu arasında bir bağlantı kuruyor.
+       Hem GUI çalışmalarında hem de daha basit durumlarda Sinyal ve slotları 
+       Python ile kullanmak oldukça kolaydır.</para>
 
-      <para id="para-ch1-43">Another example of using signals and slots is in the
-        following rewrite of the HelloWindow class:</para>
+      <para id="para-ch1-43">Sinyaller ve slotların kullanıldığı başka bir HelloWindow sınıfı örneği:</para>
 
-      <example><title>fragment from hello3.py</title>
+      <example><title>hello3.py --örneği için yeni bir parça</title>
         <programlisting>
 ...
 class HelloWindow(QMainWindow):
@@ -450,23 +445,30 @@ class HelloWindow(QMainWindow):
       </programlisting>
     </example>
     
-    <para id="para-ch1-44">We have added a line where the
+    <para id="para-ch1-44">Burada <function>clicked()</function> sinyalinin olduğu yere
+	    bir satır ekledik ki bu sinyal <classname>QPushButton</classname>
+	    tarafından -tıklandığı zaman- verilecek. <function>clicked()</function> sinyali
+	    aynı zamanda <classname>HelloWindow</classname> sınıfına ait olan
+	    <function>close()</function> slotuna bağlıdır.
+	    
+	    We have added a line where the
       <function>clicked()</function> signal, which is emitted by the
       <classname>QPushButton</classname> when it is clicked, is
       connected to the <function>close()</function> slot of the
-      <classname>HelloWindow</classname> class. Since
-      <classname>HelloWindow</classname> inherits
-      <classname>QMainWindow</classname>, it also inherits all its
-      slot functions.</para>
+      <classname>HelloWindow</classname> class.
+      <classname>HelloWindow</classname> 
+      <classname>QMainWindow</classname> nesnesini miras olarak aldığında
+      aynı zamanda tüm slot fonksiyonlarını da miras alır.</para>
     
-    <para id="para-ch1-45">Now, if you click on the button, the
-      window closes&mdash;and we have our first interactive PyQt
-      application!</para>
+    <para id="para-ch1-45">Şimdi eğer düğmeye tıklarsanız pencere kapanır
+	    ve biz de ilk etkileşimli PyQt uygulamamızı bitirmiş oluruz!
+    </para>
 
-    <para id="para-ch1-46">An interesting exercise is to create more
-      than one window by rewriting the main function:</para>
+    <para id="para-ch1-46">Ana fonksiyonu yeniden yazarak birden fazla pencere açabilen
+      ilginç bir alıştırma daha yapabiliriz:
+    </para>
 
-      <example><title>Fragment from hello5.py</title>
+      <example><title>hello5.py için yeni bir parça</title>
         <programlisting>
 ...
 def main(args):
@@ -484,16 +486,18 @@ def main(args):
       </programlisting>
     </example>
 
-    <para id="para-ch1-47">If you run this version of the script, ten windows will
-      rapidly pop up on your desktop. You can close each window by
-      pressing either the button or using the window controls &mdash;
-      the application will only stop when the last one is
-      closed.</para>
+    <para id="para-ch1-47">Eğer hello5.py betiğini çalıştırısanız,
+      on tane Merhaba Dünya penceresinin masaüstünüzü kapladığını göreceksiniz.
+      Heerbir pencereyi düğmeye basarak ya da pencere kontrollerini kullanarak
+      kapatabilirsiniz.
+      Dikkat ederseniz uygulama ancak son pencere kapatıldığında sonlanacaktır.
+   </para>
 
-    <para id="para-ch1-48">Try commenting out the line
-      <literal>winlist.append(win)</literal>:</para>
+    <para id="para-ch1-48">
+      <literal>winlist.append(win)</literal> satırını yorum satırı haline getirip
+      betiği tekrar çalıştırın:</para>
 
-    <example><title>Fragment from hello4.py</title>
+    <example><title>hello4.py üzerinde küçük değişiklik</title>
       <programlisting>
 ...
 def main(args):
@@ -511,29 +515,28 @@ def main(args):
       </programlisting>
     </example>
 
-    <para id="para-ch1-49">and see what happens...</para>
+    <para id="para-ch1-49">ve neler olduğuna bakın...</para>
 
     <indexterm>
   <primary>garbage collection</primary><secondary>reference counting</secondary>
   </indexterm>
-  <para id="para-ch1-50">This is one of the interesting features in
-      Python: in contrast to C++, Python has a garbage collector.
-      (Actually, you can choose between a garbage collector and a
-      reference counter, but I don't want to get
-      <emphasis>that</emphasis> technical yet). This virtual
-      garbage-man will remove unreferenced objects as soon as
-      possible. That means that any object that doesn't have a Python
-      variable name associated with it will disappear. (Unless the
-      object is the child of a <classname>QObject</classname>; see
-      <xref linkend="ch3"> for all the details). If you were to try
-      this trick in C++, keeping references would make no difference,
-      as C++ does not delete unused objects for you, which can easily
-      lead to nasty memory leaks.</para>
+  <para id="para-ch1-50">Bu özellik Python'un ilginç yanlarından biridir:
+      C++ dilinin aksine Python pythonda bir FIXME:? garbage collector vardır.
+      Bu sanal garbage-adam referans verilmemiş nesneleri mümkün olan
+      en kısa sürede temizleyecektir.
+      Bu şu anlama gelir; Python değişken adı ile ilişkilendirilmeyen
+      hiçbir nesne görüntülenmeyecektir.(Eğer nesne <classname>QObject</classname>
+      sınıfının bir FIXME :? oğlu (child) ise durum değişir,
+      ayrıntılar için <xref linkend="ch3"> bölümüne bakın.)
+      Eğer bu temizlik işini C++ dilinde denerseniz,referans tutma konusunda 
+      bir değişiklik olmaz, C++ kullanılmayan nesneleri sizin için silmez.
+      Bu durum da hoşunuza gitmeyecek gereksiz bellek kullanımına neden olur.
+   </para>
 
   </sect1>
   <sect1>
 
-    <title>Designing forms</title>
+    <title>Form Hazırlama</title>
 
     <indexterm>
   <primary>designing forms</primary>
