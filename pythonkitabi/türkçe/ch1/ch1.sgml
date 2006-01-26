@@ -1,16 +1,16 @@
-<chapter id="ch1">
-  <title>Qt Kavramları</title>
-  
+    <chapter id="ch1">
+    <title>Qt Kavramları</title>
+
     <para id="para-ch1-1">Bu bölüm Python ve Qt'un PyQt önyüzü kullanılarak
-     birbirine nasıl bağlanacağını anlatmaktadır. Sinyaller ve slotlar,
-     inheritance FIXME: inheritance ???, arayüz dizaynı gibi PyQt ve Qt'a has 
-     kavramlar sürekli daha karmaşıklaşan <emphasis>merhaba dünya</emphasis>
-     gibi basit klişe programlarla anlatılacaktır.
+    birbirine nasıl bağlanacağını anlatmaktadır. Sinyaller ve slotlar,
+    inheritance FIXME: inheritance ???, arayüz dizaynı gibi PyQt ve Qt'a has 
+    kavramlar sürekli daha karmaşıklaşan <emphasis>merhaba dünya</emphasis>
+    gibi basit klişe programlarla anlatılacaktır.
     </para>
 
-  <sect1>
+    <sect1>
     <title>
-      Python, Qt ve PyQt
+    Python, Qt ve PyQt
     </title>
 
     <para id="para-ch1-2">Visual Basic gibi bütünleşik bir Grafiksel Kullanıcı 
@@ -25,78 +25,78 @@
     hızlı geliştirme ortamının (RAD) da temelini oluşturur.</para>
 
     <para id="para-ch1-3">
-     Qt çok geniş ölçelki iyi dizayn edilmiş görsel ögeler, parçacıklar ve birçok
-     faydalı sınıf sunan çok gelişmiş bir kütüphanedir.
-     Bunlara ek olarak, Qt kavraması kolay ve sezilerek kullanılabilecek çok temiz
-     bir nesne tabanlı yapıyla dizayn edilmiştir. PyQt ile yazılan programlar
-     değişiklik yapılmadan, yendien derlenmeden Windows ve Unix/X11
-     sistemlerde &mdash; çalışmaktadır ve yakında Apple OS X sistemlerde de çalışabilecektir.
+    Qt çok geniş ölçelki iyi dizayn edilmiş görsel ögeler, parçacıklar ve birçok
+    faydalı sınıf sunan çok gelişmiş bir kütüphanedir.
+    Bunlara ek olarak, Qt kavraması kolay ve sezilerek kullanılabilecek çok temiz
+    bir nesne tabanlı yapıyla dizayn edilmiştir. PyQt ile yazılan programlar
+    değişiklik yapılmadan, yendien derlenmeden Windows ve Unix/X11
+    sistemlerde &mdash; çalışmaktadır ve yakında Apple OS X sistemlerde de çalışabilecektir.
     </para>
 
     <para id="para-ch1-4">PyQt görsel parçacıkları (widget) <emphasis>stiller(styles)</emphasis>
-      kullanılarak çizilebilir (isteğe bağlı olarak diğer stiller de kullanılabilir)
-      ki bu yazılan programın çalıştığı sistemin kullandığı
-      doğal parçacıklar gibi görünebilmesini sağlar.
+    kullanılarak çizilebilir (isteğe bağlı olarak diğer stiller de kullanılabilir)
+    ki bu yazılan programın çalıştığı sistemin kullandığı
+    doğal parçacıklar gibi görünebilmesini sağlar.
     </para>
 
     <para id="para-ch1-5">Qt kütüphanesinde&mdash; iki çeşit nesne vardır;
-      görsel nesneler ve görsel olmayan nesneler. Tüm görsel nesnelerin anası
-      QWidget'tir. Qt'da kullanılan widget (bundan böyle parçacık olarak kullanılacaktır)
-      sözcüğü Windows dünyasında <emphasis>control</emphasis> olarak adlandırılır.
-      Etiketler (labels) ve düğmeler(buttons) gibi basit parçacıkların yanında canvas gibi
-      daha kompleks parçacıklar da vardır. Tabii ki diyalog pencereleri de
-      <classname>QWidget</classname> parçacığından oluşturulmaktadır.
+    görsel nesneler ve görsel olmayan nesneler. Tüm görsel nesnelerin anası
+    QWidget'tir. Qt'da kullanılan widget (bundan böyle parçacık olarak kullanılacaktır)
+    sözcüğü Windows dünyasında <emphasis>control</emphasis> olarak adlandırılır.
+    Etiketler (labels) ve düğmeler(buttons) gibi basit parçacıkların yanında canvas gibi
+    daha kompleks parçacıklar da vardır. Tabii ki diyalog pencereleri de
+    <classname>QWidget</classname> parçacığından oluşturulmaktadır.
     </para>
 
     <para id="para-ch1-6"><classname>QWidget</classname> ve diğer birçok 
-      Qt sınıfı -hepsi değil- <classname>QObject</classname> temel sınıfından
-      &mdash; elde edilmektedir. Örneğin <classname>QLayout</classname> sınıfı
-      <emphasis>da</emphasis> <classname>QObject</classname> sınıfından elde
-      edilmektedir.Fakat <classname>QPixmap</classname> sınıfı <classname>QObject</classname>
-      sınıfından oluştrulmaz. Bir sınıfın <classname>QObject</classname> sınıfından
-      elde edilip edilmeyeceğini sinyal (signal) ve slotlara (slot) gerek duyup duymaması
-      ve oluşturulan nesnenin sahiplik hiyerarşisi içerisinde olup olmaması belirler.
+    Qt sınıfı -hepsi değil- <classname>QObject</classname> temel sınıfından
+    &mdash; elde edilmektedir. Örneğin <classname>QLayout</classname> sınıfı
+    <emphasis>da</emphasis> <classname>QObject</classname> sınıfından elde
+    edilmektedir.Fakat <classname>QPixmap</classname> sınıfı <classname>QObject</classname>
+    sınıfından oluştrulmaz. Bir sınıfın <classname>QObject</classname> sınıfından
+    elde edilip edilmeyeceğini sinyal (signal) ve slotlara (slot) gerek duyup duymaması
+    ve oluşturulan nesnenin sahiplik hiyerarşisi içerisinde olup olmaması belirler.
     </para>
-    
+
     <para id="para-ch1-7">Python gibi betik dilleri kötü performans
-      gösterdikleri gibi bir izlenime sahiptir. Fakat PyQt uygulamaları
-      gerçekten çok iyi performans göstermektedir. Python ile GUI nesneleri
-      arasında çok ince/küçük bir bağlayıcı vardır. GUI nesneleri piksel seçme
-      işinin ağır kısmını yaparlar ve zaten çok iyi optimize edilmiş C++ 
-      ile yazılmışlardır.
-      Eğer kendi DTP FIXME: DTP?? yerleşim motorunuzu Qt çizim tabanından FIXME:tabanından?
-      yazmak gibi birşey denerseniz Python gibi byte-code yorumlayan dillerde yavaşlık
-      engeleyici görünebilir. Fakat aslında bütün olarak bakıldığında yazdığınız uygulama
-      sadece C++ ile yazılmış gibi hızlı yanıt verir. Üstelik ilk yazdığınız C++ prototip
-      üzerinde hala kodlamaya devam ederken bile çalışan bir uygulamanız olur.
+    gösterdikleri gibi bir izlenime sahiptir. Fakat PyQt uygulamaları
+    gerçekten çok iyi performans göstermektedir. Python ile GUI nesneleri
+    arasında çok ince/küçük bir bağlayıcı vardır. GUI nesneleri piksel seçme
+    işinin ağır kısmını yaparlar ve zaten çok iyi optimize edilmiş C++ 
+    ile yazılmışlardır.
+    Eğer kendi DTP FIXME: DTP?? yerleşim motorunuzu Qt çizim tabanından FIXME:tabanından?
+    yazmak gibi birşey denerseniz Python gibi byte-code yorumlayan dillerde yavaşlık
+    engeleyici görünebilir. Fakat aslında bütün olarak bakıldığında yazdığınız uygulama
+    sadece C++ ile yazılmış gibi hızlı yanıt verir. Üstelik ilk yazdığınız C++ prototip
+    üzerinde hala kodlamaya devam ederken bile çalışan bir uygulamanız olur.
      </para>
-    
+
 
 <!-- BR: I made a change -->
-      <indexterm>
-  <primary>PyQt, Qt ve Python Sürümleri</primary>
-  </indexterm>
+    <indexterm>
+    <primary>PyQt, Qt ve Python Sürümleri</primary>
+    </indexterm>
     <note><title>Sürümler üzerine bir not</title>
 
-  <para id="para-ch1-8">PyQt enaz üç bileşenden oluşur;Python, Qt ve PyQt'un kendisi.
-     Ek olarak, PyKDE (Unix KDE Masaüstü Ortamı için bağlayıcılar) vardır.
-     Bu dört bileşenin sürüm numaraları genellikle birbiriyle ilişkisizdir.
-     Qt'un belirli bir zamanda üç sürümü vardır aynen PyQt gibi. Bununla birlikte,
-     PyQt 3.x, Qt 1.x, Qt 2.x <emphasis>ve</emphasis>Qt 3.x ile derlenebilir.
-      </para>
+    <para id="para-ch1-8">PyQt enaz üç bileşenden oluşur;Python, Qt ve PyQt'un kendisi.
+    Ek olarak, PyKDE (Unix KDE Masaüstü Ortamı için bağlayıcılar) vardır.
+    Bu dört bileşenin sürüm numaraları genellikle birbiriyle ilişkisizdir.
+    Qt'un belirli bir zamanda üç sürümü vardır aynen PyQt gibi. Bununla birlikte,
+    PyQt 3.x, Qt 1.x, Qt 2.x <emphasis>ve</emphasis>Qt 3.x ile derlenebilir.
+    </para>
 
-      <para id="para-ch1-9">PyQt sürümleri arasındaki farklılık Qt'un
+    <para id="para-ch1-9">PyQt sürümleri arasındaki farklılık Qt'un
     desteklediği sürümler oranında, organizasyona ve yürütmeye bağlı
     detaylara bağlı olarak oluşmaktadır.
-     </para>
+    </para>
 
-      <para id="para-ch1-10">Aslında PyQt ile Python arasındaki ilişki göründüğünden
+    <para id="para-ch1-10">Aslında PyQt ile Python arasındaki ilişki göründüğünden
     daha belirsizdir şöyle ki: PyQt en iyi Python'un son sürümü ile çalışmaktadır ama
     önceki sürümlerle de çalıştığı bilinmektedir.
     </para>
 
-      <para id="para-ch1-11">Neyse sadece PyQt 3.x sürümünün Qt 2.x or Qt 3.x
-    kullanabildiğini aklımzda tutalım. Bu kitap çoğunlukla Qt 2.x için  PyQt 2.x
+    <para id="para-ch1-11">Neyse sadece PyQt 3.x sürümünün Qt 2.x or Qt 3.x
+    kullanabildiğini aklımzda tutalım yeter. Bu kitap çoğunlukla Qt 2.x için  PyQt 2.x
     kullanılarak yazıldı fakat elimden geldiğince PyQt 3.x ve Qt 3.x ile ilgili
     bilgiler de vermeye çalıştım.
     </para>
@@ -104,215 +104,215 @@
     </note>
 <!-- END CHANGE -->
 
-  </sect1>
+    </sect1>
 
-  <sect1 id="ch1HelloWorld">
+    <sect1 id="ch1HelloWorld">
     <title>
-      Göründüğü kadar kolay
+    Göründüğü kadar kolay
     </title>
 
     <indexterm>
-  <primary>Merhaba Dünya</primary>
-  </indexterm>
-  <para id="para-ch1-12">Büyük işlere soyunmadan önce mümkün olan en az bileşenden
-   oluşan, daha sonra yavaş yavaş özelliklerini geliştireceğimiz ve ekranda birşeyler
-   gösteren bir PyQt uygulamasının yapısını inceleyelim.
-  </para>
+    <primary>Merhaba Dünya</primary>
+    </indexterm>
+    <para id="para-ch1-12">Büyük işlere soyunmadan önce mümkün olan en az bileşenden
+    oluşan, daha sonra yavaş yavaş özelliklerini geliştireceğimiz ve ekranda birşeyler
+    gösteren bir PyQt uygulamasının yapısını inceleyelim.
+    </para>
 
     <para id="para-ch1-13">Basit bir PyQt uygulaması şu elemanları içerir:</para>
 
 
     <itemizedlist>
-      <listitem>
-        <para id="para-ch1-14">
-         bir uygulama(program) nesnesi
-        </para>
-      </listitem>
-      <listitem>
-        <para id="para-ch1-15">
-         bir ana pencere (main window) ki onun bir merkezi parçacığı vardır.<emphasis>ya da</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para id="para-ch1-16">
-          bir ana parçacık (main widget)
-        </para>
-      </listitem>
+    <listitem>
+    <para id="para-ch1-14">
+    bir uygulama(program) nesnesi
+    </para>
+    </listitem>
+    <listitem>
+    <para id="para-ch1-15">
+    bir ana pencere (main window) ki onun bir merkezi parçacığı vardır.<emphasis>ya da</emphasis>
+    </para>
+    </listitem>
+    <listitem>
+    <para id="para-ch1-16">
+    bir ana parçacık (main widget)
+    </para>
+    </listitem>
     </itemizedlist>
 
     <para id="para-ch1-17">Bu geleneksel &rdquo;Merhaba Dünya&rdquo; olarak
-      adlandırılan, bir düğme içeren uygulamadır ve mümkün olan en az kod ile yazılmıştır:</para>
+    adlandırılan, bir düğme içeren uygulamadır ve mümkün olan en az kod ile yazılmıştır:</para>
 
     <mediaobject>
-      <imageobject>
-        <imagedata scale="80" align="center" fileref="ch1/hello1.eps">
-      </imageobject>
-      <caption>
-        <para id="para-ch1-18">Merhaba Dünya</para>
-      </caption>
+    <imageobject>
+    <imagedata scale="80" align="center" fileref="ch1/hello1.eps">
+    </imageobject>
+    <caption>
+    <para id="para-ch1-18">Merhaba Dünya</para>
+    </caption>
     </mediaobject>
 
     <example>
-      <title>hello1.py &mdash; merhaba dünya</title>
-      <programlistingco>
-        <areaspec>
-          <area coords="4" id="hello1impsys">
-          <area coords="5" id="hello1impqt">
-          <area coords="7" id="hello1createapp">
-          <area coords="8" id="hello1button">
-          <area coords="9" id="hello1setmainwidget">
-          <area coords="10" id="hello1show">
-          <area coords="11" id="hello1execloop">
-        </areaspec>
-        <programlisting>
-#
-# hello1.py
-#
-import sys
-from qt import *
+    <title>hello1.py &mdash; merhaba dünya</title>
+    <programlistingco>
+    <areaspec>
+    <area coords="4" id="hello1impsys">
+    <area coords="5" id="hello1impqt">
+    <area coords="7" id="hello1createapp">
+    <area coords="8" id="hello1button">
+    <area coords="9" id="hello1setmainwidget">
+    <area coords="10" id="hello1show">
+    <area coords="11" id="hello1execloop">
+    </areaspec>
+    <programlisting>
+    #
+    # hello1.py
+    #
+    import sys
+    from qt import *
 
-app=QApplication(sys.argv)
-button=QPushButton("Hello World", None)
-app.setMainWidget(button)
-button.show()
-app.exec_loop()
-        </programlisting>
-        <calloutlist>
-          <callout arearefs="hello1impsys">
-            <para id="para-ch1-19">Öncelikle Python
-              <emphasis>sys</emphasis> paketini import ile çağırmalıyız.
-            Çünkü <classname>QApplication</classname> nesnesi komut satırından betiği
-            çalıştırmak için verilecek argümanlara bakmak ister.
-	      Örnek olrak, betiğimizi
-              <userinput>python hello1.py -style=platinum</userinput>
-	      komutu ile başlatırsak &ldquo;-style=platinum&rdquo;
-	      argümanını QApplication nesnesine göndermiş ve uygulamamızın
-	      Mac-OS 8.5 gibi stilinde görünmesini sağlamış oluruz.
-         </para>
+    app=QApplication(sys.argv)
+    button=QPushButton("Hello World", None)
+    app.setMainWidget(button)
+    button.show()
+    app.exec_loop()
+    </programlisting>
+    <calloutlist>
+    <callout arearefs="hello1impsys">
+    <para id="para-ch1-19">Öncelikle Python
+    <emphasis>sys</emphasis> paketini import ile çağırmalıyız.
+    Çünkü <classname>QApplication</classname> nesnesi komut satırından betiği
+    çalıştırmak için verilecek argümanlara bakmak ister.
+    Örnek olrak, betiğimizi
+    <userinput>python hello1.py -style=platinum</userinput>
+    komutu ile başlatırsak &ldquo;-style=platinum&rdquo;
+    argümanını QApplication nesnesine göndermiş ve uygulamamızın
+    Mac-OS 8.5 gibi stilinde görünmesini sağlamış oluruz.
+    </para>
 
-            <para id="para-ch1-20">Qt'un güzelliklerinden biri de
-             size tüm desteklediği parçacık sitillerini (widget styles)
-	     tüm platformlarda kullanma şansı vermesdir. Aqua stili yalnızca OS X
-	     platformunda kullanılabilir. Çünkü Apple bu sitilin diğer platformlara
-	     yayılmasını istememektedir.</para>
-          </callout>
-          <callout arearefs="hello1impqt">
-	  <para id="para-ch1-21">Ardından Qt kütüphanesini çağırmak(import) zorundayız.
-	  Aslında bu kütüphane içerisinden sadece bize gereken elemanları çağırmamız da mümkündür.
-	  Ama bu işin en kolay ve en verimli şekli tüm kütüphaneyi çağırmaktır.
-	  Fakat tabii ki <programlisting> from qt import QApplication, QPushButton </programlisting>
-	  şeklinde de kütüphane içerisinden istediğimiz elemanları çağırabiliriz.
-          </para>
+    <para id="para-ch1-20">Qt'un güzelliklerinden biri de
+    size tüm desteklediği parçacık sitillerini (widget styles)
+    tüm platformlarda kullanma şansı vermesidir. Aqua stili yalnızca OS X
+    platformunda kullanılabilir. Çünkü Apple bu sitilin diğer platformlara
+    yayılmasını istememektedir.</para>
+    </callout>
+    <callout arearefs="hello1impqt">
+    <para id="para-ch1-21">Ardından Qt kütüphanesini çağırmak(import) zorundayız.
+    Aslında bu kütüphane içerisinden sadece bize gereken elemanları çağırmamız da mümkündür.
+    Ama bu işin en kolay ve en verimli şekli tüm kütüphaneyi çağırmaktır.
+    Fakat tabii ki <programlisting> from qt import QApplication, QPushButton </programlisting>
+    şeklinde de kütüphane içerisinden istediğimiz elemanları çağırabiliriz.
+    </para>
 <!-- BR: I made a change -->
-            <indexterm>
-  <primary>qt module layout</primary>
-  </indexterm>
-  <para id="para-ch1-22">PyQt'un 3x sürümünden sonra,
-              kütüphane bazı bağımsız modüllere ayrıldı.
-              <varname>Qt</varname> modülü hala temel ögeler için yeterlidir.
-              Ancak, canvas(yerleşim,plan) gibi daha gelişmiş işlevsellik içeren modüller
-              bağımsız modüllere ayrıldı.Örn: <classname>QCanvas</classname> modülü
-              <varname>qtcanvas</varname> olarak çağrılmalıdır.
-  </para>
+    <indexterm>
+    <primary>qt module layout</primary>
+    </indexterm>
+    <para id="para-ch1-22">PyQt'un 3x sürümünden sonra,
+    kütüphane bazı bağımsız modüllere ayrıldı.
+    <varname>Qt</varname> modülü hala temel ögeler için yeterlidir.
+    Ancak, canvas(yerleşim,plan) gibi daha gelişmiş işlevsellik içeren modüller
+    bağımsız modüllere ayrıldı.Örn: <classname>QCanvas</classname> modülü
+    <varname>qtcanvas</varname> olarak çağrılmalıdır.
+    </para>
 <!-- END OF CHANGE -->
-          </callout>
-          <callout arearefs="hello1createapp">
-            <para id="para-ch1-23">Gerekli modülleri çağırdıktan sonra
-              bir Qt application nesnesi oluştururuz. Bu nesne
-              uygulamanın değişik parçacıklarından gelen fare ve klavye
-	      olaylarını yakalar.
-              Asla birden fazla <classname>QApplication</classname> nesnesi oluşturmayın.
-	      Eğer Python ve PyQt'u bir C++ Qt uygulaması içerisine gömecekseniz
-	      <classname>QApplication object</classname> nsnesini C++ application
-	      oluşturmalı ve gömülü Python yorumlayıcısına bir referans geçmelidir.
-	    </para>
-          </callout>
-          <callout arearefs="hello1button">
-            <para id="para-ch1-24">Yazdığımız kodu basit tutmak için,
-           bağımsız pencere nesneleri oluşturmadık. Sadece <classname>QPushButton</classname>
-	   sınıfını kullanarak basit bir düğme (pushbutton) oluşturduk.
-	   <classname>QPushButton</classname> nesnesini oluştururken kullandığımız
-	   ilk argüman düğmenin üzerinde gösterilen metin/Merhaba Dünya (text) dır.
-           Bu nesne uygulamanın tek parçacığı olduğundan bir ebeveyni yoktur. Bu nedenle
-            <varname>None</varname> argümanı alarak &mdash;
-             bir ebeveyninin olmadığı kod içerisinde bildirilmiştir. Başka bir deyişle,
-              <classname>QPushButton</classname> parçacığı uygulamanın parçacık ağacında kök parçacıktır.
-      </para>
-          </callout>
-          <callout arearefs="hello1setmainwidget">
-            <para id="para-ch1-25">Bununla birlikte, hala
-              <classname>QApplication</classname> nesnesine bu gerçeği
-              bildirmek zorundayız &mdash; bunu da <classname>QApplication</classname>
-	      nesnesine düğmenin ana parçacık olduğunu anlatarak sağlarız:</para>
+    </callout>
+    <callout arearefs="hello1createapp">
+    <para id="para-ch1-23">Gerekli modülleri çağırdıktan sonra
+    bir Qt application nesnesi oluştururuz. Bu nesne
+    uygulamanın değişik parçacıklarından gelen fare ve klavye
+    olaylarını yakalar.
+    Asla birden fazla <classname>QApplication</classname> nesnesi oluşturmayın.
+    Eğer Python ve PyQt'u bir C++ Qt uygulaması içerisine gömecekseniz
+    <classname>QApplication object</classname> nesnesini C++ application
+    oluşturmalı ve gömülü Python yorumlayıcısına bir referans geçmelidir.
+    </para>
+    </callout>
+    <callout arearefs="hello1button">
+    <para id="para-ch1-24">Yazdığımız kodu basit tutmak için,
+    bağımsız pencere nesneleri oluşturmadık. Sadece <classname>QPushButton</classname>
+    sınıfını kullanarak basit bir düğme (pushbutton) oluşturduk.
+    <classname>QPushButton</classname> nesnesini oluştururken kullandığımız
+    ilk argüman düğmenin üzerinde gösterilen metin/Merhaba Dünya (text) dır.
+    Bu nesne uygulamanın tek parçacığı olduğundan bir ebeveyni yoktur. Bu nedenle
+    <varname>None</varname> argümanı alarak &mdash;
+    bir ebeveyninin olmadığı kod içerisinde bildirilmiştir. Başka bir deyişle,
+    <classname>QPushButton</classname> parçacığı uygulamanın parçacık ağacında kök parçacıktır.
+    </para>
+    </callout>
+    <callout arearefs="hello1setmainwidget">
+    <para id="para-ch1-25">Bununla birlikte, hala
+    <classname>QApplication</classname> nesnesine bu gerçeği
+    bildirmek zorundayız &mdash; bunu da <classname>QApplication</classname>
+    nesnesine düğmenin ana parçacık olduğunu anlatarak sağlarız:</para>
 
-            <programlisting>
-app.setMainWidget(button)
-            </programlisting>
+    <programlisting>
+    app.setMainWidget(button)
+    </programlisting>
 
-          </callout>
-          <callout arearefs="hello1show">
-            <para id="para-ch1-26">Ve <function>show()</function>
-              fonksiyonu ile düğmeyi tim dünyaya gösterme zamanı geldi.</para>
-          </callout>
-            <indexterm>
-  <primary>event loop</primary><secondary>exec_loop</secondary>
-  </indexterm>
-          <callout arearefs="hello1execloop">
-  <para id="para-ch1-27">Uygulama nesneleri olay döngüsünü başlatana kadar
-	  tabii ki ekranda birşey görünmeyecektir.
-               Aslında <function>app.exec_loop()</function> fonksiyonu bir değerle döner
-              ama bunu güvenli bir şekilde gözardı edebiliriz.</para>
-          </callout>
-        </calloutlist>
-      </programlistingco>
+    </callout>
+    <callout arearefs="hello1show">
+    <para id="para-ch1-26">Ve <function>show()</function>
+    fonksiyonu ile düğmeyi tim dünyaya gösterme zamanı geldi.</para>
+    </callout>
+    <indexterm>
+    <primary>event loop FIXME:??</primary><secondary>exec_loop</secondary>
+    </indexterm>
+    <callout arearefs="hello1execloop">
+    <para id="para-ch1-27">Uygulama nesneleri olay döngüsünü başlatana kadar
+    tabii ki ekranda birşey görünmeyecektir.
+    Aslında <function>app.exec_loop()</function> fonksiyonu bir değerle döner
+    ama bunu güvenli bir şekilde gözardı edebiliriz.</para>
+    </callout>
+    </calloutlist>
+    </programlistingco>
     </example>
     <note>
-      <para id="para-ch1-28">Method adları konusunda Python ve C++ arasındaki
-	      birkaç farktan biri olan bu farkı unutmayalım:
-        C++ dilinde bu method <function>exec()</function> olarak kullanılır.
-	exec() Python dilinde depolanmış (gömülü) sözcüklerden biridir.
-	Bu ve buna benzer birkaç sınıf dışında Python içinde kullanmak için
-	C++ dökümanlarını okumak/kullanmak sadece ufak bir zihinsel çaba (yerine kullanma)
-	ile kolayca yapılabilir.
-      </para>
+    <para id="para-ch1-28">Method adları konusunda Python ve C++ arasındaki
+    birkaç farktan biri olan bu farkı unutmayalım:
+    C++ dilinde bu method <function>exec()</function> olarak kullanılır.
+    exec() Python dilinde depolanmış (gömülü) sözcüklerden biridir.
+    Bu ve buna benzer birkaç sınıf dışında Python içinde kullanmak için
+    C++ dökümanlarını okumak/kullanmak sadece ufak bir zihinsel çaba (yerine kullanma)
+    ile kolayca yapılabilir.
+    </para>
 
-      <indexterm>
-  <primary>calling conventions</primary>
-  </indexterm>
-  <para id="para-ch1-29">İleri düzey Python geliştiricileri şunu da unutmamalıdır ki
-       PyQt fonksiyon çağrıları aynı zamanda konumsaldır &mdash; not by keyword. FIXME : not by keyword -anlamadım??
-       Eski Tkinter GUI kütüphanesinde birçok fonsiyon çağrıları şu şekilde yapılırdı:</para>
+    <indexterm>
+    <primary>calling conventions</primary>
+    </indexterm>
+    <para id="para-ch1-29">İleri düzey Python geliştiricileri şunu da unutmamalıdır ki
+    PyQt fonksiyon çağrıları aynı zamanda konumsaldır &mdash; not by keyword. FIXME : not by keyword -anlamadım??
+    Eski Tkinter GUI kütüphanesinde birçok fonsiyon çağrıları şu şekilde yapılırdı:</para>
 
-        <programlisting>
-b = Button(root, text=label, command=func)
-        </programlisting>
+    <programlisting>
+    b = Button(root, text=label, command=func)
+    </programlisting>
 
-        <para id="para-ch1-30">PyQt ise böyle ister:</para>
+    <para id="para-ch1-30">PyQt ise böyle ister:</para>
 
-        <programlisting>
-b = QPushButton(root, label, func)
-        </programlisting>
+    <programlisting>
+    b = QPushButton(root, label, func)
+    </programlisting>
 
-      <para id="para-ch1-31">Ek bilgi olsun diye şöyle diyebiliriz: 
-      anahtar sözcük (keyword) parametreler eski düzende eklenebilir fakat
-	konumsal parametreleri doğru yere koymak zorunludur.
-      </para>
+    <para id="para-ch1-31">Ek bilgi olsun diye şöyle diyebiliriz: 
+    anahtar sözcük (keyword) parametreler eski düzende eklenebilir fakat
+    konumsal parametreleri doğru yere koymak zorunludur.
+    </para>
 
     </note>
 
-  </sect1>
-  <sect1 id="ch1-sect1-better-hello">
+    </sect1>
+    <sect1 id="ch1-sect1-better-hello">
     <title>
-     Daha Gelişmiş bir Merhaba Dünya Uygulaması
+    Daha Gelişmiş bir Merhaba Dünya Uygulaması
     </title>
 
     <para id="para-ch1-32">Tabii ki, ciddi anlamda bir önceki gibi
-      bir betiği bir daha yazmayacaksınız. Sadece çalıştığını gördük, 
-      O örnek bir PyQt uygulamasını ayarlamanın doğru yolunu size göstermez.
-      Saha gelişmiş bir yapıyı şimdiki örneğimizde göreceksiniz:</para>
+    bir betiği bir daha yazmayacaksınız. Sadece çalıştığını gördük, 
+    O örnek bir PyQt uygulamasını ayarlamanın doğru yolunu size göstermez.
+    Saha gelişmiş bir yapıyı şimdiki örneğimizde göreceksiniz:</para>
 
     <example><title>hello2.py &mdash; Daha Gelişmiş bir Merhaba Dünya Uygulaması</title>
-      <programlisting>
+    <programlisting>
 import sys
 from qt import *
 
@@ -339,101 +339,101 @@ def main(args):
 
 if __name__=="__main__":
     main(sys.argv)
-      </programlisting>
+    </programlisting>
     </example>
 
     <para id="para-ch1-33">Bu örnek tabii ki daha iyi. Hala sıkıcı ve önemsiz olmasına rağmen
-       bu küçük program Python ve Qt ile programlama yapmanın birkaç önemli boyutunu size gösterir:
-       Qt sınıflarını Python içerisinde altsınıflama (subclassing), pencere ve parçacıkların kullanımı,
-       sinyaller(signals) ve slotların (slots) kullanımı gibi.</para>
+    bu küçük program Python ve Qt ile programlama yapmanın birkaç önemli boyutunu size gösterir:
+    Qt sınıflarını Python içerisinde altsınıflama (subclassing), pencere ve parçacıkların kullanımı,
+    sinyaller(signals) ve slotların (slots) kullanımı gibi.</para>
 
     <para id="para-ch1-34">Birçok PyQt uygulamasında QMainWindow kullanarak
-	    bir ana pencere sınıfı oluşturacaksınız ve tabii ki Qt parçacıkları (widgets) &mdash; ile
-      en az bir tane görünen ana parçacık oluşturacaksınız.
-      Bu ana parçacık bir liste görünümü (listview) bir düzenleyici penceresi (editor window)
-      ya da tuval (canvas) da olabilir. Tabii ki örneğimizde olduğu gibi basit bir düğme (button)
-      de olabilir.
-      Bununla birlikte PyQt neredeyse tüm Qt sınıfları için altsınıflar oluşturmanıza izin verir.
-      FIXME: nedir bu?  you can't base a Python class on more than
-      one Qt class at a time.</para>
+    bir ana pencere sınıfı oluşturacaksınız ve tabii ki Qt parçacıkları (widgets) &mdash; ile
+    en az bir tane görünen ana parçacık oluşturacaksınız.
+    Bu ana parçacık bir liste görünümü (listview) bir düzenleyici penceresi (editor window)
+    ya da tuval (canvas) da olabilir. Tabii ki örneğimizde olduğu gibi basit bir düğme (button)
+    de olabilir.
+    Bununla birlikte PyQt neredeyse tüm Qt sınıfları için altsınıflar oluşturmanıza izin verir.
+    FIXME: nedir bu?  you can't base a Python class on more than
+    one Qt class at a time.</para>
 
     <para id="para-ch1-35">Çünkü çoklu miras Qt sınıfları tarafından desteklenmez.
-	    Bu nadiren problem olur&mdash; ki bir parçacığın aynı anda hem checkbox
-	    hem de radiobutton olduğunda nasıl görüneceğini düşünün.
-	    Bir kişisel parçacık içerisinde iki parçacığın kullanımı da başka bir durumdur
-	    ki çağrılmış yetkilendirme tam olarak desteklenir. </para>
+     Bu nadiren problem olur&mdash; ki bir parçacığın aynı anda hem checkbox
+     hem de radiobutton olduğunda nasıl görüneceğini düşünün.
+     Bir kişisel parçacık içerisinde iki parçacığın kullanımı da başka bir durumdur
+     ki çağrılmış yetkilendirme tam olarak desteklenir. </para>
 
     <para id="para-ch1-36">Bu betikte <classname>QMainWindow</classname> sınıfını
-	    altsınıflayarak merkez parçacık olarak bir pushbutton içeren
-	    bir kişiselleştirilmiş pencere oluşturduk. Neredeyse herzaman 
-	bir pencere normal olarak kenarlıklar, menüler, araç çubukları içerir.
-	QMainWindow  da zaten bunun için dizayn edilmiştir.
-	Bu örnekte herhangi bir menü ögesi tanımlamadığımızdan pencere hala
-	biraz eksik/çıplak görünüyor.</para>
+    altsınıflayarak merkez parçacık olarak bir pushbutton içeren
+    bir kişiselleştirilmiş pencere oluşturduk. Neredeyse herzaman 
+    bir pencere normal olarak kenarlıklar, menüler, araç çubukları içerir.
+    QMainWindow  da zaten bunun için dizayn edilmiştir.
+    Bu örnekte herhangi bir menü ögesi tanımlamadığımızdan pencere hala
+    biraz eksik/çıplak görünüyor.</para>
 
     <para id="para-ch1-37">Pencerenin merkez bölümü posta kutusu gibi görünen yerdir.
-      Uygulamamıza özel işlevsellik de burada ortaya çıkıyor.
-      Burada tabii ki düğmemiz var.
-      <classname>QMainWindow</classname> sınıfı merkezi ögeyi boyutlandırma işini 
-      otomatik olarak yapar. Pencere kenarlıklarını sürükleyip büyütürken dikkat 
-      edin merkezi parcacık da büyür. Ayrıca önceki Merhaba Dünya ugulamamızla
-      şimdiki uygulamamızın şekli arasındaki farka dikkat edin:
-      Bu farklılığa <classname>QMainWindow</classname> sınıfının
-      otomatik yerleştirme işini kendiliğinden üstlenmesi neden olmaktadır.</para>
+    Uygulamamıza özel işlevsellik de burada ortaya çıkıyor.
+    Burada tabii ki düğmemiz var.
+    <classname>QMainWindow</classname> sınıfı merkezi ögeyi boyutlandırma işini 
+    otomatik olarak yapar. Pencere kenarlıklarını sürükleyip büyütürken dikkat 
+    edin merkezi parcacık da büyür. Ayrıca önceki Merhaba Dünya ugulamamızla
+    şimdiki uygulamamızın şekli arasındaki farka dikkat edin:
+    Bu farklılığa <classname>QMainWindow</classname> sınıfının
+    otomatik yerleştirme işini kendiliğinden üstlenmesi neden olmaktadır.</para>
 
     <mediaobject>
-      <imageobject>
-        <imagedata scale="60" align="center" fileref="ch1/hello2.eps">
-      </imageobject>
-      <caption><para id="para-ch1-38">Daha Gelişmiş bir Merhaba Dünya Uygulaması</para></caption>
+    <imageobject>
+    <imagedata scale="60" align="center" fileref="ch1/hello2.eps">
+    </imageobject>
+    <caption><para id="para-ch1-38">Daha Gelişmiş bir Merhaba Dünya Uygulaması</para></caption>
     </mediaobject>
 
     <indexterm>
-  <primary>setCentralWidget()</primary>
-  </indexterm>
-  <para id="para-ch1-39">Pencerenin merkezi kısmını ayarlamak için şu satırı (method) kullandık:
-      setCentralWidget() </para>
+    <primary>setCentralWidget()</primary>
+    </indexterm>
+    <para id="para-ch1-39">Pencerenin merkezi kısmını ayarlamak için şu satırı (method) kullandık:
+    setCentralWidget() </para>
 
     <programlisting>
-self.setCentralWidget(self.button)
+    self.setCentralWidget(self.button)
     </programlisting>
 
     <indexterm>
-  <primary>sinyaller (signals) ve slotlar (slots)</primary>
-  </indexterm>
-  <para id="para-ch1-40">Bir uygulama hiç pencere kullanmayabileceği gibi bir ya da
-      birden fazla pencere de kullanabilir ve tabii ki bir uygulama açılan
-      son pencere kapatılmadan kapanmamalıdır. <classname>QApplication</classname>
-      nesnesi açık olan pencere sayısını hesaplar ve son pencere kapandığında dünyayı uyarmayı bekler.
-      Bu işlev de tabii ki sinyal ve slot sistemi tarafından yerine getirilir.
-      Bu sistem ilerleyen bölümlerde daha derinlemesine anlatılacaktır. Ancak burada 
-      bazı noktalar hakkında çeşitli bilgiler vermek gerekiyor.</para>
+    <primary>sinyaller (signals) ve slotlar (slots)</primary>
+    </indexterm>
+    <para id="para-ch1-40">Bir uygulama hiç pencere kullanmayabileceği gibi bir ya da
+    birden fazla pencere de kullanabilir ve tabii ki bir uygulama açılan
+    son pencere kapatılmadan kapanmamalıdır. <classname>QApplication</classname>
+    nesnesi açık olan pencere sayısını hesaplar ve son pencere kapandığında dünyayı uyarmayı bekler.
+    Bu işlev de tabii ki sinyal ve slot sistemi tarafından yerine getirilir.
+    Bu sistem ilerleyen bölümlerde daha derinlemesine anlatılacaktır. Ancak burada 
+    bazı noktalar hakkında çeşitli bilgiler vermek gerekiyor.</para>
 
     <para id="para-ch1-41">Basit bir şekilde anlatacak olursak;
-      nesneler birbiri ile ilgilidir ve bir olay meydana geldiğinde ilgili
-      tüm nesneler uyarılır. Örneğimizde, QApplication nesnesi kapanmak için
-      son pencerenin ne zaman kapandığını bilmek istiyor.</para>
+    nesneler birbiri ile ilgilidir ve bir olay meydana geldiğinde ilgili
+    tüm nesneler uyarılır. Örneğimizde, QApplication nesnesi kapanmak için
+    son pencerenin ne zaman kapandığını bilmek istiyor.</para>
 
     <programlisting>
-app.connect(app, SIGNAL("lastWindowClosed()"),
-            app, SLOT("quit()"))
+    app.connect(app, SIGNAL("lastWindowClosed()"),
+                app, SLOT("quit()"))
     </programlisting>
 
     <indexterm>
-  <primary>quit()</primary>
-  </indexterm>
-  <para id="para-ch1-42">Bu satırı analiz edelim:
-      <varname>app</varname> nesnesi <function>lastWindowClosed()</function>
-      (application nesnesi tarafından kendisine gönderilir) sinyali ile kendi
-      <function>quit()</function> fonksiyonu arasında bir bağlantı kuruyor.
-       Hem GUI çalışmalarında hem de daha basit durumlarda Sinyal ve slotları 
-       Python ile kullanmak oldukça kolaydır.</para>
+    <primary>quit()</primary>
+    </indexterm>
+    <para id="para-ch1-42">Bu satırı analiz edelim:
+    <varname>app</varname> nesnesi <function>lastWindowClosed()</function>
+    (application nesnesi tarafından kendisine gönderilir) sinyali ile kendi
+    <function>quit()</function> fonksiyonu arasında bir bağlantı kuruyor.
+    Hem GUI çalışmalarında hem de daha basit durumlarda Sinyal ve slotları 
+    Python ile kullanmak oldukça kolaydır.</para>
 
-      <para id="para-ch1-43">Sinyaller ve slotların kullanıldığı başka bir HelloWindow sınıfı örneği:</para>
+    <para id="para-ch1-43">Sinyaller ve slotların kullanıldığı başka bir HelloWindow sınıfı örneği:</para>
 
-      <example><title>hello3.py --örneği için yeni bir parça</title>
-        <programlisting>
-...
+    <example><title>hello3.py --örneği için yeni bir parça</title>
+    <programlisting>
+
 class HelloWindow(QMainWindow):
 
     def __init__(self, *args):
@@ -442,35 +442,35 @@ class HelloWindow(QMainWindow):
         self.setCentralWidget(self.button)
         self.connect(self.button, SIGNAL("clicked()"),
                      self, SLOT("close()"))
-      </programlisting>
+    </programlisting>
     </example>
-    
+
     <para id="para-ch1-44">Burada <function>clicked()</function> sinyalinin olduğu yere
-	    bir satır ekledik ki bu sinyal <classname>QPushButton</classname>
-	    tarafından -tıklandığı zaman- verilecek. <function>clicked()</function> sinyali
-	    aynı zamanda <classname>HelloWindow</classname> sınıfına ait olan
-	    <function>close()</function> slotuna bağlıdır.
-	    
-	    We have added a line where the
-      <function>clicked()</function> signal, which is emitted by the
-      <classname>QPushButton</classname> when it is clicked, is
-      connected to the <function>close()</function> slot of the
-      <classname>HelloWindow</classname> class.
-      <classname>HelloWindow</classname> 
-      <classname>QMainWindow</classname> nesnesini miras olarak aldığında
-      aynı zamanda tüm slot fonksiyonlarını da miras alır.</para>
-    
+    bir satır ekledik ki bu sinyal <classname>QPushButton</classname>
+    tarafından -tıklandığı zaman- verilecek. <function>clicked()</function> sinyali
+    aynı zamanda <classname>HelloWindow</classname> sınıfına ait olan
+    <function>close()</function> slotuna bağlıdır.
+
+    We have added a line where the FIXME :?? ne diyo burda
+    <function>clicked()</function> signal, which is emitted by the
+    <classname>QPushButton</classname> when it is clicked, is
+    connected to the <function>close()</function> slot of the
+    <classname>HelloWindow</classname> class.
+    <classname>HelloWindow</classname> 
+    <classname>QMainWindow</classname> nesnesini miras olarak aldığında
+    aynı zamanda tüm slot fonksiyonlarını da miras alır.</para>
+
     <para id="para-ch1-45">Şimdi eğer düğmeye tıklarsanız pencere kapanır
-	    ve biz de ilk etkileşimli PyQt uygulamamızı bitirmiş oluruz!
+    ve biz de ilk etkileşimli PyQt uygulamamızı bitirmiş oluruz!
     </para>
 
     <para id="para-ch1-46">Ana fonksiyonu yeniden yazarak birden fazla pencere açabilen
       ilginç bir alıştırma daha yapabiliriz:
     </para>
 
-      <example><title>hello5.py için yeni bir parça</title>
-        <programlisting>
-...
+    <example><title>hello5.py için yeni bir parça</title>
+    <programlisting>
+
 def main(args):
     app=QApplication(args)
     winlist=[]
@@ -482,24 +482,24 @@ def main(args):
     app.connect(app, SIGNAL("lastWindowClosed()"),
                 app, SLOT("quit()"))
     app.exec_loop()
-...
-      </programlisting>
+
+    </programlisting>
     </example>
 
     <para id="para-ch1-47">Eğer hello5.py betiğini çalıştırısanız,
-      on tane Merhaba Dünya penceresinin masaüstünüzü kapladığını göreceksiniz.
-      Heerbir pencereyi düğmeye basarak ya da pencere kontrollerini kullanarak
-      kapatabilirsiniz.
-      Dikkat ederseniz uygulama ancak son pencere kapatıldığında sonlanacaktır.
-   </para>
+    on tane Merhaba Dünya penceresinin masaüstünüzü kapladığını göreceksiniz.
+    Herbir pencereyi düğmeye basarak ya da pencere kontrollerini kullanarak
+    kapatabilirsiniz.
+    Dikkat ederseniz uygulama ancak son pencere kapatıldığında sonlanacaktır.
+    </para>
 
     <para id="para-ch1-48">
-      <literal>winlist.append(win)</literal> satırını yorum satırı haline getirip
-      betiği tekrar çalıştırın:</para>
+    <literal>winlist.append(win)</literal> satırını yorum satırı haline getirip
+    betiği tekrar çalıştırın:</para>
 
     <example><title>hello4.py üzerinde küçük değişiklik</title>
-      <programlisting>
-...
+    <programlisting>
+
 def main(args):
     app=QApplication(args)
     winlist=[]
@@ -511,107 +511,113 @@ def main(args):
     app.connect(app, SIGNAL("lastWindowClosed()"),
                 app, SLOT("quit()"))
     app.exec_loop()
-...
-      </programlisting>
+
+    </programlisting>
     </example>
 
     <para id="para-ch1-49">ve neler olduğuna bakın...</para>
 
     <indexterm>
-  <primary>garbage collection</primary><secondary>reference counting</secondary>
-  </indexterm>
-  <para id="para-ch1-50">Bu özellik Python'un ilginç yanlarından biridir:
-      C++ dilinin aksine Python pythonda bir FIXME:? garbage collector vardır.
-      Bu sanal garbage-adam referans verilmemiş nesneleri mümkün olan
-      en kısa sürede temizleyecektir.
-      Bu şu anlama gelir; Python değişken adı ile ilişkilendirilmeyen
-      hiçbir nesne görüntülenmeyecektir.(Eğer nesne <classname>QObject</classname>
-      sınıfının bir FIXME :? oğlu (child) ise durum değişir,
-      ayrıntılar için <xref linkend="ch3"> bölümüne bakın.)
-      Eğer bu temizlik işini C++ dilinde denerseniz,referans tutma konusunda 
-      bir değişiklik olmaz, C++ kullanılmayan nesneleri sizin için silmez.
-      Bu durum da hoşunuza gitmeyecek gereksiz bellek kullanımına neden olur.
-   </para>
+    <primary>garbage collection FIXME :?</primary><secondary>reference counting</secondary>
+    </indexterm>
+    <para id="para-ch1-50">Bu özellik Python'un ilginç yanlarından biridir:
+    C++ dilinin aksine Python pythonda bir FIXME:? garbage collector vardır.
+    Bu sanal garbage-adam referans verilmemiş nesneleri mümkün olan
+    en kısa sürede temizleyecektir.
+    Bu şu anlama gelir; Python değişken adı ile ilişkilendirilmeyen
+    hiçbir nesne görüntülenmeyecektir.(Eğer nesne <classname>QObject</classname>
+    sınıfının bir FIXME :? oğlu (child) ise durum değişir,
+    ayrıntılar için <xref linkend="ch3"> bölümüne bakın.)
+    Eğer bu temizlik işini C++ dilinde denerseniz,referans tutma konusunda 
+    bir değişiklik olmaz, C++ kullanılmayan nesneleri sizin için silmez.
+    Bu durum da hoşunuza gitmeyecek gereksiz bellek kullanımına neden olur.
+    </para>
 
-  </sect1>
-  <sect1>
+    </sect1>
+    <sect1>
 
     <title>Form Hazırlama</title>
 
     <indexterm>
-  <primary>designing forms</primary>
-  </indexterm>
-  <para id="para-ch1-51">One important feature of BlackAdder and
-      PyQt is the visual gui designer. You can use the designer to
-      easily create all kinds of dialog windows, and even custom
-      widgets.</para>
+    <primary>form tasarlama</primary>
+    </indexterm>
+    <para id="para-ch1-51">BlackAdder ve PyQt'un önemli özellikerinden biri
+    görsel arayüz (GUI) tasarım aracına sahip olmalarıdır.
+    Her çeşit diyalog penceresi ve kişiselleştirilmiş parçacık
+    oluşturmak için bu tasarım aracını kullanabilirsiniz.
+    </para>
 
-    <para id="para-ch1-52">The definition of these user-interface
-      designs is saved in files in an XML format, and you can easily
-      translate those to Python code. The beauty of the system is that
-      you can just as easily translate your designs to valid C++ code,
-      making it easy to develop your prototype in Python and, when
-      satisfied, port the whole gui to fast, compiled C++. (C++ code,
-      I might add, that compiles just as well on Windows, Unix/X11, OS
-      X and embedded systems).</para>
+    <para id="para-ch1-52">Kullanıcı arayüzü için görsel olarak yapılan
+    tanımlamalar XML formatındaki dosyalara kaydedilir ve siz de bu 
+    dosyaları kolayca Python kodlarına çevirebilirsiniz.
+    Bu sistemin güzelliği tasarımlarınızı kolayca geçerli C++ kodlarına
+    çevirebilmeniz ve prototip uygulamanızı Python ile geliştirmenizin 
+    kolaylaşmasıdır. Eğer sonradan isterseniz tüm arayüzü hızlı, derlenmiş
+    C++ diline çevirebilirsiniz.(C++ kodlarınızın Windows, Unix/X11, OS X ve
+    gömülü sistemlerde de derlenebildiğini ekleyelim.)
+    </para>
 
-    <para id="para-ch1-53">The version of Qt Designer that is included
-      with Qt3 can also create complete main windows with menus and
-      toolbars. Once <application>pyuic</application> has been updated
-      to include those elements, you can use this in your Python
-      projects, too.</para>
+    <para id="para-ch1-53">Qt3 içerisinde gelen Qt Designer de ana pencereleri 
+    araç çubukları ve menüleri ile birlikte oluşturabilir.
+    Artık <application>pyuic</application> uygulaması bu ögeleri de içerecek
+    şekilde güncellendiğinden bu uygulamayı da Python projelerinizde
+    kullanabilirsiniz.
+    </para>
 
-    <para id="para-ch1-54">Let's use Designer to design a small form
-      that would be useful for connecting to some system, and hook it
-      up in a small PyQt program.</para>
+    <para id="para-ch1-54">Designer yazılımını kullanarak bazı sistemlere
+    bağlanabilen ve kanca atabilen küçük bir programı PyQt ile tasrlayalım.
+    </para>
 
     <mediaobject>
-      <imageobject>
-        <imagedata scale="40" align="center" fileref="ch1/designer_frmconnect.eps">
-      </imageobject>
-      <caption><para id="para-ch1-55">A form in the gui designer</para></caption>
+    <imageobject>
+    <imagedata scale="40" align="center" fileref="ch1/designer_frmconnect.eps">
+    </imageobject>
+    <caption><para id="para-ch1-55">gui designer ile oluşturulan bir form</para></caption>
     </mediaobject>
 
     <indexterm>
-  <primary>layout management</primary>
-  </indexterm>
-  <para id="para-ch1-56">It's quite easy to work with designer
-      &mdash; just keep in mind that you <emphasis>never</emphasis>
-      have to place items pixel-perfect. Just bang widgets of roughly
-      the right size in roughly the right places, add the Qt layout
-      managers, and see them work their magic. </para>
+    <primary>yerleşim yönetimi</primary>
+    </indexterm>
+    <para id="para-ch1-56">Qt Tasarımcı (designer) ile çalışmak kolaydır,
+    sadece <emphasis>asla</emphasis> ögeleri mükemmel bir şekilde
+    piksellere yerleştirmek zorunda olmadığınızı unutmayın.
+    Sadece tüm ögeleri kabaca doğru yerlere koyun, Qt yerleşim yöneticilerini
+    (Qt layout managers) ekleyin ve yaptıkları sihirli işi görün.
+    </para>
 
-    <para id="para-ch1-57">You add a layout manager by selecting the
-      widgets you want to be managed, and then selecting the right
-      layout manager from the toolbar.</para>
+    <para id="para-ch1-57">Bir yerleşim yöneticisini yönetmek istediğiniz
+    parçacıkları ve doğru yerleşim yöneticisini araç çubuğundan seçerek
+    ekleyebilirsiniz.
+    </para>
 
-    <para id="para-ch1-58">In the above design, there are three layout
-      managers: the buttons on the right are stacked, the widgets
-      inside the bevel are in a grid, and everything in the form is in
-      another grid. Try making the dialog larger and smaller &mdash;
-      it will always look good. Even better, if a visually impaired
-      user chooses a large system font, say Arial 24 points bold, the
-      form will still look good.</para>
+    <para id="para-ch1-58">Yukarıdaki tasarımda üç tane yerleşim yöneticisi
+    vardır:sağdaki düğmeler istif edilmiştir,bevel içindeki parçacıklar
+    ızgaralanmıştır ve form içerisndeki herşey başka br ızgara  içerisindedir.
+    Bu diyalog penceresini büyültüp küçültseniz de görünümünün bozulmadığını
+    göreceksiniz. Daha da iyisi, görme bozukluğu yaşayan bir kullanıcı sistemi için
+    çok büyük yazı tipleri seçmiş olsa da (örneğin Arial 24 pt kalın) görünüm
+    yine de bozulmayacaktır.
+    </para>
 
     <indexterm>
-  <primary>ui files</primary>
-  </indexterm>
-  <indexterm>
-  <primary>compiling forms designs</primary>
-  </indexterm>
-  <para id="para-ch1-59">You can either compile the .ui file to
-      Python code from BlackAdder or from the command-line.  The
-      result will be something like this:</para>
+    <primary>ui dosyaları</primary>
+    </indexterm>
+    <indexterm>
+    <primary>form tasarımları derlemek</primary>
+    </indexterm>
+    <para id="para-ch1-59">İsterseniz .ui dosyasını BlackAdder kullanarak
+    ya da komut satırından derleyebilirsniz. Sonuç şuna benzer bir şekilde
+    görünecektir:</para>
 
     <example><title>frmconnect.py</title>
-      <programlisting>
+    <programlisting>
+
 # Form implementation generated from reading ui file 'frmconnect.ui'
 #
 # Created: Wed Feb 28 21:34:40 2001
 #      by: The Python User Interface Compiler (pyuic)
 #
 # WARNING! All changes made in this file will be lost!
-
 
 from qt import *
 
@@ -657,7 +663,7 @@ class frmConnect(QDialog):
         self.grpConnection = QGroupBox(self,'grpConnection')
         self.grpConnection.setSizePolicy(QSizePolicy(5,7,self.grpConnection. \
         sizePolicy().hasHeightForWidth()))
-        
+
         self.grpConnection.setTitle(self.tr(''))
         self.grpConnection.setColumnLayout(0,Qt.Vertical)
         self.grpConnection.layout().setSpacing(0)
@@ -711,30 +717,32 @@ class frmConnect(QDialog):
 
         self.lblName.setBuddy(self.txtName)
         self.lblPasswd.setBuddy(self.txtName)
-        </programlisting>
-      </example>
+    </programlisting>
+    </example>
 
     <indexterm>
-  <primary>subclassing forms desigsn</primary>
-  </indexterm>
-  <indexterm>
-  <primary>visual design</primary>
-  </indexterm>
-  <para id="para-ch1-60">Now this looks pretty hideous &mdash; but fortunately you'll
-      never have to hack it. You would lose all your changes anyway, the
-      next time you make a change to your design and regenerate the Python
-      code. The best thing to do is to subclass this form with
-      code that actually fills the dialog with data and perfoms an
-      action upon closing it. I like to keep the names of the
-      generated form and the subclassed form related, and I tend to
-      refer to the first as a form, and the second as dialog &mdash;
-      hence the prefix frmXXX for generated forms and dlgXXX for the
-      dialogs.</para>
+    <primary>form tasarımlarını FIXME:? altsınıflamak (subclassing)</primary>
+    </indexterm>
+    <indexterm>
+    <primary>görsel tasarım</primary>
+    </indexterm>
+    <para id="para-ch1-60">Bu yaptıklarımız size çok sempatik görünüyor
+    fakat malesef bu kodu asla değiştiremeyeceksiniz.
+    Yaptığınız tü değişiklikleri kaybetme pahasına sonraki değişikliklerde
+    tasarımınızı yeniden yaparak .ui dosyanızı tekrar Python koduna
+    dönüştürebilirsiniz. FIXME: ne diyo burada??
+    The best thing to do is to subclass this form with
+    code that actually fills the dialog with data and perfoms an
+    action upon closing it. Ben oluşturulan form ve altsınıflanmış form isimlerini
+    isimleri ile benzer şekilde tutmaktan hoşlanırım ve önce bir form olarak
+    sonra da dialog olarak atıfta bulunmayı tercih ederim.
+    Oluşturulan formlar için ön ek olarak frmXXX, diyaloglar için dlgXX  kullanırım.
+    </para>
 
-    <para id="para-ch1-61">For example:</para>
+    <para id="para-ch1-61">Örneğin:</para>
 
-    <example<title>dlgconnect.py &mdash; the subclass of the generated form</title>
-      <programlisting>
+    <example<title>dlgconnect.py &mdash; oluşturulan formun alt sınıflanmış şekli</title>
+    <programlisting>
 import sys
 from qt import *
 
@@ -762,48 +770,50 @@ if __name__ == '__main__':
     app.setMainWidget(win)
     win.show()
     app.exec_loop()
-        </programlisting>
-      </example>
+    </programlisting>
+    </example>
 
-    <para id="para-ch1-62">As you can see, we have subclassed the
-      generated form. In the constructor, the various fields are
-      filled with a bit of data. Note that we can simply use Python
-      string objects in setText() methods. Qt uses a special string
-      object, <classname>QString</classname> for all its textual data,
-      but PyQt automatically translates both Python strings and Python
-      unicode strings to these <classname>QString</classname> objects.
-      There are some complications, which we deal with in
-      <xref linkend="ch4">, but the translation is mostly
-      transparent.</para>
+    <para id="para-ch1-62">Gördüğünüz gibi, oluşturulan formu 
+    altsınıfladık. İnşa aracı sayesinde, bazı alanlar küçük veriler ile dolduruldu.
+    Buarada Python string nesnelerini setText() methodu ile kolayca kullanabileceğimizi
+    unutmayın. Qt özel bir string nesnesi kullanır: Qt içerisinde
+    <classname>QString</classname> tüm metinsel veriler için kullanılır.
+    Fakat PyQt tüm Python stringlerini ve Python unicode stringlerini
+    <classname>QString</classname> nesnesine otomatik olarak çevirir.
+    Ek olarak <xref linkend="ch4"> bölümünde değineceğimiz bazı
+    zorluklar olsa da çeviri çoğunlukla şeffaftır.
+    </para>
 
-    <para id="para-ch1-63">When you press the OK button, Qt calls the
-      <function>accept()</function> method of the dialog class, in
-      this case <classname>dlgConnect</classname>, which inherits
-      <classname>frmConnect</classname>, which inherits
-      <classname>QDialog</classname>. The
-      <function>accept()</function> method prints out the contents of
-      the fields. Then the <function>accept()</function> method of the
-      parent class  &mdash; ultimately <classname>QDialog</classname>
-      &mdash; is called, and the dialog is closed.</para>
+    <para id="para-ch1-63">OK düğmesine bastığınızda, Qt dialog sınıfının
+    <function>accept()</function> methodunu çağırır, bu durumda,
+    <classname>dlgConnect</classname>
+    <classname>frmConnect</classname> i
+    <classname>frmConnect</classname> de
+    <classname>QDialog</classname> u miras alır.
+    <function>accept()</function> methodu alanların içeriğini yazar.
+    Sonra ebeveyn sınıfın methodu <function>accept()</function>
+    &mdash; nihayet <classname>QDialog</classname>
+    &mdash; çağrılır ve dialog kapanır.FIXME : Bu paragraftan emin değilim</para>
 
-  </sect1>
+    </sect1>
 
-  <sect1>
-    <title>Conclusion</title>
+    <sect1>
+    <title>Sonuç</title>
 
-    <para id="para-ch1-64">In this chapter we've taken a first sip of
-      developing with Python and PyQt, touching lightly on many
-      subjects. In the rest of this part, we'll investigate these
-      issues in depth. Then we will start building real software in
-      Part III. If you get lost, you can always refer to the online
-      documentation that comes with Qt or BlackAdder.
-      <xref linkend="readingDocumentation">, Reading the Qt
-      Documentation,  tells you how you can read the C++ class
-      documentation with profit and pleasure.</para>
+    <para id="para-ch1-64">Bu bölümde birçok konuya yüzeysel olarak değinerek
+    Python ve PyQt ile yazılım geliştirmenin ilk adımlarını gördük.
+    Bu bölümün geri kalan kısmında yüzeysel olarak geçtiğimiz bu konuları
+    derinlemesine inceleyeceğiz. Ardından III. kısımda gerçek bir uygulama 
+    geliştirmeye başlayacağız. Eğer kendinizi kaybolmuş gibi hssediyorsanız Qt
+    ya da BlackAdder ile birlikte gelen çevrimiçi dökümanlara herzaman 
+    başvurabilirsiniz. <xref linkend="readingDocumentation"> Qt Dökümanlarını okumak,
+    başlığı size C++ sınıf dökümanlarını size fayda sağlayacak ve zevk verecek şekilde
+    nasıl okuyacağınızı anlatıyor.
+    </para>
 
-  </sect1>
+    </sect1>
+    </chapter>
 
- </chapter>
 <!-- Keep this comment at the end of the file
 Local variables:
 mode: sgml
