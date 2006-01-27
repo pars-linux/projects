@@ -12,7 +12,7 @@ $config['db']['port']			= "";
 $config['db']['username']		= "fasafiso";
 $config['db']['password']		= "fasafiso";
 $config['db']['databasename']		= "fasafiso";
-$config['db']['tableprefix']		= ""; //fasafiso_
+$config['db']['tableprefix']		= "fs_";_
 $config['db']['connectiontype']		= "persistent";
 
 $config['smarty']['libdir']		= "3rdparty/smarty";

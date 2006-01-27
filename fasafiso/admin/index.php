@@ -103,7 +103,6 @@
 	<body>
 <?
 	if (session_is_registered("fasafiso")){
-	//<a href="#" onclick="toggleVisibility(document.getElementById('menu2'), this); return false"><img src="images/old.png">Eski Yazılar <img src="images/down.png"></a><br>
 		?>
 		<center>
 		<div class="bar"><img src="images/bar.png"></div>
