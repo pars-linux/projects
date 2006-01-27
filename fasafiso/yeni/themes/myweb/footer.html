@@ -1,0 +1,62 @@
+					﻿</div>
+				</div>
+			</div>
+		</div>
+	<div id="sidebar">
+		<div class="sidebardiv">
+		
+		{if $categories}
+			<div class="sidebarbody categories">
+				<h3>Categories</h3>
+					<div class="sidebarin">
+						<ul class="category_list">
+						{section name=category loop=$categories}
+						<li><a href="{$blogurl}?cat={$categories[category].id}" title="{$categories[category].name}"> {$categories[category].name}</a> (<a href="{$blogurl}feed.php?cat={$categories[category].id}" title="{$categories[category].name} rss">rss</a>) [{$categories[category].count}]</li>
+						{/section}
+						</ul>
+					</div>
+			</div>
+		{/if}
+		
+		{if $archives}
+			<div class="sidebarbody archives">
+				<h3>Archives</h3>
+					<div class="sidebarin">
+						<ul class="category_list">
+						{section name=archive loop=$archives}
+						<li><a href="{$blogurl}?date={$archives[archive].date}" title="{$archives[archive].name} Arşivleri"> {$archives[archive].name}</a> [{$archives[archive].count}]</li>
+						{/section}
+						</ul>
+					</div>
+			</div>
+		{/if}
+		
+		<div class="sidebarbody links">
+			<h3>Links</h3>
+				<div class="sidebarin">
+					<ul class="linklist">
+					{section name=link loop=$links}
+						<li><a href="{$links[link].url}">{$links[link].name}</a></li>
+					{/section}
+					</ul>
+				</div>
+		</div>
+		
+		<div class="sidebarbody login">
+			<h3>Login</h3>
+				<div class="sidebarin">
+					<ul class="linklist">
+					<li><a href="{$blogurl}admin/" title="">Yönetim</a><br></li>
+					</ul>
+				</div>
+		</div>
+		
+	</div>
+</div>
+<div class="clearing">&nbsp;</div>
+</div>
+<div id="footer">
+	<div id="credits">{$blogname} is proudly powered by {$fasafiso_signature}<br />
+		Feeds: <a href="{$blogurl}feed.php?type=rss2">rss</a>
+</div>
+</body></html>
