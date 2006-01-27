@@ -1,0 +1,101 @@
+{include file="header.html"}
+	<div class="contentdiv">
+		<h2 class="weblog">Weblog</h2>
+			<div class="divweblog">
+		{section name=post loop=$posts}
+		<div class="contentbody">
+			<h3>
+			<a href="{$blogurl}?id={$posts[post].id}" rel="bookmark" title="Permanent Link to {$posts[post].title}">{$posts[post].title}</a> @ <a href="{$blogurl}?date={$posts[post].date.year}{$posts[post].date.month}">{$posts[post].date.monthname} </a> {$posts[post].date.day}, {$posts[post].date.hour}:{$posts[post].date.minute}</h3>
+			<div class="entry">{$posts[post].entry}</div>
+			<div class="itemdetails">
+			<span class="item1"><a href="{$blogurl}?author={$posts[post].author_id}">{$posts[post].author}</a></span>&nbsp;
+			<span class="item2">
+			{section name="loop" loop=$posts[post].category}
+			<a href="{$blogurl}?cat={$posts[post].category[loop].cat_id}" title="{$posts[post].category[loop].name}">{$posts[post].category[loop].name}</a> 
+			{/section}
+			</span>&nbsp;
+			<span class="item3">
+			<a href="{$blogurl}?id={$posts[post].id}#comments">Yorum</a> [{$posts[post].comment_count}]
+			</span>
+			</div>
+		</div>
+	<h2 class="commentsmade">Comments made</h2>
+	<ol class="comments">
+	
+	{if $comments == ""}
+			<li class="alt">
+				<p align="center">Bu yazıya hiç yorum yapılmamış.</p>
+			</li>
+	{/if}
+	{section name=comment loop=$comments}
+	<li>
+		<div class="divcommentsmade">
+			<div class="contentbody id0">
+			<h4 class="c_userlink"><a rel="external nofollow" href="{$comments[comment].website}">{$comments[comment].author}</a> - [{$comments[comment].email}]</h4>
+			<div class="c_commentbody">{$comments[comment].comment}</div>
+			<div class="c_commentinfo">{$comments[comment].date.month} {$comments[comment].date.day}, {$comments[comment].date.hour}:{$comments[comment].date.minute}</div>
+			</div>
+		</div>
+	</li>
+	{/section}
+	</ol>
+
+<form method="post" action="{$blogurl}?action=addcomment&id={$posts[post].id}" id="CommentInputForm">  
+<h2 class="addcomment">Add comment</h2>
+  <div class="divaddcommentbg">
+  <div class="divaddcomment">
+  <div class="commentform">
+  <table border="0" cellpadding="4" cellspacing="0">
+	<tbody>
+	<tr>
+	  <td align="right" valign="top">
+	   	isim, soyisim
+	  </td>
+	  <td valign="top">
+	  	<input name="author" id="name" value="" size="25" class="comment_name_input" tabindex="2" type="text">
+	  </td>
+	</tr>
+	<tr>
+	  <td align="right" valign="top">
+	  	e-mail
+	  </td>
+	  <td colspan="2" valign="top">
+	  	<input name="email" id="email" value="" size="25" class="comment_email_input" tabindex="3" type="text">
+
+	  </td>
+    </tr>
+	<tr> 
+	  <td align="right" valign="top">
+	  	http://
+	  </td>
+	  <td colspan="2" valign="top">
+	  	<input name="website" id="web" value="" size="25" class="comment_web_input" tabindex="4" type="text">
+
+	  </td>
+	</tr>
+	<tr>
+	  <td align="right" valign="top">
+	  	yorum
+	  </td>
+	  <td colspan="2" valign="top">
+	  	<textarea class="txpCommentInputMessage" name="comment" id="message" cols="25" rows="5" tabindex="1"></textarea>
+	  </td>
+	</tr>
+	<tr>
+	  <td align="right" valign="top">&nbsp;</td>
+	  <td align="right" valign="top">
+	    <input type="hidden" value="{$smarty.now|date_format:"%Y%m%d%H%M"}" name="date">
+		<input class="form" name="stat" value="Yorumla" type="submit">
+	  </td>
+	</tr>
+  </tbody></table>
+</div>
+</div>
+</div>
+</form>
+		{/section}
+		<div class="navigation">
+			<div class="alignleft"></div>
+			<div class="alignright"></div>
+		</div>
+{include file="footer.html"}
