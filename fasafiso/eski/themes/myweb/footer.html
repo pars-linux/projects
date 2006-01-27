@@ -1,0 +1,70 @@
+					﻿</div>
+				</div>
+			</div>
+		</div>
+	<div id="sidebar">
+		<div class="sidebardiv">
+		
+		{if $categories}
+			<div class="sidebarbody categories">
+				<h3>Categories</h3>
+					<div class="sidebarin">
+						<ul class="category_list">
+						{section name=category loop=$categories}
+						<li><a href="{$blogurl}?cat={$categories[category].id}" title="{$categories[category].name}"> {$categories[category].name}</a> (<a href="{$blogurl}feed.php?type=rss2&amp;cat={$categories[category].id}" title="{$categories[category].name}">rss</a>) [{$categories[category].count}]</li>
+						{/section}
+						</ul>
+					</div>
+			</div>
+		{/if}
+		
+		{if $archives}
+			<div class="sidebarbody archives">
+				<h3>Archives</h3>
+					<div class="sidebarin">
+						<ul class="category_list">
+						{section name=archive loop=$archives}
+						<li><a href="{$blogurl}?date={$archives[archive].date}" title="{$archives[archive].name}"> {$archives[archive].name}</a> [{$archives[archive].count}]</li>
+						{/section}
+						</ul>
+					</div>
+			</div>
+		{/if}
+		
+		<div class="sidebarbody links">
+			<h3>Links</h3>
+				<div class="sidebarin">
+					<ul class="linklist">
+					<li><a href="http://gezegen.linux.org.tr">Planet LKD</a></li>
+				 	<li><a href="http://planetkde.org">Planet KDE</a></li>
+					<li><a href="http://planet.gnome.org">Planet Gnome</a></li>
+ 					<li><a href="http://planet.debian.org">Planet Debian</a></li>
+ 					<li><a href="http://planet.python.org">Planet Python</a></li>
+ 					<li><a href="http://planet.gentoo.org">Planet Gentoo</a></li>
+ 					<li><a href="http://www.planetnovell.org">Planet Novell</a></li>
+ 					<li><a href="http://www.go-mono.com/monologue/">MONOlogue</a></li>
+ 					<li><a href="http://planetjava.org">Planet Java</a></li>
+ 					<li><a href="http://planet.lisp.org">Planet LISP</a></li>
+					<li><a href="http://planet.perl.org">Planet Perl</a></li>
+					</ul>
+				</div>
+		</div>
+		
+		<div class="sidebarbody login">
+			<h3>Login</h3>
+				<div class="sidebarin">
+					<ul class="linklist">
+					<li><a href="{$blogurl}admin/" title="">Yönetim</a><br></li>
+					</ul>
+				</div>
+		</div>
+		
+	</div>
+</div>
+<div class="clearing">&nbsp;</div>
+</div>
+<div id="footer">
+	<div id="credits">{$blogname} is proudly powered by {$fasafiso_signature}<br />
+		Feeds: <a href="{$blogurl}feed.php?type=rss2">rss</a>&nbsp;<strong>|</strong>&nbsp;<a href="{$blogurl}feed.php?type=atom">atom</a>
+</div>
+</body></html>
