@@ -6,9 +6,9 @@
 		$st="add";
 		if ($id<>""){
 			$post=get_posts($id,"","",$_SESSION['uid']);
-			$date=$post[0][date];
+			$date=$post[0]["date"];
 			$st="update";
-			if ($post[0][status]) $durum="- Yazı yayında .."; else $durum="- Yazı geçici olarak kaydedilmiş .. Sayfada gözükmez !!";
+			if ($post[0]["status"]) $durum="- Yazı yayında .."; else $durum="- Yazı geçici olarak kaydedilmiş .. Sayfada gözükmez !!";
 		}
 		else $date=date('YmdHi');
 		?>
@@ -16,7 +16,7 @@
 		<form action="?act=<?=$st?>" method="post" onsubmit="syncTextarea();">
 			<p class="sari">Başlık : <input type="text" name="title" size="60" value="<?=$post[0]["title"]?>"><i><?=$durum?></i></p>
 			<br>
-			<textarea name="text" style="width:99%; height:280px" id="richtext"><?=$post[0]["text"]?></textarea>
+			<textarea name="text" style="width:99%; height:280px" id="richtext"><?=$post[0]["entry"]?></textarea>
 			<script type="text/javascript">makeWhizzyWig("richtext", "all");</script>
 			<input type="hidden" name="date" value="<?=$date?>">
 			<input type="hidden" name="id" value="<?=$post[0]["id"]?>">
