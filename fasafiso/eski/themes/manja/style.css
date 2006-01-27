@@ -1,0 +1,528 @@
+/* 
+Theme Name: man~ja
+Theme URI: http://www.neoalchemist.com
+Description: a simple man~ja theme 
+Version: 0.01
+Author: Praveen Kumar Ramanathan
+Author URI: http://www.neoalchemist.com/
+
+	
+Notes ::If you want to change the color of the top/bottom and calendar, 
+	search for #ff6 and replace with the colour code of your choice.
+	how about replacing with #cf6 or #fcf ? ;-)
+
+	
+	based on / adapted from : 
+	Kubrick v1.5  	http://binarybonsai.com/kubrick/
+
+	Kubrick theme was designed and built by Michael Heilemann,
+	whose blog you will find at http://binarybonsai.com/
+	Also "annu malikaised" based on Papayawhip Theme
+	Modified by Roland Graffe (http://www.ronsens.de)
+	
+	
+	The theme was adapted to aadyam theme by Praveen Kumar Ramanathan,
+	whose blog is at http://www.neoalchemist.com.
+	
+	
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+	
+	
+*/
+
+
+/* Begin Typography & Colors */
+
+
+body {
+	color: #222;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 0;
+	text-align: center;
+	background: #fff;
+	font: 12px Verdana, Geneva, Arial, sans-serif;
+}
+#page {
+	width: 82%;
+	margin: 0 auto;
+	text-align: left;
+	background: #fff;
+}
+#header {
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	height: 20px;
+	font-size: 11px;
+	color: #333;
+	background: #ff6;
+}
+
+#header ul{
+   padding : 0;
+   margin : 0;
+   white-space : nowrap;
+}
+
+#header ul li{
+   display : inline;
+}
+
+#header ul li:before {
+	content:"{";
+	}
+	
+#header ul li:after {
+	content:"}";
+	}
+
+
+#header ul li a{
+   display : inline;
+   color: #000;
+   font-weight: normal;
+   padding-left: 2px;
+   padding-right: 2px;
+}
+
+#header a {
+	color: #000;
+	}
+	
+#header ul li a:hover {
+	text-decoration: underline;
+	}
+
+
+
+#sidebar {
+	margin-left: 0;
+	padding-left: 15px;
+	float: right;
+	width: 15%;
+	font: 11px 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+
+#sidebar h2 {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	margin: 0;
+	font: bold 1em Verdana, Geneva, Arial, sans-serif;
+}
+
+#sidebar a {
+	text-decoration: none;
+	font-weight: normal;
+	color: #000;
+}
+#sidebar ul, #sidebar ul ol {
+	margin: 0;
+	padding: 0;
+}
+#sidebar ul li {
+	list-style-type: none;
+	list-style-image: none;
+	margin-bottom: 15px;
+}
+#sidebar ul p, #sidebar ul select {
+	margin: 0;
+}
+#sidebar ul ul, #sidebar ul ol {
+	margin: 0;
+}
+#sidebar ul ul ul, #sidebar ul ol {
+	margin: 0;
+}
+ol li, #sidebar ul ol li {
+	list-style: decimal outside;
+}
+#sidebar ul ul li, #sidebar ul ol li {
+	margin: 0;
+	padding: 0;
+}
+#sidebar #searchform #s {
+	width: 70px;
+	border: 1px solid #999;
+}
+#sidebar #searchsubmit {
+	padding: 0;
+	color: #000;
+	font-family: Verdana, Geneva, Arial, sans-serif;
+	border: 1px strong #f0f0f0;
+	background: #f0f0f0;
+}
+#sidebar form {
+	margin: 0;
+}
+#footer {
+	width: 100%;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	height: 20px;
+	text-align: center;
+	font-size: 11px;
+	clear: both;
+	margin-bottom: 0;
+	margin-top: 20px;
+	background: #ff6;
+}
+#footer p {
+	margin: 0;
+	padding-top: 3px;
+	text-align: center;
+	color: #333;
+	font-size: 11px;
+}
+#footer a {
+	text-decoration: none;
+	font-weight: normal;
+	color: #000;
+}
+#footer a:hover {
+	text-decoration: underline;
+	font-weight: normal;
+	color: #000;
+}
+#content {
+	font-size: 11px;
+}
+.narrowcolumn .entry, .widecolumn .entry {
+	line-height: 1.7em;
+}
+.widecolumn {
+	line-height: 1.7em;
+}
+.narrowcolumn .postmetadata {
+	text-align: left;
+}
+small {
+	font: 11px/150% Verdana, Geneva, Arial, sans-serif;
+}
+#commentmetadata a {
+	text-decoration: none;
+	font-weight: normal;
+	color: #333;
+}
+h1, h2, h3 {
+	padding-top: 5px;
+	padding-bottom: 0;
+	font: bold 12px Verdana, Geneva, Arial, sans-serif;
+}
+h4 {
+	padding-bottom: 5px;
+	margin-top: -10px; 
+	font: normal .9em Verdana, Geneva, Arial, sans-serif;
+}
+.description {
+	font-size: 11px;
+	text-align: right;
+}
+h1, h1 a, h1 a:hover, h1 a:visited, .description {
+	text-decoration: none;
+}
+
+h2, h2 a, h2 a:hover, h2 a:visited, h3, h3 a, h3 a:hover, h3 a:visited, #sidebar h2, #wp-calendar caption, cite {
+	text-decoration: none;
+}
+
+#commentform input, #commentform textarea {
+	font: 11px Verdana, Geneva, Arial, sans-serif;
+}
+
+
+ol.commentlist {
+		margin: 0px;
+		padding: 0px;
+		}
+#commentlist {
+	padding: 0px;
+	margin : 0px;
+}
+.commentlist li {
+	font-weight: normal;
+	margin-top: 20px;
+	padding: 10px;
+	list-style: none;
+}
+.commentlist cite, .commentlist cite a {
+	font-weight: bold;
+	font-style: normal;
+	font-size: 13px;
+}
+.commentlist small a {
+	font-weight: normal;
+	font-style: normal;
+	color: #666;
+}
+.commentlist p {
+	font-weight: normal;
+	line-height: 1.7em;
+	text-transform: none;
+}
+#commentform p {
+	font-family: Verdana, Geneva, Arial, sans-serif;
+}
+.commentmetadata {
+	font-size: 10px;
+	font-weight: normal;
+}
+code {
+	font: 1.1em 'Courier New', Courier, Fixed;
+}
+acronym, abbr, span.caps {
+	font-size: 0.9em;
+	letter-spacing: .07em;
+}
+a, h2 a:hover, h3 a:hover {
+	text-decoration: none;
+}
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #555;
+}
+a:link {
+	text-decoration: none;
+	font-weight: bold;
+	color: #555;
+}
+a:vlink {
+	text-decoration: none;
+	font-weight: bold;
+	color: #555;
+}
+a:alink {
+	text-decoration: none;
+	font-weight: bold;
+	color: #555;
+}
+a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #333;
+}
+#wp-calendar #prev a {
+	font-size: 9pt;
+}
+#wp-calendar a {
+	text-decoration: none;
+}
+#wp-calendar caption {
+	font: bold 1.3em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	text-align: center;
+}
+#wp-calendar th {
+	font-style: normal;
+	text-transform: capitalize;
+}
+.narrowcolumn {
+	float: left;
+	padding-right: 15px;
+	padding-left: 10px;
+	margin: 0;
+	width: 75%;
+}
+.widecolumn {
+	float: left;
+	padding-right: 15px;
+	padding-left: 10px;
+	margin: 0;
+	width: 75%;
+}
+.post {
+	margin-top: 2px;;
+}
+
+.noresult {
+	line-height: 1.7em;
+}
+
+.widecolumn .post {
+	margin: 0;
+}
+.narrowcolumn .postmetadata {
+	padding-top: 5px;
+}
+.widecolumn .postmetadata {
+	margin: 0;
+}
+h1 {
+	padding: 5px;
+	font-size: 11px;
+	text-align: right;
+	font-color: #333;
+}
+.description {
+	text-align: center;
+}
+h2 {
+	margin-top: 10px;
+}
+h2.pagetitle {
+	margin-top: 10px;
+	text-align: left;
+}
+h3 {
+	padding: 0px;
+	margin-top: 10px;
+}
+h3.comments {
+	padding: 0;
+	margin: 0;
+}
+p img {
+	padding: 0;
+	max-width: 100%;
+}
+img.centered {
+	display: block;
+}
+img.alignright {
+	padding: 4px;
+	display: inline;
+}
+img.alignleft {
+	padding: 4px;
+	display: inline;
+}
+.alignright {
+	float: right;
+}
+.alignleft {
+	float: left;
+}
+html>body .entry ul {
+	margin-left: 0;
+	padding: 0;
+	list-style: none;
+	padding-left: 0;
+}
+html>body .entry li {
+	margin: 0;
+}
+.entry ul li:before, #sidebar ul ul li:before {
+	content: "\00BB \0020";
+}
+.entry ol {
+	padding: 0;
+	margin: 0;
+}
+.entry ol li {
+	margin: 0;
+	padding: 0;
+}
+.postmetadata ul, .postmetadata li {
+	display: inline;
+	list-style-type: none;
+	list-style-image: none;
+}
+#searchform {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+.entry form {
+	text-align: left;
+}
+select {
+	width: 130px;
+}
+#commentform input {
+	width: 160px;
+	padding: 0;
+	margin-bottom: 0px;
+	font-size: 11px;
+}
+#commentform textarea {
+	width: 100%;
+	padding: 0;
+}
+#commentform #submit {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	float: left;
+}
+.alt {
+	background-color: #f0f0f0;
+}
+#commentform p {
+	margin: 0px 0px 5px 0px;
+}
+.nocomments {
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+.commentmetadata {
+	margin: 0;
+}
+#wp-calendar {
+	empty-cells: show;
+	margin: 0;
+	width: 140px;
+	text-align: left;
+}
+#wp-calendar #next a {
+	padding-right: 10px;
+	font-weight: 10px;
+	text-align: right;
+}
+#wp-calendar #prev a {
+	padding-left: 10px;
+	font-weight: 10px;
+	text-align: left;
+}
+#wp-calendar a {
+	display: block;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	background: #ff6;
+}
+#wp-calendar caption {
+	text-align: center;
+	width: 100%;
+	font-size: 12px;
+}
+#wp-calendar td {
+	padding: 3px 0;
+	text-align: center;
+}
+#wp-calendar td.pad:hover {
+	background: #fff;
+}
+acronym, abbr, span.caps {
+	cursor: help;
+}
+blockquote {
+	margin-left: 8px;
+	padding-left: 15px;
+	border-left: 3px dotted #ccc;
+}
+blockquote cite {
+	margin: 0;
+	display: block;
+}
+.center {
+	text-align: center;
+}
+hr {
+	display: none;
+}
+a img {
+	border: none;
+}
+.navigation {
+	display: block;  
+	text-align: left;
+  	margin-bottom: 30px;
+  	margin-top: 20px;
+	clear: all; 
+}

@@ -1,0 +1,57 @@
+	<div id="sidebar">
+		<ul>
+			<li><h2>Arkadaşlar</h2>
+				<ul>
+					<li><a href="http://www.haydardumen.com.tr/">Haydar Dümen</a></li>
+					<li><a href="http://www.atillakoc.com.tr/">Atilla Koç</a></li>
+				</ul>
+			</li>
+			<li><h2>Gezegenler</h2>
+				<ul>
+					<li><a href="http://gezegen.linux.org.tr/">Gezegen Linux</a></li>
+					<li><a href="http://gezegen.uludag.org.tr/">Uludağ Dünyası</a></li>
+				</ul>
+			</li>
+			{if $archives}
+			<li><h2>Arşiv</h2>
+				<ul>
+				{section name=archive loop=$archives}
+					<li><a href="{$blogurl}?date={$archives[archive].date}" title="{$archives[archive].name}"> {$archives[archive].name}</a> (<a href="{$blogurl}feed.php?type=rss2&amp;date={$archives[archive].date}" title="{$archives[archive].name}">rss</a>) ({$archives[archive].count})</li>
+				{/section}
+				</ul>
+			</li>
+			{/if}
+			{if $categories}
+			<li><h2>Kategoriler</h2>
+				<ul>
+				{section name=category loop=$categories}
+					<li><a href="{$blogurl}?cat={$categories[category].id}" title="{$categories[category].name}"> {$categories[category].name}</a> (<a href="{$blogurl}feed.php?type=rss2&amp;cat={$categories[category].id}" title="{$categories[category].name}">rss</a>) ({$categories[category].count})</li>
+				{/section}
+				</ul>
+			</li>
+			{/if}
+			<li><h2>Yönetim</h2>
+				<ul>
+					<li><a href="{$blogurl}admin/">Yönetim Paneli</a></li>
+				</ul>
+			</li>
+		</ul>
+		<p align="center">
+			<a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="images/minicons/css.png" title="Valid CSS" /></a><br />
+			<a href="http://validator.w3.org/check/referer"><img src="images/minicons/xhtml.png" title="Valid XHTML" /></a><br />
+			<a href="http://getfirefox.com/"><img src="images/minicons/firefox.png" title="Use Firefox be happy" /></a><br />
+			<a href="http://mysql.com/"><img src="images/minicons/mysql.png" title="Using mySQL" /></a><br />
+			<a href="http://www.uludag.org.tr/"><img src="images/minicons/pardus.png" title="Coded on Pardus" /></a><br />
+			<a href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img src="images/logos/cc.png" title="Frozen Square is licensed under the Creative Commons License" /></a>
+		</p>
+	</div>
+	<hr />
+	<div id="footer">
+		<p>
+		{$blogname} is proudly powered by {$fasafiso_signature}<br />
+		Feeds: <a href="{$blogurl}feed.php?type=rss2">rss</a>&nbsp;<strong>|</strong>&nbsp;<a href="{$blogurl}feed.php?type=atom">atom</a>
+		</p>
+	</div>
+</div>
+</body>
+</html>

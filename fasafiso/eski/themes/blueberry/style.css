@@ -1,0 +1,170 @@
+/*  
+Theme Name: Blueberry Boat
+Theme URI: http://www.francey.org
+Description: Wordpress theme compatible with Wordpress 1.5 and above.
+Version: 1.5
+Author: Frances Sun
+Author URI: http://www.francey.org
+
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+
+*/
+
+body{ background-image: url(images/mainbg.gif);
+background-repeat: repeat-y;
+background-position: top center;
+margin: 0px;
+padding: 0px;
+color: #333;
+font-family: sans-serif;
+font-size: 0.7em;
+background-color: #fff;}
+
+#head{ background-image: url(images/head.gif);
+background-repeat: no-repeat;
+background-position: center bottom;
+position: absolute;
+top: 31px;
+left: 50%;
+margin-left: -300px;
+width: 600px;
+height: 100px;}
+
+#head h1{ font-size: 1.9em;
+margin: 30px 15px 0px 15px;
+text-align: center;
+color: #159;
+font-family: georgia, serif;
+font-style: italic;
+font-weight: normal;}
+
+#head h5{ font-size: 0.9em;
+color: #159;
+text-align: center;
+font-weight: normal;
+margin: 0px 15px 15px 15px;
+font-family: sans-serif;
+font-style: normal;}
+
+#head a{ color: #fff; text-decoration: none;}
+#head a:hover{ color: #159;}
+
+#main{ background-image: url(images/maingrad.gif);
+background-repeat: no-repeat;
+background-position: top center;
+position: absolute;
+top: 130px;
+left: 50%;
+width: 600px;
+margin-left: -350px;
+padding: 20px 50px 20px 50px;}
+
+#posts{ float: left;
+width: 365px;
+padding: 0px 12px 0px 12px;}
+
+#nav{ float: right;
+width: 180px;
+padding: 10px;}
+
+h1{ font-size: 1.6em;
+font-family: georgia, serif;
+font-weight: normal;
+font-style: italic;
+color: #159;}
+
+h2{ font-weight: normal;
+color: #888;
+margin: 15px 5px 5px 5px;
+font-size: 1.3em;
+margin-bottom: 0px;}
+
+h3{ font-size: 1.6em;
+font-family: georgia, serif;
+font-weight: normal;
+font-style: italic;
+color: #555;
+margin-top: 2px;}
+
+h3 a{color: #555;
+text-decoration: none;}
+
+h4{ font-family: georgia, serif;
+font-weight: normal;
+font-style: italic;
+font-size: 1.4em;
+color: #555;
+margin-bottom: 5px;
+margin-left: 0px;}
+
+h5{ font-size: 1.2em;
+font-weight: normal;
+color: #555;
+font-family: georgia, serif;
+font-style: italic;}
+
+h6{ font-family: silkscreen, monospace;
+font-size: 8px;
+font-weight: normal;
+color: #159;}
+
+#nav ul{ margin: 0px;
+padding: 0px;
+list-style-type: none;}
+
+#nav li{ margin: 0px;
+padding: 0px 0px 0px 15px;
+background-image: url(images/bullet.gif);
+background-repeat: no-repeat;
+background-position: left center;}
+
+#nav li a{ text-decoration: none;}
+
+p.info{ color: #555;
+font-size: 0.9em;
+background-image: url(images/file.gif);
+background-repeat: no-repeat;
+background-position: left center;
+padding: 3px 0px 3px 15px;}
+
+strong, em, b, i{ color: #169;}
+
+u{ font-size: 0.9em;
+text-transform: uppercase;
+color: #555;
+text-decoration: none;
+border-bottom: 1px solid #ccc;}
+
+blockquote{ background-color: #f5f5f5;
+border: 1px solid #ccc;
+padding: 5px;}
+
+pre, code, cite{ font-size: 1em;}
+
+dt{ font-weight: bold;
+text-transform: uppercase;
+font-size: 0.9;}
+
+dd{ background-color: #f5f5f5;
+border: 1px solid #ccc;
+padding: 5px;
+margin-top: 0px;
+margin-left: 0px;}
+
+input, textarea{ background-color: #f5f5f5;
+font-size: 1em;
+font-family: sans-serif;}
+
+p{text-align: justify;}
+
+a{ color: #159;}
+a:hover{ color: #59d;}
+
+#img1{ background-image: url(images/topbg.gif);
+background-repeat: repeat-x;
+position: absolute;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 150px;}
