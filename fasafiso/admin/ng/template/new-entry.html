@@ -1,0 +1,22 @@
+{include file="header.html"}
+{include file="menu.html"}
+
+                <div class="content">
+		<div class="header">Yeni bir girdi ekleyin ..</div><br>
+		<form action="?new-entry&add" method="post" onsubmit="syncTextarea();">
+			<p class="sari">Başlık : <input type="text" name="title" size="60" value=""><i></i></p>
+			<br>
+			<textarea name="text" style="width:99%; height:280px" id="richtext"></textarea>
+			<script type="text/javascript">makeWhizzyWig("richtext", "all");</script>
+			<input type="hidden" name="date" value="{$smarty.now|date_format:"%Y%m%d%H%M"}">
+			<p class="sari">Kategori : 
+                        {section name=cat loop=$categories}
+                            <input class="check" type="checkbox" value="{$categories[cat].id}" name="category[]">{$categories[cat].name}</input>
+                        {/section}
+                        </p><br>
+			<div class="right"><input class="buton" type="submit" name="publish" value="Yayınla" title="Kayıt bu tuş ile birlikte blogunuzda yayınlanır ve herkes okuyabilir."><input class="buton"  type="submit" name="save" value="Kaydet" title="Kayıt bu tuş ile birlikte geçici olarak kayıt edilir blogunuzda gözükmez, sadece siz görebilir ya da düzenleyebilirsiniz."></div>
+		</form>
+		</div>
+
+{include file="submenu.html"}
+{include file="footer.html"}

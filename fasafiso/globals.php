@@ -25,7 +25,7 @@ $smarty->assign("blogurl", $config['core']['webaddress']);
 $smarty->assign("themepath", $config['smarty']['tpldir']."/".$config['core']['theme']);
 
 // including fasafiso functions
-include_once("functions.php");
+include_once("utils.php");
 
 setlocale(LC_TIME,"tr_TR.UTF8");
 ?>

@@ -1,0 +1,31 @@
+{include file="header.html"}
+                <p>&nbsp;</p>
+		<table class="login" align="center">
+  		<tbody><tr>
+    		<td><div align="center"> 
+        		<table class="form_login">
+          		<tbody><tr> 
+            		<td height="172"> <div align="center"><a href="{$blogurl}"><img src="{$blogurl}images/logo.png"></a></div></td></tr>
+                        {if $wrong_pass}<tr><td class="warn"> Kullanıcı Adı ya da Parola Hatalı !!</td></tr>{/if}
+			<form action="?do_login" method="post">
+          		<tr> 
+            		<td height="40"><div align="right">Kullanıcı Adı :
+                		<input class="username" size="25" name="username" type="text">
+              		</div></td>
+          		</tr>
+          		<tr> 
+            		<td height="40"> <div align="right">Parola : 
+                		<input class="password" size="25" name="password" type="password">
+              		</div></td>
+          		</tr>
+          		<tr> 
+            		<td height="40"> <div align="right"> 
+                		<input name="Submit" value="Giriş" type="submit">
+              		</div></td>
+          		</tr>
+                        </form>
+        		</tbody></table>
+      		</div>
+  		</td></tr>
+		</tbody></table>
+{include file="footer.html"}

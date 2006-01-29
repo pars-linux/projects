@@ -1,0 +1,14 @@
+                <div class="smenu" id="olds" style="display:none;">
+			<p class="rayt"><a href="#" onclick="toggleVisibility(document.getElementById('menu2'), this); return false">Eski Yazılar ..<img src="{$blogurl}/images/close.png"></a></p>
+                {section name=node loop=$old-entries}
+                <a href="?olds&date={$old-entries[node].date}">{$old-entries[node].date_nice} [{$old-entries[node].amount}]</a><br>
+                {/section}
+                </div>
+		<div class="smenu" id="comments" style="display:none;">
+			<p class="rayt"><a href="#" onclick="toggleVisibility(document.getElementById('menu3'), this); return false">Yorumlar ..<img src="{$blogurl}/images/close.png"></a></p>
+                {section name=node loop=$comments}
+                <a href="?comments&date={$comments[node].date}">{$comments[node].date_nice} [{$comments[node].amount}]</a><br>
+                </div>
+                {/section}
+		</div>
+		</center>
