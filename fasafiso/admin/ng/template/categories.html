@@ -1,0 +1,79 @@
+{include file="header.html"}
+{include file="menu.html"}
+
+            <div class="content">
+                <div class="header">Kategorileri düzenleyin ..</div><br>
+                <table class="post" border="0" height="96" width="100%">
+                    <tbody class="posts">
+                        <tr>
+                            <th width="7%">ID</th>
+                            <th width="32%">Kategori</th>
+                            <th width="12%">Kısa Ad</th>
+                            <th width="35%">Açıklama</th>
+                            <th width="8%" align="center">Düzenle</th>
+                            <th width="8%" align="center">Sil</th>
+                        </tr>
+                        {section name=cat loop=$categories}
+                        <tr>
+                        {if $editid == $categories[cat].id}
+                            <form method="POST" action="?categories&update">
+                                <input type="hidden" name="id" value="{$editid}">
+                            <td>{$categories[cat].id}</td>
+                            <td><input type="text" name="category" size="30" value="{$categories[cat].name}"></td>
+                            <td><input type="text" name="nicename" size="20" value="{$categories[cat].nicename}" title="Türkçe karakter ve boşluk kullanmayın !!"></td>
+                            <td><input type="text" name="description" size="50" value="{$categories[cat].description}"></td>
+                            <td>
+                                <center>
+                                    <input type="submit" value="Güncelle">
+                                </center>
+                            </td>
+                            </form>
+                        {else}
+                            <td>{$categories[cat].id}</td>
+                            <td>{$categories[cat].name}</td>
+                            <td>{$categories[cat].nicename}</td>
+                            <td>{$categories[cat].description}</td>
+                            <td>
+                                <center>
+                                    <a href="?categories&edit&id={$categories[cat].id}">
+                                        <img style="vertical-align:none;" src="{$blogurl}images/edit.png">
+                                    </a>
+                                </center>
+                            </td>
+                        {/if}
+                            <td>
+                                <center>
+                                    <a href="?categories&delete&id={$categories[cat].id}" onClick="return confirmSubmit()">
+                                        <img style="vertical-align:none;" src="{$blogurl}images/delete.png">
+                                    </a>
+                                </center>
+                            </td>
+                        </tr>
+                        {/section}
+                        {if !$editid}
+                        <form method="POST" action="?categories&add">
+                        <tr>
+                            <TD>Yeni :</TD>
+                            <td>
+                                <input type="text" name="category" size="30">
+                            </td>
+                            <td>
+                                <input type="text" name="nicename" size="20" title="Türkçe karakter ve boşluk kullanmayın !!">
+                            </td>
+                            <td>
+                                <input type="text" name="description" size="50">
+                            </td>
+                            <td colspan="2">
+                                <center>
+                                    <input type="submit" value="Ekle">
+                                </center>
+                            </td>
+                        </tr>
+                        </form>
+                        {/if}
+		    </tbody>
+                </table>
+            </div>
+
+{include file="submenu.html"}
+{include file="footer.html"}

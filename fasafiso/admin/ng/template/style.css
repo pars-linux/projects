@@ -164,7 +164,8 @@ input, select, textarea {
 	background-color: #EFEFEF;
 	border: 1px solid #BBB;
   	-moz-border-radius : 5px;
-	height: 18px;
+	height: 19px;
+        padding-left: 1px;
 	}
 
 input.buton {
