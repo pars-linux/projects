@@ -46,7 +46,7 @@ if (isset($_GET["do_login"])){
 		$_SESSION["uname"]=$ird[0]['name'];
 		$_SESSION["user"]=$username;
 		$_SESSION["state"]=$ird[0]['state'];
-		header ("location: ");
+		header ("location: ?new-entry");
 	}
 	else $wrong_pass=TRUE;
 }
