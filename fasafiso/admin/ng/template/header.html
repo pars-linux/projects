@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>FasaFiso - {$blogname}</title>
+		<script src="../../3rdparty/editor/whizzywig.js" type="text/javascript"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="template/style.css">
+		<script LANGUAGE="javascript">
+		{literal}
+			function confirmSubmit(){
+				var agree=confirm("Onaylıyor musunuz ?");
+				if (agree) return true;
+				else return false ;
+			}
+                {/literal}
+		</script>
+		<script type="text/javascript">
+                {literal}
+			function toggleVisibility(el, src) {
+				var v = el.style.display == "block";
+				var str = src.innerHTML;
+				el.style.display = v ? "none" : "block";
+				src.innerHTML = v ? str.replace(/up/, "down") : str.replace(/down/, "up");
+			}
+		{/literal}	
+		</script>
+	</head>
+	<body>

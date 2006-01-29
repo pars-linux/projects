@@ -157,7 +157,7 @@
 		<?
 		$archives = get_archives($_SESSION["uid"]);
 		for ($i=0; $i<count($archives); $i++){
-			echo "<a href=\"?act=old&date=".$archives[$i][date]."\">".$archives[$i][name]." (".$archives[$i][count].")"."</a><br>";
+			echo "<a href=\"?act=old&date=".$archives[$i]["date"]."\">".$archives[$i]["name"]." (".$archives[$i]["count"].")"."</a><br>";
 		}
 		?>
 		</div>
@@ -166,7 +166,7 @@
 		<?
 		$archives = get_archives($_SESSION["uid"]);
 		for ($i=0; $i<count($archives); $i++){
-			echo "<a href=\"?act=com&date=".$archives[$i][date]."\">".$archives[$i][name]." (".$archives[$i][count].")"."</a><br>";
+			echo "<a href=\"?act=com&date=".$archives[$i]["date"]."\">".$archives[$i]["name"]." (".$archives[$i]["count"].")"."</a><br>";
 		}
 		?>
 		</div>

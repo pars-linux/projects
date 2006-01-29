@@ -6,8 +6,8 @@ var whizzywig_version = 'Whizzywig v47'; //table width!; double smartquotes!; xm
 //A copy of the GNU General Public License can be obtained at: http://www.gnu.org/licenses/gpl.html
 
 //CONFIG VARIABLES (please set outside script)
-var buttonPath = '../../3rdparty/editor/buttons/';  //path to toolbar button images;  "textbuttons" means don't use images
-var cssFile = 'template/style.css';     //url of CSS stylesheet to attach to edit area
+var buttonPath = '../3rdparty/editor/buttons/';  //path to toolbar button images;  "textbuttons" means don't use images
+var cssFile = 'style.css';     //url of CSS stylesheet to attach to edit area
 var imageBrowse; //path to page for image browser
 var linkBrowse;  //path to page for link browser
 var idTa;        //id of the textarea to whizzywig (param to makeWhizzyWig)
