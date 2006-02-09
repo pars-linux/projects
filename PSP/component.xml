@@ -1,0 +1,6 @@
+<PISI>
+    <Name>psp</Name>
+    <LocalName xml:lang="tr">PSP Geliştirme sistemi</LocalName>
+    <Summary xml:lang="tr">PSP Paket derleme ve geliştirme için gerekli araçlar</Summary>
+    <Description xml:lang="tr">...</Description>
+</PISI>
