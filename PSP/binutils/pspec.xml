@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.uludag.org.tr/projeler/pisi/pisi-spec.dtd">
+
+<PISI>
+    <Source>
+        <Name>binutils-psp</Name>
+        <Homepage>http://sources.redhat.com/binutils/</Homepage>
+        <Packager>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Packager>
+        <License>GPL-2</License>
+        <IsA>app:console</IsA>
+        <Summary>Tools necessary to build programs</Summary>
+        <Description>Tools necessary to build programs</Description>
+        <Summary xml:lang="tr">Programların inşaası için gerekli araçlar</Summary>
+        <Description xml:lang="tr">Programların inşaası için gerekli araçlar</Description>
+        <Archive sha1sum="5c80fd5657da47efc16a63fdd93ef7395319fbbf" type="tarbz2">http://ftp.gnu.org/gnu/binutils/binutils-2.16.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gettext</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fbinutils-2.16.1.patch&rev=0&sc=0 -->
+            <Patch level="1">binutils-2.16.1.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>binutils-psp</Name>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/opt/psp</Path>
+        </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/etc/env.d/05binutils-psp">05binutils-psp</AdditionalFile>
+        </AdditionalFiles>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2006-02-10</Date>
+            <Version>2.16.1</Version>
+            <Comment>First release.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
+    </History>
+</PISI>
