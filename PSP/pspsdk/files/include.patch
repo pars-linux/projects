@@ -1,0 +1,27 @@
+Index: src/debug/Makefile.am
+===================================================================
+--- src/debug/Makefile.am	(revision 1796)
++++ src/debug/Makefile.am	(working copy)
+@@ -10,7 +10,8 @@
+ 	   -I$(top_srcdir)/src/kernel \
+ 	   -I$(top_srcdir)/src/display \
+ 	   -I$(top_srcdir)/src/ge \
+-	   -I$(top_srcdir)/src/user
++	   -I$(top_srcdir)/src/user \
++	   -I$(top_srcdir)/src/libc
+ CFLAGS = @PSPSDK_CFLAGS@
+ CCASFLAGS = $(CFLAGS) $(INCLUDES)
+ 
+Index: src/audio/Makefile.am
+===================================================================
+--- src/audio/Makefile.am	(revision 1796)
++++ src/audio/Makefile.am	(working copy)
+@@ -6,7 +6,7 @@
+ AR = @PSP_AR@
+ RANLIB = @PSP_RANLIB@
+ 
+-INCLUDES = -I$(top_srcdir)/src/base -I$(top_srcdir)/src/user -I$(top_srcdir)/src/debug
++INCLUDES = -I$(top_srcdir)/src/base -I$(top_srcdir)/src/user -I$(top_srcdir)/src/debug -I$(top_srcdir)/src/libc
+ CFLAGS = @PSPSDK_CFLAGS@
+ CCASFLAGS = $(CFLAGS) $(INCLUDES)
+ 

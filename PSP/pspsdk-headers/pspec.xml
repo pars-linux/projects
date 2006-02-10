@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.uludag.org.tr/projeler/pisi/pisi-spec.dtd">
+
+<PISI>
+    <Source>
+        <Name>pspsdk-headers</Name>
+        <Homepage>http://svn.pspdev.org</Homepage>
+        <Packager>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Packager>
+        <License>GPL-2</License>
+        <IsA>app:console</IsA>
+        <Summary>PSP SDK Headers</Summary>
+        <Description>PSP SDK Headers</Description>
+        <Archive sha1sum="cba53807747207cb5b040c3a984171c3cbd9d9d2" type="targz">http://cekirdek.uludag.org.tr/~caglar/pspsdk.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gcc-psp</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>pspsdk-headers</Name>
+        <RuntimeDependencies>
+            <Dependency>gcc-psp</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/opt/psp</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2006-02-10</Date>
+            <Version>20060210</Version>
+            <Comment>First release.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
+    </History>
+</PISI>

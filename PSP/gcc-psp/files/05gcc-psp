@@ -1,0 +1,5 @@
+PATH="/opt/psp/bin"
+ROOTPATH="/opt/psp/bin"
+MANPATH="/opt/psp/man"
+INFOPATH="/opt/psp/info"
+LDPATH="opt/psp/lib/gcc/psp/4.0.2"

@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.uludag.org.tr/projeler/pisi/pisi-spec.dtd">
+
+<PISI>
+    <Source>
+        <Name>newlib-psp</Name>
+        <Homepage>http://sourceware.org/newlib/</Homepage>
+        <Packager>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Packager>
+        <License>GPL-2</License>
+        <License>LGPL-2.1</License>
+        <IsA>app:console</IsA>
+        <Summary>Newlib is a C library intended for use on embedded systems.</Summary>
+        <Description>Newlib is a C library intended for use on embedded systems.</Description>
+        <Archive sha1sum="be3ef8757aa87e1bc76f033e1b42ad1ff27891ea" type="targz">ftp://sources.redhat.com/pub/newlib/newlib-1.13.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>binutils-psp</Dependency>
+            <Dependency>gcc-psp</Dependency>
+            <Dependency>pspsdk-headers</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fnewlib-1.13.0.patch&rev=0&sc=0 -->
+            <Patch level="1">newlib-1.13.0.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>newlib-psp</Name>
+        <RuntimeDependencies>
+            <Dependency>binutils-psp</Dependency>
+            <Dependency>gcc-psp</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/opt/psp</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2006-02-10</Date>
+            <Version>1.13.0</Version>
+            <Comment>First release.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
+    </History>
+</PISI>
