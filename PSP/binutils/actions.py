@@ -11,17 +11,22 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
-WorkDir = "binutils-2.16.1/build-psp"
+WorkDir = "binutils-2.16.1"
 
 def setup():
     shelltools.makedirs("%s/build-psp" % get.workDIR())
-    shelltools.cd("build-psp/")
-    shelltools.system("%s/configure --prefix=/opt/psp --target=psp --enable-install-libbfd" % get.workDIR())
+    shelltools.cd("%s/build-psp/" % get.workDIR())
+    shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-install-libbfd" % (get.workDIR(), WorkDir))
 
 def build():
-    shelltools.cd("build-psp/")
+    shelltools.cd("%s/build-psp/" % get.workDIR())
     autotools.make()
     
 def install():
-    shelltools.cd("build-psp/")
+    shelltools.cd("%s/build-psp/" % get.workDIR())
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
+
+    bins = ["addr2line", "ar", "as", "c++filt", "ld", "nm", "objcopy", "objdump", "ranlib", "readelf", "size", "strings", "strip"]
+    for bin in bins:
+        pisitools.dosym("/opt/psp/bin/psp-%s" % bin, "/usr/bin/psp-%s" % bin)
+
