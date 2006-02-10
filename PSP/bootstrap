@@ -1,0 +1,20 @@
+pisi build binutils-psp/pspec.xml
+pisi it binutils-psp*.pisi
+
+BOOTSTRAP=1 pisi build gcc-psp/pspec.xml
+pisi it gcc-psp*.pisi
+
+pisi build pspsdk-headers/pspec.xml
+pisi it pspsdk-headers*.pisi
+
+pisi build newlib-psp/pspec.xml
+pisi it newlib-psp*.pisi
+
+pisi build gcc-psp/pspec.xml
+pisi it -y gcc-psp*.pisi
+
+pisi build pspsdk/pspec-xml
+pisi it pspsdk*.pisi
+
+pisi build gdb/pspec.xml
+pisi it gdb*.pisi

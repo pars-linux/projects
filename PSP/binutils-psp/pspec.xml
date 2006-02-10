@@ -13,8 +13,6 @@
         <IsA>app:console</IsA>
         <Summary>Tools necessary to build programs</Summary>
         <Description>Tools necessary to build programs</Description>
-        <Summary xml:lang="tr">Programların inşaası için gerekli araçlar</Summary>
-        <Description xml:lang="tr">Programların inşaası için gerekli araçlar</Description>
         <Archive sha1sum="5c80fd5657da47efc16a63fdd93ef7395319fbbf" type="tarbz2">http://ftp.gnu.org/gnu/binutils/binutils-2.16.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gettext</Dependency>

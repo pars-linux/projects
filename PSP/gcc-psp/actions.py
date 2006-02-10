@@ -8,28 +8,38 @@
 # S.Çağlar Onur <caglar@uludag.org.tr>
 
 from pisi.actionsapi import autotools
-from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
+from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
-WorkDir = "binutils-2.16.1"
+WorkDir = "gcc-4.0.2"
 
 def setup():
     shelltools.makedirs("%s/build-psp" % get.workDIR())
     shelltools.cd("%s/build-psp/" % get.workDIR())
-    
-    shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-install-libbfd" % (get.workDIR(), WorkDir))
 
+    if get.ENV("BOOTSTRAP") is None:
+        shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-languages=\"c,c++\" --with-newlib --enable-cxx-flags=\"-G0\"" % (get.workDIR(), WorkDir))
+    else:
+        shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-languages=\"c\" --with-newlib --without-headers" % (get.workDIR(), WorkDir))
+    
 def build():
     shelltools.cd("%s/build-psp/" % get.workDIR())
     
-    autotools.make()
+    if get.ENV("BOOTSTRAP") is None:
+        autotools.make()
+    else:
+        autotools.make("CFLAGS_FOR_TARGET=\"-G0\"")
     
 def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
-    
+
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
 
-    bins = ["addr2line", "ar", "as", "c++filt", "ld", "nm", "objcopy", "objdump", "ranlib", "readelf", "size", "strings", "strip"]
+    if get.ENV("BOOTSTRAP") is None:
+        bins = ["c++", "cpp", "g++", "gcc", "gcc-4.0.2", "gccbug", "gcov"]
+    else:
+        bins = ["cpp", "gcc", "gcc-4.0.2", "gccbug", "gcov"]
+
     for bin in bins:
         pisitools.dosym("/opt/psp/bin/psp-%s" % bin, "/usr/bin/psp-%s" % bin)

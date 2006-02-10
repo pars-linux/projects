@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.uludag.org.tr/projeler/pisi/pisi-spec.dtd">
+
+<PISI>
+    <Source>
+        <Name>gcc-psp</Name>
+        <Homepage>http://www.gnu.org/software/gcc/gcc.html</Homepage>
+        <Packager>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Packager>
+        <License>GPL-2</License>
+        <License>LGPL-2.1</License>
+        <IsA>app:console</IsA>
+        <Summary>The GNU Compiler Collection. Includes C/C++, java compilers</Summary>
+        <Description>Contains a shared library of support routines used by GCC's runtime, and thus by every program on the system</Description>
+        <Archive sha1sum="f1b714c6398393d8f7f4ad5be933b462a95b075d" type="tarbz2">ftp://ftp.gnu.org/gnu/gcc/gcc-4.0.2/gcc-4.0.2.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>binutils-psp</Dependency>
+            <Dependency versionFrom="1.1.4">zlib</Dependency>
+            <Dependency versionFrom="5.2">ncurses</Dependency>
+            <Dependency versionFrom="4.2">texinfo</Dependency>
+            <Dependency>gettext</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fgcc-4.0.2.patch&rev=0&sc=0 -->
+            <Patch level="1">gcc-4.0.2.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gcc-psp</Name>
+        <RuntimeDependencies>
+            <Dependency>binutils-psp</Dependency>
+            <Dependency versionFrom="1.875">bison</Dependency>
+            <Dependency versionFrom="5.2">ncurses</Dependency>
+            <Dependency>gettext</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="executable">/opt/psp</Path>
+        </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/etc/05gcc-psp">05gcc-psp</AdditionalFile>
+        </AdditionalFiles>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2006-02-10</Date>
+            <Version>4.0.2</Version>
+            <Comment>First release.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
+    </History>
+</PISI>

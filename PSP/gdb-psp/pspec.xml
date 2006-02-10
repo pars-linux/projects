@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.uludag.org.tr/projeler/pisi/pisi-spec.dtd">
+
+<PISI>
+    <Source>
+        <Name>gdb-psp</Name>
+        <Homepage>http://www.gnu.org/software/gdb/gdb.html</Homepage>
+        <Packager>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Packager>
+        <License>GPL-2</License>
+        <License>LGPL-2.1</License>
+        <IsA>app:console</IsA>
+        <Summary>GNU debugger</Summary>
+        <Description>GNU debugger</Description>
+        <Archive sha1sum="cdd587a4e6667d52fd9d53dc688a2bde18275dd4" type="targz">ftp://ftp.gnu.org/pub/gnu/gdb/gdb-6.3.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>binutils-psp</Dependency>
+            <Dependency>gcc-psp</Dependency>
+            <Dependency>newlib-psp</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fgdb-6.3.patch&rev=0&sc=0 -->
+            <Patch level="1">gdb-6.3.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gdb-psp</Name>
+        <RuntimeDependencies>
+            <Dependency>binutils-psp</Dependency>
+            <Dependency>gcc-psp</Dependency>
+            <Dependency>newlib-psp</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/opt/psp</Path>
+            <Path fileType="executable">/usr/bin</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2006-02-10</Date>
+            <Version>6.3</Version>
+            <Comment>First release.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
+    </History>
+</PISI>
