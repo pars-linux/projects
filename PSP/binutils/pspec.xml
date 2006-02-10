@@ -29,6 +29,7 @@
         <Name>binutils-psp</Name>
         <Files>
             <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
             <Path fileType="executable">/opt/psp</Path>
         </Files>
         <AdditionalFiles>
