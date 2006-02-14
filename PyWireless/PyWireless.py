@@ -19,269 +19,89 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 ''' Standart Python Modules '''
-import os
 import sys
-import array
-import fcntl
-import socket
-import struct
 
-''' Import Gettext Support '''
+''' Gettext Support '''
 import gettext
 __trans = gettext.translation('PyWireless', fallback=True)
 _  =  __trans.ugettext
 
 ''' PyQt and PyKDE Modules'''
-from qt import QToolTip, QTimer, QMessageBox, SIGNAL
+from qt import QToolTip, QTimer, QSize, QPixmap, QIconSet, SIGNAL
 from kdecore import KIcon, KIconLoader, KCmdLineArgs, KAboutData, KUniqueApplication, KStandardDirs
-from kdeui import KSystemTray
-from dcopexport import DCOPExObj
+from kdeui import KSystemTray, KPopupMenu, KAboutDialog, KMessageBox
 
-class WirelessStatus:
-
-    ''' Signals '''
-    SIOCGIWESSID = 0x8B1B # Get ESSID
-    SIOCGIWMODE = 0x8B07  # Get Mode
-    SIOCGIWRATE = 0x8B21  # Get Rate
-    
-    ''' Wireless Constans '''
-    wKILO = 10**3
-    wMEGA = 10**6
-    wGIGA = 10**9
-
-    ''' Byte constants '''
-    bKILO = 2**10
-    bMEGA = 2**20
-    bGIGA = 2**30
-    
-    modes = ['Auto', 'Ad-Hoc', 'Managed', 'Master', 'Repeat', 'Second', 'Monitor']
-
-    def __init__(self):
-        ''' Constuctor '''
-        self.class_path = '/sys/class/net'
-        self.device = self.findWirelessInterface()
-        self.sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        if not self.device:
-            QMessageBox.information(None, _("No Wireless Interface"), _("You don't have any wireless interface..."), QMessageBox.Ok)
-            sys.exit(1)
-        
-    def findWirelessInterface(self):
-        ''' Finds wireless interface '''
-        fileName = 'wireless'
-        for interface in os.listdir(self.class_path):
-            if os.path.exists(os.path.join(self.class_path, interface, fileName)):
-                return interface
-
-    def returnInterfaceStatus(self):
-        fileName = 'carrier'
-        try:
-            self.status = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
-        except IOError:
-            return 0
-        return self.status
-
-    def returnInterfaceName(self):
-        ''' Returns the wireless interface name '''
-        return self.device
-
-    def returnLinkStatus(self):
-        ''' Returns wireless link status % '''
-        fileName = 'wireless/link'
-        self.link = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
-        return int(self.link)
-    
-    def returnNoiseStatus(self):
-        ''' Returns current noise level '''
-        fileName = 'wireless/noise'
-        self.noise = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
-        return int(self.noise) - 256
-    
-    def returnSignalStatus(self):
-        ''' Returns current signal level '''
-        fileName = 'wireless/level'
-        self.signal = file(os.path.join(self.class_path, self.device, fileName)).readline().strip()
-        return int(self.signal) - 256
-     
-    def returnReceived(self):
-        ''' Returns received bytes '''
-        fileName = 'statistics/rx_bytes'
-        self.rx = int(file(os.path.join(self.class_path, self.device, fileName)).readline().strip())
- 
-        if self.rx >= self.bGIGA:
-            return "%i Gb" %(self.rx/self.bGIGA)
-
-        if self.rx >= self.bMEGA:
-            return "%i Mb" %(self.rx/self.bMEGA)
-
-        return "%i Kb" %(self.rx/self.bKILO)
-
-    def returnTransferred(self):
-        ''' Returns transferred bytes '''
-        fileName = 'statistics/tx_bytes'
-        self.tx = int(file(os.path.join(self.class_path, self.device, fileName)).readline().strip())
- 
-        if self.tx >= self.bGIGA:
-            return "%i Gb" %(self.tx/self.bGIGA)
-
-        if self.tx >= self.bMEGA:
-            return "%i Mb" %(self.tx/self.bMEGA)
-
-        return "%i Kb" %(self.tx/self.bKILO)
-
-    def returnESSID(self):
-        ''' Returns essid of interface '''
-        buffer, structure = self.__packRequest(32)
-        i, result = self.__readInformation(self.SIOCGIWESSID, structure)
-        if i > 0:
-            return result
-        return buffer.tostring().strip('\x00')
-
-    def returnBitrate(self):
-        ''' Returns bit rate of interface '''
-        i, result = self.__readInformation(self.SIOCGIWRATE)
-        if i > 0:
-            return result
-
-        size = struct.calcsize('ihbb')
-        m, e, i, pad = struct.unpack('ihbb', result[:size])
-        if e == 0:
-            bitrate =  m
-        else:
-            bitrate = float(m) * 10**e
-
-        if bitrate >= self.wGIGA:
-            return "%i Gb/s" %(bitrate/self.wGIGA)
-
-        if bitrate >= self.wMEGA:
-            return "%i Mb/s" %(bitrate/self.wMEGA)
-
-        if bitrate >= self.wKILO:
-            return "%i Kb/s" %(bitrate/self.wKILO)
-
-    def returnMode(self):
-        ''' Returns operation mode of interface '''
-        i, result = self.__readInformation(self.SIOCGIWMODE)
-        if i > 0:
-            return result
-        mode = self.__unpackRequest('i', result[:4])[0]
-        return self.modes[mode]
-
-    ''' Internal Methods '''
-
-    def __packRequest(self, bufferSize):
-        """ Packs wireless request data for sending it to the kernel """
-        buffer = array.array('c', '\0' * bufferSize)
-        caddr_t, length = buffer.buffer_info()
-        structure = struct.pack('Pi', caddr_t, length)
-        return buffer, structure
-
-    def __unpackRequest(self, format, packedRequest):
-        """ Unpacks request with given format """
-        return struct.unpack(format, packedRequest)
-
-    def __readInformation(self, request, data = None):
-        ''' Read information from interface '''
-        if data is not None:
-            buffer = 16 - len(self.device)
-            requestedInterface = self.device + '\0' * buffer
-            requestedInterface += data
-        else:
-            requestedInterface = (self.device + '\0' * 32)
-        try:
-            result = fcntl.ioctl(self.sockfd.fileno(), request, requestedInterface)
-        except IOError, (i, e):
-            return i, e
-
-        return (0, result[16:])
-
-class DCOPIface(DCOPExObj):
-    def __init__(self, wirelessStatusObject):
-        ''' Constructor '''
-        
-        ''' Initialize DCOP ''' 
-        DCOPExObj.__init__(self, "PyWirelessIface")
-   
-        self.wSO = wirelessStatusObject
-
-        ''' DCOP functions '''
-        self.addMethod("QString getInterfaceName()", self.getInterfaceName)
-        self.addMethod("int getLinkStatus()", self.getLinkStatus)
-        self.addMethod("int getNoiseStatus()", self.getNoiseStatus)
-        self.addMethod("int getSignalStatus()", self.getSignalStatus)
-        self.addMethod("QString getESSID()", self.getESSID)
-        self.addMethod("QString getMode()", self.getMode)
-        self.addMethod("QString returnReceived()", self.returnReceived)
-        self.addMethod("QString returnTransferred()", self.returnTransferred)
-
-    def getInterfaceName(self):
-        return self.wSO.returnInterfaceName()
-
-    def getLinkStatus(self):
-        ''' Returns wireless link status % '''
-        return self.wSO.returnLinkStatus()
-
-    def getNoiseStatus(self):
-        ''' Returns current noise level '''
-        return self.wSO.returnNoiseStatus()
-
-    def getSignalStatus(self):
-        ''' Returns current signal level '''
-        return self.wSO.returnSignalStatus()
-
-    def getESSID(self):
-        ''' Returns essid of interface '''
-        return self.wSO.returnESSID()
-
-    def getMode(self):
-        ''' Returns operation mode of interface '''
-        return self.wSO.returnMode()
-
-    def returnReceived(self):
-        ''' Returns received bytes '''
-        return self.wSO.returnReceived()
-
-    def returnTransferred(self):
-        ''' Returns transferred bytes '''
-        return self.wSO.returnTransferred()
+from wirelessInterface import wirelessInterface
+from dcopInterface import dcopInterface
+from comarInterface import comarInterface
 
 class SystemTray(KSystemTray):
     def __init__(self, *args):
         apply(KSystemTray.__init__, (self,) + args)
 
-        ''' WirelessStatus instance '''
-        self.wirelessStatus = WirelessStatus()
+        ''' comarInterface instance '''
+        self.comarInterface = comarInterface()
+        
+        ''' wirelessInterface instance '''
+        self.wirelessInterface = wirelessInterface()
 
-        ''' DCOP Interface ''' 
-        self.DCOPInstance = DCOPIface(self.wirelessStatus)
+        ''' dcopInterface instance''' 
+        self.dcopInterface = dcopInterface(self.wirelessInterface)
 
         ''' Add /usr/share/PyWireless to KStandardDirs '''
         self.KStandardDirs =  KStandardDirs()
-        self.KStandardDirs.addResourceDir("icon", "/usr/share/PyWireless")
-        ''' Tray icon Loader '''
-        self.icons = KIconLoader("PyWireless", self.KStandardDirs)
+        self.KStandardDirs.addResourceDir('icon', '/usr/share/PyWireless')
+        
+        ''' Create tray icon Loader '''
+        self.icons = KIconLoader('PyWireless', self.KStandardDirs)
 
-        ''' Load icon on startup '''
-        self.setPixmap(self.icons.loadIcon('pywireless', KIcon.Desktop, 22)) 
-
-        ''' Timer event triggered every 5 second
+        ''' Timer event triggered every 3 second
             Until i found a way to use inotify or libfam '''
         self.time = QTimer(self)
         self.connect(self.time, SIGNAL('timeout()'), self.timeoutSlot)
         self.time.start(3000)
-    
+
+        ''' Popup Menu '''
+        connectionsMenu = KPopupMenu(self.contextMenu())
+        
+        ''' list all connections into Connections menu '''
+        for entry in self.comarInterface.listConnections():
+            if self.comarInterface.isActive(entry):
+                id = connectionsMenu.insertItem(QIconSet(self.icons.loadIcon('wireless-online', KIcon.Desktop, 16)), entry)
+            else:
+                id = connectionsMenu.insertItem(QIconSet(self.icons.loadIcon('wireless-offline', KIcon.Desktop, 16)), entry)
+        self.connect(connectionsMenu, SIGNAL("activated(int)"), self.switchConnection)
+            
+        self.contextMenu().insertItem(_('Wireless Connections Profiles'), connectionsMenu)
+        # FIXME: Use net-kga
+        self.contextMenu().insertItem(_('Create New Wireless Connection'))
+  
         self.show()
 
+    def switchConnection(self, int):
+        connection = self.contextMenu().text(int)
+        
+        if self.comarInterface.isActive(connection):
+            ''' if selected is active then down it '''
+            self.comarInterface.deactivateConnection(connection)
+            self.contextMenu().changeItem(int, QIconSet(self.icons.loadIcon('wireless-offline', KIcon.Desktop, 16)), self.contextMenu().text(int))
+        else:
+            ''' if selected is not active then first down active one, up selected one '''
+            self.comarInterface.deactivateConnection(self.comarInterface.activeConnection())
+            self.comarInterface.activateConnection(connection)
+            self.contextMenu().changeItem(int, QIconSet(self.icons.loadIcon('wireless-online', KIcon.Desktop, 16)), self.contextMenu().text(int))
+
     def timeoutSlot(self):
-        interfaceName = self.wirelessStatus.returnInterfaceName()
-        interfaceESSID = self.wirelessStatus.returnESSID()
-        interfaceMode = self.wirelessStatus.returnMode()
-        linkStatus = self.wirelessStatus.returnLinkStatus()
-        noiseStatus = self.wirelessStatus.returnNoiseStatus()
-        signalStatus = self.wirelessStatus.returnSignalStatus()
-        bitRate = self.wirelessStatus.returnBitrate()
-        received = self.wirelessStatus.returnReceived()
-        transferred = self.wirelessStatus.returnTransferred()
-        status = self.wirelessStatus.returnInterfaceStatus()
+        interfaceName = self.wirelessInterface.returnInterfaceName()
+        interfaceESSID = self.wirelessInterface.returnESSID()
+        interfaceMode = self.wirelessInterface.returnMode()
+        linkStatus = self.wirelessInterface.returnLinkStatus()
+        noiseStatus = self.wirelessInterface.returnNoiseStatus()
+        signalStatus = self.wirelessInterface.returnSignalStatus()
+        bitRate = self.wirelessInterface.returnBitrate()
+        received = self.wirelessInterface.returnReceived()
+        transferred = self.wirelessInterface.returnTransferred()
+        status = self.wirelessInterface.returnInterfaceStatus()
 
         ''' Tray icon name '''
         if int(status):
@@ -328,7 +148,9 @@ class SystemTray(KSystemTray):
             </tr>
             </table>
             </center>
-            ''') % (iconName, interfaceName, interfaceESSID, linkStatus, bitRate, interfaceMode, noiseStatus, signalStatus, received, transferred)
+            ''') % (iconName, interfaceName, interfaceESSID, \
+                    linkStatus, bitRate, interfaceMode, \
+                    noiseStatus, signalStatus, received, transferred)
         else:
             iconName = 'pywireless'
             toolTip = _('''<center><img align="center" src="/usr/share/PyWireless/%s.png"></center>
@@ -336,7 +158,7 @@ class SystemTray(KSystemTray):
             <table border="0" bgcolor="#000000" cellspacing="1" cellpadding="1">
             <tr>
                 <td colspan="2" bgcolor="#DD0500"><center>[ %s ] <b>is powered off</b></center></td>
-            <tr>
+            tr>
             </table>
             </center>''') % (iconName, interfaceName)
 
@@ -347,8 +169,8 @@ if __name__ == '__main__':
     appName = 'PyWireless'
     programName = 'PyWireless'
     description = 'A Basic Wireless Connection Monitor'
-    license = KAboutData.License_GPL
-    version = '3.0'
+    license = KAboutData.License_GPL_V2
+    version = '3.3'
     copyright = '(C) 2005 S.Çağlar Onur <caglar@uludag.org.tr>'
 
     aboutData = KAboutData(appName, programName, version, description, license, copyright)
@@ -359,12 +181,12 @@ if __name__ == '__main__':
     aboutData.addAuthor('Furkan Duman', 'Contributor [Bug fix]', 'coderlord@yahoo.com')
 
     KCmdLineArgs.init(sys.argv, aboutData)
-    KCmdLineArgs.addCmdLineOptions([('+files', 'File to open')])
 
     ''' Use KUniqueApplication and initialize'''
     gettext.install(appName)
     app = KUniqueApplication(True, True, True)
     trayWindow = SystemTray(None, appName)
+
     app.setMainWidget(trayWindow)
 
     ''' Enter main loop '''
