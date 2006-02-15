@@ -1,0 +1,5 @@
+* Fix setup.py for i18n setup and etc.
+* Use net-kga for create connection
+* Show connections if available
+* Show link quality with profiles
+* ...

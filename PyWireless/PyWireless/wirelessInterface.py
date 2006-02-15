@@ -1,6 +1,5 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+#
 # Copyright (C) 2005 by S.Çağlar Onur <caglar@uludag.org.tr>
 # 
 # This program is free software; you can redistribute it and/or modify
