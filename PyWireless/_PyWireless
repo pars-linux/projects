@@ -31,9 +31,9 @@ from qt import QToolTip, QTimer, QSize, QPixmap, QIconSet, SIGNAL
 from kdecore import KIcon, KIconLoader, KCmdLineArgs, KAboutData, KUniqueApplication, KStandardDirs
 from kdeui import KSystemTray, KPopupMenu, KAboutDialog, KMessageBox
 
-from wirelessInterface import wirelessInterface
-from dcopInterface import dcopInterface
-from comarInterface import comarInterface
+from PyWireless.wirelessInterface import *
+from PyWireless.dcopInterface import *
+from PyWireless.comarInterface import *
 
 class SystemTray(KSystemTray):
     def __init__(self, *args):
