@@ -35,11 +35,3 @@ def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
 
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-
-    if get.ENV("BOOTSTRAP") is None:
-        bins = ["c++", "cpp", "g++", "gcc", "gcc-4.0.2", "gccbug", "gcov"]
-    else:
-        bins = ["cpp", "gcc", "gcc-4.0.2", "gccbug", "gcov"]
-
-    for bin in bins:
-        pisitools.dosym("/opt/psp/bin/psp-%s" % bin, "/usr/bin/psp-%s" % bin)

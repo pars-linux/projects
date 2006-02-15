@@ -29,7 +29,3 @@ def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
     
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-
-    bins = ["addr2line", "ar", "as", "c++filt", "ld", "nm", "objcopy", "objdump", "ranlib", "readelf", "size", "strings", "strip"]
-    for bin in bins:
-        pisitools.dosym("/opt/psp/bin/psp-%s" % bin, "/usr/bin/psp-%s" % bin)
