@@ -31,8 +31,3 @@ def build():
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     pisitools.insinto("/opt/psp/psp/sdk/", "doc")
-
-    bins = ["bin2c", "bin2o", "bin2s", "mksfo", "pack-pbp", "psp-build-exports", "psp-config", "psp-fixup-imports", "psp-prxgen", "unpack-pbp"]
-
-    for bin in bins:
-        pisitools.dosym("/opt/psp/bin/%s" % bin, "/usr/bin/%s" % bin)

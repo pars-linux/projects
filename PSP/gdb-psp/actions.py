@@ -27,8 +27,3 @@ def build():
 def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-
-    bins = ["gdb", "gdbtui"]
-
-    for bin in bins:
-        pisitools.dosym("/opt/psp/bin/psp-%s" % bin, "/usr/bin/psp-%s" % bin)
