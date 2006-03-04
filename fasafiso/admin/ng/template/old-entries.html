@@ -1,0 +1,42 @@
+{include file="header.html"}
+{include file="menu.html"}
+
+	        <div class="content">
+		<div class="header">Ocak&nbsp;2006 kayıtlı yazılarınız ..</div><br>
+                <table class="post" border="0" height="96" width="100%">
+                    <tbody class="posts">
+                        <tr>
+                            <th width="60%"><img src="{$blogurl}images/m_down.png">Başlık</th>
+                            <th width="7%" align="center">Tarih</th>
+                            <th width="23%" align="center">Kategori(ler)</th>
+                            <th width="7%" align="center">Düzenle</th>
+                            <th width="4%" align="center">Sil</th>
+                        </tr>
+                        {section name=node loop=$entry}
+			<tr>
+                            <td>
+                                <a href="#" onclick="tV(document.getElementById('{$entry[node].id}'), this); return false">
+                                    <img src="{$blogurl}images/down.png">{$entry[node].title}
+                                </a>
+                                <span id="{$entry[node].id}" style="display: none;">{$entry[node].entry}</span>
+                            </td>
+                            <td align="center">{$entry[node].date}</td>
+                            <td align="center">
+                                
+                            </td>
+                            <td><center><a href="?entry&node={$entry[node].id}"><img style="vertical-align:none;" src="{$blogurl}images/edit.png"></a></center></td>
+                            <td>
+                                <center>
+                                    <a href="?entry&node={$entry[node].id}&del" onClick="return confirmSubmit()">
+                                        <img style="vertical-align:none;" src="{$blogurl}images/delete.png">
+                                    </a>
+                                </center>
+                            </td>
+                        </tr>
+                        {/section}
+                    </tbody>
+		</table>
+		</div>
+
+{include file="submenu.html"}
+{include file="footer.html"}

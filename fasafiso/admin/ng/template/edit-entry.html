@@ -1,0 +1,29 @@
+{include file="header.html"}
+{include file="menu.html"}
+
+                {section name=node loop=$entry}
+                <div class="content">
+		<div class="header">Girdileri düzenleyin ..</div><br>
+		<form action="?entry&update" method="post" onsubmit="syncTextarea();">
+			<p class="sari">Başlık : <input type="text" name="title" size="60" value="{$entry[node].title}"><i></i></p>
+			<br>
+			<textarea name="entry" style="width:99%; height:280px" id="richtext">{$entry[node].entry}</textarea>
+			<script type="text/javascript">makeWhizzyWig("richtext", "all");</script>
+			<input type="hidden" name="date" value="{$entry[node].date}">
+                        <input type="hidden" name="id" value="{$entry[node].id}">
+			<p class="sari">Kategori :
+                        {section name=cat loop=$categories}
+                            <input class="check" type="checkbox" 
+                            {section name=checked loop=$entry_categories}
+                                {if $categories[cat].id==$entry_categories[checked].cat_id} CHECKED {/if}
+                            {/section}
+                             value="{$categories[cat].id}" name="category[]">{$categories[cat].name}</input>
+                        {/section}
+                        </p><br>
+			<div class="right"><input class="buton" type="submit" name="state" value="Yayınla" title="Kayıt bu tuş ile birlikte blogunuzda yayınlanır ve herkes okuyabilir."><input class="buton"  type="submit" name="state" value="Kaydet" title="Kayıt bu tuş ile birlikte geçici olarak kayıt edilir blogunuzda gözükmez, sadece siz görebilir ya da düzenleyebilirsiniz."></div>
+		</form>
+		</div>
+                {/section}
+
+{include file="submenu.html"}
+{include file="footer.html"}
