@@ -1,7 +1,7 @@
     <chapter id="ch1">
     <title>Qt Kavramları</title>
 
-    <para id="para-ch1-1">Bu bölüm Python ve Qt'un PyQt önyüzü kullanılarak
+    <para id="para-ch1-1">Bu bölüm Python ve Qt'nin PyQt önyüzü kullanılarak
     birbirine nasıl bağlanacağını anlatmaktadır. Sinyaller ve slotlar,
     inheritance FIXME: inheritance ???, arayüz dizaynı gibi PyQt ve Qt'a has 
     kavramlar sürekli daha karmaşıklaşan <emphasis>merhaba dünya</emphasis>
