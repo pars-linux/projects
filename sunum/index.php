@@ -25,6 +25,7 @@
     ssv("PrevNode" ,get_node($xml,$page-1,"header"));
     ssv("PageHeader",xml2html(get_node($xml,$page,"header")));
     ssv("Content"  , xml2html(get_node($xml,$page,"content")));
+    ssv("PageCount", $page." / ".(count($xml->page)-1));
     $smarty->display("page.html");
 
 
