@@ -3,7 +3,7 @@
 <impress>
 
 <header>PHP ve Ajax ile Yeni Nesil</header>
-<author>M.Gökmen GÖKSEL</author>
+<author>Gökmen GÖKSEL</author>
 <email>gokmen@pardus.org.tr</email>
 <firm>Tubitak/Uekae - Pardus Projesi</firm>
 
@@ -11,8 +11,9 @@
         <header>PHP ve Ajax ile Yeni Nesil</header>
         <content>
           /vcenter/ 
-            M.Gökmen GÖKSEL /br/
-            /c:blue/ gokmen@pardus.org.tr //c/
+            Gökmen GÖKSEL /br/
+            /c:blue/ gokmen@pardus.org.tr //c/ /br/
+            Tübitak UEKAE
           //vcenter/
         </content>
     </page>
@@ -47,32 +48,50 @@
     </page>
 
     <page>
+        <header>Ajax Nasıl ?</header>
+        <content>
+            /center/ /c:red/ "Sunucu - İstemci - Sunucu" //c/ 
+            »  /c:blue/ "Sunucu - İstemci - İstemci" //c/ //center/
+            /image/ ajax_interaction.png //image/
+        </content>
+    </page>
+
+    <page>
+        <header>Ajax Nerede ?</header>
+        <content>
+            /- Çalışan Arama (Live Search)
+            /- Form işlemleri
+            /- Bilgi Güncelleme
+            /- Hızlı veri işlemleri
+        </content>
+    </page>
+
+    <page>
         <header>Ajax Ne Değildir ?</header>
         <content>
             /- Javascript ile yapılan herşey AJAX /c:red/ değildir //c/ .
             /- DHTML, AJAX teknolojileri ile kullanılabilir fakat DHTML 'de AJAX /c:red/ değildir //c/.
             /- Paket bir program /c:red/ değildir //c/.
             /- Bir programlama dili /c:red/ değildir //c/.
-        </content>
-    </page>
-
-    <page>
-        <header>Ajax Nasıl ?</header>
-        <content>
-            /- /c:red/ "Sunucu - İstemci - Sunucu" //c/ 
-            »  /c:blue/ "Sunucu - İstemci - İstemci" //c/
-            /image/ ajax_interaction.png //image/
+            /- Kaliteli CSS ile yapılmış görsel sayfalar AJAX /c:red/ değildir //c/. 
+            /- AJAX:
+            /-- XHTML, XML, CSS, JavaScript ve DHTML yapılarından dolaylı yoldan faydalanır fakat asıl AJAX altyapısı /c:blue/ XMLHttpRequest  //c/ Nesnesi üzerinde yoğunlaşmıştır.
         </content>
     </page>
    
     <page>
-        <header>XMLHttpRequest Nesnesi</header>
+        <header>XMLHttpRequest Nesnesi - Metodlar </header>
         <content>
-            /- /c:red/ Asymetric JavaScript and XML //c/
-            /- Bir program değil, teknoloji
-            /- XHTML, CSS, JavaScript ve XML ile gerçekleniyor
-            /- Browser Desteği gerekli;
-            /-- Firefox(Mozilla), Safari(KHTML) ve InternetExplorer destekliyor
+            /- /c:red/ open("metod", "URL") //c/
+            /-- Belirtilen URL'ye belirtilen metod(GET,POST) ile istek yapılır.
+            /- /c:red/ getAllResponseHeaders() //c/
+            /-- Tüm sonuçları (etiket,değer) şeklinde geri döndürür.
+            /- /c:red/ getResponseHeader("başlıkEtiketi") //c/
+            /-- Belirtilen başlık altındaki değeri geri döndürür
+            /- /c:red/ send(içerik) //c/
+            /-- DOM Nesne verisini ya da gönderilebilecek bir metini isteğe iletir.
+            /- /c:red/ setRequestHeader("etiket", "değer") //c/
+            /-- Bir istek ile yollanmak üzere belirtilen "etiket","değer" ikilisini hazırlar.
         </content>
     </page>
 
