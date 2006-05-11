@@ -1,13 +1,45 @@
 <html>
     <head>
         <title>{$Header} - {$Author}</title>
+        <link rel="stylesheet" href="{$Temp}/style.css" type="text/css" media="screen">
+        <script type="text/javascript">
+        {literal}
+            function access() {
+                document.getElementById('next').accessKey="k";
+                document.getElementById('prev').accessKey="j";
+            }
+        {/literal}
+        </script>
     </head>
 
-    <body>
-        <center>
-            <h1>{$Header}</h1>
-            <h3>{$Author}</h3>
-        </center>
-        
+    <body onload="access()">
+    <div id="main">
+        <div id="box">
+            <p id="header">{$Header}</p>
+        </div>
+        <div id="box">
+            <p id="pheader">{$PageHeader}</p>
+        </div>
+        <div id="content">
+            <div id="fix">
+                {$Content}
+            </div>
+        </div>
+        <div id="foot">
+            {if $LeftNode!=-1}
+                <a href="?page={$LeftNode}" id="prev"><img class="rimg" src="{$Temp}/images/left.png" alt="{$PrevNode}"></a>
+                {else}
+                <img class="rimg" src="{$Temp}/images/blank.png">
+            {/if}
+            <a href="?page=0"><img class="rimg" src="{$Temp}/images/home.png"></a>
+            {if $RightNode!=-1}
+                <a href="?page={$RightNode}" id="next"><img class="rimg" src="{$Temp}/images/right.png" alt="{$NextNode}"></a>
+                {else}
+                <img class="rimg" src="{$Temp}/images/blank.png">
+            {/if}
+        </div>
+
+        <div id="info">{$Author} - {$Email}</div>
+    </div>
     </body>
 </html>

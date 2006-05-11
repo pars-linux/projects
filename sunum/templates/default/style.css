@@ -1,0 +1,85 @@
+#box {
+    margin:10px auto;
+    background:#6933FF;
+    color:white;
+    height:auto;
+}
+
+#main {
+    height:90%;
+    width: auto;
+}
+
+#content {
+    margin:10px 0px;
+    border:1px solid #DDD;
+    text-align:center;
+    height:81%;
+    font-size:30px;
+    padding:2px;
+}
+
+#foot {
+    margin:0px auto;
+    text-align:center;
+    background:#EEE;
+    height:60px;
+}
+
+#fix {
+    padding-top:20px;
+    padding-bottom:20px;
+    width:85%;
+    text-align:left;
+    margin:auto;
+}
+
+.rimg{
+    padding:6px;
+    vertical-align:50%;
+    border:0px;
+}
+
+#header {
+    text-shadow: white 0px 0px 5px;
+    font-size:20px;
+    padding:0px;
+    padding-left:3px;
+    margin:0px;
+    margin-top:5px;
+    text-align:left;
+}
+
+#pheader {
+    text-shadow: cyan 0px 0px 5px;
+    font-size:40px;
+    padding:0px;
+    margin:0px;
+    margin-top:5px;
+    text-align:center;
+}
+
+.pre_img {
+    margin-top:-27px;
+    text-align:center;
+    margin-left:25%;
+}
+
+pre {
+    margin:0px;
+    background:#C4FF7C;
+}
+
+#info{
+    /*just for khtml */
+    text-shadow: green 0px 0px 5px;
+    margin:0px;
+    margin-top:2px;
+    font-size:14px;
+    background:#EEE;
+    text-align:right;
+}
+
+li {
+    padding:4px;
+}

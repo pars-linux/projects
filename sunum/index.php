@@ -1,26 +1,32 @@
 <?php
- 
+
     /** Gökmen GÖKSEL, gokmen@pardus.org.tr **/
 
     include 'tool.php';
 
     $xml = get_xml( "sunum.xml");
-    $page= $_GET["page"];
-   
-    build_smarty(); 
+    if ($_GET["page"]<>"") $page=$_GET["page"]; else $page=0;
+
+    build_smarty();
     build_defaults($xml->header,$xml->author,$xml->email,$xml->firm);
-    //build page navigations ..
-    if (count($xml->page)>$page) $right=$page+1; else $rigth=FALSE;
-    if ($page>0)                 $left =$page-1; else $left =FALSE;
-    
+
+    if (count($xml->page)>$page+1)
+        $right=$page+1;
+    else
+        $right=-1;
+    if ($page>0)
+        $left=$page-1;
+    else
+        $left =-1;
 
     ssv("RightNode",$right);
     ssv("LeftNode" ,$left );
-
+    ssv("NextNode" ,get_node($xml,$page+1,"header"));
+    ssv("PrevNode" ,get_node($xml,$page-1,"header"));
+    ssv("PageHeader",xml2html(get_node($xml,$page,"header")));
+    ssv("Content"  , xml2html(get_node($xml,$page,"content")));
     $smarty->display("page.html");
-  
-    //echo count( $xml->page);
-    //foreach ($xml->page as $pages )
-      //  echo $pages->content."<br>"."<b>".$right."</b><br>";
+
+
 
 ?>
