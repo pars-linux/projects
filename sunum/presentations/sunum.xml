@@ -1,6 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 
 <impress>
+
 <header>PHP ve Ajax ile Yeni Nesil</header>
 <author>M.Gökmen GÖKSEL</author>
 <email>gokmen@pardus.org.tr</email>
@@ -9,34 +10,55 @@
     <page>
     <header>PHP Nedir ?</header>
         <content>
-            - Personal Home Page, bir script dili
-            - Son dönemlerin en popülerlerinden
-            - Web için geliştirilmiş
-            - Apache ile tam uyumlu (mod_php)
-                - VeriTabanı Desteği, MySQL, PostgreSQL, ODBC..
-                - Tamamen özgür geliştiriliyor
+            /- Personal Home Page, bir script dili
+            /- Son dönemlerin en popülerlerinden
+            /- Web için geliştirilmiş
+            /- Apache ile tam uyumlu (mod_php)
+            /-- VeriTabanı Desteği, MySQL, PostgreSQL, ODBC..
+            /-- Tamamen özgür geliştiriliyor
+            /-- http://www.php.net
+            /- Bu sunum PHP, Smarty, HTML, CSS ve XML kullanılarak hazırlandı.
+        </content>
+    </page>
+
+     <page>
+        <header>Ajax Nedir ?</header>
+        <content>
+            /- Asynchronous JavaScript and XML
+            /- Bir program değil, teknoloji
+            /- XHTML, CSS, JavaScript ve XML ile gerçekleniyor
+            /- Browser Desteği gerekli;
+            /-- Firefox(Mozilla), Safari(KHTML) ve Internet Explorer destekliyor
+            /- Mozilla ve KHTML için;
+            /-- /code/ var req = new XMLHttpRequest(); //code/
+            /- Internet Explorer için;
+            /-- /code/ var req = new ActiveXObject("Microsoft.XMLHTTP"); //code/
         </content>
     </page>
 
     <page>
-        <header>Ajax Nedir ?</header>
+        <header>Ajax Nasıl ?</header>
         <content>
-            - Asymetric JavaScript and XML
-            - Bir program değil, teknoloji
-            - XHTML, CSS, JavaScript ve XML ile gerçekleniyor
-            - Browser Desteği gerekli;
-                - Firefox(Mozilla), Safari(KHTML) ve InternetExplorer destekliyor
+            /- Çalışma yapısı değişiyor;
+            /-- "Sunucu - İstemci - Sunucu" » "Sunucu - İstemci - İstemci"
+        </content>
+    </page>
+
+    <page>
+        <header>Yeni Nesil, Eskisine karşı..</header>
+        <content>
+            /image/ ajax_interaction.png //image/
         </content>
     </page>
    
     <page>
         <header>XMLHttpRequest Nesnesi</header>
         <content>
-            - Asymetric JavaScript and XML
-            - Bir program değil, teknoloji
-            - XHTML, CSS, JavaScript ve XML ile gerçekleniyor
-            - Browser Desteği gerekli;
-                - Firefox(Mozilla), Safari(KHTML) ve InternetExplorer destekliyor
+            /- /c:red/ Asymetric JavaScript and XML //c/
+            /- Bir program değil, teknoloji
+            /- XHTML, CSS, JavaScript ve XML ile gerçekleniyor
+            /- Browser Desteği gerekli;
+            /-- Firefox(Mozilla), Safari(KHTML) ve InternetExplorer destekliyor
         </content>
     </page>
 
