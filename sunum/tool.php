@@ -80,7 +80,10 @@
         $node = preg_replace("#/--- #is","<li style=\"padding-left:60px;\">",$node);
         $node = preg_replace("#/line/ (.+?) //line/#is","<p> \\1 </p>",$node);
         $node = preg_replace("#/code/ (.+?) //code/#is","<pre> \\1 </pre>",$node);
-        $node = preg_replace("#/c:(.+?)/ (.+?) //c/#is","<span style=\"color:\\1\"> \\2 </pre>",$node);
+        $node = preg_replace("#/br/#is","<br />",$node);
+        $node = preg_replace("#/center/ (.+?) //center/#is","<center> \\1 </center>",$node);
+        $node = preg_replace("#/vcenter/ (.+?) //vcenter/#is","<div class=\"vcenter\"> \\1 </div>",$node);
+        $node = preg_replace("#/c:(.+?)/ (.+?) //c/#is","<span style=\"color:\\1\"> \\2 </span>",$node);
         $node = preg_replace("#/image/ (.+?) //image/#is","<div style=\"text-align:center;\"><img src=\"presentations/images/\\1\" alt=\"[image]\"></div>",$node);
         $node = preg_replace("#/image f:(.+?)/ (.+?) //image/#is",
                              "<div style=\"float:\\1\;\"><img src=\"presentations/images/\\2\" alt=\"[image]\"></div>",$node);

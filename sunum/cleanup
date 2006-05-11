@@ -1,0 +1,3 @@
+find ./ -iname "*~" | xargs rm -fv
+find ./cache/ -iname "%*" | xargs rm -fv
+find ./lib/smarty/compile/ -iname "%*" | xargs rm -fv

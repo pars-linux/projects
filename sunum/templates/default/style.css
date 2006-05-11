@@ -65,6 +65,11 @@
     margin-left:25%;
 }
 
+.vcenter {
+    text-align:center;
+    margin-top:20%;
+}
+
 pre {
     margin:0px;
     background:#C4FF7C;

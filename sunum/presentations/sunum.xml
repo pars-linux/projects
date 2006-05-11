@@ -8,6 +8,16 @@
 <firm>Tubitak/Uekae - Pardus Projesi</firm>
 
     <page>
+        <header>PHP ve Ajax ile Yeni Nesil</header>
+        <content>
+          /vcenter/ 
+            M.Gökmen GÖKSEL /br/
+            /c:blue/ gokmen@pardus.org.tr //c/
+          //vcenter/
+        </content>
+    </page>
+
+    <page>
     <header>PHP Nedir ?</header>
         <content>
             /- Personal Home Page, bir script dili
@@ -19,7 +29,7 @@
             /-- http://www.php.net
             /- Bu sunum PHP, Smarty, HTML, CSS ve XML kullanılarak hazırlandı.
         </content>
-    </page>
+     </page>
 
      <page>
         <header>Ajax Nedir ?</header>
@@ -37,16 +47,20 @@
     </page>
 
     <page>
-        <header>Ajax Nasıl ?</header>
+        <header>Ajax Ne Değildir ?</header>
         <content>
-            /- Çalışma yapısı değişiyor;
-            /-- "Sunucu - İstemci - Sunucu" » "Sunucu - İstemci - İstemci"
+            /- Javascript ile yapılan herşey AJAX /c:red/ değildir //c/ .
+            /- DHTML, AJAX teknolojileri ile kullanılabilir fakat DHTML 'de AJAX /c:red/ değildir //c/.
+            /- Paket bir program /c:red/ değildir //c/.
+            /- Bir programlama dili /c:red/ değildir //c/.
         </content>
     </page>
 
     <page>
-        <header>Yeni Nesil, Eskisine karşı..</header>
+        <header>Ajax Nasıl ?</header>
         <content>
+            /- /c:red/ "Sunucu - İstemci - Sunucu" //c/ 
+            »  /c:blue/ "Sunucu - İstemci - İstemci" //c/
             /image/ ajax_interaction.png //image/
         </content>
     </page>
