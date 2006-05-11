@@ -1,0 +1,43 @@
+<?xml version='1.0' standalone='yes'?>
+
+<impress>
+<header>PHP ve Ajax ile Yeni Nesil</header>
+<author>M.Gökmen GÖKSEL</author>
+<email>gokmen@pardus.org.tr</email>
+<firm>Tubitak/Uekae - Pardus Projesi</firm>
+
+    <page>
+    <header>PHP Nedir ?</header>
+        <content>
+            - Personal Home Page, bir script dili
+            - Son dönemlerin en popülerlerinden
+            - Web için geliştirilmiş
+            - Apache ile tam uyumlu (mod_php)
+                - VeriTabanı Desteği, MySQL, PostgreSQL, ODBC..
+                - Tamamen özgür geliştiriliyor
+        </content>
+    </page>
+
+    <page>
+        <header>Ajax Nedir ?</header>
+        <content>
+            - Asymetric JavaScript and XML
+            - Bir program değil, teknoloji
+            - XHTML, CSS, JavaScript ve XML ile gerçekleniyor
+            - Browser Desteği gerekli;
+                - Firefox(Mozilla), Safari(KHTML) ve InternetExplorer destekliyor
+        </content>
+    </page>
+   
+    <page>
+        <header>XMLHttpRequest Nesnesi</header>
+        <content>
+            - Asymetric JavaScript and XML
+            - Bir program değil, teknoloji
+            - XHTML, CSS, JavaScript ve XML ile gerçekleniyor
+            - Browser Desteği gerekli;
+                - Firefox(Mozilla), Safari(KHTML) ve InternetExplorer destekliyor
+        </content>
+    </page>
+
+</impress>
