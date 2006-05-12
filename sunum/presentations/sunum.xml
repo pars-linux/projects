@@ -10,7 +10,7 @@
     <page>
         <header>PHP ve Ajax ile Yeni Nesil</header>
         <content>
-          /vcenter/ 
+          /vcenter/
             Gökmen GÖKSEL /br/
             /c:blue/ gokmen@pardus.org.tr //c/ /br/
             Tübitak UEKAE
@@ -39,8 +39,8 @@
             /- Bir program değil, teknoloji
             /- XHTML, CSS, JavaScript ve XML ile gerçekleniyor
             /- Browser Desteği gerekli;
-            /-- Firefox(Mozilla), Safari(KHTML) ve Internet Explorer destekliyor
-            /- Mozilla ve KHTML için;
+            /-- Firefox(Mozilla), Safari(KHTML), Opera(7.60 sonrası) ve Internet Explorer destekliyor
+            /- Mozilla, KHTML ve Opera için;
             /-- /code/ var req = new XMLHttpRequest(); //code/
             /- Internet Explorer için;
             /-- /code/ var req = new ActiveXObject("Microsoft.XMLHTTP"); //code/
@@ -50,7 +50,7 @@
     <page>
         <header>Ajax Nasıl ?</header>
         <content>
-            /center/ /c:red/ "Sunucu - İstemci - Sunucu" //c/ 
+            /center/ /c:red/ "Sunucu - İstemci - Sunucu" //c/
             »  /c:blue/ "Sunucu - İstemci - İstemci" //c/ //center/
             /image/ ajax_interaction.png //image/
         </content>
@@ -73,12 +73,12 @@
             /- DHTML, AJAX teknolojileri ile kullanılabilir fakat DHTML 'de AJAX /c:red/ değildir //c/.
             /- Paket bir program /c:red/ değildir //c/.
             /- Bir programlama dili /c:red/ değildir //c/.
-            /- Kaliteli CSS ile yapılmış görsel sayfalar AJAX /c:red/ değildir //c/. 
+            /- Kaliteli CSS ile yapılmış görsel sayfalar AJAX /c:red/ değildir //c/.
             /- AJAX:
-            /-- XHTML, XML, CSS, JavaScript ve DHTML yapılarından dolaylı yoldan faydalanır fakat asıl AJAX altyapısı /c:blue/ XMLHttpRequest  //c/ Nesnesi üzerinde yoğunlaşmıştır.
+            /-- XHTML, XML, CSS, JavaScript ve DHTML yapılarından dolaylı yoldan faydalanır fakat asıl AJAX altyapısı /c:blue/ XMLHttpRequest //c/ Nesnesi üzerinde yoğunlaşmıştır.
         </content>
     </page>
-   
+
     <page>
         <header>XMLHttpRequest Nesnesi - Metodlar </header>
         <content>
@@ -94,5 +94,78 @@
             /-- Bir istek ile yollanmak üzere belirtilen "etiket","değer" ikilisini hazırlar.
         </content>
     </page>
+
+    <page>
+        <header>XMLHttpRequest Nesnesi - Özellikler </header>
+        <content>
+            /- /c:red/ onreadystatechange //c/
+            /-- Durum değişikliği olduğunda harekete geçirilir.
+            /- /c:red/ readyState //c/
+            /-- Nesne durumunu nümerik olarak verir;
+            /--- 0 = Başlatılmadı
+            /--- 1 = Yükleniyor
+            /--- 2 = Yüklendi
+            /--- 3 = İşlem devam ediyor
+            /--- 4 = Bitti
+            /- /c:red/ responseText, responseXML //c/
+            /-- Geri dönen verinin metin ya da XML hali
+        </content>
+    </page>
+
+    <page>
+        <header>Örnek uygulama</header>
+        <content>
+            bir loadxml fonksiyonu, verilen url den get metodu ile istekte bulunuyor, aynı zamanda xmlhttprequest nesnesini yaratıyor.
+            /image/ code1.png //image/
+        </content>
+    </page>
+
+    <page>
+        <header>Örnek uygulama - devam</header>
+        <content>
+            yapılan xmlhttp isteği üzerinde durum kontrolu ve sonuç kontrolü yapar. /br/ 
+            /image/ code2.png //image/
+        </content>
+    </page>
+
+
+    <page>
+        <header>Hazır Kütüphaneler</header>
+        <content>
+            /- Prototype
+            /- XAJAX
+            /- JSMX
+            /- BackBase
+            /- Dojo Toolkit
+            /- JPSPAN
+            /- qooxdoo
+            /- Rico Library
+            /- script.aculo.us
+            /- Ruby on Rails
+        </content>
+    </page>
+
+     <page>
+        <header>Ajax Kullananlar</header>
+        <content>
+            /- Pardus Ürünleri :) Pardon, Sanat.Pardus ve diğerleri
+            /- Gmail, GoogleMap, GoogleSearch(AutoCompletion)
+            /- Yahoo!, Yahoo!Map
+            /- Ajaxian.com - Komünite Sitesi
+            /- Apple
+            /- ....
+        </content>
+    </page>
+
+    <page>
+        <header>Pardus AJAX ürünleri</header>
+        <content>
+          /vcenter/ 
+            /c:blue/ Pardon //c/,/c:red/ Sanat.Pardus //c/ AJAX birleşimi /br/
+            /c:green/ SORULAR ? //c/ /br/
+          //vcenter/
+        </content>
+    </page>
+
 
 </impress>
