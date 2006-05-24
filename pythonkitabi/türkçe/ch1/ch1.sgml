@@ -78,14 +78,14 @@
     </indexterm>
     <note><title>Sürümler üzerine bir not</title>
 
-    <para id="para-ch1-8">PyQt enaz üç bileşenden oluşur;Python, Qt ve PyQt'un kendisi.
+    <para id="para-ch1-8">PyQt enaz üç bileşenden oluşur;Python, Qt ve PyQt'nin kendisi.
     Ek olarak, PyKDE (Unix KDE Masaüstü Ortamı için bağlayıcılar) vardır.
     Bu dört bileşenin sürüm numaraları genellikle birbiriyle ilişkisizdir.
-    Qt'un belirli bir zamanda üç sürümü vardır aynen PyQt gibi. Bununla birlikte,
+    Qt'nin belirli bir zamanda üç sürümü vardır aynen PyQt gibi. Bununla birlikte,
     PyQt 3.x, Qt 1.x, Qt 2.x <emphasis>ve</emphasis>Qt 3.x ile derlenebilir.
     </para>
 
-    <para id="para-ch1-9">PyQt sürümleri arasındaki farklılık Qt'un
+    <para id="para-ch1-9">PyQt sürümleri arasındaki farklılık Qt'nin
     desteklediği sürümler oranında, organizasyona ve yürütmeye bağlı
     detaylara bağlı olarak oluşmaktadır.
     </para>
@@ -190,7 +190,7 @@
     Mac-OS 8.5 gibi stilinde görünmesini sağlamış oluruz.
     </para>
 
-    <para id="para-ch1-20">Qt'un güzelliklerinden biri de
+    <para id="para-ch1-20">Qt'nin güzelliklerinden biri de
     size tüm desteklediği parçacık sitillerini (widget styles)
     tüm platformlarda kullanma şansı vermesidir. Aqua stili yalnızca OS X
     platformunda kullanılabilir. Çünkü Apple bu sitilin diğer platformlara
@@ -207,7 +207,7 @@
     <indexterm>
     <primary>qt module layout</primary>
     </indexterm>
-    <para id="para-ch1-22">PyQt'un 3x sürümünden sonra,
+    <para id="para-ch1-22">PyQt'nin 3x sürümünden sonra,
     kütüphane bazı bağımsız modüllere ayrıldı.
     <varname>Qt</varname> modülü hala temel ögeler için yeterlidir.
     Ancak, canvas(yerleşim,plan) gibi daha gelişmiş işlevsellik içeren modüller
@@ -541,7 +541,7 @@ def main(args):
     <indexterm>
     <primary>form tasarlama</primary>
     </indexterm>
-    <para id="para-ch1-51">BlackAdder ve PyQt'un önemli özellikerinden biri
+    <para id="para-ch1-51">BlackAdder ve PyQt'nin önemli özellikerinden biri
     görsel arayüz (GUI) tasarım aracına sahip olmalarıdır.
     Her çeşit diyalog penceresi ve kişiselleştirilmiş parçacık
     oluşturmak için bu tasarım aracını kullanabilirsiniz.
