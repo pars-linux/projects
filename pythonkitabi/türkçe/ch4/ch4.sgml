@@ -1,0 +1,1084 @@
+<chapter id="ch4">
+
+  <title>String Objects in Python and Qt</title>
+    
+  <indexterm>
+  <primary>strings</primary>
+  </indexterm>
+  <para id="para-ch4-1">Most likely, you won't need the information in
+    this chapter very often. If you don't juggle character encodings
+    on a regular basis, or work extensively with Unicode, then you can
+    probably get by quite well with the automatic string handling of
+    PyQt. However, situations may arise, especially when working with
+    string-intensive applications, where PyQt's behavior might
+    surprise you. Then you will probably find yourself coming to this
+    chapter.</para>
+
+  <sect1>
+    <title>Introduction</title>
+
+    <indexterm>
+  <primary>strings</primary><secondary>quoting</secondary>
+  </indexterm>
+  <para id="para-ch4-2">Working with strings is a delight in Python.
+      Take the simple fact that you can, depending on your whim and on
+      whether the string contains the other kind, choose to enclose
+      your string literals in single ('), double ("), or triple ('''
+      or """) quotes. Triple quoted strings can span multiple lines
+      &mdash; no more string concatenations just because the string
+      doesn't fit the line.</para>
+
+    <para id="para-ch4-3">Once you have your string, and it can be a
+      delightfully long string, megabytes if needs be, you can
+      transform it, mangle it, search in it &mdash; all using a few
+      choice modules, such as <filename>string</filename>,
+      <filename>re</filename> or the native methods of the
+      <classname>string</classname> object. About the only snag is the
+      immutability of strings &mdash; every modifying action creates a
+      new string from the old, which can be costly.</para>
+
+    <indexterm>
+  <primary>QString</primary>
+  </indexterm>
+  <indexterm>
+  <primary>QCString</primary>
+  </indexterm>
+  <para id="para-ch4-4">In C++, working with strings is
+      <emphasis>not</emphasis> a delight. Working with strings in C++
+      requires using null-terminated character arrays, and writing all
+      your own support functions. Or you have to try to use the  C++
+      Standard Library String class, which is rather limited. This is
+      why Trolltech created two string classes &mdash;
+      <classname>QString</classname> and
+      <classname>QCString</classname> &mdash; which are almost as
+      powerful and friendly to use as the Python string classes. In
+      fact, when Trolltech first created
+      <classname>QString</classname>, there was no string class in the
+      standard C++ library.</para>
+
+    <indexterm>
+  <primary>strings</primary><secondary>unicode</secondary>
+  </indexterm>
+  <para id="para-ch4-5">Python also has two string classes: the
+      'old' <classname>string</classname> class, in which every byte
+      represents a character, and the newer Unicode
+      <classname>string</classname> class, which contains a sequence
+      of Unicode characters that can, depending on the encoding, take
+      between one and four bytes. The Qt
+      <classname>QString</classname> class is equivalent to the Python
+      Unicode <classname>string</classname> class, and the Qt
+      <classname>QCString</classname> class is more like the
+      'old' 8-bit Python <classname>string</classname>.</para>
+
+    <para id="para-ch4-6">Your friendly Python Library Reference will
+      tell you all about the <filename>string</filename> module, the
+      <filename>string</filename> class, and the
+      <filename>re</filename> module for regular expression matching.
+      In this chapter I am more concerned with the interaction between
+      <classname>QString</classname> and Python strings, and with
+      character encoding questions.</para>
+
+  </sect1>
+
+  <sect1>
+    <title>String conversions</title>
+
+    <indexterm>
+  <primary>strings</primary><secondary>conversion</secondary>
+  </indexterm>
+  <para id="para-ch4-7">I will return to
+      <classname>QCString</classname> later, as
+      <classname>QString</classname> is used everywhere in Qt.  All
+      user-visible text is set using <classname>QString</classname>s,
+      and if a widget returns some text, it will return a
+      <classname>QString</classname> as well. It should become clear
+      that the only way to work comfortably with strings in Python and
+      Qt is to have some automatic conversion between Python string
+      objects and <classname>QString</classname>s.
+    </para>
+
+    <para id="para-ch4-8">The conversion from a Python string to a
+    <classname>QString</classname> is
+      completely transparent. Any Qt class method that asks for a
+      <classname>QString</classname> as an argument accepts any Python
+      string (or Python Unicode string). The other way around isn't
+      all that transparent, unfortunately.  When you ask,
+      for example, a <classname>QMultiLineEdit</classname> widget for its
+      contents, you get a <classname>QString</classname>. If you try to use
+      Python's regular expression engine on this object, of if you try
+      to write it to a file, you will be surprised at the results:
+    </para>
+
+    <example>
+      <title>qstring1.py &mdash; conversion from
+        <classname>QString</classname> to a Python string.</title>
+      <programlisting>
+#
+# qstring1.py - saving a QString to a file
+#
+
+from qt import *
+
+# Construct a Python string
+
+pyString = """Now is the summer of our sweet content,
+Made o'er-cast winter by these Tudor clouds.
+And I that am not shaped for black-faced war,
+"""
+
+# Construct a Qt QString
+
+qtString=QString("""I that am rudely cast and want true majesty,
+Am forced to fight,
+To set sweet England free.
+I pray to Heaven we fare well,
+And all who fight us go to Hell.
+""")
+
+f=open("richard", "w+")
+f.write(pyString)
+f.flush()
+f.write(qtString)
+f.close()
+      </programlisting>
+    </example>
+
+    <indexterm>
+  <primary>QString</primary><secondary>saving to a file</secondary>
+  </indexterm>
+  <para id="para-ch4-9">If you run this script, you'll get the
+      following output:</para>
+
+    <screen>
+boud@calcifer:~/doc/opendoc/ch4 > python qstring1.py
+Traceback (most recent call last):
+  File "qstring1.py", line 26, in ?
+    f.write(qtString)
+TypeError: read-only character buffer, instance
+boud@calcifer:~/doc/opendoc/ch4 >
+    </screen>
+
+    <para id="para-ch4-10">There are good reasons for this behavior.
+      Returning <classname>QString</classname>s from widgets gives the
+      developer access to all the neat Qt string handling
+      functionality. A Qt string is mutable, in contrast to a Python
+      string, and having the Qt <classname>QString</classname> makes
+      it easier to change the contents in place. Lastly, returning a
+      Qt string instead of a Python string avoids a somewhat costly
+      conversion which might not be needed if all you want to do is to
+      stuff the text in another Qt widget.</para>
+
+    <para id="para-ch4-11">Of course, the downside is that if you want
+      to treat a QString object as a Python string, you'll have to
+      convert it yourself, using one of the Python built-in functions
+      <function>str()</function> or <function>unicode()</function>.
+      Adapting the previous script makes it work as expected:</para>
+
+    <example>
+      <title>qstring2.py - second try of saving a
+        <classname>QString</classname> to a file</title>
+        <programlisting>
+#
+# qstring2.py - saving a QString to a file
+#
+
+from qt import *
+
+# Construct a Python string
+
+pyString = """Now is the summer of our sweet content,
+Made o'er-cast winter by these Tudor clouds.
+And I that am not shaped for black-faced war,
+"""
+
+# Construct a Qt QString
+
+qtString=QString("""I that am rudely cast and want true majesty,
+Am forced to fight,
+To set sweet England free.
+I pray to Heaven we fare well,
+And all who fight us go to Hell.
+""")
+
+f=open("richard", "w+")
+f.write(pyString)
+f.flush()
+f.write(str(qtString))
+f.close()
+      </programlisting>
+    </example>
+
+    <para id="para-ch4-12">I don't need to show you screen output here
+      &mdash; it just works. You will have to pay attention to what
+      happens with the strings you receive from Qt widgets. If you
+      want to write the contents to a file, database, or to mangle the
+      string with Python modules, you will need to explicitly convert
+      the QString object to Python strings. If you want to feed the
+      string to another widget, you don't have to do anything.</para>
+
+  </sect1>
+
+  <sect1><title>QCString &mdash; simple strings in PyQt</title>
+
+    <indexterm>
+  <primary>QCString</primary><secondary>simple strings</secondary>
+  </indexterm>
+  <para id="para-ch4-13">Both Python and Qt have two types of
+      strings: simple strings, which are sequences of bytes where
+      every byte represents one character, and complex string objects,
+      which contain characters in the Unicode encoding. Unicode is a
+      complex topic that is treated in the next section; this section
+      deals with simple strings.</para>
+
+    <para id="para-ch4-14"><classname>QCString</classname> is the PyQt
+      equivalent of the Python simple string. The Qt documentation
+      describes <classname>QCString</classname> as a weak class, which
+      is accurate. The implementation does not feature all the
+      intelligence and care that has gone into
+      <classname>QString</classname>, and as a consequence it scales
+      poorly to large strings.</para>
+
+    <indexterm>
+  <primary>QCString</primary><secondary>null bytes</secondary>
+  </indexterm>
+  <para id="para-ch4-15">As an abstraction of the standard C++
+      null-terminated string, <classname>QCString</classname> cannot
+      contain any null bytes ('\0'). In this respect,
+      <classname>QCString</classname> differs from the simple Python
+      string object. The simple Python string is often used as a
+      container for binary data, and the string object doesn't care
+      whether it contains null bytes. Feeding a Python string that
+      contains null bytes to a QCString provides interesting results:
+      </para>
+
+    <example>
+      <title>empty.py - feeding zero bytes to a QCString</title>
+
+      <programlisting>
+#
+# empty.py - feeding zero bytes to a QCString
+#
+
+from qt import *
+
+pystring='abc\0def'
+print "Python string:", pystring
+print "Length:", len(pystring)
+
+qcstring=QCString(pystring)
+print "QCString:", qcstring
+print "Length:", qcstring.length()
+      </programlisting>
+    </example>
+
+    <para id="para-ch4-16">Running the previous example produces the following
+      output:</para>
+
+    <screen>
+boudewijn@maldar:~/doc/opendoc/ch4 > python empty.py
+Python string: abcdef
+Length: 7
+QCString: abc
+Length: 3
+    </screen>
+
+    <indexterm>
+  <primary>QCString</primary><secondary>equivalent to Python strings</secondary>
+  </indexterm>
+  <para id="para-ch4-17">Except for this proviso, both
+      <classname>QCString</classname> and the Python string object are
+      equivalent, and you can use the Python string object wherever a
+      <classname>QCString</classname> is needed as a parameter in a
+      function. You can convert the <classname>QCString</classname>
+      back to a python string with the <function>str()</function>
+      function. If the <classname>QCString</classname> is
+      <emphasis>empty</emphasis>, i.e., it contains only one byte with
+      the value <emphasis>zero</emphasis> ('\0'), an empty Python
+      string is returned, <emphasis>not</emphasis> a Python string
+      that contains one zero byte.</para>
+
+    <para id="para-ch4-18">The issue of null versus empty strings is an
+      interesting one. A null <classname>QCString</classname> is
+      constructed as follows:</para>
+
+<programlisting>
+nullstring=QCString()
+</programlisting>
+
+    <para id="para-ch4-19">This string is conceptually equivalent to
+      the Python <classname>None</classname> object, except that the
+      null <classname>QCString</classname> has a type. There is no way
+      to construct a <emphasis>null</emphasis> Python string: a Python
+      string without contents is always <emphasis>empty</emphasis>,
+      i.e. the equivalent of a <classname>QCString</classname> that
+      contains one byte with the value <emphasis>zero</emphasis>. The
+      following script attempts a few combinations, using Python's
+      built-in <function>assert</function> function.
+      </para>
+
+    <tip>
+      <title>Assert</title>
+      <indexterm>
+  <primary>assert</primary>
+  </indexterm>
+  <para id="para-ch4-20">The <function>assert</function> statement
+        is one of the more useful tools in the Python developers
+        toolchest. You can use <function>assert</function> to check
+        any statement for truth &mdash; and if it fails, an
+        AssertionException is thrown. If you compile your Python
+        scripts to optimized bytecode (.pyo files), then the assertion
+        statements are removed, making <function>assert</function>
+        ideal for checking your code for invalid entry conditions in
+        method calls during development. The use of
+        <function>assert</function> in the following script is more of
+        a hack: this little script wouldn't do anything if run with
+        python -O null.py; only the line print message, "TRUE" would
+        be executed in the <function>assertTrue</function>
+        function.</para>
+    </tip>
+
+    <example>
+      <title>null.py - empty and null QCStrings and Python
+        strings</title>
+
+      <programlisting>
+#
+# null.py - empty and null QCStrings and Python strings
+#
+from qt import QCString
+
+# this string is empty
+emptypystring=""
+
+# this string contains one byte, zero
+nullpystring="\0"
+
+# this string is empty: it contains the empty string, terminated with \0
+emptyqcstring=QCString("")
+
+# this string is null: it doesn't contain data
+nullqcstring=QCString()
+
+def assertTrue(assertion, message):
+    try:
+        assert(assertion)
+        print message, "TRUE"
+    except AssertionError:
+        print message, "FALSE"
+
+assertTrue(emptypystring==emptyqcstring,
+    "Empty Python string equals empty QCString")
+assertTrue(emptypystring==str(emptyqcstring),
+    "Empty Python string equals str(empty QCString)")
+assertTrue(emptypystring==str(nullqcstring),
+    "Empty python string equals str(null QCString)")
+assertTrue(nullpystring==emptyqcstring,
+    "Python string containing 0 byte equals empty QCString")
+assertTrue(nullpystring==str(emptyqcstring),
+    "Python string containing 0 byte equals str(empty QCSTRING)")
+assertTrue(nullqcstring is None,
+    "Null QCString equals None object")
+      </programlisting>
+    </example>
+
+    <para id="para-ch4-21">Running this gives the following output:</para>
+
+    <screen>
+boudewijn@maldar:~/doc/opendoc/ch4 > python null.py
+Empty Python string equals empty QCString FALSE
+Empty Python string equals str(empty QCString) TRUE
+Empty python string equals str(null QCString) TRUE
+Python string containing 0 byte equals empty QCString FALSE
+Python string containing 0 byte equals str(empty QCSTRING) FALSE
+Null QCString equals None object FALSE
+    </screen>
+
+    <para id="para-ch4-22">Of course, some of these concerns hold for
+      <classname>QString</classname>, too. It is equally possible to
+      have an empty <classname>QString</classname> or a null
+      <classname>QString</classname>. Note that embedding a zero byte
+      in a Python string and then feeding it to a
+      <classname>QString</classname> shows the same behavior as with
+      <classname>QCString</classname>, even though
+      <classname>QString</classname> isn't a null-terminated string
+      class:</para>
+
+    <example>
+      <title>emptyqstring.py - feeding zero bytes to a
+        QString</title>
+
+      <programlisting>
+#
+# emptyqstring.py - feeding zero bytes to a QString
+#
+
+from qt import *
+
+pystring='abc\0def'
+print "Python string:", pystring
+print "Length:", len(pystring)
+
+qstring=QString(pystring)
+print "QString:", qstring
+print "Length:", qstring.length()
+      </programlisting>
+    </example>
+
+    <indexterm>
+  <primary>QString</primary><secondary>null bytes</secondary>
+  </indexterm>
+  <para id="para-ch4-23">Look at the output:</para>
+
+    <screen>
+boudewijn@maldar:~/doc/opendoc/ch4 > python emptyqstring.py
+Python string: abcdef
+Length: 7
+QString: abc
+Length: 3
+    </screen>
+
+    <indexterm>
+  <primary>strings</primary><secondary>using for binary data</secondary>
+  </indexterm>
+  <para id="para-ch4-24">The unavoidable conclusion is that you
+      shouldn't try to use Python strings as containers for binary
+      data and then convert them to Qt string objects. Of course,
+      there's a solution: you can use
+      <classname>QByteArray</classname> to store binary data.</para>
+
+  </sect1>
+
+  <sect1>
+    <title>Unicode strings</title>
+
+    <sect2><title>Introduction to Unicode</title>
+
+      <indexterm>
+  <primary>unicode</primary>
+  </indexterm>
+  <para id="para-ch4-25">All text that is handled by computers
+        must be encoded. Every letter in a text has to be represented
+        by a numeric value. For a long time, it was assumed that 7
+        bits would provide enough values to encode all necessary
+        letters; this was the basis for the ASCII character set.
+        However, with the spread of computers all over the world, it
+        became clear that this was not enough. A whole host of
+        different encodings were designed, varying from the obscure
+        (TISCII) to the pervasive (latin-1). Of course, this leads to
+        problems when you are trying to exchange texts. A
+        western-european latin-1 user cannot easily read a Russian
+        koi-8 text on his system. Another problem is that those small,
+        one-byte, eight-bit character sets don't have room for useful
+        stuff, such as extensive mathematical symbols. The solution
+        has been to create a monster character set consisting of at
+        least 65000 code-points including every possible character
+        someone might want to use. This is ISO/IED-10646. The Unicode
+        standard (http://www.unicode.org) is the official
+        implementation of ISO/IED-10646.</para>
+
+
+      <para id="para-ch4-26">Unicode is an essential feature of any
+        modern application. Unicode is mandatory for every e-mail
+        client, for instance, but also for all XML processing, web
+        browsers, many modern programming languages, all Windows
+        applications (such as Word), and KDE 2.0 translation
+        files.</para>
+
+      <indexterm>
+  <primary>unicode</primary><secondary>flaws</secondary>
+  </indexterm>
+  <para id="para-ch4-27">Unicode is not perfect, though. Some
+        programmers, such as Jamie Zawinski of XEmacs and Netscape
+        fame, lament the extra bytes that Unicode needs &mdash; two
+        bytes for every character instead of one. Japanese experts
+        oppose the unification of Chinese characters and Japanese
+        characters. Japanese characters are derived from Chinese
+        characters, historically, and even their modern meaning is
+        often identical, but there are some slight visual differences.
+        These complainers are often very vociferous, but Unicode is
+        the best solution we have for representing the wide variety of
+        scripts humanity has invented.</para>
+
+      <para id="para-ch4-28">There are a few other practical problems
+        concerning Unicode. Since the character set is so very large,
+        there are no fonts that include all characters. The best font
+        available is Microsoft's Arial Unicode, which can be
+        downloaded for free. The Unicode character set also includes
+        interesting scripts such as Devanagari, a script where single
+        letters combine to from complicated ligatures. The total
+        number of Devanagari letters is fairly small, but the set of
+        ligatures runs into the hundreds. Those ligatures are not
+        defined in the character set, but have to be present in fonts.
+        Scripts like Arabic or Burmese are even more complicated. For
+        those scripts, special rendering engines have to be written in
+        order to display a text correctly.</para>
+
+<!-- Br: I added the following para -->
+      <para>From version 3, Qt includes capable rendering engines for
+        a number of scripts, such as Arabic, and promises to include
+        more. With Qt 3, you can also combine several fonts to form a
+        more complete set of characters, which means that you no
+        longer have use have one monster font with tens of thousands
+        of glyphs.</para>
+
+      <indexterm>
+  <primary>unicode</primary><secondary>input methods</secondary>
+  </indexterm>
+  <para id="para-ch4-29">The next problem is inputting those
+        texts. Even with remappable keyboards, it's still a monster
+        job to support all scripts. Japanese, for instance, needs a
+        special-purpose input mechanism with dictionary lookups that
+        decide which combination of sounds must be represented using
+        Kanji (Chinese-derived characters) or one of the two syllabic
+        scripts, kana and katakana.</para>
+
+      <para id="para-ch4-30">There are still more complications, that
+        have to do with sort order, bidirectional text (Hebrew going
+        from right to left, Latin from left to right) &mdash; then
+        there are vested problems with determining which language is
+        the language of preference for the user, which country he is
+        in (I prefer to write in English, but have the dates show up
+        in the Dutch format, for instance). All these problems have
+        their bearing upon programming using Unicode, but are so
+        complicated that a separate book should be written to deal
+        with them.</para>
+
+      <indexterm>
+  <primary>unicode</primary><secondary>conversion</secondary>
+  </indexterm>
+  <para id="para-ch4-31">However, both Python strings and Qt
+        strings support Unicode &mdash; and both Python and Qt strings
+        support conversion from Unicode to legacy character sets such
+        as the wide-spread Latin-1, and vice-versa. As said above,
+        Unicode is a multi-byte encoding: that means that a single
+        Unicode character is encoded using <emphasis>two</emphasis>
+        bytes. Of course, this doubles memory requirements compared to
+        single-byte character sets such as Latin-1. This can be
+        circumvented by encoding Unicode using a variable number of
+        bytes, known as UTF-8. In this scheme, Unicode characters that
+        are equivalent to ASCII characters use just one byte, while
+        other characters take up to three bytes. UTF-8 is a
+        wide-spread standard, and both Qt and Python support
+        it.</para>
+
+      <para id="para-ch4-32">I'll first describe the pitfalls of
+        working with Unicode from Python, and then bring in the Qt
+        complications.</para>
+
+    </sect2>
+
+    <sect2><title>Python and Unicode</title>
+
+      <para id="para-ch4-33">Python actually makes a difference
+        between Unicode strings and 'normal' strings &mdash; that is,
+        strings where every byte represents one character. Plain
+        Python strings are often used as character arrays representing
+        immutable binary data. In fact, plain strings are semantically
+        very similar to Java's byte array, or Qt's
+        <classname>QByteArray</classname> class &mdash; they represent
+        a simple sequence of bytes, where every byte
+        <emphasis>may</emphasis> represent a character, but could also
+        represent something quite different, not a human readable text
+        at all.</para>
+
+  
+      <indexterm>
+  <primary>unicode</primary><secondary>creating a unicode string</secondary>
+  </indexterm>
+  <para id="para-ch4-34">Creating a Unicode string is a
+        bootstrapping problem. Whether you use BlackAdder's Scintilla
+        editor or another editor, it will probably not support Unicode
+        input, so you cannot type Chinese characters directly.
+        However, there are clever ways around this problem: you can
+        either type hex codes, or construct your strings from other
+        sources. In the third part of this book we will create a small
+        but fully functional Unicode editor.</para>
+
+      <sect3><title>String literals</title>
+
+        <para id="para-ch4-35">You can create a Unicode string literal
+          by prefixing the string with the letter
+          <emphasis>u</emphasis>, or convert a plain string to Unicode
+          with the <function>unicode</function> keyword. You cannot,
+          however, write Python code using anything but ASCII. If you
+          look at the following script, you will notice that there is
+          a function defined in Chinese characters (yin4shua1 means
+          print), that tries to print the opening words of the Nala
+          &mdash, a Sanskrit epos. Python cannot handle this, so all
+          actual code must be in ASCII.</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="70" align="left" fileref="ch4/unicode.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch4-36">A Python script written in Unicode.</para>
+          </caption>
+        </mediaobject>
+
+        <para id="para-ch4-37">Of course, it would be nice if we could
+          at least type the strings directly in UTF-8, as shown in the
+          next screenshot:</para>
+
+        <mediaobject>
+            <imageobject>
+            <imagedata scale="50" align="left" fileref="ch4/unicode2.eps">
+          </imageobject>
+          <caption>
+            <para id="para-ch4-38">A Python script with the strings written in
+              Unicode.</para>
+          </caption>
+        </mediaobject>
+
+        <indexterm>
+  <primary>encoding</primary><secondary>default encoding</secondary>
+  </indexterm>
+  <para id="para-ch4-39">Unfortunately, this won't work either.
+          Hidden deep in the bowels of the Python startup process, a
+          default encoding is set for all strings. This encoding is
+          used to convert from Unicode whenever the Unicode string has
+          to be presented to outside world components that don't talk
+          Unicode, such as <function>print</function>. By default this
+          is 7-bits ASCII. Running the script gives the following
+          error:</para>
+
+        <screen>
+boudewijn@maldar:~/doc/opendoc/ch4 > python unicode2.py
+
+Traceback (most recent call last):
+  File "unicode2.py", line 4, in ?
+    nala()
+  File "unicode2.py", line 2, in nala
+    print u"�स�द रा�ा नल� नाम "
+UnicodeError: ASCII encoding error: ordinal not in range(128)
+        </screen>
+
+        <para id="para-ch4-40">The default ASCII encoding that Python
+          assumes when creating Unicode strings means that you cannot
+          create Unicode strings directly, without explicitly telling
+          Python what is happening.  This is because Python tries to
+          convert from ASCII to utf8, and every byte with a value
+          greater than the maximum ASCII knows (127) will lead to the
+          above error. The solution is to use an explicit encoding.The
+          following script will work better:</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata scale="50" align="center" fileref="ch4/unicode3.eps">
+          </imageobject>
+          <caption><para id="para-ch4-41">Explicitly telling Python that a string
+              literal is in the utf-8 encoding.</para>
+          </caption>
+        </mediaobject>
+
+        <para id="para-ch4-42">If you run this script in a
+          Unicode-enabled terminal, like a modern xterm, you will see
+          the first line of the Nala neatly printed. Quite an
+          achievement!</para>
+
+        <indexterm>
+  <primary>encoding </primary><secondary>available encodings</secondary>
+  </indexterm>
+  <para id="para-ch4-43">You can find out which encodings your
+          version of Python supports by looking in the encodings
+          folder of your Python installation. It will certainly
+          include mainstays such as: ascii, iso8859-1 to iso8859-15,
+          utf-8, latin-1 and a host of MacIntosh encodings as well as
+          MS-DOS codepage encodings. Simply substitute a dash for
+          every underscore in the filename to arrive at the string you
+          can use in the <function>encode()</function> and
+          <function>decode()</function> functions.</para>
+
+        <screen>
+boudewijn@maldar:/usr/local/lib/python2.0/encodings > ls *py
+__init__.py cp1254.py cp852.py cp869.py      iso8859_5.py    
+aliases.py  cp1255.py cp855.py cp874.py      iso8859_6.py    
+ascii.py    cp1256.py cp856.py cp875.py      iso8859_7.py    
+charmap.py  cp1257.py cp857.py iso8859_1.py  iso8859_8.py    
+cp037.py    cp1258.py cp860.py iso8859_10.py iso8859_9.py    
+cp1006.py   cp424.py  cp861.py iso8859_13.py koi8_r.py       
+cp1026.py   cp437.py  cp862.py iso8859_14.py latin_1.py      
+cp1250.py   cp500.py  cp863.py iso8859_15.py mac_cyrillic.py 
+cp1251.py   cp737.py  cp864.py iso8859_2.py  mac_greek.py    
+cp1252.py   cp775.py  cp865.py iso8859_3.py  mac_iceland.py  
+cp1253.py   cp850.py  cp866.py iso8859_4.py  mac_latin2.py   
+</screen>
+
+      </sect3>
+
+      <sect3><title>Reading from files</title>
+
+        <para id="para-ch4-44">The same problem will occur when
+          reading text from a file. Python has to be explicitly told
+          when the file is in an encoding different from the default
+          encoding. Python's file object reads files as bytes and
+          returns a plain string. If the contents are not encoded in
+          Python's default encoding (ASCII), you will have to be
+          explicit about it. Let's try reading the preceding script,
+          unicode3.py, which was saved in utf-8 format.</para>
+
+        <example>
+          <title>Loading an utf-8 encoded text</title>
+          <programlisting>
+#
+# readutf8.py - read an utf-8 file into a Python Unicode string
+#
+
+import sys, codecs
+
+def usage():
+    print """
+Usage:
+
+python readutf8.py file1 file2 ... filen
+"""
+
+def main(args):
+    if len(args) < 1:
+        usage()
+        return
+
+    files=[]
+    print "Reading",
+    for arg in args:
+        print arg,
+        f=open(arg,)
+        s=f.read()
+        u=unicode(s, 'utf-8')
+        files.append(u)
+    print
+
+    files2=[]
+    print "Reading directly as Unicode",
+    for arg in args:
+        print arg,
+        f=codecs.open(arg, "rb", "utf-8")
+        u=f.read()
+        files2.append(u)
+    print
+
+    for i in range(len(files)):
+        if files[i]==files2[i]:
+            print "OK"
+
+if __name__=="__main__":
+    main(sys.argv[1:])
+          </programlisting>
+        </example>
+
+        <indexterm>
+  <primary>unicode</primary><secondary>loading from file</secondary>
+  </indexterm>
+  <para id="para-ch4-45">As you can see, you either load the
+          text in a string and convert it to a Unicode string, or use
+          the special open function defined in the
+          <emphasis>codecs</emphasis> module.  The latter option
+          allows you to specify the encoding when opening the file,
+          instead of only when writing to the file.</para>
+
+      </sect3>
+
+      <sect3><title>Other ways of getting Unicode characters into
+            Python string objects</title>
+
+        <indexterm>
+  <primary>unicode</primary><secondary>characters</secondary>
+  </indexterm>
+  <para id="para-ch4-46">We've now seen how to get Unicode data
+          in our strings from either literal text entered in the
+          Python code or from files. There are several other ways of
+          constructing Unicode strings. You can build strings using
+          the Unicode escape codes, or from a sequence of Unicode
+          characters.
+          </para>
+
+        <para id="para-ch4-47">For this purpose, Python offers
+          <function>unichr</function>, which returns a Unicode string
+          of exactly one character wide, when called with a numerical
+          argument between 0 and 65535. This can be useful when
+          building tables. The resultant character can, of course,
+          only be printed when encoded with the right encoding.</para>
+
+
+        <example><title>Building a string from single Unicode
+            characters</title>
+          <programlisting>
+#
+# unichar.py Building strings from single chars.
+#
+import string, codecs
+
+CYRILLIC_BASE=0x0400
+
+uList=[]
+for c in range(255):
+    uList.append(unichr(CYRILLIC_BASE + c))
+
+# Combine the characters into a string - this is
+# faster than doing u=u+uniChr(c) in the loop
+u=u"" + string.join(uList,"")
+
+f=codecs.open("cyrillic1.ut8", "aw+", "utf-8")
+f.write(u)
+f.flush()
+
+f=open("cyrillic2.ut8", "aw+")
+f.write(u.encode("utf-8"))
+f.flush()
+          </programlisting>
+        </example>
+
+        <para id="para-ch4-48">Note that even if you construct your
+          Unicode string from separate Unicode characters, you will
+          still need to provide an encoding when printing (utf-8, to
+          be exact). Note also that when writing text to a file, you
+          will need to explicitly tell Python that you are not using
+          ASCII.</para>
+
+        <indexterm>
+  <primary>unicode</primary><secondary>escaped encoding</secondary>
+  </indexterm>
+  <para id="para-ch4-49">Another way of adding the occasional
+          Unicode character to a string is by using the
+          <literal>\uXXXX</literal> escape codes. Here XXXX is a
+          hexadecimal number between 0x0000 and 0xFFFF:</para>
+
+        <screen>
+Python 2.1 (#1, Apr 17 2001, 20:50:35)
+[GCC 2.95.2 19991024 (release)] on linux2
+Type "copyright", "credits" or "license" for more information.
+>>> u=u"\u0411\u0412
+        </screen>
+
+        <note><title>About codecs and locales</title>
+
+          <indexterm>
+  <primary>locale</primary>
+  </indexterm>
+  <para id="para-ch4-50">With all this messing about with
+            codecs you will no doubt have wondered why Python can't
+            figure out that you live in, say, Germany, and want the
+            iso-8950-1 codec by default, just like the rest of your
+            system (such as your mail client, your wordprocessor and
+            your file system) uses. The answer is twofold. Python
+            <emphasis>does</emphasis> have the ability to determine
+            from your system which codec it should use by default.
+            This feature, however, is disabled, because it is not
+            one-hundred percent reliable. You can enable that code, or
+            change the default codec system-wide, for all Python
+            programs you use, by hacking the
+            <filename>site.py</filename> file in your Python library
+            directory:
+            </para>
+
+          <programlisting>
+# Set the string encoding used by the Unicode implementation.  The
+# default is 'ascii', but if you're willing to experiment, you can
+# change this.
+
+encoding = "ascii" # Default value set by _PyUnicode_Init()
+
+if 0:
+    # Enable to support locale aware default string encodings.
+    import locale
+    loc = locale.getdefaultlocale()
+    if loc[1]:
+        encoding = loc[1]
+
+...
+
+if encoding != "ascii":
+    sys.setdefaultencoding(encoding)
+          </programlisting>
+
+          <para id="para-ch4-51">Either change the line
+            <literal>encoding = "ascii"</literal> to the codec
+            associated with the locale you live in, or enable the
+            locale aware default string encodings by setting the line
+            <literal>if 0:</literal> to <literal>if
+              1:</literal>.</para>
+          
+          <para>It would be nice if you could call
+            <function>sys.setdefaultencoding(encoding)</function> to
+            set a default encoding for your application, such as
+            utf-8. But, and you don't want to hear this, this useful
+            function is intentionally deleted from the
+            <literal>sys</literal> module when Python is started, just
+            after the file <filename>site.py</filename> is run on
+            startup.</para>
+
+          <para id="para-ch4-58">What can one do? Of course, it's very
+            well to assume that all users on a system work with one
+            encoding and never make trips to other encodings; or to
+            assume that developers don't need to set a default
+            encoding per application, because the system will take
+            care of that, but I'd still like the power.</para>
+
+          <para id="para-ch4-59">Fortunately, there's a solution. I'll
+            probably get drummed out of the regiment for suggesting
+            it, but it's so useful, I'll tell it anyway. Create a file
+            called <filename>sitecustomize.py</filename> as
+            follows:</para>
+
+          <example><title>sitecustomize.py &mdash; saving a useful
+              function from wanton destruction</title>
+          <programlisting>
+#
+# sitecustomize.py - saving a useful function. Copy to the
+# somewhere on the Python path, like the site-packages directory
+#
+import sys
+
+sys.setappdefaultencoding=sys.setdefaultencoding
+          </programlisting>
+        </example>
+
+        <para id="para-ch4-60">Make this file a part of your
+            application distribution and have it somewhere on the
+            Python path which is used for your application. This file
+            is run automatically before <filename>site.py</filename>
+            and saves the useful function
+            <function>setdefaultencoding</function> under another
+            name. Since functions are simply references to objects and
+            those objects are only deleted when the last reference is
+            deleted, the function is saved for use in your
+            applications.</para>
+
+        <para id="para-ch4-61">Now you can set UTF-8 as the default
+            encoding for your application by calling the function as
+            soon as possible in the initialization part of your
+            application:</para>
+          
+          <example><title>uniqstring3.py - messing with Unicode strings
+              using utf-8 as default encoding</title>
+            <programlisting>
+#
+# uniqstring3.py - coercing Python strings into and from QStrings
+#
+from qt import QString
+import sys
+
+sys.setappdefaultencoding("utf-8")
+
+s="A string that contains just ASCII characters"
+u=u"\u0411\u0412 - a string with a few Cyrillic characters"
+
+print s
+print u
+            </programlisting>
+          </example>
+          
+        </note>
+      
+      </sect3>
+      
+    </sect2>
+    
+    <sect2><title>Qt and Unicode</title>
+      
+      <indexterm>
+  <primary>unicode</primary><secondary>and Qt</secondary>
+  </indexterm>
+  <para id="para-ch4-52">As mentioned earlier,
+        <classname>QString</classname> is the equivalent of a Python
+        Unicode string. You can coerce any Python string or any Python
+        Unicode object into a <classname>QString</classname>, and vice
+        versa: you can convert a <classname>QString</classname> to
+        either a Python string object, or to a Python Unicode
+        object.</para>
+
+          <para id="para-ch4-53">If you want to create a plain Python
+        string from a <classname>QString</classname> object, you can
+        simply apply the <function>str()</function> function to it:
+        this is done automatically when you <function>print</function>
+        a <classname>QString</classname>.</para>
+
+          <indexterm>
+  <primary>QString</primary><secondary>and unicode</secondary>
+  </indexterm>
+  <para id="para-ch4-54">Unfortunately, there's a snake in the
+        grass. If the QString contains characters outside the ASCII
+        range, you will hit the limits dictated by the default ASCII
+        codec defined in Python's <filename>site.py</filename>.</para>
+
+      <example><title>uniqstring1.py - coercing Python strings into
+          and from QStrings</title>
+        <programlisting>
+#
+# uniqstring1.py - coercing Python strings into and from QStrings
+#
+from qt import QString
+
+s="A string that contains just ASCII characters"
+u=u"\u0411\u0412 - a string with a few Cyrillic characters"
+
+qs=QString(s)
+qu=QString(u)
+
+print str(qs)
+print str(qu)
+        </programlisting>
+      </example>
+        <screen>
+boud@calcifer:~/doc/opendoc/ch4 > python uniqstring1.py
+A string that contains just ASCII characters
+
+Traceback (most recent call last):
+  File "uniqstring1.py", line 13, in ?
+    print qu
+  File "/usr/local/lib/python2.1/site-packages/qt.py", line 954, in __str__
+    return str(self.sipThis)
+UnicodeError: ASCII encoding error: ordinal not in range(128)
+        </screen>
+
+        <para id="para-ch4-55">If there's a chance that there are non-ASCII characters
+            in the <classname>QString</classname> you want to convert
+            to Python, you should create a Python unicode object,
+            instead of a string object, by applying
+            <function>unicode</function> to the
+            <classname>QString</classname>.</para>
+          
+          <example><title>uniqstring2.py - coercing Python strings into and from
+              QStrings</title>
+            <programlisting>
+#
+# uniqstring2.py - coercing Python strings into and from QStrings
+#
+from qt import QString
+
+s="A string that contains just ASCII characters"
+u=u"\u0411\u0412 - a string with a few Cyrillic characters"
+
+qs=QString(s)
+qu=QString(u)
+
+print unicode(qs)
+print unicode(qu)
+            </programlisting>
+          </example>
+
+
+    </sect2>
+
+  </sect1>
+
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+sgml-general-insert-case:lower
+sgml-default-dtd-file:"../chapter.ced"
+End:
+-->
+
