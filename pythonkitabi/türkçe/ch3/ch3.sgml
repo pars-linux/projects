@@ -412,8 +412,8 @@ if __name__=="__main__":
 self.parent().removeChild(self)
     </programlisting>
 
-    <para id="para-ch3-28">Eğer bu sihiri kullanırsanız zavallı parçacık yetim kalacak ve 
-      Python referansı üzerindeki <function>del</function> ifadesi ile evlat parçacık
+    <para id="para-ch3-28">Eğer bu sihirli özelliği kullanırsanız zavallı parçacık yetim kalacak ve 
+      Python referansı üzerindeki <function>del</function> komutu ile evlat parçacık
       kaldırılacaktır.</para>
 
     <example>
@@ -469,7 +469,7 @@ if __name__=="__main__":
       tekrar bulup getirmek mümkündür. Sip, Python FIXME: wrapper nesnesini ilgili örneği (instance)
       ile geri döndürecek kadar zekidir (rather than the actual C++ object instance).</para>
 
-    <example id="ch3ExampleChildren"> mUHAAAAAAAAAAAAAAAAAA
+    <example id="ch3ExampleChildren"> 
       <title>children.py - evlat nesneyi tek bir ebeveyn nesneden 
           elde etmek</title>
       <programlisting>
@@ -519,33 +519,35 @@ if __name__=="__main__":
         </programlisting>
         </example>
 
-    <para id="para-ch3-31">Running children.py will give the following output:</para>
+    <para id="para-ch3-31">children.py çalıştırıldığında şu çıktıyı verir:</para>
 
 <screen>
 boudewijn@maldar:~/doc/opendoc > python children.py
-   hide-dock qt.QObject
-   mainwidget qt.QWidget
-     layout qt.QVBoxLayout
-     button1 qt.QPushButton
-     button2 __main__.PyPushButton
-   unnamed qt.QObject
-     unnamed qt.QObject
-     unnamed qt.QObject
-       unnamed qt.QObject
-       unnamed qt.QObject
-     unnamed qt.QObject
+   qt_top_dock <class 'qt.QDockArea'>
+     toollayout <class 'qt.QLayout'>
+   qt_bottom_dock <class 'qt.QDockArea'>
+     toollayout <class 'qt.QLayout'>
+   qt_left_dock <class 'qt.QDockArea'>
+     toollayout <class 'qt.QLayout'>
+   qt_right_dock <class 'qt.QDockArea'>
+     toollayout <class 'qt.QLayout'>
+   qt_hide_dock <class 'qt.QWidget'>
+   mainwidget <class 'qt.QWidget'>
+     layout <class 'qt.QVBoxLayout'>
+     button1 <class 'qt.QPushButton'>
+     button2 <class '__main__.PyPushButton'>
+   unnamed <class 'qt.QBoxLayout'>
+     unnamed <class 'qt.QLayout'>
 </screen>
 
-    <para id="para-ch3-32">What you cannot see here is the parallel structure of
-      <classname>QLayoutItems</classname> that proxy for the widgets.
-      For that you need to use the
-      <classname>QLayoutIterator</classname> that is provided by the
-      <function>iterator()</function> method of
-      <classname>QListViewItem</classname>. Here,
-      <function>next()</function>, both returns the next item, and
-      moves the iterator onwards.</para>
+    <para id="para-ch3-32">Burada göremeyeceğiniz şey parçacıklara vekalet eden 
+      <classname>QLayoutItems</classname> sınıfının paralel yapısıdır.
+      Bu nedenle <classname>QListViewItem</classname>'in <function>iterator()</function> metodunu
+      kullanmanız gerekir ki bu da <classname>QLayoutIterator</classname> tarafından sağlanır.
+      Burada <function>next()</function> hem sonraki ögeyi döndürür hem de tekrarlayıcıyı
+      (iterator) ileri taşır.</para>
 
-    <example><title>Iterating over children</title>
+    <example><title>Evlat nesneler üzerinde tekrarlama (iterating)</title>
       <programlisting>
 #
 # children.py
@@ -595,31 +597,28 @@ if __name__=="__main__":
         
     <screen>
 boud@calcifer:~/doc/pyqt/src/qt2/ch3 &gt; python layoutchildren.py
-current <qt.QWidgetItem object at 0xa7b9deac>
-next <qt.QWidgetItem object at 0xa7b9deac>
-current <qt.QWidgetItem object at 0xa7b9deac>
-next None
-current None
-next None
+current: &lt;qt.QLayoutItem instance at 0x82ba8b4&gt; 
+next: &lt;qt.QLayoutItem instance at 0x82ba9dc&gt;
+current: &lt;qt.QLayoutItem instance at 0x82ba9dc&gt; 
+next: &lt;qt.QLayoutItem instance at 0x82baa8c&gt;
+current: &lt;qt.QLayoutItem instance at 0x82baa8c&gt; 
+next: None
     </screen>
 
     <indexterm>
-  <primary>iterators</primary>
+  <primary>tekrarlayıcılar (iterators)</primary>
   </indexterm>
   <indexterm>
   <primary>iterator()</primary>
   </indexterm>
-  <para id="para-ch3-33">Finally, let's test the ownership rules of
-      Qt and Python objects using the interactive Python interpreter.
-      In the following example, we create an object
-      <varname>self.o</varname>, owned by PyQt, and then a child
-      object is created, not owned by the instance of class
-      <classname>A</classname>, but as a Qt child of object
-      <varname>self.o</varname>. Thus, PyQt owns <varname>a</varname>
-      and <varname>self.o</varname>, and Qt owns
-      <varname>child</varname>, and <varname>child</varname> doesn't
-      get deleted, even when the Python reference goes out of
-      scope.</para>
+  <para id="para-ch3-33">Son olarak Qt ve Python nesnelerinin sahiplik kurallarını
+      etkileşimli Python yorumlayıcısını kullanarak test edelim.
+      Aşağıdaki örnekte PyQt tarafından sahiplenilmiş olan <varname>self.o</varname>
+      nesnesini oluşturduk ve ardından <classname>A</classname> sınıfının örneğine (instance)
+      ait olmayan ama Qt evlat nesnesi olarak <varname>self.o</varname> nesnesine ait
+      bir evlat oluşturduk. Bu nedenle PyQt <varname>a</varname> ve <varname>self.o</varname>
+      nesnelerinin sahibi durumundadır ve <varname>child</varname> , <varname>child</varname>
+      Python referansı gözlemden (scope) çıkana kadar silinmezler.</para>
 
       <screen>
 &gt;&gt;&gt; from qt import QObject
@@ -638,12 +637,12 @@ next None
 &gt;&gt;&gt; 
     </screen>
 
-    <para id="para-ch3-34">On the other hand, the following won't
-      work, because as soon as the execution flow leaves the
-      constructor, <varname>o</varname> is garbage collected, and
-      <varname>child</varname>, is then garbage-collected, too, since
-      it isn't owned by a Qt object, and Python doesn't have a
-      reference to it anymore, either.</para>
+    <para id="para-ch3-34">Diğer taraftan aşağıdaki örnek bu şekilde çalışmayacaktır.
+      Çünkü çalıştırma akımı(execution flow) oluşturucuyu (constructor)
+      bırakır bırakmaz <varname>o</varname> çöp olarak toplanacaktır. Ardından
+      <varname>child</varname> da çöp olarak toplanacaktır, tabii ki bir Qt nesnesine
+      ait olmadığı ve Python da ona bir referans sağlamadığı için.
+   </para>
 
     <screen> &gt;&gt;&gt; class B:
 ...        def ___init__(self):
@@ -657,10 +656,10 @@ Traceback (most recent call last):
 AttributeError: o
     </screen>
 
-    <para id="para-ch3-35">On the other hand, it isn't necessary to
-      keep a Python reference to all created objects: as long as the
-      ultimate parent object is owned by PyQt, everything will go
-      well:</para>
+    <para id="para-ch3-35">Ancak oluşturulan tüm nesneler için bir Python
+      referansı tutmak gerekmez: tabii ki asıl ebeveyn nesne PyQt'ye
+      ait olduğu sürece. Bu durumda herşey yolunda gidecektir:
+  </para>
 
     <screen>
 &gt;&gt;&gt; class C:
@@ -678,16 +677,15 @@ AttributeError: o
 &gt;&gt;&gt; 
 </screen>
 
-    <para id="para-ch3-36">As you see, it isn't necessary to keep a reference to
-      <varname>child</varname>,- because PyQt is the owner of the
-      first object (because it has no Qt parent but a reference to a
-      Python object) but Qt is the owner of the second widget (because
-      it <emphasis>does</emphasis> have a parent) and so the C++
-      instance (qt.QObject instance at 0x821d334) is not deleted when
-      the corresponding Python object goes out of scope.</para>
+    <para id="para-ch3-36">Gördüğünüz gibi <varname>child</varname> için 
+     bir referans tutmaya gerek yok çünkü PyQt ilk nesnenin sahibidir.
+     FIXME: (because it has no Qt parent but a reference to a Python object)
+     ama Qt ikinci parçacığın sahibidir ve bu nedenle benzer Python nesnesi
+     gözlem dışına çıktığı zaman bile C++ örneği (instance)
+     (qt.QObject instance at 0x821d334) silinmedi.</para>
 
-    <para id="para-ch3-37">What if your Python class were a subclass of
-      <classname>QObject</classname>?:</para>
+    <para id="para-ch3-37">Eğer Python sınıfınız <classname>QObject</classname> 
+        sınıfının bir alt sınıfı olsaydı ne olurdu?:</para>
 
     <screen>
 &gt;&gt;&gt; class D(QObject):
@@ -704,76 +702,78 @@ AttributeError: o
 &gt;&gt;&gt; 
     </screen>
 
-    <para id="para-ch3-38">As you can see, <varname>o</varname> doesn't get deleted,
-      nor <varname>child</varname> - both are owned by Qt and will be
-      deleted as soon as object <varname>d</varname> is deleted. You
-      can still reach these objects by using the
-      <function>children()</function> function
-      <classname>QObject</classname> provides.</para>
+    <para id="para-ch3-38">Gördüğünüz gibi <varname>o</varname> ve
+      <varname>child</varname> silinmez, ikisi de Qt'ye aittir ve ancak
+      <varname>d</varname> silindiğinde silinecekler. Bu durumda hala
+      <classname>QObject</classname> sınıfı tarafından sağlanan
+      <function>children()</function> fonksiyonunu kullanarak bu nesnelere
+      ulaşabilirsiniz.</para>
 
     <indexterm>
   <primary>sip</primary>
   </indexterm>
-  <para id="para-ch3-39">This layer between Python and Qt is implemented in the
-      <emphasis>sip</emphasis> library &mdash; sip not only generates
-      the wrapper code, but is a library in its own right, containing
-      functionality for the passing of object references between C++
-      and Python.</para>
+  <para id="para-ch3-39">Python ve Qt arasındaki bu katman <emphasis>sip</emphasis>
+      kütüphanesi ile oluşturulur &mdash; sip sadece FIXME: wrapper kodlarından
+      oluşmaz, C++ ile Python arasında nesne referanslarını geçirme işlevini içeren
+      ve kendi hakları olan bir kütüphanedir.
+  </para>
 
     <indexterm>
-  <primary>reference counting</primary>
+  <primary>referans sayımı</primary>
   </indexterm>
-  <para id="para-ch3-40">Sip is also responsible for the reference counting
-      mechanisms. In most cases, Sip is clever enough to closely
-      simulate Python behavior for C++ Qt objects. As you saw in the previous example,
-      contrary to what happens in C++, when you remove the last
-      reference to a C++ object, it will be automatically deleted by
-      Sip.</para>
+  <para id="para-ch3-40">Sip aynı zamanda referans sayımı mekanizmalarından
+      da sorumludur. Sip birçok durumda C++ Qt nesnelerinin Python davranışını
+      taklit etmesini sağlamak için yeterince zekidir.
+      Bir önceki örnekte gördüğünüz gibi C++'de olanın tersine, bir C++ nesnesine ait
+      son referansı sildiğiniz zaman o nesne Sip tarafından otomatik olarak silinir.
+ </para>
 
 
 
   </sect1>
 
-  <sect1><title>Other C++ objects</title>
+  <sect1><title>Diğer C++ nesneleri</title>
 
     <indexterm>
-  <primary>objects</primary><secondary>no parent-child</secondary>
+  <primary>nesneler</primary><secondary>ebeveyn-evlat olmayan</secondary>
   </indexterm>
-  <para id="para-ch3-41">There are many kinds of objects that do not
-      fit in a parent-child relationship, because they are not derived
-      from <classname>QObject</classname>, such as
-      <classname>QFont</classname> or <classname>QColor</classname>.
-      You must keep references to these objects yourself for as long
-      as you need them, or you will lose the objects. (This doesn't
-      differ from normal Python objects, of course &mdash; it will
-      only be surprising if you come from C++ programming to
-      Python.)</para>
+  <para id="para-ch3-41">Ebeveyn-evlat ilişkisine uymayan birçok nesne vardır.
+      Çünkü bu nesneler <classname>QObject</classname> tarafından sağlanmazlar.
+      Örneğin, <classname>QFont</classname>  ya da <classname>QColor</classname>.
+      BU nesneleri kulanana kadar onlar için referansları tutmak zorundasınız aksi
+      taktirde bu nesneleri kaybedersiniz.(Bu iş normal Python nesnelerinden farklı
+      değildir (Tabii ki sadece C++ dilinden Python diline geçen biri için
+      şaşırtıcıdır.)
+  </para>
 
   </sect1>
 
   <sect1>
-    <title>Connecting signals and slots</title>
+    <title>Sinyal ve slotlara bağlanmak</title>
 
     <indexterm>
-  <primary>signals and slots</primary><secondary>reference counting</secondary>
+  <primary>sinyal ve slotlar</primary><secondary>referans sayımı</secondary>
   </indexterm>
-  <para id="para-ch3-42">If you have worked with pointers in C++ or object references
-      in other languages, then you will probably have been wondering
-      whether creating signal/slot connections also means creating
-      object references. Remember, object A can register interest in
-      some signals Object B emits.</para>
+  <para id="para-ch3-42">Eğer C++ dilinde işaretçiler (pointers) ile
+      ya da diğer dillerde  nesne referansları ile çalıştıysanız
+      muhtemelen sinyal/slot bağlantıları (aynı zamanda nesne referansı oluşturmak
+      anlamına gelir) konusunda meraklanıyorsunuz.
+      Unutmayın, A nesnesi ilgili B nesnesinin açtığı sinyallere kayıt olabilir.
+  </para>
 
-    <para id="para-ch3-43">This means that somewhere there must be code that object B
-      calls when it wants to emit that signal; and that there must be
-      code that is called to notify object A. In order for that to be
-      possible, a reference must be stored to object A. This is known
-      as the observer pattern:</para>
+    <para id="para-ch3-43">
+      Bu şu anlama gelir; biryerlerde B nesnesinin sinyali açmak istediğinde
+      çağırdığı bir kod olmalıdır aynı zamanda A nesnesini uyarmak için çağrılan
+      bir kod da olmalıdır.
+      Bunu mümkün kılmak için A nesnesine bir referans kaydedilmelidir. Bu
+      aynı zamanda gözlemci özelliği (observer pattern) olarak da bilinir:
+  </para>
 
-    <example><title>sigslot.py - a simple signals/slots implementation
-        in Python, following the Observer pattern</title>
+    <example><title>sigslot.py - Python'da basit bir sinyal/slot uygulaması
+        in Python - Gözlemci özelliği kullanılarak -</title>
       <programlisting>
-#
-# sigslot.py - a simple signals/slots implementation in Python
+# -*- coding: utf-8 -*-
+# sigslot.py - python'da basit bir sinyal/slot uygulaması
 #
 
 class ClassA:
@@ -787,12 +787,12 @@ class ClassA:
 
     def sendSignal(self):
         for obj in self.interestedObjects:
-            obj.slot("This is a signal from ClassA")
+            obj.slot(unicode("Bu ClassA'dan bir sinyal"))
 
 class ClassB:
 
     def slot(self, message):
-        print "Object with ID", id(self), "Got signal: message"
+        print "Kimliği ile birlikte nesne", id(self), "Alınan sinyal: ileti"
 
 objectA=ClassA()
 objectB=ClassB()
@@ -806,70 +806,68 @@ objectA.sendSignal()
       </programlisting>
     </example>
 
-    <para id="para-ch3-44">In this exceedingly simplified
-      implementation of the signals and slots concept, objectA
-      actually stores the references to interested objects. If the
-      PyQt signals and slots mechanism were implemented like this,
-      objects would not be deleted unless the all objects they had
-      connections to were deleted as well. This puts a burden on the
-      programmer, who would have to remember to sever all connections
-      by hand. We all know what happens when a programmer has to
-      remember cleaning up after him...</para>
+    <para id="para-ch3-44">Bu örnek sinyal slot konseptinin çok çok
+      basitleştirilmiş bir uygulamasıdır. Burada A nesnesi ilgili
+      nesnelere referansları depolar. Eğer PyQt sinyal slot mekanizmaları
+      böyle yapılmış olsaydı nesneler bağlantısı olan tüm nesneler silinmeden
+      silinemeyecekti. Bu durum programcıyı bağımsız/dağınık olan tüm bağlantıları
+      hatırlamak zorunda bırakacağından bir yük getirecekti.
+      FIXME: biz bilmiyoruz :) We all know what happens when a programmer has to
+      remember cleaning up after him...
+   </para>
 
-    <para id="para-ch3-45">Fortunately, the implementation of signals
-      and slots in sip is not quite so basic. Sip works together with
-      the signals and slots implementation in Qt, which is highly
-      complex, and involves fooling around with a special-purpose
-      macro processor. This, at least, Python developers are
+    <para id="para-ch3-45">Şanslıyız ki sip içerisinde sinyal slot uygulaması
+      böyle kolay değildir. Sip, çok daha karmaşık ve özel amaçlı makro sağlayıcılarla
+      çevirli Qt içerisindeki sinyal slot uygulaması (implementation) ile birlikte
+      çalışır. FIXME: This, at least, Python developers are
       spared.</para>
 
     <indexterm>
-  <primary>references</primary><secondary>weak</secondary>
+  <primary>referanslar</primary><secondary>zayıf (weak)</secondary>
   </indexterm>
-  <para id="para-ch3-46">Sip keeps special proxy objects around to
-      handle the signal/slot connections. If you use a recent version
-      of Python (>2.1), the actual connections will not need real
-      references, but can work with the new-fangled weak reference
-      concept. Weak references are references that don't count for the
-      purpose of reference counting.</para>
+  <para id="para-ch3-46">Sip sinyal slot bağlantılarına erişmek için
+      özel vekil nesneler tutar. Eğer güncel br Python sürümü kullanıyorsanız
+      (2.1 sonrası), güncel bağlantılar gerçek referanslara gereksinim duymayacaktır.
+      Ama yeni yapılan gösterişli zayıf referans konsepti ile çalışabilir.
+      Zayıf referanslar, referans sayımı amacı için sayılmayan referanslardır.
+  </para>
 
-    <para id="para-ch3-47">This is good, because your application will
-      not crash if a signal is emitted that was connected to a slot in
-      a deleted object &mdash; and created connections will not keep
-      objects alive.</para>
+    <para id="para-ch3-47">Bu tabii ki güzeldir. Çünkü uygulamanız içerisinde
+     silinen bir nesneye ait slota bağlanan bir sinyal varsa uygulamanız çökmez (crash)
+     ve oluşturulan bağlantılar nesneleri hayatta tutmaz.
+    </para>
 
-    <para id="para-ch3-48"><xref linkend="ch6"> deals with signals and
+    <para id="para-ch3-48"><xref linkend="ch6"> FIXME: deals with signals and
       slots in far more depth.</para>
 
     </sect1>
 
 
   <sect1 id="ch3ObjectAndClassIntroSpection">
-    <title>Object and class introspection</title>
+    <title>Nesne ve sınıf içgözlemi FIXME: (introspection)</title>
 
     <indexterm>
-  <primary>introspection</primary>
+  <primary>içgözlem FIXME: (introspection)</primary>
   </indexterm>
   <indexterm>
-  <primary>object</primary><secondary>introspection</secondary>
+  <primary>nesne</primary><secondary>içgözlem (introspection)</secondary>
   </indexterm>
   <indexterm>
   <primary>className()</primary>
   </indexterm>
-  <para id="para-ch3-49">Both Python and Qt offer a great deal of
-      object introspection functionality &mdash; that is, methods of
-      determining at runtime what kind of class an object is an
-      instance of, or what methods an object implements. It has often
-      been difficult to make Python and Qt introspection mesh well.
-      One example is the
-      <classname>QObject</classname>.<function>className()</function>,
-      which returns the name of the class of an object. Until PyQt
-      version 2.5, this function always returned
-      <classname>QObject</classname>, instead of the Python class
-      name. Since that version, however, it returns the true class
-      name:</para>
+  <para id="para-ch3-49">Python ve Qt'nin herikisi de çok geniş bir 
+      nesne içgözlemi (introspection) işlevselliği sunar &mdash; that is, 
+      methods of determining at runtime what kind of class an object is an
+      instance of, or what methods an object implements.  FIXME:
+      
+      Genellikle Python ve Qt içgözleminini iyi bir şekilde birbirine
+      geçrimek zordur. Buna bir örnek olarak <classname>QObject</classname>
+      verilebilir.<function>className()</function> bir nesnenin sınıfının adını
+      döndürür. PyQt'nin 2.5 sürümüne kadar bu foksiyon Python sınıf adı yerine
+      daima <classname>QObject</classname> döndürürdü. 2.5 sürümünden sonra
+      doğru sınıf adını döndürüyor:</para>
 
-    <example><title>Object introspection using Qt</title>
+    <example><title>Qt kullanarak nesne içgözlemleme (introspection)</title>
       <screen>
 Python 2.1 (#1, Apr 17 2001, 20:50:35) [GCC 2.95.2 19991024
 (release)] on linux2 Type "copyright", "credits" or "license"
@@ -884,11 +882,11 @@ for more information.
       </screen>
     </example>
 
-    <para id="para-ch3-50">For interesting Python introspection functions you should
-      consult the Python language reference &mdash; but the equivalent
-      using Python idioms of the above session would be:</para>
+    <para id="para-ch3-50">İlginç Python içgözlem (itrospection) fonksiyonları
+      için Python dil referansına başvurun. Python diline göre yukarıdaki
+      oturumun dengi şöyledir:</para>
 
-    <example><title>Object introspection using Python</title>
+    <example><title>Python kullanarak nesne içgözlemleme (introspection)</title>
       <screen>
         &gt;&gt;&gt; t.__class__ &lt;class qt.QTimer at 0x8232cc4&gt;
         &gt;&gt;&gt; a.__class__ &lt;class __main__.A at 0x826c2ac&gt;
@@ -898,13 +896,13 @@ for more information.
     </example>
 
     <indexterm>
-  <primary>class attributes</primary>
+  <primary>sınıf nitelikleri (attributes)</primary>
   </indexterm>
-  <para id="para-ch3-51">Object introspection is especially useful if you dabble in
-      the black art known as meta-programming &mdash; that is,
-      creating a program that run-time constructs some of the classes
-      it needs. Heaps of fun &mdash; but not always innocent
-      fun.</para>
+  <para id="para-ch3-51">Nesne içgözlemi eğer meta-programlama 
+      (gerek duyduğu bazı sınıfları çalışmaya zamanında oluşturan programlar yazma )
+      olarak bilinen kara sanatla hobi olarak uğraşıyorsanız işinize yarar.
+      Çok çok eğlencelidir ama bu eğlence herzaman masum bir
+      eğlence değildir.</para>
 
 
   </sect1>

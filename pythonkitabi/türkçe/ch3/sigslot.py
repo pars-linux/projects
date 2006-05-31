@@ -1,5 +1,5 @@
-#
-# sigslot.py - a simple signals/slots implementation in Python
+# -*- coding: utf-8 -*-
+# sigslot.py - python'da basit bir sinyal/slot uygulaması
 #
 
 
@@ -14,12 +14,12 @@ class ClassA:
         
     def sendSignal(self):
         for obj in self.interestedObjects:
-            obj.slot("This is a signal from ClassA")
+            obj.slot(unicode("Bu ClassA'dan bir sinyal"))
 
 class ClassB:
         
-    def slot(self, message):
-        print "Object with ID", id(self), "Got signal: message"
+    def slot(self, ileti):
+        print "Kimliği ile birlikte nesne", id(self), "Alınan sinyal: ileti"
         
         
 objectA=ClassA()
