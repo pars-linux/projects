@@ -1,41 +1,40 @@
 <chapter id="ch4">
 
-  <title>String Objects in Python and Qt</title>
+  <title>Python ve Qt'de FIXME: dizge (string) nesneleri</title>
     
   <indexterm>
   <primary>strings</primary>
   </indexterm>
-  <para id="para-ch4-1">Most likely, you won't need the information in
-    this chapter very often. If you don't juggle character encodings
-    on a regular basis, or work extensively with Unicode, then you can
-    probably get by quite well with the automatic string handling of
-    PyQt. However, situations may arise, especially when working with
-    string-intensive applications, where PyQt's behavior might
-    surprise you. Then you will probably find yourself coming to this
-    chapter.</para>
+  <para id="para-ch4-1">Eğer karakter kodlamaları üzerinde
+    oynamayacaksanız ya da daha geniş bir şekilde unicode ile 
+    çalışmayacaksanız bu bölümdeki bilgilere çok sık gereksinim
+    duymayacaksınız. Zaten PyQt'nin otomatik dizge kullanımı size epeyce 
+    iyi gelecektir. Bununla birlikte bazı durumlarda, özellikle dizgeleri
+    yoğun kullanan uygulamalarda PyQt'nin davranışı sizi şaşırtabilir.
+    Tabii bu durumda kendinizi okumakta olduğunuz bu bölümde bulursunuz.
+   </para>
 
   <sect1>
-    <title>Introduction</title>
+    <title>Giriş</title>
 
     <indexterm>
-  <primary>strings</primary><secondary>quoting</secondary>
+  <primary>dizgeler</primary><secondary>tırnak içine alma</secondary>
   </indexterm>
-  <para id="para-ch4-2">Working with strings is a delight in Python.
-      Take the simple fact that you can, depending on your whim and on
-      whether the string contains the other kind, choose to enclose
-      your string literals in single ('), double ("), or triple ('''
-      or """) quotes. Triple quoted strings can span multiple lines
-      &mdash; no more string concatenations just because the string
-      doesn't fit the line.</para>
+  <para id="para-ch4-2">Python'da dizgelerle çalışmak zevklidir.
+      Yapacağınız basit olarak şudur; keyfinize göre ve dizgenin
+      diğer işaretleri kullanıp kullanmadığına göre dizgelerinizi
+      tek tırnak ('), çift tırnak (") ya da üç tırnak (''') içine
+      almak. Üç tırnak içine alınmış dizgeler birden fazla satıra yazılabilir &mdash;
+      satır içerisinde yer almayan dizgeler o satıra sırlanamaz.</para>
 
-    <para id="para-ch4-3">Once you have your string, and it can be a
-      delightfully long string, megabytes if needs be, you can
-      transform it, mangle it, search in it &mdash; all using a few
-      choice modules, such as <filename>string</filename>,
-      <filename>re</filename> or the native methods of the
-      <classname>string</classname> object. About the only snag is the
-      immutability of strings &mdash; every modifying action creates a
-      new string from the old, which can be costly.</para>
+    <para id="para-ch4-3">Uzunca bir dizgeniz varsa, ki bu dizge megabyte
+      kadar büyük bile olabilir, <filename>string</filename>, <filename>re</filename>,
+      ya da <classname>string</classname> nesnesinin asıl metodları gibi
+      birkaç modül kullanarak bu dizgenizi değiştirebilir, bölebilir, dizgeniz
+      içerisinde arama yapabilirsiniz. Burada sadece bir gizli engel vardır. O da
+      dizgelerin değişmezliğidir &mdash; her değiştirme hareketiniz eski dizgenizden
+      yeni bir dizge oluşturur.
+   </para>
 
     <indexterm>
   <primary>QString</primary>
@@ -43,90 +42,89 @@
   <indexterm>
   <primary>QCString</primary>
   </indexterm>
-  <para id="para-ch4-4">In C++, working with strings is
-      <emphasis>not</emphasis> a delight. Working with strings in C++
-      requires using null-terminated character arrays, and writing all
-      your own support functions. Or you have to try to use the  C++
-      Standard Library String class, which is rather limited. This is
-      why Trolltech created two string classes &mdash;
-      <classname>QString</classname> and
-      <classname>QCString</classname> &mdash; which are almost as
-      powerful and friendly to use as the Python string classes. In
-      fact, when Trolltech first created
-      <classname>QString</classname>, there was no string class in the
-      standard C++ library.</para>
+  <para id="para-ch4-4">C++ dilinde dizgelerle çalışmak pek de zevkli
+      <emphasis>değildir</emphasis>. C++'de dizgeler ile çalışmak 
+      boş sonlanan (null-terminated) karakter sıraları (array) kullanmanızı
+      ve destek fonksiyonlarınının tümünü sizin yazmanızı gerektirir.
+      Ya da C++ Satandart Kütüphanesinin String sınıfını kullanmayı
+      deneyebilirsiniz ki bu daha sınırlıdır. Bu nedenle Trolltech
+      iki dizge sınıfı oluşturmuştur &mdash; <classname>QString</classname>
+      ve <classname>QCString</classname> &mdash; bu iki sınıf neredeyse
+      Python dizge sınıfı kadar güçlü ve kolay kullanımlıdır.
+      Aslında Trolltech <classname>QString</classname> sınıfını ilk
+      oluşturduğunda standart C++ kütüphanesinde bir dizge sınıfı yoktu.
+    </para>
 
     <indexterm>
-  <primary>strings</primary><secondary>unicode</secondary>
+  <primary>dizgeler</primary><secondary>FIXME: unicode</secondary>
   </indexterm>
-  <para id="para-ch4-5">Python also has two string classes: the
-      'old' <classname>string</classname> class, in which every byte
-      represents a character, and the newer Unicode
-      <classname>string</classname> class, which contains a sequence
-      of Unicode characters that can, depending on the encoding, take
-      between one and four bytes. The Qt
-      <classname>QString</classname> class is equivalent to the Python
-      Unicode <classname>string</classname> class, and the Qt
-      <classname>QCString</classname> class is more like the
-      'old' 8-bit Python <classname>string</classname>.</para>
+  <para id="para-ch4-5">Python'un iki dizge sınıfı vardır; birincisi,
+      her baytın bir karakteri temsil ettiği 'eski'
+      <classname>string</classname> sınıfıdır. İkincsi ise daha yeni olan
+      ve bir dizi unicode karakter içeren ve kodlamaya göre bir ile dört bayt
+      arasında olabilen Unicode <classname>string</classname> sınıfıdır.
+      Qt'nin <classname>QString</classname> sınıfı ise Python'un Unicode sınıfının,
+      karşılığıdır. Qt'nin <classname>QCString</classname> sınıfı ise 8-bitlik 'eski'
+      Python <classname>string</classname> sınıfının karşılığıdır.
+  </para>
 
-    <para id="para-ch4-6">Your friendly Python Library Reference will
-      tell you all about the <filename>string</filename> module, the
-      <filename>string</filename> class, and the
-      <filename>re</filename> module for regular expression matching.
-      In this chapter I am more concerned with the interaction between
-      <classname>QString</classname> and Python strings, and with
-      character encoding questions.</para>
+    <para id="para-ch4-6">Kullanıcı dostu Python Kütüphane Referansı
+      size <filename>string</filename> modülü (<filename>string</filename> sınıfı ve
+      düzenli ifadeler içerisinde eşleme yapmak için kullanılan <filename>re</filename>
+      modülü) hakkında herşeyi anlatacaktır. Ben bu bölümde daha çok <classname>QString</classname>
+      ile Python dizgeleri arasındaki ilişkiler ve karakter kodlama soru ve sorunları
+      üzerinde duracağım.
+  </para>
 
   </sect1>
 
   <sect1>
-    <title>String conversions</title>
+    <title>Dizge değişme</title>
 
     <indexterm>
-  <primary>strings</primary><secondary>conversion</secondary>
+  <primary>dizgeler</primary><secondary>değişme</secondary>
   </indexterm>
-  <para id="para-ch4-7">I will return to
-      <classname>QCString</classname> later, as
-      <classname>QString</classname> is used everywhere in Qt.  All
-      user-visible text is set using <classname>QString</classname>s,
-      and if a widget returns some text, it will return a
-      <classname>QString</classname> as well. It should become clear
-      that the only way to work comfortably with strings in Python and
-      Qt is to have some automatic conversion between Python string
-      objects and <classname>QString</classname>s.
-    </para>
+  <para id="para-ch4-7">Daha sonra <classname>QCString</classname>
+      konusuna döneceğim. Önce Qt içerisinde her yerde kullanılan 
+      <classname>QString</classname> sınıfı var. Kullanıcıların gördüğü
+      tüm metinler <classname>QString</classname> kullanılarak oluşturulur ve
+      bir parçacık (widget) eğer bir metin döndürüyorsa tabii ki
+      <classname>QString</classname>  döndürür. Python ve Qt'de
+      dizgelerle çalışmamızı rahat hale getiren tek yol Python dizge nesneleri
+      ile <classname>QString</classname> nesneleri arasında otomatik dizge
+      değişmenin mümkün olmasıdır.
+  </para>
 
-    <para id="para-ch4-8">The conversion from a Python string to a
-    <classname>QString</classname> is
-      completely transparent. Any Qt class method that asks for a
-      <classname>QString</classname> as an argument accepts any Python
-      string (or Python Unicode string). The other way around isn't
-      all that transparent, unfortunately.  When you ask,
-      for example, a <classname>QMultiLineEdit</classname> widget for its
-      contents, you get a <classname>QString</classname>. If you try to use
-      Python's regular expression engine on this object, of if you try
-      to write it to a file, you will be surprised at the results:
-    </para>
+    <para id="para-ch4-8">Bir Python dizgesinin <classname>QString</classname>
+      nesnesine dönüşmesi/değişmesi tamamen şeffaftır.<classname>QString</classname>
+      argümanı alan herhangi bir Qt sınıf metodu herhangi bir Python dizgesini
+      (ya da Python Unicode dizgesini) kabul edebilir. 
+      Malesef diğer yollar tam şeffaf değildir. Örneğin bir <classname>QMultiLineEdit</classname> 
+      parçacığına içeriğini sorduğunuzda bir <classname>QString</classname> yanıtı alırsınız.
+      Eğer bu nesne üzerinde Python'un düzenli ifadeler motorunu kullanmayı denerseniz
+      ya da onu bir dosyaya yazmak isterseniz sizi bu sonuçla şaşırtır:
+  </para>
 
     <example>
-      <title>qstring1.py &mdash; conversion from
-        <classname>QString</classname> to a Python string.</title>
+      <title>qstring1.py &mdash; <classname>QString</classname>ten
+          Python dizgesine değişim/dönüşüm.</title>
       <programlisting>
 #
-# qstring1.py - saving a QString to a file
+# qstring1.py - Bir QString'i dosyaya kaydetme denemesi
 #
 
 from qt import *
 
-# Construct a Python string
+# Bir Python dizgesi oluşturalım
+# Burada Türkçe bir metin kullanmak isterdim, ama konu böyle gerektiriyor,
+# unicode - utf8 aşağıda biryerlerde ele alınacak.
 
 pyString = """Now is the summer of our sweet content,
 Made o'er-cast winter by these Tudor clouds.
 And I that am not shaped for black-faced war,
 """
 
-# Construct a Qt QString
+# Bir Qt QString oluşturalım
 
 qtString=QString("""I that am rudely cast and want true majesty,
 Am forced to fight,
@@ -144,10 +142,10 @@ f.close()
     </example>
 
     <indexterm>
-  <primary>QString</primary><secondary>saving to a file</secondary>
+  <primary>QString</primary><secondary>bir dosyaya kaydetmek</secondary>
   </indexterm>
-  <para id="para-ch4-9">If you run this script, you'll get the
-      following output:</para>
+  <para id="para-ch4-9">Bu betiği çalıştırdığınızda aşağıdaki
+      çıktıyı alırsınız:( FIXME: yeni sürüm PyQt kullanınca bu sonucu vermiyor neden? Çıkarılabilir mi aşağıdaki bölüm?:)</para>
 
     <screen>
 boud@calcifer:~/doc/opendoc/ch4 > python qstring1.py
@@ -158,40 +156,41 @@ TypeError: read-only character buffer, instance
 boud@calcifer:~/doc/opendoc/ch4 >
     </screen>
 
-    <para id="para-ch4-10">There are good reasons for this behavior.
-      Returning <classname>QString</classname>s from widgets gives the
-      developer access to all the neat Qt string handling
-      functionality. A Qt string is mutable, in contrast to a Python
-      string, and having the Qt <classname>QString</classname> makes
-      it easier to change the contents in place. Lastly, returning a
-      Qt string instead of a Python string avoids a somewhat costly
-      conversion which might not be needed if all you want to do is to
-      stuff the text in another Qt widget.</para>
+    <para id="para-ch4-10">Betiğin böyle davranması için iyi sebepler var.
+      <classname>QString</classname>leri parçacıklardan döndürmek, geliştiricinin
+      Qt dizge kullanım fonksiyonlarına tam olarak erişimini sağlar.
+      Python dizgelerinin aksine bir Qt dizgesi değişebilirdir ve
+      Qt <classname>QString</classname> içeriği olduğu yerde değiştirmeyi
+      kolaylaştırır. Son olarak bir Python dizgesi yerine bir Qt dizgesini
+      döndürmek değişimi/dönüşümü zorlaştırmaktan kaçınmanızı sağlar. Bu dönüşüm
+      belki de başka bir Qt parçacığı içine dolduracağınız metinde yapacağınız
+      şeyler için gerekmeyebilir.
+      </para>
 
-    <para id="para-ch4-11">Of course, the downside is that if you want
-      to treat a QString object as a Python string, you'll have to
-      convert it yourself, using one of the Python built-in functions
-      <function>str()</function> or <function>unicode()</function>.
-      Adapting the previous script makes it work as expected:</para>
+    <para id="para-ch4-11">Tabii ki eğer bir QString nesnesini bir Python
+      dizgesi olarak hazırlamak isterseniz bunu Python gömülü fonksiyonları olan
+      <function>str()</function> or <function>unicode()</function> kullanarak 
+      kendiniz dönüştürmek zorunda kalacaksınız. Önceki örnek betiğimizi çalışabilir
+      hale getirmek için şöyle uyarlamalıyız: </para>
 
     <example>
-      <title>qstring2.py - second try of saving a
-        <classname>QString</classname> to a file</title>
+      <title>qstring2.py - <classname>QString</classname>
+          içeriğini dosyaya kaydetme denemesi -2</title>
         <programlisting>
 #
-# qstring2.py - saving a QString to a file
+# qstring2.py - Bir QString'i dosyaya kaydetme denemesi
 #
 
 from qt import *
 
-# Construct a Python string
+# Bir Python dizgesi oluşturalım
 
 pyString = """Now is the summer of our sweet content,
 Made o'er-cast winter by these Tudor clouds.
 And I that am not shaped for black-faced war,
 """
 
-# Construct a Qt QString
+# Bir Qt QString oluşturalım
 
 qtString=QString("""I that am rudely cast and want true majesty,
 Am forced to fight,
@@ -208,20 +207,22 @@ f.close()
       </programlisting>
     </example>
 
-    <para id="para-ch4-12">I don't need to show you screen output here
-      &mdash; it just works. You will have to pay attention to what
-      happens with the strings you receive from Qt widgets. If you
-      want to write the contents to a file, database, or to mangle the
-      string with Python modules, you will need to explicitly convert
-      the QString object to Python strings. If you want to feed the
-      string to another widget, you don't have to do anything.</para>
+    <para id="para-ch4-12">Burada size konsol çıktısını göstermeme
+      gerek yok &mdash; evet betik çalışıyor. Burada dikkat edilmesi
+      gereken şey Qt parçacığından gelen dizgeyi alırken ne olduğudur.
+      Eğer içeriği bir dosyaya ya da veritabanına kaydetmek isterseniz
+      ya da Python modülleri ile parçalamak isterseniz, bu QString 
+      nesnesini kesin olarak Python dizgelerine dönüştürmek zorundasınız.
+      Eğer dizgeyi başka bir parçacık ile beslemek isterseniz hiçbirşey
+      yapmanıza gerek yoktur.
+   </para>
 
   </sect1>
 
-  <sect1><title>QCString &mdash; simple strings in PyQt</title>
+  <sect1><title>QCString &mdash; PyQt'de basit dizgeler</title>
 
     <indexterm>
-  <primary>QCString</primary><secondary>simple strings</secondary>
+  <primary>QCString</primary><secondary>basit dizgeler</secondary>
   </indexterm>
   <para id="para-ch4-13">Both Python and Qt have two types of
       strings: simple strings, which are sequences of bytes where
@@ -649,7 +650,7 @@ Traceback (most recent call last):
   File "unicode2.py", line 4, in ?
     nala()
   File "unicode2.py", line 2, in nala
-    print u"�स�द रा�ा नल� नाम "
+    print u"�� रा� नल�नाम "
 UnicodeError: ASCII encoding error: ordinal not in range(128)
         </screen>
 
