@@ -1,0 +1,166 @@
+
+/* yeniler */
+
+* {
+    font-size: 11px;
+    font-family: Tahoma, Sans-Serif;
+}
+
+body {
+    margin-left:0;
+    margin-top:0;
+    margin-right:0;
+    background-image:url('images/HeadTile.png');
+    background-repeat:repeat-x;
+}
+
+#header {
+    background-image:url('images/HeadLogo.png');
+    background-repeat:no-repeat;
+    background-position: 0px -2px;
+    height:119px;
+}
+
+#menu {
+    font-weight:bold;
+    font-size:10px;
+    padding-top:93px;
+    padding-left:200px;
+}
+
+li {
+    list-style-image: url('images/BulletCyan.png');
+}
+
+#menu li {
+    border:0;
+    padding-left:5px;
+    margin-left:4px;
+    float:left;
+}
+
+#main {
+    font-size: 16px;
+    color: #297190;
+    background-color: #EEE;
+    width: 750px;
+    height: 300px;
+    vertical-align:top;
+}
+
+#main * {
+    border: 1px solid #999;
+    width: 100%;
+    height:100%;
+    padding: 3px;
+}
+#kutular {
+    width:300px;
+    background-color:#EEE;
+    vertical-align:top;
+    font-size:11px;
+}
+
+#solpane {
+    width:300px;
+    vertical-align:top;
+}
+
+#ayrintilar {
+    padding:5px;
+    color: cyan;
+    background-color:#000;
+}
+
+#icerik #navi {
+    vertical-align:top;
+    height: 100px;
+}
+
+#ana-butonlar img {
+    margin-left:1.5px;
+}
+
+#boxdetay1 {
+    width:210px;
+}
+
+#boxdetay2 {
+    width:270px;
+}
+
+#box2 {
+    margin-left:3px;
+    float:left;
+}
+
+#box3 {
+    width:330px;
+    border:1px solid #888;
+    padding:5px;
+    background-color:#EEAA00;
+    margin-bottom:3px;
+}
+
+#box4 {
+    width:200px;
+    border:1px solid #888;
+    padding:5px;
+    height:100px;
+    background-color:#DDD;
+    margin-bottom:3px;
+}
+
+#news {
+    margin-left:3px;
+    width:200px;
+    float:left;
+    border:1px solid #DDD;
+    padding:5px;
+    height:500px;
+    background-color:#BBB;
+}
+
+.title {
+    background-color: #FFEE00;
+    border-bottom: 1px solid #FFAA00;
+}
+
+/* eskiler feedback */
+
+
+#kutular a {
+	color: #000;
+	text-decoration: none;
+	/*font-weight: bold;*/
+}
+
+#kutular a:hover {
+	color: #FFAA00;
+    background-color:#FFF;
+    margin-left:-2px;
+}
+
+#ana-butonlar a:hover {
+    border-bottom:1px solid #8AC86C;
+}
+
+.header {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #8AC86C;
+    color:#FFF;
+    padding:2px;
+}
+
+.acik *,.acik, .koyu *, .koyu {
+    font-size: 12px;
+    color: #000;
+}
+
+.acik {
+    background-color:#DDD;}
+
+.koyu {
+    background-color:#BBB;
+}
