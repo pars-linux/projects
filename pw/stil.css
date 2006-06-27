@@ -44,15 +44,28 @@ li {
     color: #297190;
     background-color: #EEE;
     width: 750px;
-    height: 300px;
+    height: 100%;
     vertical-align:top;
 }
 
 #main * {
     border: 1px solid #999;
-    width: 100%;
-    height:100%;
+    width: auto;
     padding: 3px;
+}
+
+#editor {
+    width:100%;
+    height:96%;
+    margin-right:0px;
+}
+
+#baslik {
+    float:left;
+}
+
+#toolbar {
+    float:right;
 }
 #kutular {
     width:300px;
@@ -151,6 +164,7 @@ li {
     background-color: #8AC86C;
     color:#FFF;
     padding:2px;
+    height:auto;
 }
 
 .acik *,.acik, .koyu *, .koyu {

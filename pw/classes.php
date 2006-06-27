@@ -45,7 +45,7 @@
                 $Sql = "UPDATE $Table SET $Field='$Value' ".$AddSql;
                 $this->ExecuteQuery($Sql);               
             }
-
+            
             function InsertRecord($Table,$Fields,$Values) {
                 $Sql = "INSERT INTO $Table (";
                 foreach ($Fields as $FValue) {
@@ -130,4 +130,15 @@
             return '<a href=# onClick="'.$Action.'(\''.$ID.'\')">'.$Value.'</a>';  
         }
 
+        function PageList($PageList){
+            foreach ($PageList as $Key=>$Value) {
+                echo '<div class="';
+                echo (($Key+1)%2)? 'koyu' : 'acik';
+                echo '">';
+                echo ($Key+1).'::';
+                echo '<b>'.$Value['Parent'].'</b>::';
+                echo JsLink($Value['ID'],$Value['Title'],'Edit');
+                echo '</div>';
+            }
+        }
 ?>
