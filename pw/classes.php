@@ -4,15 +4,15 @@
     // TUBITAK/UEKAE :: Pardus W Classes
 
         class Pardus {
-           
+
             private $Connection;
-            
+
             // 0 - to don't show any message.
             // 2 - to just show errors.
             // 3 - to show all actions.
             public $DbLogDetail;
 
-            function DbConnect($DbHost,$DbUser,$DbPass,$DbData){   
+            function DbConnect($DbHost,$DbUser,$DbPass,$DbData){
                 try {
                     $this->Connection = @mysql_connect($DbHost,$DbUser,$DbPass,$DbData);
                     if (!$this->Connection)
@@ -25,10 +25,10 @@
                 catch (Exception $Ex) {
                     $this->ShowError($Ex);
                     exit();
-                } 
+                }
             }
 
-            function ShowError($Ex,$Note='') { 
+            function ShowError($Ex,$Note='') {
                 if ($this->DbLogDetail>1) {
                     echo '<pre><b>';
                     echo 'DEBUG: Exception '.$Ex->getCode().' : '.$Ex->getMessage()."<br>";
@@ -43,9 +43,9 @@
             function UpdateField($Table,$Field,$Value,$ID='') {
                 $ID == "" ? $AddSql = "" : $AddSql = "WHERE ID=$ID";
                 $Sql = "UPDATE $Table SET $Field='$Value' ".$AddSql;
-                $this->ExecuteQuery($Sql);               
+                $this->ExecuteQuery($Sql);
             }
-            
+
             function InsertRecord($Table,$Fields,$Values) {
                 $Sql = "INSERT INTO $Table (";
                 foreach ($Fields as $FValue) {
@@ -67,8 +67,10 @@
                     $Result = mysql_query($Sql,$this->Connection);
                     if (!$Result)
                         throw new Exception('Query Execution Error',3);
-                    elseif ($this->DbLogDetail>2)
+                    elseif ($this->DbLogDetail>2){
+                        if (strlen($Sql)>100) $Sql = substr($Sql, 0, 90)."...";
                         $this->ParseError("Query Executed Sucessfully : ".$Sql);
+                    }
                     return $Result;
                 }
                 catch (Exception $Ex) {
@@ -119,7 +121,7 @@
         function PrettyList($Array) {
             $i=0;
             foreach ($Array as $Value) {
-                $Value['Title'] = substr($Value['Title'], 0, 22).'..';
+                $Value['Title'] = substr($Value['Title'], 0, 22);
                 $ReturnArray[$i] = $Value;
                 $i++;
             }
@@ -127,7 +129,7 @@
         }
 
         function JsLink($ID,$Value,$Action) {
-            return '<a href=# onClick="'.$Action.'(\''.$ID.'\')">'.$Value.'</a>';  
+            return '<a href=# onClick="'.$Action.'(\''.$ID.'\')">'.$Value.'</a>';
         }
 
         function PageList($PageList){
@@ -137,7 +139,7 @@
                 echo '">';
                 echo ($Key+1).'::';
                 echo '<b>'.$Value['Parent'].'</b>::';
-                echo JsLink($Value['ID'],$Value['Title'],'Edit');
+                echo JsLink($Value['ID'],$Value['Title'],'Edit')."\n";
                 echo '</div>';
             }
         }

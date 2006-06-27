@@ -178,3 +178,18 @@ li {
 .koyu {
     background-color:#BBB;
 }
+
+#over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+    text-align:center;
+}
+
