@@ -37,11 +37,18 @@
     }
 
     if (is_numeric($_POST['PageID'])) {
-        $_POST['Content'] = html_entity_decode($_POST['Content']);
-        $PP->UpdateField($TableA,'Content',$_POST['Content'],$_POST['PageID']);
-        $Temp[0]['Content'] = $_POST['Content'];
-        $PP->UpdateField($TableA,'Title',$_POST['Title'],$_POST['PageID']);
+        $Temp[0]['Content'] = $_POST['Content'] = html_entity_decode($_POST['Content']);
         $Temp[0]['Title']   = $_POST['Title'];
+
+        if ($_POST['PageID']==0){
+            $Values = Array ($_POST['Title'],$_POST['Content'],$_POST['Parent'],$_POST['Type']);
+            $PP->InsertRecord($TableA,$Pages,$Values);
+        }
+        else {
+            $PP->UpdateField($TableA,'Content',$_POST['Content'],$_POST['PageID']);
+            $PP->UpdateField($TableA,'Title',$_POST['Title'],$_POST['PageID']);
+        }
+
         $Temp[0]['dblogs']=$PP->ShowLogs(1);
         ParseXML($Temp);
         die();

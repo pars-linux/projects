@@ -30,7 +30,6 @@
                 }
             );
             $('toolbar').innerHTML = "<a href=# onClick=\"Save('"+nid+"');\">Kaydet</a>";
-
         }
 
         function Save(nid){
@@ -47,7 +46,6 @@
                   onComplete: showXML
                 }
             );
-            ShowPageList();
         }
 
         function showXML(originalRequest){
@@ -58,12 +56,14 @@
             $('editor').innerHTML       = $('editor').value;
             $('ayrintilar').innerHTML   = root.getElementsByTagName('dblog').item(0).textContent;
             $('baslik').value           = root.getElementsByTagName('title').item(0).textContent;
+            ShowPageList();
         }
 
         function ClearFields(){
             $('editor').value = "";
             $('editor').innerHTML = $('editor').value;
             $('baslik').value = "";
+            $('toolbar').innerHTML ="";
         }
 
         function ShowPageList(){
@@ -84,7 +84,10 @@
 
         function AddNewPage(){
             ClearFields();
+            $('toolbar').innerHTML = "<a href=# onClick=\"Save('0');\">Ekle</a>";
+            $('toolbar').innerHTML = $('toolbar').innerHTML + "<a href=# onClick=\"ClearFields();\">İptal</a>";
         }
+
     </script>
     </head>
 
