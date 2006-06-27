@@ -8,7 +8,7 @@
     $Values= Array ('Baslik','Icerik','D');
     $PP = new Pardus();
     $PP->DbLogDetail = 3;
-    $PP->DbConnect('127.0.0.1','root','gooksel','Pardus');
+    $PP->DbConnect('127.0.0.1','root','','');
     $PP->UpdateField('Pages','Title','Pardus 1.5',3);
     $PP->InsertRecord('Pages',$Pages,$Values);
     $Records = $PP->GetRecord('Pages','Content',5);
