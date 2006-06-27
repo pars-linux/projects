@@ -16,7 +16,6 @@
     <link href="stil.css" rel="stylesheet" type="text/css">
     <script src="scripts/prototype.js"></script>
     <script>
-        
         function Edit(nid) {
             var url ='request.php';
             var linke = 'PageID='+nid;
@@ -28,22 +27,31 @@
                   onComplete: showit
                 }
             );
+            $('toolbar').innerHTML = "<a href=# onClick=\"Save('"+nid+"');\">Kaydet</a>";
+        }
+
+        function Save(nid){
+            var url ='request.php';
+            var linke = 'PageID='+nid+"&Title="+$('baslik').innerHTML+"&Content="+$('editor').value;
+            alert (linke); 
+            var AjaxPointer = new Ajax.Request(
+                url,
+                { 
+                  method:'post', 
+                  parameters: linke,
+                  onComplete: showit
+                }
+            );
         }
 
         function showit(originalRequest){
             var node = originalRequest.responseXML;
             var root = node.getElementsByTagName('Page').item(0);
-            var content = root.getElementsByTagName('content').item(0);
-            var dblog = root.getElementsByTagName('dblog').item(0);
-            /*
-            var channel = node.getElementsByTagName('channel').item(0);
-            var title = channel.getElementsByTagName('title').item(0).firstChild.data;
-            var link = channel.getElementsByTagName('link').item(0).firstChild.data;
-            $('editor').innerHTML = "";
-            */
-            $('editor').innerHTML = content.textContent;
-            $('ayrintilar').innerHTML = dblog.textContent + $('ayrintilar').innerHTML;
-            
+            $('editor').reset;
+            $('editor').innerHTML       = root.getElementsByTagName('content').item(0).textContent;
+            $('ayrintilar').innerHTML   = root.getElementsByTagName('dblog').item(0).textContent;
+            $('baslik').innerHTML       = root.getElementsByTagName('title').item(0).textContent;
+            $('type').innerHTML         = root.getElementsByTagName('type').item(0).textContent;
         }
 
     </script>
@@ -54,7 +62,7 @@
 
     <!-- Content -->
 
-    <table>
+    <table style="height:100%;">
     <tr>
         <td id="header">
             <div id="menu">  </div>
@@ -62,21 +70,15 @@
     </tr>
     <tr>
         <td id="main">
-            <textarea id="editor" width="100%" height="100%"></textarea>
+            <span id="baslik"></span>
+            <span id="toolbar">
+            </span>
+            <textarea id="editor"></textarea>
         </td>
         <td id="kutular">
             <div class="header"> Sayfalar </div>
             <?php
-                $PageList = PrettyList($PP->GetRecord($TableA,'*'));
-                foreach ($PageList as $Key=>$Value) {
-                    echo '<div class="';
-                    echo (($Key+1)%2)? 'koyu' : 'acik';
-                    echo '">';
-                    echo ($Key+1).'::';
-                    echo '<b>'.$Value['Parent'].'</b>::';
-                    echo JsLink($Value['ID'],$Value['Title'],'Edit');
-                    echo '</div>';
-                }
+                PageList(PrettyList($PP->GetRecord($TableA,'*')));
             ?>
         </td>
     </tr>
