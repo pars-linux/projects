@@ -12,6 +12,9 @@
 
     if (is_numeric($_GET['PageID']))
         $Temp = $PP->GetRecord($TableA,'*',$_GET['PageID']);
+    if (isset($_GET['Title']))
+        $Temp = $PP->GetRecordByTitle($TableA,'*',$_GET['Title']);
+
     if ($Temp) {
         echo $Temp[0]['Content'];
     }

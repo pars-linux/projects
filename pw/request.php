@@ -41,8 +41,9 @@
     }
 
     if (is_numeric($_POST['PageID'])) {
-        $_POST['Content'] = html_entity_decode($_POST['Content']);
-        
+        // FIXME Not Stable !?
+        //$_POST['Content'] = html_entity_decode($_POST['Content']);
+
         if ($_POST['PageID']==0){
             $Values = Array ($_POST['Title'],$_POST['NiceTitle'],$_POST['Content'],$_POST['Parent'],$_POST['Ptype']);
             $TID = $PP->InsertRecord($TableA,$Pages,$Values);
@@ -67,7 +68,7 @@
             echo "<b>".$_POST['Delete']." ID 'li kayıt silindi.</b>";
             die();
     }
-    
+
     echo "<Info>NOT FOUND</Info>";
 
 ?>
