@@ -108,3 +108,16 @@
             $('toolbar').innerHTML = "<a href=# onClick=\"Save('0');\">Ekle</a>";
             $('toolbar').innerHTML = $('toolbar').innerHTML + "<a href=# onClick=\"ClearFields();\">İptal</a>";
         }
+
+        function ToggleHTML() {
+            if ($('htmleditor').style.display=='none') {
+                $('htmleditor').innerHTML = $('editor').value;
+                $('htmleditor').innerHTML = "<a href=# onClick=\"ToggleHTML();\">[x] Kapat</a><br>" + $('htmleditor').innerHTML; 
+                Element.show('htmleditor');
+                Element.hide('editor')
+            }
+            else {
+                Element.hide('htmleditor');
+                Element.show('editor');
+            }
+        }
