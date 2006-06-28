@@ -18,7 +18,7 @@
     <script src="scripts/script.php"></script>
     </head>
 
-    <body onLoad="ClearFields();ShowPageList();">
+    <body onLoad="ClearFields();ShowPageList();" class="Pbody">
 
     <div id="over" style="display:none">
         <div style="padding-top:25%;color:#FFF;">

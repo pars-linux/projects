@@ -127,6 +127,14 @@
                 else
                     echo $this->MessageQueue;
             }
+
+            function GetUserDetails($UserName,$Password){
+                global $UsersTable;
+                $Password = md5($Password);
+                $Sql = "SELECT * FROM $UsersTable WHERE UserName='$UserName' AND UserPass='$Password'";
+                $Result = $this->ExecuteQuery($Sql);
+                return $this->MakeArray($Result);
+            }
         }
 
         # i know it sucks.
