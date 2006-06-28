@@ -26,6 +26,8 @@
             <br>çalışıyor
         </div>
     </div>
+    
+    <div id="htmleditor" style="display:none"></div>
 
     <center>
 
@@ -35,7 +37,8 @@
     <tr>
         <td id="header">
             <div id="menu">
-                <a href="#" onClick="AddNewPage()">Yeni Ekle</a>
+                <a href="#" onClick="AddNewPage()">Yeni Ekle</a>|| 
+                <a href="#" onClick="ToggleHTML()">HTML Olarak Göster</a>
             </div>
         </td>
     </tr>
