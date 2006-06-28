@@ -61,10 +61,10 @@
                 $this->ExecuteQuery($Sql);
                 return mysql_insert_id();
             }
-            
+
             function DeleteRecord($Table,$ID) {
                 $Sql = "DELETE FROM $Table WHERE ID=$ID";
-                return $this->ExecuteQuery($Sql);  
+                return $this->ExecuteQuery($Sql);
             }
 
             protected function ExecuteQuery($Sql) {
@@ -90,6 +90,13 @@
 
             function GetRecord($Table,$Field='*',$ID='') {
                 $ID == "" ? $AddSql = "" : $AddSql = "WHERE ID=$ID";
+                $Sql = "SELECT $Field FROM $Table ".$AddSql;
+                $Result = $this->ExecuteQuery($Sql);
+                return $this->MakeArray($Result);
+            }
+
+            function GetRecordByTitle($Table,$Field='*',$Title='') {
+                $Title == "" ? $AddSql = "" : $AddSql = "WHERE NiceTitle='$Title'";
                 $Sql = "SELECT $Field FROM $Table ".$AddSql;
                 $Result = $this->ExecuteQuery($Sql);
                 return $this->MakeArray($Result);
