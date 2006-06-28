@@ -272,7 +272,7 @@ li {
     border: 1px solid #999;
 }
 
-.errorLogin {
+.error {
     margin-left: 30px;
     font-weight: bold;
     color: red;

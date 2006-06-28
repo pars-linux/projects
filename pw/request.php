@@ -3,7 +3,12 @@
     # For requests
     # FIXME : Security
 
+    session_start();
+
     require_once ('config.php');
+
+    if (session_is_registered($SessionKeyword) AND $_SESSION['state']=="A") {
+
     require_once ('classes.php');
 
     $PP = new Pardus();
@@ -69,6 +74,9 @@
             die();
     }
 
-    echo "<Info>NOT FOUND</Info>";
-
+        echo "<Info>NOT FOUND</Info>";
+        die();
+    }
+    else
+        header("location: index.php");
 ?>

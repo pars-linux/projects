@@ -1,4 +1,10 @@
+<?php
 
+    session_start();
+    require_once ('../config.php');
+    if (session_is_registered($SessionKeyword) AND $_SESSION['state']=="A") {
+
+?>
         function Edit(nid) {
             Element.show('over');
             var url ='request.php';
@@ -112,7 +118,7 @@
         function ToggleHTML() {
             if ($('htmleditor').style.display=='none') {
                 $('htmleditor').innerHTML = $('editor').value;
-                $('htmleditor').innerHTML = "<a href=# onClick=\"ToggleHTML();\">[x] Kapat</a><br>" + $('htmleditor').innerHTML; 
+                $('htmleditor').innerHTML = "<a href=# onClick=\"ToggleHTML();\">[x] Kapat</a><br>" + $('htmleditor').innerHTML;
                 Element.show('htmleditor');
                 Element.hide('editor')
             }
@@ -121,3 +127,5 @@
                 Element.show('editor');
             }
         }
+
+<?php } ?>

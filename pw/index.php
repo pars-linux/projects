@@ -1,4 +1,12 @@
 <?php
+
+    session_start();
+
+    session_unregister($SessionKeyword);
+
+    $_SESSION['state']="";
+    $_SESSION['loginName']="";
+
     if (array_key_exists('login',$_GET)) {
 
         require_once ('config.php');
@@ -7,18 +15,17 @@
         $PP = new Pardus();
         $PP->DbLogDetail = $DbLogLevel;
         $PP->DbConnect($DbHost,$DbUser,$DbPass,$DbData);
-        //$PP->ShowLogs();
+
         if ($Temp=$PP->GetUserDetails($_POST['username'],$_POST['password'])) {
-            session_start();
-            session_unregister($SessionKeyword);
             session_register($SessionKeyword);
             $_SESSION['state'] = $Temp[0]['UserState'];
             $_SESSION['loginName'] = $Temp[0]['UserRealName'];
-            header("location : proc.php");
+            header("location: proc.php");
         }
         else
             $Message = "Kullanıcı Adı veya Parola Hatalı !";
     }
+
 ?>
 
     <html>
@@ -48,7 +55,7 @@
             </div>
             <?php if ($Message) { ?>
                 <div class="infoLogin">
-                    <span class="errorLogin"><?=$Message?></span>
+                    <span class="error"><?=$Message?></span>
                 </div>
             <?php } ?>
         </div>
