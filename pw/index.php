@@ -29,14 +29,13 @@
                   onComplete: showXML
                 }
             );
-            $('toolbar').innerHTML = "<a href=# onClick=\"Save('"+nid+"');\">Kaydet</a>";
         }
 
         function Save(nid){
             Element.show('over');
             var url ='request.php';
             var _content = encodeURIComponent($F('editor'));
-            var linke = 'PageID='+nid+'&Title='+$('baslik').value+'&Content='+_content;
+            var linke = 'PageID='+nid+'&Title='+$('baslik').value+'&Parent='+$F('parent')+'&Ptype='+$F('ptype')+'&Content='+_content;
             //alert (linke);
             var AjaxPointer = new Ajax.Request(
                 url,
@@ -56,6 +55,11 @@
             $('editor').innerHTML       = $('editor').value;
             $('ayrintilar').innerHTML   = root.getElementsByTagName('dblog').item(0).textContent;
             $('baslik').value           = root.getElementsByTagName('title').item(0).textContent;
+            $('parent').selectedIndex   = root.getElementsByTagName('parent').item(0).textContent;
+            $('ptype').selectedIndex    = root.getElementsByTagName('ptype').item(0).textContent;
+            pidp = root.getElementsByTagName('pidp').item(0).textContent;
+            $('toolbar').innerHTML = "<a href=# onClick=\"Save('"+pidp+"');\">Kaydet</a>";
+
             ShowPageList();
         }
 
@@ -115,8 +119,16 @@
     <tr>
         <td id="main">
             <input type="text" id="baslik" />
-            <span id="toolbar">
-            </span>
+            <select id="parent" >
+              <option value ="B">Bireysel</option>
+              <option value ="K">Kurumsal</option>
+              <option value ="G">Geliştirici</option>
+            </select>
+             <select id="ptype" >
+              <option value ="P">Sayfa</option>
+              <option value ="D">Döküman</option>
+            </select>
+            <span id="toolbar"></span>
             <textarea id="editor"></textarea>
         </td>
         <td id="kutular">
