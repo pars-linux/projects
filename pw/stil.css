@@ -174,16 +174,33 @@ li {
     height:auto;
 }
 
-.acik *,.acik, .koyu *, .koyu {
+.acik , .koyu {
+    float:left;
+    clear:left;
+}
+.acik *, .koyu * {
     font-size: 12px;
     color: #000;
 }
-
 .acik {
-    background-color:#DDD;}
+    background-color:#DDD;
+}
 
 .koyu {
     background-color:#BBB;
+}
+
+.dele {
+    color: red;
+    font-weight: bold;
+    text-align:right;
+    float:right;
+    clear:right;
+}
+
+.yele {
+    float:left;
+    clear:left;
 }
 
 #over {

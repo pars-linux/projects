@@ -31,11 +31,33 @@
             );
         }
 
+        function Del(nid,title) {
+        
+        var agree=confirm("'"+title+"' başlıklı kayıt silinecek. \n Onaylıyor musunuz ?");
+        if (agree){
+            Element.show('over');
+            ClearFields();
+            var url ='request.php';
+            var linke = 'Delete='+nid;
+            //alert (linke);
+            var AjaxPointer = new Ajax.Request(
+                url,
+                {
+                  method:'post',
+                  parameters: linke,
+                  onComplete: CleanUp
+                }
+            );
+        } 
+        else 
+            return;
+        }
+
         function Save(nid){
             Element.show('over');
             var url ='request.php';
             var _content = encodeURIComponent($F('editor'));
-            var linke = 'PageID='+nid+'&Title='+$('baslik').value+'&Parent='+$F('parent')+'&Ptype='+$F('ptype')+'&Content='+_content;
+            var linke = 'PageID='+nid+'&Title='+$('baslik').value+'&NiceTitle='+$('gbaslik').value+'&Parent='+$F('parent')+'&Ptype='+$F('ptype')+'&Content='+_content;
             //alert (linke);
             var AjaxPointer = new Ajax.Request(
                 url,
@@ -55,8 +77,10 @@
             $('editor').innerHTML       = $('editor').value;
             $('ayrintilar').innerHTML   = root.getElementsByTagName('dblog').item(0).textContent;
             $('baslik').value           = root.getElementsByTagName('title').item(0).textContent;
+            $('gbaslik').value          = root.getElementsByTagName('ntitle').item(0).textContent;
             $('parent').selectedIndex   = root.getElementsByTagName('parent').item(0).textContent;
             $('ptype').selectedIndex    = root.getElementsByTagName('ptype').item(0).textContent;
+            
             pidp = root.getElementsByTagName('pidp').item(0).textContent;
             $('toolbar').innerHTML = "<a href=# onClick=\"Save('"+pidp+"');\">Kaydet</a>";
 
@@ -67,7 +91,11 @@
             $('editor').value = "";
             $('editor').innerHTML = $('editor').value;
             $('baslik').value = "";
+            $('gbaslik').value = "";
             $('toolbar').innerHTML ="";
+            $('parent').selectedIndex = 0;
+            $('ptype').selectedIndex = 0;
+            $('ayrintilar').innerHTML = "";
         }
 
         function ShowPageList(){
@@ -79,6 +107,13 @@
                     onComplete: showPlain
                 }
             );
+        }
+
+        function CleanUp(req){
+            ClearFields();
+            ShowPageList();
+            Element.hide('over');
+            $('ayrintilar').innerHTML = req.responseText;
         }
 
         function showPlain(req)
@@ -119,12 +154,13 @@
     <tr>
         <td id="main">
             <input type="text" id="baslik" />
+            <input type="text" id="gbaslik" style="float:left"/>
             <select id="parent" >
               <option value ="B">Bireysel</option>
               <option value ="K">Kurumsal</option>
               <option value ="G">Geliştirici</option>
             </select>
-             <select id="ptype" >
+            <select id="ptype" >
               <option value ="P">Sayfa</option>
               <option value ="D">Döküman</option>
             </select>
@@ -132,7 +168,8 @@
             <textarea id="editor"></textarea>
         </td>
         <td id="kutular">
-            <div class="header"> Sayfalar <span style="float:right"><a href="#" onClick="ShowPageList()">Yenile</a></div>
+            <div class="header"> Sayfalar </div>
+            <span style="float:right"><a href="#" onClick="ShowPageList()">Yenile</a></span>
             <span id="pageList"></span>
         </td>
     </tr>

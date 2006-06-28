@@ -61,6 +61,11 @@
                 $this->ExecuteQuery($Sql);
                 return mysql_insert_id();
             }
+            
+            function DeleteRecord($Table,$ID) {
+                $Sql = "DELETE FROM $Table WHERE ID=$ID";
+                return $this->ExecuteQuery($Sql);  
+            }
 
             protected function ExecuteQuery($Sql) {
                 try {
@@ -128,8 +133,11 @@
             return $ReturnArray;
         }
 
-        function JsLink($ID,$Value,$Action) {
-            return '<a href=# onClick="'.$Action.'(\''.$ID.'\')">'.$Value.'</a>';
+        function JsLink($ID,$Value,$Action,$Additional="") {
+            $ret = '<a href=# onClick="'.$Action.'(\''.$ID.'\'';
+            $Additional=="" ? $add = ')">' : $add =',\''.$Additional.'\')">';
+            $ret.= $add.$Value.'</a>';
+            return $ret;
         }
 
         function PageList($PageList){
@@ -137,9 +145,9 @@
                 echo '<div class="';
                 echo (($Key+1)%2)? 'koyu' : 'acik';
                 echo '">';
-                echo ($Key+1).'::';
-                echo '<b>'.$Value['Parent'].'</b>::';
-                echo JsLink($Value['ID'],$Value['Title'],'Edit')."\n";
+                echo '<span class="yele"><b>'.$Value['Parent'].'::'.$Value['PType'].':</b>';
+                echo JsLink($Value['ID'],$Value['Title'],'Edit')."</span>";
+                echo JsLink($Value['ID'],'<span class="dele">sil</span>','Del',$Value['Title'])."\n";
                 echo '</div>';
             }
         }

@@ -23,6 +23,7 @@
         echo "<Page>";
         echo "\n<pidp>".$Temp[0]['ID']."</pidp>";
         echo "\n<title>".$Temp[0]['Title']."</title>";
+        echo "\n<ntitle>".$Temp[0]['NiceTitle']."</ntitle>";
         echo "\n<content>".htmlspecialchars($Temp[0]['Content'])."</content>";
         echo "\n<parent>".array_search($Temp[0]['Parent'],$Parents)."</parent>";
         echo "\n<ptype>".array_search($Temp[0]['PType'],$Ptypes)."</ptype>";
@@ -43,13 +44,14 @@
         $_POST['Content'] = html_entity_decode($_POST['Content']);
         
         if ($_POST['PageID']==0){
-            $Values = Array ($_POST['Title'],$_POST['Content'],$_POST['Parent'],$_POST['PType']);
+            $Values = Array ($_POST['Title'],$_POST['NiceTitle'],$_POST['Content'],$_POST['Parent'],$_POST['Ptype']);
             $TID = $PP->InsertRecord($TableA,$Pages,$Values);
             $Temp = $PP->GetRecord($TableA,'*',$TID);
         }
         else {
             $PP->UpdateField($TableA,'Content',$_POST['Content'],$_POST['PageID']);
             $PP->UpdateField($TableA,'Title',$_POST['Title'],$_POST['PageID']);
+            $PP->UpdateField($TableA,'NiceTitle',$_POST['NiceTitle'],$_POST['PageID']);
             $PP->UpdateField($TableA,'Parent',$_POST['Parent'],$_POST['PageID']);
             $PP->UpdateField($TableA,'Ptype',$_POST['Ptype'],$_POST['PageID']);
             $Temp = $PP->GetRecord($TableA,'*',$_POST['PageID']);
@@ -60,6 +62,12 @@
         die();
     }
 
+    if (is_numeric($_POST['Delete'])){
+            $PP->DeleteRecord($TableA,$_POST['Delete']);
+            echo "<b>".$_POST['Delete']." ID 'li kayıt silindi.</b>";
+            die();
+    }
+    
     echo "<Info>NOT FOUND</Info>";
 
 ?>
