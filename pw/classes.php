@@ -121,7 +121,7 @@
         function PrettyList($Array) {
             $i=0;
             foreach ($Array as $Value) {
-                $Value['Title'] = substr($Value['Title'], 0, 22);
+                $Value['Title'] = substr($Value['Title'], 0, 50);
                 $ReturnArray[$i] = $Value;
                 $i++;
             }
