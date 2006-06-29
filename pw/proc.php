@@ -45,7 +45,7 @@
                     <a href="#" onClick="AddNewPage()">Yeni Ekle</a>||
                     <a href="#" onClick="ToggleHTML()">HTML Olarak Göster</a>
                 </span>
-                <span style="float:right">Hoşgeldiniz <?=$_SESSION['loginName']?> , <a href="index.php">Çıkış</a></span>
+                <span style="float:right">Huşgeldiniz <?=$_SESSION['loginName']?> , <a href="index.php">Çıkış</a></span>
             </div>
         </td>
     </tr>
@@ -62,7 +62,11 @@
               <option value ="P">Sayfa</option>
               <option value ="D">Döküman</option>
             </select>
-            <span id="toolbar"></span>
+            <select id="plang" >
+              <option value ="TR">Türkçe</option>
+              <option value ="EN">English</option>
+            </select>
+           <span id="toolbar"></span>
             <textarea id="editor"></textarea>
         </td>
         <td id="kutular">
