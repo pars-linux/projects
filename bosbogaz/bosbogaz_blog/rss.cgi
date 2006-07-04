@@ -5,7 +5,6 @@ import PyRSS2Gen
 from glob import glob
 from os.path import basename
 from time import ctime
-import codecs
 
 from blog_conf import *
 from blog_indexer import Index
@@ -32,7 +31,7 @@ else:
 
 
 for i in range(entry_count):
-        file = codecs.open(logs[i], encoding="utf-8")
+        file = open(logs[i])
 
         # first line is title
         entry_title = file.readline().replace("<br>","").strip()
