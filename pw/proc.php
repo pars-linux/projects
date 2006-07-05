@@ -57,7 +57,8 @@
               <option value ="B">Bireysel</option>
               <option value ="K">Kurumsal</option>
               <option value ="G">Geliştirici</option>
-              <option value ="R">Pardus</option>
+              <option value ="M">Ana Sayfa</option>
+              <option value ="P">Basin</option>
             </select>
             <select id="ptype" >
               <option value ="P">Sayfa</option>
