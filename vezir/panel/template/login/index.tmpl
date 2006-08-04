@@ -1,0 +1,31 @@
+    <html>
+        <head>
+            <title><?=$BlogTitle?> - Panel</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <link href="template/login/stil.css" rel="stylesheet" type="text/css">
+        </head>
+        <body>
+            <form method="post" action="?login">
+            <div id="loginPane">
+                <div id="loginNodes">
+                    <div class="username">
+                        <label for="username"><?=USERNAME?> :</label>
+                        <input name="username" id="username" type="text" maxlength="10" class="txt" />
+                    </div>
+                    <div class="password">
+                        <label for="password"><?=PASSWORD?> :</label>
+                        <input name="password" id="password" type="password" class="txt pwd" /><br />
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" value="<?=ENTER?>" alt="login" name="login" class="button"/>
+                    </div>
+            <?php if ($Message) { ?>
+                <div class="infoLogin">
+                    <span class="error"><?=$Message?></span>
+                </div>
+            <?php } ?>
+                </div>
+            </div>
+            </form>
+        </body>
+    </html>

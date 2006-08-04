@@ -1,0 +1,60 @@
+
+* {
+    font-size: 11px;
+    font-family: Tahoma, Sans-Serif;
+}
+
+/* For Login */
+
+#loginPane {
+    background: url('images/login.jpg') no-repeat left top;
+    height: 200px;
+    margin: 14% auto;
+    width: 350px;
+}
+
+#loginNodes {
+    padding-top: 100px;
+}
+
+#loginPane .txt {
+    color: #666;
+    float: left;
+    font-size: 1.6em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    width: 160px;
+    border:1px solid #999;
+    padding-left:2px;
+}
+
+#loginPane label {
+    color: #585858;
+    float: left;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-left: 45px;
+    margin-top:5px;
+    width: 120px;
+}
+
+#loginPane div {
+    height: 40px;
+}
+
+.button {
+    margin-top:40px;
+    float:right;
+    margin-right: 20px;
+    border: 1px solid #999;
+}
+
+.error {
+    margin-left: 30px;
+    font-weight: bold;
+    color: red;
+}
+
+.infoLogin {
+    margin-top:12px;
+}
