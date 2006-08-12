@@ -37,6 +37,10 @@
             $Message = USERNAME_OR_PASSWORD_WRONG;
     }
 
+    #if any Vezir errors show them.
+    if ($Vezir)
+        $Vezir->ShowLogs();
+
     #Get template file
     include_once('template/login/index.tmpl');
 
