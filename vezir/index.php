@@ -6,9 +6,10 @@
             <link href="template/azmesai/stil.css" rel="stylesheet" type="text/css">
         </head>
         <body>
-            <div id="main">
-
+            <div id="logo">
+                <img src="template/azmesai/images/logo.png">
             </div>
+            <div id="pinfo"> </div>
         </body>
     </html>
 
