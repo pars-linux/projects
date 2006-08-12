@@ -19,6 +19,11 @@
                 #Set the variables
                 $this->DbLogDetail=$Conf["DbLogLevel"];
 
+                if (array_key_exists("Prefix",$Conf))
+                    $this->Prefix=$Conf["Prefix"];
+                if (array_key_exists("UsePrefix",$Conf))
+                    $this->UsePrefix=$Conf["UsePrefix"];
+
                 #Make Connection
                 $this->DbConnect($Conf["DbHost"],$Conf["DbUser"],$Conf["DbPass"],$Conf["DbData"]);
             }
