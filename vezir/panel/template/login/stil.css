@@ -4,17 +4,21 @@
     font-family: Tahoma, Sans-Serif;
 }
 
+body {
+    background-color:#333;
+}
+
 /* For Login */
 
 #loginPane {
-    background: url('images/login.jpg') no-repeat left top;
+    background: url('login.jpg') no-repeat left top;
     height: 200px;
-    margin: 14% auto;
+    margin: 15% auto;
     width: 350px;
 }
 
 #loginNodes {
-    padding-top: 100px;
+    padding-top: 88px;
 }
 
 #loginPane .txt {
@@ -23,7 +27,7 @@
     font-size: 1.6em;
     font-weight: bold;
     letter-spacing: 1px;
-    width: 160px;
+    width: 140px;
     border:1px solid #999;
     padding-left:2px;
 }
