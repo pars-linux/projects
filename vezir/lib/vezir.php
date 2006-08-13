@@ -125,9 +125,10 @@
                 $this->MessageQueue.= "<pre><b>DEBUG : ".$Message."</b></pre>";
             }
 
-            function GetRecord($Table,$Field='*',$ID='') {
+            function GetRecord($Table,$Field='*',$ID='',$Ext='') {
                 $Table=$this->Pref_($Table);
                 $ID == "" ? $AddSql = "" : $AddSql = "WHERE ID=$ID";
+                $Ext == "" ? $AddSql = $AddSql: $AddSql = $AddSql." ".$Ext;
                 $Sql = "SELECT $Field FROM $Table ".$AddSql;
                 $Result = $this->ExecuteQuery($Sql);
                 return $this->MakeArray($Result);
