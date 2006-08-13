@@ -12,12 +12,12 @@
     #create an instance for connection to database
     $Vezir = new Vezir($CF);
 
+    #Set Entries
+    $Entries = $Vezir->GetRecord("Entries","*","","ORDER BY ID DESC");
+
     #if any Vezir errors show them.
     if ($Vezir)
         $Vezir->ShowLogs();
-
-    #Set Entries
-    $Entries = $Vezir->GetRecord("Entries");
 
     #Get template file
     include_once('template/'.$CF['Theme'].'/index.tmpl');
