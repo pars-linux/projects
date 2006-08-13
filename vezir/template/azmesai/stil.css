@@ -15,6 +15,7 @@ body {
     #container {
         margin: 0px auto;
         width:672px;
+        margin-top:10px;
     }
     #left {
         float:left;
@@ -150,6 +151,11 @@ body {
 
     .meta_ .comments_ {
         background: url('icons/comment.png') no-repeat left top;
+        padding-left: 20px;
+    }
+
+    .meta_ .tags_ {
+        background: url('icons/tags.png') no-repeat left top;
         padding-left: 20px;
     }
 

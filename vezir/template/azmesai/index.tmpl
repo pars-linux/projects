@@ -1,0 +1,36 @@
+
+    <html>
+        <head>
+            <title><?=$BlogTitle?></title>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <link href="template/azmesai/stil.css" rel="stylesheet" type="text/css">
+        </head>
+        <body>
+           <div id="container">
+            <div id="left">
+            <?php
+                if (is_array($Entries)) {
+                    foreach($Entries as $Nodes) { ?>
+            <div class="entry">
+                <div class="headline">
+                    <span class="title_"><?=$Nodes['Title']?></span>
+                </div>
+                <div class="content">
+                    <?php ParseContent($Nodes['Content']); ?>
+                </div>
+                <div class="meta_">
+                    <span class="author_"><?php ParseAuthor($Vezir,$Nodes['Author']); ?></span>
+                    <span class="tags_"><?=$Nodes['Tags']?></span>
+                    <span class="comments_"><?php ParseComments($Vezir,$Nodes['ID']); ?></span>
+                </div>
+            </div>
+            <? } } ?>
+            </div>
+            <div id="right">
+             <img src="template/azmesai/images/paper.jpg">
+             <br>gökmen göksel
+            </div>
+            </div>
+        </body>
+    </html>
+
