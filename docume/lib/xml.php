@@ -10,24 +10,19 @@
             return 0;
     }
 
-    function get_node($xml,$node,$field){
-        $i=0;
-        foreach ($xml->page as $pages){
-            if ($i==$node){
-                switch($field) {
-                    case "content":
-                        return $pages->content;
-                    break;
-                    case "list":
-                        return $pages->content->list;
-                    break;
-                    case "header":
-                        return $pages->header;
-                    break;
+    function set_($xml,$table,$field,$value){
+        $k=$j=0;
+        foreach ($xml->table as $tables){
+            if ($table==$tables['name']){
+                foreach ($tables->field as $fields){
+                    if ($fields['name']==$field)
+                        $xml->table[$k]->field[$j]=$value;
+                    else
+                        $j++;
                 }
-            }
-            else $i++;
+            } else $k++;
         }
+        return $xml;
     }
 
 ?>
