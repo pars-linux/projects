@@ -1,0 +1,17 @@
+<?xml version='1.0' standalone='yes'?>
+
+<docume>
+
+<name>Pardus's Web Page</name>
+<email>gokmen@pardus.org.tr</email>
+<sign>Tubitak/Uekae - Pardus Projesi</sign>
+
+    <table name="pages">
+        <field name="Title" type="char" size="200">asdasdasd</field>
+        <field name="NiceTitle" type="char" size="200">assvxv</field>
+        <field name="Lang" type="set" values="TR,EN">EN</field>
+        <field name="Modules" type="char" size="200"></field>
+        <field name="Content" type="text"></field>
+    </table>
+
+</docume>
