@@ -3,6 +3,7 @@
     class MakeForms {
 
         public $vezir;
+        public $xml;
 
         function MakeForms($xml,$Vezir=false){
             $this->xml = $xml;

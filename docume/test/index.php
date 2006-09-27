@@ -25,6 +25,17 @@
             $xml=get_xml($file_);
 
             $xhtml = new MakeForms($xml);
+
+            # get the table name form address bar..
+            if (isset($_GET["table"])) $table=$_GET["table"];else $table="all";
+
+            $xhtml->ParseForms($table);
+
+            # set_ (xml_handle,table,field,value)...
+            set_($xml,"news","Title","Gökmen");
+            set_($xml,"news","Lang","EN");
+
+            $xhtml->xml = $xml;
             $xhtml->ParseForms("news");
 
             return;
@@ -32,12 +43,13 @@
     }
 
     # file list..
-    if ($handle = opendir("../_db/"))
+    if ($handle = opendir("../_db/")){
         while (false !== ($file=readdir($handle)))
         if ($file<>"." and $file<>"..")
             echo "<a href='{$PHP_SELF}?file=$file'>$file</a><br/> ";
         else
             echo "$file<br/>";
+    }
 ?>
 
 </body>
