@@ -25,7 +25,7 @@
             $xml=get_xml($file_);
 
             $xhtml = new MakeForms($xml);
-            $xhtml->ParseForms();
+            $xhtml->ParseForms("news");
 
             return;
         }

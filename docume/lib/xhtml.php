@@ -10,9 +10,11 @@
                 $this->vezir=$Vezir;
         }
 
-        function Build($xml,$method="GET") {
+        function Build($xml,$show,$method="GET") {
             foreach ($xml->table as $tables){
-                $ret = "<h3>".$xml->name."</h3>\n";
+                $show=="all"?$que="all":$que=$tables['name'];
+                if ($show==$que){
+                $ret.= "<h3>".$xml->name." :: ".$tables['name']." table </h3>\n";
                 $ret.= "<form action='?' method='$method' id='".$tables['name']."' class='cssform'>\n";
                 foreach ($tables->field as $fields){
                     $ret.="<p><label for='{$fields['name']}'>{$fields['name']}</label>\n";
@@ -38,12 +40,13 @@
                         <input type='submit' value='Submit' />\n
                         <input type='reset' value='Reset' />\n
                        </p></form>";
+                }
             }
             return $ret;
         }
 
-        function ParseForms(){
-            echo $this->Build($this->xml);
+        function ParseForms($show="all"){
+            echo $this->Build($this->xml,$show);
         }
     }
 
