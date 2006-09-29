@@ -160,7 +160,7 @@
                 echo '<div class="';
                 echo (($Key+1)%2)? 'koyu' : 'acik';
                 echo '">';
-                echo '<span class="yele"><b>'.$Value['Lang'].'::'.$Value['Parent'].'::'.$Value['PType'].':</b>';
+                echo '<span class="yele"><b>'.$Value['Lang'].':</b>';
                 echo JsLink($Value['ID'],$Value['Title'],'Edit')."</span>";
                 echo JsLink($Value['ID'],'<span class="dele">sil</span>','Del',$Value['Title'])."\n";
                 echo '</div>';
