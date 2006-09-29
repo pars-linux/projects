@@ -63,8 +63,8 @@
         </td>
         <td id="kutular">
             <div class="header"> Sayfalar </div>
-            <span style="float:right"><a href="#" onClick="ShowPageList()">Yenile</a></span>
-            <span id="pageList"></span>
+            <div style="clear:left;text-align:right;"><a href="#" onClick="ShowPageList()">Yenile</a></div>
+            <div id="pageList"></div>
         </td>
     </tr>
     <tr>
