@@ -149,7 +149,7 @@
         }
 
         function JsLink($ID,$Value,$Action,$Additional="",$alt="") {
-            $ret = '<a title="'.$alt." href=# onClick="'.$Action.'(\''.$ID.'\'';
+            $ret = '<a title="'.$alt.'" href=# onClick="'.$Action.'(\''.$ID.'\'';
             $Additional=="" ? $add = ')">' : $add =',\''.$Additional.'\')">';
             $ret.= $add.$Value.'</a>';
             return $ret;
