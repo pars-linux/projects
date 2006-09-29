@@ -53,17 +53,7 @@
         <td id="main">
             <input type="text" id="baslik" />
             <input type="text" id="gbaslik" style="float:left"/>
-            <select id="parent" >
-              <option value ="B">Bireysel</option>
-              <option value ="K">Kurumsal</option>
-              <option value ="G">Geliştirici</option>
-              <option value ="M">Ana Sayfa</option>
-              <option value ="P">Basin</option>
-            </select>
-            <select id="ptype" >
-              <option value ="P">Sayfa</option>
-              <option value ="D">Döküman</option>
-            </select>
+            <input type="text" id="modules" style="float:left"/>
             <select id="plang" >
               <option value ="TR">Türkçe</option>
               <option value ="EN">English</option>

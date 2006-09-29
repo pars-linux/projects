@@ -45,7 +45,7 @@
             Element.show('over');
             var url ='request.php';
             var _content = encodeURIComponent($('editor').value);
-            var linke = 'PageID='+nid+'&Title='+$('baslik').value+'&NiceTitle='+$('gbaslik').value+'&Parent='+$('parent').value+'&Ptype='+$('ptype').value+'&Plang='+$('plang').value+'&Content='+_content;
+            var linke = 'PageID='+nid+'&Title='+$('baslik').value+'&NiceTitle='+$('gbaslik').value+'&Modules='+$('modules').value+'&Plang='+$('plang').value+'&Content='+_content;
             //alert (linke);
             var AjaxPointer = new Ajax.Request(
                 url,
@@ -66,8 +66,7 @@
             $('ayrintilar').innerHTML   = root.getElementsByTagName('dblog').item(0).textContent;
             $('baslik').value           = root.getElementsByTagName('title').item(0).textContent;
             $('gbaslik').value          = root.getElementsByTagName('ntitle').item(0).textContent;
-            $('parent').selectedIndex   = root.getElementsByTagName('parent').item(0).textContent;
-            $('ptype').selectedIndex    = root.getElementsByTagName('ptype').item(0).textContent;
+            $('modules').value          = root.getElementsByTagName('modules').item(0).textContent;
             $('plang').selectedIndex    = root.getElementsByTagName('plang').item(0).textContent;
 
             pidp = root.getElementsByTagName('pidp').item(0).textContent;
@@ -81,9 +80,8 @@
             $('editor').innerHTML = $('editor').value;
             $('baslik').value = "";
             $('gbaslik').value = "";
+            $('modules').value = "";
             $('toolbar').innerHTML ="";
-            $('parent').selectedIndex = 0;
-            $('ptype').selectedIndex = 0;
             $('plang').selectedIndex = 0;
             $('ayrintilar').innerHTML = "";
         }

@@ -29,9 +29,8 @@
         echo "\n<pidp>".$Temp[0]['ID']."</pidp>";
         echo "\n<title>".$Temp[0]['Title']."</title>";
         echo "\n<ntitle>".$Temp[0]['NiceTitle']."</ntitle>";
+        echo "\n<modules>".$Temp[0]['Modules']."</modules>";
         echo "\n<content>".htmlspecialchars($Temp[0]['Content'])."</content>";
-        echo "\n<parent>".array_search($Temp[0]['Parent'],$Parents)."</parent>";
-        echo "\n<ptype>".array_search($Temp[0]['PType'],$Ptypes)."</ptype>";
         echo "\n<plang>".array_search($Temp[0]['Lang'],$Plangs)."</plang>";
         echo "\n<dblog>".htmlspecialchars($Temp[0]['dblogs'])."</dblog>";
         echo "\n</Page>";
@@ -47,11 +46,9 @@
     }
 
     if (is_numeric($_POST['PageID'])) {
-        // FIXME Not Stable !?
-        //$_POST['Content'] = html_entity_decode($_POST['Content']);
-
+        $_POST["Modules"]=strtoupper($_POST["Modules"]);
         if ($_POST['PageID']==0){
-            $Values = Array ($_POST['Title'],$_POST['NiceTitle'],$_POST['Content'],$_POST['Parent'],$_POST['Ptype'],$_POST['Plang']);
+            $Values = Array ($_POST['Title'],$_POST['NiceTitle'],$_POST['Content'],$_POST['Modules'],$_POST['Plang']);
             $TID = $PP->InsertRecord($TableA,$Pages,$Values);
             $Temp = $PP->GetRecord($TableA,'*',$TID);
         }
@@ -59,8 +56,7 @@
             $PP->UpdateField($TableA,'Content',$_POST['Content'],$_POST['PageID']);
             $PP->UpdateField($TableA,'Title',$_POST['Title'],$_POST['PageID']);
             $PP->UpdateField($TableA,'NiceTitle',$_POST['NiceTitle'],$_POST['PageID']);
-            $PP->UpdateField($TableA,'Parent',$_POST['Parent'],$_POST['PageID']);
-            $PP->UpdateField($TableA,'Ptype',$_POST['Ptype'],$_POST['PageID']);
+            $PP->UpdateField($TableA,'Modules',$_POST['Modules'],$_POST['PageID']);
             $PP->UpdateField($TableA,'Lang',$_POST['Plang'],$_POST['PageID']);
             $Temp = $PP->GetRecord($TableA,'*',$_POST['PageID']);
         }
