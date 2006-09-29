@@ -148,8 +148,8 @@
             return $ReturnArray;
         }
 
-        function JsLink($ID,$Value,$Action,$Additional="") {
-            $ret = '<a href=# onClick="'.$Action.'(\''.$ID.'\'';
+        function JsLink($ID,$Value,$Action,$Additional="",$alt="") {
+            $ret = '<a title="'.$alt." href=# onClick="'.$Action.'(\''.$ID.'\'';
             $Additional=="" ? $add = ')">' : $add =',\''.$Additional.'\')">';
             $ret.= $add.$Value.'</a>';
             return $ret;
@@ -161,7 +161,7 @@
                 echo (($Key+1)%2)? 'koyu' : 'acik';
                 echo '">';
                 echo '<span class="yele"><b>'.$Value['Lang'].':</b>';
-                echo JsLink($Value['ID'],$Value['Title'],'Edit')."</span>";
+                echo JsLink($Value['ID'],$Value['Title'],'Edit','',$Value["NiceTitle"])."</span>";
                 echo JsLink($Value['ID'],'<span class="dele">sil</span>','Del',$Value['Title'])."\n";
                 echo '</div>';
             }
