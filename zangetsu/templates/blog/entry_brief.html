@@ -1,0 +1,15 @@
+{% load i18n %}
+<div class="entry">
+<b><a href="{{object.get_absolute_url}}">{{object.title}}</a></b>
+<span class="date">
+{{object.pubdate|date:"d M y, l \@ H:i"}}
+</span>
+<br />
+{{object.content}}
+<br />
+<br />
+{% trans "Tags:" %}
+{% for tag in object.tag.all %}
+    <a href="/blog/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
+{% endfor %}
+</div>

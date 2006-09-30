@@ -1,0 +1,116 @@
+body { 
+	font-family: verdana, arial, sans;
+	font-size: 10pt;
+	margin: 0 0 0 0;
+	background: #fff;
+}
+
+html>body {
+	background-attachment: fixed;
+	background-image: url(./backblog.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	float: right;
+}
+
+#header {
+	background-image: url(./bilinear.png);
+	display: table;
+	font-family: mono, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	margin: 0 0 1ex 0;
+	width: 100%;
+}
+
+#header a {
+	color: #FFF; 
+	font-weight: bold;
+}
+
+#content {
+	display: block;
+	float: left;
+	padding: 0 0 0 1em;
+	width: 75%;
+}
+
+pre
+{
+	border: 1px dotted green;
+	font-size: x-small;
+	margin-left: 10px;
+	margin-right: 10px;
+	overflow: hidden;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+
+blockquote
+{
+	border:	1px dotted green;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+
+#menu {
+	margin-left: 75%;
+	width: 20%;
+	padding: 0 0 0 40px;
+}
+
+.entry {
+	background-image: url(./entry.gif);
+	background-repeat: no-repeat;
+	padding: 15px 0 0 42px;
+	border-bottom: 1px #999 dashed;
+	display: table;
+}
+	
+.date {
+	color: #3f45d3;
+	display: block;
+	font-family: mono, sans-serif;
+	font-size: 10px;
+}
+
+.title {
+	display: table;
+}
+
+a {
+	color: green;
+	text-decoration: none; 
+}
+
+a:visited {
+	color: green;
+	text-decoration: none; 
+}
+
+a:hover {
+	color: green;
+	text-decoration: underline; 
+}
+
+a#tooCool {
+	background: url(http://cekirdek.uludag.org.tr/~caglar/blog/images/too_cool_corner.png) bottom right no-repeat;
+	bottom: 0;
+	display: block;
+	height: 80px;
+	position: fixed;
+	right: 0;
+	text-decoration: none;
+	text-indent: -999em;
+	width: 80px;
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px #999 dashed;
+	width: 80%;
+}
