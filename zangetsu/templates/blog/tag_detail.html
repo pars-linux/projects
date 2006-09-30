@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for object in object.entry_set.all %}
+    {% include "blog/entry_brief.html" %}
+{% endfor %}
+
+{% endblock %}

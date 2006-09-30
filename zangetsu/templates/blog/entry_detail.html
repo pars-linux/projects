@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="entry">
+<b><a href="{{object.get_absolute_url}}">{{object.title}}</a></b>
+<br />
+<br />
+{{object.content}}
+<br />
+<br />
+<span class="date">
+{{object.pubdate|date:"d M y, l \@ H:i"}}
+</span>
+{% for tag in object.tag.all %}
+    {{tag.title}}
+{% endfor %}
+</div>
+{% endblock %}
+
