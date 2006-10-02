@@ -12,6 +12,9 @@ class RssFeed(Feed):
 
     def items(self):
         return Entry.objects.order_by('-pubdate')[:10]
+    
+    def item_pubdate(self, item):
+        return item.pubdate
 
 class AtomFeed(RssFeed):
     link = '%s/blog/feeds/atom/' % WEB_URL
