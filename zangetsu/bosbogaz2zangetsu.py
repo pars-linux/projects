@@ -15,7 +15,11 @@ t = Tag()
 t.title = "Genel"
 t.save()
 
-for item in range(len(feed["entries"])):
+# reverse the range so newest has biggest id
+length = range(len(feed["entries"]))
+length.reverse()
+
+for item in length:
     e = feed["entries"][item]
     t = Tag.objects.filter(title="Genel")
 
