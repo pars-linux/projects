@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-02 05:04+0300\n"
+"POT-Creation-Date: 2006-10-02 17:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -55,15 +55,15 @@ msgstr "girdi"
 msgid "entries"
 msgstr "girdiler"
 
-#: templates/base.html:46
+#: templates/base.html:56 templates/base.html.py:59
 msgid "Archives"
 msgstr "Arşivler"
 
-#: templates/base.html:52
+#: templates/base.html:66
 msgid "Tags"
-msgstr "Kategoriler"
+msgstr "Etiketler"
 
-#: templates/base.html:58
+#: templates/base.html:73
 msgid "Links"
 msgstr "Bağlantılar"
 
