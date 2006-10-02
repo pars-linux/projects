@@ -42,7 +42,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '%s/zangetsu/static' % DOCUMENT_ROOT
+MEDIA_ROOT = '%s/static' % DOCUMENT_ROOT
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
