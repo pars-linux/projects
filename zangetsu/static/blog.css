@@ -101,18 +101,6 @@ a:hover {
 	text-decoration: underline; 
 }
 
-a#tooCool {
-	background: url(http://cekirdek.uludag.org.tr/~caglar/blog/images/too_cool_corner.png) bottom right no-repeat;
-	bottom: 0;
-	display: block;
-	height: 80px;
-	position: fixed;
-	right: 0;
-	text-decoration: none;
-	text-indent: -999em;
-	width: 80px;
-}
-
 hr {
 	border: 0;
 	border-bottom: 1px #999 dashed;
