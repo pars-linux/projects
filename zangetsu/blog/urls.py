@@ -14,6 +14,8 @@ tag_dict = {
 }
 
 urlpatterns = patterns('',
+    (r'^search/$', 'zangetsu.blog.views.search'),
+
     (r'^tag/(?P<slug>[A-Za-z-_]+)/$', 
         'django.views.generic.list_detail.object_detail', 
         tag_dict

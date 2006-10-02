@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+{% for object in search_results %}
+	{% include "blog/entry_brief.html" %}
+{% endfor %}
+{% endblock %}
