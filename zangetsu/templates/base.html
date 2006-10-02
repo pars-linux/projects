@@ -1,6 +1,7 @@
 <!-- Localization -->
 {% load i18n %}
 {% load library %}
+{% build_blog_name %}
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,13 +33,13 @@
 
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="feed/rss">
 <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="feed/atom/">
-<link rel="stylesheet" href="/static/blog.css" type="text/css">
+<link rel="stylesheet" href="{{ blog_url }}/../static/blog.css" type="text/css">
 
-<title>Sandra Blog!</title>
+<title>{{ blog_name }}</title>
 </head>
 <body>
     <div id="header">
-        <center><a href="http://10.0.0.65:8000/blog/">{% build_blog_name %}{{blog_name}}</a><br /><br /></center>
+        <center><a href="{{ blog_url }}">{{ blog_name }}</a><br /><br /></center>
     </div>
 
     <!-- content -->
@@ -48,20 +49,20 @@
 
     <!-- menu -->
     <div id="menu">
-        <center>{% build_blog_name %}{{blog_desc}}</center>
+        <center>{{ blog_desc }}</center>
         <a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
         <br />
         <br />
         <b>{% trans "Archives" %}</b><hr>
         {% build_month_list %}
         {% for month in blog_months %}
-            <a href="/blog/{{ month|date:"Y/m"|lower }}/">{{ month|date:"M Y" }}</a><br />
+            <a href="{{ blog_url }}/{{ month|date:"Y/m"|lower }}/">{{ month|date:"M Y" }}</a><br />
         {% endfor %}
         <br />
         <b>{% trans "Tags" %}</b><hr>
         {% build_tag_list %}
         {% for tag in blog_tags %}
-            <a href="/blog/tag/{{tag.title}}/">{{ tag.title }}</a><br />
+            <a href="{{ blog_url }}/tag/{{tag.title}}/">{{ tag.title }}</a><br />
         {% endfor %}
         <br />
         <b>{% trans "Links" %}</b><hr>

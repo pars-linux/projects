@@ -2,6 +2,7 @@
 from django.template import Library,Node
 from zangetsu.blog.models import Entry, Tag, Link
 from zangetsu.blog import defaults
+from zangetsu.setting import WEB_URL
 
 register = Library()
 
@@ -9,6 +10,7 @@ class BlogNameObject(Node):
     def render(self, context):
         context['blog_name'] = defaults.BLOG_NAME
         context['blog_desc'] = defaults.BLOG_DESC
+        context['blog_url'] = '%s/blog' % WEB_URL
         return ''
 
 class LinkMenuObject(Node):

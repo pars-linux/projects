@@ -3,40 +3,49 @@ from django.db import models
 
 class Link(models.Model):
 
-    title = models.CharField(maxlength = 64)
-    url = models.URLField()
+    title = models.CharField(maxlength = 64, verbose_name=_('title'))
+    url = models.URLField(verbose_name=_('url'))
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _('link')
+        verbose_name_plural = _('links')
 
     class Admin:
         list_display = ['title']
 
 class Tag(models.Model):
 
-    title = models.CharField(maxlength = 32)
+    title = models.CharField(maxlength = 32, verbose_name=_('title'))
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _("tag")
+        verbose_name_plural = _("tags")
 
     class Admin:
         list_display = ('id', 'title')
 
 class Entry(models.Model):
 
-    title = models.CharField(maxlength = 256)
-    content = models.TextField()
-    tag = models.ManyToManyField(Tag)
-    pubdate = models.DateTimeField()
+    title = models.CharField(maxlength = 256, verbose_name=_('title'))
+    content = models.TextField(verbose_name=_('content'))
+    tag = models.ManyToManyField(Tag, verbose_name=_('tag'))
+    pubdate = models.DateTimeField(verbose_name=_('publish date'))
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return '/blog/%s/%s/' % (self.pubdate.strftime('%Y/%m/%d').lower(), self.id)
+        return '%s/blog/%s/%s/' % (WEB_URL, self.pubdate.strftime('%Y/%m/%d').lower(), self.id)
 
     class Meta:
-        pass
+        verbose_name = _("entry")
+        verbose_name_plural = _("entries")
 
     class Admin:
         list_display = ('id', 'title', 'pubdate')

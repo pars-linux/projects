@@ -1,13 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
+# Django
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-25 22:20+0300\n"
+"POT-Creation-Date: 2006-10-02 01:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -15,18 +15,58 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/base.html:53
+#: blog/models.py:7 blog/models.py:22 blog/models.py:36
+msgid "title"
+msgstr "başlık"
+
+#: blog/models.py:8
+msgid "url"
+msgstr "adres"
+
+#: blog/models.py:14
+msgid "link"
+msgstr "bağlantı"
+
+#: blog/models.py:15
+msgid "links"
+msgstr "bağlantılar"
+
+#: blog/models.py:28 blog/models.py:38
+msgid "tag"
+msgstr "etiket"
+
+#: blog/models.py:29
+msgid "tags"
+msgstr "etiketler"
+
+#: blog/models.py:37
+msgid "content"
+msgstr "içerik"
+
+#: blog/models.py:39
+msgid "publish date"
+msgstr "yayınlama tarihi"
+
+#: blog/models.py:48
+msgid "entry"
+msgstr "girdi"
+
+#: blog/models.py:49
+msgid "entries"
+msgstr "girdiler"
+
+#: templates/base.html:57
 msgid "Archives"
 msgstr "Arşivler"
 
-#: templates/base.html:59
+#: templates/base.html:63
 msgid "Tags"
 msgstr "Kategoriler"
 
-#: templates/base.html:65
+#: templates/base.html:69
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: templates/blog/entry_brief.html:11
+#: templates/blog/entry_brief.html:15
 msgid "Tags:"
 msgstr "Kategoriler:"
