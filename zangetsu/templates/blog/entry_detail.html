@@ -12,6 +12,7 @@
 {{object.content}}
 <br />
 <br />
+{% trans "Tags:" %}
 {% for tag in object.tag.all %}
     <a href="{{ blog_url }}/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
 {% endfor %}
