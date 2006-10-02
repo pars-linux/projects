@@ -65,12 +65,9 @@
         <br />
         <b>{% trans "Tags" %}</b><hr>
         {% build_tag_list %}
-        <select class="dropdown" onchange="if (this.value != '') {location=this.value;}">
-            <option value="">{% trans "Tags" %}</option>
         {% for tag in blog_tags %}
-            <option value="{{ blog_url }}/tag/{{tag.title}}/">{{ tag.title }}</option>
+            <a href="{{ blog_url }}/tag/{{tag.title}}/">{{ tag.title }}</a>&nbsp;
         {% endfor %}
-        </select>
         <br />
         <br />
         <b>{% trans "Links" %}</b><hr>
