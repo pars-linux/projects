@@ -74,7 +74,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'zangetsu.urls'
 
 TEMPLATE_DIRS = (
-    '%s/zangetsu/templates' % DOCUMENT_ROOT,
+    '%s/templates' % DOCUMENT_ROOT,
 )
 
 INSTALLED_APPS = (
