@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from zangetsu.blog import WEB_URL
+from zangetsu.settings import WEB_URL
 
 class Link(models.Model):
 
