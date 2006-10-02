@@ -15,12 +15,14 @@ html>body {
 
 #header {
 	background-image: url(./bilinear.png);
+    background-repeat: repeat-x;
 	display: table;
 	font-family: mono, sans-serif;
 	font-size: medium;
 	font-weight: bold;
 	margin: 0 0 1ex 0;
 	width: 100%;
+    line-height: 30px;
 }
 
 #header a {
@@ -66,9 +68,11 @@ blockquote
 .entry {
 	background-image: url(./entry.gif);
 	background-repeat: no-repeat;
-	padding: 15px 0 0 42px;
+	padding: 15px 0 10px 42px;
 	border-bottom: 1px #999 dashed;
+    margin-bottom: 10px;
 	display: table;
+    width: 95%;
 }
 	
 .date {
@@ -113,4 +117,10 @@ hr {
 	border: 0;
 	border-bottom: 1px #999 dashed;
 	width: 80%;
+}
+
+.dropdown {
+    padding: 2px;
+    width: 100%;
+    border: 1px solid #eee;
 }
