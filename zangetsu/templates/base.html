@@ -62,6 +62,11 @@
         </select>
         <br />
         <br />
+        <b>{% trans "Search" %}</b><hr>
+        <form method="get" id="searchform" action="{{ blog_url }}/search/">
+            <input class="dropdown" type="text" name="s" id="s"/>
+        </form>
+        <br />
         <b>{% trans "Tags" %}</b><hr>
         {% build_tag_list %}
         {% for tag in blog_tags %}
