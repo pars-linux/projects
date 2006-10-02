@@ -55,7 +55,7 @@
         <br />
         <b>{% trans "Archives" %}</b><hr>
         {% build_month_list %}
-        <select onchange="if (this.value != '') {location=this.value;}">
+        <select class="dropdown" onchange="if (this.value != '') {location=this.value;}">
             <option value="">{% trans "Archives" %}</option>
         {% for month in blog_months %}
             <option value="{{ blog_url }}/{{ month|date:"Y/m"|lower }}/">{{ month|date:"M Y" }}</option>
@@ -65,7 +65,7 @@
         <br />
         <b>{% trans "Tags" %}</b><hr>
         {% build_tag_list %}
-        <select onchange="if (this.value != '') {location=this.value;}">
+        <select class="dropdown" onchange="if (this.value != '') {location=this.value;}">
             <option value="">{% trans "Tags" %}</option>
         {% for tag in blog_tags %}
             <option value="{{ blog_url }}/tag/{{tag.title}}/">{{ tag.title }}</option>
