@@ -19,7 +19,7 @@ urlpatterns = patterns('',
         tag_dict
     ),
 
-    (r'^feeds/(?P<url>.*)/$', 
+    (r'^feed/(?P<url>.*)/$', 
         'django.contrib.syndication.views.feed',
         {'feed_dict': {'rss': RssFeed,'atom': AtomFeed}}
     ),
