@@ -25,9 +25,7 @@ class MonthMenuObject(Node):
 
 class TagMenuObject(Node):
     def render(self, context):
-        sql = 'SELECT Count(*) + 1 FROM blog_entry_tag WHERE blog_entry_tag.tag_id=blog_tag.id'
-        context['blog_tags'] = Tag.objects.extra(select={'entry_count': sql})
-        context['blog_tags_max'] = max(map(lambda x: x.entry_count, context['blog_tags']))
+        context['blog_tags'] = Tag.objects.all()
         return ''
 
 def build_blog_name(parser, token):
