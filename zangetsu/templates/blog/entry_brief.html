@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load library %}
+{% build_blog_name %}
 <div class="entry">
 <b><a href="{{object.get_absolute_url}}">{{object.title}}</a></b>
 <span class="date">
@@ -10,6 +12,6 @@
 <br />
 {% trans "Tags:" %}
 {% for tag in object.tag.all %}
-    <a href="/blog/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
+    <a href="{{ blog_url }}/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
 {% endfor %}
 </div>

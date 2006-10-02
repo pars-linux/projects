@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load library %}
+{% build_blog_name %}
 {% block content %}
 <div class="entry">
 <b><a href="{{object.get_absolute_url}}">{{object.title}}</a></b>
@@ -11,7 +13,7 @@
 {{object.pubdate|date:"d M y, l \@ H:i"}}
 </span>
 {% for tag in object.tag.all %}
-    {{tag.title}}
+    <a href="{{ blog_url }}/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
 {% endfor %}
 </div>
 {% endblock %}

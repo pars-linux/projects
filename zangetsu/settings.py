@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 # Django settings for zangetsu project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('S.Çağlar Onur', 'caglar@pardus.org.tr'),
 )
+
+WEB_URL = 'http://cekirdek.pardus.org.tr/~caglar'
+DOCUMENT_ROOT = '/home/caglar/public_html'
 
 MANAGERS = ADMINS
 
@@ -39,16 +42,16 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/caglar/zangetsu/static'
+MEDIA_ROOT = '%s/zangetsu/static' % DOCUMENT_ROOT
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
-MEDIA_URL = 'http://10.0.0.65:8000/static/'
+MEDIA_URL = '%s/static/' % WEB_URL
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '%s/static/admin/media/' %WEB_URL
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'I_AM_A_SECRET_KEY_DONT_MAKE_ME_LOLO'
@@ -71,7 +74,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'zangetsu.urls'
 
 TEMPLATE_DIRS = (
-    '/home/caglar/zangetsu/templates',
+    '%s/zangetsu/templates' % DOCUMENT_ROOT,
 )
 
 INSTALLED_APPS = (
