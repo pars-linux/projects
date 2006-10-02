@@ -3,7 +3,7 @@ from django.contrib.syndication.feeds import Feed
 from django.utils.feedgenerator import Atom1Feed
 from zangetsu.blog.models import Entry
 from zangetsu.blog import defaults
-from zangetsu.blog import WEB_URL
+from zangetsu.settings import WEB_URL
 
 class RssFeed(Feed):
     title = defaults.BLOG_NAME
