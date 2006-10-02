@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls.defaults import *
-
-from blackrock.settings import WEB_URL, DOCUMENT_ROOT
+from zangetsu.settings import WEB_URL, DOCUMENT_ROOT
 
 root = '/'.join(WEB_URL.split("/")[3:])
 
