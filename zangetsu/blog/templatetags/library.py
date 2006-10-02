@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.template import Library,Node
-from zangetsu.blog.models import Entry, Tag, Link
 from zangetsu.blog import defaults
-from zangetsu.setting import WEB_URL
+from zangetsu.blog.models import Entry, Tag, Link
+from zangetsu.settings import WEB_URL
 
 register = Library()
 
