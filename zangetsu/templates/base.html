@@ -35,7 +35,7 @@
 <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="{{ blog_url }}/feed/atom">
 <link rel="stylesheet" href="{{ blog_url }}/../static/blog.css" type="text/css">
 
-<title>{{ blog_name }}</title>
+<title>{{ blog_name }}{% block title %}{% endblock %}</title>
 </head>
 <body>
     <div id="header">
