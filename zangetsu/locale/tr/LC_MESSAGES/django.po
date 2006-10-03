@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-03 14:36+0300\n"
+"POT-Creation-Date: 2006-10-03 21:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -15,43 +15,43 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: blog/models.py:7 blog/models.py:22 blog/models.py:36
+#: blog/models.py:11 blog/models.py:26 blog/models.py:40
 msgid "title"
 msgstr "başlık"
 
-#: blog/models.py:8
+#: blog/models.py:12
 msgid "url"
 msgstr "adres"
 
-#: blog/models.py:14
+#: blog/models.py:18
 msgid "link"
 msgstr "bağlantı"
 
-#: blog/models.py:15
+#: blog/models.py:19
 msgid "links"
 msgstr "bağlantılar"
 
-#: blog/models.py:28 blog/models.py:38
+#: blog/models.py:32 blog/models.py:42
 msgid "tag"
 msgstr "etiket"
 
-#: blog/models.py:29
+#: blog/models.py:33
 msgid "tags"
 msgstr "etiketler"
 
-#: blog/models.py:37
+#: blog/models.py:41
 msgid "content"
 msgstr "içerik"
 
-#: blog/models.py:39
+#: blog/models.py:43
 msgid "publish date"
 msgstr "yayınlama tarihi"
 
-#: blog/models.py:48
+#: blog/models.py:52
 msgid "entry"
 msgstr "girdi"
 
-#: blog/models.py:49
+#: blog/models.py:53
 msgid "entries"
 msgstr "girdiler"
 
