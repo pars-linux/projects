@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load library %}
 {% load i18n %}
+
+{% block title %} - {{ object.title }}{% endblock %}
+
 {% build_blog_name %}
 {% block content %}
 <div class="entry">
