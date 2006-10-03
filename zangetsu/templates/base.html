@@ -79,8 +79,13 @@
         {% for link in blog_link %}
             <a href="{{link.url}}/">{{ link.title }}</a><br />
         {% endfor %}
+        <center>
         <br />
-        <center><a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangopowered126x54_grey.gif" border="0" alt="Powered by Django." title="Powered by Django."/></a></center>
+        <a href="{{ blog_url }}/feed/rss"><img src="{{ blog_url }}/../static/feed-icon-24x24.png" alt="rss">RSS</a>
+        <a href="{{ blog_url }}/feed/atom"><img src="{{ blog_url }}/../static/feed-icon-24x24.png" alt="rss">Atom</a>
+        <br />
+        <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangopowered126x54_grey.gif" border="0" alt="Powered by Django." title="Powered by Django."/></a>
+        </center>
     </div>
 </body>
 </html>
