@@ -30,11 +30,23 @@ html>body {
 	font-weight: bold;
 }
 
+#footer {
+	clear: both;
+	text-align: center;
+	font-size: 10px;
+}
+
 #content {
 	display: block;
 	float: left;
 	padding: 0 0 0 1em;
 	width: 75%;
+}
+
+#menu {
+	margin-left: 75%;
+	width: 20%;
+	padding: 0 0 0 40px;
 }
 
 pre
@@ -59,33 +71,6 @@ blockquote
 	padding-top: 5px;
 }
 
-#menu {
-	margin-left: 75%;
-	width: 20%;
-	padding: 0 0 0 40px;
-}
-
-.entry {
-	background-image: url(./entry.gif);
-	background-repeat: no-repeat;
-	padding: 15px 0 10px 42px;
-	border-bottom: 1px #999 dashed;
-	margin-bottom: 10px;
-	display: table;
-	width: 95%;
-}
-	
-.date {
-	color: #3f45d3;
-	display: block;
-	font-family: mono, sans-serif;
-	font-size: 10px;
-}
-
-.title {
-	display: table;
-}
-
 a {
 	color: green;
 	text-decoration: none; 
@@ -107,8 +92,29 @@ hr {
 	width: 80%;
 }
 
+.date {
+	color: #3f45d3;
+	display: block;
+	font-family: mono, sans-serif;
+	font-size: 10px;
+}
+
 .dropdown {
 	padding: 2px;
 	width: 100%;
 	border: 1px solid #eee;
+}
+
+.entry {
+	background-image: url(./entry.gif);
+	background-repeat: no-repeat;
+	padding: 15px 0 10px 42px;
+	border-bottom: 1px #999 dashed;
+	margin-bottom: 10px;
+	display: table;
+	width: 95%;
+}
+
+.title {
+	display: table;
 }
