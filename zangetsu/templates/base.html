@@ -79,11 +79,16 @@
         {% for link in blog_link %}
             <a href="{{link.url}}/">{{ link.title }}</a><br />
         {% endfor %}
+        <br />
+        <br />
+        <b>{% trans "Feeds %}</b><hr>
+        <center>
+            <a href="{{ blog_url }}/feed/rss"><img border="0" src="{{ blog_url }}/../static/feed-icon-24x24.png" alt="rss">RSS 2.0</a>
+            <a href="{{ blog_url }}/feed/atom"><img border="0" src="{{ blog_url }}/../static/feed-icon-24x24.png" alt="rss">Atom 0.3</a>
+        </center>
     </div>
 
     <div id="footer">
-        <a href="{{ blog_url }}/feed/rss"><img border="0" src="{{ blog_url }}/../static/feed-icon-24x24.png" alt="rss">RSS 2.0</a>
-        <a href="{{ blog_url }}/feed/atom"><img border="0" src="{{ blog_url }}/../static/feed-icon-24x24.png" alt="rss">Atom 0.3</a>
         <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangoproject120x25_grey.gif" border="0" alt="A Django project." title="A Django project." /></a>
     </div>
 </body>
