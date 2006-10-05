@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-03 21:25+0300\n"
+"POT-Creation-Date: 2006-10-05 23:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -74,6 +74,14 @@ msgstr "Bağlantılar"
 #: templates/base.html:83
 msgid "Feeds"
 msgstr "Beslemeler"
+
+#: templates/404.html:5
+msgid "No entry found in database!"
+msgstr "Veritabanında girdi bulunamadı!"
+
+#: templates/500.html:5
+msgid "An error occured!"
+msgstr "Bir hata oluştu!"
 
 #: templates/blog/entry_archive_year.html:8
 #, python-format
