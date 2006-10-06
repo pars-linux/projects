@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-05 23:37+0300\n"
+"POT-Creation-Date: 2006-10-07 00:26+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: blog/models.py:11 blog/models.py:26 blog/models.py:40
+#: blog/models.py:11 blog/models.py:26 blog/models.py:40 wiki/models.py:12
 msgid "title"
 msgstr "başlık"
 
@@ -39,11 +39,11 @@ msgstr "etiket"
 msgid "tags"
 msgstr "etiketler"
 
-#: blog/models.py:41
+#: blog/models.py:41 wiki/models.py:13
 msgid "content"
 msgstr "içerik"
 
-#: blog/models.py:43
+#: blog/models.py:43 wiki/models.py:14
 msgid "publish date"
 msgstr "yayınlama tarihi"
 
@@ -72,8 +72,8 @@ msgid "Links"
 msgstr "Bağlantılar"
 
 #: templates/base.html:83
-msgid "Feeds"
-msgstr "Beslemeler"
+msgid "Wiki"
+msgstr "Wiki"
 
 #: templates/404.html:5
 msgid "No entry found in database!"
@@ -91,3 +91,23 @@ msgstr "%(year)s arşivi"
 #: templates/blog/entry_detail.html:19 templates/blog/entry_brief.html:14
 msgid "Tags:"
 msgstr "Etiketler:"
+
+#: templates/wiki/edit.html:5
+msgid "Editing:"
+msgstr "Değiştiriliyor:"
+
+#: templates/wiki/edit.html:10
+msgid "Save"
+msgstr "Kaydet"
+
+#: templates/wiki/home.html:5 templates/wiki/page.html:14
+msgid "Wiki Index"
+msgstr "Wiki İndeksi"
+
+#: templates/wiki/page.html:14
+msgid "Edit this page"
+msgstr "Bu sayfayı değiştir"
+
+#: templates/wiki/page.html:14
+msgid "Help"
+msgstr "Yardım"
