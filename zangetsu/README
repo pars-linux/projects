@@ -1,0 +1,7 @@
+Requires;
+
+* Python
+* Apache Web Server
+* mod_python
+* Django
+* docutils
