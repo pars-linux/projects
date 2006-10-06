@@ -7,6 +7,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from zangetsu.wiki.models import WikiPage
+from zangetsu.settings import WEB_URL
 
 def index(request):
     pages = WikiPage.objects.all().order_by('title')
@@ -17,7 +18,7 @@ def page(request, title):
         page = WikiPage.objects.get(title__exact=title)
         return render_to_response('wiki/page.html', locals())
     except WikiPage.DoesNotExist:
-        return HttpResponseRedirect("/wiki/edit/%s/" % title)
+        return HttpResponseRedirect("%s/wiki/edit/%s/" % (WEB_URL, title))
 
 def edit(request, title):
     if request.POST:
@@ -28,7 +29,7 @@ def edit(request, title):
         page.content = request.POST['content']
         page.title = request.POST['title']
         page.save()
-        return HttpResponseRedirect("/wiki/" + page.title + "/")
+        return HttpResponseRedirect("%s/wiki/%s/" % (WEB_URL, page.title))
     else:
         try:
             page = WikiPage.objects.get(title__exact=title)
