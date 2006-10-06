@@ -1,0 +1,17 @@
+{% load markup %}
+{% load i18n %}
+
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    <div class="entry">
+        {{ page.content|restructuredtext }}
+    </div>
+    <div class="dropdown">
+        <center>
+        <a href="{{ page.editurl }}">{% trans "Edit this page" %}</a> | <a href="/wiki/">{% trans "Wiki Index" %}</a> | {{ page.pubdate|date:"d F y, l \@ H:i" }} | <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">{% trans "Help" %}</a>
+        </center>
+    </div>
+{% endblock %}

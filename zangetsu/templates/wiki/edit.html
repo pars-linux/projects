@@ -1,0 +1,14 @@
+{% load i18n %}
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{% trans "Editing:" %} {{ page.title }}</h1>
+    <div>
+        <form action="{{ page.editurl }}" method="post">
+            <input class="dropdown" name="title" value="{{ page.title }}"/>
+            <textarea class="dropdown" name="content" rows="20">{{ page.content }}</textarea>
+            <input class="dropdown" type="submit" value="{% trans "Save" %}"/>
+        </form>
+    </div>
+    <br />
+{% endblock %}
