@@ -11,7 +11,7 @@
     </div>
     <div class="dropdown">
         <center>
-        <a href="{{ page.editurl }}">{% trans "Edit this page" %}</a> | <a href="/wiki/">{% trans "Wiki Index" %}</a> | {{ page.pubdate|date:"d F y, l \@ H:i" }} | <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">{% trans "Help" %}</a>
+        <a href="{{ page.get_absolute_url }}">{% trans "Edit this page" %}</a> | <a href="/wiki/">{% trans "Wiki Index" %}</a> | {{ page.pubdate|date:"d F y, l \@ H:i" }} | <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">{% trans "Help" %}</a>
         </center>
     </div>
 {% endblock %}
