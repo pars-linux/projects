@@ -56,8 +56,7 @@ class Entry(models.Model):
         list_display = ('id', 'title', 'pubdate')
         list_filter = ['pubdate']
         search_fields = ['title']
-#        js = (
-#            'tinymce/tiny_mce.js',
-#            'tinymce/textareas.js',
-#        )
- 
+        js = (
+            'tinymce/tiny_mce.js',
+            'tinymce/textareas.js',
+        )
