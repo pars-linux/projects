@@ -1,0 +1,8 @@
+# bu dosyayı eğer sunucunuz destekliyorsa .htaccess adı ile aşağıdaki değişkenleri kendiniz için uygun hale getirerek bu dizine kaydedin.
+
+PythonPath "['/home/caglar/public_html/'] + sys.path"
+PythonInterpreter Zangetsuzangetsu
+PythonHandler django.core.handlers.modpython
+SetEnv DJANGO_SETTINGS_MODULE zangetsu.settings
+SetHandler python-program
+PythonDebug off
