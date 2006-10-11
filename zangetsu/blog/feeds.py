@@ -8,6 +8,7 @@ from django.utils.feedgenerator import Atom1Feed
 from zangetsu.blog.models import Entry
 from zangetsu.blog import defaults
 from zangetsu.settings import WEB_URL
+import datetime
 
 class RssFeed(Feed):
     title = defaults.BLOG_NAME
@@ -15,8 +16,9 @@ class RssFeed(Feed):
     description = defaults.BLOG_DESC
 
     def items(self):
-        return Entry.objects.order_by('-pubdate')[:10]
-    
+        now = datetime.datetime.now()
+        return Entry.objects.filter(pubdate__lte=now).order_by('-pubdate')[:10]
+
     def item_pubdate(self, item):
         return item.pubdate
 
