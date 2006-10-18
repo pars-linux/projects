@@ -1,0 +1,51 @@
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr" xml:lang="tr">
+<head>
+    <title>pardus on django</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/menu.css" rel="stylesheet" type="text/css" />
+    <script src="/static/menu.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="head_grey">
+            <div id="blue2"></div>
+            <div id="quick_download">
+                <img src="/static/images/box-hizli-indir.png" alt="Pardus 1.1Beta"/>
+                <form action="/search">
+                    <input type="text" name="q" id="search" value="ara"
+                    onclick="Javascript:if (this.value=='ara') this.value='';" onblur="Javascript:if (this.value=='') this.value='ara';"/>
+                </form>
+            </div>
+        </div>
+    <div class="menubo">
+    <div class="suckertreemenu">
+    <ul id='treemenu1'>
+        <li>
+            <a href='/'>Ana Sayfa</a> <ul>
+            {% for links in navi %}
+                <li><a href='/Node/{{ links.1 }}'>{{links.0}}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+        {% if subnavi %}
+            {{ subnavi }}
+        {% endif %}
+    </ul>
+    </div></div>
+    <div id="page">
+        <div id='fullpage'>
+            {% if content %}
+             {{ content }}
+            {% endif %}
+        </div>
+    </div>
+    <div id="footnote"> 
+        <p>Pardus is a registered trademark of TUBITAK/UEKAE</p>
+    </div>
+    </div>
+</body>
+</html>
