@@ -1,8 +1,8 @@
 body { 
+	background: #fff;
 	font-family: verdana, arial, sans;
 	font-size: 10pt;
 	margin: 0 0 0 0;
-	background: #fff;
 }
 
 html>body {
@@ -15,14 +15,14 @@ html>body {
 
 #header {
 	background-image: url(./bilinear.png);
-    background-repeat: repeat-x;
+	background-repeat: repeat-x;
 	display: table;
 	font-family: mono, sans-serif;
 	font-size: medium;
 	font-weight: bold;
+	line-height: 30px;
 	margin: 0 0 1ex 0;
 	width: 100%;
-	line-height: 30px;
 }
 
 #header a {
@@ -31,9 +31,18 @@ html>body {
 }
 
 #footer {
+	background-image: url(./bilinear.png);
+	background-repeat: repeat-x;
 	clear: both;
-	text-align: center;
+	display: table;
+	font-family: mono, sans-serif;
 	font-size: 10px;
+	font-size: medium;
+	font-weight: bold;
+	line-height: 30px;
+	margin: 0 0 1ex 0;
+	text-align: center;
+	width: 100%;
 }
 
 #content {
@@ -45,8 +54,8 @@ html>body {
 
 #menu {
 	margin-left: 75%;
-	width: 20%;
 	padding: 0 0 0 40px;
+	width: 20%;
 }
 
 pre
@@ -108,10 +117,10 @@ hr {
 .entry {
 	background-image: url(./entry.gif);
 	background-repeat: no-repeat;
-	padding: 15px 0 10px 42px;
 	border-bottom: 1px #999 dashed;
-	margin-bottom: 10px;
 	display: table;
+	margin-bottom: 10px;
+	padding: 15px 0 10px 42px;
 	width: 95%;
 }
 
