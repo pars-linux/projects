@@ -61,6 +61,8 @@ class SystemTray(KSystemTray):
         self.connect(self.time, SIGNAL('timeout()'), self.timeoutSlot)
         self.time.start(3000)
 
+        self.connect(app, SIGNAL("shutDown()", self.slotQuit))
+
         ''' Popup Menu '''
         connectionsMenu = KPopupMenu(self.contextMenu())
         
@@ -90,6 +92,10 @@ class SystemTray(KSystemTray):
             self.comarInterface.deactivateConnection(self.comarInterface.activeConnection())
             self.comarInterface.activateConnection(connection)
             self.contextMenu().changeItem(int, QIconSet(self.icons.loadIcon('wireless-online', KIcon.Desktop, 16)), self.contextMenu().text(int))
+
+    def slotQuit(self):
+        self.deleteLater()
+        app.quit()
 
     def timeoutSlot(self):
         interfaceName = self.wirelessInterface.returnInterfaceName()
