@@ -153,7 +153,7 @@ TinyMCE_Engine.prototype = {
 		this._def("font_size_classes", '');
 		this._def("font_size_style_values", 'xx-small,x-small,small,medium,large,x-large,xx-large', true);
 		this._def("event_elements", 'a,img', true);
-		this._def("convert_urls", true);
+		this._def("convert_urls", false);
 		this._def("table_inline_editing", false);
 		this._def("object_resizing", true);
 		this._def("custom_shortcuts", true);
