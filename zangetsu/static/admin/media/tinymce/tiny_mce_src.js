@@ -110,7 +110,7 @@ TinyMCE_Engine.prototype = {
 		this._def("force_br_newlines", false);
 		this._def("force_p_newlines", true);
 		this._def("add_form_submit_trigger", true);
-		this._def("relative_urls", false);
+		this._def("relative_urls", true);
 		this._def("remove_script_host", true);
 		this._def("focus_alert", true);
 		this._def("document_base_url", this.documentURL);
@@ -153,7 +153,7 @@ TinyMCE_Engine.prototype = {
 		this._def("font_size_classes", '');
 		this._def("font_size_style_values", 'xx-small,x-small,small,medium,large,x-large,xx-large', true);
 		this._def("event_elements", 'a,img', true);
-		this._def("convert_urls", false);
+		this._def("convert_urls", true);
 		this._def("table_inline_editing", false);
 		this._def("object_resizing", true);
 		this._def("custom_shortcuts", true);
