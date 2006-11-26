@@ -110,7 +110,7 @@ TinyMCE_Engine.prototype = {
 		this._def("force_br_newlines", false);
 		this._def("force_p_newlines", true);
 		this._def("add_form_submit_trigger", true);
-		this._def("relative_urls", true);
+		this._def("relative_urls", false);
 		this._def("remove_script_host", true);
 		this._def("focus_alert", true);
 		this._def("document_base_url", this.documentURL);
