@@ -1,12 +1,16 @@
-#box {
+#box,#box2 {
     margin:10px auto;
     background:#6933FF;
     color:white;
     height:auto;
 }
 
+#box2 {
+    background:gray;
+}
+
 #main {
-    height:90%;
+    height: 87%;
     width: auto;
 }
 
@@ -34,6 +38,16 @@
     margin:auto;
 }
 
+#mintax {
+    font-size:12px;
+    padding:4;
+    z-index:999;
+    position:absolute;
+    text-align:left;
+    background-color:white;
+    border:1px solid #DDD;
+}
+
 .rimg{
     padding:6px;
     vertical-align:50%;
@@ -41,7 +55,7 @@
 }
 
 #header {
-    text-shadow: white 0px 0px 5px;
+    text-shadow: black 2px 2px 5px;
     font-size:20px;
     padding:0px;
     padding-left:3px;
@@ -51,7 +65,7 @@
 }
 
 #pheader {
-    text-shadow: cyan 0px 0px 5px;
+    text-shadow: black 2px 2px 5px;
     font-size:40px;
     padding:0px;
     margin:0px;
@@ -67,7 +81,7 @@
 
 .vcenter {
     text-align:center;
-    margin-top:20%;
+    margin-top:15%;
 }
 
 pre {
@@ -77,12 +91,19 @@ pre {
 
 #info{
     /*just for khtml */
-    text-shadow: green 0px 0px 5px;
+    text-shadow: grey 0px 0px 4px;
     margin:0px;
     margin-top:2px;
     font-size:14px;
     background:#EEE;
     text-align:right;
+}
+
+#info a {
+    text-decoration:none;
+    color:blue;
+    text-shadow: grey 0px 0px 6px;
+
 }
 
 li {
