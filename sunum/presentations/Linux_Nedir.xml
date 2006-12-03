@@ -1,0 +1,65 @@
+<?xml version='1.0' standalone='yes'?>
+
+<impress>
+
+<header>Linux Nedir ?</header>
+<author>Gökmen GÖKSEL</author>
+<email>gokmen@pardus.org.tr</email>
+<firm>TÜBİTAK/UEKAE - Pardus Projesi</firm>
+
+    <page>
+        <header>Linux Nedir ?</header>
+        <content>
+          /vcenter/
+            Gökmen GÖKSEL /br/
+            /c:blue/ gokmen@pardus.org.tr //c/ /br/
+            TÜBİTAK UEKAE
+          //vcenter/
+        </content>
+    </page>
+
+    <page>
+        <header>Kavramlar</header>
+        <content>
+            /- Özgür Yazılım
+            /-- Açık Kaynak
+            /-- Genel Kamu Lisansı (GPL)
+            /- Linux
+            /- Çekirdek
+            /- Pardus
+            /- Dağıtım
+        </content>
+    </page>
+
+    <page>
+        <header>Özgür Yazılım</header>
+        <content>
+            /- Yazılımın özgürü ?
+            /-- Buradaki özgürlük kodu değiştirme özgürlüğünü temel alır.
+            /- Özgür yazılım ihtiyacı ?
+            /-- Özgür bir Dünya için yazılımlar da özgür olmalı.
+            /-- Tekerleği tekrar icat etmek gerekir mi ?
+        </content>
+    </page>
+
+    <page>
+        <header>Açık Kaynak</header>
+        <content>
+            /- Yazılımın kaynak kodları yazılım ile birlikte verilir.
+            /-- Kodları değiştrimek yasaldır.
+            /-- Yazılımın adını değiştirip o yazılımı istediğiniz fiyata satmak ta yasaldır.
+            /-- Tek şart yazarın haklarının korunmasıdır.
+        </content>
+    </page>
+
+    <page>
+        <header>Sorular - Teşekkürler</header>
+        <content>
+          /vcenter/ 
+            /c:green/ SORULAR ? //c/
+          //vcenter/
+        </content>
+    </page>
+
+
+</impress>

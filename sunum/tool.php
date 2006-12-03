@@ -18,7 +18,7 @@
         $smarty->plugins_dir    = array("lib/smarty/plugins");
         $smarty->cache_dir      = "cache";
         $smarty->caching        = "true";
-        $smarty->compile_dir    = "lib/smarty/compile";
+        $smarty->compile_dir    = "cache";
         $smarty->force_compile  = "1";
         $smarty->clear_all_cache();
     }
@@ -65,11 +65,11 @@
      * @access public
      * @return void
      */
-    function get_xml( $file){
+    function get_xml($file){
         $xml_file = "presentations/".$file;
-        $trans_xml = fopen( $xml_file,"r");
-        $xml_content = fread ( $trans_xml,filesize($xml_file));
-        return simplexml_load_string( $xml_content);
+        $trans_xml = fopen($xml_file,"r");
+        $xml_content = fread ($trans_xml,filesize($xml_file));
+        return simplexml_load_string($xml_content);
     }
 
 
@@ -82,7 +82,7 @@
         $node = preg_replace("#/code/ (.+?) //code/#is","<pre> \\1 </pre>",$node);
         $node = preg_replace("#/br/#is","<br />",$node);
         $node = preg_replace("#/center/ (.+?) //center/#is","<center> \\1 </center>",$node);
-        $node = preg_replace("#/vcenter/ (.+?) //vcenter/#is","<div class=\"vcenter\"> \\1 </div>",$node);
+        $node = preg_replace("#/vcenter/(.+?)//vcenter/#is","<div class=\"vcenter\"> \\1 </div>",$node);
         $node = preg_replace("#/c:(.+?)/ (.+?) //c/#is","<span style=\"color:\\1\"> \\2 </span>",$node);
         $node = preg_replace("#/image/ (.+?) //image/#is","<div style=\"text-align:center;\"><img src=\"presentations/images/\\1\" alt=\"[image]\"></div>",$node);
         $node = preg_replace("#/image f:(.+?)/ (.+?) //image/#is",
@@ -109,4 +109,31 @@
             else $i++;
         }
     }
+
+    function get_page_list($xml,$file_name) {
+        $i=0;
+        $ret="<b>{$xml->header}</b>\n<ul>";
+        foreach ($xml->page as $pages) {
+            $ret.="\n<li><a href='?file=$file_name&page=$i'>Sayfa $i : {$pages->header}</a></li>";
+            $i++;
+        }
+        return $ret."</ul><a style='float:right;' href='#' onclick='hide();'>[ X ]</a>";
+    }
+
+    # file list
+    function show_file_list($base_dir) {
+        echo "<b>Sunum Dosyaları</b><br />";
+        if ($handle = opendir($base_dir)){
+            while (false !== ($file=readdir($handle)))
+            if (is($file,'xml'))
+                echo "<li><a href='{$PHP_SELF}?file=$file'>$file</a></li> ";
+        }
+        echo "<a style='float:right;' href='#' onclick='hide();'>[ X ]</a>";
+    }
+
+    # check file
+    function is($f,$p) {
+        return $p==substr($f,strlen($f)-strlen($p),strlen($p));
+    }
+
 ?>
