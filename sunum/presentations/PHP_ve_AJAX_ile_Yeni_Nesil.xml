@@ -19,7 +19,7 @@
     </page>
 
     <page>
-    <header>PHP Nedir ?</header>
+        <header>PHP Nedir ?</header>
         <content>
             /- Personal Home Page, bir script dili
             /- Son dönemlerin en popülerlerinden

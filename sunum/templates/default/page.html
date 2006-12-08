@@ -7,11 +7,6 @@
         {literal}
             url ='index.php';
 
-            function access() {
-                document.getElementById('next').accessKey="k";
-                document.getElementById('prev').accessKey="j";
-            }
-
             function getPageList(filename) {
                 var linke='file='+filename+'&pagelist';
                 var myAjax = new Ajax.Request(url,{method:'get', parameters: linke, onComplete: showit});
@@ -35,7 +30,7 @@
         </script>
     </head>
 
-    <body onload="access()">
+    <body>
     <div id="main">
         <div id="box2">
             <p id="header">{$Header}</p>
