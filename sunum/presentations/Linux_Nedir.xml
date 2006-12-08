@@ -19,11 +19,25 @@
     </page>
 
     <page>
+        <header>Tarih</header>
+        <content>
+            /- 1984 Özgür Yazılım Akımı (GNU)
+            /-- Richard STALLMAN, GNU is Not UNIX
+            /- 1985 Özgür Yazılım Vakfı (FSF)
+            /-- Free Software Foundation, GPL
+            /- 1991 Linux Çekirdeği
+            /-- Linus TORVALDS
+            /- 1992 GNU/Linux Dağıtımları
+            /-- Slackware(1992),Debian(1992),RedHat(1995),Pardus(2005) ...
+        </content>
+    </page>
+
+    <page>
         <header>Kavramlar</header>
         <content>
             /- Özgür Yazılım
-            /-- Açık Kaynak
-            /-- Genel Kamu Lisansı (GPL)
+            /- Açık Kaynak
+            /- Genel Kamu Lisansı (GPL)
             /- Linux
             /- Çekirdek
             /- Pardus
@@ -36,9 +50,10 @@
         <content>
             /- Yazılımın özgürü ?
             /-- Buradaki özgürlük kodu değiştirme özgürlüğünü temel alır.
+            /-- Yazılımı satma özgürlüğüne kadar gider.
             /- Özgür yazılım ihtiyacı ?
-            /-- Özgür bir Dünya için yazılımlar da özgür olmalı.
             /-- Tekerleği tekrar icat etmek gerekir mi ?
+            /-- Kalite.
         </content>
     </page>
 
@@ -46,9 +61,18 @@
         <header>Açık Kaynak</header>
         <content>
             /- Yazılımın kaynak kodları yazılım ile birlikte verilir.
-            /-- Kodları değiştrimek yasaldır.
-            /-- Yazılımın adını değiştirip o yazılımı istediğiniz fiyata satmak ta yasaldır.
-            /-- Tek şart yazarın haklarının korunmasıdır.
+            /-- Kodları değiştirmek yasaldır.
+            /- Yazılımın adını değiştirip o yazılımı istediğiniz fiyata satmak da yasaldır.
+            /- Yazılıma birşeyler eklemek,katkıda bulunmak serbesttir.
+            /-- Tek şart yazarın haklarının korunmasıdır;
+            /--- Koda yaptığınız eklemeleri de halka açmalısınız.
+        </content>
+    </page>
+
+    <page>
+        <header>Genel Kamu Lisansı (GPL)</header>
+        <content>
+            /- Yazarın haklarını gözetmek için çıkarılmıştır.
         </content>
     </page>
 

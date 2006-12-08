@@ -19,8 +19,9 @@
     border:1px solid #DDD;
     text-align:center;
     height:81%;
-    font-size:30px;
+    font-size:27px;
     padding:2px;
+    font-family: "Times New Roman", serif;
 }
 
 #foot {
@@ -46,6 +47,8 @@
     text-align:left;
     background-color:white;
     border:1px solid #DDD;
+    width:400px;
+    display:none;
 }
 
 .rimg{
