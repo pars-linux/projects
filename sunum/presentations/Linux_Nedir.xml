@@ -38,10 +38,10 @@
             /- Özgür Yazılım
             /- Açık Kaynak
             /- Genel Kamu Lisansı (GPL)
-            /- Linux
             /- Çekirdek
-            /- Pardus
+            /- Linux
             /- Dağıtım
+            /- Pardus
         </content>
     </page>
 
@@ -64,8 +64,8 @@
             /-- Kodları değiştirmek yasaldır.
             /- Yazılımın adını değiştirip o yazılımı istediğiniz fiyata satmak da yasaldır.
             /- Yazılıma birşeyler eklemek,katkıda bulunmak serbesttir.
-            /-- Tek şart yazarın haklarının korunmasıdır;
-            /--- Koda yaptığınız eklemeleri de halka açmalısınız.
+            /-- Yazarın hakları korunmalıdır.
+            /-- Koda yaptığınız eklemeleri de halka açmalısınız.
         </content>
     </page>
 
@@ -73,6 +73,36 @@
         <header>Genel Kamu Lisansı (GPL)</header>
         <content>
             /- Yazarın haklarını gözetmek için çıkarılmıştır.
+            /- Özgürlüklerin Hukuksal tanımını içerir.
+            /- Bu bir lisanstır:
+            /-- Bazı çevreler "Özgür Yazılım" için "Lisansız Yazılım" derler, Yanlıştır; /br/
+                Özgür Yazılımlar genelde GPL ya da buna benzer diğer Lisanslara (LGPL,BSD..) sahiptirler.
+            /- Bu lisansın kopyalanması da serbesttir.
+        </content>
+    </page>
+
+    <page>
+        <header>Çekirdek (Kernel)</header>
+        <content>
+            /- İşletim sisteminin en önemli alt(kök) yazılımıdır.
+            /- Donanımın ve Süreç kontrolünden/yönetiminden sorumludur;
+            /-- Süreçlerin işlemciyi nasıl ve ne zaman kullanacağına karar verir.
+            /-- Süreçlerin ihtiyacı olan bellekleme işlemini düzenler.
+            /-- Yazılımların donanımlardan faydalanabilmesi için gerekli arayüzü oluşturur.
+            /- Linux'ta bir çekirdektir.
+        </content>
+    </page>
+
+    <page>
+        <header>Linux</header>
+        <content>
+            /- 1991 yılında Linus TORVALDS tarafından özgürce geliştirilmek üzere ilk sürümü yayınlandı.
+            /-- İlk sürüm sadece 80386 IBM PC'ler ile uyumlu olmasına rağmen şu anda buzdolaplarında dahi kullanılabiliyor.
+            /--- Itanium, MIPS, SPARC, Motorola, PowerPC gibi platformlar da desteklenmekte.
+            /- Linux bir işletim sistemi değildir;
+            /-- GNU/Linux adı verilen ve GNU ekibi tarafından yazılmış sistem taban uygulamalarını kullanan işletim sisteminin çekirdeğidir.
+            /- Linux İngilizce bir kelime değildir ve "Linhuks" şeklinde okunur.
+            /- Detaylı bilgi ve kaynak kodu /c:blue/ www.kernel.org //c/ adresinden alınabilir.
         </content>
     </page>
 
