@@ -10,7 +10,7 @@
 }
 
 #main {
-    height: 87%;
+    height: 90%;
     width: auto;
 }
 
@@ -19,7 +19,7 @@
     border:1px solid #DDD;
     text-align:center;
     height:81%;
-    font-size:27px;
+    font-size:30px;
     padding:2px;
     font-family: "Times New Roman", serif;
 }
