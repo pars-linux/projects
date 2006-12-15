@@ -76,8 +76,9 @@
     function xml2html($node){
         global $smarty;
         $node = preg_replace("#/- #is","<li>",$node);
-        $node = preg_replace("#/-- #is","<li style=\"padding-left:30px;list-style: square inside;\">",$node);
+        $node = preg_replace("#/-- #is","<li style=\"margin-left:30px;\">",$node);
         $node = preg_replace("#/--- #is","<li style=\"padding-left:60px;\">",$node);
+        $node = preg_replace("#/numeric/(.+?)//numeric/#is","<ol style=\"list-style: decimal\"> \\1 </ol>",$node);
         $node = preg_replace("#/line/ (.+?) //line/#is","<p> \\1 </p>",$node);
         $node = preg_replace("#/code/ (.+?) //code/#is","<pre> \\1 </pre>",$node);
         $node = preg_replace("#/br/#is","<br />",$node);

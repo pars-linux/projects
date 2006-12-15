@@ -5,7 +5,7 @@
 <header>Linux Nedir ?</header>
 <author>Gökmen GÖKSEL</author>
 <email>gokmen@pardus.org.tr</email>
-<firm>TÜBİTAK/UEKAE - Pardus Projesi</firm>
+<firm>TÜBİTAK/UEKAE</firm>
 
     <page>
         <header>Linux Nedir ?</header>
@@ -25,10 +25,10 @@
             /-- Richard STALLMAN, GNU is Not UNIX
             /- 1985 Özgür Yazılım Vakfı (FSF)
             /-- Free Software Foundation, GPL
-            /- 1991 Linux Çekirdeği
+            /- 1991 Linux
             /-- Linus TORVALDS
-            /- 1992 GNU/Linux Dağıtımları
-            /-- Slackware(1992),Debian(1992),RedHat(1995),Pardus(2005) ...
+            /- 1993 GNU/Linux Dağıtımları
+            /-- Slackware,Debian,RedHat...Pardus(2005)..
         </content>
     </page>
 
@@ -39,9 +39,9 @@
             /- Açık Kaynak
             /- Genel Kamu Lisansı (GPL)
             /- Çekirdek
-            /- Linux
+            /-- Linux
             /- Dağıtım
-            /- Pardus
+            /-- Pardus
         </content>
     </page>
 
@@ -49,8 +49,12 @@
         <header>Özgür Yazılım</header>
         <content>
             /- Yazılımın özgürü ?
-            /-- Buradaki özgürlük kodu değiştirme özgürlüğünü temel alır.
-            /-- Yazılımı satma özgürlüğüne kadar gider.
+            /numeric/
+                /-- Özgür yazılımı kullanma özgürlüğü
+                /-- Özgür yazılımı inceleyebilme ve değiştirebilme özgürlüğü
+                /-- Özgür yazılımı çoğaltma ve dağıtma özgürlüğü
+                /-- Özgür yazılımı değiştirme ve yeniden dağıtma özgürlüğü
+            //numeric/
             /- Özgür yazılım ihtiyacı ?
             /-- Tekerleği tekrar icat etmek gerekir mi ?
             /-- Kalite.
@@ -60,9 +64,10 @@
     <page>
         <header>Açık Kaynak</header>
         <content>
-            /- Yazılımın kaynak kodları yazılım ile birlikte verilir.
-            /-- Kodları değiştirmek yasaldır.
-            /- Yazılımın adını değiştirip o yazılımı istediğiniz fiyata satmak da yasaldır.
+            /- Özgür yazılım ile birlikte gelen bir kavram.
+            /- Kaynak kodları ürün ile birlikte verilir.
+            /- Yazılımın kaynak kodlarını görmek kullanıcıya güven verir.
+            /- Geliştirici proje üzerinde çalışmayı bıraksa da başka birisi kaldığı yerden devam edebilir.
             /- Yazılıma birşeyler eklemek,katkıda bulunmak serbesttir.
             /-- Yazarın hakları korunmalıdır.
             /-- Koda yaptığınız eklemeleri de halka açmalısınız.
@@ -75,7 +80,7 @@
             /- Yazarın haklarını gözetmek için çıkarılmıştır.
             /- Özgürlüklerin Hukuksal tanımını içerir.
             /- Bu bir lisanstır:
-            /-- Bazı çevreler "Özgür Yazılım" için "Lisansız Yazılım" derler, Yanlıştır; /br/
+            /-- Özgür Yazılım, Lisansız Yazılım /c:red/ değildir //c/; /br/
                 Özgür Yazılımlar genelde GPL ya da buna benzer diğer Lisanslara (LGPL,BSD..) sahiptirler.
             /- Bu lisansın kopyalanması da serbesttir.
         </content>
@@ -100,20 +105,56 @@
             /-- İlk sürüm sadece 80386 IBM PC'ler ile uyumlu olmasına rağmen şu anda buzdolaplarında dahi kullanılabiliyor.
             /--- Itanium, MIPS, SPARC, Motorola, PowerPC gibi platformlar da desteklenmekte.
             /- Linux bir işletim sistemi değildir;
-            /-- GNU/Linux adı verilen ve GNU ekibi tarafından yazılmış sistem taban uygulamalarını kullanan işletim sisteminin çekirdeğidir.
+            /-- GNU/Linux adı verilen ve GNU ekibi tarafından yazılmış sistem taban uygulamalarını kullanan dağıtımların çekirdeğidir.
             /- Linux İngilizce bir kelime değildir ve "Linhuks" şeklinde okunur.
+        </content>
+    </page>
+
+    <page>
+        <header>Linux</header>
+        <content>
+            /- Linux Modüler ya da gömülü(embedded) olarak kullanılabilir.
+            /-- Modüler yapıda sadece kullanılacak aygıtlar için gerekli modüller yüklenir, işleri bitince kaldırılırlar.
+            /-- Gömülü yapıda tüm olasılıklar çekirdeğin içinde bulunur. Gerektiği zaman kullanılırlar, sistemden kaldırılmazlar.
+            /- Genelde C, C++ ve Assembler kullanılarak geliştirilmiştir.
+            /- 2006-12-11 itibarı ile 2.6.19.1 kararlı sürümdür.
             /- Detaylı bilgi ve kaynak kodu /c:blue/ www.kernel.org //c/ adresinden alınabilir.
+        </content>
+    </page>
+
+    <page>
+        <header>Dağıtım</header>
+        <content>
+            /- Belirli bir altyapıya sahip, amaca yönelik çeşitli ek yazılımlar içeren işletim sistemi.
+            /- Pardus, Debian, SuSE, Redhat .. GNU/Linux dağıtımlarıdırlar;
+            /-- Herbiri çeşitli yamalar içeren Linux Çekirdeğine sahiptir.
+            /-- Herbirinde birçok noktada GNU Araçları kullanılmıştır.
+            /-- Amaçlarına göre çeşitli ek yazılımlarla donatılmışlardır.
+            /-- Herbiri özgür olan birçok proje içerirler.
+            /-- Genellikle özgürce dağıtılırlar (3.Parti ücretli yazılımlar içermedikleri sürece)
+        </content>
+    </page>
+
+    <page>
+        <header>Pardus</header>
+        <content>
+            /- 2004 başında TÜBİTAK/UEKAE 'de çalışmalarına başlayan ekip 2005 sonunda ilk kullanılabilir sürümü (Pardus 1.0) duyurdu.
+            /-- Kullanıcıya çalışma ortamı içerisinde tam Türkçe desteği sunması,
+            /-- Mevcut diğer dağıtımlardan daha kolay kurulan/kullanılan bir işletim sistemi olması,
+            /-- Görev temelli ve insan merkezli bir yaklaşımla esnekliği ve yüksek performansı sağlayabilecek modüler yapıda tasarlanması.
+            /-- ÇOMAR (Yapılandırma Yöneticisi), PiSi (Paket Yöneticisi), Mudur (Açılış Sistemi Yöneticisi), Tasma (Yapılandırma Merkezi) ve Modülleri..
+            /- Proje hakkında genel bilgi, döküman, kaynak kodları ve sürüm ISO ları /c:blue/ www.pardus.org.tr //c/ 'den edilinebilir.
+            /- Pardus 'da bir GNU/Linux dağıtımıdır. 18 Aralık 2006 'da son sürümü (Pardus 2007) sayfasından indirilebilir.
         </content>
     </page>
 
     <page>
         <header>Sorular - Teşekkürler</header>
         <content>
-          /vcenter/ 
+          /vcenter/
             /c:green/ SORULAR ? //c/
           //vcenter/
         </content>
     </page>
-
 
 </impress>
