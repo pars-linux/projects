@@ -3,7 +3,7 @@
 <impress>
 
 <header>Linux Nedir ?</header>
-<author>Gökmen GÖKSEL</author>
+<author>Gökmen Göksel</author>
 <email>gokmen@pardus.org.tr</email>
 <firm>TÜBİTAK/UEKAE</firm>
 
@@ -11,8 +11,8 @@
         <header>Linux Nedir ?</header>
         <content>
           /vcenter/
-            Gökmen GÖKSEL /br/
-            /c:blue/ gokmen@pardus.org.tr //c/ /br/
+            Hazırlayan: Gökmen GÖKSEL /br/ 
+	    /c:blue/ gokmen@pardus.org.tr //c/ /br/
             TÜBİTAK UEKAE
           //vcenter/
         </content>
@@ -28,7 +28,7 @@
             /- 1991 Linux
             /-- Linus TORVALDS
             /- 1993 GNU/Linux Dağıtımları
-            /-- Slackware,Debian,RedHat...Pardus(2005)..
+            /-- Slackware, Debian, RedHat... Pardus (2005)...
         </content>
     </page>
 
@@ -50,14 +50,14 @@
         <content>
             /- Yazılımın özgürü ?
             /numeric/
-                /-- Özgür yazılımı kullanma özgürlüğü
-                /-- Özgür yazılımı inceleyebilme ve değiştirebilme özgürlüğü
-                /-- Özgür yazılımı çoğaltma ve dağıtma özgürlüğü
-                /-- Özgür yazılımı değiştirme ve yeniden dağıtma özgürlüğü
+                /-- Yazılımı dilediğiniz amaçla kullanabilme özgürlüğü
+                /-- Yazılımı inceleyebilme ve değiştirebilme özgürlüğü
+                /-- Yazılımı çoğaltma ve dağıtma özgürlüğü
+                /-- Yazılımı değiştirme ve yeniden dağıtma özgürlüğü
             //numeric/
             /- Özgür yazılım ihtiyacı ?
             /-- Tekerleği tekrar icat etmek gerekir mi ?
-            /-- Kalite.
+            /-- Kalite
         </content>
     </page>
 
@@ -94,7 +94,7 @@
             /-- Süreçlerin işlemciyi nasıl ve ne zaman kullanacağına karar verir.
             /-- Süreçlerin ihtiyacı olan bellekleme işlemini düzenler.
             /-- Yazılımların donanımlardan faydalanabilmesi için gerekli arayüzü oluşturur.
-            /- Linux'ta bir çekirdektir.
+            /- Linux da bir çekirdektir.
         </content>
     </page>
 
@@ -144,7 +144,7 @@
             /-- Görev temelli ve insan merkezli bir yaklaşımla esnekliği ve yüksek performansı sağlayabilecek modüler yapıda tasarlanması.
             /-- ÇOMAR (Yapılandırma Yöneticisi), PiSi (Paket Yöneticisi), Mudur (Açılış Sistemi Yöneticisi), Tasma (Yapılandırma Merkezi) ve Modülleri..
             /- Proje hakkında genel bilgi, döküman, kaynak kodları ve sürüm ISO ları /c:blue/ www.pardus.org.tr //c/ 'den edilinebilir.
-            /- Pardus 'da bir GNU/Linux dağıtımıdır. 18 Aralık 2006 'da son sürümü (Pardus 2007) sayfasından indirilebilir.
+            /- Pardus da bir GNU/Linux dağıtımıdır. 18 Aralık 2006 'da son sürümü (Pardus 2007) sayfasından indirilebilir.
         </content>
     </page>
 
