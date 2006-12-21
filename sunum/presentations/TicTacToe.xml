@@ -1,0 +1,95 @@
+<?xml version='1.0' standalone='yes'?>
+
+<impress>
+
+<header>Tic Tac Toe</header>
+<author>Gökmen Göksel</author>
+<email>gokmen@pardus.org.tr</email>
+<firm>İstanbul Kültür Üniversitesi</firm>
+
+    <page>
+        <header>Yapay Zekaya Giriş</header>
+        <content>
+          /vcenter/
+            Gökmen GÖKSEL /br/ 
+            /c:blue/ Tic Tac Toe //c/ /br/
+            /c:green/ 0301020605 //c/
+          //vcenter/
+        </content>
+    </page>
+
+    <page>
+        <header>Oyun Kuralları</header>
+        <content>
+            /- İki oyuncu; bilgisayar ve insan
+            /- O : Bilgisayarı, X : İnsanı temsil eder
+            /- Hamleler sıra ile gerçekleştirilir
+            /-- İlk başlayacak taraf değişkendir; oyun başladığında seçilebilir
+            /- Oyun alanı dörtgendir; boyutu oyun başladığında seçilebilir
+            /- Durumlar:
+            /-- Oyun başında belirtilen hücre sayısı kadar (min. 3x3);
+            /--- Yatay, Dikey ya da Diagonal şekilde aynı oyuncunun hamleleri kazananı belirler
+            /-- Oyun bir kazanan çıkana kadar ya da boş hücre kalana kadar devam eder.
+            /-- Oyun sonundan kazanan olmazsa oyun berabere biter.
+        </content>
+    </page>
+
+    <page>
+        <header>tictactoe.py:tablo sınıfı</header>
+        <content>
+            /- /c:darkblue/ Oyun başında yaratılır. Tablo bir liste (dizi) içerisinde tutulur. //c/
+            /- /c:blue/ Methodlar : //c/
+            /-- /c:green/ kazananlari_hesapla() //c/
+            /--- Tablo yaratılırken çalıştırılır, hücre sayısı için yatay, dikey ve diagonal olarak
+                 kazananları belirler.
+            /-- /c:green/ kazanan() //c/
+            /--- Kazanma olasılıkları içerisinde dolaşarak kazananı döndürür (eşitlik kontrolü için dış 
+                 fonksiyon /c:green/ hepsiesit(list) //c/ i kullanır)
+            /-- /c:green/ boshucreler() //c/
+            /--- Tablo içerisindeki boş hücreleri döndürür.
+        </content>
+    </page>
+
+    <page>
+        <header>tictactoe.py:tablo sınıfı</header>
+        <content>
+            /- /c:blue/ Methodlar : //c/
+            /-- /c:green/ yazdir() //c/
+            /--- Tablonun o anki halini ekrana yazdırır.
+            /-- /c:green/ hamleyap(hamle,oyuncu) //c/
+            /--- Belirtilen hamleyi belirtilen oyuncu için gerçekleştirir.
+            /-- /c:green/ hamleyigerial(hamle) //c/
+            /--- Belirtilen hamleyi geri alır (o alanı boşaltır)
+            /- /c:blue/ tictactoe.py üye fonksiyonlar : //c/
+            /-- /c:green/ oyuncu_hamle() //c/
+            /--- Tablo durumunu kontrol ettikten sonra oyuncudan hamlesini ister, uygunluğunu kontrol eder ve
+                 hamleyi gerçekleştirir.
+        </content>
+    </page>
+
+    <page>
+        <header>tictactoe.py</header>
+        <content>
+            /- /c:green/ bilgisayar_hamle() //c/
+            /-- Bilgisayarın hamlesini gerçekleştirir. Tablo durumunu kontrol ettikten sonra üç aşamalı bir kontrol ile hamlesini gerçekleştirir:
+            /numeric/
+            /- Oynanan hamle tablo üzerindeki ilk hamle ise /c:green/ rastgele() //c/ fonksiyonu çalışır
+            /- Tablo üzerinde tek hamle kontrolünü /c:blue/ yenme » yenilme //c/ sırasına göre kontrol eder. Şartlara uyan bir durumda onu oynar.
+            /- Minimax Algoritması devreye girer; Boş hücreler için recursive /c:green/ hamlehesapla(hamle,oyuncu,hamlesayisi) //c/ 
+               fonksiyonu çalıştırılır. Oyun başında girilen Max. Düşünme süresi boş hücre sayısına bölünerek her hücre için hesaplama 
+               süresi çıkartılır ve bu sürenin geçilmesi durumunda diğer hücrenin hesaplanma süreci başlar. /br/
+               Hücreler puanlamalarına göre sıralanır /c:blue/ (b»k) //c/ ve en üst sıradaki hamle oynanır.
+            //numeric/
+        </content>
+    </page>
+
+    <page>
+        <header>Sorular - Teşekkürler</header>
+        <content>
+          /vcenter/
+            /c:green/ SORULAR ? //c/
+          //vcenter/
+        </content>
+    </page>
+
+</impress>
