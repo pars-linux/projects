@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% for object in object.entry_set.all %}
+{% for object in object.entry_set.all reversed %}
     {% include "blog/entry_brief.html" %}
 {% endfor %}
 
