@@ -12,16 +12,16 @@ import datetime
 
 class RssFeed(Feed):
     title = defaults.BLOG_NAME
-    link = '%s/blog/feeds/rss/' % WEB_URL
+    link = "%s/blog/feeds/rss/" % WEB_URL
     description = defaults.BLOG_DESC
 
     def items(self):
         now = datetime.datetime.now()
-        return Entry.objects.filter(pubdate__lte=now).order_by('-pubdate')[:10]
+        return Entry.objects.filter(pubdate__lte=now).order_by("-pubdate")[:10]
 
     def item_pubdate(self, item):
         return item.pubdate
 
 class AtomFeed(RssFeed):
-    link = '%s/blog/feeds/atom/' % WEB_URL
+    link = "%s/blog/feeds/atom/" % WEB_URL
     feed_type = Atom1Feed
