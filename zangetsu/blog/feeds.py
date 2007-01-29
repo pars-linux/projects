@@ -16,7 +16,6 @@ class RssFeed(Feed):
     link = "%s/blog/feeds/rss/" % WEB_URL
     description = defaults.BLOG_DESC
 
-
     def get_object(self, bits):
         if len(bits) != 1:
             raise ObjectDoesNotExist
