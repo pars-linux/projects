@@ -5,7 +5,8 @@
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 from django.contrib.syndication.feeds import Feed
 from django.utils.feedgenerator import Atom1Feed
-from zangetsu.blog.models import Entry
+from django.core.exceptions import ObjectDoesNotExist 
+from zangetsu.blog.models import Entry, Tag
 from zangetsu.blog import defaults
 from zangetsu.settings import WEB_URL
 import datetime
@@ -15,9 +16,20 @@ class RssFeed(Feed):
     link = "%s/blog/feeds/rss/" % WEB_URL
     description = defaults.BLOG_DESC
 
-    def items(self):
+
+    def get_object(self, bits):
+        if len(bits) != 1:
+            raise ObjectDoesNotExist
+        return Tag.objects.get(title=bits[0])
+
+    def items(self, object):
         now = datetime.datetime.now()
-        return Entry.objects.filter(pubdate__lte=now).order_by("-pubdate")[:10]
+        if object is None:
+            result = Entry.objects
+        else:
+            result = object.entry_set.all()
+
+        return result.filter(pubdate__lte=now).order_by("-pubdate")[:10]
 
     def item_pubdate(self, item):
         return item.pubdate
