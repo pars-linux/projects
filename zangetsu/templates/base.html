@@ -73,7 +73,7 @@
         {% build_tag_list %}
         {% for tag in blog_tags %}
             <a href="{{ blog_url }}/tag/{{tag.title}}/">{{ tag.title }}</a>&nbsp;
-            <a href="{{ blog_url }}/feed/rss/{{tag.title}}/"><img border="0" alt="rss": src="{{ blog_url }}/../static/feed-icon-12x12.gif"></a>
+            <a href="{{ blog_url }}/feed/rss/{{tag.title}}/"><img border="0" alt="rss" src="{{ blog_url }}/../static/feed-icon-12x12.gif"></a>
             <br>
         {% endfor %}
         <br />
