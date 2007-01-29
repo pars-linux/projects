@@ -72,7 +72,9 @@
         <b>{% trans "Tags" %}</b><hr>
         {% build_tag_list %}
         {% for tag in blog_tags %}
-            <a href="{{ blog_url }}/tag/{{tag.title}}/">{{ tag.title }}</a>&nbsp;<a href="{{ blog_url }}/feed/rss/{{tag.title}}/"><img border="0" src="{{ blog_url }}/../static/feed-icon-12x12.gif"></a><br>
+            <a href="{{ blog_url }}/tag/{{tag.title}}/">{{ tag.title }}</a>&nbsp;
+            <a href="{{ blog_url }}/feed/rss/{{tag.title}}/"><img border="0" alt="rss": src="{{ blog_url }}/../static/feed-icon-12x12.gif"></a>
+            <br>
         {% endfor %}
         <br />
         <br />
@@ -88,6 +90,6 @@
         </center>
     </div>
 
-    <div id="footer">Zangetsu is a <a href="http://www.djangoproject.com/" alt="django">Django</a> project...</div>
+    <div id="footer">Zangetsu is a <a href="http://www.djangoproject.com/">Django</a> project...</div>
 </body>
 </html>
