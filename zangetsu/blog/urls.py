@@ -17,6 +17,11 @@ tag_dict = {
     "slug_field": "title",
 }
 
+feed_dict = {
+    "rss": RssFeed,
+    "atom": AtomFeed,
+}
+
 urlpatterns = patterns("",
     (r"^search/$", "zangetsu.blog.views.search"),
 
@@ -27,7 +32,12 @@ urlpatterns = patterns("",
 
     (r"^feed/(?P<url>.*)/$", 
         "django.contrib.syndication.views.feed",
-        {"feed_dict": {"rss": RssFeed,"atom": AtomFeed}}
+        {"feed_dict": feed_dict}
+    ),
+
+    (r"^feed/(?P<url>.*)/(?P<slug>[A-Za-z-_]+)/$", 
+        "django.contrib.syndication.views.feed",
+        {"feed_dict": feed_dict}
     ),
 
     (r"^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\w{1,2})/(?P<object_id>\d+)/$", 
