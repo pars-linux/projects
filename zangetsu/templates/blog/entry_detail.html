@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load comments.comments %}
 {% load library %}
 {% load i18n %}
 
@@ -22,17 +21,5 @@
     <a href="{{ blog_url }}/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
 {% endfor %}
 </div>
-
-AAA<br>
-{% get_free_comment_count for blog.entry object.id as comment_count %}
-{{ comment_count }}
-BBB<br>
-
-{% get_comment_list for blog.entry entry.id as comment_list %}
-{% for comment in comment_list %}
-{{comment.person_name}}
-{% endfor %}
-CCC<br>
-
 {% endblock %}
 
