@@ -5,15 +5,15 @@
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 # Django settings for zangetsu project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('S.Çağlar Onur', 'caglar@pardus.org.tr'),
 )
 
-WEB_URL = 'http://localhost:8000'
-DOCUMENT_ROOT = '/home/caglar/svn/projeler/zangetsu'
+WEB_URL = 'http://cekirdek.pardus.org.tr/~caglar'
+DOCUMENT_ROOT = '/home/caglar/public_html'
 
 MANAGERS = ADMINS
 
