@@ -28,7 +28,7 @@ for item in length:
     
     t = Tag.objects.filter(title__in=list)
 
-    entry.content = e.summary
+    entry.content = e.content[0]["value"]
     entry.pubdate = datetime.datetime(e.updated_parsed[0], e.updated_parsed[1], e.updated_parsed[2], e.updated_parsed[3], e.updated_parsed[4])
     entry.save()
 
