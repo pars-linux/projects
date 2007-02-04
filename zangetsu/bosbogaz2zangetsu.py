@@ -5,8 +5,8 @@
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
-import settings
-from blog.models import Entry, Tag
+import zangetsu.settings
+from zangetsu.blog.models import Entry, Tag
 import feedparser
 import datetime
 
