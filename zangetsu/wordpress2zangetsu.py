@@ -5,8 +5,8 @@
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
-import settings
-from blog.models import Entry, Tag
+import zangetsu.settings
+from zangetsu.blog.models import Entry, Tag
 import feedparser
 import datetime
 
@@ -21,9 +21,12 @@ for item in length:
 
     entry = Entry()
     entry.title = e.title
-
+	
+    list = []
     for i in e.categories:
-        t += Tag.objects.filter(title=i[i])
+    	list.append(i[1])
+    
+    t = Tag.objects.filter(title__in=list)
 
     entry.content = e.summary
     entry.pubdate = datetime.datetime(e.updated_parsed[0], e.updated_parsed[1], e.updated_parsed[2], e.updated_parsed[3], e.updated_parsed[4])
