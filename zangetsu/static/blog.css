@@ -82,12 +82,12 @@ blockquote
 
 a {
 	color: green;
-	text-decoration: none; 
+	text-decoration: underline; 
 }
 
 a:visited {
 	color: green;
-	text-decoration: none; 
+	text-decoration: underline; 
 }
 
 a:hover {
