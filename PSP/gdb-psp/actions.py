@@ -12,7 +12,7 @@ from pisi.actionsapi import shelltools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
-WorkDir = "gdb-6.3"
+WorkDir = "gdb-6.4"
 
 def setup():
     shelltools.makedirs("%s/build-psp" % get.workDIR())
