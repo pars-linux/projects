@@ -38,6 +38,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2007-02-16</Date>
+            <Version>1.13.0</Version>
+            <Comment>Sync with pspdev</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2006-02-10</Date>
             <Version>1.13.0</Version>
