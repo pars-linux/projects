@@ -25,6 +25,7 @@
         <Patches>
             <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fgcc-4.0.2.patch&rev=0&sc=0 -->
             <Patch level="1">gcc-4.0.2.patch</Patch>
+            <Patch level="1">gcc-4.0.2-vs.patch</Patch>
         </Patches>
     </Source>
 
@@ -47,6 +48,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2007-02-15</Date>
+            <Version>4.0.2</Version>
+            <Comment>Sync with pspdev</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2006-02-10</Date>
             <Version>4.0.2</Version>
