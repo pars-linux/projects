@@ -13,7 +13,7 @@
         <IsA>app:console</IsA>
         <Summary>PSP SDK Headers</Summary>
         <Description>PSP SDK Headers</Description>
-        <Archive sha1sum="cba53807747207cb5b040c3a984171c3cbd9d9d2" type="targz">http://cekirdek.uludag.org.tr/~caglar/pspsdk.tar.gz</Archive>
+        <Archive sha1sum="bd812ee5f812fbae3f4d9350c1c480934be31706" type="targz">http://cekirdek.uludag.org.tr/~caglar/pspsdk.2185.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gcc-psp</Dependency>
         </BuildDependencies>
@@ -30,9 +30,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2007-02-15</Date>
+            <Version>2185</Version>
+            <Comment>First release.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2006-02-10</Date>
-            <Version>20060210</Version>
+            <Version>0</Version>
             <Comment>First release.</Comment>
             <Name>S.Çağlar Onur</Name>
             <Email>caglar@uludag.org.tr</Email>
