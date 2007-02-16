@@ -17,15 +17,15 @@ WorkDir = "binutils-2.16.1"
 def setup():
     shelltools.makedirs("%s/build-psp" % get.workDIR())
     shelltools.cd("%s/build-psp/" % get.workDIR())
-    
+
     shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-install-libbfd" % (get.workDIR(), WorkDir))
 
 def build():
     shelltools.cd("%s/build-psp/" % get.workDIR())
-    
+
     autotools.make()
-    
+
 def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
-    
+
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
