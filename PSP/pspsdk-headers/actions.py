@@ -11,7 +11,7 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
-WorkDir = "pspsdk"
+WorkDir = "pspsdk.2185"
 
 def setup():
     shelltools.export("CFLAGS", "")
