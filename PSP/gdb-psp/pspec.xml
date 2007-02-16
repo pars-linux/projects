@@ -14,7 +14,7 @@
         <IsA>app:console</IsA>
         <Summary>GNU debugger</Summary>
         <Description>GNU debugger</Description>
-        <Archive sha1sum="cdd587a4e6667d52fd9d53dc688a2bde18275dd4" type="targz">ftp://ftp.gnu.org/pub/gnu/gdb/gdb-6.3.tar.gz</Archive>
+        <Archive sha1sum="d478cefde3e2d1ef8013e0a0f1132a684d4a5bb4" type="targz">ftp://ftp.gnu.org/pub/gnu/gdb/gdb-6.4.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>binutils-psp</Dependency>
             <Dependency>gcc-psp</Dependency>
@@ -22,7 +22,7 @@
         </BuildDependencies>
         <Patches>
             <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fgdb-6.3.patch&rev=0&sc=0 -->
-            <Patch level="1">gdb-6.3.patch</Patch>
+            <Patch level="1">gdb-6.4.patch</Patch>
         </Patches>
     </Source>
 
@@ -40,6 +40,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2007-02-15</Date>
+            <Version>6.4</Version>
+            <Comment>Version bump</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@uludag.org.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2006-02-10</Date>
             <Version>6.3</Version>
