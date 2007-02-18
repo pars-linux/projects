@@ -92,9 +92,8 @@ msgid "Comments"
 msgstr "Yorumlar"
 
 #: templates/blog/entry_detail.html:29
-#, fuzzy
 msgid "commented"
-msgstr "içerik"
+msgstr "derki"
 
 #: templates/blog/entry_detail.html:37
 msgid "Post a comment"
