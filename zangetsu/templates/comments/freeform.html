@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if display_form %}
+    <form action="/comments/postfree/" method="post">
+        {% trans "Your name:" %}
+        <input class="dropdown" type="text" id="id_person_name" name="person_name" />
+
+        {% trans "Comment:" %}
+        <textarea class="dropdown" name="comment" id="id_comment" rows="10" cols="100"></textarea>
+
+        <input type="hidden" name="options" value="{{ options }}" />
+        <input type="hidden" name="target" value="{{ target }}" />
+        <input type="hidden" name="gonzo" value="{{ hash }}" />
+        <input class="dropdown" type="submit" name="preview" value="{% trans "Preview comment" %}" />
+    </form>
+{% endif %}
