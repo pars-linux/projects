@@ -19,8 +19,9 @@
     {% for tag in object.tag.all %}
         <a href="{{ blog_url }}/tag/{{ tag.title }}">{{ tag.title }}</a>&nbsp;
     {% endfor %}
-
+    <!--
     {% if object.comment %}
+    -->
         {% get_free_comment_list for blog.entry object.id as comment_list %}
 
         <h2 id="comments">{% trans "Comments" %}</h2>
@@ -37,6 +38,8 @@
     
         <h2>{% trans "Post a comment" %}</h2>
         {% free_comment_form for blog.entry object.id %}
+    <!--
     {% endif %}
+    -->
 </div>
 {% endblock %}
