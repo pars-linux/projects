@@ -41,7 +41,7 @@ class Entry(models.Model):
     content = models.TextField(verbose_name=_("content"))
     tag = models.ManyToManyField(Tag, verbose_name=_("tag"))
     pubdate = models.DateTimeField(verbose_name=_("publish date"))
-    comment = models.BooleanField(verbose_name=_("comment enabled"))
+    # comment = models.BooleanField(verbose_name=_("comment enabled"))
 
     def __str__(self):
         return self.title
