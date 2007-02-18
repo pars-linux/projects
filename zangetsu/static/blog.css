@@ -120,10 +120,33 @@ hr {
 	border-bottom: 1px #999 dashed;
 	display: table;
 	margin-bottom: 10px;
-	padding: 15px 0 10px 42px;
+	padding: 15px 0 10px 40px;
 	width: 95%;
 }
 
 .title {
 	display: table;
 }
+
+.comment_odd
+{
+	background-image: url(./entry.gif);
+	background-repeat: no-repeat;
+	font-size: x-small;
+	margin-left: 10px;
+	margin-right: 10px;
+	overflow: hidden;
+	padding: 15px 0px 10px 40px;
+}
+
+.comment_even
+{
+	background-image: url(./entry.gif);
+	background-repeat: no-repeat;
+	font-size: x-small;
+	margin-left: 10px;
+	margin-right: 10px;
+	overflow: hidden;
+	padding: 15px 0px 10px 40px;
+}
+
