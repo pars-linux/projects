@@ -9,6 +9,7 @@ from zangetsu.settings import WEB_URL, DOCUMENT_ROOT
 root = "/".join(WEB_URL.split("/")[3:])
 
 urlpatterns = patterns("",
+    (r"^%s/comments/" % root, include("django.contrib.comments.urls.comments")),
     (r"^%s/admin/" % root, include("django.contrib.admin.urls")),
     (r"^%s/blog/" % root, include("zangetsu.blog.urls")),
     (r"^%s/$" % root, "django.views.generic.simple.redirect_to", {"url": "/%s/blog" % root}),
