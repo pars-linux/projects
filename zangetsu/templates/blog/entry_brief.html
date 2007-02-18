@@ -1,18 +1,22 @@
 {% load i18n %}
 {% load library %}
+{% load comments %}
 {% build_blog_name %}
+
 <div class="entry">
-<b><a href="{{object.get_absolute_url}}">{{object.title}}</a></b>
-<span class="date">
-{{object.pubdate|date:"d F y, l \@ H:i"}}
-</span>
-<br />
-<br />
-{{object.content}}
-<br />
-<br />
-{% trans "Tags:" %}
-{% for tag in object.tag.all %}
-    <a href="{{ blog_url }}/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
-{% endfor %}
+    <b><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></b>
+    <span class="date">{{ object.pubdate|date:"d F y, l \@ H:i" }}</span>
+    <br />
+    <br />
+    {{ object.content }}
+    <br />
+    <br />
+    {% trans "Tags:" %}
+    {% for tag in object.tag.all %}
+        <a href="{{ blog_url }}/tag/{{tag.title}}">{{tag.title}}</a>&nbsp;
+    {% endfor %}
+    &nbsp;,&nbsp;
+    {% trans "Comments:" %}
+    {% get_free_comment_count for blog.entry object.id as comment_count %}
+    <a href="{{ object.get_absolute_url }}#comments">{{ comment_count }}</a>
 </div>

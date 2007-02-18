@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<h1>{% trans "Preview your comment" %}</h1>
+
+<form action="../postfree/" method="post">
+    {% if comment_form.has_errors %}
+        <p><strong style="color: red;">Please correct the following errors.</strong></p>
+    {% else %}
+        <div class="comment">
+        {{ comment.comment|escape|urlizetrunc:"40"|linebreaks }}
+        </div>
+
+        <p><input class="dropdown" type="submit" name="post" value="Post public comment" /></p>
+    {% endif %}
+
+    {% if comment_form.person_name.errors %}
+        {{ comment_form.person_name.html_error_list }}
+    {% endif %}
+
+    {% if comment_form.comment.errors %}
+        {{ comment_form.comment.html_error_list }}
+    {% endif %}
+
+    <input type="hidden" name="comment" value="{{ comment.comment }}" />
+    <input type="hidden" name="person_name" value="{{ comment.person_name }}" />
+    <input type="hidden" name="options" value="{{ options }}" />
+    <input type="hidden" name="target" value="{{ target }}" />
+    <input type="hidden" name="gonzo" value="{{ hash }}" />
+</form>
+{% endblock %}
