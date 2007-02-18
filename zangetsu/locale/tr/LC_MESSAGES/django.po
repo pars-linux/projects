@@ -93,7 +93,7 @@ msgstr "Yorumlar"
 
 #: templates/blog/entry_detail.html:29
 msgid "commented"
-msgstr "derki"
+msgstr "der ki"
 
 #: templates/blog/entry_detail.html:37
 msgid "Post a comment"
