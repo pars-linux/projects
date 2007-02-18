@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if display_form %}
-    <form action="/comments/postfree/" method="post">
+    <form action="{{ blog_url }}/../comments/postfree/" method="post">
         {% trans "Your name:" %}
         <input class="dropdown" type="text" id="id_person_name" name="person_name" />
 
