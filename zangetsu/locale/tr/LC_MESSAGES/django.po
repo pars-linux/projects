@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-07 00:26+0300\n"
+"POT-Creation-Date: 2007-02-18 17:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: blog/models.py:11 blog/models.py:26 blog/models.py:40 wiki/models.py:12
+#: blog/models.py:11 blog/models.py:26 blog/models.py:40
 msgid "title"
 msgstr "başlık"
 
@@ -39,11 +39,11 @@ msgstr "etiket"
 msgid "tags"
 msgstr "etiketler"
 
-#: blog/models.py:41 wiki/models.py:13
+#: blog/models.py:41
 msgid "content"
 msgstr "içerik"
 
-#: blog/models.py:43 wiki/models.py:14
+#: blog/models.py:43
 msgid "publish date"
 msgstr "yayınlama tarihi"
 
@@ -55,59 +55,82 @@ msgstr "girdi"
 msgid "entries"
 msgstr "girdiler"
 
-#: templates/base.html:55 templates/base.html.py:58
-msgid "Archives"
-msgstr "Arşivler"
-
-#: templates/base.html:65
-msgid "Search"
-msgstr "Arama"
-
-#: templates/base.html:70
-msgid "Tags"
-msgstr "Etiketler"
-
-#: templates/base.html:77
-msgid "Links"
-msgstr "Bağlantılar"
-
-#: templates/base.html:83
-msgid "Wiki"
-msgstr "Wiki"
+#: templates/500.html:5
+msgid "An error occured!"
+msgstr "Bir hata oluştu!"
 
 #: templates/404.html:5
 msgid "No entry found in database!"
 msgstr "Veritabanında girdi bulunamadı!"
 
-#: templates/500.html:5
-msgid "An error occured!"
-msgstr "Bir hata oluştu!"
+#: templates/base.html:58 templates/base.html.py:61
+msgid "Archives"
+msgstr "Arşivler"
+
+#: templates/base.html:68
+msgid "Search"
+msgstr "Arama"
+
+#: templates/base.html:73
+msgid "Tags"
+msgstr "Etiketler"
+
+#: templates/base.html:82
+msgid "Links"
+msgstr "Bağlantılar"
+
+#: templates/blog/entry_brief.html:14 templates/blog/entry_detail.html:18
+msgid "Tags:"
+msgstr "Etiketler:"
+
+#: templates/blog/entry_brief.html:19
+msgid "Comments:"
+msgstr "Yorumlar:"
+
+#: templates/blog/entry_detail.html:25
+msgid "Comments"
+msgstr "Yorumlar"
+
+#: templates/blog/entry_detail.html:29
+#, fuzzy
+msgid "commented"
+msgstr "içerik"
+
+#: templates/blog/entry_detail.html:37
+msgid "Post a comment"
+msgstr "Yorum gönder"
 
 #: templates/blog/entry_archive_year.html:8
 #, python-format
 msgid "%(year)s archive"
 msgstr "%(year)s arşivi"
 
-#: templates/blog/entry_detail.html:19 templates/blog/entry_brief.html:14
-msgid "Tags:"
-msgstr "Etiketler:"
+#: templates/comments/freeform.html:5
+msgid "Your name:"
+msgstr "İsminiz:"
 
-#: templates/wiki/edit.html:5
-msgid "Editing:"
-msgstr "Değiştiriliyor:"
+#: templates/comments/freeform.html:8
+msgid "Comment:"
+msgstr "Yorum:"
 
-#: templates/wiki/edit.html:10
-msgid "Save"
-msgstr "Kaydet"
+#: templates/comments/freeform.html:14
+msgid "Preview comment"
+msgstr "Yorumu görüntüle"
 
-#: templates/wiki/home.html:5 templates/wiki/page.html:14
-msgid "Wiki Index"
-msgstr "Wiki İndeksi"
+#: templates/comments/posted.html:5
+msgid "Comment posted successfully..."
+msgstr "Yorum başarıyla gönderildi..."
 
-#: templates/wiki/page.html:14
-msgid "Edit this page"
-msgstr "Bu sayfayı değiştir"
+#: templates/comments/posted.html:7
+msgid ""
+"Thanks for contributing. Your comment will publish after approved by admin."
+msgstr ""
+"Katkınız için teşekkürler. Yorumunuz onaylandıktan sonra yayımlanacaktır."
 
-#: templates/wiki/page.html:14
-msgid "Help"
-msgstr "Yardım"
+#: templates/comments/posted.html:10
+msgid "Return back to entry"
+msgstr "Girdiye geri dön"
+
+#: templates/comments/free_preview.html:5
+msgid "Preview your comment"
+msgstr "Yorumu görüntüle"
