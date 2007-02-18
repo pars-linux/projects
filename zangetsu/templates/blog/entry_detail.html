@@ -19,21 +19,23 @@
     {% for tag in object.tag.all %}
         <a href="{{ blog_url }}/tag/{{ tag.title }}">{{ tag.title }}</a>&nbsp;
     {% endfor %}
-    {% get_free_comment_list for blog.entry object.id as comment_list %}
+    {% if object.comment %}
+        {% get_free_comment_list for blog.entry object.id as comment_list %}
 
-    <h2 id="comments">{% trans "Comments" %}</h2>
-    {% for comment in comment_list %}
-        {% if comment.approved %}
-            <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
-                <a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a> &nbsp; <b>{{ comment.person_name }}</b> {%trans "commented"%}
-                <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
-                <br>
-                {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
-            </div>
-        {%endif%}
-    {% endfor %}
+        <h2 id="comments">{% trans "Comments" %}</h2>
+        {% for comment in comment_list %}
+            {% if comment.approved %}
+                <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
+                    <a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a> &nbsp; <b>{{ comment.person_name }}</b> {%trans "commented"%}
+                    <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
+                    <br>
+                    {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
+                </div>
+            {%endif%}
+        {% endfor %}
     
-    <h2>{% trans "Post a comment" %}</h2>
-    {% free_comment_form for blog.entry object.id %}
+        <h2>{% trans "Post a comment" %}</h2>
+        {% free_comment_form for blog.entry object.id %}
+    {% endif %}
 </div>
 {% endblock %}
