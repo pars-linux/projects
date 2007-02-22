@@ -17,6 +17,8 @@ DOCUMENT_ROOT = '/home/caglar/public_html'
 
 MANAGERS = ADMINS
 
+SERVER_EMAIL = 'zangetsu@pardus.org.tr'
+
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = 'zangetsu.db'             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
