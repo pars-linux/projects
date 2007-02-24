@@ -30,7 +30,7 @@ Header("Content-type: text/xml; charset=utf-8");
 		<comments><?=$config['core']['webaddress']?>?id=<?=$posts[$i]['id']?>#comments</comments>
 		<pubDate><?=$posts[$i]['date']?></pubDate>
 		<dc:creator><?=$posts[$i]['author']?></dc:creator>
-		<category><?=get_category_name($_GET['cat'])?></category>
+		<category><?=$posts[$i]['category'][0]['name']?></category>
 		<guid isPermaLink="true"><?=$config['core']['webaddress']?>?id=<?=$posts[$i]['id']?></guid>
 		<description><?=htmlspecialchars(strip_tags($posts[$i]['entry']), ENT_QUOTES)?></description>
 		<content:encoded><?=htmlspecialchars($posts[$i]['entry'], ENT_QUOTES)?></content:encoded>
