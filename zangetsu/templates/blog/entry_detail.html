@@ -25,12 +25,14 @@
         <h2 id="comments">{% trans "Comments" %}</h2>
         {% for comment in comment_list %}
             {% if comment.approved %}
+                {% if comment.is_public %} 
                 <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
                     <a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a> &nbsp; <b>{{ comment.person_name }}</b> {%trans "commented"%}
                     <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
                     <br>
                     {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
                 </div>
+                {%endif%}
             {%endif%}
         {% endfor %}
     
