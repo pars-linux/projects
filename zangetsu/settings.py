@@ -12,6 +12,9 @@ ADMINS = (
     ('S.Çağlar Onur', 'caglar@pardus.org.tr'),
 )
 
+# http://akismet.com/personal/
+#AKISMET_API_KEY = ""
+
 WEB_URL = 'http://cekirdek.pardus.org.tr/~caglar'
 DOCUMENT_ROOT = '/home/caglar/public_html'
 
