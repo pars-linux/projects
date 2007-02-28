@@ -13,7 +13,7 @@ import datetime
 
 class RssFeed(Feed):
     title = defaults.BLOG_NAME
-    link = "%s/blog/feeds/rss/" % WEB_URL
+    link = "%s/blog/" % WEB_URL
     description = defaults.BLOG_DESC
 
     def get_object(self, bits):
@@ -34,5 +34,5 @@ class RssFeed(Feed):
         return item.pubdate
 
 class AtomFeed(RssFeed):
-    link = "%s/blog/feeds/atom/" % WEB_URL
+    link = "%s/blog/" % WEB_URL
     feed_type = Atom1Feed
