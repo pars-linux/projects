@@ -30,6 +30,11 @@ urlpatterns = patterns("",
         tag_dict
     ),
 
+    (r'^entry/(?P<object_id>\d+)/$',
+        'django.views.generic.list_detail.object_detail',
+        {"queryset": Entry.objects.all()}
+    ),
+
     (r"^feed/(?P<url>.*)/$", 
         "django.contrib.syndication.views.feed",
         {"feed_dict": feed_dict}
