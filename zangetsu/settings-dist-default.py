@@ -3,24 +3,30 @@
 # Copyright © 2006 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
-# Django settings for zangetsu project.
+# Default Django settings for Zangetsu project.
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('S.Çağlar Onur', 'caglar@pardus.org.tr'),
+    ('Your Name', 'you@your-mail-server'),
 )
 
-# http://akismet.com/personal/
-#AKISMET_API_KEY = ""
+# Get a personal API Key for Akismet if you 
+# don't have it already: http://akismet.com/personal/
+AKISMET_API_KEY = ""
 
-WEB_URL = 'http://cekirdek.pardus.org.tr/~caglar'
-DOCUMENT_ROOT = '/home/caglar/public_html'
+# Web address of the zangetsu:
+WEB_URL = 'http://www.example.com/zangetsu'
+
+# Full path of Zangetsu source direcoty:
+DOCUMENT_ROOT = '/path/to/source/of/zangetsu'
+
+# This e-mail address will appear in the From
+# section of the e-mails from Zangetsu:
+SERVER_EMAIL = 'zangetsu@pardus.org.tr'
 
 MANAGERS = ADMINS
-
-SERVER_EMAIL = 'zangetsu@pardus.org.tr'
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = '%s/db/zangetsu.db' % DOCUMENT_ROOT             # Or path to database file if using sqlite3.
@@ -29,7 +35,7 @@ DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
-CACHE_BACKEND = 'file:///%s/cache' % DOCUMENT_ROOT
+CACHE_BACKEND = 'file://%s/cache' % DOCUMENT_ROOT
 CACHE_MIDDLEWARE_SECONDS=600
 
 # Local time zone for this installation. All choices can be found here:

@@ -1,6 +1,13 @@
-# bu dosyayı eğer sunucunuz destekliyorsa .htaccess adı ile aşağıdaki değişkenleri kendiniz için uygun hale getirerek bu dizine kaydedin.
+# if your web server supports this file, please copy it into
+# the directory which you're gonna use to run zangetsu (don't
+# forget to rename it from 'htaccess' to '.htaccess')..
 
-PythonPath "['/home/caglar/public_html/'] + sys.path"
+# You must include the upper directory of the zangetsu sources into the
+# sys.path to get it running. Lets say you have your zangetsu copy in 
+# '/path/to/source/of/zangetsu/', then PythonPath rule should be like 
+# this:
+PythonPath "['/path/to/source/of/'] + sys.path"
+
 PythonInterpreter Zangetsuzangetsu
 PythonHandler django.core.handlers.modpython
 SetEnv DJANGO_SETTINGS_MODULE zangetsu.settings

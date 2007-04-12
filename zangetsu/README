@@ -1,6 +1,28 @@
-Requires;
+Requires:
 
-* Python
-* Apache Web Server
-* mod_python
-* Django
+- Python
+- Apache Web Server
+- mod_python
+- Django
+
+
+Setup:
+
+- go to the source directory of Zangetsu,
+- copy 'settings-dist-default.py' as 'settings.py',
+  and edit 'settings.py'..
+- create the necessary directory according the WEB_URL
+- copy 'blog/defaults-dist-default.py' as 'blog/defaults.py',
+  and edit it..
+- check 'settings.py' again to be sure everything seems okey.
+- run 'python manage.py syncdb' and answer the questions.
+- run 'chown 777 db/ -R'.
+- run 'python /usr/lib/python2.4/site-packages/django/bin/compile-messages.py -a'.
+- copy htaccess file into the web directory as '.htaccess' and
+  edit it (your web server setup should allow overriding defaults
+  with .htaccess files at least for the directory that you're gonna
+  use to publish Zangetsu).
+- run your web server and check the WEB_URL. If everything's
+  okey you should go to WEB_URL/admin/ with your browser and log-in
+  to start writing.
+
