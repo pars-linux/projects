@@ -25,7 +25,7 @@ feed_dict = {
 urlpatterns = patterns("",
     (r"^search/$", "zangetsu.blog.views.search"),
 
-    (r"^tag/(?P<slug>[A-Za-z-_]+)/$", 
+    (r"^tag/(?P<slug>.*)/$", 
         "django.views.generic.list_detail.object_detail", 
         tag_dict
     ),
