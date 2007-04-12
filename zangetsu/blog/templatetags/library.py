@@ -14,6 +14,7 @@ class BlogNameObject(Node):
     def render(self, context):
         context["blog_name"] = defaults.BLOG_NAME
         context["blog_desc"] = defaults.BLOG_DESC
+        context["blog_meta"] = defaults.BLOG_META
         context["blog_url"] = "%s/blog" % WEB_URL
         return ""
 
