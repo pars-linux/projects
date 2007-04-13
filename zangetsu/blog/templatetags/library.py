@@ -11,6 +11,9 @@ from zangetsu.settings import WEB_URL
 
 register = Library()
 
+class TemplateSyntaxError(Exception):
+    pass
+
 class BlogNameObject(Node):
     def render(self, context):
         context["blog_name"] = defaults.BLOG_NAME
