@@ -50,6 +50,17 @@
             <input class="dropdown" type="text" name="s" id="s"/>
         </form>
         <br />
+        <b>{% trans "Latest Comments" %}</b><hr>
+        {% get_latest comments.FreeComment 10 as recent_comments %}
+        {% for comment in recent_comments %}
+            {% if comment.approved %}
+                {% if comment.is_public %}
+                    <b>{{ comment.person_name }}</b> wrote <a href="{{comment.get_absolute_url}}">this</a> on <a href="{{comment.get_content_object.get_absolute_url}}">{{comment.get_content_object.title}}</a> ({{comment.submit_date|date:"d/m/y, H:i" }})<br />
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        <br />
         <b>{% trans "Tags" %}</b><hr>
         {% build_tag_list %}
         {% for tag in blog_tags %}
