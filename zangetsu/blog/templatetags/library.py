@@ -59,7 +59,7 @@ def build_month_list(parser, token):
 def build_tag_list(parser, token):
     return TagMenuObject()
 
-def get_latest(parser, token):
+def build_latest_comments(parser, token):
     bits = token.contents.split()
     if len(bits) != 5:
         raise TemplateSyntaxError, "get_latest tag takes exactly four arguments"
@@ -67,8 +67,18 @@ def get_latest(parser, token):
         raise TemplateSyntaxError, "third argument to get_latest tag must be 'as'"
     return LatestContentNode(bits[1], bits[2], bits[4])
 
+def build_google_analytics(parser, token):
+    if defaults.GOOGLE_ANALYTICS:
+        return """
+        <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            _uacct = "UA-%s";
+            urchinTracker();
+        </script>""" % defaults.GOOGLE_ANALYTICS
+
 register.tag("build_blog_name", build_blog_name)
 register.tag("build_link_list", build_link_list)
 register.tag("build_month_list", build_month_list)
 register.tag("build_tag_list", build_tag_list)
-register.tag("get_latest", get_latest)
+register.tag("build_latest_comments", build_latest_comments)
+register.tag("build_google_analytics", build_google_analytics)
