@@ -23,7 +23,7 @@
         {{ comment_form.comment.html_error_list }}
     {% endif %}
 
-    <input type="hidden" name="comment" value="{{ comment.comment }}" />
+    <input type="hidden" name="comment" value="{{ comment.comment|escape }}" />
     <input type="hidden" name="person_name" value="{{ comment.person_name }}" />
     <input type="hidden" name="options" value="{{ options }}" />
     <input type="hidden" name="target" value="{{ target }}" />
