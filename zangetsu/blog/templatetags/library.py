@@ -72,7 +72,7 @@ def build_google_analytics(parser, token):
         return """
         <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
         <script type="text/javascript">
-            _uacct = "UA-%s";
+            _uacct = "%s";
             urchinTracker();
         </script>""" % defaults.GOOGLE_ANALYTICS
 
