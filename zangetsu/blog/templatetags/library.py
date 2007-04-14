@@ -20,6 +20,16 @@ class BlogNameObject(Node):
         context["blog_desc"] = defaults.BLOG_DESC
         context["blog_meta"] = defaults.BLOG_META
         context["show_latest_comments"] = defaults.SHOW_LATEST_COMMENTS
+        if defaults.GOOGLE_ANALYTICS is not None:
+            context["google_analytics"] = """
+            <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+            <script type="text/javascript">
+                _uacct = "%s";
+                urchinTracker();
+            </script>""" % defaults.GOOGLE_ANALYTICS
+        else:
+            context["google_analytics"] = defaults.GOOGLE_ANALYTICS
+
         context["blog_url"] = "%s/blog" % WEB_URL
         return ""
 
@@ -67,18 +77,8 @@ def build_latest_comments(parser, token):
         raise TemplateSyntaxError, "third argument to get_latest tag must be 'as'"
     return LatestContentNode(bits[1], bits[2], bits[4])
 
-def build_google_analytics(parser, token):
-    if defaults.GOOGLE_ANALYTICS:
-        return """
-        <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            _uacct = "%s";
-            urchinTracker();
-        </script>""" % defaults.GOOGLE_ANALYTICS
-
 register.tag("build_blog_name", build_blog_name)
 register.tag("build_link_list", build_link_list)
 register.tag("build_month_list", build_month_list)
 register.tag("build_tag_list", build_tag_list)
 register.tag("build_latest_comments", build_latest_comments)
-register.tag("build_google_analytics", build_google_analytics)
