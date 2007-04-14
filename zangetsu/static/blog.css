@@ -45,6 +45,11 @@ html>body {
 	width: 100%;
 }
 
+#footer a {
+	color: #FFF; 
+	font-weight: bold;
+}
+
 #content {
 	display: block;
 	float: left;
