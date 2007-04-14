@@ -19,6 +19,7 @@ class BlogNameObject(Node):
         context["blog_name"] = defaults.BLOG_NAME
         context["blog_desc"] = defaults.BLOG_DESC
         context["blog_meta"] = defaults.BLOG_META
+        context["show_latest_comments"] = defaults.SHOW_LATEST_COMMENTS
         context["blog_url"] = "%s/blog" % WEB_URL
         return ""
 

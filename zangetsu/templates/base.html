@@ -50,6 +50,7 @@
             <input class="dropdown" type="text" name="s" id="s"/>
         </form>
         <br />
+        {% if show_latest_comments %}
         <b>{% trans "Latest Comments" %}</b><hr>
         {% get_latest comments.FreeComment 10 as recent_comments %}
         {% for comment in recent_comments %}
@@ -59,7 +60,7 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
-
+        {% endif %}
         <br />
         <b>{% trans "Tags" %}</b><hr>
         {% build_tag_list %}

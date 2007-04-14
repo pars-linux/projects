@@ -29,3 +29,4 @@ BLOG_META = """
 <meta name="revisit-after" content="7 days">
 
 """
+SHOW_LATEST_COMMENTS=False
