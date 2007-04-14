@@ -15,3 +15,6 @@ def search(request):
         search_results = None
     return render_to_response("blog/entry_search.html", {"search_results": search_results[:20]})
 
+def recent_comments(request):
+    return render_to_response("blog/recent_comments.html")
+
