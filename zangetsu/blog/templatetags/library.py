@@ -19,7 +19,6 @@ class BlogNameObject(Node):
         context["blog_name"] = defaults.BLOG_NAME
         context["blog_desc"] = defaults.BLOG_DESC
         context["blog_meta"] = defaults.BLOG_META
-        context["show_latest_comments"] = defaults.SHOW_LATEST_COMMENTS
         if defaults.GOOGLE_ANALYTICS is not None:
             context["google_analytics"] = """
             <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
