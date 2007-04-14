@@ -29,4 +29,7 @@ BLOG_META = """
 <meta name="revisit-after" content="7 days">
 
 """
+# Google Analytics tracker code (ex: UA-12345-6)
+GOOGLE_ANALYTICS=None
+# Whether show latest comments or not
 SHOW_LATEST_COMMENTS=False

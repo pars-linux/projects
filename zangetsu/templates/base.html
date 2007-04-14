@@ -21,6 +21,7 @@
 <title>{{ blog_name }}{% block title %}{% endblock %}</title>
 </head>
 <body>
+    {{ build_google_analytics }}
     <div id="header">
         <center><a href="{{ blog_url }}">{{ blog_name }}</a><br /><br /></center>
     </div>
@@ -52,7 +53,7 @@
         <br />
         {% if show_latest_comments %}
         <b>{% trans "Latest Comments" %}</b><hr>
-        {% get_latest comments.FreeComment 10 as recent_comments %}
+        {% build_latest_comments comments.FreeComment 10 as recent_comments %}
         {% for comment in recent_comments %}
             {% if comment.approved %}
                 {% if comment.is_public %}
