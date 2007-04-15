@@ -11,13 +11,19 @@ from django.core.paginator import ObjectPaginator, InvalidPage
 
 def build_paginator_dict(results, page = 0, item_per_page = 10):
     paginator_result = ObjectPaginator(results, item_per_page)
-    return {"results": paginator_result.get_page(page),
-            "paginator": True,
-            "current_page": page,
-            "total_page": paginator_result.pages,
-            "total_results": paginator_result.hits,
-            "next": paginator_result.has_next_page(page),
-            "prev": paginator_result.has_previous_page(page)}
+    try:
+        retval = {"results": paginator_result.get_page(page),
+                 "paginator": True,
+                 "current_page": page,
+                 "total_page": paginator_result.pages,
+                 "total_results": paginator_result.hits,
+                 "next": paginator_result.has_next_page(page),
+                 "prev": paginator_result.has_previous_page(page)}
+    except InvalidPage:
+        retval = {}
+
+    return retval
+
 
 def search(request):
     try:
