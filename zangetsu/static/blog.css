@@ -155,3 +155,28 @@ hr {
 	padding: 15px 0px 10px 40px;
 }
 
+.paginator-bottom {
+    display: table;
+    width: 60%;
+    padding: 5px;
+    margin-left:15%;
+    margin-right:15%;
+    margin-bottom: 20px;
+    text-align: center;
+    border-left: solid 1px green;
+    border-right: solid 1px green;
+    background-color: #EEE;
+}
+
+.paginator-top {
+    display: table;
+    width: 60%;
+    padding: 5px;
+    margin-left:15%;
+    margin-right:15%;
+    margin-bottom: 20px;
+    text-align: center;
+    border-left: solid 1px green;
+    border-right: solid 1px green;
+    background-color: #EEE;
+}

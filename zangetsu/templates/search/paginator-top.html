@@ -1,0 +1,19 @@
+{% load i18n %}
+{% block content %}
+    <div class="paginator-top">
+    <i>{{total_results}} result(s) in {{total_page}} page(s)<br /></i>
+    {% if prev %}
+        <a href="{{blog_url}}/search/?s={{search_term}}&p={{current_page|add:"-1"}}">{% trans "Previous Page" %}</a>
+    {% else %}
+        {% trans "Previous Page" %}
+    {% endif %}
+
+    &nbsp;- <b>{{current_page|add:"1"}}</b> / <b>{{total_page}}</b> -&nbsp;
+
+    {% if next %}
+        <a href="{{blog_url}}/search/?s={{search_term}}&p={{current_page|add:"1"}}">{% trans "Next Page" %}</a>
+    {% else %}
+        {% trans "Next Page" %}
+    {% endif%}
+    </div>
+{% endblock %}
