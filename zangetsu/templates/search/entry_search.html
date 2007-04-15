@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if paginator %}
+        {% include "search/paginator-top.html" %}
+    {% endif %}
+
+    {% for object in results reversed %}
+        {% include "blog/entry_brief.html" %}
+    {% endfor %}
+
+    {% if paginator %}
+        {% include "search/paginator-bottom.html" %}
+    {% endif %}
+{% endblock %}
