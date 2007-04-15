@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2006 TUBITAK/UEKAE
+# Copyright © 2006, 2007 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 from django.template import Library,Node
@@ -58,7 +58,7 @@ class LatestContentNode(Node):
     def render(self, context):
         func = self.model.__getattribute__(self.func)
         context[self.varname] = func._default_manager.all()[:self.num]
-        return ''
+        return ""
 
 def build_blog_name(parser, token):
     return BlogNameObject()
@@ -76,7 +76,7 @@ def build_latest_comments(parser, token):
     bits = token.contents.split()
     if len(bits) != 5:
         raise TemplateSyntaxError, "get_latest tag takes exactly four arguments"
-    if bits[3] != 'as':
+    if bits[3] != "as":
         raise TemplateSyntaxError, "third argument to get_latest tag must be 'as'"
     return LatestContentNode(bits[1], bits[2], bits[4])
 
