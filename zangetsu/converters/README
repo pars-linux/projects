@@ -1,0 +1,15 @@
+For wordpress2zangetsu:
+
+ - Before start you must get your old blog history as XML(RSS).
+ - Save the XML file as "rss.xml" in your root directory which 
+   includes "zangetsu" dir.
+ - Copy the wordpress2zangetsu.py to the same directory above
+ - Run this;
+   
+   export DJANGO_SETTINGS_MODULE=zangetsu.settings
+ 
+ - And Finally run the script
+   
+   python wordpress2zangetsu.py
+   
+ - Thats all.
