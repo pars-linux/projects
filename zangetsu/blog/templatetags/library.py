@@ -6,7 +6,7 @@
 from django.template import Library,Node
 from zangetsu.blog import defaults
 from zangetsu.blog.models import Entry, Tag, Link
-from django.db.models import get_model
+from django.db.models import get_apps
 from zangetsu.settings import WEB_URL
 
 register = Library()
@@ -50,10 +50,12 @@ class TagMenuObject(Node):
 class LatestContentNode(Node):
     def __init__(self, model, num, varname):
         self.num, self.varname = num, varname
-        self.model = get_model(*model.split('.'))
+        self.model = [m for m in get_apps() if m.__str__().find(model.split(".")[0]) > 0][0]
+        self.func = model.split(".")[1]
 
     def render(self, context):
-        context[self.varname] = self.model._default_manager.all()[:self.num]
+        func = self.model.__getattribute__(self.func)
+        context[self.varname] = func._default_manager.all()[:self.num]
         return ''
 
 def build_blog_name(parser, token):
