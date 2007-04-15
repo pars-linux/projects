@@ -1,5 +1,5 @@
 # Version 0.1.5
-# 2006/02/05
+# 2006, 2007/02/05
 
 # Copyright Michael Foord 2005 - 2007
 # akismet.py
