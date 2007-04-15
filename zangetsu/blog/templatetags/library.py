@@ -50,7 +50,9 @@ class TagMenuObject(Node):
 class LatestContentNode(Node):
     def __init__(self, model, num, varname):
         self.num, self.varname = num, varname
-        self.model = [m for m in get_apps() if m.__str__().find(model.split(".")[0]) > 0][0]
+        for m in get_apps():
+            if m.__str__().find(model.split(".")[0]) > 0:
+                self.model = m
         self.func = model.split(".")[1]
 
     def render(self, context):
