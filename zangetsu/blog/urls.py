@@ -28,10 +28,9 @@ urlpatterns = patterns("",
 
     (r"^comments/$", "zangetsu.blog.views.recent_comments"),
 
-    (r"^tag/(?P<slug>.*)/$",
-        "django.views.generic.list_detail.object_detail",
-        tag_dict
-    ),
+    (r"^tag/(?P<slug>.*)/page-(?P<page>\d+)/$", "zangetsu.blog.views.tags"),
+
+    (r"^tag/(?P<slug>.*)/$", "zangetsu.blog.views.tags"),
 
     (r"^entry/(?P<object_id>\d+)/$",
         "django.views.generic.list_detail.object_detail",
