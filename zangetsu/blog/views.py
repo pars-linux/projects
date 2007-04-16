@@ -5,11 +5,11 @@
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
 from django.shortcuts import render_to_response
-from zangetsu.blog.models import Entry
+from zangetsu.blog.models import Entry, Tag
 from django.core.paginator import ObjectPaginator, InvalidPage
 
 
-def build_paginator_dict(results, page = 0, item_per_page = 10):
+def build_paginator_dict(results, page, item_per_page):
     paginator_result = ObjectPaginator(results, item_per_page)
     try:
         retval = {"results": paginator_result.get_page(page),
@@ -28,7 +28,7 @@ def build_paginator_dict(results, page = 0, item_per_page = 10):
 def search(request):
     try:
         search_term = request.GET["s"]
-        search_results = Entry.objects.filter(content__icontains=search_term) | Entry.objects.filter(title__icontains=search_term)
+        search_results = Entry.objects.filter(content__icontains=search_term) | Entry.objects.filter(title__icontains=search_term).order_by("-pubdate")
     except:
         search_results = None
 
@@ -38,9 +38,19 @@ def search(request):
         page = 0
 
     paginator_dict = build_paginator_dict(search_results, page, 10)
-    response_dict = {"search_term": request.GET["s"]}
+    response_dict = {"url_tip": "/search/?s=%s&p=" % request.GET["s"]}
     response_dict.update(paginator_dict)
-    return render_to_response("search/entry_search.html", response_dict)
+    return render_to_response("blog/entry_search.html", response_dict)
+
+def tags(request, slug, page = 0):
+    entries = []
+    for tag in Tag.objects.all():
+        if tag.__str__() == slug:
+            entries = tag.entry_set.order_by("-pubdate")
+    paginator_dict = build_paginator_dict(entries, int(page), 10)
+    response_dict = {'url_tip': '/tag/%s/page-' % slug}
+    response_dict.update(paginator_dict)
+    return render_to_response("blog/tag_detail.html", response_dict)
 
 def recent_comments(request):
     return render_to_response("blog/recent_comments.html")
