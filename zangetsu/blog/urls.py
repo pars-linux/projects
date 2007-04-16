@@ -6,16 +6,11 @@
 
 from django.conf.urls.defaults import *
 from zangetsu.blog.feeds import RssFeed, AtomFeed
-from zangetsu.blog.models import Entry, Tag
+from zangetsu.blog.models import Entry
 
 info_dict = {
     "queryset": Entry.objects.all(),
     "date_field": "pubdate",
-}
-
-tag_dict = {
-    "queryset": Tag.objects.all(),
-    "slug_field": "title",
 }
 
 feed_dict = {
