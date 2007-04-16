@@ -156,27 +156,25 @@ hr {
 }
 
 .paginator-bottom {
-    display: table;
-    width: 60%;
-    padding: 5px;
-    margin-left:15%;
-    margin-right:15%;
-    margin-bottom: 20px;
-    text-align: center;
-    border-left: solid 1px green;
-    border-right: solid 1px green;
-    background-color: #EEE;
+	display: table;
+	width: 60%;
+	padding: 5px;
+	margin-left:15%;
+	margin-right:15%;
+	margin-bottom: 20px;
+	text-align: center;
+	border-left: solid 1px green;
+	border-right: solid 1px green;
 }
 
 .paginator-top {
-    display: table;
-    width: 60%;
-    padding: 5px;
-    margin-left:15%;
-    margin-right:15%;
-    margin-bottom: 20px;
-    text-align: center;
-    border-left: solid 1px green;
-    border-right: solid 1px green;
-    background-color: #EEE;
+	display: table;
+	width: 60%;
+	padding: 5px;
+	margin-left:15%;
+	margin-right:15%;
+	margin-bottom: 20px;
+	text-align: center;
+	border-left: solid 1px green;
+	border-right: solid 1px green;
 }
