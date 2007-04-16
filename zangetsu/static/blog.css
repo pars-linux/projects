@@ -163,8 +163,7 @@ hr {
 	margin-right:15%;
 	margin-bottom: 20px;
 	text-align: center;
-	border-left: solid 1px green;
-	border-right: solid 1px green;
+	border: 1px green dashed;
 }
 
 .paginator-top {
@@ -175,6 +174,5 @@ hr {
 	margin-right:15%;
 	margin-bottom: 20px;
 	text-align: center;
-	border-left: solid 1px green;
-	border-right: solid 1px green;
+	border: 1px green dashed;
 }
