@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-18 17:04+0200\n"
+"POT-Creation-Date: 2007-04-16 20:40+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -15,43 +15,47 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: blog/models.py:11 blog/models.py:26 blog/models.py:40
+#: blog/models.py:12 blog/models.py:27 blog/models.py:41
 msgid "title"
 msgstr "başlık"
 
-#: blog/models.py:12
+#: blog/models.py:13
 msgid "url"
 msgstr "adres"
 
-#: blog/models.py:18
+#: blog/models.py:19
 msgid "link"
 msgstr "bağlantı"
 
-#: blog/models.py:19
+#: blog/models.py:20
 msgid "links"
 msgstr "bağlantılar"
 
-#: blog/models.py:32 blog/models.py:42
+#: blog/models.py:33 blog/models.py:43
 msgid "tag"
 msgstr "etiket"
 
-#: blog/models.py:33
+#: blog/models.py:34
 msgid "tags"
 msgstr "etiketler"
 
-#: blog/models.py:41
+#: blog/models.py:42
 msgid "content"
 msgstr "içerik"
 
-#: blog/models.py:43
+#: blog/models.py:44
 msgid "publish date"
 msgstr "yayınlama tarihi"
 
-#: blog/models.py:52
+#: blog/models.py:45
+msgid "comments enabled"
+msgstr "Yorumlar etkin"
+
+#: blog/models.py:54
 msgid "entry"
 msgstr "girdi"
 
-#: blog/models.py:53
+#: blog/models.py:55
 msgid "entries"
 msgstr "girdiler"
 
@@ -63,19 +67,19 @@ msgstr "Bir hata oluştu!"
 msgid "No entry found in database!"
 msgstr "Veritabanında girdi bulunamadı!"
 
-#: templates/base.html:58 templates/base.html.py:61
+#: templates/base.html:41 templates/base.html.py:44
 msgid "Archives"
 msgstr "Arşivler"
 
-#: templates/base.html:68
+#: templates/base.html:51
 msgid "Search"
 msgstr "Arama"
 
-#: templates/base.html:73
+#: templates/base.html:56
 msgid "Tags"
 msgstr "Etiketler"
 
-#: templates/base.html:82
+#: templates/base.html:64
 msgid "Links"
 msgstr "Bağlantılar"
 
@@ -83,7 +87,7 @@ msgstr "Bağlantılar"
 msgid "Tags:"
 msgstr "Etiketler:"
 
-#: templates/blog/entry_brief.html:19
+#: templates/blog/entry_brief.html:20
 msgid "Comments:"
 msgstr "Yorumlar:"
 
@@ -91,11 +95,11 @@ msgstr "Yorumlar:"
 msgid "Comments"
 msgstr "Yorumlar"
 
-#: templates/blog/entry_detail.html:29
+#: templates/blog/entry_detail.html:30 templates/blog/recent_comments.html:10
 msgid "commented"
 msgstr "der ki"
 
-#: templates/blog/entry_detail.html:37
+#: templates/blog/entry_detail.html:39
 msgid "Post a comment"
 msgstr "Yorum gönder"
 
@@ -103,18 +107,6 @@ msgstr "Yorum gönder"
 #, python-format
 msgid "%(year)s archive"
 msgstr "%(year)s arşivi"
-
-#: templates/comments/freeform.html:5
-msgid "Your name:"
-msgstr "İsminiz:"
-
-#: templates/comments/freeform.html:8
-msgid "Comment:"
-msgstr "Yorum:"
-
-#: templates/comments/freeform.html:14
-msgid "Preview comment"
-msgstr "Yorumu görüntüle"
 
 #: templates/comments/posted.html:5
 msgid "Comment posted successfully..."
@@ -130,6 +122,31 @@ msgstr ""
 msgid "Return back to entry"
 msgstr "Girdiye geri dön"
 
+#: templates/comments/freeform.html:5
+msgid "Your name:"
+msgstr "İsminiz:"
+
+#: templates/comments/freeform.html:8
+msgid "Comment:"
+msgstr "Yorum:"
+
+#: templates/comments/freeform.html:14
+msgid "Preview comment"
+msgstr "Yorumu görüntüle"
+
 #: templates/comments/free_preview.html:5
 msgid "Preview your comment"
 msgstr "Yorumu görüntüle"
+
+#: templates/search/paginator-top.html:6 templates/search/paginator-top.html:8
+#: templates/search/paginator-bottom.html:5
+#: templates/search/paginator-bottom.html:7
+msgid "Previous Page"
+msgstr "Önceki Sayfa"
+
+#: templates/search/paginator-top.html:14
+#: templates/search/paginator-top.html:16
+#: templates/search/paginator-bottom.html:13
+#: templates/search/paginator-bottom.html:15
+msgid "Next Page"
+msgstr "Sonraki Sayfa"
