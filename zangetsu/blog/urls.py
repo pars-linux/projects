@@ -23,7 +23,7 @@ urlpatterns = patterns("",
 
     (r"^comments/$", "zangetsu.blog.views.recent_comments"),
 
-    (r"^tag/(?P<slug>.*)/page-(?P<page>\d+)/$", "zangetsu.blog.views.tags"),
+    (r"^tag/(?P<slug>.*)/page/(?P<page>\d+)/$", "zangetsu.blog.views.tags"),
 
     (r"^tag/(?P<slug>.*)/$", "zangetsu.blog.views.tags"),
 

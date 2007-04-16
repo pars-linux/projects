@@ -48,7 +48,7 @@ def tags(request, slug, page = 0):
         if tag.__str__() == slug:
             entries = tag.entry_set.order_by("-pubdate")
     paginator_dict = build_paginator_dict(entries, int(page), 10)
-    response_dict = {'url_tip': '/tag/%s/page-' % slug}
+    response_dict = {'url_tip': '/tag/%s/page/' % slug}
     response_dict.update(paginator_dict)
     return render_to_response("blog/tag_detail.html", response_dict)
 
