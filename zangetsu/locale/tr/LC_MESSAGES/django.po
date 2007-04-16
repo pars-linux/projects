@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-16 20:40+0300\n"
+"POT-Creation-Date: 2007-04-16 20:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -83,6 +83,21 @@ msgstr "Etiketler"
 msgid "Links"
 msgstr "Bağlantılar"
 
+#: templates/blog/paginator-top.html:6 templates/blog/paginator-top.html:8
+#: templates/blog/paginator-bottom.html:5
+#: templates/blog/paginator-bottom.html:7
+#: templates/search/paginator-top.html:6 templates/search/paginator-top.html:8
+msgid "Previous Page"
+msgstr "Önceki Sayfa"
+
+#: templates/blog/paginator-top.html:14 templates/blog/paginator-top.html:16
+#: templates/blog/paginator-bottom.html:13
+#: templates/blog/paginator-bottom.html:15
+#: templates/search/paginator-top.html:14
+#: templates/search/paginator-top.html:16
+msgid "Next Page"
+msgstr "Sonraki Sayfa"
+
 #: templates/blog/entry_brief.html:14 templates/blog/entry_detail.html:18
 msgid "Tags:"
 msgstr "Etiketler:"
@@ -138,15 +153,10 @@ msgstr "Yorumu görüntüle"
 msgid "Preview your comment"
 msgstr "Yorumu görüntüle"
 
-#: templates/search/paginator-top.html:6 templates/search/paginator-top.html:8
-#: templates/search/paginator-bottom.html:5
-#: templates/search/paginator-bottom.html:7
-msgid "Previous Page"
-msgstr "Önceki Sayfa"
+#: templates/search/paginator-top.html:4
+msgid "result(s) in "
+msgstr "toplam sonuç"
 
-#: templates/search/paginator-top.html:14
-#: templates/search/paginator-top.html:16
-#: templates/search/paginator-bottom.html:13
-#: templates/search/paginator-bottom.html:15
-msgid "Next Page"
-msgstr "Sonraki Sayfa"
+#: templates/search/paginator-top.html:4
+msgid "page(s)"
+msgstr "sayfada"
