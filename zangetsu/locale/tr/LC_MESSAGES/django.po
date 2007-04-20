@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-16 20:47+0300\n"
+"POT-Creation-Date: 2007-04-20 05:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -111,22 +111,22 @@ msgstr "Etiketler:"
 msgid "Comments:"
 msgstr "Yorumlar:"
 
-#: templates/blog/entry_detail.html:25
-msgid "Comments"
-msgstr "Yorumlar"
-
-#: templates/blog/entry_detail.html:30 templates/blog/recent_comments.html:10
+#: templates/blog/recent_comments.html:10 templates/blog/entry_detail.html:30
 msgid "commented"
 msgstr "der ki"
-
-#: templates/blog/entry_detail.html:39
-msgid "Post a comment"
-msgstr "Yorum gönder"
 
 #: templates/blog/entry_archive_year.html:8
 #, python-format
 msgid "%(year)s archive"
 msgstr "%(year)s arşivi"
+
+#: templates/blog/entry_detail.html:25
+msgid "Comments"
+msgstr "Yorumlar"
+
+#: templates/blog/entry_detail.html:39
+msgid "Post a comment <max. 3000 character>"
+msgstr "Yorum gönder <en fazla 3000 karakter>"
 
 #: templates/comments/posted.html:5
 msgid "Comment posted successfully..."
