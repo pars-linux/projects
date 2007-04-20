@@ -20,7 +20,7 @@ class Link(models.Model):
         verbose_name_plural = _("links")
 
     class Admin:
-        list_display = ["title"]
+        list_display = ["title", "url"]
 
 class Tag(models.Model):
 
@@ -55,8 +55,8 @@ class Entry(models.Model):
         verbose_name_plural = _("entries")
 
     class Admin:
-        list_display = ("id", "title", "pubdate")
-        list_filter = ["pubdate"]
+        list_display = ("id", "title", "pubdate", "comments_enabled")
+        list_filter = ["pubdate", "comments_enabled"]
         search_fields = ["title"]
         js = (
             "tinymce/tiny_mce.js",
