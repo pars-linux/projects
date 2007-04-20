@@ -125,8 +125,8 @@ msgid "Comments"
 msgstr "Yorumlar"
 
 #: templates/blog/entry_detail.html:39
-msgid "Post a comment <max. 3000 character>"
-msgstr "Yorum gönder <en fazla 3000 karakter>"
+msgid "Post a comment (max. 3000 character)"
+msgstr "Yorum gönder (en fazla 3000 karakter)"
 
 #: templates/comments/posted.html:5
 msgid "Comment posted successfully..."
