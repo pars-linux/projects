@@ -5,6 +5,7 @@
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
 from django.shortcuts import render_to_response
+from django.db.models import get_apps
 from zangetsu.blog.models import Entry, Tag
 from django.core.paginator import ObjectPaginator, InvalidPage
 
@@ -52,6 +53,13 @@ def tags(request, slug, page = 0):
     response_dict.update(paginator_dict)
     return render_to_response("blog/tag_detail.html", response_dict)
 
-def recent_comments(request):
-    return render_to_response("blog/recent_comments.html")
-
+def recent_comments(request, page = 0):
+    for any_app in get_apps():
+        if any_app.__str__().find("comments") != -1:
+            app = any_app
+            break
+    recent_comments = app.FreeComment.objects.all()
+    paginator_dict = build_paginator_dict(recent_comments, int(page), 20)
+    response_dict = {'url_tip': '/comments/page/'}
+    response_dict.update(paginator_dict)
+    return render_to_response("blog/recent_comments.html", response_dict)
