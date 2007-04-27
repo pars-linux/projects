@@ -1,18 +1,27 @@
 {% load library %}
 {% load i18n %}
-{% build_latest_comments comments.FreeComment 20 as recent_comments %}
 {% extends "base.html" %}
 {% block content %}
-    {% for comment in recent_comments %}
-        {% if comment.approved %}
-            {% if comment.is_public %}
-                <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
-                    <b>{{ comment.person_name }}</b> - <a href="{{comment.get_content_object.get_absolute_url}}">{{comment.get_content_object.title}}</a> {%trans "commented"%}
-                    <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
-                    <br />
-                    {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
-                </div>
-            {% endif %}
+
+{% if paginator %}
+    {% include "blog/paginator-top.html" %}
+{% endif %}
+
+{% for comment in results %}
+    {% if comment.approved %}
+        {% if comment.is_public %}
+            <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
+                <b>{{ comment.person_name }}</b> - <a href="{{comment.get_content_object.get_absolute_url}}">{{comment.get_content_object.title}}</a> {%trans "commented"%}
+                <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
+                <br />
+                {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
+            </div>
         {% endif %}
-    {% endfor %}
+    {% endif %}
+{% endfor %}
+
+{% if paginator %}
+    {% include "blog/paginator-bottom.html" %}
+{% endif %}
+
 {% endblock %}
