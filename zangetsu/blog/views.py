@@ -63,3 +63,10 @@ def recent_comments(request, page = 0):
     response_dict = {'url_tip': '/comments/page/'}
     response_dict.update(paginator_dict)
     return render_to_response("blog/recent_comments.html", response_dict)
+
+def all_entries(request, page = 0):
+    entry_list = Entry.objects.order_by("-pubdate")
+    paginator_dict = build_paginator_dict(entry_list, int(page), 20)
+    response_dict = {'url_tip': '/page/'}
+    response_dict.update(paginator_dict)
+    return render_to_response("blog/entry_archive.html", response_dict)

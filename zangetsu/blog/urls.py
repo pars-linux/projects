@@ -64,8 +64,7 @@ urlpatterns = patterns("",
         info_dict
     ),
 
-    (r"^/?$", 
-        "django.views.generic.date_based.archive_index",
-        info_dict
-    ),
+    (r"^page/(?P<page>\d+)/$", "zangetsu.blog.views.all_entries"),
+
+    (r"^/?$", "zangetsu.blog.views.all_entries"),
 )
