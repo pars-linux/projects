@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% for object in latest %}
+{% for object in results %}
     {% include "blog/entry_brief.html" %}
 {% endfor %}
+
+{% if paginator %}
+    {% include "blog/paginator-top.html" %}
+{% endif %}
 
 {% endblock %}
