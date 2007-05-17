@@ -17,7 +17,7 @@ Setup:
 - check 'settings.py' again to be sure everything seems okey.
 - run 'python manage.py syncdb' and answer the questions.
 - run 'chmod 777 db/ -R'.
-- run 'python /usr/lib/python2.4/site-packages/django/bin/compile-messages.py -a'.
+- run 'python /usr/lib/python2.4/site-packages/django/bin/compile-messages.py'.
 - copy htaccess file into the web directory as '.htaccess' and
   edit it (your web server setup should allow overriding defaults
   with .htaccess files at least for the directory that you're gonna
