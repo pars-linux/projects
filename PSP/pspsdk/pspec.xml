@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE PISI SYSTEM "http://www.uludag.org.tr/projeler/pisi/pisi-spec.dtd">
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 
 <PISI>
     <Source>
@@ -7,13 +7,13 @@
         <Homepage>http://svn.pspdev.org</Homepage>
         <Packager>
             <Name>S.Çağlar Onur</Name>
-            <Email>caglar@uludag.org.tr</Email>
+            <Email>caglar@pardus.org.tr</Email>
         </Packager>
         <License>GPL-2</License>
         <IsA>app:console</IsA>
         <Summary>PSP SDK</Summary>
         <Description>PSP SDK</Description>
-        <Archive sha1sum="cba53807747207cb5b040c3a984171c3cbd9d9d2" type="targz">http://cekirdek.uludag.org.tr/~caglar/pspsdk.tar.gz</Archive>
+        <Archive sha1sum="3c366bddd45a5a4aa741c2138af5d9bd8b68ca86" type="targz">http://cekirdek.pardus.org.tr/~caglar/pspsdk.2228.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>binutils-psp</Dependency>
             <Dependency>gcc-psp</Dependency>
@@ -35,12 +35,19 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2007-05-21</Date>
+            <Version>2228</Version>
+            <Comment>First release.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@pardus.org.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2006-02-10</Date>
             <Version>1796</Version>
             <Comment>First release.</Comment>
             <Name>S.Çağlar Onur</Name>
-            <Email>caglar@uludag.org.tr</Email>
+            <Email>caglar@pardus.org.tr</Email>
         </Update>
     </History>
 </PISI>
