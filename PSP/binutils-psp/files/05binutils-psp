@@ -1,3 +1,5 @@
 MANPATH=/opt/psp/man
 INFOPATH=/opt/psp/info
 LDPATH=/opt/psp/i686-pc-linux-gnu/psp/lib/
+PATH=/opt/psp/bin
+ROOTPATH=/opt/psp/bin
