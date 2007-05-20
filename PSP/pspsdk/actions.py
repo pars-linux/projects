@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2005, 2006  TUBITAK/UEKAE
+# Copyright © 2005, 2007  TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 #
-# S.Çağlar Onur <caglar@uludag.org.tr>
+# S.Çağlar Onur <caglar@pardus.org.tr>
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import shelltools
@@ -16,7 +16,7 @@ WorkDir = "pspsdk"
 
 def unset():
     shelltools.export("CFLAGS", "")
-    shelltools.export("CFLAGS", "")
+    shelltools.export("CXXFLAGS", "")
 
 def setup():
     unset()
