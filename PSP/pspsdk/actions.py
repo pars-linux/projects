@@ -25,9 +25,11 @@ def setup():
     autotools.rawConfigure("--with-pspdev=/opt/psp")
 
 def build():
+    unset()
+
     autotools.make()
     autotools.make("doxygen-doc")
-    
+
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     pisitools.insinto("/opt/psp/psp/sdk/", "doc")

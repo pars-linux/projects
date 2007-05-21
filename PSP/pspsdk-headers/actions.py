@@ -13,8 +13,13 @@ from pisi.actionsapi import get
 
 WorkDir = "pspsdk"
 
-def setup():
+def unset():
     shelltools.export("CFLAGS", "")
+    shelltools.export("CXXFLAGS", "")
+
+def setup():
+    unset()
+
     shelltools.system("./bootstrap")
     autotools.rawConfigure("--with-pspdev=/opt/psp")
 
