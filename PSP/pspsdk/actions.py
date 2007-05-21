@@ -13,6 +13,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 WorkDir = "pspsdk"
+NoStrip = "/"
 
 def unset():
     shelltools.export("CFLAGS", "")
@@ -28,7 +29,7 @@ def build():
     unset()
 
     autotools.make()
-    autotools.make("doxygen-doc")
+#    autotools.make("doxygen-doc")
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())

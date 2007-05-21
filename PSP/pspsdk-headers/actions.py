@@ -12,6 +12,7 @@ from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
 WorkDir = "pspsdk"
+NoStrip = "/"
 
 def unset():
     shelltools.export("CFLAGS", "")

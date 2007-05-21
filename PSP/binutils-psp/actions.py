@@ -13,6 +13,7 @@ from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
 WorkDir = "binutils-2.16.1"
+NoStrip = "/"
 
 def unset():
     shelltools.export("CFLAGS", "")

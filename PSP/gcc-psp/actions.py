@@ -13,6 +13,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 WorkDir = "gcc-4.0.2"
+NoStrip = "/"
 
 def unset():
     shelltools.export("CFLAGS", "")
