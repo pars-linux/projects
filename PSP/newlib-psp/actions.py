@@ -13,6 +13,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 WorkDir = "newlib-1.13.0"
+NoStrip = "/"
 
 def unset():
     shelltools.export("CFLAGS", "")
