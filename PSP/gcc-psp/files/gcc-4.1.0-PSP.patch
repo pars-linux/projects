@@ -1,23 +1,23 @@
-diff -burN gcc-4.0.2/config.sub gcc-psp/config.sub
---- gcc-4.0.2/config.sub	2005-04-25 11:36:56.000000000 +0100
-+++ gcc-psp/config.sub	2007-01-21 16:35:39.000000000 +0000
-@@ -254,6 +254,7 @@
+diff -burN gcc-4.1.0/config.sub gcc-psp/config.sub
+--- gcc-4.1.0/config.sub	2005-12-16 12:57:40.000000000 +0000
++++ gcc-psp/config.sub	2006-05-07 13:27:40.000000000 +0100
+@@ -264,6 +264,7 @@
  	| mipsisa64sb1 | mipsisa64sb1el \
  	| mipsisa64sr71k | mipsisa64sr71kel \
  	| mipstx39 | mipstx39el \
 +	| mipsallegrex | mipsallegrexel \
  	| mn10200 | mn10300 \
+ 	| mt \
  	| msp430 \
- 	| ns16k | ns32k \
-@@ -328,6 +329,7 @@
+@@ -346,6 +347,7 @@
  	| mipsisa64sb1-* | mipsisa64sb1el-* \
  	| mipsisa64sr71k-* | mipsisa64sr71kel-* \
  	| mipstx39-* | mipstx39el-* \
 +	| mipsallegrex-* | mipsallegrexel-* \
  	| mmix-* \
+ 	| mt-* \
  	| msp430-* \
- 	| none-* | np1-* | ns16k-* | ns32k-* \
-@@ -668,6 +670,10 @@
+@@ -689,6 +691,10 @@
  		basic_machine=m68k-atari
  		os=-mint
  		;;
@@ -28,9 +28,9 @@ diff -burN gcc-4.0.2/config.sub gcc-psp/config.sub
  	mips3*-*)
  		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
  		;;
-diff -burN gcc-4.0.2/gcc/c-incpath.c gcc-psp/gcc/c-incpath.c
---- gcc-4.0.2/gcc/c-incpath.c	2005-01-23 15:05:27.000000000 +0000
-+++ gcc-psp/gcc/c-incpath.c	2007-01-21 16:35:39.000000000 +0000
+diff -burN gcc-4.1.0/gcc/c-incpath.c gcc-psp/gcc/c-incpath.c
+--- gcc-4.1.0/gcc/c-incpath.c	2005-06-25 03:02:01.000000000 +0100
++++ gcc-psp/gcc/c-incpath.c	2006-05-07 13:27:40.000000000 +0100
 @@ -331,13 +331,18 @@
    cpp_dir *p;
  
@@ -57,9 +57,9 @@ diff -burN gcc-4.0.2/gcc/c-incpath.c gcc-psp/gcc/c-incpath.c
  #endif
  
    p = xmalloc (sizeof (cpp_dir));
-diff -burN gcc-4.0.2/gcc/config/mips/allegrex.md gcc-psp/gcc/config/mips/allegrex.md
---- gcc-4.0.2/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-psp/gcc/config/mips/allegrex.md	2007-01-21 16:35:39.000000000 +0000
+diff -burN gcc-4.1.0/gcc/config/mips/allegrex.md gcc-psp/gcc/config/mips/allegrex.md
+--- gcc-4.1.0/gcc/config/mips/allegrex.md	1970-01-01 01:00:00.000000000 +0100
++++ gcc-psp/gcc/config/mips/allegrex.md	2006-05-07 13:27:40.000000000 +0100
 @@ -0,0 +1,183 @@
 +;; Sony ALLEGREX instructions.
 +;; Copyright (C) 2005 Free Software Foundation, Inc.
@@ -244,95 +244,43 @@ diff -burN gcc-4.0.2/gcc/config/mips/allegrex.md gcc-psp/gcc/config/mips/allegre
 +  "round.w.s\t%0,%1"
 +  [(set_attr "type"	"fcvt")
 +   (set_attr "mode"	"SF")])
-diff -burN gcc-4.0.2/gcc/config/mips/mips-protos.h gcc-psp/gcc/config/mips/mips-protos.h
---- gcc-4.0.2/gcc/config/mips/mips-protos.h	2004-12-30 03:07:56.000000000 +0000
-+++ gcc-psp/gcc/config/mips/mips-protos.h	2007-01-21 16:35:39.000000000 +0000
-@@ -205,5 +205,6 @@
- extern void irix_asm_output_align (FILE *, unsigned);
- extern const char *current_section_name (void);
- extern unsigned int current_section_flags (void);
-+extern bool mips_use_ins_ext_p (rtx, rtx, rtx);
- 
- #endif /* ! GCC_MIPS_PROTOS_H */
-diff -burN gcc-4.0.2/gcc/config/mips/mips.c gcc-psp/gcc/config/mips/mips.c
---- gcc-4.0.2/gcc/config/mips/mips.c	2005-05-08 12:56:53.000000000 +0100
-+++ gcc-psp/gcc/config/mips/mips.c	2007-01-21 16:42:40.000000000 +0000
-@@ -150,6 +150,15 @@
-   MIPS_DF_FTYPE_DF,
-   MIPS_DF_FTYPE_DF_DF,
+diff -burN gcc-4.1.0/gcc/config/mips/mips.c gcc-psp/gcc/config/mips/mips.c
+--- gcc-4.1.0/gcc/config/mips/mips.c	2005-12-09 08:15:58.000000000 +0000
++++ gcc-psp/gcc/config/mips/mips.c	2006-05-07 18:37:50.000000000 +0100
+@@ -179,6 +179,12 @@
+   MIPS_VOID_FTYPE_V2HI_V2HI,
+   MIPS_VOID_FTYPE_V4QI_V4QI,
  
 +  /* For the Sony ALLEGREX.  */
 +  MIPS_SI_FTYPE_QI,
 +  MIPS_SI_FTYPE_HI,
-+  MIPS_SI_FTYPE_SI,
-+  MIPS_SI_FTYPE_SI_SI,
 +  MIPS_VOID_FTYPE_VOID,
-+  MIPS_VOID_FTYPE_SI_SI,
 +  MIPS_SI_FTYPE_SF,
 +
    /* The last type.  */
    MIPS_MAX_FTYPE_MAX
  };
-@@ -162,6 +171,10 @@
-      operands 1 and above.  */
-   MIPS_BUILTIN_DIRECT,
- 
-+  /* The builtin corresponds directly to an .md pattern.  There is no return
-+     value and the arguments are mapped to operands 0 and above.  */
-+  MIPS_BUILTIN_DIRECT_NO_TARGET,
-+
-   /* The builtin corresponds to a comparison instruction followed by
-      a mips_cond_move_tf_ps pattern.  The first two arguments are the
-      values to compare and the second two arguments are the vector
-@@ -185,7 +198,12 @@
-   MIPS_BUILTIN_CMP_LOWER,
- 
+@@ -220,6 +226,11 @@
    /* As above, but the instruction only sets a single $fcc register.  */
--  MIPS_BUILTIN_CMP_SINGLE
-+  MIPS_BUILTIN_CMP_SINGLE,
-+
-+  /* The builtin corresponds to the ALLEGREX cache instruction.  Operand 0
-+     is the function code (must be less than 32) and operand 1 is the base
-+     address.  */
-+  MIPS_BUILTIN_CACHE
- };
+   MIPS_BUILTIN_CMP_SINGLE,
  
- /* Invokes MACRO (COND) for each c.cond.fmt condition.  */
-@@ -361,13 +379,14 @@
- static rtx mips_prepare_builtin_target (enum insn_code, unsigned int, rtx);
- static rtx mips_expand_builtin (tree, rtx, rtx, enum machine_mode, int);
- static void mips_init_builtins (void);
--static rtx mips_expand_builtin_direct (enum insn_code, rtx, tree);
-+static rtx mips_expand_builtin_direct (enum insn_code, rtx, tree, bool);
- static rtx mips_expand_builtin_movtf (enum mips_builtin_type,
- 				      enum insn_code, enum mips_fp_condition,
- 				      rtx, tree);
++   /* The builtin corresponds to the ALLEGREX cache instruction.  Operand 0
++      is the function code (must be less than 32) and operand 1 is the base
++      address.  */
++   MIPS_BUILTIN_CACHE,
++
+   /* For generating bposge32 branch instructions in MIPS32 DSP ASE.  */
+   MIPS_BUILTIN_BPOSGE32
+ };
+@@ -405,6 +416,7 @@
  static rtx mips_expand_builtin_compare (enum mips_builtin_type,
  					enum insn_code, enum mips_fp_condition,
  					rtx, tree);
 +static rtx mips_expand_builtin_cache (enum insn_code icode, rtx, tree);
+ static rtx mips_expand_builtin_bposge (enum mips_builtin_type, rtx);
+ static void mips_encode_section_info (tree, rtx, int);
  
- /* Structure to be filled in by compute_frame_size with register
-    save masks, and offsets for the current function.  */
-@@ -553,6 +572,7 @@
- const char *mips_tune_string;   /* for -mtune=<xxx> */
- const char *mips_isa_string;	/* for -mips{1,2,3,4} */
- const char *mips_abi_string;	/* for -mabi={32,n32,64,eabi} */
-+const char *mips_preferred_stack_boundary_string;
- 
- /* Whether we are generating mips16 hard float code.  In mips16 mode
-    we always set TARGET_SOFT_FLOAT; this variable is nonzero if
-@@ -560,6 +580,9 @@
-    should arrange to call mips32 hard floating point code.  */
- int mips16_hard_float;
- 
-+unsigned int mips_preferred_stack_boundary;
-+unsigned int mips_preferred_stack_align;
-+
- const char *mips_cache_flush_func = CACHE_FLUSH_FUNC;
- 
- /* Holds string <X> if -mfix-vr4130<X> was passed on the command line.  */
-@@ -673,6 +696,7 @@
+@@ -721,6 +733,7 @@
  
    /* MIPS II */
    { "r6000", PROCESSOR_R6000, 2 },
@@ -340,70 +288,8 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.c gcc-psp/gcc/config/mips/mips.c
  
    /* MIPS III */
    { "r4000", PROCESSOR_R4000, 3 },
-@@ -3969,6 +3993,38 @@
-   return true;
- }
- 
-+/* Return true if (zero_extract OP SIZE POSITION) can be used as the
-+   source of an "ext" instruction or the destination of an "ins"
-+   instruction.  OP must be a register operand and the following
-+   conditions must hold:
-+
-+     0 <= POSITION < GET_MODE_BITSIZE (GET_MODE (op))
-+     0 < SIZE <= GET_MODE_BITSIZE (GET_MODE (op))
-+     0 < POSITION + SIZE <= GET_MODE_BITSIZE (GET_MODE (op))
-+
-+   Also reject lengths equal to a word as they are better handled
-+   by the move patterns.  */
-+
-+bool
-+mips_use_ins_ext_p (rtx op, rtx size, rtx position)
-+{
-+  HOST_WIDE_INT len, pos;
-+
-+  if (!ISA_HAS_EXT_INS
-+      || !register_operand (op, VOIDmode)
-+      || GET_MODE_BITSIZE (GET_MODE (op)) > BITS_PER_WORD)
-+    return false;
-+
-+  len = INTVAL (size);
-+  pos = INTVAL (position);
-+  
-+  if (len <= 0 || len >= GET_MODE_BITSIZE (GET_MODE (op)) 
-+      || pos < 0 || pos + len > GET_MODE_BITSIZE (GET_MODE (op)))
-+    return false;
-+
-+  return true;
-+}
-+
- /* Set up globals to generate code for the ISA or processor
-    described by INFO.  */
- 
-@@ -4509,6 +4565,22 @@
-       mips_lo_relocs[SYMBOL_GOTOFF_LOADGP] = "%lo(%neg(%gp_rel(";
-     }
- 
-+  /* Validate -mpreferred-stack-boundary= value, or provide default.
-+     The default of 128-bit is for newABI else 64-bit.  */
-+  mips_preferred_stack_boundary = (TARGET_NEWABI ? 128 : 64);
-+  mips_preferred_stack_align = (TARGET_NEWABI ? 16 : 8);
-+  if (mips_preferred_stack_boundary_string)
-+    {
-+      i = atoi (mips_preferred_stack_boundary_string);
-+      if (i < 2 || i > 12)
-+	error ("-mpreferred-stack-boundary=%d is not between 2 and 12", i);
-+      else
-+        {
-+          mips_preferred_stack_align = (1 << i);
-+          mips_preferred_stack_boundary = mips_preferred_stack_align * 8;
-+        }
-+    }
-+
-   /* Default to working around R4000 errata only if the processor
-      was selected explicitly.  */
-   if ((target_flags_explicit & MASK_FIX_R4000) == 0
-@@ -9498,6 +9570,67 @@
-   DIRECT_BUILTIN (sqrt_ps, MIPS_V2SF_FTYPE_V2SF, MASK_PAIRED_SINGLE)
+@@ -10169,6 +10182,67 @@
+   BPOSGE_BUILTIN (32, MASK_DSP)
  };
  
 +/* Builtin functions for the Sony ALLEGREX processor.
@@ -470,47 +356,17 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.c gcc-psp/gcc/config/mips/mips.c
  /* This helps provide a mapping from builtin function codes to bdesc
     arrays.  */
  
-@@ -9517,7 +9650,8 @@
- static const struct bdesc_map bdesc_arrays[] =
+@@ -10189,6 +10263,7 @@
  {
-   { mips_bdesc, ARRAY_SIZE (mips_bdesc), PROCESSOR_DEFAULT },
--  { sb1_bdesc, ARRAY_SIZE (sb1_bdesc), PROCESSOR_SB1 }
-+  { sb1_bdesc, ARRAY_SIZE (sb1_bdesc), PROCESSOR_SB1 },
-+  { allegrex_bdesc, ARRAY_SIZE (allegrex_bdesc), PROCESSOR_ALLEGREX }
+   { mips_bdesc, ARRAY_SIZE (mips_bdesc), PROCESSOR_MAX },
+   { sb1_bdesc, ARRAY_SIZE (sb1_bdesc), PROCESSOR_SB1 },
++  { allegrex_bdesc, ARRAY_SIZE (allegrex_bdesc), PROCESSOR_ALLEGREX },
+   { dsp_bdesc, ARRAY_SIZE (dsp_bdesc), PROCESSOR_MAX }
  };
  
- /* Take the head of argument list *ARGLIST and convert it into a form
-@@ -9534,7 +9668,15 @@
-   value = expand_expr (TREE_VALUE (*arglist), NULL_RTX, VOIDmode, 0);
-   mode = insn_data[icode].operand[op].mode;
-   if (!insn_data[icode].operand[op].predicate (value, mode))
-+    {
-     value = copy_to_mode_reg (mode, value);
-+      /* Check the predicate again.  */
-+      if (!insn_data[icode].operand[op].predicate (value, mode))
-+	{
-+	  error ("invalid argument to builtin function");
-+	  return const0_rtx;
-+	}
-+    }
- 
-   *arglist = TREE_CHAIN (*arglist);
-   return value;
-@@ -9591,7 +9733,10 @@
-   switch (type)
-     {
-     case MIPS_BUILTIN_DIRECT:
--      return mips_expand_builtin_direct (icode, target, arglist);
-+      return mips_expand_builtin_direct (icode, target, arglist, true);
-+
-+    case MIPS_BUILTIN_DIRECT_NO_TARGET:
-+      return mips_expand_builtin_direct (icode, target, arglist, false);
- 
-     case MIPS_BUILTIN_MOVT:
-     case MIPS_BUILTIN_MOVF:
-@@ -9606,6 +9751,9 @@
-       return mips_expand_builtin_compare (type, icode, bdesc[fcode].cond,
- 					  target, arglist);
+@@ -10292,6 +10367,9 @@
+     case MIPS_BUILTIN_BPOSGE32:
+       return mips_expand_builtin_bposge (type, target);
  
 +    case MIPS_BUILTIN_CACHE:
 +      return mips_expand_builtin_cache (icode, target, arglist);
@@ -518,123 +374,75 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.c gcc-psp/gcc/config/mips/mips.c
      default:
        return 0;
      }
-@@ -9622,10 +9770,12 @@
-   tree V2SF_type_node;
+@@ -10310,8 +10388,8 @@
+   tree V4QI_type_node;
    unsigned int offset;
  
--  /* We have only builtins for -mpaired-single and -mips3d.  */
--  if (!TARGET_PAIRED_SINGLE_FLOAT)
-+  /* We have only builtins for -mpaired-single, -mips3d, and the Sony ALLEGREX.  */
-+  if (!TARGET_PAIRED_SINGLE_FLOAT && !TARGET_ALLEGREX)
+-  /* We have only builtins for -mpaired-single, -mips3d and -mdsp.  */
+-  if (!TARGET_PAIRED_SINGLE_FLOAT && !TARGET_DSP)
++  /* We have only builtins for -mpaired-single, -mips3d and -mdsp and the Sony ALLEGREX.  */
++  if (!TARGET_PAIRED_SINGLE_FLOAT && !TARGET_DSP && !TARGET_ALLEGREX)
      return;
  
-+  if (TARGET_PAIRED_SINGLE_FLOAT)
-+    {
-   V2SF_type_node = build_vector_type_for_mode (float_type_node, V2SFmode);
+   if (TARGET_PAIRED_SINGLE_FLOAT)
+@@ -10376,6 +10454,44 @@
+ 				    double_type_node, double_type_node, NULL_TREE);
+     }
  
-   types[MIPS_V2SF_FTYPE_V2SF]
-@@ -9684,6 +9834,45 @@
-   types[MIPS_DF_FTYPE_DF_DF]
-     = build_function_type_list (double_type_node,
- 				double_type_node, double_type_node, NULL_TREE);
-+    }
++   if (TARGET_ALLEGREX)
++     {
++       types[MIPS_SI_FTYPE_QI]
++ 	= build_function_type_list (intSI_type_node,
++ 				    intQI_type_node,
++ 				    NULL_TREE);
++ 
++       types[MIPS_SI_FTYPE_HI]
++ 	= build_function_type_list (intSI_type_node,
++ 				    intHI_type_node,
++ 				    NULL_TREE);
++ 
++       types[MIPS_SI_FTYPE_SI]
++ 	= build_function_type_list (intSI_type_node,
++ 				    intSI_type_node,
++ 				    NULL_TREE);
++ 
++       types[MIPS_SI_FTYPE_SI_SI]
++ 	= build_function_type_list (intSI_type_node,
++ 				    intSI_type_node, intSI_type_node,
++ 				    NULL_TREE);
++ 
++       types[MIPS_VOID_FTYPE_VOID]
++ 	= build_function_type_list (void_type_node, void_type_node, NULL_TREE);
++ 
++       types[MIPS_VOID_FTYPE_SI_SI]
++ 	= build_function_type_list (void_type_node,
++ 				    intSI_type_node, intSI_type_node, NULL_TREE);
++ 
++       types[MIPS_SF_FTYPE_SF]
++ 	= build_function_type_list (float_type_node,
++ 				    float_type_node, NULL_TREE);
++ 
++       types[MIPS_SI_FTYPE_SF]
++ 	= build_function_type_list (intSI_type_node,
++ 				    float_type_node, NULL_TREE);
++     }
 +
-+  if (TARGET_ALLEGREX)
-+    {
-+      types[MIPS_SI_FTYPE_QI]
-+	= build_function_type_list (intSI_type_node,
-+				    intQI_type_node,
-+				    NULL_TREE);
-+
-+      types[MIPS_SI_FTYPE_HI]
-+	= build_function_type_list (intSI_type_node,
-+				    intHI_type_node,
-+				    NULL_TREE);
-+
-+      types[MIPS_SI_FTYPE_SI]
-+	= build_function_type_list (intSI_type_node,
-+				    intSI_type_node,
-+				    NULL_TREE);
-+
-+      types[MIPS_SI_FTYPE_SI_SI]
-+	= build_function_type_list (intSI_type_node,
-+				    intSI_type_node, intSI_type_node,
-+				    NULL_TREE);
-+
-+      types[MIPS_VOID_FTYPE_VOID]
-+	= build_function_type_list (void_type_node, void_type_node, NULL_TREE);
-+
-+      types[MIPS_VOID_FTYPE_SI_SI]
-+	= build_function_type_list (void_type_node,
-+				    intSI_type_node, intSI_type_node, NULL_TREE);
-+
-+      types[MIPS_SF_FTYPE_SF]
-+	= build_function_type_list (float_type_node,
-+				    float_type_node, NULL_TREE);
-+
-+      types[MIPS_SI_FTYPE_SF]
-+	= build_function_type_list (intSI_type_node,
-+				    float_type_node, NULL_TREE);
-+    }
- 
-   /* Iterate through all of the bdesc arrays, initializing all of the
-      builtin functions.  */
-@@ -9703,30 +9892,44 @@
- 
- /* Expand a MIPS_BUILTIN_DIRECT function.  ICODE is the code of the
-    .md pattern and ARGLIST is the list of function arguments.  TARGET,
--   if nonnull, suggests a good place to put the result.  */
-+   if nonnull, suggests a good place to put the result.
-+   HAS_TARGET indicates the function must return something.  */
- 
- static rtx
--mips_expand_builtin_direct (enum insn_code icode, rtx target, tree arglist)
-+mips_expand_builtin_direct (enum insn_code icode, rtx target, tree arglist,
-+			    bool has_target)
- {
-   rtx ops[MAX_RECOG_OPERANDS];
--  int i;
-+  int i = 0;
- 
--  target = mips_prepare_builtin_target (icode, 0, target);
--  for (i = 1; i < insn_data[icode].n_operands; i++)
-+  if (has_target)
-+    {
-+      /* We save target to ops[0].  */
-+      ops[0] = mips_prepare_builtin_target (icode, 0, target);
-+      i = 1;
-+    }
-+
-+  /* We need to test if arglist is not zero.  Some instructions have extra
-+     clobber registers.  */
-+  for (; i < insn_data[icode].n_operands && arglist != 0; i++)
-     ops[i] = mips_prepare_builtin_arg (icode, i, &arglist);
- 
--  switch (insn_data[icode].n_operands)
-+  switch (i)
+   if (TARGET_DSP)
      {
-+    case 0:
-+      emit_insn (GEN_FCN (icode) (0));
-+      break;
+       V2HI_type_node = build_vector_type_for_mode (intHI_type_node, V2HImode);
+@@ -10557,6 +10673,10 @@
+ 
+   switch (i)
+     {
++     case 0:
++       emit_insn (GEN_FCN (icode) (0));
++       break;
 +
      case 2:
--      emit_insn (GEN_FCN (icode) (target, ops[1]));
-+      emit_insn (GEN_FCN (icode) (ops[0], ops[1]));
+       emit_insn (GEN_FCN (icode) (ops[0], ops[1]));
        break;
- 
-     case 3:
--      emit_insn (GEN_FCN (icode) (target, ops[1], ops[2]));
-+      emit_insn (GEN_FCN (icode) (ops[0], ops[1], ops[2]));
-       break;
- 
-     case 4:
--      emit_insn (GEN_FCN (icode) (target, ops[1], ops[2], ops[3]));
-+      emit_insn (GEN_FCN (icode) (ops[0], ops[1], ops[2], ops[3]));
-       break;
- 
-     default:
-@@ -9857,4 +10060,26 @@
-   return target;
+@@ -10767,4 +10887,26 @@
+     }
  }
  
 +/* Expand a __builtin_allegrex_cache() function.  Make sure the passed
@@ -660,20 +468,18 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.c gcc-psp/gcc/config/mips/mips.c
 +}
 +
  #include "gt-mips.h"
-diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
---- gcc-4.0.2/gcc/config/mips/mips.h	2005-04-15 08:00:18.000000000 +0100
-+++ gcc-psp/gcc/config/mips/mips.h	2007-01-21 16:42:45.000000000 +0000
-@@ -59,7 +59,8 @@
-   PROCESSOR_R8000,
+diff -burN gcc-4.1.0/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
+--- gcc-4.1.0/gcc/config/mips/mips.h	2006-02-17 21:38:59.000000000 +0000
++++ gcc-psp/gcc/config/mips/mips.h	2006-05-07 18:37:54.000000000 +0100
+@@ -59,6 +59,7 @@
    PROCESSOR_R9000,
    PROCESSOR_SB1,
--  PROCESSOR_SR71000
-+  PROCESSOR_SR71000,
-+  PROCESSOR_ALLEGREX
+   PROCESSOR_SR71000,
++  PROCESSOR_ALLEGREX,
+   PROCESSOR_MAX
  };
  
- /* Which ABI to use.  ABI_32 (original 32, or o32), ABI_N32 (n32),
-@@ -308,6 +309,7 @@
+@@ -194,6 +195,7 @@
  #define TARGET_MIPS9000             (mips_arch == PROCESSOR_R9000)
  #define TARGET_SB1                  (mips_arch == PROCESSOR_SB1)
  #define TARGET_SR71K                (mips_arch == PROCESSOR_SR71000)
@@ -681,7 +487,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
  
  /* Scheduling target defines.  */
  #define TUNE_MIPS3000               (mips_tune == PROCESSOR_R3000)
-@@ -322,6 +324,7 @@
+@@ -208,6 +210,7 @@
  #define TUNE_MIPS7000               (mips_tune == PROCESSOR_R7000)
  #define TUNE_MIPS9000               (mips_tune == PROCESSOR_R9000)
  #define TUNE_SB1                    (mips_tune == PROCESSOR_SB1)
@@ -689,16 +495,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
  
  /* True if the pre-reload scheduler should try to create chains of
     multiply-add or multiply-subtract instructions.  For example,
-@@ -798,6 +801,8 @@
-       N_("Specify cache flush function"), 0},				\
-   { "fix-vr4130", &mips_fix_vr4130_string,				\
-       N_("Work around VR4130 mflo/mfhi errata"), 0},			\
-+  { "preferred-stack-boundary=", &mips_preferred_stack_boundary_string, \
-+      N_("Attempt to keep stack aligned to this power of 2"), 0},       \
- }
- 
- /* This is meant to be redefined in the host dependent files.  */
-@@ -873,6 +878,9 @@
+@@ -578,6 +581,9 @@
                                   && !TARGET_MIPS5500                    \
  				 && !TARGET_MIPS16)
  
@@ -708,7 +505,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
  /* ISA has the mips4 FP condition code instructions: FP-compare to CC,
     branch on CC, and move (both FP and non-FP) on CC.  */
  #define ISA_HAS_8CC		(ISA_MIPS4				\
-@@ -889,7 +897,8 @@
+@@ -594,7 +600,8 @@
  
  /* ISA has conditional trap instructions.  */
  #define ISA_HAS_COND_TRAP	(!ISA_MIPS1				\
@@ -718,7 +515,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
  
  /* ISA has integer multiply-accumulate instructions, madd and msub.  */
  #define ISA_HAS_MADD_MSUB       ((ISA_MIPS32				\
-@@ -907,6 +916,7 @@
+@@ -612,6 +619,7 @@
  #define ISA_HAS_CLZ_CLO         ((ISA_MIPS32				\
                                    || ISA_MIPS32R2			\
                                    || ISA_MIPS64				\
@@ -726,7 +523,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
                                   ) && !TARGET_MIPS16)
  
  /* ISA has double-word count leading zeroes/ones instruction (not
-@@ -954,6 +964,7 @@
+@@ -659,6 +667,7 @@
                                       || TARGET_MIPS5400                 \
                                       || TARGET_MIPS5500                 \
                                       || TARGET_SR71K                    \
@@ -734,21 +531,21 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
                                       ))
  
  /* ISA has 64-bit rotate right instruction.  */
-@@ -987,6 +998,13 @@
+@@ -692,11 +701,13 @@
  /* ISA includes the MIPS32r2 seb and seh instructions.  */
  #define ISA_HAS_SEB_SEH         (!TARGET_MIPS16                        \
                                   && (ISA_MIPS32R2                      \
 +                                     || TARGET_ALLEGREX                \
-+                                     ))
-+
-+/* ISA includes the MIPS32/64 rev 2 ext and ins instructions.  */
-+#define ISA_HAS_EXT_INS         (!TARGET_MIPS16                        \
-+                                 && (ISA_MIPS32R2                      \
+                                      ))
+ 
+ /* ISA includes the MIPS32/64 rev 2 ext and ins instructions.  */
+ #define ISA_HAS_EXT_INS         (!TARGET_MIPS16                        \
+                                  && (ISA_MIPS32R2                      \
 +                                     || TARGET_ALLEGREX                \
                                       ))
  
  /* True if the result of a load is not available to the next instruction.
-@@ -1017,7 +1035,8 @@
+@@ -727,7 +738,8 @@
  #define ISA_HAS_HILO_INTERLOCKS	(ISA_MIPS32				\
  				 || ISA_MIPS32R2			\
  				 || ISA_MIPS64				\
@@ -758,9 +555,9 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
  
  /* Add -G xx support.  */
  
-@@ -1427,6 +1446,11 @@
- /* Define if loading short immediate values into registers sign extends.  */
- #define SHORT_IMMEDIATES_SIGN_EXTEND
+@@ -1143,6 +1155,11 @@
+ #define CLZ_DEFINED_VALUE_AT_ZERO(MODE, VALUE) \
+   ((VALUE) = GET_MODE_BITSIZE (MODE), true)
  
 +/* The [d]clz instructions have the natural values at 0.  */
 +
@@ -770,42 +567,15 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.h gcc-psp/gcc/config/mips/mips.h
  /* Standard register usage.  */
  
  /* Number of hardware registers.  We have:
-@@ -2162,7 +2186,7 @@
-    `current_function_outgoing_args_size'.  */
- #define OUTGOING_REG_PARM_STACK_SPACE
- 
--#define STACK_BOUNDARY (TARGET_NEWABI ? 128 : 64)
-+#define STACK_BOUNDARY (mips_preferred_stack_boundary)
- 
- #define RETURN_POPS_ARGS(FUNDECL,FUNTYPE,SIZE) 0
- 
-@@ -2318,7 +2342,7 @@
- /* Treat LOC as a byte offset from the stack pointer and round it up
-    to the next fully-aligned offset.  */
- #define MIPS_STACK_ALIGN(LOC) \
--  (TARGET_NEWABI ? ((LOC) + 15) & -16 : ((LOC) + 7) & -8)
-+  ((LOC) + (mips_preferred_stack_align - 1) & -(mips_preferred_stack_align))
- 
- 
- /* Implement `va_start' for varargs and stdarg.  */
-@@ -3017,3 +3041,7 @@
- 	" TEXT_SECTION_ASM_OP);
- #endif
- #endif
-+
-+extern unsigned int mips_preferred_stack_boundary;
-+extern unsigned int mips_preferred_stack_align;
-+extern const char *mips_preferred_stack_boundary_string;
-diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
---- gcc-4.0.2/gcc/config/mips/mips.md	2005-05-08 12:56:58.000000000 +0100
-+++ gcc-psp/gcc/config/mips/mips.md	2007-01-21 16:35:39.000000000 +0000
-@@ -70,6 +70,21 @@
-    (UNSPEC_RSQRT2		209)
-    (UNSPEC_RECIP1		210)
-    (UNSPEC_RECIP2		211)
+diff -burN gcc-4.1.0/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
+--- gcc-4.1.0/gcc/config/mips/mips.md	2005-07-29 18:25:27.000000000 +0100
++++ gcc-psp/gcc/config/mips/mips.md	2006-05-07 14:59:33.000000000 +0100
+@@ -142,6 +142,21 @@
+    (UNSPEC_MTHLIP		365)
+    (UNSPEC_WRDSP		366)
+    (UNSPEC_RDDSP		367)
 +
 +   ;; Sony ALLEGREX instructions
-+   (UNSPEC_BITREV		400)
 +   (UNSPEC_WSBH 		401)
 +   (UNSPEC_WSBW 		402)
 +
@@ -818,10 +588,11 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
 +   (UNSPEC_CEIL_W_S		407)
 +   (UNSPEC_FLOOR_W_S		408)
 +   (UNSPEC_ROUND_W_S		409)
++
    ]
  )
  
-@@ -1514,9 +1529,9 @@
+@@ -1601,9 +1616,9 @@
  	   (mult:DI
  	      (any_extend:DI (match_operand:SI 1 "register_operand" "d"))
  	      (any_extend:DI (match_operand:SI 2 "register_operand" "d")))))]
@@ -833,7 +604,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
      return "msub<u>\t%1,%2";
    else
      return "msac<u>\t$0,%1,%2";
-@@ -1631,12 +1646,12 @@
+@@ -1718,12 +1733,12 @@
  	 (mult:DI (any_extend:DI (match_operand:SI 1 "register_operand" "d"))
  		  (any_extend:DI (match_operand:SI 2 "register_operand" "d")))
  	 (match_operand:DI 3 "register_operand" "0")))]
@@ -848,44 +619,20 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
      return "madd<u>\t%1,%2";
    else
      /* See comment in *macc.  */
-@@ -1911,36 +1926,24 @@
+@@ -1995,6 +2010,32 @@
+ ;;
  ;;  ....................
  ;;
- 
--(define_insn "ffs<mode>2"
--  [(set (match_operand:GPR 0 "register_operand" "=&d")
--	(ffs:GPR (match_operand:GPR 1 "register_operand" "d")))
--   (clobber (match_scratch:GPR 2 "=&d"))
--   (clobber (match_scratch:GPR 3 "=&d"))]
--  "!TARGET_MIPS16"
++;;	FIND FIRST BIT INSTRUCTION
++;;
++;;  ....................
++;;
++
 +(define_expand "ffs<mode>2"
 +  [(set (match_operand:GPR 0 "register_operand" "")
 +	(ffs:GPR (match_operand:GPR 1 "register_operand" "")))]
 +  "ISA_HAS_CLZ_CLO"
- {
--  if (optimize && find_reg_note (insn, REG_DEAD, operands[1]))
--    return "%(\
--move\t%0,%.\;\
--beq\t%1,%.,2f\n\
--%~1:\tand\t%2,%1,0x0001\;\
--<d>addu\t%0,%0,1\;\
--beq\t%2,%.,1b\;\
--<d>srl\t%1,%1,1\n\
--%~2:%)";
--
--  return "%(\
--move\t%0,%.\;\
--move\t%3,%1\;\
--beq\t%3,%.,2f\n\
--%~1:\tand\t%2,%3,0x0001\;\
--<d>addu\t%0,%0,1\;\
--beq\t%2,%.,1b\;\
--<d>srl\t%3,%3,1\n\
--%~2:%)";
--}
--  [(set_attr "type" "multi")
--   (set_attr "mode" "<MODE>")
--   (set_attr "length" "28")])
++{
 +  rtx r1, r2, r3, r4;
 +
 +  r1 = gen_reg_rtx (<MODE>mode);
@@ -899,85 +646,13 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
 +  emit_insn (gen_sub<mode>3 (operands[0], r4, r3));
 +  DONE;
 +})
- 
++;;
++;;  ....................
++;;
+ ;;	NEGATION and ONE'S COMPLEMENT
  ;;
- ;;  ...................
-@@ -2790,7 +2793,7 @@
- 
- (define_expand "extzv"
-   [(set (match_operand 0 "register_operand")
--	(zero_extract (match_operand:QI 1 "memory_operand")
-+	(zero_extract (match_operand 1 "nonimmediate_operand")
- 		      (match_operand 2 "immediate_operand")
- 		      (match_operand 3 "immediate_operand")))]
-   "!TARGET_MIPS16"
-@@ -2799,12 +2802,33 @@
- 				  INTVAL (operands[2]),
- 				  INTVAL (operands[3])))
-     DONE;
-+  else if (mips_use_ins_ext_p (operands[1], operands[2], operands[3]))
-+    {
-+      if (GET_MODE (operands[0]) == DImode)
-+        emit_insn (gen_extzvdi (operands[0], operands[1], operands[2],
-+				operands[3]));
-+      else
-+        emit_insn (gen_extzvsi (operands[0], operands[1], operands[2],
-+				operands[3]));
-+      DONE;
-+    }
-   else
-     FAIL;
- })
- 
-+(define_insn "extzv<mode>"
-+  [(set (match_operand:GPR 0 "register_operand" "=d")
-+	(zero_extract:GPR (match_operand:GPR 1 "register_operand" "d")
-+			  (match_operand:SI 2 "immediate_operand" "I")
-+			  (match_operand:SI 3 "immediate_operand" "I")))]
-+  "mips_use_ins_ext_p (operands[1], operands[2], operands[3])"
-+  "<d>ext\t%0,%1,%3,%2"
-+  [(set_attr "type"	"arith")
-+   (set_attr "mode"	"<MODE>")])
-+
-+
- (define_expand "insv"
--  [(set (zero_extract (match_operand:QI 0 "memory_operand")
-+  [(set (zero_extract (match_operand 0 "nonimmediate_operand")
- 		      (match_operand 1 "immediate_operand")
- 		      (match_operand 2 "immediate_operand"))
- 	(match_operand 3 "reg_or_0_operand"))]
-@@ -2814,10 +2838,30 @@
- 				   INTVAL (operands[1]),
- 				   INTVAL (operands[2])))
-     DONE;
-+  else if (mips_use_ins_ext_p (operands[0], operands[1], operands[2]))
-+    {
-+      if (GET_MODE (operands[0]) == DImode)
-+        emit_insn (gen_insvdi (operands[0], operands[1], operands[2],
-+			       operands[3]));
-+      else
-+        emit_insn (gen_insvsi (operands[0], operands[1], operands[2],
-+			       operands[3]));
-+      DONE;
-+   }
-   else
-     FAIL;
- })
- 
-+(define_insn "insv<mode>"
-+  [(set (zero_extract:GPR (match_operand:GPR 0 "register_operand" "+d")
-+			  (match_operand:SI 1 "immediate_operand" "I")
-+			  (match_operand:SI 2 "immediate_operand" "I"))
-+	(match_operand:GPR 3 "reg_or_0_operand" "dJ"))]
-+  "mips_use_ins_ext_p (operands[0], operands[1], operands[2])"
-+  "<d>ins\t%0,%z3,%2,%1"
-+  [(set_attr "type"	"arith")
-+   (set_attr "mode"	"<MODE>")])
-+
- ;; Unaligned word moves generated by the bit field patterns.
- ;;
- ;; As far as the rtl is concerned, both the left-part and right-part
-@@ -4087,6 +4131,25 @@
+ ;;  ....................
+@@ -4193,6 +4234,25 @@
    [(set_attr "type" "shift")
     (set_attr "mode" "<MODE>")])
  
@@ -1003,7 +678,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
  ;;
  ;;  ....................
  ;;
-@@ -5200,7 +5263,7 @@
+@@ -5306,7 +5366,7 @@
  		 (const_int 0)])
  	 (match_operand:GPR 2 "reg_or_0_operand" "dJ,0")
  	 (match_operand:GPR 3 "reg_or_0_operand" "0,dJ")))]
@@ -1012,7 +687,7 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
    "@
      mov%T4\t%0,%z2,%1
      mov%t4\t%0,%z3,%1"
-@@ -5230,8 +5293,12 @@
+@@ -5336,8 +5396,12 @@
  	(if_then_else:GPR (match_dup 5)
  			  (match_operand:GPR 2 "reg_or_0_operand")
  			  (match_operand:GPR 3 "reg_or_0_operand")))]
@@ -1026,16 +701,16 @@ diff -burN gcc-4.0.2/gcc/config/mips/mips.md gcc-psp/gcc/config/mips/mips.md
    gen_conditional_move (operands);
    DONE;
  })
-@@ -5299,3 +5366,6 @@
- ; The MIPS Paired-Single Floating Point and MIPS-3D Instructions.
+@@ -5428,3 +5492,6 @@
+ ; The MIPS DSP Instructions.
  
- (include "mips-ps-3d.md")
+ (include "mips-dsp.md")
 +
 +; Sony ALLEGREX instructions.
 +(include "allegrex.md")
-diff -burN gcc-4.0.2/gcc/config/mips/psp.h gcc-psp/gcc/config/mips/psp.h
---- gcc-4.0.2/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-psp/gcc/config/mips/psp.h	2007-01-21 16:35:39.000000000 +0000
+diff -burN gcc-4.1.0/gcc/config/mips/psp.h gcc-psp/gcc/config/mips/psp.h
+--- gcc-4.1.0/gcc/config/mips/psp.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-psp/gcc/config/mips/psp.h	2006-05-07 13:27:43.000000000 +0100
 @@ -0,0 +1,31 @@
 +/* Support for Sony's Playstation Portable (PSP).
 +   Copyright (C) 2005 Free Software Foundation, Inc.
@@ -1068,9 +743,9 @@ diff -burN gcc-4.0.2/gcc/config/mips/psp.h gcc-psp/gcc/config/mips/psp.h
 +/* Get rid of the .pdr section. */
 +#undef SUBTARGET_ASM_SPEC
 +#define SUBTARGET_ASM_SPEC "-mno-pdr"
-diff -burN gcc-4.0.2/gcc/config/mips/t-allegrex gcc-psp/gcc/config/mips/t-allegrex
---- gcc-4.0.2/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
-+++ gcc-psp/gcc/config/mips/t-allegrex	2007-01-21 16:35:39.000000000 +0000
+diff -burN gcc-4.1.0/gcc/config/mips/t-allegrex gcc-psp/gcc/config/mips/t-allegrex
+--- gcc-4.1.0/gcc/config/mips/t-allegrex	1970-01-01 01:00:00.000000000 +0100
++++ gcc-psp/gcc/config/mips/t-allegrex	2006-05-07 13:27:43.000000000 +0100
 @@ -0,0 +1,29 @@
 +# Suppress building libgcc1.a, since the MIPS compiler port is complete
 +# and does not need anything from libgcc1.a.
@@ -1101,9 +776,9 @@ diff -burN gcc-4.0.2/gcc/config/mips/t-allegrex gcc-psp/gcc/config/mips/t-allegr
 +
 +LIBGCC = stmp-multilib
 +INSTALL_LIBGCC = install-multilib
-diff -burN gcc-4.0.2/gcc/config.gcc gcc-psp/gcc/config.gcc
---- gcc-4.0.2/gcc/config.gcc	2005-08-09 11:57:04.000000000 +0100
-+++ gcc-psp/gcc/config.gcc	2007-01-21 16:35:39.000000000 +0000
+diff -burN gcc-4.1.0/gcc/config.gcc gcc-psp/gcc/config.gcc
+--- gcc-4.1.0/gcc/config.gcc	2006-02-06 16:07:46.000000000 +0000
++++ gcc-psp/gcc/config.gcc	2006-05-07 13:27:40.000000000 +0100
 @@ -406,12 +406,6 @@
        tm_defines="${tm_defines} FBSD_MAJOR=5" ;;
      *-*-freebsd6 | *-*-freebsd[6].*)
@@ -1117,7 +792,7 @@ diff -burN gcc-4.0.2/gcc/config.gcc gcc-psp/gcc/config.gcc
      *)
        echo 'Please update *-*-freebsd* in gcc/config.gcc'
        exit 1
-@@ -740,11 +734,6 @@
+@@ -756,11 +750,6 @@
          tmake_file=bfin/t-bfin-elf
          use_collect2=no
          ;;
@@ -1129,7 +804,7 @@ diff -burN gcc-4.0.2/gcc/config.gcc gcc-psp/gcc/config.gcc
  bfin*-*)
  	tm_file="${tm_file} dbxelf.h elfos.h bfin/elf.h"
          tmake_file=bfin/t-bfin
-@@ -1531,6 +1520,18 @@
+@@ -1584,6 +1573,18 @@
  	tmake_file=mips/t-r3900
  	use_fixproto=yes
  	;;
@@ -1148,33 +823,24 @@ diff -burN gcc-4.0.2/gcc/config.gcc gcc-psp/gcc/config.gcc
  mmix-knuth-mmixware)
  	need_64bit_hwint=yes
  	;;
-diff -burN gcc-4.0.2/gcc/hwint.h gcc-psp/gcc/hwint.h
---- gcc-4.0.2/gcc/hwint.h	2004-11-24 04:31:57.000000000 +0000
-+++ gcc-psp/gcc/hwint.h	2007-01-21 16:35:39.000000000 +0000
-@@ -80,7 +80,7 @@
- #  define HOST_WIDE_INT_PRINT_DOUBLE_HEX "0x%lx%08lx"
- # endif
- #else
--# define HOST_WIDE_INT_PRINT "ll"
-+# define HOST_WIDE_INT_PRINT HOST_LONG_LONG_FORMAT
- # define HOST_WIDE_INT_PRINT_C "LL"
-   /* We can assume that 'long long' is at least 64 bits.  */
- # define HOST_WIDE_INT_PRINT_DOUBLE_HEX \
-diff -burN gcc-4.0.2/gcc/version.c gcc-psp/gcc/version.c
---- gcc-4.0.2/gcc/version.c	2005-09-21 04:58:56.000000000 +0100
-+++ gcc-psp/gcc/version.c	2007-01-21 16:35:39.000000000 +0000
-@@ -5,7 +5,7 @@
-    please modify this string to indicate that, e.g. by putting your
-    organization's name in parentheses at the end of the string.  */
+diff -burN gcc-4.1.0/gcc/version.c gcc-psp/gcc/version.c
+--- gcc-4.1.0/gcc/version.c	2005-03-16 06:04:10.000000000 +0000
++++ gcc-psp/gcc/version.c	2006-05-07 13:47:56.000000000 +0100
+@@ -8,7 +8,7 @@
+    in parentheses.  You may also wish to include a number indicating
+    the revision of your modified compiler.  */
  
--const char version_string[] = "4.0.2";
-+const char version_string[] = "4.0.2 (PSPDEV 20051022)";
+-#define VERSUFFIX ""
++#define VERSUFFIX " (PSPDEV 20060507)"
  
  /* This is the location of the online document giving instructions for
     reporting bugs.  If you distribute a modified version of GCC,
-@@ -14,4 +14,4 @@
+@@ -17,7 +17,7 @@
     forward us bugs reported to you, if you determine that they are
     not bugs in your modifications.)  */
  
 -const char bug_report_url[] = "<URL:http://gcc.gnu.org/bugs.html>";
 +const char bug_report_url[] = "<URL:http://wiki.pspdev.org/psp:toolchain#bugs>";
+ 
+ /* The complete version string, assembled from several pieces.
+    BASEVER, DATESTAMP, and DEVPHASE are defined by the Makefile.  */
