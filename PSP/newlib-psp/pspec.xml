@@ -14,15 +14,15 @@
         <IsA>app:console</IsA>
         <Summary>Newlib is a C library intended for use on embedded systems.</Summary>
         <Description>Newlib is a C library intended for use on embedded systems.</Description>
-        <Archive sha1sum="be3ef8757aa87e1bc76f033e1b42ad1ff27891ea" type="targz">ftp://sources.redhat.com/pub/newlib/newlib-1.13.0.tar.gz</Archive>
+        <Archive sha1sum="f6860b36e48fb831a30bab491230bbc7ce2669a2" type="targz">ftp://sources.redhat.com/pub/newlib/newlib-1.15.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>binutils-psp</Dependency>
             <Dependency>gcc-psp</Dependency>
             <Dependency>pspsdk-headers</Dependency>
         </BuildDependencies>
         <Patches>
-            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fnewlib-1.13.0.patch&rev=0&sc=0 -->
-            <Patch level="1">newlib-1.13.0.patch</Patch>
+            <!-- svn://svn.ps2dev.org/psp/trunk/psptoolchain/patches -->
+            <Patch level="1">newlib-1.15.0-PSP.patch</Patch>
         </Patches>
     </Source>
 
@@ -38,6 +38,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2007-05-22</Date>
+            <Version>1.15.0</Version>
+            <Comment>Sync with pspdev</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@pardus.org.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2007-02-16</Date>
             <Version>1.13.0</Version>

@@ -12,12 +12,12 @@ from pisi.actionsapi import shelltools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
-WorkDir = "newlib-1.13.0"
+WorkDir = "newlib-1.15.0"
 NoStrip = "/"
 
 def unset():
-    shelltools.export("CFLAGS", "")
-    shelltools.export("CXXFLAGS", "")
+    shelltools.export("CFLAGS", "-O2")
+    shelltools.export("CXXFLAGS", "-O2")
 
 def setup():
     unset()
