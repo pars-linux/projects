@@ -17,8 +17,8 @@
             <Dependency>gettext</Dependency>
         </BuildDependencies>
         <Patches>
-            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fbinutils-2.16.1.patch&rev=0&sc=0 -->
-            <Patch level="1">binutils-2.16.1.patch</Patch>
+            <!-- svn://svn.ps2dev.org/psp/trunk/psptoolchain/patches -->
+            <Patch level="1">binutils-2.16.1-PSP.patch</Patch>
         </Patches>
     </Source>
 
