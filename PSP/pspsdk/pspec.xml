@@ -29,6 +29,9 @@
             <Dependency>gcc-psp</Dependency>
             <Dependency>newlib-psp</Dependency>
         </RuntimeDependencies>
+        <Conflicts>
+            <Package>pspsdk-headers</Package>
+        </Conflicts>
         <Files>
             <Path fileType="executable">/opt/psp</Path>
         </Files>
