@@ -21,8 +21,8 @@
             <Dependency>newlib-psp</Dependency>
         </BuildDependencies>
         <Patches>
-            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fgdb-6.3.patch&rev=0&sc=0 -->
-            <Patch level="1">gdb-6.4.patch</Patch>
+            <!-- svn://svn.ps2dev.org/psp/trunk/psptoolchain/patches -->
+            <Patch level="1">gdb-6.4-PSP.patch</Patch>
         </Patches>
     </Source>
 
