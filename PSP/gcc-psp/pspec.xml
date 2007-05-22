@@ -14,7 +14,7 @@
         <IsA>app:console</IsA>
         <Summary>The GNU Compiler Collection. Includes C/C++, java compilers</Summary>
         <Description>Contains a shared library of support routines used by GCC's runtime, and thus by every program on the system</Description>
-        <Archive sha1sum="f1b714c6398393d8f7f4ad5be933b462a95b075d" type="tarbz2">ftp://ftp.gnu.org/gnu/gcc/gcc-4.0.2/gcc-4.0.2.tar.bz2</Archive>
+        <Archive sha1sum="ad6d56ddc419d464bf8ee28f5a7ac730b97ab59c" type="tarbz2">ftp://ftp.gnu.org/gnu/gcc/gcc-4.1.0/gcc-4.1.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>binutils-psp</Dependency>
             <Dependency versionFrom="1.1.4">zlib</Dependency>
@@ -23,8 +23,8 @@
             <Dependency>gettext</Dependency>
         </BuildDependencies>
         <Patches>
-            <!-- http://svn.pspdev.org/filedetails.php?repname=psp&path=%2Ftrunk%2Fpsptoolchain%2Fgcc-4.0.2.patch&rev=0&sc=0 -->
-            <Patch level="1">gcc-4.0.2.patch</Patch>
+            <!-- svn://svn.ps2dev.org/psp/trunk/psptoolchain/patches -->
+            <Patch level="1">gcc-4.1.0-PSP.patch</Patch>
         </Patches>
     </Source>
 
@@ -47,6 +47,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2007-05-2</Date>
+            <Version>4.1.0</Version>
+            <Comment>Sync with pspdev</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@pardus.org.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2007-02-15</Date>
             <Version>4.0.2</Version>

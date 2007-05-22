@@ -12,7 +12,7 @@ from pisi.actionsapi import shelltools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
-WorkDir = "gcc-4.0.2"
+WorkDir = "gcc-4.1.0"
 NoStrip = "/"
 
 def unset():
@@ -28,7 +28,7 @@ def setup():
     if get.ENV("BOOTSTRAP") is None:
         shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-languages=\"c,c++\" --with-newlib --enable-cxx-flags=\"-G0\"" % (get.workDIR(), WorkDir))
     else:
-        shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-languages=\"c\" --with-newlib --without-headers" % (get.workDIR(), WorkDir))
+        shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-languages=\"c\" --with-newlib --without-headers --disable-libssp" % (get.workDIR(), WorkDir))
     
 def build():
     unset()
