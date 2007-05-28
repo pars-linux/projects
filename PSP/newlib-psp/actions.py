@@ -39,3 +39,6 @@ def install():
     # comes with binutils
     pisitools.remove("/opt/psp/info/configure.info")
     pisitools.remove("/opt/psp/info/standards.info")
+
+    # comes with pspsdk
+    pisitools.remove("opt/psp/psp/lib/crt0.o")
