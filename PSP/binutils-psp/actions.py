@@ -38,3 +38,5 @@ def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
 
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
+
+    pisitools.remove("/opt/psp/info/dir")

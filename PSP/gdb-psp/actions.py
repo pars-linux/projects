@@ -37,8 +37,10 @@ def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
 
-    # comes with bintuils
+    # comes with binutils-psp
     pisitools.remove("/opt/psp/lib/libiberty.a")
     pisitools.remove("/opt/psp/info/bfd.info")
     pisitools.remove("/opt/psp/info/configure.info")
     pisitools.remove("/opt/psp/info/standards.info")
+
+    pisitools.remove("/opt/psp/info/dir")
