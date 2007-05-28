@@ -45,5 +45,7 @@ def install():
 
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
 
-    # comes with bintuils
+    # comes with binutils-psp
     pisitools.remove("/opt/psp/lib/libiberty.a")
+
+    pisitools.remove("/opt/psp/info/dir")
