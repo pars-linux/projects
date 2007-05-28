@@ -44,3 +44,6 @@ def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
 
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
+
+    # comes with bintuils
+    pisitools.remove("/opt/psp/lib/libiberty.a")
