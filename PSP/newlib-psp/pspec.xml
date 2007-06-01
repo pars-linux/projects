@@ -38,6 +38,13 @@
     </Package>
 
     <History>
+        <Update release="4">
+            <Date>2007-05-01</Date>
+            <Version>1.15.0</Version>
+            <Comment>Sync with pspdev (http://forums.ps2dev.org/viewtopic.php?t=8424)</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@pardus.org.tr</Email>
+        </Update>
         <Update release="3">
             <Date>2007-05-22</Date>
             <Version>1.15.0</Version>
