@@ -19,6 +19,11 @@
 <link rel="stylesheet" href="{{ blog_url }}/../static/print.css" type="text/css" media="print">
 
 <title>{{ blog_name }}{% block title %}{% endblock %}</title>
+
+<!-- Enable tinyMCE for all textarea widgets -->
+<script type="text/javascript" src="{{ blog_url }}/../static/admin/media/tinymce/tiny_mce.js"></script>
+<script type="text/javascript" src="{{ blog_url }}/../static/admin/media/tinymce/textareas.js"></script>
+
 </head>
 <body>
     {% if google_analytics %}
