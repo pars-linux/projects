@@ -14,7 +14,7 @@
                 <b>{{ comment.person_name }}</b> - <a href="{{comment.get_content_object.get_absolute_url}}">{{comment.get_content_object.title}}</a> {%trans "commented"%}
                 <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
                 <br />
-                {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
+                {{ comment.comment|striptags|escape|urlizetrunc:40|linebreaks }}
             </div>
         {% endif %}
     {% endif %}
