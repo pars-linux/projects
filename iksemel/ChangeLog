@@ -4,6 +4,9 @@
 	* sha.c: 64bit fix (long -> int)
 	* iks.c: new funcs: iks_append, iks_prepend
 	  iks_append_cdata, iks_prepend_cdata
+	* stream.c: iks_sasl_challenge split into smaller functions
+	  This change also fixes some possible leaks which are detected
+	  by Coverity Inc's excellent Prevent product.
 
 2006-05-19  Gurer
 	* dom.c: fixed (size % FILE_IO_BUFFER_SIZE) problem in iks_load()
