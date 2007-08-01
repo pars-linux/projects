@@ -2,6 +2,8 @@
 	* Patch from Benjamin Bennett:
 	  base64.c: fix padding
 	* sha.c: 64bit fix (long -> int)
+	* iks.c: new funcs: iks_append, iks_prepend
+	  iks_append_cdata, iks_prepend_cdata
 
 2006-05-19  Gurer
 	* dom.c: fixed (size % FILE_IO_BUFFER_SIZE) problem in iks_load()
