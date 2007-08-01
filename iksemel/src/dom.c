@@ -37,6 +37,8 @@ tagHook (struct dom_data *data, char *name, char **atts, int type)
 	}
 	if (IKS_CLOSE == type || IKS_SINGLE == type) {
 		x = iks_parent (data->current);
+		if (iks_strcmp(iks_name(data->current), name) != 0)
+			return IKS_BADXML;
 		if (x)
 			data->current = x;
 		else {
@@ -132,7 +134,7 @@ iks_load (const char *fname, iks **xptr)
 						ret = IKS_FILE_RWERR;
 						break;
 					}
-                    if (0 == len) ret = IKS_OK;
+					if (0 == len) ret = IKS_OK;
 					done = 1;
 				}
 				if (len > 0) {
