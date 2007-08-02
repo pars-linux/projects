@@ -1,3 +1,6 @@
+2007-08-02  Gurer
+	* tst-iks.c: test for new append/prepend functions added.
+
 2007-08-01  Gurer
 	* Patch from Benjamin Bennett:
 	  base64.c: fix padding
