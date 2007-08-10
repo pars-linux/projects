@@ -1,3 +1,6 @@
+2007-08-10  Gurer
+	* version bump to 1.4 after the release
+
 2007-08-02  Gurer
 	* tst-iks.c: test for new append/prepend functions added.
 
