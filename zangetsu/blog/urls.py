@@ -4,12 +4,16 @@
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
+import datetime
+
 from django.conf.urls.defaults import *
 from zangetsu.blog.feeds import RssFeed, AtomFeed
 from zangetsu.blog.models import Entry
 
+Now = datetime.datetime.now
+
 info_dict = {
-    "queryset": Entry.objects.all(),
+    "queryset": Entry.objects.filter(pubdate__lte=Now()),
     "date_field": "pubdate",
 }
 
@@ -31,7 +35,7 @@ urlpatterns = patterns("",
 
     (r"^entry/(?P<object_id>\d+)/$",
         "django.views.generic.list_detail.object_detail",
-        {"queryset": Entry.objects.all()}
+        {"queryset": Entry.objects.filter(pubdate__lte=Now())}
     ),
 
     (r"^feed/(?P<url>.*)/$",

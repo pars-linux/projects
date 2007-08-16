@@ -8,6 +8,10 @@ from zangetsu.blog import defaults
 from zangetsu.blog.models import Entry, Tag, Link
 from zangetsu.settings import WEB_URL
 
+import datetime
+
+Now = datetime.datetime.now
+
 register = Library()
 
 class TemplateSyntaxError(Exception):
@@ -38,7 +42,7 @@ class LinkMenuObject(Node):
 
 class MonthMenuObject(Node):
     def render(self, context):
-        context["blog_months"] = Entry.objects.dates("pubdate", "month", "DESC")
+        context["blog_months"] = Entry.objects.filter(pubdate__lte=Now()).dates("pubdate", "month", "DESC")
         return ""
 
 class TagMenuObject(Node):
