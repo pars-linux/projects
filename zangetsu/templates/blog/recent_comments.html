@@ -11,7 +11,7 @@
     {% if comment.approved %}
         {% if comment.is_public %}
             <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
-                <b>{{ comment.person_name }}</b> - <a href="{{comment.get_content_object.get_absolute_url}}">{{comment.get_content_object.title}}</a> {%trans "commented"%}
+                <b>{{ comment.person_name|striptags|escape }}</b> - <a href="{{comment.get_content_object.get_absolute_url}}">{{comment.get_content_object.title}}</a> {%trans "commented"%}
                 <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
                 <br />
                 {{ comment.comment|striptags|escape|urlizetrunc:40|linebreaks }}
