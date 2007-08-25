@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load comments %}
 {% load library %}
+{% load sanitize_html %}
 {% load i18n %}
 
 {% block title %} - {{ object.title }}{% endblock %}
@@ -30,7 +31,7 @@
                     <a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a> &nbsp; <b>{{ comment.person_name|striptags|escape }}</b> {%trans "commented"%}
                     <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
                     <br />
-                    {{ comment.comment|striptags|escape|urlizetrunc:40|linebreaks }}
+                    {{ comment.comment|sanitize }}
                 </div>
                 {%endif%}
             {%endif%}
