@@ -1,12 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from django.template import Library
-
 import re
 
+from django.template import Library
 from BeautifulSoup import BeautifulSoup, Comment
 
+register = Library()
 
 def remove_pattern(pattern, value):
     """Case insensitive 'search & destroy' function"""
@@ -44,4 +44,4 @@ def sanitize_html(value):
     return remove_javascript(value)
 
 
-register.filter('santize', sanitize_html)
+register.filter('sanitize', sanitize_html)
