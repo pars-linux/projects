@@ -31,7 +31,7 @@
                     <a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a> &nbsp; <b>{{ comment.person_name|striptags|escape }}</b> {%trans "commented"%}
                     <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
                     <br />
-                    {{ comment.comment|sanitize }}
+                    {{ comment.comment|linebreaks|urlizetrunc:40|sanitize }}
                 </div>
                 {%endif%}
             {%endif%}
