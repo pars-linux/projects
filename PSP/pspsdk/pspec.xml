@@ -20,7 +20,11 @@
             <Dependency>newlib-psp</Dependency>
             <Dependency>doxygen</Dependency>
         </BuildDependencies>
-    </Source>
+        <Patches>
+            <!-- rev 2238-2302 -->
+            <Patch>pspsdk.patch</Patch>
+        </Patches>
+     </Source>
 
     <Package>
         <Name>pspsdk</Name>
@@ -38,6 +42,13 @@
     </Package>
 
     <History>
+       <Update release="3">
+           <Date>2007-08-27</Date>
+           <Version>2302</Version>
+           <Comment>Bump.</Comment>
+           <Name>S.Çağlar Onur</Name>
+           <Email>caglar@pardus.org.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2007-05-21</Date>
             <Version>2228</Version>

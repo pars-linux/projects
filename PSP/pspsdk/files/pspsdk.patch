@@ -1,0 +1,2867 @@
+Index: tools/psp-config.c
+===================================================================
+--- tools/psp-config.c	(revision 2228)
++++ tools/psp-config.c	(revision 2304)
+@@ -11,7 +11,9 @@
+ #define PSPDEV_ENV "PSPDEV"
+ #define PATH_ENV "PATH"
+ 
++#ifndef MAX_PATH
+ #define MAX_PATH 256
++#endif
+ 
+ /***** Might need to change these for different platforms */
+ #define PATH_SEP ":"
+@@ -109,14 +111,13 @@
+ 	int found = 0;
+ 
+ 	/* Check if name is an absolute path, if so our job is done */
++
+ #ifdef __MINGW32__
+ 
+ 	char *writableName = malloc(strlen(name) + 2);
+ 	char *ptr = writableName;
+ 	char temp;
+ 
+-	*(ptr++) = '/';
+-
+ 	while (*(name)) {
+ 		temp = *(name++);
+ 		if (temp == '\\') temp = '/';
+@@ -126,7 +127,12 @@
+ 	*(ptr) = '\0';
+ 	name = writableName;
+ #endif
+-	if(name[0] == DIR_SEP)
++
++	if(name[0] == DIR_SEP 
++#ifdef __MINGW32__
++	   || name[1] == ':' 
++#endif
++		)
+ 	{
+ 		/* Absolute path */
+ 		strncpy(path, name, MAX_PATH);
+Index: configure.ac
+===================================================================
+--- configure.ac	(revision 2228)
++++ configure.ac	(revision 2304)
+@@ -81,6 +81,7 @@
+                  src/atrac3/Makefile
+                  src/audio/Makefile
+                  src/base/Makefile
++                 src/base/linkfile.prx
+                  src/ctrl/Makefile
+                  src/debug/Makefile
+                  src/display/Makefile
+@@ -96,7 +97,7 @@
+                  src/net/Makefile
+                  src/power/Makefile
+                  src/prof/Makefile
+-				 src/registry/Makefile
++                 src/registry/Makefile
+                  src/rtc/Makefile
+                  src/sircs/Makefile
+                  src/sdk/Makefile
+Index: src/kernel/pspsysclib.h
+===================================================================
+--- src/kernel/pspsysclib.h	(revision 0)
++++ src/kernel/pspsysclib.h	(revision 2304)
+@@ -0,0 +1,43 @@
++/*
++ * PSP Software Development Kit - http://www.pspdev.org
++ * -----------------------------------------------------------------------
++ * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
++ *
++ * pspsysclib.h - Interface to sysclib library.
++ *
++ * Copyright (c) 2007 James F
++ *
++ * $Id$
++ */
++
++#ifndef PSPSYSCLIB_H
++#define PSPSYSCLIB_H
++
++#include <pspkerneltypes.h>
++#include <stdarg.h>
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/** Callback type, ch is 0x200 on start of string, 0x201 on end */
++typedef void (*prnt_callback)(void *ctx, int ch);
++
++/** 
++ * Generic print routine
++ *
++ * @param cb - Callback, called for every character printed
++ * @param ctx - Context parameter passed to the callback
++ * @param fmt - Format data
++ * @param args - Arguments for format
++ *
++ */
++void prnt(prnt_callback cb, void *ctx, const char *fmt, va_list args);
++
++/*@}*/
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+Index: src/kernel/Makefile.am
+===================================================================
+--- src/kernel/Makefile.am	(revision 2228)
++++ src/kernel/Makefile.am	(revision 2304)
+@@ -63,7 +63,8 @@
+ 	pspsyscon.h			\
+ 	pspsysevent.h		\
+ 	pspidstorage.h		\
+-	pspexception.h
++	pspexception.h 		\
++	pspsysclib.h
+ 	
+ lib_LIBRARIES = libpspkernel.a
+ 
+
+Property changes on: src/debug
+___________________________________________________________________
+Name: svn:ignore
+   - .deps
+Makefile
+Makefile.in
+libpspdebug.a
+libpspgdb_user.a
+libpspgdb.a
+libpspgdb_kernel.a
+
+   + .deps
+Makefile
+Makefile.in
+libpspdebug.a
+libpspgdb_user.a
+libpspgdb.a
+libpspgdb_kernel.a
+libpspdebugkb.a
+
+
+
+Property changes on: src/rtc
+___________________________________________________________________
+Name: svn:ignore
+   - .deps
+Makefile
+Makefile.in
+libpsprtc.a
+
+   + .deps
+Makefile
+Makefile.in
+libpsprtc.a
+libpsprtc_driver.a
+
+
+Index: src/audio/sceAudio_driver.S
+===================================================================
+--- src/audio/sceAudio_driver.S	(revision 0)
++++ src/audio/sceAudio_driver.S	(revision 2304)
+@@ -0,0 +1,116 @@
++	.set noreorder
++
++#include "pspimport.s"
++
++#ifdef F_sceAudio_driver_0000
++	IMPORT_START	"sceAudio_driver",0x00010000
++#endif
++
++#ifdef F_sceAudio_driver_0001
++	IMPORT_FUNC	"sceAudio_driver",0x80F1F7E0,sceAudioInit
++#endif
++
++#ifdef F_sceAudio_driver_0002 
++	IMPORT_FUNC	"sceAudio_driver",0x210567F7,sceAudioEnd
++#endif
++
++#ifdef F_sceAudio_driver_0003 
++	IMPORT_FUNC	"sceAudio_driver",0xA2BEAA6C,sceAudioSetFrequency 
++#endif
++
++#ifdef F_sceAudio_driver_0004
++	IMPORT_FUNC	"sceAudio_driver",0xB61595C0,sceAudioLoopbackTest 
++#endif
++
++#ifdef F_sceAudio_driver_0005
++	IMPORT_FUNC	"sceAudio_driver",0x927AC32B,sceAudioSetVolumeOffset 
++#endif
++
++#ifdef F_sceAudio_driver_0006
++	IMPORT_FUNC	"sceAudio_driver",0x8C1009B2,sceAudioOutput 
++#endif
++
++#ifdef F_sceAudio_driver_0007
++	IMPORT_FUNC	"sceAudio_driver",0x136CAF51,sceAudioOutputBlocking 
++#endif
++
++#ifdef F_sceAudio_driver_0008
++	IMPORT_FUNC	"sceAudio_driver",0xE2D56B2D,sceAudioOutputPanned 
++#endif
++
++#ifdef F_sceAudio_driver_0009
++	IMPORT_FUNC	"sceAudio_driver",0x13F592BC,sceAudioOutputPannedBlocking 
++#endif
++
++#ifdef F_sceAudio_driver_0010
++	IMPORT_FUNC	"sceAudio_driver",0x5EC81C55,sceAudioChReserve 
++#endif
++
++#ifdef F_sceAudio_driver_0011
++	IMPORT_FUNC	"sceAudio_driver",0x41EFADE7,sceAudioOneshotOutput 
++#endif
++
++#ifdef F_sceAudio_driver_0012
++	IMPORT_FUNC	"sceAudio_driver",0x6FC46853,sceAudioChRelease 
++#endif
++
++#ifdef F_sceAudio_driver_0013
++	IMPORT_FUNC	"sceAudio_driver",0xB011922F,sceAudio_driver_B011922F 
++#endif
++
++#ifdef F_sceAudio_driver_0014
++	IMPORT_FUNC	"sceAudio_driver",0xCB2E439E,sceAudioSetChannelDataLen 
++#endif
++
++#ifdef F_sceAudio_driver_0015
++	IMPORT_FUNC	"sceAudio_driver",0x95FD0C2D,sceAudioChangeChannelConfig 
++#endif
++
++#ifdef F_sceAudio_driver_0016
++	IMPORT_FUNC	"sceAudio_driver",0xB7E1D8E7,sceAudioChangeChannelVolume 
++#endif
++
++#ifdef F_sceAudio_driver_0017
++	IMPORT_FUNC	"sceAudio_driver",0x38553111,sceAudio_driver_38553111 
++#endif
++
++#ifdef F_sceAudio_driver_0018
++	IMPORT_FUNC	"sceAudio_driver",0x5C37C0AE,sceAudio_driver_5C37C0AE 
++#endif
++
++#ifdef F_sceAudio_driver_0019
++	IMPORT_FUNC	"sceAudio_driver",0xE0727056,sceAudio_driver_E0727056 
++#endif
++
++#ifdef F_sceAudio_driver_0020
++	IMPORT_FUNC	"sceAudio_driver",0x086E5895,sceAudioInputBlocking 
++#endif
++
++#ifdef F_sceAudio_driver_0021
++	IMPORT_FUNC	"sceAudio_driver",0x6D4BEC68,sceAudioInput 
++#endif
++
++#ifdef F_sceAudio_driver_0022
++	IMPORT_FUNC	"sceAudio_driver",0xA708C6A6,sceAudioGetInputLength 
++#endif
++
++#ifdef F_sceAudio_driver_0023
++	IMPORT_FUNC	"sceAudio_driver",0x87B2E651,sceAudioWaitInputEnd 
++#endif
++
++#ifdef F_sceAudio_driver_0024
++	IMPORT_FUNC	"sceAudio_driver",0x7DE61688,sceAudioInputInit 
++#endif
++
++#ifdef F_sceAudio_driver_0025
++	IMPORT_FUNC	"sceAudio_driver",0xE926D3FB,sceAudioInputInitEx 
++#endif
++
++#ifdef F_sceAudio_driver_0026
++	IMPORT_FUNC	"sceAudio_driver",0xA633048E,sceAudioPollInputEnd 
++#endif
++
++#ifdef F_sceAudio_driver_0027
++	IMPORT_FUNC	"sceAudio_driver",0xE9D97901,sceAudioGetChannelRestLen 
++#endif
++
+
+Property changes on: src/audio/sceAudio_driver.S
+___________________________________________________________________
+Name: svn:executable
+   + *
+
+Index: src/audio/Makefile.am
+===================================================================
+--- src/audio/Makefile.am	(revision 2228)
++++ src/audio/Makefile.am	(revision 2304)
+@@ -10,24 +10,32 @@
+ CFLAGS = @PSPSDK_CFLAGS@
+ CCASFLAGS = $(CFLAGS) $(INCLUDES)
+ 
+-AUDIO_OBJS = sceAudio_0000.o sceAudio_0001.o sceAudio_0002.o sceAudio_0003.o sceAudio_0004.o sceAudio_0005.o sceAudio_0006.o sceAudio_0007.o sceAudio_0008.o sceAudio_0009.o sceAudio_0010.o sceAudio_0011.o sceAudio_0012.o sceAudio_0013.o sceAudio_0014.o sceAudio_0015.o sceAudio_0016.o sceAudio_0017.o sceAudio_0018.o sceAudio_0019.o
++AUDIO_OBJS = sceAudio_0000.o sceAudio_0001.o sceAudio_0002.o sceAudio_0003.o sceAudio_0004.o sceAudio_0005.o sceAudio_0006.o sceAudio_0007.o sceAudio_0008.o sceAudio_0009.o sceAudio_0010.o sceAudio_0011.o sceAudio_0012.o sceAudio_0013.o sceAudio_0014.o sceAudio_0015.o sceAudio_0016.o sceAudio_0017.o sceAudio_0018.o sceAudio_0019.o sceAudio_0020.o sceAudio_0021.o sceAudio_0022.o sceAudio_0023.o sceAudio_0024.o sceAudio_0025.o sceAudio_0026.o sceAudio_0027.o
+ 
++AUDIO_DRIVER_OBJS = sceAudio_driver_0000.o sceAudio_driver_0001.o sceAudio_driver_0002.o sceAudio_driver_0003.o sceAudio_driver_0004.o sceAudio_driver_0005.o sceAudio_driver_0006.o sceAudio_driver_0007.o sceAudio_driver_0008.o sceAudio_driver_0009.o sceAudio_driver_0010.o sceAudio_driver_0011.o sceAudio_driver_0012.o sceAudio_driver_0013.o sceAudio_driver_0014.o sceAudio_driver_0015.o sceAudio_driver_0016.o sceAudio_driver_0017.o sceAudio_driver_0018.o sceAudio_driver_0019.o sceAudio_driver_0020.o sceAudio_driver_0021.o sceAudio_driver_0022.o sceAudio_driver_0023.o sceAudio_driver_0024.o sceAudio_driver_0025.o sceAudio_driver_0026.o sceAudio_driver_0027.o
++
+ CODEC_OBJS = sceAudiocodec_0000.o sceAudiocodec_0001.o sceAudiocodec_0002.o sceAudiocodec_0003.o sceAudiocodec_0004.o sceAudiocodec_0005.o sceAudiocodec_0006.o sceAudiocodec_0007.o sceAudiocodec_0008.o 
+ 
+ libpspaudioincludedir = @PSPSDK_INCLUDEDIR@
+ libpspaudioinclude_HEADERS = pspaudio.h
+ 
++libpspaudio_driverincludedir = @PSPSDK_INCLUDEDIR@
++libpspaudio_driverinclude_HEADERS = pspaudio_kernel.h
++
+ libpspaudiolibincludedir = @PSPSDK_INCLUDEDIR@
+ libpspaudiolibinclude_HEADERS = pspaudiolib.h
+ 
+ libpspaudiocodecincludedir = @PSPSDK_INCLUDEDIR@
+ libpspaudiocodecinclude_HEADERS = pspaudiocodec.h
+ 
+-lib_LIBRARIES = libpspaudio.a libpspaudiolib.a libpspaudiocodec.a
++lib_LIBRARIES = libpspaudio.a libpspaudio_driver.a libpspaudiolib.a libpspaudiocodec.a
+ 
+ libpspaudio_a_SOURCES = sceAudio.S
+ libpspaudio_a_LIBADD = $(AUDIO_OBJS)
+ 
++libpspaudio_driver_a_SOURCES = sceAudio_driver.S
++libpspaudio_driver_a_LIBADD = $(AUDIO_DRIVER_OBJS)
++
+ libpspaudiolib_a_SOURCES = pspaudiolib.c
+ 
+ libpspaudiocodec_a_SOURCES = sceAudiocodec.S
+@@ -36,5 +44,8 @@
+ $(AUDIO_OBJS): sceAudio.S
+ 	$(COMPILE) -DF_$* $< -c -o $@
+ 
++$(AUDIO_DRIVER_OBJS): sceAudio_driver.S
++	$(COMPILE) -DF_$* $< -c -o $@
++
+ $(CODEC_OBJS): sceAudiocodec.S
+ 	$(COMPILE) -DF_$* $< -c -o $@
+Index: src/audio/pspaudio.h
+===================================================================
+--- src/audio/pspaudio.h	(revision 2228)
++++ src/audio/pspaudio.h	(revision 2304)
+@@ -7,6 +7,8 @@
+  *
+  * Copyright (c) 2005 Adresd
+  * Copyright (c) 2005 Marcus R. Brown <mrbrown@ocgnet.org>
++ * Copyright (c) 2007 cooleyes
++ * Copyright (c) 2007 Alexander Berl <raphael@fx-world.org>
+  *
+  * $Id$
+  */
+Index: src/audio/pspaudio_kernel.h
+===================================================================
+--- src/audio/pspaudio_kernel.h	(revision 0)
++++ src/audio/pspaudio_kernel.h	(revision 2304)
+@@ -0,0 +1,49 @@
++/*
++ * PSP Software Development Kit - http://www.pspdev.org
++ * -----------------------------------------------------------------------
++ * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
++ *
++ * pspaudio.h - Prototypes for the sceAudio library.
++ *
++ * Copyright (c) 2005 Adresd
++ * Copyright (c) 2005 Marcus R. Brown <mrbrown@ocgnet.org>
++ * Copyright (c) 2007 cooleyes
++ * Copyright (c) 2007 Alexander Berl <raphael@fx-world.org>
++ *
++ * $Id: pspaudio.h 1095 2005-09-27 21:02:16Z jim $
++ */
++#ifndef PSPAUDIO_H
++#define PSPAUDIO_H
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/** @defgroup Audio User Audio Library */
++
++/** @addtogroup Audio */
++
++/*@{*/
++
++enum PspAudioFrequencies {
++    /** Sampling frequency set to 44100Hz. */
++    PSP_AUDIO_FREQ_44K = 44100,
++    /** Sampling frequency set to 48000Hz. */
++    PSP_AUDIO_FREQ_48K = 48000
++};
++
++/**
++  * Set audio sampling frequency
++  *
++  * @param frequency - Sampling frequency to set audio output to - either 44100 or 48000.
++  *
++  * @returns 0 on success, an error if less than 0.
++  */
++int sceAudioSetFrequency(int frequency);
++/*@}*/
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* PSPAUDIO_H */
+
+Property changes on: src/audio/pspaudio_kernel.h
+___________________________________________________________________
+Name: svn:executable
+   + *
+
+Index: src/audio/sceAudio.S
+===================================================================
+--- src/audio/sceAudio.S	(revision 2228)
++++ src/audio/sceAudio.S	(revision 2304)
+@@ -62,3 +62,27 @@
+ #ifdef F_sceAudio_0019
+ 	IMPORT_FUNC	"sceAudio",0x7DE61688,sceAudioInputInit
+ #endif
++#ifdef F_sceAudio_0020
++	IMPORT_FUNC	"sceAudio",0xA633048E,sceAudioPollInputEnd
++#endif
++#ifdef F_sceAudio_0021
++	IMPORT_FUNC	"sceAudio",0xB011922F,sceAudio_B011922F
++#endif
++#ifdef F_sceAudio_0022
++	IMPORT_FUNC	"sceAudio",0xE926D3FB,sceAudioInputInitEx
++#endif
++#ifdef F_sceAudio_0023
++	IMPORT_FUNC	"sceAudio",0x01562BA3,sceAudioOutput2Reserve
++#endif
++#ifdef F_sceAudio_0024
++	IMPORT_FUNC	"sceAudio",0x2D53F36E,sceAudioOutput2OutputBlocking
++#endif
++#ifdef F_sceAudio_0025
++	IMPORT_FUNC	"sceAudio",0x43196845,sceAudioOutput2Release
++#endif
++#ifdef F_sceAudio_0026
++	IMPORT_FUNC	"sceAudio",0x63F2889C,sceAudioOutput2ChangeLength
++#endif
++#ifdef F_sceAudio_0027
++	IMPORT_FUNC	"sceAudio",0x647CEF33,sceAudioOutput2GetRestSample
++#endif
+Index: src/utility/sceUtility.S
+===================================================================
+--- src/utility/sceUtility.S	(revision 2228)
++++ src/utility/sceUtility.S	(revision 2304)
+@@ -113,3 +113,15 @@
+ #ifdef F_sceUtility_0036
+ 	IMPORT_FUNC	"sceUtility",0x64d50c56,sceUtilityUnloadNetModule
+ #endif
++#ifdef F_sceUtility_0037
++	IMPORT_FUNC	"sceUtility",0xC629AF26,sceUtilityLoadAvModule
++#endif
++#ifdef F_sceUtility_0038
++	IMPORT_FUNC	"sceUtility",0xF7D8D092,sceUtilityUnloadAvModule
++#endif
++#ifdef F_sceUtility_0039
++	IMPORT_FUNC	"sceUtility",0x0D5BC6D2,sceUtilityLoadUsbModule
++#endif
++#ifdef F_sceUtility_0040
++	IMPORT_FUNC	"sceUtility",0xF64910F0,sceUtilityUnloadUsbModule
++#endif
+Index: src/utility/psputility_msgdialog.h
+===================================================================
+--- src/utility/psputility_msgdialog.h	(revision 2228)
++++ src/utility/psputility_msgdialog.h	(revision 2304)
+@@ -3,7 +3,7 @@
+  * -----------------------------------------------------------------------
+  * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
+  *
+- *  psputility_dialogs.h - Definitions and Functions for Dialogs
++ *  psputility_msdialog.h - Definitions and Functions for Dialogs
+  *                         section of the pspUtility library
+  *
+  * Copyright (c) 2005 Marcus Comstedt <marcus@mc.pp.se>
+@@ -17,37 +17,25 @@
+ extern "C" {
+ #endif
+ 
+-#include <psptypes.h>
+-
+-/** Structure to hold the parameters for a message dialog
+-  */
+-typedef struct _SceUtilityMsgDialogParams {
+-    /** Size of the structure */
+-    SceSize     size;
+-
+-    /** Language for predefined guide texts */
+-    int		language;
+-
+-    /** Set to 1 for X/O button swap (US model) */
+-    int         buttonSwap;
+-
+-    /** ? */
+-    int		unknown[4];
+-    int		returnValue;
+-    int		unknown2[7];
++/**
++ * Structure to hold the parameters for a message dialog
++**/
++typedef struct _SceUtilityMsgDialogParams
++{
++    pspUtilityDialogCommon base;
++    int unknown2[3];
+     /** The message to display (may contain embedded linefeeds) */
+-    char	message[512];
++    char message[512];
+ 
+-} SceUtilityMsgDialogParams;
++} pspUtilityMsgDialogParams;
+ 
+-
+ /**
+  * Create a message dialog
+  *
+  * @param params - dialog parameters
+  * @returns 0 on success
+  */
+-int sceUtilityMsgDialogInitStart(SceUtilityMsgDialogParams *params);
++int sceUtilityMsgDialogInitStart(pspUtilityMsgDialogParams *params);
+ 
+ /**
+  * Remove a message dialog currently active.  After calling this
+Index: src/utility/psputility_savedata.h
+===================================================================
+--- src/utility/psputility_savedata.h	(revision 2228)
++++ src/utility/psputility_savedata.h	(revision 2304)
+@@ -44,17 +44,8 @@
+   */
+ typedef struct SceUtilitySavedataParam
+ {
+-	/** Size of the structure */
+-	SceSize size;
++	pspUtilityDialogCommon base;
+ 
+-	int language;
+-
+-	int buttonSwap;
+-
+-	int unknown[4];
+-	int result;
+-	int unknown2[4];
+-
+ 	/** mode: 0 to load, 1 to save */
+ 	int mode;
+ 	int unknown12;
+Index: src/utility/psputility_netconf.h
+===================================================================
+--- src/utility/psputility_netconf.h	(revision 2228)
++++ src/utility/psputility_netconf.h	(revision 2304)
+@@ -19,27 +19,19 @@
+ 
+ #include <psptypes.h>
+ 
+-enum pspUtilityNetconfActions {
++enum pspUtilityNetconfActions
++{
+ 	PSP_NETCONF_ACTION_CONNECTAP,
+ 	PSP_NETCONF_ACTION_DISPLAYSTATUS,
+ 	PSP_NETCONF_ACTION_CONNECT_ADHOC
+ };
+ 
+-enum pspUtilityNetconfStatus {
+-	PSP_NETCONF_STATUS_INIT = 1,
+-	PSP_NETCONF_STATUS_RUNNING,
+-	PSP_NETCONF_STATUS_FINISHED
+-};
+-
+-typedef struct _pspUtilityNetconfData {
+-	u32 size;
+-	int language;
+-	int buttonSwap;
+-	int unknown[4];
+-	int result;
+-	int unknown2[4];
+-	int action; //one of pspUtilityNetconfActions
++typedef struct _pspUtilityNetconfData
++{
++	pspUtilityDialogCommon base;
++	int action; /** One of pspUtilityNetconfActions */
+ 	u32 unknown3;
++	
+ } pspUtilityNetconfData;
+ 
+ /**
+@@ -68,7 +60,7 @@
+ /**
+  * Get the status of a running Network Configuration Dialog
+  *
+- * @return one of pspUtilityNetconfStatus on success, < 0 on error
++ * @return one of pspUtilityDialogState on success, < 0 on error
+  */
+ int sceUtilityNetconfGetStatus (void);
+ 
+Index: src/utility/psputility_osk.h
+===================================================================
+--- src/utility/psputility_osk.h	(revision 2228)
++++ src/utility/psputility_osk.h	(revision 2304)
+@@ -20,18 +20,6 @@
+ #include <psptypes.h>
+ 
+ /**
+- * Return-values for sceUtilityOskGetStatus()
+-**/
+-typedef enum
+-{
+-	PSP_OSK_NONE = 0, /**< No keyboard is currently active. */
+-	PSP_OSK_INIT, /**< The keyboard is currently being initialized. */
+-	PSP_OSK_VISIBLE, /**< The keyboard is visible and ready for use. */
+-	PSP_OSK_QUIT, /**< The keyboard has been canceled and should be shut down. */
+-	PSP_OSK_FINISHED /**< The keyboard has successfully shut down. */
+-} SceOskState;
+-
+-/**
+  *
+ **/
+ typedef struct _SceUtilityOskData
+@@ -56,18 +44,7 @@
+ **/
+ typedef struct _SceUtilityOskParams
+ {
+-	unsigned int size;
+-	int language;
+-	int buttonswap;
+-	int unk_12; // set 17
+-	int unk_16; // set 19
+-	int unk_20; // set 18
+-	int unk_24; // set 16
+-	int rc;
+-	int unk_32;
+-	int unk_36;
+-	int unk_40;
+-	int unk_44;
++	pspUtilityDialogCommon base;
+ 	int unk_48; // set 1, if 0 nothing happens, if 2 crash ...
+ 	SceUtilityOskData* data;
+ 	int unk_56;
+@@ -87,7 +64,7 @@
+ 
+ /**
+  * Remove a currently active keyboard. After calling this function you must
+- * poll sceUtilityOskGetStatus() until it returns PSP_OSK_FINISHED.
++ * poll sceUtilityOskGetStatus() until it returns PSP_UTILITY_DIALOG_FINISHED.
+ **/
+ int sceUtilityOskShutdownStart(void);
+ 
+@@ -101,7 +78,7 @@
+ /**
+  * Get the status of a on-screen keyboard currently active.
+  *
+- * @returns the current status of the keyboard. See SceOskState for details.
++ * @returns the current status of the keyboard. See pspUtilityDialogState for details.
+ **/
+ int sceUtilityOskGetStatus(void);
+ 
+Index: src/utility/Makefile.am
+===================================================================
+--- src/utility/Makefile.am	(revision 2228)
++++ src/utility/Makefile.am	(revision 2304)
+@@ -10,7 +10,7 @@
+ CFLAGS = @PSPSDK_CFLAGS@
+ CCASFLAGS = $(CFLAGS) -I$(top_srcdir)/src/base -I$(top_srcdir)/src/kernel
+ 
+-UTILITY_OBJS = sceUtility_0000.o sceUtility_0001.o sceUtility_0002.o sceUtility_0003.o sceUtility_0004.o sceUtility_0005.o sceUtility_0006.o sceUtility_0007.o sceUtility_0008.o sceUtility_0009.o sceUtility_0010.o sceUtility_0011.o sceUtility_0012.o sceUtility_0013.o sceUtility_0014.o sceUtility_0015.o sceUtility_0016.o sceUtility_0017.o sceUtility_0018.o sceUtility_0019.o sceUtility_0020.o sceUtility_0021.o sceUtility_0022.o sceUtility_0023.o sceUtility_0024.o sceUtility_0025.o sceUtility_0026.o sceUtility_0027.o sceUtility_0028.o sceUtility_0029.o sceUtility_0030.o sceUtility_0031.o sceUtility_0032.o sceUtility_0033.o sceUtility_0034.o sceUtility_0035.o sceUtility_0036.o 
++UTILITY_OBJS = sceUtility_0000.o sceUtility_0001.o sceUtility_0002.o sceUtility_0003.o sceUtility_0004.o sceUtility_0005.o sceUtility_0006.o sceUtility_0007.o sceUtility_0008.o sceUtility_0009.o sceUtility_0010.o sceUtility_0011.o sceUtility_0012.o sceUtility_0013.o sceUtility_0014.o sceUtility_0015.o sceUtility_0016.o sceUtility_0017.o sceUtility_0018.o sceUtility_0019.o sceUtility_0020.o sceUtility_0021.o sceUtility_0022.o sceUtility_0023.o sceUtility_0024.o sceUtility_0025.o sceUtility_0026.o sceUtility_0027.o sceUtility_0028.o sceUtility_0029.o sceUtility_0030.o sceUtility_0031.o sceUtility_0032.o sceUtility_0033.o sceUtility_0034.o sceUtility_0035.o sceUtility_0036.o sceUtility_0037.o sceUtility_0038.o sceUtility_0039.o sceUtility_0040.o
+ 
+ NETPARAM_OBJS = sceUtility_netparam_internal_0000.o sceUtility_netparam_internal_0001.o sceUtility_netparam_internal_0002.o sceUtility_netparam_internal_0003.o sceUtility_netparam_internal_0004.o 
+ 
+@@ -22,7 +22,9 @@
+                                psputility_savedata.h \
+                                psputility_sysparam.h \
+                                psputility_osk.h \
+-                               psputility_netmodules.h
++                               psputility_netmodules.h \
++                               psputility_avmodules.h \
++                               psputility_usbmodules.h
+ 
+ lib_LIBRARIES = libpsputility.a
+ libpsputility_a_SOURCES = sceUtility.S sceUtility_netparam_internal.S
+Index: src/utility/psputility_avmodules.h
+===================================================================
+--- src/utility/psputility_avmodules.h	(revision 0)
++++ src/utility/psputility_avmodules.h	(revision 2304)
+@@ -0,0 +1,48 @@
++/*
++ * PSP Software Development Kit - http://www.pspdev.org
++ * -----------------------------------------------------------------------
++ * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
++ *
++ * psputility_avmodules.h - Load audio/video modules from user mode on 2.xx+
++ *
++ * Copyright (c) 2007 David Perry <tias_dp@hotmail.com>
++ *
++ */
++#ifndef __PSPUTILITY_AVMODULES_H__
++#define __PSPUTILITY_AVMODULES_H__
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++#include <psptypes.h>
++
++#define PSP_AV_MODULE_AVCODEC		0
++#define PSP_AV_MODULE_SASCORE		1
++#define PSP_AV_MODULE_ATRAC3PLUS	2 // Requires PSP_AV_MODULE_AVCODEC loading first
++#define PSP_AV_MODULE_MPEGBASE		3 // Requires PSP_AV_MODULE_AVCODEC loading first
++
++/**
++ * Load an audio/video module (PRX) from user mode.
++ *
++ * Available on firmware 2.00 and higher only.
++ *
++ * @param module - module number to load (PSP_AV_MODULE_xxx)
++ * @return 0 on success, < 0 on error
++ */
++int sceUtilityLoadAvModule(int module);
++
++/**
++ * Unload an audio/video module (PRX) from user mode.
++ * Available on firmware 2.00 and higher only.
++ *
++ * @param module - module number to be unloaded
++ * @return 0 on success, < 0 on error
++ */
++int sceUtilityUnloadAvModule(int module);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+
+Property changes on: src/utility/psputility_avmodules.h
+___________________________________________________________________
+Name: svn:executable
+   + *
+
+Index: src/utility/psputility_sysparam.h
+===================================================================
+--- src/utility/psputility_sysparam.h	(revision 2228)
++++ src/utility/psputility_sysparam.h	(revision 2304)
+@@ -84,15 +84,18 @@
+ /**
+  * Valid values for PSP_SYSTEMPARAM_ID_INT_LANGUAGE
+  */
+-#define PSP_SYSTEMPARAM_LANGUAGE_JAPANESE	0
+-#define PSP_SYSTEMPARAM_LANGUAGE_ENGLISH	1
+-#define PSP_SYSTEMPARAM_LANGUAGE_FRENCH		2
+-#define PSP_SYSTEMPARAM_LANGUAGE_SPANISH	3
+-#define PSP_SYSTEMPARAM_LANGUAGE_GERMAN		4
+-#define PSP_SYSTEMPARAM_LANGUAGE_ITALIAN	5
+-#define PSP_SYSTEMPARAM_LANGUAGE_DUTCH		6
+-#define PSP_SYSTEMPARAM_LANGUAGE_PORTUGUESE	7
+-#define PSP_SYSTEMPARAM_LANGUAGE_KOREAN		8
++#define PSP_SYSTEMPARAM_LANGUAGE_JAPANESE		0
++#define PSP_SYSTEMPARAM_LANGUAGE_ENGLISH		1
++#define PSP_SYSTEMPARAM_LANGUAGE_FRENCH			2
++#define PSP_SYSTEMPARAM_LANGUAGE_SPANISH		3
++#define PSP_SYSTEMPARAM_LANGUAGE_GERMAN			4
++#define PSP_SYSTEMPARAM_LANGUAGE_ITALIAN		5
++#define PSP_SYSTEMPARAM_LANGUAGE_DUTCH			6
++#define PSP_SYSTEMPARAM_LANGUAGE_PORTUGUESE		7
++#define PSP_SYSTEMPARAM_LANGUAGE_RUSSIAN		8
++#define PSP_SYSTEMPARAM_LANGUAGE_KOREAN			9
++#define PSP_SYSTEMPARAM_LANGUAGE_CHINESE_TRADITIONAL	10
++#define PSP_SYSTEMPARAM_LANGUAGE_CHINESE_SIMPLIFIED	11
+ 
+ /**
+  * Set Integer System Parameter
+Index: src/utility/psputility.h
+===================================================================
+--- src/utility/psputility.h	(revision 2228)
++++ src/utility/psputility.h	(revision 2304)
+@@ -12,6 +12,20 @@
+ #ifndef __PSPUTILITY_H__
+ #define __PSPUTILITY_H__
+ 
++typedef struct
++{
++	unsigned int size;	/** Size of the structure */
++	int language;		/** Language */
++	int buttonSwap;		/** Set to 1 for X/O button swap */
++	int graphicsThread;	/** Graphics thread priority */
++	int unknown;		/** Some other thread priority? */
++	int fontThread;		/** Font (?) thread priority (ScePafThread) */
++	int soundThread;	/** Sound thread priority */
++	int result;             /** Result */
++	int unknown2[4];
++
++} pspUtilityDialogCommon;
++
+ #include <psputility_msgdialog.h>
+ #include <psputility_netconf.h>
+ #include <psputility_netparam.h>
+@@ -19,8 +33,23 @@
+ #include <psputility_sysparam.h>
+ #include <psputility_osk.h>
+ #include <psputility_netmodules.h>
++#include <psputility_avmodules.h>
++#include <psputility_usbmodules.h>
+ 
+ #define PSP_UTILITY_ACCEPT_CIRCLE 0
+ #define PSP_UTILITY_ACCEPT_CROSS  1
+ 
++/**
++ * Return-values for the various sceUtility***GetStatus() functions
++**/
++typedef enum
++{
++	PSP_UTILITY_DIALOG_NONE = 0,	/**< No dialog is currently active */
++	PSP_UTILITY_DIALOG_INIT,	/**< The dialog is currently being initialized */
++	PSP_UTILITY_DIALOG_VISIBLE,	/**< The dialog is visible and ready for use */
++	PSP_UTILITY_DIALOG_QUIT,	/**< The dialog has been canceled and should be shut down */
++	PSP_UTILITY_DIALOG_FINISHED	/**< The dialog has successfully shut down */
++	
++} pspUtilityDialogState;
++
+ #endif
+Index: src/utility/psputility_usbmodules.h
+===================================================================
+--- src/utility/psputility_usbmodules.h	(revision 0)
++++ src/utility/psputility_usbmodules.h	(revision 2304)
+@@ -0,0 +1,48 @@
++/*
++ * PSP Software Development Kit - http://www.pspdev.org
++ * -----------------------------------------------------------------------
++ * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
++ *
++ * psputility_usbmodules.h - Load usb modules from user mode on 2.70 and higher
++ *
++ * Copyright (c) 2007 David Perry <tias_dp@hotmail.com>
++ *
++ */
++#ifndef __PSPUTILITY_USBMODULES_H__
++#define __PSPUTILITY_USBMODULES_H__
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++#include <psptypes.h>
++
++#define PSP_USB_MODULE_PSPCM	1
++#define PSP_USB_MODULE_ACC	2
++#define PSP_USB_MODULE_MIC	3 // Requires PSP_USB_MODULE_ACC loading first
++#define PSP_USB_MODULE_CAM	4 // Requires PSP_USB_MODULE_ACC loading first
++#define PSP_USB_MODULE_GPS	5 // Requires PSP_USB_MODULE_ACC loading first
++
++/**
++ * Load a usb module (PRX) from user mode.
++ * Available on firmware 2.70 and higher only.
++ *
++ * @param module - module number to load (PSP_USB_MODULE_xxx)
++ * @return 0 on success, < 0 on error
++*/
++int sceUtilityLoadUsbModule(int module);
++
++/**
++ * Unload a usb module (PRX) from user mode.
++ * Available on firmware 2.70 and higher only.
++ *
++ * @param module - module number to be unloaded
++ * @return 0 on success, < 0 on error
++*/
++int sceUtilityUnloadUsbModule(int module);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+
+Property changes on: src/utility/psputility_usbmodules.h
+___________________________________________________________________
+Name: svn:executable
+   + *
+
+Index: src/libc/stdio.c
+===================================================================
+--- src/libc/stdio.c	(revision 2228)
++++ src/libc/stdio.c	(revision 2304)
+@@ -1164,7 +1164,9 @@
+ */
+ int remove(const char *s)
+ {
+-  return (0);
++	int ret = sceIoRemove(s);
++
++	return (ret);
+ }
+ #endif
+ 
+@@ -1183,9 +1185,9 @@
+ */
+ int rename(const char *name, const char *newname)
+ {
+-  int ret = 0;
+-  
+-  return (ret);
++	int ret = sceIoRename(name, newname);
++	
++	return (ret);
+ }
+ #endif
+ 
+Index: src/net/pspnet_adhoc.h
+===================================================================
+--- src/net/pspnet_adhoc.h	(revision 2228)
++++ src/net/pspnet_adhoc.h	(revision 2304)
+@@ -42,7 +42,7 @@
+  *
+  * @return The ID of the PDP object (< 0 on error)
+  */
+-int sceNetAdhocPdpCreate(char *mac, int port, unsigned int unk2, int unk3);
++int sceNetAdhocPdpCreate(unsigned char *mac, unsigned short port, unsigned int unk2, int unk3);
+ 
+ /**
+  * Delete a PDP object.
+@@ -67,7 +67,7 @@
+  *
+  * @return Bytes sent, < 0 on error
+  */
+-int sceNetAdhocPdpSend(int id, char *destMacAddr, int16 port, void *data, unsigned int len, int unk6, int unk7);
++int sceNetAdhocPdpSend(int id, unsigned char *destMacAddr, unsigned short port, void *data, unsigned int len, int unk6, int unk7); 
+ 
+ /**
+  * Receive a PDP packet
+@@ -82,7 +82,7 @@
+  *
+  * @return Number of bytes received, < 0 on error.
+  */
+-int sceNetAdhocPdpRecv(int id, char *srcMacAddr, int *port, void *data, void *dataLength, int unk6, int unk7);
++int sceNetAdhocPdpRecv(int id, unsigned char *srcMacAddr, unsigned short *port, void *data, void *dataLength, int unk6, int unk7);
+ 
+ /**
+  * PDP status structure
+@@ -94,9 +94,9 @@
+ 	/** pdp ID */
+ 	int pdpId;
+ 	/** MAC address */
+-	char mac[6];
++	unsigned char mac[6];
+ 	/** Port */
+-	int16 port;
++	unsigned short port;
+ 	/** Bytes received */
+ 	unsigned int rcvdData;
+ } pdpStatStruct;
+@@ -109,8 +109,7 @@
+  *
+  * @return 0 on success, < 0 on error
+  */
+-int sceNetAdhocGetPdpStat(int *size,  	
+-				  pdpStatStruct *stat);
++int sceNetAdhocGetPdpStat(int *size, pdpStatStruct *stat);
+ 
+ #ifdef __cplusplus
+ }
+Index: src/mpeg/pspmpeg.h
+===================================================================
+--- src/mpeg/pspmpeg.h	(revision 2228)
++++ src/mpeg/pspmpeg.h	(revision 2304)
+@@ -1,335 +1,344 @@
+-/*
+- * PSP Software Development Kit - http://www.pspdev.org
+- * -----------------------------------------------------------------------
+- * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
+- *
+- * pspmpeg.h - Prototypes for the sceMpeg library
+- *
+- * Copyright (c) 2006 Sorin P. C. <magik@hypermagik.com>
+- *
+- * $Id$
+- */
+-
+-#ifndef __SCELIBMPEG_H__
+-#define __SCELIBMPEG_H__
+-
+-#include <psptypes.h>
+-
+-#ifdef __cplusplus
+-extern "C" {
+-#endif
+-
+-/** points to "LIBMPEG" */
+-typedef ScePVoid SceMpeg;
+-
+-/** some structure */
+-typedef SceVoid  SceMpegStream;
+-
+-/** Ringbuffer callback */
+-typedef SceInt32 (*sceMpegRingbufferCB)(ScePVoid pData, SceInt32 iNumPackets, ScePVoid pParam);
+-
+-typedef struct SceMpegRingbuffer
+-{
+-    /** packets */
+-	SceInt32			iPackets;
+-
+-    /** unknown */
+-	SceUInt32			iUnk0;
+-    /** unknown */
+-	SceUInt32			iUnk1;
+-    /** unknown */
+-	SceUInt32			iUnk2;
+-    /** unknown */
+-	SceUInt32			iUnk3;
+-
+-    /** pointer to data */
+-	ScePVoid			pData;
+-
+-    /** ringbuffer callback */
+-	sceMpegRingbufferCB	Callback;
+-    /** callback param */
+-	ScePVoid			pCBparam;
+-
+-    /** unknown */
+-	SceUInt32			iUnk4;
+-    /** unknown */
+-	SceUInt32			iUnk5;
+-    /** mpeg id */
+-	SceMpeg				pSceMpeg;
+-
+-} SceMpegRingbuffer;
+-
+-typedef struct SceMpegAu
+-{
+-    /** unknown */
+-	SceUInt32			iUnk0;
+-    /** presentation timestamp? */
+-	SceInt32 			iTimestamp;
+-    /** unknown */
+-	SceUInt32			iUnk1;
+-    /** unknown */
+-	SceUInt32			iUnk2;
+-    /** unknown */
+-	SceUInt32			iUnk3;
+-    /** unknown */
+-	SceUInt32			iUnk4;
+-
+-} SceMpegAu;
+-
+-typedef struct SceMpegAvcMode
+-{
+-	/** unknown, set to -1 */
+-	SceInt32			iUnk0;
+-	/** unknonw, set to 3 */
+-	SceInt32			iUnk1;
+-
+-} SceMpegAvcMode;
+-
+-/**
+- * sceMpegInit
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegInit();
+-
+-/**
+- * sceMpegFinish
+- */
+-SceVoid sceMpegFinish();
+-
+-/**
+- * sceMpegRingbufferQueryMemSize
+- *
+- * @param iPackets - number of packets in the ringbuffer
+- *
+- * @returns < 0 if error else ringbuffer data size.
+- */
+-SceInt32 sceMpegRingbufferQueryMemSize(SceInt32 iPackets);
+-
+-/**
+- * sceMpegRingbufferConstruct
+- *
+- * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
+- * @param iPackets - number of packets in the ringbuffer
+- * @param pData - pointer to allocated memory
+- * @param iSize - size of allocated memory, shoud be sceMpegRingbufferQueryMemSize(iPackets)
+- * @param Callback - ringbuffer callback
+- * @param pCBparam - param passed to callback
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegRingbufferConstruct(SceMpegRingbuffer* Ringbuffer, SceInt32 iPackets, ScePVoid pData, SceInt32 iSize, sceMpegRingbufferCB Callback, ScePVoid pCBparam);
+-
+-/**
+- * sceMpegRingbufferDestruct
+- *
+- * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
+- */
+-SceVoid sceMpegRingbufferDestruct(SceMpegRingbuffer* Ringbuffer);
+-
+-/**
+- * sceMpegQueryMemSize 
+- *
+- * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
+- *
+- * @returns < 0 if error else number of free packets in the ringbuffer.
+- */
+-SceInt32 sceMpegRingbufferAvailableSize(SceMpegRingbuffer* Ringbuffer);
+-
+-/**
+- * sceMpegRingbufferPut
+- *
+- * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
+- * @param iNumPackets - num packets to put into the ringbuffer
+- * @param iAvailable - free packets in the ringbuffer, should be sceMpegRingbufferAvailableSize()
+- *
+- * @returns < 0 if error else number of packets.
+- */
+-SceInt32 sceMpegRingbufferPut(SceMpegRingbuffer* Ringbuffer, SceInt32 iNumPackets, SceInt32 iAvailable);
+-
+-/**
+- * sceMpegQueryMemSize
+- *
+- * @param iUnk - Unknown, set to 0
+- *
+- * @returns < 0 if error else decoder data size.
+- */
+-SceInt32 sceMpegQueryMemSize(int iUnk);
+-
+-/**
+- * sceMpegCreate
+- *
+- * @param Mpeg - will be filled
+- * @param pData - pointer to allocated memory of size = sceMpegQueryMemSize()
+- * @param iSize - size of data, should be = sceMpegQueryMemSize()
+- * @param Ringbuffer - a ringbuffer
+- * @param iFrameWidth - display buffer width, set to 512 if writing to framebuffer
+- * @param iUnk1 - unknown, set to 0
+- * @param iUnk2 - unknown, set to 0
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegCreate(SceMpeg* Mpeg, ScePVoid pData, SceInt32 iSize, SceMpegRingbuffer* Ringbuffer, SceInt32 iFrameWidth, SceInt32 iUnk1, SceInt32 iUnk2);
+-
+-/**
+- * sceMpegDelete
+- *
+- * @param Mpeg - SceMpeg handle
+- */
+-SceVoid sceMpegDelete(SceMpeg* Mpeg);
+-
+-/**
+- * sceMpegQueryStreamOffset
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param pBuffer - pointer to file header
+- * @param iOffset - will contain stream offset in bytes, usually 2048
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegQueryStreamOffset(SceMpeg* Mpeg, ScePVoid pBuffer, SceInt32* iOffset);
+-
+-/**
+- * sceMpegQueryStreamSize
+- *
+- * @param pBuffer - pointer to file header
+- * @param iSize - will contain stream size in bytes
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegQueryStreamSize(ScePVoid pBuffer, SceInt32* iSize);
+-
+-/**
+- * sceMpegRegistStream
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param iStreamID - stream id, 0 for video, 1 for audio
+- * @param iUnk - unknown, set to 0
+- *
+- * @returns 0 if error.
+- */
+-SceMpegStream* sceMpegRegistStream(SceMpeg* Mpeg, SceInt32 iStreamID, SceInt32 iUnk);
+-
+-/**
+- * sceMpegUnRegistStream
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param pStream - pointer to stream
+- */
+-SceVoid sceMpegUnRegistStream(SceMpeg Mpeg, SceMpegStream* pStream);
+-
+-/**
+- * sceMpegFlushAllStreams
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegFlushAllStream(SceMpeg* Mpeg);
+-
+-/**
+- * sceMpegMallocAvcEsBuf
+- *
+- * @returns 0 if error else pointer to buffer.
+- */
+-ScePVoid sceMpegMallocAvcEsBuf(SceMpeg* Mpeg);
+-
+-/**
+- * sceMpegFreeAvcEsBuf
+- *
+- */
+-SceVoid sceMpegFreeAvcEsBuf(SceMpeg* Mpeg, ScePVoid pBuf);
+-
+-/**
+- * sceMpegQueryAtracEsSize
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param iEsSize - will contain size of Es
+- * @param iOutSize - will contain size of decoded data
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegQueryAtracEsSize(SceMpeg* Mpeg, SceInt32* iEsSize, SceInt32* iOutSize);
+-
+-/**
+- * sceMpegInitAu
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param pEsBuffer - prevously allocated Es buffer
+- * @param pAu - will contain pointer to Au
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegInitAu(SceMpeg* Mpeg, ScePVoid pEsBuffer, SceMpegAu* pAu);
+-
+-/**
+- * sceMpegGetAvcAu
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param pStream - associated stream
+- * @param pAu - will contain pointer to Au
+- * @param iUnk - unknown
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegGetAvcAu(SceMpeg* Mpeg, SceMpegStream* pStream, SceMpegAu* pAu, SceInt32* iUnk);
+-
+-/**
+- * sceMpegAvcDecodeMode
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegAvcDecodeMode(SceMpeg* Mpeg, SceMpegAvcMode* pMode);
+-
+-/**
+- * sceMpegAvcDecode
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param pAu - video Au
+- * @param iFrameWidth - output buffer width, set to 512 if writing to framebuffer
+- * @param pBuffer - buffer that will contain the decoded frame
+- * @param iInit - will be set to 0 on first call, then 1
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegAvcDecode(SceMpeg* Mpeg, SceMpegAu* pAu, SceInt32 iFrameWidth, ScePVoid pBuffer, SceInt32* iInit);
+-
+-/**
+- * sceMpegAvcDecodeStop
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param iFrameWidth - output buffer width, set to 512 if writing to framebuffer
+- * @param pBuffer - buffer that will contain the decoded frame
+- * @param iFrameNum - frame number
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegAvcDecodeStop(SceMpeg* Mpeg, SceInt32 iFrameWidth, ScePVoid pBuffer, SceInt32* iStatus);
+-
+-/**
+- * sceMpegGetAtracAu
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param pStream - associated stream
+- * @param pAu - will contain pointer to Au
+- * @param pUnk - unknown
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegGetAtracAu(SceMpeg* Mpeg, SceMpegStream* pStream, SceMpegAu* pAu, ScePVoid pUnk);
+-
+-/**
+- * sceMpegAtracDecode
+- *
+- * @param Mpeg - SceMpeg handle
+- * @param pAu - video Au
+- * @param pBuffer - buffer that will contain the decoded frame
+- * @param iInit - set this to 1 on first call
+- *
+- * @returns 0 if success.
+- */
+-SceInt32 sceMpegAtracDecode(SceMpeg* Mpeg, SceMpegAu* pAu, ScePVoid pBuffer, SceInt32 iInit);
+-
+-#ifdef __cplusplus
+-}
+-#endif
+-
+-#endif
++/*
++ * PSP Software Development Kit - http://www.pspdev.org
++ * -----------------------------------------------------------------------
++ * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
++ *
++ * pspmpeg.h - Prototypes for the sceMpeg library
++ *
++ * Copyright (c) 2006 Sorin P. C. <magik@hypermagik.com>
++ * Copyright (c) 2007 Alexander Berl <raphael@fx-world.org>
++ *
++ * $Id$
++ */
++
++#ifndef __SCELIBMPEG_H__
++#define __SCELIBMPEG_H__
++
++#include <psptypes.h>
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/** points to "LIBMPEG" */
++typedef ScePVoid SceMpeg;
++
++/** some structure */
++typedef SceVoid  SceMpegStream;
++
++/** Ringbuffer callback */
++typedef SceInt32 (*sceMpegRingbufferCB)(ScePVoid pData, SceInt32 iNumPackets, ScePVoid pParam);
++
++typedef struct SceMpegRingbuffer
++{
++    /** packets */
++	SceInt32			iPackets;
++
++    /** unknown */
++	SceUInt32			iUnk0;
++    /** unknown */
++	SceUInt32			iUnk1;
++    /** unknown */
++	SceUInt32			iUnk2;
++    /** unknown */
++	SceUInt32			iUnk3;
++
++    /** pointer to data */
++	ScePVoid			pData;
++
++    /** ringbuffer callback */
++	sceMpegRingbufferCB	Callback;
++    /** callback param */
++	ScePVoid			pCBparam;
++
++    /** unknown */
++	SceUInt32			iUnk4;
++    /** unknown */
++	SceUInt32			iUnk5;
++    /** mpeg id */
++	SceMpeg				pSceMpeg;
++
++} SceMpegRingbuffer;
++
++typedef struct SceMpegAu
++{
++    /** presentation timestamp MSB */
++	SceUInt32			iPtsMSB;
++    /** presentation timestamp LSB */
++	SceUInt32			iPts;
++    /** decode timestamp MSB */
++	SceUInt32			iDtsMSB;
++    /** decode timestamp LSB */
++	SceUInt32			iDts;
++    /** Es buffer handle */
++	SceUInt32			iEsBuffer;
++    /** Au size */
++	SceUInt32			iAuSize;
++
++} SceMpegAu;
++
++#define SCE_MPEG_AVC_FORMAT_DEFAULT -1
++#define SCE_MPEG_AVC_FORMAT_5650 0
++#define SCE_MPEG_AVC_FORMAT_5551 1
++#define SCE_MPEG_AVC_FORMAT_4444 2
++#define SCE_MPEG_AVC_FORMAT_8888 3
++
++typedef struct SceMpegAvcMode
++{
++	/** unknown, set to -1 */
++	SceInt32			iUnk0;
++	/** Decode pixelformat */
++	SceInt32			iPixelFormat;
++
++} SceMpegAvcMode;
++
++/**
++ * sceMpegInit
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegInit();
++
++/**
++ * sceMpegFinish
++ */
++SceVoid sceMpegFinish();
++
++/**
++ * sceMpegRingbufferQueryMemSize
++ *
++ * @param iPackets - number of packets in the ringbuffer
++ *
++ * @returns < 0 if error else ringbuffer data size.
++ */
++SceInt32 sceMpegRingbufferQueryMemSize(SceInt32 iPackets);
++
++/**
++ * sceMpegRingbufferConstruct
++ *
++ * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
++ * @param iPackets - number of packets in the ringbuffer
++ * @param pData - pointer to allocated memory
++ * @param iSize - size of allocated memory, shoud be sceMpegRingbufferQueryMemSize(iPackets)
++ * @param Callback - ringbuffer callback
++ * @param pCBparam - param passed to callback
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegRingbufferConstruct(SceMpegRingbuffer* Ringbuffer, SceInt32 iPackets, ScePVoid pData, SceInt32 iSize, sceMpegRingbufferCB Callback, ScePVoid pCBparam);
++
++/**
++ * sceMpegRingbufferDestruct
++ *
++ * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
++ */
++SceVoid sceMpegRingbufferDestruct(SceMpegRingbuffer* Ringbuffer);
++
++/**
++ * sceMpegQueryMemSize 
++ *
++ * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
++ *
++ * @returns < 0 if error else number of free packets in the ringbuffer.
++ */
++SceInt32 sceMpegRingbufferAvailableSize(SceMpegRingbuffer* Ringbuffer);
++
++/**
++ * sceMpegRingbufferPut
++ *
++ * @param Ringbuffer - pointer to a sceMpegRingbuffer struct
++ * @param iNumPackets - num packets to put into the ringbuffer
++ * @param iAvailable - free packets in the ringbuffer, should be sceMpegRingbufferAvailableSize()
++ *
++ * @returns < 0 if error else number of packets.
++ */
++SceInt32 sceMpegRingbufferPut(SceMpegRingbuffer* Ringbuffer, SceInt32 iNumPackets, SceInt32 iAvailable);
++
++/**
++ * sceMpegQueryMemSize
++ *
++ * @param iUnk - Unknown, set to 0
++ *
++ * @returns < 0 if error else decoder data size.
++ */
++SceInt32 sceMpegQueryMemSize(int iUnk);
++
++/**
++ * sceMpegCreate
++ *
++ * @param Mpeg - will be filled
++ * @param pData - pointer to allocated memory of size = sceMpegQueryMemSize()
++ * @param iSize - size of data, should be = sceMpegQueryMemSize()
++ * @param Ringbuffer - a ringbuffer
++ * @param iFrameWidth - display buffer width, set to 512 if writing to framebuffer
++ * @param iUnk1 - unknown, set to 0
++ * @param iUnk2 - unknown, set to 0
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegCreate(SceMpeg* Mpeg, ScePVoid pData, SceInt32 iSize, SceMpegRingbuffer* Ringbuffer, SceInt32 iFrameWidth, SceInt32 iUnk1, SceInt32 iUnk2);
++
++/**
++ * sceMpegDelete
++ *
++ * @param Mpeg - SceMpeg handle
++ */
++SceVoid sceMpegDelete(SceMpeg* Mpeg);
++
++/**
++ * sceMpegQueryStreamOffset
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pBuffer - pointer to file header
++ * @param iOffset - will contain stream offset in bytes, usually 2048
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegQueryStreamOffset(SceMpeg* Mpeg, ScePVoid pBuffer, SceInt32* iOffset);
++
++/**
++ * sceMpegQueryStreamSize
++ *
++ * @param pBuffer - pointer to file header
++ * @param iSize - will contain stream size in bytes
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegQueryStreamSize(ScePVoid pBuffer, SceInt32* iSize);
++
++/**
++ * sceMpegRegistStream
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param iStreamID - stream id, 0 for video, 1 for audio
++ * @param iUnk - unknown, set to 0
++ *
++ * @returns 0 if error.
++ */
++SceMpegStream* sceMpegRegistStream(SceMpeg* Mpeg, SceInt32 iStreamID, SceInt32 iUnk);
++
++/**
++ * sceMpegUnRegistStream
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pStream - pointer to stream
++ */
++SceVoid sceMpegUnRegistStream(SceMpeg Mpeg, SceMpegStream* pStream);
++
++/**
++ * sceMpegFlushAllStreams
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegFlushAllStream(SceMpeg* Mpeg);
++
++/**
++ * sceMpegMallocAvcEsBuf
++ *
++ * @returns 0 if error else pointer to buffer.
++ */
++ScePVoid sceMpegMallocAvcEsBuf(SceMpeg* Mpeg);
++
++/**
++ * sceMpegFreeAvcEsBuf
++ *
++ */
++SceVoid sceMpegFreeAvcEsBuf(SceMpeg* Mpeg, ScePVoid pBuf);
++
++/**
++ * sceMpegQueryAtracEsSize
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param iEsSize - will contain size of Es
++ * @param iOutSize - will contain size of decoded data
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegQueryAtracEsSize(SceMpeg* Mpeg, SceInt32* iEsSize, SceInt32* iOutSize);
++
++/**
++ * sceMpegInitAu
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pEsBuffer - prevously allocated Es buffer
++ * @param pAu - will contain pointer to Au
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegInitAu(SceMpeg* Mpeg, ScePVoid pEsBuffer, SceMpegAu* pAu);
++
++/**
++ * sceMpegGetAvcAu
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pStream - associated stream
++ * @param pAu - will contain pointer to Au
++ * @param iUnk - unknown
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegGetAvcAu(SceMpeg* Mpeg, SceMpegStream* pStream, SceMpegAu* pAu, SceInt32* iUnk);
++
++/**
++ * sceMpegAvcDecodeMode
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pMode - pointer to SceMpegAvcMode struct defining the decode mode (pixelformat)
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegAvcDecodeMode(SceMpeg* Mpeg, SceMpegAvcMode* pMode);
++
++/**
++ * sceMpegAvcDecode
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pAu - video Au
++ * @param iFrameWidth - output buffer width, set to 512 if writing to framebuffer
++ * @param pBuffer - buffer that will contain the decoded frame
++ * @param iInit - will be set to 0 on first call, then 1
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegAvcDecode(SceMpeg* Mpeg, SceMpegAu* pAu, SceInt32 iFrameWidth, ScePVoid pBuffer, SceInt32* iInit);
++
++/**
++ * sceMpegAvcDecodeStop
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param iFrameWidth - output buffer width, set to 512 if writing to framebuffer
++ * @param pBuffer - buffer that will contain the decoded frame
++ * @param iFrameNum - frame number
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegAvcDecodeStop(SceMpeg* Mpeg, SceInt32 iFrameWidth, ScePVoid pBuffer, SceInt32* iStatus);
++
++/**
++ * sceMpegGetAtracAu
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pStream - associated stream
++ * @param pAu - will contain pointer to Au
++ * @param pUnk - unknown
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegGetAtracAu(SceMpeg* Mpeg, SceMpegStream* pStream, SceMpegAu* pAu, ScePVoid pUnk);
++
++/**
++ * sceMpegAtracDecode
++ *
++ * @param Mpeg - SceMpeg handle
++ * @param pAu - video Au
++ * @param pBuffer - buffer that will contain the decoded frame
++ * @param iInit - set this to 1 on first call
++ *
++ * @returns 0 if success.
++ */
++SceInt32 sceMpegAtracDecode(SceMpeg* Mpeg, SceMpegAu* pAu, ScePVoid pBuffer, SceInt32 iInit);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+Index: src/samples/savedata/utility/main.c
+===================================================================
+--- src/samples/savedata/utility/main.c	(revision 2228)
++++ src/samples/savedata/utility/main.c	(revision 2304)
+@@ -77,12 +77,12 @@
+ void initSavedata(SceUtilitySavedataParam * savedata, int mode)
+ {
+ 	memset(savedata, 0, sizeof(SceUtilitySavedataParam));
+-	savedata->size = sizeof(SceUtilitySavedataParam);
++	savedata->base.size = sizeof(SceUtilitySavedataParam);
+ 
+-	savedata->unknown[0] = 0x11;
+-	savedata->unknown[1] = 0x13;
+-	savedata->unknown[2] = 0x12;
+-	savedata->unknown[3] = 0x10;
++	savedata->base.graphicsThread = 0x11;
++	savedata->base.unknown = 0x13;
++	savedata->base.fontThread = 0x12;
++	savedata->base.soundThread = 0x10;
+ 	savedata->unknown13 = 1;
+ 	savedata->mode = mode;		/* mode: 0 = load, 1 = save */
+ 
+Index: src/samples/utility/msgdialog/main.c
+===================================================================
+--- src/samples/utility/msgdialog/main.c	(revision 2228)
++++ src/samples/utility/msgdialog/main.c	(revision 2304)
+@@ -192,29 +192,29 @@
+ 
+ /* Utility dialog functions */
+ 
+-static void ConfigureDialog(SceUtilityMsgDialogParams *dialog, size_t dialog_size)
++static void ConfigureDialog(pspUtilityMsgDialogParams *dialog, size_t dialog_size)
+ {
+     memset(dialog, 0, dialog_size);
+ 
+-    dialog->size = dialog_size;
++    dialog->base.size = dialog_size;
+     sceUtilityGetSystemParamInt(PSP_SYSTEMPARAM_ID_INT_LANGUAGE,
+-				&dialog->language); // Prompt language
++				&dialog->base.language); // Prompt language
+     sceUtilityGetSystemParamInt(PSP_SYSTEMPARAM_ID_INT_UNKNOWN,
+-				&dialog->buttonSwap); // X/O button swap
++				&dialog->base.buttonSwap); // X/O button swap
+ 
+-    dialog->unknown[0] = 0x11;	// ???
+-    dialog->unknown[1] = 0x13;
+-    dialog->unknown[2] = 0x12;
+-    dialog->unknown[3] = 0x10;
++    dialog->base.graphicsThread = 0x11;
++    dialog->base.unknown = 0x13;
++    dialog->base.fontThread = 0x12;
++    dialog->base.soundThread = 0x10;
+ }
+ 
+ static void ShowErrorDialog(const unsigned int error)
+ {
+-    SceUtilityMsgDialogParams dialog;
++    pspUtilityMsgDialogParams dialog;
+ 
+     ConfigureDialog(&dialog, sizeof(dialog));
+-    dialog.unknown[10] = 0;
+-    dialog.unknown[11] = error;
++    dialog.unknown2[1] = 0;
++    dialog.unknown2[2] = error;
+ 
+     sceUtilityMsgDialogInitStart(&dialog);
+ 
+@@ -224,15 +224,15 @@
+ 	
+ 	switch(sceUtilityMsgDialogGetStatus()) {
+ 	    
+-	case 2:
++	case PSP_UTILITY_DIALOG_VISIBLE:
+ 	    sceUtilityMsgDialogUpdate(2);
+ 	    break;
+ 	    
+-	case 3:
++	case PSP_UTILITY_DIALOG_QUIT:
+ 	    sceUtilityMsgDialogShutdownStart();
+ 	    break;
+ 	    
+-	case 0:
++	case PSP_UTILITY_DIALOG_NONE:
+ 	    return;
+ 	    
+ 	}
+@@ -244,10 +244,10 @@
+ 
+ static void ShowMessageDialog(const char *message)
+ {
+-    SceUtilityMsgDialogParams dialog;
++    pspUtilityMsgDialogParams dialog;
+ 
+     ConfigureDialog(&dialog, sizeof(dialog));
+-    dialog.unknown[10] = 1;
++    dialog.unknown2[1] = 1;
+     strcpy(dialog.message, message);
+ 
+     sceUtilityMsgDialogInitStart(&dialog);
+@@ -255,9 +255,9 @@
+     for(;;) {
+ 
+ 	DrawStuff();
+-	
++
+ 	switch(sceUtilityMsgDialogGetStatus()) {
+-	    
++
+ 	case 2:
+ 	    sceUtilityMsgDialogUpdate(2);
+ 	    break;
+Index: src/samples/utility/netdialog/main.c
+===================================================================
+--- src/samples/utility/netdialog/main.c	(revision 0)
++++ src/samples/utility/netdialog/main.c	(revision 2304)
+@@ -0,0 +1,275 @@
++/*
++ * PSP Software Development Kit - http://www.pspdev.org
++ * -----------------------------------------------------------------------
++ * Licensed under the BSD license, see LICENSE in PSPSDK root for details.
++ *
++ * main.c - Net dialog sample for connecting to an access point
++ *
++ * For OE firmwares, this sample must be run under the 3.xx kernel.
++ *
++ * Copyright (c) 2007 David Perry (Insert_Witty_Name)
++ *
++ */
++
++#include <pspkernel.h>
++#include <pspdisplay.h>
++#include <string.h>
++#include <math.h>
++#include <psputility.h>
++#include <pspgu.h>
++#include <pspgum.h>
++#include <pspsdk.h>
++
++#if _PSP_FW_VERSION >= 200
++PSP_MODULE_INFO("Net Dialog Sample", 0, 1, 1);
++#else
++PSP_MODULE_INFO("Net Dialog Sample", 0x1000, 1, 1);
++PSP_MAIN_THREAD_ATTR(0);
++#endif
++
++/* Exit callback */
++int exit_callback(int arg1, int arg2, void *common)
++{
++	sceKernelExitGame();
++	return 0;
++}
++
++/* Callback thread */
++int CallbackThread(SceSize args, void *argp)
++{
++	int cbid;
++	cbid = sceKernelCreateCallback("Exit Callback", exit_callback, NULL);
++	sceKernelRegisterExitCallback(cbid);
++	sceKernelSleepThreadCB();
++	
++	return 0;
++}
++
++/* Sets up the callback thread and returns its thread id */
++int SetupCallbacks(void)
++{
++	int thid = 0;
++	thid = sceKernelCreateThread("update_thread", CallbackThread, 0x11, 0xFA0, PSP_THREAD_ATTR_USER, 0);
++
++	if (thid >= 0)
++		sceKernelStartThread(thid, 0, 0);
++
++	return thid;
++}
++
++/* Graphics stuff, based on cube sample */
++static unsigned int __attribute__((aligned(16))) list[262144];
++
++struct Vertex
++{
++	unsigned int color;
++	float x,y,z;
++};
++
++struct Vertex __attribute__((aligned(16))) vertices[12*3] =
++{
++	{0xff7f0000,-1,-1, 1}, // 0
++    	{0xff7f0000,-1, 1, 1}, // 4
++    	{0xff7f0000, 1, 1, 1}, // 5
++
++    	{0xff7f0000,-1,-1, 1}, // 0
++    	{0xff7f0000, 1, 1, 1}, // 5
++    	{0xff7f0000, 1,-1, 1}, // 1
++
++    	{0xff7f0000,-1,-1,-1}, // 3
++    	{0xff7f0000, 1,-1,-1}, // 2
++    	{0xff7f0000, 1, 1,-1}, // 6
++
++    	{0xff7f0000,-1,-1,-1}, // 3
++    	{0xff7f0000, 1, 1,-1}, // 6
++    	{0xff7f0000,-1, 1,-1}, // 7
++
++    	{0xff007f00, 1,-1,-1}, // 0
++    	{0xff007f00, 1,-1, 1}, // 3
++    	{0xff007f00, 1, 1, 1}, // 7
++
++    	{0xff007f00, 1,-1,-1}, // 0
++    	{0xff007f00, 1, 1, 1}, // 7
++    	{0xff007f00, 1, 1,-1}, // 4
++
++    	{0xff007f00,-1,-1,-1}, // 0
++    	{0xff007f00,-1, 1,-1}, // 3
++    	{0xff007f00,-1, 1, 1}, // 7
++
++    	{0xff007f00,-1,-1,-1}, // 0
++    	{0xff007f00,-1, 1, 1}, // 7
++    	{0xff007f00,-1,-1, 1}, // 4
++
++    	{0xff00007f,-1, 1,-1}, // 0
++    	{0xff00007f, 1, 1,-1}, // 1
++    	{0xff00007f, 1, 1, 1}, // 2
++
++    	{0xff00007f,-1, 1,-1}, // 0
++    	{0xff00007f, 1, 1, 1}, // 2
++    	{0xff00007f,-1, 1, 1}, // 3
++
++    	{0xff00007f,-1,-1,-1}, // 4
++    	{0xff00007f,-1,-1, 1}, // 7
++    	{0xff00007f, 1,-1, 1}, // 6
++
++    	{0xff00007f,-1,-1,-1}, // 4
++    	{0xff00007f, 1,-1, 1}, // 6
++    	{0xff00007f, 1,-1,-1}, // 5
++};
++
++#define BUF_WIDTH (512)
++#define SCR_WIDTH (480)
++#define SCR_HEIGHT (272)
++#define PIXEL_SIZE (4)
++#define FRAME_SIZE (BUF_WIDTH * SCR_HEIGHT * PIXEL_SIZE)
++#define ZBUF_SIZE (BUF_WIDTH SCR_HEIGHT * 2)
++
++static void setupGu()
++{
++	sceGuInit();
++
++    	sceGuStart(GU_DIRECT,list);
++    	sceGuDrawBuffer(GU_PSM_8888,(void*)0,BUF_WIDTH);
++    	sceGuDispBuffer(SCR_WIDTH,SCR_HEIGHT,(void*)0x88000,BUF_WIDTH);
++    	sceGuDepthBuffer((void*)0x110000,BUF_WIDTH);
++    	sceGuOffset(2048 - (SCR_WIDTH/2),2048 - (SCR_HEIGHT/2));
++    	sceGuViewport(2048,2048,SCR_WIDTH,SCR_HEIGHT);
++    	sceGuDepthRange(0xc350,0x2710);
++    	sceGuScissor(0,0,SCR_WIDTH,SCR_HEIGHT);
++    	sceGuEnable(GU_SCISSOR_TEST);
++    	sceGuDepthFunc(GU_GEQUAL);
++    	sceGuEnable(GU_DEPTH_TEST);
++    	sceGuFrontFace(GU_CW);
++    	sceGuShadeModel(GU_SMOOTH);
++    	sceGuEnable(GU_CULL_FACE);
++    	sceGuEnable(GU_CLIP_PLANES);
++    	sceGuFinish();
++    	sceGuSync(0,0);
++
++    	sceDisplayWaitVblankStart();
++    	sceGuDisplay(GU_TRUE);
++}
++
++static void drawStuff(void)
++{
++	static int val = 0;
++
++	sceGuStart(GU_DIRECT, list);
++
++	sceGuClearColor(0xff554433);
++	sceGuClearDepth(0);
++	sceGuClear(GU_COLOR_BUFFER_BIT|GU_DEPTH_BUFFER_BIT);
++
++	sceGumMatrixMode(GU_PROJECTION);
++	sceGumLoadIdentity();
++	sceGumPerspective(75.0f,16.0f/9.0f,0.5f,1000.0f);
++	   
++	sceGumMatrixMode(GU_VIEW);
++	sceGumLoadIdentity();
++	
++	sceGumMatrixMode(GU_MODEL);
++	sceGumLoadIdentity();
++	    
++	ScePspFVector3 pos = { 0, 0, -5.0f };
++	ScePspFVector3 rot = { val * 0.79f * (M_PI/180.0f), val * 0.98f * (M_PI/180.0f), val * 1.32f * (M_PI/180.0f) };
++	sceGumTranslate(&pos);
++	sceGumRotateXYZ(&rot);
++
++	sceGumDrawArray(GU_TRIANGLES, GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D, 12*3, 0, vertices);
++
++	sceGuFinish();
++	sceGuSync(0,0);
++	
++	val++;
++}
++
++int netDialog()
++{
++	int done = 0;
++
++   	pspUtilityNetconfData data;
++
++	memset(&data, 0, sizeof(data));
++	data.base.size = sizeof(data);
++	data.base.language = PSP_SYSTEMPARAM_LANGUAGE_ENGLISH;
++	data.base.buttonSwap = PSP_UTILITY_ACCEPT_CROSS;
++	data.base.graphicsThread = 17;
++	data.base.unknown = 19;
++	data.base.fontThread = 18;
++	data.base.soundThread = 16;
++	data.action = PSP_NETCONF_ACTION_CONNECTAP;
++
++	sceUtilityNetconfInitStart(&data);
++	
++	while(!done)
++	{
++		drawStuff();
++
++		switch(sceUtilityNetconfGetStatus())
++		{
++			case PSP_UTILITY_DIALOG_NONE:
++				break;
++
++			case PSP_UTILITY_DIALOG_VISIBLE:
++				sceUtilityNetconfUpdate(1);
++				break;
++
++			case PSP_UTILITY_DIALOG_QUIT:
++				sceUtilityNetconfShutdownStart();
++				break;
++
++			default:
++				break;
++		}
++
++		sceDisplayWaitVblankStart();
++		sceGuSwapBuffers();
++	}
++	
++	return 1;
++}
++
++int user_thread(SceSize args, void *argp)
++{
++	pspSdkInetInit();
++	
++	SetupCallbacks();
++	
++	setupGu();
++
++	netDialog();
++	
++	return 0;
++}
++
++/* main routine */
++int main(int argc, char *argv[])
++{
++        #if _PSP_FW_VERSION >= 200
++        sceUtilityLoadNetModule(PSP_NET_MODULE_COMMON);
++
++	sceUtilityLoadNetModule(PSP_NET_MODULE_INET);
++	
++	pspSdkInetInit();
++	
++	SetupCallbacks();
++	
++	setupGu();
++
++	netDialog();
++
++	#else
++
++	pspSdkLoadInetModules();
++
++	SceUID thid = sceKernelCreateThread("user_thread", user_thread, 0x18, 0x10000, PSP_THREAD_ATTR_USER, NULL);
++
++	sceKernelStartThread(thid, 0, NULL);
++	
++	sceKernelWaitThreadEnd(thid, 0);
++	#endif
++	
++	sceKernelExitGame();
++
++	return 0;
++}
+
+Property changes on: src/samples/utility/netdialog/main.c
+___________________________________________________________________
+Name: svn:keywords
+   + Id Rev Author
+Name: svn:eol-style
+   + native
+
+Index: src/samples/utility/netdialog/Makefile.sample
+===================================================================
+--- src/samples/utility/netdialog/Makefile.sample	(revision 0)
++++ src/samples/utility/netdialog/Makefile.sample	(revision 2304)
+@@ -0,0 +1,22 @@
++TARGET = netdialog
++OBJS = main.o
++
++# For OE firmware:
++PSP_FW_VERSION = 200
++BUILD_PRX = 1
++
++
++CFLAGS = -O2 -G0 -Wall
++CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
++ASFLAGS = $(CFLAGS)
++
++
++LIBDIR =
++LDFLAGS =
++LIBS = -lpsputility -lpspgum -lpspgu -lm
++
++EXTRA_TARGETS = EBOOT.PBP
++PSP_EBOOT_TITLE = Net Dialog Sample
++
++PSPSDK=$(shell psp-config --pspsdk-path)
++include $(PSPSDK)/lib/build.mak
+
+Property changes on: src/samples/utility/netdialog/Makefile.sample
+___________________________________________________________________
+Name: svn:eol-style
+   + native
+
+Index: src/samples/Makefile.am
+===================================================================
+--- src/samples/Makefile.am	(revision 2228)
++++ src/samples/Makefile.am	(revision 2304)
+@@ -71,6 +71,7 @@
+ 	template/lib_template \
+ 	usb/storage \
+ 	utility/netconf \
++	utility/netdialog \
+ 	utility/msgdialog \
+ 	utility/systemparam \
+ 	me/basic \
+Index: src/samples/gu/text/Makefile.sample
+===================================================================
+--- src/samples/gu/text/Makefile.sample	(revision 2228)
++++ src/samples/gu/text/Makefile.sample	(revision 2304)
+@@ -13,7 +13,7 @@
+ EXTRA_TARGETS = EBOOT.PBP
+ PSP_EBOOT_TITLE = GUFont Sample by McZonk
+ 
+-PSPSDK=/usr/local/pspdev/psp/sdk
++PSPSDK=$(shell psp-config --pspsdk-path)
+ include $(PSPSDK)/lib/build.mak
+ 
+ font.c : font.raw
+Index: src/display/pspdisplay.h
+===================================================================
+--- src/display/pspdisplay.h	(revision 2228)
++++ src/display/pspdisplay.h	(revision 2304)
+@@ -8,6 +8,7 @@
+  * Copyright (c) 2005 Marcus R. Brown <mrbrown@ocgnet.org>
+  * Copyright (c) 2005 James Forshaw <tyranid@gmail.com>
+  * Copyright (c) 2005 John Kelley <ps2dev@kelley.ca>
++ * Copyright (c) 2007 Alexander Berl <raphael@fx-world.org>
+  *
+  * $Id$
+  */
+@@ -37,6 +38,15 @@
+ 	PSP_DISPLAY_SETBUF_NEXTFRAME = 1
+ };
+ 
++
++enum PspDisplayErrorCodes
++{
++   SCE_DISPLAY_ERROR_OK    = 0,   
++   SCE_DISPLAY_ERROR_POINTER    = 0x80000103,   
++   SCE_DISPLAY_ERROR_ARGUMENT   = 0x80000107   
++};
++
++
+ /**
+  * Set display mode
+  *
+@@ -70,8 +80,10 @@
+  * @param bufferwidth - buffer width (must be power of 2)
+  * @param pixelformat - One of ::PspDisplayPixelFormats.
+  * @param sync - One of ::PspDisplaySetBufSync
++ *
++ * @return 0 on success
+  */
+-void sceDisplaySetFrameBuf(void *topaddr, int bufferwidth, int pixelformat, int sync);
++int sceDisplaySetFrameBuf(void *topaddr, int bufferwidth, int pixelformat, int sync);
+ 
+ /**
+  * Get Display Framebuffer information
+@@ -79,9 +91,11 @@
+  * @param topaddr - pointer to void* to receive address of start of framebuffer
+  * @param bufferwidth - pointer to int to receive buffer width (must be power of 2)
+  * @param pixelformat - pointer to int to receive one of ::PspDisplayPixelFormats.
+- * @param unk1 - pointer to int, receives unknown, always 1? (vblank sync?)
++ * @param sync - One of ::PspDisplaySetBufSync
++ *
++ * @return 0 on success
+  */
+-int sceDisplayGetFrameBuf(void **topaddr, int *bufferwidth, int *pixelformat, int *unk1);
++int sceDisplayGetFrameBuf(void **topaddr, int *bufferwidth, int *pixelformat, int sync);
+ 
+ /**
+  * Number of vertical blank pulses up to now
+Index: src/display/pspdisplay_kernel.h
+===================================================================
+--- src/display/pspdisplay_kernel.h	(revision 2228)
++++ src/display/pspdisplay_kernel.h	(revision 2304)
+@@ -8,6 +8,7 @@
+  * Copyright (c) 2005 Marcus R. Brown <mrbrown@ocgnet.org>
+  * Copyright (c) 2005 James Forshaw <tyranid@gmail.com>
+  * Copyright (c) 2005 John Kelley <ps2dev@kelley.ca>
++ * Copyright (c) 2007 Alexander Berl <raphael@fx-world.org>
+  *
+  * $Id$
+  */
+@@ -26,8 +27,10 @@
+  * @param bufferwidth - buffer width (must be power of 2)
+  * @param pixelformat - One of ::PspDisplayPixelFormats.
+  * @param sync - One of ::PspDisplaySetBufSync
++ *
++ * @return 0 on success
+  */
+-void sceDisplay_driver_63E22A26(int pri, void *topaddr, int bufferwidth, int pixelformat, int sync);
++int sceDisplay_driver_63E22A26(int pri, void *topaddr, int bufferwidth, int pixelformat, int sync);
+ 
+ /**
+  * Get Display Framebuffer information
+@@ -36,9 +39,11 @@
+  * @param topaddr - pointer to void* to receive address of start of framebuffer
+  * @param bufferwidth - pointer to int to receive buffer width (must be power of 2)
+  * @param pixelformat - pointer to int to receive one of ::PspDisplayPixelFormats.
+- * @param unk1 - pointer to int, receives unknown, always 1? (vblank sync?)
++ * @param sync - One of ::PspDisplaySetBufSync
++ *
++ * @return 0 on success
+  */
+-int sceDisplay_driver_5B5AEFAD(int pri, void **topaddr, int *bufferwidth, int *pixelformat, int *unk1);
++int sceDisplay_driver_5B5AEFAD(int pri, void **topaddr, int *bufferwidth, int *pixelformat, int sync);
+ 
+ /* Define some names to make it nicer */
+ #define sceDisplaySetFrameBufferInternal sceDisplay_driver_63E22A26
+Index: src/base/linkfile.prx
+===================================================================
+--- src/base/linkfile.prx	(revision 2228)
++++ src/base/linkfile.prx	(revision 2304)
+@@ -1,246 +0,0 @@
+-/* Default linker script, for normal executables */
+-OUTPUT_FORMAT("elf32-littlemips", "elf32-bigmips",
+-	      "elf32-littlemips")
+-OUTPUT_ARCH(mips:allegrex)
+-ENTRY(module_start)
+-SEARCH_DIR("/usr/local/pspdev/psp/lib");
+-/* Do we need any of these for elf?
+-   __DYNAMIC = 0;    */
+-SECTIONS
+-{
+-  /* Read-only sections, merged into text segment: */
+-  PROVIDE (__executable_start = 0x0); . = 0x0;
+-  .interp         : { *(.interp) }
+-  .dynamic        : { *(.dynamic) }
+-  .hash           : { *(.hash) }
+-  .dynsym         : { *(.dynsym) }
+-  .dynstr         : { *(.dynstr) }
+-  .gnu.version    : { *(.gnu.version) }
+-  .gnu.version_d  : { *(.gnu.version_d) }
+-  .gnu.version_r  : { *(.gnu.version_r) }
+-  .rel.text       : { *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*) }
+-  .rela.text      : { *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*) }
+-  .rel.init       : { *(.rel.init) }
+-  .rela.init      : { *(.rela.init) }
+-  .rel.fini       : { *(.rel.fini) }
+-  .rela.fini      : { *(.rela.fini) }
+-  /* PSP-specific relocations. */
+-  .rel.sceStub.text   : { *(.rel.sceStub.text) *(SORT(.rel.sceStub.text.*)) }
+-  .rel.lib.ent.top    : { *(.rel.lib.ent.top) }
+-  .rel.lib.ent        : { *(.rel.lib.ent) }
+-  .rel.lib.ent.btm    : { *(.rel.lib.ent.btm) }
+-  .rel.lib.stub.top   : { *(.rel.lib.stub.top) }
+-  .rel.lib.stub       : { *(.rel.lib.stub) }
+-  .rel.lib.stub.btm   : { *(.rel.lib.stub.btm) }
+-  .rel.rodata.sceModuleInfo   : { *(.rel.rodata.sceModuleInfo) }
+-  .rel.rodata.sceResident     : { *(.rel.rodata.sceResident) }
+-  .rel.rodata.sceNid          : { *(.rel.rodata.sceNid) }
+-  .rel.rodata.sceVstub        : { *(.rel.rodata.sceVstub) *(SORT(.rel.rodata.sceVstub.*)) }
+-  .rel.rodata     : { *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*) }
+-  .rela.rodata    : { *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*) }
+-  .rel.data.rel.ro   : { *(.rel.data.rel.ro*) }
+-  .rela.data.rel.ro   : { *(.rel.data.rel.ro*) }
+-  .rel.data       : { *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*) }
+-  .rela.data      : { *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*) }
+-  .rel.tdata	  : { *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*) }
+-  .rela.tdata	  : { *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*) }
+-  .rel.tbss	  : { *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*) }
+-  .rela.tbss	  : { *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*) }
+-  .rel.ctors      : { *(.rel.ctors) }
+-  .rela.ctors     : { *(.rela.ctors) }
+-  .rel.dtors      : { *(.rel.dtors) }
+-  .rela.dtors     : { *(.rela.dtors) }
+-  .rel.got        : { *(.rel.got) }
+-  .rela.got       : { *(.rela.got) }
+-  .rel.sdata      : { *(.rel.sdata .rel.sdata.* .rel.gnu.linkonce.s.*) }
+-  .rela.sdata     : { *(.rela.sdata .rela.sdata.* .rela.gnu.linkonce.s.*) }
+-  .rel.sbss       : { *(.rel.sbss .rel.sbss.* .rel.gnu.linkonce.sb.*) }
+-  .rela.sbss      : { *(.rela.sbss .rela.sbss.* .rela.gnu.linkonce.sb.*) }
+-  .rel.sdata2     : { *(.rel.sdata2 .rel.sdata2.* .rel.gnu.linkonce.s2.*) }
+-  .rela.sdata2    : { *(.rela.sdata2 .rela.sdata2.* .rela.gnu.linkonce.s2.*) }
+-  .rel.sbss2      : { *(.rel.sbss2 .rel.sbss2.* .rel.gnu.linkonce.sb2.*) }
+-  .rela.sbss2     : { *(.rela.sbss2 .rela.sbss2.* .rela.gnu.linkonce.sb2.*) }
+-  .rel.bss        : { *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*) }
+-  .rela.bss       : { *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*) }
+-  .rel.plt        : { *(.rel.plt) }
+-  .rela.plt       : { *(.rela.plt) }
+-  .text           :
+-  {
+-    _ftext = . ;
+-    *(.text .stub .text.* .gnu.linkonce.t.*)
+-    KEEP (*(.text.*personality*))
+-    /* .gnu.warning sections are handled specially by elf32.em.  */
+-    *(.gnu.warning)
+-    *(.mips16.fn.*) *(.mips16.call.*)
+-  } =0
+-  .init           :
+-  {
+-    KEEP (*(.init))
+-  } =0
+-  .plt            : { *(.plt) }
+-  .fini           :
+-  {
+-    KEEP (*(.fini))
+-  } =0
+-  /* PSP library stub functions. */
+-  .sceStub.text     : { *(.sceStub.text) *(SORT(.sceStub.text.*)) }
+-  PROVIDE (__etext = .);
+-  PROVIDE (_etext = .);
+-  PROVIDE (etext = .);
+-  /* PSP library entry table and library stub table. */
+-  .lib.ent.top    : { *(.lib.ent.top) }
+-  .lib.ent        : { *(.lib.ent) }
+-  .lib.ent.btm    : { *(.lib.ent.btm) }
+-  .lib.stub.top   : { *(.lib.stub.top) }
+-  .lib.stub       : { *(.lib.stub) }
+-  .lib.stub.btm   : { *(.lib.stub.btm) }
+-  /* PSP read-only data for module info, NIDs, and Vstubs.  The
+-     .rodata.sceModuleInfo section must appear before the .rodata section
+-     otherwise it would get absorbed into .rodata and the PSP bootloader
+-     would be unable to locate the module info structure. */
+-  .rodata.sceModuleInfo    : { *(.rodata.sceModuleInfo) }
+-  .rodata.sceResident      : { *(.rodata.sceResident) }
+-  .rodata.sceNid           : { KEEP (*(.rodata.sceNid)) }
+-  .rodata.sceVstub         : { *(.rodata.sceVstub) *(SORT(.rodata.sceVstub.*)) }
+-  .rodata         : { *(.rodata .rodata.* .gnu.linkonce.r.*) }
+-  .rodata1        : { *(.rodata1) }
+-  .sdata2         : { *(.sdata2 .sdata2.* .gnu.linkonce.s2.*) }
+-  .sbss2          : { *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*) }
+-  .eh_frame_hdr : { *(.eh_frame_hdr) }
+-  .eh_frame       : ONLY_IF_RO { KEEP (*(.eh_frame)) }
+-  .gcc_except_table   : ONLY_IF_RO { KEEP (*(.gcc_except_table)) *(.gcc_except_table.*) }
+-  /* Adjust the address for the data segment.  We want to adjust up to
+-     the same address within the page on the next page up.  */
+-  . = ALIGN(256) + (. & (256 - 1));
+-  /* Exception handling  */
+-  .eh_frame       : ONLY_IF_RW { KEEP (*(.eh_frame)) }
+-  .gcc_except_table   : ONLY_IF_RW { KEEP (*(.gcc_except_table)) *(.gcc_except_table.*) }
+-  /* Thread Local Storage sections  */
+-  .tdata	  : { *(.tdata .tdata.* .gnu.linkonce.td.*) }
+-  .tbss		  : { *(.tbss .tbss.* .gnu.linkonce.tb.*) *(.tcommon) }
+-  /* Ensure the __preinit_array_start label is properly aligned.  We
+-     could instead move the label definition inside the section, but
+-     the linker would then create the section even if it turns out to
+-     be empty, which isn't pretty.  */
+-  . = ALIGN(32 / 8);
+-  PROVIDE (__preinit_array_start = .);
+-  .preinit_array     : { KEEP (*(.preinit_array)) }
+-  PROVIDE (__preinit_array_end = .);
+-  PROVIDE (__init_array_start = .);
+-  .init_array     : { KEEP (*(.init_array)) }
+-  PROVIDE (__init_array_end = .);
+-  PROVIDE (__fini_array_start = .);
+-  .fini_array     : { KEEP (*(.fini_array)) }
+-  PROVIDE (__fini_array_end = .);
+-  .ctors          :
+-  {
+-    /* gcc uses crtbegin.o to find the start of
+-       the constructors, so we make sure it is
+-       first.  Because this is a wildcard, it
+-       doesn't matter if the user does not
+-       actually link against crtbegin.o; the
+-       linker won't look for a file to match a
+-       wildcard.  The wildcard also means that it
+-       doesn't matter which directory crtbegin.o
+-       is in.  */
+-    KEEP (*crtbegin*.o(.ctors))
+-    /* We don't want to include the .ctor section from
+-       from the crtend.o file until after the sorted ctors.
+-       The .ctor section from the crtend file contains the
+-       end of ctors marker and it must be last */
+-    KEEP (*(EXCLUDE_FILE (*crtend*.o ) .ctors))
+-    KEEP (*(SORT(.ctors.*)))
+-    KEEP (*(.ctors))
+-  }
+-  .dtors          :
+-  {
+-    KEEP (*crtbegin*.o(.dtors))
+-    KEEP (*(EXCLUDE_FILE (*crtend*.o ) .dtors))
+-    KEEP (*(SORT(.dtors.*)))
+-    KEEP (*(.dtors))
+-  }
+-  .jcr            : { KEEP (*(.jcr)) }
+-  .data.rel.ro : { *(.data.rel.ro.local) *(.data.rel.ro*) }
+-  .data           :
+-  {
+-    _fdata = . ;
+-    *(.data .data.* .gnu.linkonce.d.*)
+-    KEEP (*(.gnu.linkonce.d.*personality*))
+-    SORT(CONSTRUCTORS)
+-  }
+-  .data1          : { *(.data1) }
+-  . = .;
+-  _gp = ALIGN(16) + 0x7ff0;
+-  .got            : { *(.got.plt) *(.got) }
+-  /* We want the small data sections together, so single-instruction offsets
+-     can access them all, and initialized data all before uninitialized, so
+-     we can shorten the on-disk segment size.  */
+-  .sdata          :
+-  {
+-    *(.sdata .sdata.* .gnu.linkonce.s.*)
+-  }
+-  .lit8           : { *(.lit8) }
+-  .lit4           : { *(.lit4) }
+-  _edata = .;
+-  PROVIDE (edata = .);
+-  __bss_start = .;
+-  _fbss = .;
+-  .sbss           :
+-  {
+-    PROVIDE (__sbss_start = .);
+-    PROVIDE (___sbss_start = .);
+-    *(.dynsbss)
+-    *(.sbss .sbss.* .gnu.linkonce.sb.*)
+-    *(.scommon)
+-    PROVIDE (__sbss_end = .);
+-    PROVIDE (___sbss_end = .);
+-  }
+-  .bss            :
+-  {
+-   *(.dynbss)
+-   *(.bss .bss.* .gnu.linkonce.b.*)
+-   *(COMMON)
+-   /* Align here to ensure that the .bss section occupies space up to
+-      _end.  Align after .bss to ensure correct alignment even if the
+-      .bss section disappears because there are no input sections.  */
+-   . = ALIGN(32 / 8);
+-  }
+-  . = ALIGN(32 / 8);
+-  _end = .;
+-  PROVIDE (end = .);
+-  /* Stabs debugging sections.  */
+-  .stab          0 : { *(.stab) }
+-  .stabstr       0 : { *(.stabstr) }
+-  .stab.excl     0 : { *(.stab.excl) }
+-  .stab.exclstr  0 : { *(.stab.exclstr) }
+-  .stab.index    0 : { *(.stab.index) }
+-  .stab.indexstr 0 : { *(.stab.indexstr) }
+-  .comment       0 : { *(.comment) }
+-  /* DWARF debug sections.
+-     Symbols in the DWARF debugging sections are relative to the beginning
+-     of the section so we begin them at 0.  */
+-  /* DWARF 1 */
+-  .debug          0 : { *(.debug) }
+-  .line           0 : { *(.line) }
+-  /* GNU DWARF 1 extensions */
+-  .debug_srcinfo  0 : { *(.debug_srcinfo) }
+-  .debug_sfnames  0 : { *(.debug_sfnames) }
+-  /* DWARF 1.1 and DWARF 2 */
+-  .debug_aranges  0 : { *(.debug_aranges) }
+-  .debug_pubnames 0 : { *(.debug_pubnames) }
+-  /* DWARF 2 */
+-  .debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
+-  .debug_abbrev   0 : { *(.debug_abbrev) }
+-  .debug_line     0 : { *(.debug_line) }
+-  .debug_frame    0 : { *(.debug_frame) }
+-  .debug_str      0 : { *(.debug_str) }
+-  .debug_loc      0 : { *(.debug_loc) }
+-  .debug_macinfo  0 : { *(.debug_macinfo) }
+-  /* SGI/MIPS DWARF 2 extensions */
+-  .debug_weaknames 0 : { *(.debug_weaknames) }
+-  .debug_funcnames 0 : { *(.debug_funcnames) }
+-  .debug_typenames 0 : { *(.debug_typenames) }
+-  .debug_varnames  0 : { *(.debug_varnames) }
+-  /DISCARD/ : { *(.comment) *(.pdr) }
+-  /DISCARD/ : { *(.note.GNU-stack) }
+-}
+Index: src/base/linkfile.prx.in
+===================================================================
+--- src/base/linkfile.prx.in	(revision 0)
++++ src/base/linkfile.prx.in	(revision 2304)
+@@ -0,0 +1,246 @@
++/* Default linker script, for normal executables */
++OUTPUT_FORMAT("elf32-littlemips", "elf32-bigmips",
++	      "elf32-littlemips")
++OUTPUT_ARCH(mips:allegrex)
++ENTRY(module_start)
++SEARCH_DIR("@PSPDEV_LIBDIR@");
++/* Do we need any of these for elf?
++   __DYNAMIC = 0;    */
++SECTIONS
++{
++  /* Read-only sections, merged into text segment: */
++  PROVIDE (__executable_start = 0x0); . = 0x0;
++  .interp         : { *(.interp) }
++  .dynamic        : { *(.dynamic) }
++  .hash           : { *(.hash) }
++  .dynsym         : { *(.dynsym) }
++  .dynstr         : { *(.dynstr) }
++  .gnu.version    : { *(.gnu.version) }
++  .gnu.version_d  : { *(.gnu.version_d) }
++  .gnu.version_r  : { *(.gnu.version_r) }
++  .rel.text       : { *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*) }
++  .rela.text      : { *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*) }
++  .rel.init       : { *(.rel.init) }
++  .rela.init      : { *(.rela.init) }
++  .rel.fini       : { *(.rel.fini) }
++  .rela.fini      : { *(.rela.fini) }
++  /* PSP-specific relocations. */
++  .rel.sceStub.text   : { *(.rel.sceStub.text) *(SORT(.rel.sceStub.text.*)) }
++  .rel.lib.ent.top    : { *(.rel.lib.ent.top) }
++  .rel.lib.ent        : { *(.rel.lib.ent) }
++  .rel.lib.ent.btm    : { *(.rel.lib.ent.btm) }
++  .rel.lib.stub.top   : { *(.rel.lib.stub.top) }
++  .rel.lib.stub       : { *(.rel.lib.stub) }
++  .rel.lib.stub.btm   : { *(.rel.lib.stub.btm) }
++  .rel.rodata.sceModuleInfo   : { *(.rel.rodata.sceModuleInfo) }
++  .rel.rodata.sceResident     : { *(.rel.rodata.sceResident) }
++  .rel.rodata.sceNid          : { *(.rel.rodata.sceNid) }
++  .rel.rodata.sceVstub        : { *(.rel.rodata.sceVstub) *(SORT(.rel.rodata.sceVstub.*)) }
++  .rel.rodata     : { *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*) }
++  .rela.rodata    : { *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*) }
++  .rel.data.rel.ro   : { *(.rel.data.rel.ro*) }
++  .rela.data.rel.ro   : { *(.rel.data.rel.ro*) }
++  .rel.data       : { *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*) }
++  .rela.data      : { *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*) }
++  .rel.tdata	  : { *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*) }
++  .rela.tdata	  : { *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*) }
++  .rel.tbss	  : { *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*) }
++  .rela.tbss	  : { *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*) }
++  .rel.ctors      : { *(.rel.ctors) }
++  .rela.ctors     : { *(.rela.ctors) }
++  .rel.dtors      : { *(.rel.dtors) }
++  .rela.dtors     : { *(.rela.dtors) }
++  .rel.got        : { *(.rel.got) }
++  .rela.got       : { *(.rela.got) }
++  .rel.sdata      : { *(.rel.sdata .rel.sdata.* .rel.gnu.linkonce.s.*) }
++  .rela.sdata     : { *(.rela.sdata .rela.sdata.* .rela.gnu.linkonce.s.*) }
++  .rel.sbss       : { *(.rel.sbss .rel.sbss.* .rel.gnu.linkonce.sb.*) }
++  .rela.sbss      : { *(.rela.sbss .rela.sbss.* .rela.gnu.linkonce.sb.*) }
++  .rel.sdata2     : { *(.rel.sdata2 .rel.sdata2.* .rel.gnu.linkonce.s2.*) }
++  .rela.sdata2    : { *(.rela.sdata2 .rela.sdata2.* .rela.gnu.linkonce.s2.*) }
++  .rel.sbss2      : { *(.rel.sbss2 .rel.sbss2.* .rel.gnu.linkonce.sb2.*) }
++  .rela.sbss2     : { *(.rela.sbss2 .rela.sbss2.* .rela.gnu.linkonce.sb2.*) }
++  .rel.bss        : { *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*) }
++  .rela.bss       : { *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*) }
++  .rel.plt        : { *(.rel.plt) }
++  .rela.plt       : { *(.rela.plt) }
++  .text           :
++  {
++    _ftext = . ;
++    *(.text .stub .text.* .gnu.linkonce.t.*)
++    KEEP (*(.text.*personality*))
++    /* .gnu.warning sections are handled specially by elf32.em.  */
++    *(.gnu.warning)
++    *(.mips16.fn.*) *(.mips16.call.*)
++  } =0
++  .init           :
++  {
++    KEEP (*(.init))
++  } =0
++  .plt            : { *(.plt) }
++  .fini           :
++  {
++    KEEP (*(.fini))
++  } =0
++  /* PSP library stub functions. */
++  .sceStub.text     : { *(.sceStub.text) *(SORT(.sceStub.text.*)) }
++  PROVIDE (__etext = .);
++  PROVIDE (_etext = .);
++  PROVIDE (etext = .);
++  /* PSP library entry table and library stub table. */
++  .lib.ent.top    : { *(.lib.ent.top) }
++  .lib.ent        : { *(.lib.ent) }
++  .lib.ent.btm    : { *(.lib.ent.btm) }
++  .lib.stub.top   : { *(.lib.stub.top) }
++  .lib.stub       : { *(.lib.stub) }
++  .lib.stub.btm   : { *(.lib.stub.btm) }
++  /* PSP read-only data for module info, NIDs, and Vstubs.  The
++     .rodata.sceModuleInfo section must appear before the .rodata section
++     otherwise it would get absorbed into .rodata and the PSP bootloader
++     would be unable to locate the module info structure. */
++  .rodata.sceModuleInfo    : { *(.rodata.sceModuleInfo) }
++  .rodata.sceResident      : { *(.rodata.sceResident) }
++  .rodata.sceNid           : { KEEP (*(.rodata.sceNid)) }
++  .rodata.sceVstub         : { *(.rodata.sceVstub) *(SORT(.rodata.sceVstub.*)) }
++  .rodata         : { *(.rodata .rodata.* .gnu.linkonce.r.*) }
++  .rodata1        : { *(.rodata1) }
++  .sdata2         : { *(.sdata2 .sdata2.* .gnu.linkonce.s2.*) }
++  .sbss2          : { *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*) }
++  .eh_frame_hdr : { *(.eh_frame_hdr) }
++  .eh_frame       : ONLY_IF_RO { KEEP (*(.eh_frame)) }
++  .gcc_except_table   : ONLY_IF_RO { KEEP (*(.gcc_except_table)) *(.gcc_except_table.*) }
++  /* Adjust the address for the data segment.  We want to adjust up to
++     the same address within the page on the next page up.  */
++  . = ALIGN(256) + (. & (256 - 1));
++  /* Exception handling  */
++  .eh_frame       : ONLY_IF_RW { KEEP (*(.eh_frame)) }
++  .gcc_except_table   : ONLY_IF_RW { KEEP (*(.gcc_except_table)) *(.gcc_except_table.*) }
++  /* Thread Local Storage sections  */
++  .tdata	  : { *(.tdata .tdata.* .gnu.linkonce.td.*) }
++  .tbss		  : { *(.tbss .tbss.* .gnu.linkonce.tb.*) *(.tcommon) }
++  /* Ensure the __preinit_array_start label is properly aligned.  We
++     could instead move the label definition inside the section, but
++     the linker would then create the section even if it turns out to
++     be empty, which isn't pretty.  */
++  . = ALIGN(32 / 8);
++  PROVIDE (__preinit_array_start = .);
++  .preinit_array     : { KEEP (*(.preinit_array)) }
++  PROVIDE (__preinit_array_end = .);
++  PROVIDE (__init_array_start = .);
++  .init_array     : { KEEP (*(.init_array)) }
++  PROVIDE (__init_array_end = .);
++  PROVIDE (__fini_array_start = .);
++  .fini_array     : { KEEP (*(.fini_array)) }
++  PROVIDE (__fini_array_end = .);
++  .ctors          :
++  {
++    /* gcc uses crtbegin.o to find the start of
++       the constructors, so we make sure it is
++       first.  Because this is a wildcard, it
++       doesn't matter if the user does not
++       actually link against crtbegin.o; the
++       linker won't look for a file to match a
++       wildcard.  The wildcard also means that it
++       doesn't matter which directory crtbegin.o
++       is in.  */
++    KEEP (*crtbegin*.o(.ctors))
++    /* We don't want to include the .ctor section from
++       from the crtend.o file until after the sorted ctors.
++       The .ctor section from the crtend file contains the
++       end of ctors marker and it must be last */
++    KEEP (*(EXCLUDE_FILE (*crtend*.o ) .ctors))
++    KEEP (*(SORT(.ctors.*)))
++    KEEP (*(.ctors))
++  }
++  .dtors          :
++  {
++    KEEP (*crtbegin*.o(.dtors))
++    KEEP (*(EXCLUDE_FILE (*crtend*.o ) .dtors))
++    KEEP (*(SORT(.dtors.*)))
++    KEEP (*(.dtors))
++  }
++  .jcr            : { KEEP (*(.jcr)) }
++  .data.rel.ro : { *(.data.rel.ro.local) *(.data.rel.ro*) }
++  .data           :
++  {
++    _fdata = . ;
++    *(.data .data.* .gnu.linkonce.d.*)
++    KEEP (*(.gnu.linkonce.d.*personality*))
++    SORT(CONSTRUCTORS)
++  }
++  .data1          : { *(.data1) }
++  . = .;
++  _gp = ALIGN(16) + 0x7ff0;
++  .got            : { *(.got.plt) *(.got) }
++  /* We want the small data sections together, so single-instruction offsets
++     can access them all, and initialized data all before uninitialized, so
++     we can shorten the on-disk segment size.  */
++  .sdata          :
++  {
++    *(.sdata .sdata.* .gnu.linkonce.s.*)
++  }
++  .lit8           : { *(.lit8) }
++  .lit4           : { *(.lit4) }
++  _edata = .;
++  PROVIDE (edata = .);
++  __bss_start = .;
++  _fbss = .;
++  .sbss           :
++  {
++    PROVIDE (__sbss_start = .);
++    PROVIDE (___sbss_start = .);
++    *(.dynsbss)
++    *(.sbss .sbss.* .gnu.linkonce.sb.*)
++    *(.scommon)
++    PROVIDE (__sbss_end = .);
++    PROVIDE (___sbss_end = .);
++  }
++  .bss            :
++  {
++   *(.dynbss)
++   *(.bss .bss.* .gnu.linkonce.b.*)
++   *(COMMON)
++   /* Align here to ensure that the .bss section occupies space up to
++      _end.  Align after .bss to ensure correct alignment even if the
++      .bss section disappears because there are no input sections.  */
++   . = ALIGN(32 / 8);
++  }
++  . = ALIGN(32 / 8);
++  _end = .;
++  PROVIDE (end = .);
++  /* Stabs debugging sections.  */
++  .stab          0 : { *(.stab) }
++  .stabstr       0 : { *(.stabstr) }
++  .stab.excl     0 : { *(.stab.excl) }
++  .stab.exclstr  0 : { *(.stab.exclstr) }
++  .stab.index    0 : { *(.stab.index) }
++  .stab.indexstr 0 : { *(.stab.indexstr) }
++  .comment       0 : { *(.comment) }
++  /* DWARF debug sections.
++     Symbols in the DWARF debugging sections are relative to the beginning
++     of the section so we begin them at 0.  */
++  /* DWARF 1 */
++  .debug          0 : { *(.debug) }
++  .line           0 : { *(.line) }
++  /* GNU DWARF 1 extensions */
++  .debug_srcinfo  0 : { *(.debug_srcinfo) }
++  .debug_sfnames  0 : { *(.debug_sfnames) }
++  /* DWARF 1.1 and DWARF 2 */
++  .debug_aranges  0 : { *(.debug_aranges) }
++  .debug_pubnames 0 : { *(.debug_pubnames) }
++  /* DWARF 2 */
++  .debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
++  .debug_abbrev   0 : { *(.debug_abbrev) }
++  .debug_line     0 : { *(.debug_line) }
++  .debug_frame    0 : { *(.debug_frame) }
++  .debug_str      0 : { *(.debug_str) }
++  .debug_loc      0 : { *(.debug_loc) }
++  .debug_macinfo  0 : { *(.debug_macinfo) }
++  /* SGI/MIPS DWARF 2 extensions */
++  .debug_weaknames 0 : { *(.debug_weaknames) }
++  .debug_funcnames 0 : { *(.debug_funcnames) }
++  .debug_typenames 0 : { *(.debug_typenames) }
++  .debug_varnames  0 : { *(.debug_varnames) }
++  /DISCARD/ : { *(.comment) *(.pdr) }
++  /DISCARD/ : { *(.note.GNU-stack) }
++}
+
+Property changes on: src/base
+___________________________________________________________________
+Name: svn:ignore
+   - .deps
+Makefile
+Makefile.in
+
+
+   + .deps
+Makefile
+Makefile.in
+linkfile.prx
+
+
+Index: src/gu/sceGuClutMode.c
+===================================================================
+--- src/gu/sceGuClutMode.c	(revision 2228)
++++ src/gu/sceGuClutMode.c	(revision 2304)
+@@ -8,8 +8,8 @@
+ 
+ #include "guInternal.h"
+ 
+-void sceGuClutMode(unsigned int cpsm, unsigned int a1, unsigned int a2, unsigned int a3)
++void sceGuClutMode(unsigned int cpsm, unsigned int shift, unsigned int mask, unsigned int a3)
+ {
+-	unsigned int argument = (cpsm) | (a1 << 2) | (a2 << 8) | (a3 << 16);
++	unsigned int argument = (cpsm) | (shift << 2) | (mask << 8) | (a3 << 16);
+ 	sendCommandi(197,argument);
+ }
+Index: src/gu/pspgu.h
+===================================================================
+--- src/gu/pspgu.h	(revision 2228)
++++ src/gu/pspgu.h	(revision 2304)
+@@ -168,6 +168,11 @@
+ #define GU_TEXTURE_MATRIX	(1)
+ #define GU_ENVIRONMENT_MAP	(2)
+ 
++/* Texture Level Mode */
++#define GU_TEXTURE_AUTO		(0)
++#define GU_TEXTURE_CONST	(1)
++#define GU_TEXTURE_SLOPE	(2)
++
+ /* Texture Projection Map Mode */
+ #define GU_POSITION		(0)
+ #define GU_UV			(1)
+@@ -262,6 +267,11 @@
+ #define GU_TAIL			(0)
+ #define GU_HEAD			(1)
+ 
++/* Sync behavior */
++#define GU_SYNC_FINISH	(0)
++#define GU_SYNC_SIGNAL	(1)
++#define GU_SYNC_DONE	(2)
++
+ /* Signals */
+ #define GU_CALLBACK_SIGNAL	(1)
+ #define GU_CALLBACK_FINISH	(4)
+@@ -538,7 +548,7 @@
+   *   - GU_TAIL - Place list last in the queue, so it executes in-order
+   *   - GU_HEAD - Place list first in queue so that it executes as soon as possible
+   *
+-  * @param mode - Wether to place the list first or last in queue
++  * @param mode - Whether to place the list first or last in queue
+   * @param list - List to send
+   * @param context - Temporary storage for the GE context
+ **/
+@@ -559,11 +569,20 @@
+   * sceGuSync(0,0);
+   * @endcode
+   *
+-  * @param mode - Unknown meaning, pass 0 for now
+-  * @param a1 - Unknown meaning, pass 0 for now
++  * Available modes are:
++  *   - GU_SYNC_WAIT
++  *   - GU_SYNC_NOWAIT
++  *
++  * Available what are:
++  *   - GU_SYNC_FINISH - Wait until the last sceGuFinish command is reached
++  *   - GU_SYNC_SIGNAL - Wait until the last (?) signal is executed
++  *   - GU_SYNC_DONE - Wait until all commands currently in list are executed
++  *
++  * @param mode - Whether to wait or not
++  * @param what - What to sync to
+   * @returns Unknown at this time
+ **/
+-int sceGuSync(int mode, int a1);
++int sceGuSync(int mode, int what);
+ 
+ /**
+   * Draw array of vertices forming primitives
+@@ -1160,9 +1179,21 @@
+   * @param tbp - Texture buffer pointer (16 byte aligned)
+ **/
+ void sceGuTexImage(int mipmap, int width, int height, int tbw, const void* tbp);
+-void sceGuTexLevelMode(unsigned int a0, float f12);
+ 
+ /**
++  * Set texture-level mode (mipmapping)
++  *
++  * Available modes are:
++  *   - GU_TEXTURE_AUTO
++  *   - GU_TEXTURE_CONST
++  *   - GU_TEXTURE_SLOPE
++  *
++  * @param mode - Which mode to use
++  * @param bias - Which mipmap bias to use
++**/
++void sceGuTexLevelMode(unsigned int mode, float bias);
++
++/**
+   * Set the texture-mapping mode
+   *
+   * Available modes are:
+@@ -1270,11 +1301,11 @@
+   *   - GU_PSM_8888
+   *
+   * @param cpsm - Which pixel format to use for the palette
+-  * @param a1 - Unknown, set to 0
+-  * @param a2 - Unknown, set to 0
++  * @param shift - Shifts color index by that many bits to the right
++  * @param mask - Masks the color index with this bitmask after the shift (0-0xFF)
+   * @param a3 - Unknown, set to 0
+ **/
+-void sceGuClutMode(unsigned int cpsm, unsigned int a1, unsigned int a2, unsigned int a3);
++void sceGuClutMode(unsigned int cpsm, unsigned int shift, unsigned int mask, unsigned int a3);
+ 
+ /**
+   * Set virtual coordinate offset
+Index: src/gu/sceGuSync.c
+===================================================================
+--- src/gu/sceGuSync.c	(revision 2228)
++++ src/gu/sceGuSync.c	(revision 2304)
+@@ -11,11 +11,11 @@
+ #include <pspkernel.h>
+ #include <pspge.h>
+ 
+-int sceGuSync(int mode, int a1)
++int sceGuSync(int mode, int what)
+ {
+ 	switch (mode)
+ 	{
+-		case 0: return sceGeDrawSync(a1); break;
++		case 0: return sceGeDrawSync(what); break;
+ 		case 3: return sceGeDrawSync(ge_list_executed[0]);
+ 		case 4: return sceGeDrawSync(ge_list_executed[1]);
+ 		default: case 1: case 2: return 0;
+Index: src/gu/sceGuTexLevelMode.c
+===================================================================
+--- src/gu/sceGuTexLevelMode.c	(revision 2228)
++++ src/gu/sceGuTexLevelMode.c	(revision 2304)
+@@ -10,9 +10,9 @@
+ 
+ #include <math.h>
+ 
+-void sceGuTexLevelMode(unsigned int a0, float f12)
++void sceGuTexLevelMode(unsigned int mode, float bias)
+ {
+-	int offset = (int)truncf(f12 * 16.0f);
++	int offset = (int)truncf(bias * 16.0f);
+ 
+ 	// mip map bias?
+ 	if (offset >= 128)
+@@ -20,5 +20,5 @@
+ 	else if (offset < -128)
+ 		offset = -128;
+ 
+-	sendCommandi(200,(((unsigned int)(offset)) << 16) | a0);
++	sendCommandi(200,(((unsigned int)(offset)) << 16) | mode);
+ }
