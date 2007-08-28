@@ -1,34 +1,15 @@
 {% load i18n %}
 
 {% if display_form %}
-    <form action="{{ blog_url }}/../comments/postfree/" method="post">
+    <form name="comment_form" action="{{ blog_url }}/../comments/postfree/" method="post">
         {% trans "Your name:" %}
         <input class="dropdown" type="text" id="id_person_name" name="person_name" />
 
         {% trans "Comment:" %}
-        <textarea class="dropdown" name="comment" id="id_comment" rows="10" cols="100" onkeyup="updateLen()" onkeydown="updateLen()"></textarea>
+        <textarea class="dropdown" name="comment" id="id_comment" rows="10" cols="100" tinyMCE_this="true"></textarea>
 
-        <div>(<span id="id_comment_len"></span> {% trans "chars. remaining." %})</div>
+        <div>{% trans "Remaining number of characters: " %} <b><span id="msgCounter"></span></b></div>
         <br/>
-
-        <script type="text/javascript">
-            var MAX_LENGTH = 3000;
-            
-            var comment = document.getElementById("id_comment");
-            var comment_len = document.getElementById("id_comment_len");
-            
-            function updateLen() {
-                var remaining = MAX_LENGTH - comment.value.length;
-                if (remaining <= 0) {
-                    comment.value = comment.value.substring(0, MAX_LENGTH);
-                    comment_len.innerHTML = 0;
-                }
-                else {
-                    comment_len.innerHTML = remaining;
-                }
-            }
-            updateLen();
-        </script>
 
         <input type="hidden" name="options" value="{{ options }}" />
         <input type="hidden" name="target" value="{{ target }}" />
