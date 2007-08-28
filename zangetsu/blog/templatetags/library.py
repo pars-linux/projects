@@ -18,31 +18,46 @@ register = Library()
 class TemplateSyntaxError(Exception):
     pass
 
-class TagCloudObject(Node):
+class TagMenuObject(Node):
     def render(self, context):
-        tags = {}
-        tag_objects = Tag.objects.all()
-        for tag in tag_objects:
+        tag_menu, tags= "", {}
+        number_of_levels = 9
+        for tag in Tag.objects.all():
             tags[tag.title] = len(tag.entry_set.all())
 
-        def sort_func(x, y):
-            return cmp(x[1], y[1])
+        def List():
+            tmpl = get_template("blog/tag_list_item.tmpl")
+            tag_dict = tags.items()
+            return (tmpl, tag_dict, 1)
 
-        items = tags.items()
-        items.sort(sort_func)
-        items.reverse()
-        top = items[0][1]
-        tag_cloud = ""
-        tmpl = get_template("blog/tag_cloud_item.tmpl")
-        for item in [items[i] for i in range(len(items), 0, -1) if i % 2] + [items[i] for i in range(0, len(items)) if not i % 2]:
-            values = {"tag_title": item[0],
-                      "entry_count": item[1],
-                      "cloud_level": str(item[1]*9/top + 1),
-                      "tag_link": "%s/blog/tag/%s/" % (WEB_URL, item[0])}
-            tag_cloud += tmpl.render(Context(values))
-        context["tag_cloud"] = tag_cloud
+        def Cloud():
+            items = tags.items()
+            if len(items) == 0:
+                return (None, {}, None)
+            items.sort(lambda x, y: cmp(x[1], y[1]))
+            items.reverse()
+            top = items[0][1] or 1
+            tmpl = get_template("blog/tag_cloud_item.tmpl")
+            tag_dict = [items[i] for i in range(len(items) - 1, 0, -1) if i % 2] + [items[i] for i in range(0, len(items)) if not i % 2]
+            return (tmpl, tag_dict, top)
+
+        tag_menu_handlers = {'list': List, 'cloud': Cloud, 'default': List}
+
+        if defaults.__dict__.has_key("TAG_MENU") and tag_menu_handlers.has_key(defaults.TAG_MENU):
+            tmpl, tag_dict, top = tag_menu_handlers.get(defaults.TAG_MENU)()
+        else:
+            tmpl, tag_dict, top = tag_menu_handlers.get("default")()
+
+        for item in tag_dict:
+            tag_title, entry_count = item
+            values = {"tag_title": tag_title,
+                      "entry_count": entry_count,
+                      "tag_level": str(entry_count * number_of_levels / top + 1),
+                      "blog_url": "%s/blog" % WEB_URL}
+            tag_menu += tmpl.render(Context(values))
+
+        context["tag_menu"] = tag_menu
         return ""
-
 
 class BlogNameObject(Node):
     def render(self, context):
@@ -72,16 +87,11 @@ class MonthMenuObject(Node):
         context["blog_months"] = Entry.objects.filter(pubdate__lte=Now()).dates("pubdate", "month", "DESC")
         return ""
 
-class TagMenuObject(Node):
-    def render(self, context):
-        context["blog_tags"] = Tag.objects.all()
-        return ""
-
 def build_blog_name(parser, token):
     return BlogNameObject()
 
-def build_tag_cloud(parser, token):
-    return TagCloudObject()
+def build_tag_menu(parser, token):
+    return TagMenuObject()
 
 def build_link_list(parser, token):
     return LinkMenuObject()
@@ -89,11 +99,7 @@ def build_link_list(parser, token):
 def build_month_list(parser, token):
     return MonthMenuObject()
 
-def build_tag_list(parser, token):
-    return TagMenuObject()
-
 register.tag("build_blog_name", build_blog_name)
-register.tag("build_tag_cloud", build_tag_cloud)
+register.tag("build_tag_menu", build_tag_menu)
 register.tag("build_link_list", build_link_list)
 register.tag("build_month_list", build_month_list)
-register.tag("build_tag_list", build_tag_list)
