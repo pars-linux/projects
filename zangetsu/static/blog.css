@@ -155,6 +155,20 @@ hr {
 	padding: 15px 0px 10px 40px;
 }
 
+.tag_cloud_link {text-decoration: none;}
+.tag_cloud_link:visited {text-decoration: none;}
+.tag_cloud_link:hover {border-bottom: 1px dashed; text-decoration: none;}
+.cloud_level_1 {font-size: 10pt;color: #99AA99;}
+.cloud_level_2 {font-size: 12pt;color: #88AA88;}
+.cloud_level_3 {font-size: 14pt;color: #77AA77;}
+.cloud_level_4 {font-size: 16pt;color: #66AA66;}
+.cloud_level_5 {font-size: 17pt;color: #55AA55;}
+.cloud_level_6 {font-size: 18pt;color: #44AA44;}
+.cloud_level_7 {font-size: 19pt;color: #33AA33;}
+.cloud_level_8 {font-size: 20pt;color: #22AA22;}
+.cloud_level_9 {font-size: 21pt;color: #11AA11;}
+.cloud_level_10 {font-size: 22pt;color: #00AA00;}
+
 .paginator-bottom {
 	display: table;
 	width: 60%;

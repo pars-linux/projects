@@ -35,3 +35,6 @@ GOOGLE_ANALYTICS=None
 # Allowed tags and attributes for HTML formatted comments:
 VALID_TAGS  = "em p i hr span font strong b u a h1 h2 h3 pre br img"
 VALID_ATTRS = "href src class width size noshade face size color style align title hspace vspace"
+
+#Blog tag menu format: "list" or "cloud"
+TAG_MENU = "list"
