@@ -42,9 +42,7 @@
     <!-- menu -->
     <div id="menu">
         <center>{{ blog_desc }}</center>
-        <br />
-        <br />
-        <b>{% trans "Archives" %}</b><hr>
+        <h2>{% trans "Archives" %}</h2>
         {% build_month_list %}
         <select class="dropdown" onchange="if (this.value != '') {location=this.value;}">
             <option value="">{% trans "Archives" %}</option>
@@ -52,28 +50,19 @@
             <option value="{{ blog_url }}/{{ month|date:"Y/m"|lower }}/">{{ month|date:"F Y" }}</option>
         {% endfor %}
         </select>
-        <br />
-        <br />
-        <b>{% trans "Search" %}</b><hr>
+        <h2>{% trans "Search" %}</h2>
         <form method="get" id="searchform" action="{{ blog_url }}/search/">
             <input class="dropdown" type="text" name="s" id="s"/>
         </form>
-        <br />
         <a href="{{ blog_url }}/comments">{%trans "Latest Comments"%}</a>
-        <br />
-        <br />
-        <b>{% trans "Tags" %}</b><hr>
+        <h2>{% trans "Tags" %}</h2>
         {% build_tag_menu %}
         {{ tag_menu }}
-        <br />
-        <br />
-        <b>{% trans "Links" %}</b><hr>
+        <h2>{% trans "Links" %}</h2>
         {% build_link_list %}
         {% for link in blog_link %}
             <a href="{{link.url}}/">{{ link.title }}</a><br />
         {% endfor %}
-        <br />
-        <br />
         <center>
             <a href="http://www.pardus.org.tr" target="_blank">
                 <img border="0" alt="Pardus... Özgürlük İçin..." title="Pardus... Özgürlük İçin..." src="http://www.pardus.org.tr/banner/buton3.png">
