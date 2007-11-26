@@ -47,8 +47,8 @@
         <center>{{ blog_desc }}</center>
 
         <!-- Archives -->
-        <center>
         <h2>{% trans "Archives" %}</h2>
+        <center>
         {% build_month_list %}
         <select class="dropdownelect onchange="if (this.value != '') {location=this.value;}">
             <option value="">{% trans "Archives" %}</option>
@@ -59,14 +59,15 @@
         </center>
 
         <!-- Search -->
-        <center>
         <h2>{% trans "Search" %}</h2>
+        <center>
         <form method="get" id="searchform" action="{{ blog_url }}/search/">
             <input class="dropdown" type="text" name="s" id="s"/>
         </form>
         </center>
 
         <!-- Latest Comments -->
+        <h2>{% trans "Latest Comments" %}</h2>
         <a href="{{ blog_url }}/comments">{%trans "Latest Comments"%}</a>
 
         <!-- Tags -->
@@ -82,14 +83,15 @@
         {% endfor %}
 
         <!-- Banners -->
+        <h2>{% trans "Banners" %}</h2>
         <center>
-            <a href="http://www.pardus.org.tr" target="_blank">
-                <img border="0" alt="Pardus... Özgürlük İçin..." title="Pardus... Özgürlük İçin..." src="http://www.pardus.org.tr/banner/buton3.png">
-            </a>
-            <br />
-            <a href="http://www.djangoproject.com" target="_blank">
-                <img border="0" alt="django" src="{{ blog_url }}/../static/djangosite80x15_grey.gif">
-            </a>
+        <a href="http://www.pardus.org.tr" target="_blank">
+            <img border="0" alt="Pardus... Özgürlük İçin..." title="Pardus... Özgürlük İçin..." src="http://www.pardus.org.tr/banner/buton3.png">
+        </a>
+        <br />
+        <a href="http://www.djangoproject.com" target="_blank">
+            <img border="0" alt="django" src="{{ blog_url }}/../static/djangosite80x15_grey.gif">
+        </a>
         </center>
     </div>
 
