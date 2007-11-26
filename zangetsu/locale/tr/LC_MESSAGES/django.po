@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-26 17:28+0200\n"
+"POT-Creation-Date: 2007-11-26 23:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -15,25 +15,29 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/base.html:47 templates/base.html.py:50
+#: templates/base.html:50 templates/base.html.py:54
 msgid "Archives"
 msgstr "Arşivler"
 
-#: templates/base.html:57
+#: templates/base.html:62
 msgid "Search"
 msgstr "Arama"
 
-#: templates/base.html:62
+#: templates/base.html:70 templates/base.html.py:71
 msgid "Latest Comments"
 msgstr "Son Yorumlar"
 
-#: templates/base.html:65
+#: templates/base.html:74
 msgid "Tags"
 msgstr "Etiketler"
 
-#: templates/base.html:70
+#: templates/base.html:79
 msgid "Links"
 msgstr "Bağlantılar"
+
+#: templates/base.html:86
+msgid "Banners"
+msgstr "Bir takım şeyler"
 
 #: templates/404.html:5
 msgid "No entry found in database!"
@@ -71,7 +75,7 @@ msgstr "Yorum:"
 
 #: templates/comments/freeform.html:11
 msgid "Number of remaining characters: "
-msgstr ""
+msgstr "Kalan karakter sayısı: "
 
 #: templates/comments/freeform.html:17
 msgid "Preview comment"
