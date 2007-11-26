@@ -63,6 +63,12 @@ html>body {
 	width: 25%;
 }
 
+#menu h2 {
+	font-size: 12px;
+	border-bottom: 1px #999 dashed;
+	margin-top: 20px;
+}
+
 pre
 {
 	border: 1px dotted green;
