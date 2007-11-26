@@ -22,11 +22,12 @@ html>body {
 	font-weight: bold;
 	line-height: 30px;
 	margin: 0 0 1ex 0;
+	text-align: center;
 	width: 100%;
 }
 
 #header a {
-	color: #FFF; 
+	color: #FFF;
 	font-weight: bold;
 }
 
@@ -46,7 +47,7 @@ html>body {
 }
 
 #footer a {
-	color: #FFF; 
+	color: #FFF;
 	font-weight: bold;
 }
 
