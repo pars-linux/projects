@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-26 23:17+0200\n"
+"POT-Creation-Date: 2007-11-27 10:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish LL@li.org>\n"
@@ -15,27 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/base.html:50 templates/base.html.py:54
+#: templates/base.html:49 templates/base.html.py:53
 msgid "Archives"
 msgstr "Arşivler"
 
-#: templates/base.html:62
+#: templates/base.html:61
 msgid "Search"
 msgstr "Arama"
 
-#: templates/base.html:70 templates/base.html.py:71
+#: templates/base.html:69 templates/base.html.py:70
 msgid "Latest Comments"
 msgstr "Son Yorumlar"
 
-#: templates/base.html:74
+#: templates/base.html:73
 msgid "Tags"
 msgstr "Etiketler"
 
-#: templates/base.html:79
+#: templates/base.html:78
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: templates/base.html:86
+#: templates/base.html:85
 msgid "Banners"
 msgstr "Bir takım şeyler"
 
@@ -73,11 +73,7 @@ msgstr "İsminiz:"
 msgid "Comment:"
 msgstr "Yorum:"
 
-#: templates/comments/freeform.html:11
-msgid "Number of remaining characters: "
-msgstr "Kalan karakter sayısı: "
-
-#: templates/comments/freeform.html:17
+#: templates/comments/freeform.html:14
 msgid "Preview comment"
 msgstr "Yorumu görüntüle"
 
@@ -169,3 +165,6 @@ msgstr "girdi"
 #: blog/models.py:55
 msgid "entries"
 msgstr "girdiler"
+
+#~ msgid "Number of remaining characters: "
+#~ msgstr "Kalan karakter sayısı: "
