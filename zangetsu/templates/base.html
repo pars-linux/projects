@@ -50,7 +50,7 @@
         <h2>{% trans "Archives" %}</h2>
         <center>
         {% build_month_list %}
-        <select class="dropdownelect onchange="if (this.value != '') {location=this.value;}">
+        <select class="dropdownselect" onchange="if (this.value != '') {location=this.value;}">
             <option value="">{% trans "Archives" %}</option>
         {% for month in blog_months %}
             <option value="{{ blog_url }}/{{ month|date:"Y/m"|lower }}/">{{ month|date:"F Y" }}</option>
