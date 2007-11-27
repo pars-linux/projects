@@ -23,7 +23,6 @@
 <!-- Enable tinyMCE for all textarea widgets -->
 <script type="text/javascript" src="{{ blog_url }}/../static/admin/media/tinymce/tiny_mce.js"></script>
 <script type="text/javascript" src="{{ blog_url }}/../static/admin/media/tinymce/textareas-comments.js"></script>
-<script type="text/javascript" src="{{ blog_url }}/../static/admin/media/tinymce/remaining_chars.js"></script>
 
 </head>
 <body>
@@ -52,9 +51,9 @@
         {% build_month_list %}
         <select class="dropdownselect" onchange="if (this.value != '') {location=this.value;}">
             <option value="">{% trans "Archives" %}</option>
-        {% for month in blog_months %}
-            <option value="{{ blog_url }}/{{ month|date:"Y/m"|lower }}/">{{ month|date:"F Y" }}</option>
-        {% endfor %}
+            {% for month in blog_months %}
+                <option value="{{ blog_url }}/{{ month|date:"Y/m"|lower }}/">{{ month|date:"F Y" }}</option>
+            {% endfor %}
         </select>
         </center>
 

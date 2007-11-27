@@ -8,9 +8,6 @@
         {% trans "Comment:" %}
         <textarea class="dropdown" name="comment" id="id_comment" rows="10" cols="100" tinyMCE_this="true"></textarea>
 
-        <div>{% trans "Number of remaining characters: " %} <b><span id="msgCounter"></span></b></div>
-        <br/>
-
         <input type="hidden" name="options" value="{{ options }}" />
         <input type="hidden" name="target" value="{{ target }}" />
         <input type="hidden" name="gonzo" value="{{ hash }}" />
