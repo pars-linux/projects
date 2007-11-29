@@ -15,5 +15,5 @@ tinyMCE.init({
     height : "300",
     extended_valid_elements : "a[name|href|target|title],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
     advimage_update_dimensions_onchange: true,
-    plugins : "advimage,advlink,searchreplace,autosave,fullscreen",
+    plugins : "advimage,advlink,searchreplace,autosave,fullscreen"
 });
