@@ -4,11 +4,15 @@ pisi it binutils-psp*.pisi
 BOOTSTRAP=1 pisi build gcc-psp/pspec.xml
 pisi it gcc-psp*.pisi
 
+. /etc/profile
+
 pisi build pspsdk-headers/pspec.xml
 pisi it pspsdk-headers*.pisi
 
 pisi build newlib-psp/pspec.xml
 pisi it newlib-psp*.pisi
+
+. /etc/profile
 
 pisi build gcc-psp/pspec.xml
 pisi it -y gcc-psp*.pisi
