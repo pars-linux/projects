@@ -12,14 +12,10 @@
         <IsA>app:console</IsA>
         <Summary>PSP SDK Headers</Summary>
         <Description>PSP SDK Headers</Description>
-        <Archive sha1sum="3c366bddd45a5a4aa741c2138af5d9bd8b68ca86" type="targz">http://cekirdek.pardus.org.tr/~caglar/pspsdk.2228.tar.gz</Archive>
+        <Archive sha1sum="952b53e2f09edcb0829d46def8288a17a84e41c5" type="targz">http://cekirdek.pardus.org.tr/~caglar/pspsdk.2350.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gcc-psp</Dependency>
         </BuildDependencies>
-        <Patches>
-            <-- rev 2238-2302 -->
-            <Patch>pspsdk.patch</Patch>
-        </Patches>
     </Source>
 
     <Package>
@@ -33,6 +29,13 @@
     </Package>
 
     <History>
+        <Update release="5">
+            <Date>2007-12-26</Date>
+            <Version>2350</Version>
+            <Comment>Bump.</Comment>
+            <Name>S.Çağlar Onur</Name>
+            <Email>caglar@pardus.org.tr</Email>
+        </Update>
         <Update release="4">
             <Date>2007-08-27</Date>
             <Version>2302</Version>
