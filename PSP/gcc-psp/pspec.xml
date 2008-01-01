@@ -20,6 +20,7 @@
             <Dependency versionFrom="1.1.4">zlib</Dependency>
             <Dependency versionFrom="5.2">ncurses</Dependency>
             <Dependency versionFrom="4.2">texinfo</Dependency>
+            <Dependency>mpfr</Dependency>
             <Dependency>gettext</Dependency>
         </BuildDependencies>
         <Patches>

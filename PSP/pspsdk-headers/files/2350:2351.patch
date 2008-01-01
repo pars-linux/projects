@@ -1,0 +1,36 @@
+Index: src/debug/exception_asm.S
+===================================================================
+--- src/debug/exception_asm.S	(revision 2350)
++++ src/debug/exception_asm.S	(revision 2351)
+@@ -176,6 +176,7 @@
+ 	lui		$a0, 0x2000
+ 	and		$a0, $a0, $v1
+ 	beq		$a0, $0, 1f
++	nop
+ 
+ 	swc1		$0, REG_FPR_0($v0)
+ 	swc1		$1, REG_FPR_1($v0)
+@@ -245,6 +246,7 @@
+ 	lui		$a0, 0x2000
+ 	and		$a0, $a0, $v1
+ 	beq		$a0, $0, 1f
++	nop
+ 
+ 	lwc1		$0, REG_FPR_0($v0)
+ 	lwc1		$1, REG_FPR_1($v0)
+Index: src/user/pspsuspend.h
+===================================================================
+--- src/user/pspsuspend.h	(revision 2350)
++++ src/user/pspsuspend.h	(revision 2351)
+@@ -45,9 +45,10 @@
+ /**
+  * Deallocate the extra 4 megs of RAM
+  *
++ * @param unk - Set to 0, otherwise it fails in 3.52+, possibly earlier
+  * @return 0 on success
+  */
+-int sceKernelVolatileMemUnlock(void);
++int sceKernelVolatileMemUnlock(int unk);
+ 
+ #ifdef __cplusplus
+ }

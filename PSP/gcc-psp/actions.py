@@ -29,17 +29,17 @@ def setup():
         shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-languages=\"c,c++\" --with-newlib --enable-cxx-flags=\"-G0\"" % (get.workDIR(), WorkDir))
     else:
         shelltools.system("%s/%s/configure --prefix=/opt/psp --target=psp --enable-languages=\"c\" --with-newlib --without-headers --disable-libssp" % (get.workDIR(), WorkDir))
-    
+
 def build():
     unset()
 
     shelltools.cd("%s/build-psp/" % get.workDIR())
 
     if get.ENV("BOOTSTRAP") is None:
-        autotools.make()
-    else:
         autotools.make("CFLAGS_FOR_TARGET=\"-G0\"")
-    
+    else:
+        autotools.make()
+
 def install():
     shelltools.cd("%s/build-psp/" % get.workDIR())
 

@@ -16,6 +16,9 @@
         <BuildDependencies>
             <Dependency>gcc-psp</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch>2350:2351.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
