@@ -18,41 +18,55 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 ''' COMAR modules '''
+
 import comar
+import os
+import dbus
 
 class comarInterface:
-    def __init__(self):
+    def __init__(self, winId):
         ''' initialize comar link '''
-        self.link = comar.Link()
-    
+        self.winId = winId
+        try:
+            bus = dbus.SystemBus()
+            obj = bus.get_object("tr.org.pardus.comar", "/package/wireless_tools", introspect=False)
+            self.link = dbus.Interface(obj, dbus_interface="tr.org.pardus.comar.Net.Link")
+        except dbus.DBusException:
+            pass
+
+    def obtainAuth(self, action):
+        import sys
+        bus = dbus.SessionBus()
+        obj = bus.get_object("org.gnome.PolicyKit", "/")
+        iface = dbus.Interface(obj, "org.freedesktop.PolicyKit.AuthenticationAgent")
+        return iface.ObtainAuthorization(action, self.winId, os.getpid())
+
     def listConnections(self):
         ''' list all wireless connections '''
-        self.link.call_package('Net.Link.connections', 'wireless-tools')
-        return self.link.read_cmd()[2].split('\n')
-           
+        return self.link.connections()
+
     def isActive(self, connection):
         ''' is this active one? '''
-        self.link.call_package('Net.Link.getState', 'wireless-tools', [ 'name', connection ])
-        status = self.link.read_cmd()[2].split('\n')
-        if status[1] == 'up':
-            return True
-        else:
-            return False
-        
+        return (self.link.connectionInfo(str(connection))["state"] == 'up')
+
     def activeConnection(self):
         ''' what is active connection? '''
         for connection in self.listConnections():
-          self.link.call_package('Net.Link.getState', 'wireless-tools', [ 'name', connection ]) 
-          status = self.link.read_cmd()[2].split('\n')
-          if status[1] == 'up':
-              return status[0]
-          
+            if self.link.connectionInfo(str(connection))["state"] == 'up':
+                return connection
+
     def activateConnection(self, connection):
         ''' activate given connection '''
-        self.link.call_package("Net.Link.setState", "wireless-tools", [ "name", connection, "state", "up" ])
-        self.link.read_cmd()
+        try:
+            self.link.setState(str(connection), "up")
+        except:
+            self.obtainAuth("tr.org.pardus.comar.net.link.set")
+            self.link.setState(str(connection), "up")
 
     def deactivateConnection(self, connection):
         ''' deactivate given connection '''
-        self.link.call_package("Net.Link.setState", "wireless-tools", [ "name", connection, "state", "down" ])
-        self.link.read_cmd()
+        try:
+            self.link.setState(str(connection), "down")
+        except:
+            self.obtainAuth("tr.org.pardus.comar.net.link.set")
+            self.link.setState(str(connection), "down")
