@@ -35,12 +35,14 @@ from PyWireless.wirelessInterface import *
 from PyWireless.dcopInterface import *
 from PyWireless.comarInterface import *
 
+import dbus.mainloop.qt3
+
 class SystemTray(KSystemTray):
     def __init__(self, *args):
         apply(KSystemTray.__init__, (self,) + args)
 
         ''' comarInterface instance '''
-        self.comarInterface = comarInterface()
+        self.comarInterface = comarInterface(self.winId())
         
         ''' wirelessInterface instance '''
         self.wirelessInterface = wirelessInterface()
@@ -61,7 +63,7 @@ class SystemTray(KSystemTray):
         self.connect(self.time, SIGNAL('timeout()'), self.timeoutSlot)
         self.time.start(3000)
 
-        self.connect(app, SIGNAL("shutDown()", self.slotQuit))
+        self.connect(app, SIGNAL("shutDown()"), self.slotQuit)
 
         ''' Popup Menu '''
         connectionsMenu = KPopupMenu(self.contextMenu())
@@ -192,6 +194,8 @@ if __name__ == '__main__':
     gettext.install(appName)
     app = KUniqueApplication(True, True, True)
     trayWindow = SystemTray(None, appName)
+
+    dbus.mainloop.qt3.DBusQtMainLoop(set_as_default=True)
 
     app.setMainWidget(trayWindow)
 
