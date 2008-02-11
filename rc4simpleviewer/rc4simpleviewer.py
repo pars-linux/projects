@@ -9,7 +9,7 @@ import xml.dom.ext
 import zipfile, subprocess
 
 # Download simpleviewer and extract the necessary files
-subprocess.call(["wget", "http://www.airtightinteractive.com/simpleviewer/simpleviewer.zip"])
+#subprocess.call(["wget", "http://www.airtightinteractive.com/simpleviewer/simpleviewer.zip"])
 
 zfiles = zipfile.ZipFile('simpleviewer.zip')
 lofz = zfiles.infolist()
@@ -21,8 +21,27 @@ for s in lofz:
 		cfile.close()
 
 os.remove('simpleviewer.zip')
-os.makedirs('images', 0755)
-os.makedirs('thumbs', 0755)
+
+print ("Simpleviewer has been downloaded and extracted successfully, now\n\
+please answer the following questions for creating your own gallery...")
+
+maxImageWidth = raw_input("Full image width? ")
+maxImageHeight = raw_input("Full image height? ")
+textColor = raw_input("Color of text? ")
+frameColor = raw_input("Color of frame? ")
+frameWidth = raw_input("Frame width? ")
+stagePadding = raw_input("Thumbnail padding? ")
+thumbnailColumns = raw_input("How many columns for thumbnails in a page? ")
+thumbnailRows = raw_input("How many rows for thumbnails in a page? ")
+navPosition = raw_input("Thumbnails will be on which side of the main image? ")
+title = raw_input("Title of the gallery? ")
+enableRightClickOpen = raw_input("true")
+backgroundImagePath = raw_input("")
+imagePath = raw_input("What shall be the name of the full images folder? ")
+thumbPath = raw_input("What shall be the name of the full thumbs folder? ")
+
+os.makedirs(imagePath, 0755)
+os.makedirs(thumbPath, 0755)
 
 # create gallery.xml file
 imagelist = []
