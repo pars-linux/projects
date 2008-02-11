@@ -9,7 +9,7 @@ import xml.dom.ext
 import zipfile, subprocess
 
 # Download simpleviewer and extract the necessary files
-#subprocess.call(["wget", "http://www.airtightinteractive.com/simpleviewer/simpleviewer.zip"])
+subprocess.call(["wget", "http://www.airtightinteractive.com/simpleviewer/simpleviewer.zip"])
 
 zfiles = zipfile.ZipFile('simpleviewer.zip')
 lofz = zfiles.infolist()
