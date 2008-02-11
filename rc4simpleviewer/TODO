@@ -1,0 +1,24 @@
+rc4simpleviewer (remote control for simpleviewer flash gallery template) 02.2008
+
+Following attributes for gallery.xml should be added with user values;
+
+	maxImageWidth="480" 
+	maxImageHeight="480" 
+	textColor="0xFFFFFF" 
+	frameColor="0xffffff" 
+	frameWidth="20" 
+	stagePadding="40" 
+	thumbnailColumns="3" 
+	thumbnailRows="3" 
+	navPosition="left" 
+	title="SimpleViewer Title" 
+	enableRightClickOpen="true" 
+	backgroundImagePath="" 
+	imagePath="" 
+	thumbPath=""
+
+Html file should also be edited for proper title and etc.;
+
+Image captions may be added if exists;
+
+
