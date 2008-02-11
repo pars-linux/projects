@@ -23,25 +23,62 @@ for s in lofz:
 os.remove('simpleviewer.zip')
 
 print ("Simpleviewer has been downloaded and extracted successfully, now\n\
-please answer the following questions for creating your own gallery...")
+please answer the following questions for customizing your gallery...")
 
-maxImageWidth = raw_input("Full image width? ")
-maxImageHeight = raw_input("Full image height? ")
-textColor = raw_input("Color of text? ")
-frameColor = raw_input("Color of frame? ")
-frameWidth = raw_input("Frame width? ")
-stagePadding = raw_input("Thumbnail padding? ")
+maxImageWidth = raw_input("Max. width of the presented image (default is 640)? ")
+maxImageHeight = raw_input("Max. height of the presented image (default is 480)? ")
+
+Color = raw_input("Choose frame color 1)red, 2)green, 3)blue, 4)yellow, 5)white, 6)black, 7)gray or enter hex value:")
+if Color == ('1'):
+	frameColor = ('0xff0000')
+elif Color == ('3'):
+	frameColor = ('0x00007f')
+elif Color == ('2'):
+	frameColor = ('0x007f00')
+elif Color == ('4'):
+	frameColor = ('0xffff00')
+elif Color == ('5'):
+	frameColor = ('0xffffff')
+elif Color == ('6'):
+	frameColor = ('0x000000')
+elif Color == ('7'):
+	frameColor = ('0x333333')
+else:
+	frameColor = '0x'+Color
+
+frameWidth = raw_input("Frame width in pixels (default is 20)? ")
+stagePadding = raw_input("Stage padding (space between thumbs and page)? ")
 thumbnailColumns = raw_input("How many columns for thumbnails in a page? ")
 thumbnailRows = raw_input("How many rows for thumbnails in a page? ")
-navPosition = raw_input("Thumbnails will be on which side of the main image? ")
-title = raw_input("Title of the gallery? ")
-enableRightClickOpen = raw_input("true")
-backgroundImagePath = raw_input("")
-imagePath = raw_input("What shall be the name of the full images folder? ")
-thumbPath = raw_input("What shall be the name of the full thumbs folder? ")
 
-os.makedirs(imagePath, 0755)
-os.makedirs(thumbPath, 0755)
+Position = raw_input("Which side do you want thumbnails will be (Left/Right/Top/Bottom)? ")
+if Position == ('left'):
+	navPosition = ('left')
+elif Position == ('right'):
+	navPosition = ('right')
+elif Position == ('top'):
+	navPosition = ('top')
+elif Position == ('bottom'):
+	navPosition = ('bottom')
+else:
+	navPosition = ('right')
+	print ("Unrecognized value set as right")
+
+title = raw_input("Title of the gallery? ")
+
+RightClickOpen = raw_input("An option for opening full image in right-click menu (y/N)? ")
+if RightClickOpen == ('y'):
+	enableRightClickOpen = ('true')
+elif RightClickOpen == ('n'):
+	enableRightClickOpen = ('false')
+else:
+	enableRightClickOpen = ('false')
+	print ("Unrecognized value assigned as false")
+
+backgroundImagePath = raw_input("The full address of background image (eg. background/background.jpg)?" )
+
+os.makedirs('images', 0755)
+os.makedirs('thumbs', 0755)
 
 # create gallery.xml file
 imagelist = []
@@ -50,8 +87,18 @@ def gallery_save(doc, name="gallery.xml"):
     xml.dom.ext.PrettyPrint(doc, open(name, "w"))
 
 simpleviewer = doc.createElement("simpleviewerGallery")
-doc.appendChild(simpleviewer) 
-
+simpleviewer.setAttribute("maxImageWidth", maxImageWidth)
+simpleviewer.setAttribute("maxImageHeight", maxImageHeight)
+simpleviewer.setAttribute("frameColor", frameColor)
+simpleviewer.setAttribute("frameWidth", frameWidth)
+simpleviewer.setAttribute("stagePadding", stagePadding)
+simpleviewer.setAttribute("thumbnailColumns", thumbnailColumns)
+simpleviewer.setAttribute("thumbnailRows", thumbnailRows)
+simpleviewer.setAttribute("navPosition", navPosition)
+simpleviewer.setAttribute("title", title)
+simpleviewer.setAttribute("enableRightClickOpen", enableRightClickOpen)
+simpleviewer.setAttribute("backgroundImagePath", backgroundImagePath)
+doc.appendChild(simpleviewer)
 
 #distribute images to folders
 jpgs = glob.glob("*.[Jj][Pp][Gg]")
@@ -61,7 +108,7 @@ for singlefile in jpgs:
 	os.system('mv '+singlefile+' thumbs/')
 
 #resize thumbnails
-os.chdir('thumbs/')
+os.chdir('thumbs')
 jpgs = glob.glob("*.[Jj][Pp][Gg]")
 for singlefile in jpgs:
 	im = Image.open(singlefile)
