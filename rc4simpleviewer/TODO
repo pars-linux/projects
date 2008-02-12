@@ -1,12 +1,13 @@
 rc4simpleviewer (remote control for simpleviewer flash gallery template) 02.2008
 
-Html file should also be edited for proper title and etc.;
+* Ask user if simpleviewer should be downloaded? (or...)
 
-Image captions may be added if exists; 
+* Html file should also be edited for proper title, background etc.;
 
-Following attributes for gallery.xml should be added with user values;
+* Image captions may be added if exists; 
 
-	textColor="0xFFFFFF" # for caption texts if exists
+* Following attributes for gallery.xml should be added with user values;
+    - textColor="0xFFFFFF" # for caption texts if exists
 
 
 
