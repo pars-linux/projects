@@ -51,16 +51,8 @@ stagePadding = raw_input("Stage padding (space between thumbs and page)? ")
 thumbnailColumns = raw_input("How many columns for thumbnails in a page? ")
 thumbnailRows = raw_input("How many rows for thumbnails in a page? ")
 
-Position = raw_input("Which side do you want thumbnails will be (Left/Right/Top/Bottom)? ")
-if Position == ('left'):
-	navPosition = ('left')
-elif Position == ('right'):
-	navPosition = ('right')
-elif Position == ('top'):
-	navPosition = ('top')
-elif Position == ('bottom'):
-	navPosition = ('bottom')
-else:
+navPosition = raw_input("Which side do you want thumbnails will be (left/right/top/bottom)? ")
+if navPosition not in ("left", "right", "top", "bottom"):
 	navPosition = ('right')
 	print ("Unrecognized value set as right")
 
