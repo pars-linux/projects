@@ -12,7 +12,8 @@ resizing, renaming and etc.
 When you run the script in a folder of images (they should be jpg files at the moment)
 it should download the script and prepare the gallery with necessary structure for you.
 
-This version works with Simpleviewer 1.8. 
+This version works with Simpleviewer 1.8. Also you'll need python-imaging library (AKA PIL) 
+please check if it's installed before trying...
 
 For further, please check
 http://svn.pardus.org.tr/projeler/rc4simpleviewer/
