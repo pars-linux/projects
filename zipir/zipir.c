@@ -406,7 +406,7 @@ unzip_file (zip *z, const char *name)
 {
     struct zipfile *zfile;
     FILE *file_to_write;
-    char *fbuf;
+    unsigned char *fbuf;
 
     zfile = find_file (z, name);
     if (!zfile) return ZIP_NOFILE;
@@ -419,7 +419,7 @@ unzip_file (zip *z, const char *name)
         fbuf = malloc (zfile->real_size);
 
         if (zfile->zip_size < zfile->real_size) {
-            char *zip_buf;
+            unsigned char *zip_buf;
             z_stream zs;
             zs.zalloc = NULL;
             zs.zfree = NULL;
