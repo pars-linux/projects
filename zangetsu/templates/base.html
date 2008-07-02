@@ -78,7 +78,7 @@
         <h2>{% trans "Links" %}</h2>
         {% build_link_list %}
         {% for link in blog_link %}
-            <a href="{{link.url}}/">{{ link.title }}</a><br />
+            <a href="{{link.url}}/">{{ link.title }}</a><br>
         {% endfor %}
 
         <!-- Banners -->
@@ -87,7 +87,7 @@
         <a href="http://www.pardus.org.tr" target="_blank">
             <img border="0" alt="Pardus... Özgürlük İçin..." title="Pardus... Özgürlük İçin..." src="http://www.pardus.org.tr/banner/buton3.png">
         </a>
-        <br />
+        <br>
         <a href="http://www.djangoproject.com" target="_blank">
             <img border="0" alt="django" src="{{ blog_url }}/../static/djangosite80x15_grey.gif">
         </a>
