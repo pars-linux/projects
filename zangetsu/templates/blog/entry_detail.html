@@ -11,11 +11,11 @@
 <div class="entry">
     <b><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></b>
     <span class="date">{{ object.pubdate|date:"d F y, l \@ H:i" }}</span>
-    <br />
-    <br />
+    <br>
+    <br>
     {{ object.content }}
-    <br />
-    <br />
+    <br>
+    <br>
     {% trans "Tags:" %}
     {% for tag in object.tag.all %}
         <a href="{{ blog_url }}/tag/{{ tag.title }}">{{ tag.title }}</a>&nbsp;
@@ -30,7 +30,7 @@
                 <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
                     <a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a> &nbsp; <b>{{ comment.person_name|striptags|escape }}</b> {%trans "commented"%}
                     <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
-                    <br />
+                    <br>
                     {{ comment.comment|linebreaks|urlizetrunc:40|sanitize }}
                 </div>
                 {%endif%}
