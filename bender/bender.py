@@ -26,7 +26,7 @@ class NoteBox(QGraphicsItem):
         painter.drawText(-8,  -8,  16,  16,  Qt.AlignCenter,  self.name)
 
 
-# FIXME: bend rows
+# FIXME: add all bend rows
 # FIXME: other diatonic layouts, major A, D, E, Eb, Bb, F, G at least
 majorc_notes = (
             # blow row
@@ -40,6 +40,12 @@ majorc_notes = (
             ("E6",  213,  -4),
             ("G6",  242,  -6),
             ("C7",  271,  -8),
+            # blow first bends
+            ("Eb",  213,  -24),
+            ("F#6",  242,  -26),
+            ("B7",  271,  -28),
+            # blow second bends
+            ("Bb7",  271,  -48),
             # draw row
             ("D4",  10,  60),
             ("G4",  39,  58),
@@ -51,12 +57,26 @@ majorc_notes = (
             ("D6",  213,  46),
             ("F6",  242,  44),
             ("A7",  271,  42),
+            # draw first bends
+            ("C#4",  10,  80),
+            ("F#4",  39,  78),
+            ("Bb4",  68,  76),
+            ("C#5",  97,  74),
+            ("Ab5",  155,  70),
+            # draw second bends
+            ("F4",  39,  98),
+            ("A4",  68,  96),
+            # draw third bends
+            ("Ab4",  68,  116),
 )
 
 
 class MyWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
+        
+        w = QWidget(self)
+        lay = QVBoxLayout(w)
         
         # FIXME: move harmonica widget to harmonica.py
         self.gs = QGraphicsScene()
@@ -65,14 +85,20 @@ class MyWindow(QMainWindow):
         self.last_nbs = []
         for note in majorc_notes:
             nb = NoteBox(note[0])
-            nb.setPos(note[1] + 78,  note[2] + 208)
+            nb.setPos(note[1] + 78,  note[2] + 135)
             temp = self.nbs.get(note[0], [])
             temp.append(nb)
             self.nbs[note[0]] = temp
             self.gs.addItem(nb)
         self.gv = QGraphicsView(self)
         self.gv.setScene(self.gs)
-        self.setCentralWidget(self.gv)
+        lay.addWidget(self.gv)
+        
+        self.label = QLabel(self)
+        self.label.setAlignment(Qt.AlignHCenter)
+        lay.addWidget(self.label)
+        
+        self.setCentralWidget(w)
         
         self.notes = music.Notes()
         self.pitchd = music.PitchDetector()
@@ -90,6 +116,7 @@ class MyWindow(QMainWindow):
         for nb in self.last_nbs:
             nb.playing = 1
             nb.update()
+        self.label.setText(note[:-1] + " " + note[-1:])
         print note
     
     def on_silence(self):
@@ -97,6 +124,7 @@ class MyWindow(QMainWindow):
             nb.playing = 0
             nb.update()
         self.last_nbs = []
+        self.label.setText("")
 
 
 def main(argv):
