@@ -15,6 +15,7 @@ def open_oss():
     return oss
 
 def oss_s16_to_vec(data, vec,  len):
+    # FIXME: this should be coded simpler
     for i in range(len):
         v1 = ord(data[i*2])
         v2 = ord(data[(i*2) + 1])
@@ -50,14 +51,14 @@ class Notes:
         60: "C",
         61: "C#",
         62: "D",
-        63: "D#",
+        63: "Eb",
         64: "E",
         65: "F",
         66: "F#",
         67: "G",
-        68: "G#",
+        68: "Ab",
         69: "A",
-        70: "A#",
+        70: "Bb",
         71: "B",
     }
     # FIXME: return note percentage for bend display
@@ -68,4 +69,5 @@ class Notes:
             midi_note -= 12
             level += 1
         note = self.notes.get(int(midi_note),  "?")
+        # FIXME: return a note class
         return "%s%s" % (note,  level)
