@@ -88,7 +88,9 @@ class Harmonica(QGraphicsView):
         for nb in self.last_nbs:
             nb.playing = 0
             nb.update()
-        self.last_nbs = self.nbs.get(notes, [])
+        self.last_nbs = []
+        if notes:
+            self.last_nbs = self.nbs.get(notes.fullname, [])
         for nb in self.last_nbs:
             nb.playing = 1
             nb.update()

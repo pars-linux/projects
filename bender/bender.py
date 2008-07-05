@@ -24,16 +24,15 @@ class MyWindow(QMainWindow):
         
         self.setCentralWidget(w)
         
-        self.notes = music.Notes()
         self.pitchd = music.PitchDetector()
         self.connect(self.pitchd, SIGNAL("audioPitch"), self.on_new_pitch)
         self.connect(self.pitchd, SIGNAL("audioSilence"), self.on_silence)
         self.pitchd.start()
     
     def on_new_pitch(self, pitch):
-        note = self.notes.pitch_to_note(pitch)
+        note = music.Note(pitch=pitch)
         self.harp.show_notes(note)
-        self.label.setText(note[:-1] + " " + note[-1:])
+        self.label.setText(note.name + " " + str(note.octave))
         print note
     
     def on_silence(self):

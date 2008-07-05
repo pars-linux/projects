@@ -46,8 +46,8 @@ class PitchDetector(QThread):
                 self.emit(SIGNAL("audioPitch"), pitch)
 
 
-class Notes:
-    notes = {
+class Note:
+    midi_notes = {
         60: "C",
         61: "C#",
         62: "D",
@@ -61,13 +61,16 @@ class Notes:
         70: "Bb",
         71: "B",
     }
-    # FIXME: return note percentage for bend display
+    def __init__(self, pitch):
+        self.name, self.octave = self.pitch_to_note(pitch)
+        self.fullname = "%s%s" % (self.name, self.octave)
+    
     def pitch_to_note(self, pitch):
+        # FIXME: return note percentage for bend display
         midi_note = 69 + 12 * math.log(pitch / 440.0,  2)
-        level = 4
+        octave = 4
         while midi_note > 71:
             midi_note -= 12
-            level += 1
-        note = self.notes.get(int(midi_note),  "?")
-        # FIXME: return a note class
-        return "%s%s" % (note,  level)
+            octave += 1
+        note = self.midi_notes.get(int(midi_note),  "?")
+        return note, octave
