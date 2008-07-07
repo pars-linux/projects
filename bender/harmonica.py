@@ -86,7 +86,6 @@ class Harmonica(QGraphicsView):
             temp = self.nbs.get(note[0], [])
             temp.append(nb)
             self.nbs[note[0]] = temp
-            self.gs.addItem(nb)
         self.setScene(self.gs)
     
     def resizeEvent(self, event):
