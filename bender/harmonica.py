@@ -49,8 +49,8 @@ majorc_notes = (
 
 
 class NoteBox(QGraphicsItem):
-    def __init__(self,  name):
-        QGraphicsItem.__init__(self)
+    def __init__(self,  name, parent=None):
+        QGraphicsItem.__init__(self, parent)
         self.name = name.rstrip("123456789")
         self.playing = 0
     
@@ -72,17 +72,26 @@ class Harmonica(QGraphicsView):
         QGraphicsView.__init__(self, parent)
         
         self.gs = QGraphicsScene()
-        self.gs.addPixmap(QPixmap("harmonica.jpg"))
+        self.renderer = QSvgRenderer("harmonica.svg")
+        self.svg = QGraphicsSvgItem()
+        self.svg.setSharedRenderer(self.renderer)
+        self.svg.setElementId("harmonica")
+        self.svg.setPos(0, 100)
+        self.gs.addItem(self.svg)
         self.nbs = {}
         self.last_nbs = []
         for note in majorc_notes:
-            nb = NoteBox(note[0])
-            nb.setPos(note[1] + 78,  note[2] + 135)
+            nb = NoteBox(note[0], self.svg)
+            nb.setPos(note[1] + 78,  note[2] + 10)
             temp = self.nbs.get(note[0], [])
             temp.append(nb)
             self.nbs[note[0]] = temp
             self.gs.addItem(nb)
         self.setScene(self.gs)
+    
+    def resizeEvent(self, event):
+        QGraphicsView.resizeEvent(self, event)
+        self.fitInView(self.gs.sceneRect())
     
     def show_notes(self, notes):
         for nb in self.last_nbs:
