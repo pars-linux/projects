@@ -16,6 +16,7 @@ class MyWindow(QMainWindow):
         lay = QVBoxLayout(w)
         
         self.harp = harmonica.Harmonica(self)
+        self.harp.setLayout("C")
         lay.addWidget(self.harp)
         
         self.label = QLabel(self)
