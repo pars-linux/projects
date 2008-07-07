@@ -7,44 +7,44 @@ from PyQt4.Qt import *
 # FIXME: other diatonic layouts, major A, D, E, Eb, Bb, F, G at least
 majorc_notes = (
             # blow row
-            ("C4",  10,  10),
-            ("E4",  39,  8),
-            ("G4",  68,  6),
-            ("C5",  97,  4),
-            ("E5",  126,  2),
-            ("G5",  155,  0),
-            ("C6",  184,  -2),
-            ("E6",  213,  -4),
-            ("G6",  242,  -6),
-            ("C7",  271,  -8),
+            ("C4",  0,  0),
+            ("E4",  35,  0),
+            ("G4",  70,  0),
+            ("C5",  105,  0),
+            ("E5",  140,  0),
+            ("G5",  175,  0),
+            ("C6",  210,  0),
+            ("E6",  245,  0),
+            ("G6",  280,  0),
+            ("C7",  315,  0),
             # blow first bends
-            ("Eb",  213,  -24),
-            ("F#6",  242,  -26),
-            ("B7",  271,  -28),
+            ("Eb",  245,  -24),
+            ("F#6",  280,  -24),
+            ("B7",  315,  -24),
             # blow second bends
-            ("Bb7",  271,  -48),
+            ("Bb7",  315,  -48),
             # draw row
-            ("D4",  10,  60),
-            ("G4",  39,  58),
-            ("B4",  68,  56),
-            ("D5",  97,  54),
-            ("F5",  126,  52),
-            ("A5",  155,  50),
-            ("B6",  184,  48),
-            ("D6",  213,  46),
-            ("F6",  242,  44),
-            ("A7",  271,  42),
+            ("D4",  0,  60),
+            ("G4",  35,  60),
+            ("B4",  70,  60),
+            ("D5",  105,  60),
+            ("F5",  140,  60),
+            ("A5",  175,  60),
+            ("B6",  210,  60),
+            ("D6",  245,  60),
+            ("F6",  280,  60),
+            ("A7",  315,  60),
             # draw first bends
-            ("C#4",  10,  80),
-            ("F#4",  39,  78),
-            ("Bb4",  68,  76),
-            ("C#5",  97,  74),
-            ("Ab5",  155,  70),
+            ("C#4",  0,  84),
+            ("F#4",  35,  84),
+            ("Bb4",  70,  84),
+            ("C#5",  105,  84),
+            ("Ab5",  140,  84),
             # draw second bends
-            ("F4",  39,  98),
-            ("A4",  68,  96),
+            ("F4",  35,  108),
+            ("A4",  70,  108),
             # draw third bends
-            ("Ab4",  68,  116),
+            ("Ab4",  70,  132),
 )
 
 
@@ -55,16 +55,16 @@ class NoteBox(QGraphicsItem):
         self.playing = 0
     
     def boundingRect(self):
-        return QRectF(-10,  -10, 20,  20)
+        return QRectF(-12,  -12, 24,  24)
     
     def paint(self,  painter,  option,  widget):
-        painter.drawRect(-10,  -10,  20,  20)
+        painter.drawRect(-12,  -12,  24,  24)
         # FIXME: fill percentage for proper bend display
         if self.playing:
-            painter.fillRect(-9,  -9,  19,  19,  QBrush(QColor(224,  224,  224)))
+            painter.fillRect(-11,  -11,  23,  23,  QBrush(QColor(224,  224,  224)))
         else:
-            painter.fillRect(-9,  -9,  19,  19,  QBrush(QColor(224,  224,  32)))
-        painter.drawText(-8,  -8,  16,  16,  Qt.AlignCenter,  self.name)
+            painter.fillRect(-11,  -11,  23,  23,  QBrush(QColor(224,  224,  32)))
+        painter.drawText(-10,  -10,  20,  20,  Qt.AlignCenter,  self.name)
 
 
 class Harmonica(QGraphicsView):
@@ -82,7 +82,7 @@ class Harmonica(QGraphicsView):
         self.last_nbs = []
         for note in majorc_notes:
             nb = NoteBox(note[0], self.svg)
-            nb.setPos(note[1] + 78,  note[2] + 10)
+            nb.setPos(note[1] + 54,  note[2] + 10)
             temp = self.nbs.get(note[0], [])
             temp.append(nb)
             self.nbs[note[0]] = temp
