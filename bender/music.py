@@ -31,14 +31,14 @@ class PitchDetector(QThread):
     def run(self):
         # Setup audio system
         oss = open_oss()
-        pd = aubio.aubioclass.pitchdetection(bufsize=2048, hopsize=1024, samplerate=44100)
-        vec = aubio.aubioclass.fvec(1024, 1)
+        pd = aubio.aubioclass.pitchdetection(bufsize=4096, hopsize=2048, samplerate=44100)
+        vec = aubio.aubioclass.fvec(2048, 1)
         
         # Pitch detection loop
         # FIXME: fine tune for better detection
         while True:
-            data = oss.read(2048)
-            oss_s16_to_vec(data,  vec,  1024)
+            data = oss.read(4096)
+            oss_s16_to_vec(data,  vec,  2048)
             if aubio.aubiowrapper.aubio_silence_detection(vec(),  -70):
                 self.emit(SIGNAL("audioSilence"))
             else:
