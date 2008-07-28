@@ -3,7 +3,8 @@
 
 """
 Bu, kamera görüntüsünde bir yüz görünmediğinde ekranı kitleyen
-bir panel uygulamasıdır.
+bir panel uygulamasıdır. Aynı zamanda birden fazla yüz göründüğünde
+ilk desktop'a geçer.
 """
 
 import os
@@ -86,10 +87,12 @@ class FaceThread(QThread):
         faced = FaceDetector()
         last_state = None
         state = FACE
+        boss = 0
         while True:
             time.sleep(0.2)
             count = faced.count()
             if count == 0:
+                boss = 0
                 if state == FACE:
                     last_state = time.time()
                     state = NOFACE
@@ -103,6 +106,13 @@ class FaceThread(QThread):
                     event = QCustomEvent(QEvent.User + 3)
                     QApplication.postEvent(self.poster, event)
             else:
+                if count > 1:
+                    boss += 1
+                    if boss > 3:
+                        event = QCustomEvent(QEvent.User + 4)
+                        QApplication.postEvent(self.poster, event)
+                else:
+                    boss = 0
                 if state != FACE:
                     state = FACE
                     event = QCustomEvent(QEvent.User + 2)
@@ -118,6 +128,8 @@ class Signaller(QObject):
             self.emit(PYSIGNAL("goingToLock"), (False,))
         elif etype == QEvent.User + 3:
             self.emit(PYSIGNAL("lockDesktop"), ())
+        elif etype == QEvent.User + 4:
+            self.emit(PYSIGNAL("bossKey"), ())
 
 
 class Applet(KSystemTray):
@@ -138,22 +150,25 @@ class Applet(KSystemTray):
         self.facet.poster = Signaller()
         self.connect(self.facet.poster, PYSIGNAL("lockDesktop"), self.slotLockDesktop)
         self.connect(self.facet.poster, PYSIGNAL("goingToLock"), self.slotGoingToLock)
+        self.connect(self.facet.poster, PYSIGNAL("bossKey"), self.slotBoss)
         # Thread yüz tanıma işine başlıyor
         self.facet.start()
     
     def slotQuit(self):
         self.app.quit()
     
-    def slotLockDesktop(self):
-        # API den de yapabilirdik bu çağrıyı ama böyle kolay oldu :)
-        print "LOCK"
-        #os.system("dcop kdesktop KScreensaverIface lock")
-    
     def slotGoingToLock(self, is_going):
         if is_going:
             self.setPixmap(self.pix0)
         else:
             self.setPixmap(self.pix1)
+    
+    def slotLockDesktop(self):
+        # API den de yapabilirdik bu çağrıları ama böyle kolay oldu :)
+        os.system("dcop kdesktop KScreensaverIface lock")
+    
+    def slotBoss(self):
+        os.system("dcop kwin KWinInterface setCurrentDesktop 1")
 
 
 def main(args):
