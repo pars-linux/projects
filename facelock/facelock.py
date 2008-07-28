@@ -20,6 +20,7 @@ I18N_NOOP = lambda x: x
 
 class FaceDetector:
     cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"
+    # Kamera görüntüsünü küçültme oranı
     scale = 1.4
     
     def __init__(self, cam_no=0):
@@ -38,7 +39,7 @@ class FaceDetector:
         else:
             cvFlip(frame, copy, 0)
         
-        # Gri tonlamalı küçültülmüş hale getir
+        # Gri tonlamalı ve küçültülmüş hale getir
         small_img = cvCreateImage(cvSize(cvRound(copy.width / self.scale), cvRound(copy.height / self.scale)), 8, 1)
         gray = cvCreateImage(cvSize(copy.width, copy.height), 8, 1)
         cvCvtColor(copy, gray, CV_BGR2GRAY)
@@ -58,12 +59,18 @@ class FaceDetector:
             haar_scale,
             min_neighbors,
             CV_HAAR_DO_CANNY_PRUNING,
+            # Minimum yüz boyutu
             cvSize(30, 30)
         )
         t = cvGetTickCount() - t
         #print "detection time = %gms" % (t/(cvGetTickFrequency()*1000.))
+        return faces
+    
+    def count(self):
+        faces = self.detect()
         # Tanınan yüz sayısını döndür
         if faces:
+            # Malesef opencv binding len(faces) işlemini desteklemiyor
             count = 0
             for face in faces:
                 count += 1
@@ -75,34 +82,63 @@ class FaceDetector:
 class FaceThread(QThread):
     # Yüz tanıma işlemi için süreç
     def run(self):
+        FACE, NOFACE, GOING, LOCK = range(4)
         faced = FaceDetector()
-        last_seen = None
+        last_state = None
+        state = FACE
         while True:
             time.sleep(0.2)
-            count = faced.detect()
+            count = faced.count()
             if count == 0:
-                if last_seen == None:
-                    last_seen = time.time()
-                else:
-                    if time.time() - last_seen > 3:
-                        # 3 saniye boyunca yüz gözükmediyse sinyal ver
-                        last_seen = None
-                        self.poster.emit(PYSIGNAL("lockDesktop"), ())
+                if state == FACE:
+                    last_state = time.time()
+                    state = NOFACE
+                diff = time.time() - last_state
+                if state == NOFACE and diff > 0.4:
+                    state = GOING
+                    event = QCustomEvent(QEvent.User + 1)
+                    QApplication.postEvent(self.poster, event)
+                if state == GOING and diff > 3:
+                    state = LOCK
+                    event = QCustomEvent(QEvent.User + 3)
+                    QApplication.postEvent(self.poster, event)
             else:
-                last_seen = None
+                if state != FACE:
+                    state = FACE
+                    event = QCustomEvent(QEvent.User + 2)
+                    QApplication.postEvent(self.poster, event)
+
+
+class Signaller(QObject):
+    def customEvent(self, qEvent):
+        etype = qEvent.type()
+        if etype == QEvent.User + 1:
+            self.emit(PYSIGNAL("goingToLock"), (True,))
+        elif etype == QEvent.User + 2:
+            self.emit(PYSIGNAL("goingToLock"), (False,))
+        elif etype == QEvent.User + 3:
+            self.emit(PYSIGNAL("lockDesktop"), ())
 
 
 class Applet(KSystemTray):
     def __init__(self, app):
         KSystemTray.__init__(self)
-        self.setPixmap(self.loadIcon("user"))
+        # Panel ikonlarımızı hazırlayalım
+        self.pix1 = self.loadIcon("user")
+        self.pix0 = KIconEffect().apply(self.pix1, KIconEffect.ToGray, 1, QColor(), False)
+        self.setPixmap(self.pix1)
         self.connect(self, SIGNAL("quitSelected()"), self.slotQuit)
         self.app = app
         self.facet = FaceThread()
-        # Malesef PyQt3 te QThread sınıfı QObject'ten türemiyor
-        # Sinyal verebilmek için bu ayrı poster nesnesini kullanıyoruz
-        self.facet.poster = QObject()
+        # Malesef PyQt3 te QThread sınıfı QObject'ten türemiyor ve thread-safe
+        # olarak sinyal emit edemiyor. Applet için KDE kullandığımızdan PyQt4 de
+        # bir seçenek değil.
+        # Sinyal verebilmek için QThread içinden post edilen eventlere göre sinyal
+        # emit eden bu ara nesneyi kullanıyoruz.
+        self.facet.poster = Signaller()
         self.connect(self.facet.poster, PYSIGNAL("lockDesktop"), self.slotLockDesktop)
+        self.connect(self.facet.poster, PYSIGNAL("goingToLock"), self.slotGoingToLock)
+        # Thread yüz tanıma işine başlıyor
         self.facet.start()
     
     def slotQuit(self):
@@ -110,7 +146,14 @@ class Applet(KSystemTray):
     
     def slotLockDesktop(self):
         # API den de yapabilirdik bu çağrıyı ama böyle kolay oldu :)
-        os.system("dcop kdesktop KScreensaverIface lock")
+        print "LOCK"
+        #os.system("dcop kdesktop KScreensaverIface lock")
+    
+    def slotGoingToLock(self, is_going):
+        if is_going:
+            self.setPixmap(self.pix0)
+        else:
+            self.setPixmap(self.pix1)
 
 
 def main(args):
