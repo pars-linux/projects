@@ -1,5 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) 2008 Gürer Özen
+# This code is licensed under the GNU General Public License.
+#
 
 """
 Bu, kamera görüntüsünde bir yüz görünmediğinde ekranı kitleyen
