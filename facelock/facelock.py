@@ -10,8 +10,12 @@ ilk desktop'a geçer.
 import os
 import sys
 import time
+
+# Temel OpenCV fonksiyonları
 from opencv.cv import *
+# OpenCV GUI ve Camera API fonksiyonları
 from opencv.highgui import *
+
 from qt import *
 from kdecore import *
 from kdeui import *
@@ -20,8 +24,18 @@ I18N_NOOP = lambda x: x
 
 
 class FaceDetector:
+    # Haar yöntemiyle tanıma için kullanılacak özellik dosyası.
+    # Tanınacak nesnenin bölgeleri arasındaki kontrastları tanımlar.
+    #
+    # Burada önden görünüş yüz için çeşitli örneklerden hesaplanarak oluşturulmuş
+    # veri dosyasını kullanıyoruz, opencv ile gelen dosyalardan mesela
+    # haarcascade_profileface.xml ile yandan profil yüz tanıma yapabilirsiniz.
+    #
+    # Cascade (basamak, şelale) deniyor, çünkü basit özelliklerden başlayıp
+    # görüntü ile uyuştuğu sürece daha yukarı aşama özellikleri test eden
+    # bir sınıflama yöntemi kullanılıyor.
     cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"
-    # Kamera görüntüsünü küçültme oranı
+    # Kamera görüntüsünü küçültme oranı, daha büyük = daha hızlı ve daha az başarılı tanıma
     scale = 1.4
     
     def __init__(self, cam_no=0):
