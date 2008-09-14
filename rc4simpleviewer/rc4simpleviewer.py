@@ -25,10 +25,10 @@ os.remove('simpleviewer.zip')
 print ("Simpleviewer has been downloaded and extracted successfully, now\n\
 please answer the following questions for customizing your gallery...")
 
-maxImageWidth = raw_input("Max. width of the presented image (default is 640)? ")
-maxImageHeight = raw_input("Max. height of the presented image (default is 480)? ")
+maxImageWidth = input("Max. width of the presented image (default is 640)? ")
+maxImageHeight = input("Max. height of the presented image (default is 480)? ")
 
-Color = raw_input("Choose frame color 1)red, 2)green, 3)blue, 4)yellow, 5)white, 6)black, 7)gray or enter hex value:")
+Color = input("Choose frame color 1)red, 2)green, 3)blue, 4)yellow, 5)white, 6)black, 7)gray or enter hex value:")
 if Color == ('1'):
 	frameColor = ('0xff0000')
 elif Color == ('3'):
@@ -46,10 +46,10 @@ elif Color == ('7'):
 else:
 	frameColor = '0x'+Color
 
-frameWidth = raw_input("Frame width in pixels (default is 20)? ")
-stagePadding = raw_input("Stage padding (space between thumbs and page)? ")
-thumbnailColumns = raw_input("How many columns for thumbnails in a page? ")
-thumbnailRows = raw_input("How many rows for thumbnails in a page? ")
+frameWidth = input("Frame width in pixels (default is 20)? ")
+stagePadding = input("Stage padding (space between thumbs and page)? ")
+thumbnailColumns = input("How many columns for thumbnails in a page? ")
+thumbnailRows = input("How many rows for thumbnails in a page? ")
 
 navPosition = raw_input("Which side do you want thumbnails will be (left/right/top/bottom)? ")
 if navPosition not in ("left", "right", "top", "bottom"):
