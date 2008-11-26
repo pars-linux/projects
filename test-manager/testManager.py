@@ -20,6 +20,7 @@ class testManager(QMainWindow,
         super(testManager, self).__init__(parent)
         ui_testManager.Ui_MainWindow.__init__(self,parent)
         self.setupUi(self)
+        self.runButton.setEnabled(False)
 
     def showTest(self,fileName):
         url = QUrl("http://cekirdek.pardus.org.tr/~serbulent/test_guides/" + fileName + "/read.html")
@@ -41,6 +42,8 @@ class testManager(QMainWindow,
         self.showTest(pCurrent)
         #TestPackage is the module where real test does
         tp = TestPackage(pCurrent)
+        if tp.numberOfScripts:
+            self.runButton.setEnabled(True)
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):
