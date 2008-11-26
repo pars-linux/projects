@@ -73,6 +73,6 @@ class Initilizer():
         if self.params.has_key('files'):
             for fileName in self.params['files']:
                 url = self.repo + "files/" + fileName
-                localPath = self.saveDir + scriptName
+                localPath = self.filesDir + fileName
                 self.fetcher.download(url,localPath)
 

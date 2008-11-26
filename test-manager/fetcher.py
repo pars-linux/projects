@@ -21,18 +21,18 @@ class Fetcher:
                 print url + " download succesful\n"
             except IOError:
                 errorString =  fileName + " error on saving file"
-                self.logErrors(error_string , "io_errors.log")
+                self.logErrors(errorString , "io_errors.log")
             except OSError:
                 errorString = self.saveDir + self.packageName + "  error on directory creation"
                 self.logErrors(errorString, "io_errors.log")
 
         except URLGrabError , e:
-            error_string = url + " download fail"
+            errorString = url + " download fail"
             if e.errno == 12:
                 conn_error = "Connection error"
-                error_string = error_string + "\n" + conn_error
+                errorString = errorString + "\n" + conn_error
 
-            self.logErrors(error_string , "download_errors.log")
+            self.logErrors(errorString , "download_errors.log")
 
     def logErrors(self,error_message,log_file):
         print RED + error_message + NORMAL + "\n"
