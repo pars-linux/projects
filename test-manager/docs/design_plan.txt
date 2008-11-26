@@ -58,20 +58,45 @@ files = foo.gif,bar.jpg
 
 testScript[n].py Dosyaları ile test-manager iletişimi
 
-test betikleri result = { isSuccessful:[BOOL] , comment:[STRING] } biçiminde bir sözlük döndürür.
-
 tesrScript[n].py dosyalarının yapısı
 
+test betikleri "Test()" adında bir sınıf içerirler bu sınıfın "runTests()" metodu önceden tanımlanmış 
+testleri çalıştırır. Sınıfın "getResults()" metodu sözlük içeren bir liste döndürür. Her test betiğinin 
+Test() sınıfını ve bu sınıfın içindeki runTests ve getResults metodlarını  içermesi zorunludur.
 
-result = {isSuccessful:False, comment:""}
+Listenin içerdiği sözlüğün yapısı şöyledir; result = { step:[INTEGER], isSuccessful:[aBOOL] , comment:[aSTRING] }
 
-isSuccessful = not os.system('ls -la')
+Bir test betiği için şablon aşağıdaki gibidir;
 
-if not isSuccessful:
-    comment = "ls -al komutu hatalı çalıştı"
 
-def getResults():
-    return result
+class Test():
+    def __init__(self):
+        self.resultList = []
+
+    def test1(self):
+        result = {step:1, isSuccessful:False, comment:""}
+        #write test code here then set parameters like below
+        if foo:
+            result['isSuccessful'] = True
+        if bar:
+            result['comment'] = "foooooooooooo"
+        self.resultList.append(result)
+
+    def test2(self):
+        result = {step:2, isSuccessful:False, comment:""}
+        # write test code here then set parameters below
+        if foo:
+            result['isSuccessful'] = True
+        if bar:
+            result['comment'] = "foooooooooooo"
+        self.resultList.append(result)
+
+    def runTests(self):
+        test1()
+        test2()
+
+    def getResults(self):
+        return self.resultList
 
 
 
