@@ -1,0 +1,83 @@
+Test Manager Tasarım Hedefleri
+
+Bu belge test-manager uygulaması için tasarım hedeflerini tanımlayan bir taslaktır.
+
+
+
+test-manager nedir ?
+
+test-manager uygulaması Pardus testçileri için hazırlanmış test süreçlerini mümkün 
+olduğunca insan faktöründen bağımsız bir hale getirmek amacı ile tasarlanmaktadır.
+
+
+
+0.01 versiyonu için hedefler 
+
+testçiler verilen listeyi yüklediklerinde test için gerekli yönergeler karşılarına gelmeli
+
+Script yazımı tanımlanmalı
+
+Her bir paket için ne yapılacağı testProcess.conf dosyasından okunmalı
+
+test için scriptler indirilmeli
+
+
+İyileştirme
+
+Test yüklenmeden tuşlara basıldığında uyarı çıksın
+
+
+
+Klasör yapısı
+
+/
+|
+|__ paketAdı/
+|           |__testProcess.conf
+|           |__read.html
+|           |__testScript1.py
+|           |__testScript2.py
+|           |__...
+|           |__testScript[n].py
+|
+|__...
+
+
+
+
+
+örnek testProcess.conf yapısı
+
+[General]
+script = 2
+files = foo.gif,bar.jpg
+
+
+
+#TODO
+
+testScript[n].py Dosyaları ile test-manager iletişimi
+
+test betikleri result = { isSuccessful:[BOOL] , comment:[STRING] } biçiminde bir sözlük döndürür.
+
+tesrScript[n].py dosyalarının yapısı
+
+
+result = {isSuccessful:False, comment:""}
+
+isSuccessful = not os.system('ls -la')
+
+if not isSuccessful:
+    comment = "ls -al komutu hatalı çalıştı"
+
+def getResults():
+    return result
+
+
+
+Raporlama
+
+OK işaretlenen her paketi rapora yaz
+Fail işaretlenenler için ek bilgi iste
+comment girişi
+testi bitirme kontrol prosedürü ( düğme menü ??? )
