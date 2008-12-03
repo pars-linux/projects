@@ -21,9 +21,12 @@ class testManager(QMainWindow,
         ui_testManager.Ui_MainWindow.__init__(self,parent)
         self.setupUi(self)
         self.runButton.setEnabled(False)
+        self.localpath = "/tmp/testManager/"
 
     def showTest(self,fileName):
-        url = QUrl("http://cekirdek.pardus.org.tr/~serbulent/test_guides/" + fileName + "/read.html")
+        url_string = self.localpath + fileName + "/read.html"
+        # we will construct our url from a local file
+        url = QUrl.fromLocalFile(url_string)
         self.trywebView.load(url)
         self.trywebView.show()
 
@@ -38,12 +41,13 @@ class testManager(QMainWindow,
         # Download  test materials by InitList 
         init = InitList(package_list)
         self.pBrowser = PackageBrowser(package_list)
+        # Select first package for test
         pCurrent = self.pBrowser.back()
-        self.showTest(pCurrent)
         #TestPackage is the module where real test does
         tp = TestPackage(pCurrent)
         if tp.numberOfScripts:
             self.runButton.setEnabled(True)
+        self.showTest(pCurrent)
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):
