@@ -63,6 +63,9 @@ class Initilizer():
                 print errorString
 
     def fetchFiles(self):
+        url = self.repo + "read.html"
+        localPath = self.saveDir + "read.html"
+        self.fetcher.download(url,localPath)
         if self.params['numberOfScripts']:
             for i in range(1,self.params['numberOfScripts']+1):
                 scriptName = "testScript" + str(i) + ".py"

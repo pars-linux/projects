@@ -4,7 +4,7 @@
 import comar
 
 # This script is an example for testing applications 
-# which can be uses with 'service' command. We test all situations of service script of bind server.
+# which can be uses with 'service' command. We can test all situations of service script of bind server.
 
 class Test():
     def __init__(self):
