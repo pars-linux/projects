@@ -44,8 +44,8 @@ class testManager(QMainWindow,
         # Select first package for test
         pCurrent = self.pBrowser.back()
         #TestPackage is the module where real test does
-        tp = TestPackage(pCurrent)
-        if tp.numberOfScripts:
+        self.tp = TestPackage(pCurrent)
+        if self.tp.numberOfScripts:
             self.runButton.setEnabled(True)
         self.showTest(pCurrent)
 
@@ -53,13 +53,17 @@ class testManager(QMainWindow,
     def on_nextButton_clicked(self):
         pCurrent = self.pBrowser.next()
         self.showTest(pCurrent)
-        tp = TestPackage(pCurrent)
+        self.tp = TestPackage(pCurrent)
 
     @pyqtSignature("")
     def on_backButton_clicked(self):
         pCurrent = self.pBrowser.back()
         self.showTest(pCurrent)
-        tp = TestPackage(pCurrent)
+        self.tp = TestPackage(pCurrent)
+
+    @pyqtSignature("")
+    def on_runButton_clicked(self):
+        self.tp.runScripts()
 
 class PackageBrowser():
 
