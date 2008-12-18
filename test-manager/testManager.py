@@ -40,12 +40,15 @@ class testManager(QMainWindow,
                 package_list.append(pisi.util.parse_package_name(line)[0])
         # Download  test materials by InitList 
         init = InitList(package_list)
+        # We use PackageBrowser for browsing on our package list
         self.pBrowser = PackageBrowser(package_list)
         # Select first package for test
         pCurrent = self.pBrowser.back()
         #TestPackage is the module where real test does
         self.tp = TestPackage(pCurrent)
         if self.tp.numberOfScripts:
+            self.runButton.setEnabled(True)
+        else:
             self.runButton.setEnabled(True)
         self.showTest(pCurrent)
 
@@ -54,12 +57,20 @@ class testManager(QMainWindow,
         pCurrent = self.pBrowser.next()
         self.showTest(pCurrent)
         self.tp = TestPackage(pCurrent)
+        if self.tp.numberOfScripts:
+            self.runButton.setEnabled(True)
+        else:
+            self.runButton.setEnabled(True)
 
     @pyqtSignature("")
     def on_backButton_clicked(self):
         pCurrent = self.pBrowser.back()
         self.showTest(pCurrent)
         self.tp = TestPackage(pCurrent)
+        if self.tp.numberOfScripts:
+            self.runButton.setEnabled(True)
+        else:
+            self.runButton.setEnabled(True)
 
     @pyqtSignature("")
     def on_runButton_clicked(self):
