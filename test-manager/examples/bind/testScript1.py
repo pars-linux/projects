@@ -10,13 +10,15 @@ import os
 class Test():
     def __init__(self):
         self.resultList = []
+        # Let set the serviceName to use it later in tests
+        self.serviceName = "bind"
 
     def test1(self):
         result = {"step":1, "isSucessful":False, "comment":""}
         link = comar.Link()
         command = 'service bind on'
         os.system(command)
-        status = link.System.Service["bind"].info()
+        status = link.System.Service[self.serviceName].info()
         if status == "started" or status == "on":
             result['isSucessful'] = True
         if not result['isSucessful']:
@@ -28,7 +30,7 @@ class Test():
         link = comar.Link()
         command = 'service bind off'
         os.system(command)
-        status = link.System.Service["bind"].info()
+        status = link.System.Service[self.serviceName].info()
         if status == "stopped" or status == "off":
             result['isSucessful'] = True
         if not result['isSucessful']:
@@ -40,7 +42,7 @@ class Test():
         link = comar.Link()
         command = 'service bind start'
         os.system(command)
-        status = link.System.Service["bind"].info()
+        status = link.System.Service[self.serviceName].info()
         if status == "started":
             result['isSucessful'] = True
         if not result['isSucessful']:
@@ -52,7 +54,7 @@ class Test():
         link = comar.Link()
         command = 'service bind stop'
         os.system(command)
-        if link.System.Service["bind"].info() == "off":
+        if link.System.Service[self.serviceName].info() == "off":
             result['isSucessful'] = True
         if not ['isSucessful']:
             result['comment'] = command + " --- hatalı çalıştı"
@@ -63,7 +65,7 @@ class Test():
         link = comar.Link()
         command = 'service bind restart'
         os.system(command)
-        if link.System.Service["bind"].info() == "started":
+        if link.System.Service[self.serviceName].info() == "started":
             result['isSucessful'] = True
         if not ['isSucessful']:
             result['comment'] = command + "hatalı çalıştı"
@@ -73,6 +75,8 @@ class Test():
         self.test1()
         self.test2()
         self.test3()
+        self.test4()
+        self.test5()
 
     def getResults(self):
         return self.resultList

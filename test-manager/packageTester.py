@@ -4,7 +4,7 @@
 from confReader import ConfReader
 import sys
 
-sys.path.append('/depo/MyWorks/projeler/test-manager/examples/bind/')
+sys.path.append('examples/bind/')
 
 class TestPackage():
     def __init__(self,packageName):
@@ -19,5 +19,6 @@ class TestPackage():
         t = testScript1.Test()
         t.runTests()
         results1 = t.getResults()
+        print results1
 
 
