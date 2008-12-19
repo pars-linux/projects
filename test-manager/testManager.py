@@ -9,6 +9,7 @@ import ui_testManager
 
 import sys
 import pisi
+import os
 
 from packageTester import TestPackage
 from testInitilizer import InitList
@@ -21,10 +22,10 @@ class testManager(QMainWindow,
         ui_testManager.Ui_MainWindow.__init__(self,parent)
         self.setupUi(self)
         self.runButton.setEnabled(False)
-        self.localpath = "/tmp/testManager/"
+        self.localpath = "/tmp/testManager"
 
     def showTest(self,fileName):
-        url_string = self.localpath + fileName + "/read.html"
+        url_string = os.path.join(self.localpath,fileName,"read.html")
         # we will construct our url from a local file
         url = QUrl.fromLocalFile(url_string)
         self.trywebView.load(url)

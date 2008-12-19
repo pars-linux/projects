@@ -18,9 +18,9 @@ class Initilizer():
         #Define variables we need for the test
         self.packageName = packageName
         self.repo = "http://cekirdek.pardus.org.tr/~serbulent/test_guides/" + self.packageName + "/"
-        self.saveDir = "/tmp/testManager/" + self.packageName + "/"
-        self.filesDir =  self.saveDir + 'files/'
-        self.configFile =  self.saveDir + 'testProcess.conf'
+        self.saveDir = os.path.join("/tmp/testManager",  self.packageName)
+        self.filesDir =  os.path.join(self.saveDir, "files")
+        self.configFile = os.path.join(self.saveDir, "testProcess.conf")
         #Create directory which we use in test if they are not exits
         self.createDirs()
         # First of all we have to fetch and read the config file for the package
