@@ -49,7 +49,7 @@ class testManager(QMainWindow,
         if self.tp.numberOfScripts:
             self.runButton.setEnabled(True)
         else:
-            self.runButton.setEnabled(True)
+            self.runButton.setEnabled(False)
         self.showTest(pCurrent)
 
     @pyqtSignature("")
@@ -60,7 +60,7 @@ class testManager(QMainWindow,
         if self.tp.numberOfScripts:
             self.runButton.setEnabled(True)
         else:
-            self.runButton.setEnabled(True)
+            self.runButton.setEnabled(False)
 
     @pyqtSignature("")
     def on_backButton_clicked(self):
@@ -70,7 +70,7 @@ class testManager(QMainWindow,
         if self.tp.numberOfScripts:
             self.runButton.setEnabled(True)
         else:
-            self.runButton.setEnabled(True)
+            self.runButton.setEnabled(False)
 
     @pyqtSignature("")
     def on_runButton_clicked(self):
