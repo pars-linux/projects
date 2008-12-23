@@ -10,6 +10,7 @@ import ui_testManager
 import sys
 import pisi
 import os
+import getopt
 
 from packageTester import TestPackage
 from testInitilizer import InitList
@@ -23,6 +24,21 @@ class testManager(QMainWindow,
         self.setupUi(self)
         self.runButton.setEnabled(False)
         self.localpath = "/tmp/testManager"
+        # We parse command line arguments with getopt
+        try:
+            opts, args = getopt.getopt(sys.argv[1:], "hd", ["help", "debug"])
+        except getopt.GetoptError:
+            self.usage()
+            sys.exit(2)
+        for opt, arg in opts:
+            if opt in ("-h", "--help"):
+                self.usage()
+                sys.exit()
+            elif opt in ("-d", "--debug"):
+                self.debug = True
+
+    def usage(self):
+        print "Avalible options are -d and -h for now"
 
     def showTest(self,fileName):
         url_string = os.path.join(self.localpath,fileName,"read.html")
