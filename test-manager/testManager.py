@@ -56,7 +56,7 @@ class testManager(QMainWindow,
             for line in f:
                 package_list.append(pisi.util.parse_package_name(line)[0])
         # Download  test materials by InitList 
-        init = InitList(package_list)
+        init = InitList(package_list,self.debug)
         # We use PackageBrowser for browsing on our package list
         self.pBrowser = PackageBrowser(package_list)
         # Select first package for test
