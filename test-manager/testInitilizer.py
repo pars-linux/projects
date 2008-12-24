@@ -6,16 +6,22 @@ from fetcher import Fetcher
 from confReader import ConfReader
 
 import os
+import logging
+import logging.config
+
 
 class InitList():
-    def __init__(self,packageList):
+    def __init__(self,packageList,debug):
         for package in packageList:
-            test = Initilizer(package)
+            test = Initilizer(package,debug)
 
 class Initilizer():
-    
-    def __init__(self,packageName):
+
+    logging.config.fileConfig("logging.conf")
+
+    def __init__(self,packageName,debug):
         #Define variables we need for the test
+        self.logger = logging.getLogger("tmLogger")
         self.packageName = packageName
         self.repo = "http://cekirdek.pardus.org.tr/~serbulent/test_guides/" + self.packageName + "/"
         self.saveDir = os.path.join("/tmp/testManager",  self.packageName)
@@ -30,16 +36,14 @@ class Initilizer():
         cfr = ConfReader(self.configFile)
         self.params = cfr.read()
         self.fetchFiles()
-
+        
     def createDirs(self):
-        print "Creating directories..."
         if not os.path.isdir("/tmp/testManager"):
             try:
                 os.mkdir("/tmp/testManager")
-                print "/tmp/testManager created..."
+                self.logger.debug("/tmp/testManager created...")
             except OSError:
-                errorString = "/tmp/testManager" + "  error on directory creation"
-                print errorString
+                 self.logger.error("An error occurs when creating /tmp/testManager")
         if not os.path.isdir(self.saveDir):
             try:
                 os.mkdir(self.saveDir)
