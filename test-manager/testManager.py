@@ -24,6 +24,7 @@ class testManager(QMainWindow,
         self.setupUi(self)
         self.runButton.setEnabled(False)
         self.localpath = "/tmp/testManager"
+        self.debug = False
         # We parse command line arguments with getopt
         try:
             opts, args = getopt.getopt(sys.argv[1:], "hd", ["help", "debug"])

@@ -22,6 +22,8 @@ class Initilizer():
     def __init__(self,packageName,debug):
         #Define variables we need for the test
         self.logger = logging.getLogger("tmLogger")
+        if debug:
+            self.logger.setLevel(logging.DEBUG)
         self.packageName = packageName
         self.repo = "http://cekirdek.pardus.org.tr/~serbulent/test_guides/" + self.packageName + "/"
         self.saveDir = os.path.join("/tmp/testManager",  self.packageName)
@@ -47,24 +49,16 @@ class Initilizer():
         if not os.path.isdir(self.saveDir):
             try:
                 os.mkdir(self.saveDir)
-                print self.saveDir + " created..."
+                self.logger.debug(self.saveDir + " created...")
             except OSError:
-                errorString = self.saveDir + "  error on directory creation"
-                print errorString
-        if not os.path.isdir(self.saveDir):
-            try:
-                os.mkdir(self.saveDir)
-                print self.saveDir + " created..."
-            except OSError:
-                errorString = self.saveDir + "  error on directory creation"
-                print errorString
+                self.logger.error(self.saveDir + "  error on directory creation")
         if not os.path.isdir(self.filesDir):
             try:
                 os.mkdir(self.filesDir)
-                print self.filesDir + " created.."
+                self.logger.debug(self.filesDir + " created..")
             except OSError:
-                errorString = self.filesDir + "  error on directory creation"
-                print errorString
+                self.logger.error(self.filesDir + "  error on directory creation")
+
 
     def fetchFiles(self):
         url = self.repo + "read.html"
