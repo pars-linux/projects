@@ -32,7 +32,7 @@ class Initilizer():
         #Create directory which we use in test if they are not exits
         self.createDirs()
         # First of all we have to fetch and read the config file for the package
-        self.fetcher = Fetcher()
+        self.fetcher = Fetcher(debug)
         url = self.repo +  'testProcess.conf'
         self.fetcher.download(url, self.configFile )
         cfr = ConfReader(self.configFile)
