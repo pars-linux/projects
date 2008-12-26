@@ -25,7 +25,9 @@ class Initilizer():
         if debug:
             self.logger.setLevel(logging.DEBUG)
         self.packageName = packageName
-        self.repo = "http://cekirdek.pardus.org.tr/~serbulent/test_guides/" + self.packageName + "/"
+        # Define directories which we work in them later
+        self.workDir = "/tmp/testManager"
+        self.repo = "".join(["http://cekirdek.pardus.org.tr/~serbulent/test_guides/", self.packageName, "/"])
         self.saveDir = os.path.join("/tmp/testManager",  self.packageName)
         self.filesDir =  os.path.join(self.saveDir, "files")
         self.configFile = os.path.join(self.saveDir, "testProcess.conf")
@@ -33,47 +35,52 @@ class Initilizer():
         self.createDirs()
         # First of all we have to fetch and read the config file for the package
         self.fetcher = Fetcher(debug)
-        url = self.repo +  'testProcess.conf'
+        url = "".join([self.repo,"testProcess.conf"])
         self.fetcher.download(url, self.configFile )
         cfr = ConfReader(self.configFile)
         self.params = cfr.read()
         self.fetchFiles()
-        
+
     def createDirs(self):
-        if not os.path.isdir("/tmp/testManager"):
+        if not os.path.isdir(self.workDir):
             try:
-                os.mkdir("/tmp/testManager")
-                self.logger.debug("/tmp/testManager created...")
+                os.mkdir(self.workDir)
+                debugMsg = "".join([self.workDir, " created"])
+                self.logger.debug(debugMsg)
             except OSError:
-                 self.logger.error("An error occurs when creating /tmp/testManager")
+                errorMsg =  "".join(["An error occurs when creating ", self.workDir])
+                self.logger.error(errorMsg)
         if not os.path.isdir(self.saveDir):
             try:
                 os.mkdir(self.saveDir)
-                self.logger.debug(self.saveDir + " created...")
+                debugMsg = "".join([self.saveDir, " created..."])
+                self.logger.debug(debugMsg)
             except OSError:
-                self.logger.error(self.saveDir + "  error on directory creation")
+                errorMsg = "".join(["An error occurs when creating ", self.saveDir])
+                self.logger.error(errorMsg)
         if not os.path.isdir(self.filesDir):
             try:
                 os.mkdir(self.filesDir)
-                self.logger.debug(self.filesDir + " created..")
+                debugMsg = "".join([self.filesDir, " created..."])
+                self.logger.debug(debugMsg)
             except OSError:
-                self.logger.error(self.filesDir + "  error on directory creation")
-
+                errorMsg = "".join(["An error occurs when creating ", self.filesDir])
+                self.logger.error(errorMsg)
 
     def fetchFiles(self):
-        url = self.repo + "read.html"
+        url = "".join([self.repo, "read.html"])
         localPath = os.path.join(self.saveDir,"read.html")
         self.fetcher.download(url,localPath)
         if self.params['numberOfScripts']:
             for i in range(1,self.params['numberOfScripts']+1):
-                scriptName = "testScript" + str(i) + ".py"
-                url = self.repo + scriptName
-                localPath = self.saveDir + scriptName
-                self.fetcher.download(url,localPath)
+                scriptName = "testScript%s.py" % i
+                url = "".join([self.repo, scriptName])
+                localPath = os.path.join(self.saveDir, scriptName)
+                self.fetcher.download(url, localPath)
 
         if self.params.has_key('files'):
             for fileName in self.params['files']:
-                url = self.repo + "files/" + fileName
+                url = "".join([self.repo, "files/", fileName])
                 localPath = os.path.join(self.filesDir, fileName)
-                self.fetcher.download(url,localPath)
+                self.fetcher.download(url, localPath)
 
