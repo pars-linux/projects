@@ -62,7 +62,7 @@ class Initilizer():
 
     def fetchFiles(self):
         url = self.repo + "read.html"
-        localPath = self.saveDir + "read.html"
+        localPath = os.path.join(self.saveDir,"read.html")
         self.fetcher.download(url,localPath)
         if self.params['numberOfScripts']:
             for i in range(1,self.params['numberOfScripts']+1):
@@ -74,6 +74,6 @@ class Initilizer():
         if self.params.has_key('files'):
             for fileName in self.params['files']:
                 url = self.repo + "files/" + fileName
-                localPath = self.filesDir + fileName
+                localPath = os.path.join(self.filesDir, fileName)
                 self.fetcher.download(url,localPath)
 

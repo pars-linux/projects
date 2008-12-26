@@ -42,11 +42,17 @@ class testManager(QMainWindow,
         print "Avalible options are -d and -h for now"
 
     def showTest(self,fileName):
+        print "1"
         url_string = os.path.join(self.localpath,fileName,"read.html")
         # we will construct our url from a local file
+        print "2"
         url = QUrl.fromLocalFile(url_string)
+        print "3"
+        print url
         self.trywebView.load(url)
+        print "4"
         self.trywebView.show()
+        print "5"
 
     @pyqtSignature("")
     def on_action_Load_Test_triggered(self):
