@@ -4,43 +4,39 @@
 from urlgrabber.grabber import URLGrabError
 from urlgrabber import urlopen
 
+import logging
+import logging.config
+
 RED = "\x1b[31m"
 NORMAL = "\x1b[37;0m"
 
 class Fetcher:
 
+    def __init__(self,debug):
+        self.debug = debug
+        self.logger = logging.getLogger("tmLogger")
+        if debug:
+            self.logger.setLevel(logging.DEBUG)
+
     def download(self,url,fileName):
         try:
-            print url + " download started"
+            self.logger.debug(url + " download started")
             f =  urlopen(url, timeout=5.0)
             g = f.read()
             try:
                 file = open(fileName, "w")
                 file.write(g)
                 file.close()
-                print url + " download succesful\n"
+                self.logger.debug(fileName + " download succesful\n")
             except IOError:
-                errorString =  fileName + " error on saving file"
-                self.logErrors(errorString , "io_errors.log")
+                self.logger.error(fileName + " error on saving file")
             except OSError:
-                errorString = self.saveDir + self.packageName + "  error on directory creation"
-                self.logErrors(errorString, "io_errors.log")
+                self.logger.error(self.saveDir + self.packageName + "  error on directory creation")
 
         except URLGrabError , e:
             errorString = url + " download fail"
+            self.logger.error(errorString)
             if e.errno == 12:
-                conn_error = "Connection error"
-                errorString = errorString + "\n" + conn_error
-
-            self.logErrors(errorString , "download_errors.log")
-
-    def logErrors(self,error_message,log_file):
-        print RED + error_message + NORMAL + "\n"
-        try:
-            file = open( log_file , "a")
-            file.write(error_message + "\n")
-            file.close
-        except:
-            print RED + "Error occurs when trying to save error log" + NORMAL
+                self.logger.error("Connection error" + errorString)
 
 
