@@ -62,6 +62,6 @@ class Initilizer():
                 self.fetcher.download(url, localPath)
         if self.params.has_key('files'):
             for fileName in self.params['files']:
-                url = urlparse.urljoin(self.repo, "files", fileName)
+                url = urlparse.urljoin(self.repo, ("files/%s" % fileName))
                 localPath = os.path.join(self.filesDir, fileName)
                 self.fetcher.download(url, localPath)
