@@ -37,10 +37,10 @@ class Initilizer():
             if not os.path.isdir(item):
                 try:
                     os.mkdir(item)
-                    debugMsg = "%s created" % self.workDir
+                    debugMsg = "%s created" % item
                     self.logger.debug(debugMsg)
                 except OSError:
-                    errorMsg =  "An error occured when creating directory %s" % self.workDir
+                    errorMsg =  "An error occured when creating directory %s" % item
                     self.logger.error(errorMsg)
         #Read package configuration
         self.fetcher = Fetcher(debug)
