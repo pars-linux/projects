@@ -7,7 +7,7 @@ Bu belge test-manager uygulaması için tasarım hedeflerini tanımlayan bir tas
 test-manager nedir ?
 
 test-manager uygulaması Pardus testçileri için hazırlanmış test süreçlerini mümkün 
-olduğunca insan faktöründen bağımsız bir hale getirmek amacı ile tasarlanmaktadır.
+olduğunca insan faktöründen bağımsız bir hale getirmek amacı ile tasarlanan süper düper yazılımdır.
 
 
 
@@ -15,11 +15,12 @@ olduğunca insan faktöründen bağımsız bir hale getirmek amacı ile tasarlan
 
 testçiler verilen listeyi yüklediklerinde test için gerekli yönergeler karşılarına gelmeli
 
-Script yazımı tanımlanmalı
+Her paketçi istediği dilde test betikleri  geliştirebilmeli. test-manager yalnız scriptlerden kendisine 
+dönen veriler ile ilgilenmeli.
 
 Her bir paket için ne yapılacağı testProcess.conf dosyasından okunmalı
 
-test için scriptler indirilmeli
+testler pisi paketi olarak yüklenmeli
 
 
 İyileştirme
@@ -28,75 +29,60 @@ Test yüklenmeden tuşlara basıldığında uyarı çıksın
 
 
 
-Klasör yapısı
+
+
+
+Testlerin içeriği ve Test Bilgisayarlarına Yüklenmeleri
+
+Her paketi ait testler Şekil-1 de gösterilen yapıda bir dizin içinde bulunurlar 
+Belirli bir büyüklüğün üzerindeki dosyalar ayrı bir klasörde yer alır. Şu an için 
+bu dizinin adı Multimedya olarak belirlenmiştir.
+
+Her bir paket klasörü tar ile tek bir dosya haline getirilerek Archive klasörüne alınır.
+Bu klasördeki dosyalar sourceTestRepo da bulunan kaynak paketler aracılığı ile pisi paketi haline getirilirler.
+
+
+
+
+Şekil-1 Klasör yapısı
 
 /
+|__sourceTestRepo/
+|                |__ packageName-test/
+|                                    |__actions.py
+|                                    |__pspec.xml
+|                                    |__...
 |
-|__ paketAdı/
-|           |__testProcess.conf
-|           |__read.html
-|           |__testScript1.py
-|           |__testScript2.py
+|__ binaryTestRepo/
+|           |__ packageName-test-[Version]-[release]-[buildNo].pisi
 |           |__...
-|           |__testScript[n].py
 |
-|__...
+|
+|__ Archive/
+|          |__ packageName-[Version].tar
+|          |__ ...
+|
+|
+|__ packageName/
+|              |__testProcess.conf
+|              |__read.html
+|              |__foo.py
+|              |__bar.cpp
+|              |__...
+|              |__...
+|              |__ Files/
+|                       |__additionalFile.jpg
+|                       |__additionalFile.bar
+|
+|
+|__ Multimedya/
+              |__foo.mpg
+              |__bar.avi
+              |__...
 
 
 
 
-
-örnek testProcess.conf yapısı
-
-[General]
-script = 2
-files = foo.gif,bar.jpg
-
-
-
-#TODO
-
-testScript[n].py Dosyaları ile test-manager iletişimi
-
-tesrScript[n].py dosyalarının yapısı
-
-test betikleri "Test()" adında bir sınıf içerirler bu sınıfın "runTests()" metodu önceden tanımlanmış 
-testleri çalıştırır. Sınıfın "getResults()" metodu sözlük içeren bir liste döndürür. Her test betiğinin 
-Test() sınıfını ve bu sınıfın içindeki runTests ve getResults metodlarını  içermesi zorunludur.
-
-Listenin içerdiği sözlüğün yapısı şöyledir; result = { step:[INTEGER], isSuccessful:[aBOOL] , comment:[aSTRING] }
-
-Bir test betiği için şablon aşağıdaki gibidir;
-
-
-class Test():
-    def __init__(self):
-        self.resultList = []
-
-    def test1(self):
-        result = {step:1, isSuccessful:False, comment:""}
-        #write test code here then set parameters like below
-        if foo:
-            result['isSuccessful'] = True
-        if bar:
-            result['comment'] = "foooooooooooo"
-        self.resultList.append(result)
-
-    def test2(self):
-        result = {step:2, isSuccessful:False, comment:""}
-        # write test code here then set parameters below
-        if foo:
-            result['isSuccessful'] = True
-        if bar:
-            result['comment'] = "foooooooooooo"
-        self.resultList.append(result)
-
-    def runTests(self):
-        test1()
-        test2()
-
-    def getResults(self):
-        return self.resultList
 
 
 
