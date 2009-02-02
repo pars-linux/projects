@@ -1,0 +1,20 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Apple MacBook Pro Key Backlight
+Name[tr]=Apple MacBook Pro Klavye Aydınlatması
+Name[x-test]=xxApple MacBook Pro Key Backlightxx
+Type=Service
+ServiceTypes=Plasma/Applet
+X-Plasma-API=python
+X-Plasma-MainScript=code/main.py
+Icon=input-keyboard
+
+X-KDE-PluginInfo-Author=Gökmen GÖKSEL
+X-KDE-PluginInfo-Email=gokmen@pardus.org.tr
+X-KDE-PluginInfo-Name=mbp-backlight
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Website=http://ratonred.com
+X-KDE-PluginInfo-Category=Utilities
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
