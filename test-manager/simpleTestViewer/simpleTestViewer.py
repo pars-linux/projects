@@ -36,12 +36,25 @@ class simpleTestViewer(QMainWindow,
         with open(self.filename) as f:
             for line in f:
                 package_list.append(pisi.util.parse_package_name(line)[0])
-       # We use PackageBrowser for browsing on our package list
+        # We use PackageBrowser for browsing on our package list
         self.pBrowser = PackageBrowser(package_list)
         # Select first package for test
         pCurrent = self.pBrowser.back()
         self.showTest(pCurrent)
         self.packageLabel.setText(pCurrent)
+        self.enableButtons()
+
+    def enableButtons(self):
+        
+        def setEnable(objects):
+            for o in objects:
+                print o.objectName()
+                o.setEnabled(True)
+        
+        pushButtons = self.findChildren(QPushButton)
+        setEnable(pushButtons)
+        radioButtons = self.findChildren(QRadioButton)
+        setEnable(radioButtons)
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):
