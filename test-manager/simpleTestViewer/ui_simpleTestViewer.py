@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'simpleTestViewer.ui'
 #
-# Created: Sat Jan 24 19:43:58 2009
+# Created: Thu Feb  5 16:00:10 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,8 +12,8 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(794, 600)
-        MainWindow.setMaximumSize(QtCore.QSize(808, 600))
+        MainWindow.resize(907, 605)
+        MainWindow.setMaximumSize(QtCore.QSize(9999999, 9999999))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.testWebView = QtWebKit.QWebView(self.centralwidget)
@@ -21,9 +21,11 @@ class Ui_MainWindow(object):
         self.testWebView.setUrl(QtCore.QUrl("about:blank"))
         self.testWebView.setObjectName("testWebView")
         self.nextButton = QtGui.QPushButton(self.centralwidget)
+        self.nextButton.setEnabled(False)
         self.nextButton.setGeometry(QtCore.QRect(700, 520, 80, 27))
         self.nextButton.setObjectName("nextButton")
         self.backButton = QtGui.QPushButton(self.centralwidget)
+        self.backButton.setEnabled(False)
         self.backButton.setGeometry(QtCore.QRect(10, 520, 80, 27))
         self.backButton.setObjectName("backButton")
         self.packageLabel = QtGui.QLabel(self.centralwidget)
@@ -37,9 +39,34 @@ class Ui_MainWindow(object):
         self.packageLabel.setFont(font)
         self.packageLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.packageLabel.setObjectName("packageLabel")
+        self.passButton = QtGui.QRadioButton(self.centralwidget)
+        self.passButton.setEnabled(False)
+        self.passButton.setGeometry(QtCore.QRect(790, 50, 105, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.passButton.setFont(font)
+        self.passButton.setObjectName("passButton")
+        self.failButton = QtGui.QRadioButton(self.centralwidget)
+        self.failButton.setEnabled(False)
+        self.failButton.setGeometry(QtCore.QRect(790, 90, 105, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.failButton.setFont(font)
+        self.failButton.setObjectName("failButton")
+        self.commentButton = QtGui.QPushButton(self.centralwidget)
+        self.commentButton.setEnabled(False)
+        self.commentButton.setGeometry(QtCore.QRect(790, 130, 106, 28))
+        self.commentButton.setObjectName("commentButton")
+        self.finishButton = QtGui.QPushButton(self.centralwidget)
+        self.finishButton.setEnabled(False)
+        self.finishButton.setGeometry(QtCore.QRect(790, 440, 106, 61))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.finishButton.setFont(font)
+        self.finishButton.setObjectName("finishButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 794, 29))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 907, 27))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -60,6 +87,10 @@ class Ui_MainWindow(object):
         self.nextButton.setText(QtGui.QApplication.translate("MainWindow", "Next", None, QtGui.QApplication.UnicodeUTF8))
         self.backButton.setText(QtGui.QApplication.translate("MainWindow", "Previous", None, QtGui.QApplication.UnicodeUTF8))
         self.packageLabel.setText(QtGui.QApplication.translate("MainWindow", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
+        self.passButton.setText(QtGui.QApplication.translate("MainWindow", "Pass", None, QtGui.QApplication.UnicodeUTF8))
+        self.failButton.setText(QtGui.QApplication.translate("MainWindow", "Fail", None, QtGui.QApplication.UnicodeUTF8))
+        self.commentButton.setText(QtGui.QApplication.translate("MainWindow", "Comment", None, QtGui.QApplication.UnicodeUTF8))
+        self.finishButton.setText(QtGui.QApplication.translate("MainWindow", "Finish", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Load_Test.setText(QtGui.QApplication.translate("MainWindow", "Load Test", None, QtGui.QApplication.UnicodeUTF8))
 

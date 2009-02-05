@@ -5,14 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>794</width>
-    <height>600</height>
+    <width>907</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="maximumSize" >
    <size>
-    <width>808</width>
-    <height>600</height>
+    <width>9999999</width>
+    <height>9999999</height>
    </size>
   </property>
   <property name="windowTitle" >
@@ -35,6 +35,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="nextButton" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
     <property name="geometry" >
      <rect>
       <x>700</x>
@@ -48,6 +51,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="backButton" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
     <property name="geometry" >
      <rect>
       <x>10</x>
@@ -85,14 +91,93 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QRadioButton" name="passButton" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
+    <property name="geometry" >
+     <rect>
+      <x>790</x>
+      <y>50</y>
+      <width>105</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font" >
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text" >
+     <string>Pass</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="failButton" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
+    <property name="geometry" >
+     <rect>
+      <x>790</x>
+      <y>90</y>
+      <width>105</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font" >
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text" >
+     <string>Fail</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="commentButton" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
+    <property name="geometry" >
+     <rect>
+      <x>790</x>
+      <y>130</y>
+      <width>106</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Comment</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="finishButton" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
+    <property name="geometry" >
+     <rect>
+      <x>790</x>
+      <y>440</y>
+      <width>106</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font" >
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text" >
+     <string>Finish</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar" >
    <property name="geometry" >
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>794</width>
-     <height>29</height>
+     <width>907</width>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile" >
