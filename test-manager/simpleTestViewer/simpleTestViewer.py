@@ -21,6 +21,7 @@ class simpleTestViewer(QMainWindow,
         ui_simpleTestViewer.Ui_MainWindow.__init__(self,parent)
         self.setupUi(self)
 
+
     def showTest(self,fileName):
         fileNameString =  "%s.html" % fileName
         urlString = urlparse.urljoin("http://cekirdek.pardus.org.tr/~serbulent/test_html/", fileNameString)
@@ -45,16 +46,9 @@ class simpleTestViewer(QMainWindow,
         self.enableButtons()
 
     def enableButtons(self):
-        
-        def setEnable(objects):
-            for o in objects:
-                print o.objectName()
-                o.setEnabled(True)
-        
-        pushButtons = self.findChildren(QPushButton)
-        setEnable(pushButtons)
-        radioButtons = self.findChildren(QRadioButton)
-        setEnable(radioButtons)
+        buttons =  self.findChildren(QPushButton) + self.findChildren(QRadioButton)
+        for button in buttons:
+            button.setEnabled(True)
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):
