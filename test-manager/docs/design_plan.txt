@@ -23,11 +23,31 @@ Her bir paket için ne yapılacağı testProcess.conf dosyasından okunmalı
 testler pisi paketi olarak yüklenmeli
 
 
-İyileştirme
-
-Test yüklenmeden tuşlara basıldığında uyarı çıksın
 
 
+Grafik Arayüz
+
+Kullanıcının uygun olmayan hareketleri için yönlendirici uyarı pencereleri çıkmalı.
+
+* Next ve Previous tuşlarına henüz paket listesi yüklenmeden basıldığında uyarı çıkmalı
+* Finish tuşu için basıldığında test edilmemiş paket bulunuyorsa uyarı çıkmalı
+* Finish tuşu için Fail verilen paketlerden hakkında yorum yazılmamış olanlar varsa uyarı çıkmalı.
+
+
+
+
+packageTest Nesnesi
+
+Bu nesne temel test sonuçlarını içermeli. Özellikleri
+
+packageName (String)
+status (Boolean)
+comment (List of strings)
+scriptNames (List) *
+fileNames (List) *
+scriptStatus (Hash) *
+
+* Öncelikli olarak implemente edilmeyecekler.
 
 
 
@@ -48,37 +68,37 @@ Bu klasördeki dosyalar sourceTestRepo da bulunan kaynak paketler aracılığı 
 
 /
 |__sourceTestRepo/
-|                |__ packageName-test/
-|                                    |__actions.py
-|                                    |__pspec.xml
-|                                    |__...
+|                \__ packageName-test/
+|                                    \__actions.py
+|                                    \__pspec.xml
+|                                    \__...
 |
 |__ binaryTestRepo/
-|           |__ packageName-test-[Version]-[release]-[buildNo].pisi
-|           |__...
+|           \__ packageName-test-[Version]-[release]-[buildNo].pisi
+|           \__...
 |
 |
 |__ Archive/
-|          |__ packageName-[Version].tar
-|          |__ ...
+|          \__ packageName-[Version].tar
+|          \__ ...
 |
 |
 |__ packageName/
-|              |__testProcess.conf
-|              |__read.html
-|              |__foo.py
-|              |__bar.cpp
-|              |__...
-|              |__...
-|              |__ Files/
-|                       |__additionalFile.jpg
-|                       |__additionalFile.bar
+|              \__testProcess.conf
+|              \__read.html
+|              \__foo.py
+|              \__bar.cpp
+|              \__...
+|              \__...
+|              \__ Files/
+|                       \__additionalFile.jpg
+|                       \__additionalFile.bar
 |
 |
 |__ Multimedya/
-              |__foo.mpg
-              |__bar.avi
-              |__...
+              \__foo.mpg
+              \__bar.avi
+              \__...
 
 
 
@@ -91,4 +111,4 @@ Raporlama
 OK işaretlenen her paketi rapora yaz
 Fail işaretlenenler için ek bilgi iste
 comment girişi
-testi bitirme kontrol prosedürü ( düğme menü ??? )
+
