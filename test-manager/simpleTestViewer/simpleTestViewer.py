@@ -8,9 +8,11 @@ import urlparse
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from testObject import metaTest
 
 import pisi
 import ui_simpleTestViewer
+
 
 
 class simpleTestViewer(QMainWindow,
@@ -20,6 +22,8 @@ class simpleTestViewer(QMainWindow,
         super(simpleTestViewer, self).__init__(parent)
         ui_simpleTestViewer.Ui_MainWindow.__init__(self,parent)
         self.setupUi(self)
+        # A dictionary for metaTest instances
+        self.testDict = {}
 
 
     def showTest(self,fileName):
@@ -31,14 +35,18 @@ class simpleTestViewer(QMainWindow,
 
     @pyqtSignature("")
     def on_action_Load_Test_triggered(self):
-        package_list = []
+        packageList = []
         dialog = QFileDialog(self)
         self.filename = dialog.getOpenFileName();
+        localParse = pisi.util.parse_package_name
+        localAppend = packageList.append
         with open(self.filename) as f:
             for line in f:
-                package_list.append(pisi.util.parse_package_name(line)[0])
+                pName = localParse(line)[0]
+                localAppend(pName)
+                self.testDict[pName] = metaTest(pName,False,"")
         # We use PackageBrowser for browsing on our package list
-        self.pBrowser = PackageBrowser(package_list)
+        self.pBrowser = PackageBrowser(packageList)
         # Select first package for test
         pCurrent = self.pBrowser.back()
         self.showTest(pCurrent)
