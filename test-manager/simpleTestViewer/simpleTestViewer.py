@@ -72,25 +72,25 @@ class simpleTestViewer(QMainWindow,
 
 class PackageBrowser():
 
-    def __init__(self,package_list):
-        self.package_list = package_list
+    def __init__(self,packageList):
+        self.packageList = packageList
         self.index = 0
         self.min = 0
-        self.max = len(package_list) - 1
+        self.max = len(packageList) - 1
 
     def next(self):
         if self.index < self.max:
             self.index += 1
-            return self.package_list[self.index]
+            return self.packageList[self.index]
         if self.index == self.max:
-            return self.package_list[self.index]
+            return self.packageList[self.index]
 
     def back(self):
         if self.index == self.min:
-            return self.package_list[self.index]
+            return self.packageList[self.index]
         if self.index > self.min:
             self.index -= 1
-            return self.package_list[self.index]
+            return self.packageList[self.index]
 
 
 if __name__ == "__main__":
