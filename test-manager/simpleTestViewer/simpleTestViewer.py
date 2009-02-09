@@ -12,7 +12,7 @@ from testObject import metaTest
 
 import pisi
 import ui_simpleTestViewer
-
+import commentdlg
 
 
 class simpleTestViewer(QMainWindow,
@@ -80,6 +80,13 @@ class simpleTestViewer(QMainWindow,
     def on_failButton_clicked(self):
         self.testDict[self.pCurrent].status = False
         print  self.testDict[self.pCurrent].status
+
+    @pyqtSignature("")
+    def on_commentButton_clicked(self):
+        form = commentdlg.CommentDlg(self)
+        if form.exec_():
+            pass
+
 
 
 class PackageBrowser():
