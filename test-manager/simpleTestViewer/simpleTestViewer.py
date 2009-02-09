@@ -33,6 +33,12 @@ class simpleTestViewer(QMainWindow,
         self.testWebView.load(url)
         self.testWebView.show()
 
+    def enableButtons(self):
+        buttons =  self.findChildren(QPushButton) + self.findChildren(QRadioButton)
+        for button in buttons:
+            button.setEnabled(True)
+
+
     @pyqtSignature("")
     def on_action_Load_Test_triggered(self):
         packageList = []
@@ -48,15 +54,10 @@ class simpleTestViewer(QMainWindow,
         # We use PackageBrowser for browsing on our package list
         self.pBrowser = PackageBrowser(packageList)
         # Select first package for test
-        pCurrent = self.pBrowser.back()
-        self.showTest(pCurrent)
-        self.packageLabel.setText(pCurrent)
+        self.pCurrent = self.pBrowser.back()
+        self.showTest(self.pCurrent)
+        self.packageLabel.setText(self.pCurrent)
         self.enableButtons()
-
-    def enableButtons(self):
-        buttons =  self.findChildren(QPushButton) + self.findChildren(QRadioButton)
-        for button in buttons:
-            button.setEnabled(True)
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):
@@ -69,6 +70,17 @@ class simpleTestViewer(QMainWindow,
         pCurrent = self.pBrowser.back()
         self.showTest(pCurrent)
         self.packageLabel.setText(pCurrent)
+
+    @pyqtSignature("")
+    def on_passButton_clicked(self):
+        self.testDict[self.pCurrent].status = True
+        print  self.testDict[self.pCurrent].status
+
+    @pyqtSignature("")
+    def on_failButton_clicked(self):
+        self.testDict[self.pCurrent].status = False
+        print  self.testDict[self.pCurrent].status
+
 
 class PackageBrowser():
 
