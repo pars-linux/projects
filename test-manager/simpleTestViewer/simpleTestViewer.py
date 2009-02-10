@@ -83,9 +83,9 @@ class simpleTestViewer(QMainWindow,
 
     @pyqtSignature("")
     def on_commentButton_clicked(self):
-        form = commentdlg.CommentDlg(self)
+        form = commentdlg.CommentDlg(self.testDict[self.pCurrent].comment)
         if form.exec_():
-            pass
+            print form.commentEdit.text
 
 
 

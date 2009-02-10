@@ -9,9 +9,14 @@ import ui_commentdlg
 class CommentDlg(QDialog,
         ui_commentdlg.Ui_CommentDlg):
 
-    def __init__(self, parent=None):
+    def __init__(self, currentTest, parent=None):
         super(CommentDlg, self).__init__(parent)
         self.setupUi(self)
+        self.commentEdit.setText(currentTest)
+
+    def accept(self):
+        text = self.commentEdit.text()
+        QDialog.accept(self)
 
 if __name__ == "__main__":
     import sys
