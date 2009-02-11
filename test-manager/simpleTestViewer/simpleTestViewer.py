@@ -85,8 +85,7 @@ class simpleTestViewer(QMainWindow,
     def on_commentButton_clicked(self):
         form = commentdlg.CommentDlg(self.testDict[self.pCurrent].comment)
         if form.exec_():
-            print form.commentEdit.text
-
+            self.testDict[self.pCurrent].comment = form.commentEdit.toPlainText()
 
 
 class PackageBrowser():
