@@ -102,9 +102,10 @@ class simpleTestViewer(QMainWindow,
             if tD[package].status == False and tD[package].comment == "":
                 append(tD[package].packageName)
         if initialList:
+            localString = ", ".join(initialList)
             QMessageBox.warning(self,
                 u'Uyarı',
-                u'Testi geçemeyen aşağıdaki paketler için açıklama girmelisiniz... \n%s' % initialList)
+                u'Testi geçemeyen aşağıdaki paketler için açıklama girmelisiniz... \n%s' % localString)
 
 class PackageBrowser():
 
