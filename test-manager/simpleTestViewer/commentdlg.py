@@ -15,7 +15,7 @@ class CommentDlg(QDialog,
         self.commentEdit.setText(currentTest)
 
     def accept(self):
-        self.text = elf.commentEdit.toPlainText()
+        self.text = self.commentEdit.toPlainText()
         QDialog.accept(self)
 
 if __name__ == "__main__":
