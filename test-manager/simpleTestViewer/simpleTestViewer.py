@@ -38,7 +38,6 @@ class simpleTestViewer(QMainWindow,
         for button in buttons:
             button.setEnabled(True)
 
-
     @pyqtSignature("")
     def on_action_Load_Test_triggered(self):
         packageList = []
@@ -58,28 +57,35 @@ class simpleTestViewer(QMainWindow,
         self.showTest(self.pCurrent)
         self.packageLabel.setText(self.pCurrent)
         self.enableButtons()
+        self.failButton.toggle()
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):
-        pCurrent = self.pBrowser.next()
-        self.showTest(pCurrent)
-        self.packageLabel.setText(pCurrent)
+        self.pCurrent = self.pBrowser.next()
+        self.showTest(self.pCurrent)
+        self.packageLabel.setText(self.pCurrent)
+        if self.testDict[self.pCurrent].status:
+            self.passButton.toggle()
+        else:
+            self.failButton.toggle()
 
     @pyqtSignature("")
     def on_backButton_clicked(self):
-        pCurrent = self.pBrowser.back()
-        self.showTest(pCurrent)
-        self.packageLabel.setText(pCurrent)
+        self.pCurrent = self.pBrowser.back()
+        self.showTest(self.pCurrent)
+        self.packageLabel.setText(self.pCurrent)
+        if self.testDict[self.pCurrent].status:
+            self.passButton.toggle()
+        else:
+            self.failButton.toggle()
 
     @pyqtSignature("")
     def on_passButton_clicked(self):
         self.testDict[self.pCurrent].status = True
-        print  self.testDict[self.pCurrent].status
 
     @pyqtSignature("")
     def on_failButton_clicked(self):
         self.testDict[self.pCurrent].status = False
-        print  self.testDict[self.pCurrent].status
 
     @pyqtSignature("")
     def on_commentButton_clicked(self):
@@ -87,6 +93,18 @@ class simpleTestViewer(QMainWindow,
         if form.exec_():
             self.testDict[self.pCurrent].comment = form.commentEdit.toPlainText()
 
+    @pyqtSignature("")
+    def on_finishButton_clicked(self):
+        initialList = []
+        append = initialList.append
+        tD = self.testDict
+        for package in tD:
+            if tD[package].status == False and tD[package].comment == "":
+                append(tD[package].packageName)
+        if initialList:
+            QMessageBox.warning(self,
+                u'Uyarı',
+                u'Testi geçemeyen aşağıdaki paketler için açıklama girmelisiniz... \n%s' % initialList)
 
 class PackageBrowser():
 
