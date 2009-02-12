@@ -9,9 +9,9 @@ import urlparse
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from testObject import metaTest
+from gui import ui_simpleTestViewer
 
 import pisi
-import ui_simpleTestViewer
 import commentdlg
 
 
