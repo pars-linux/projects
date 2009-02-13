@@ -12,7 +12,8 @@ class CommentDlg(QDialog,
     def __init__(self, currentTest, parent=None):
         super(CommentDlg, self).__init__(parent)
         self.setupUi(self)
-        self.commentEdit.setText(currentTest)
+        if currentTest:
+            self.commentEdit.setText(currentTest)
 
 if __name__ == "__main__":
     import sys
