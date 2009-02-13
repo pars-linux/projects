@@ -10,6 +10,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from testObject import metaTest
 from gui import ui_simpleTestViewer
+from xmlMapper import xmlMapper
 
 import pisi
 import commentdlg
@@ -41,15 +42,14 @@ class simpleTestViewer(QMainWindow,
     @pyqtSignature("")
     def on_action_Load_Test_triggered(self):
         packageList = []
+        self.testDict = {}
         dialog = QFileDialog(self)
-        self.filename = dialog.getOpenFileName();
-        localParse = pisi.util.parse_package_name
+        fileName = dialog.getOpenFileName();
+        mapper = xmlMapper(str(fileName))
         localAppend = packageList.append
-        with open(self.filename) as f:
-            for line in f:
-                pName = localParse(line)[0]
-                localAppend(pName)
-                self.testDict[pName] = metaTest(pName,False,"")
+        self.testDict = mapper.getTests()
+        for packageName in self.testDict.keys():
+            localAppend(packageName)
         # We use PackageBrowser for browsing on our package list
         self.pBrowser = PackageBrowser(packageList)
         # Select first package for test
