@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'simpleTestViewer.ui'
+# Form implementation generated from reading ui file 'gui/ui/simpleTestViewer.ui'
 #
-# Created: Thu Feb  5 16:00:10 2009
+# Created: Sun Feb 15 18:58:42 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -66,7 +66,7 @@ class Ui_MainWindow(object):
         self.finishButton.setObjectName("finishButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 907, 27))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 907, 29))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -76,7 +76,10 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.action_Load_Test = QtGui.QAction(MainWindow)
         self.action_Load_Test.setObjectName("action_Load_Test")
+        self.actionSave_Test = QtGui.QAction(MainWindow)
+        self.actionSave_Test.setObjectName("actionSave_Test")
         self.menuFile.addAction(self.action_Load_Test)
+        self.menuFile.addAction(self.actionSave_Test)
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -93,5 +96,6 @@ class Ui_MainWindow(object):
         self.finishButton.setText(QtGui.QApplication.translate("MainWindow", "Finish", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Load_Test.setText(QtGui.QApplication.translate("MainWindow", "Load Test", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave_Test.setText(QtGui.QApplication.translate("MainWindow", "Save Test", None, QtGui.QApplication.UnicodeUTF8))
 
 from PyQt4 import QtWebKit

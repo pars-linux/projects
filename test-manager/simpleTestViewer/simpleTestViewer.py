@@ -45,9 +45,9 @@ class simpleTestViewer(QMainWindow,
         self.testDict = {}
         dialog = QFileDialog(self)
         fileName = dialog.getOpenFileName();
-        mapper = xmlMapper(str(fileName))
+        self.mapper = xmlMapper(str(fileName))
         localAppend = packageList.append
-        self.testDict = mapper.getTests()
+        self.testDict = self.mapper.getTests()
         for packageName in self.testDict.keys():
             localAppend(packageName)
         # We use PackageBrowser for browsing on our package list
@@ -58,6 +58,12 @@ class simpleTestViewer(QMainWindow,
         self.packageLabel.setText(self.pCurrent)
         self.enableButtons()
         self.failButton.toggle()
+
+    
+    @pyqtSignature("")
+    def on_action_Save_Test_triggered(self):
+        self.mapper.setTests(self.testDict)
+
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):
