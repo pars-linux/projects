@@ -70,6 +70,7 @@ class simpleTestViewer(QMainWindow,
         self.pCurrent = self.pBrowser.next()
         self.showTest(self.pCurrent)
         self.packageLabel.setText(self.pCurrent)
+        print self.testDict[self.pCurrent].status
         if self.testDict[self.pCurrent].status:
             self.passButton.toggle()
         else:

@@ -16,8 +16,12 @@ class xmlMapper():
     def getTests(self):
         testDict = {}
         for tag in self.xmldoc.tags():
+            if tag.getTagData("status") == "False":
+                status = False
+            else:
+                status = True
             testDict[tag.getTagData("packageName")] = metaTest(tag.getTagData("packageName"), \
-                                                               tag.getTagData("status"), \
+                                                               status, \
                                                                tag.getTagData("comment"))
         return testDict
 
