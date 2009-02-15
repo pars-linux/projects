@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<TestSuite>
+    <PackageTest>
+        <packageName>aria2</packageName>
+        <status>Fail</status>
+        <comment></comment>
+    </PackageTest>
+    <PackageTest>
+        <packageName>display-manager</packageName>
+        <status>Fail</status>
+        <comment></comment>
+    </PackageTest>
+    <PackageTest>
+        <packageName>kaptan</packageName>
+        <status>Fail</status>
+        <comment></comment>
+    </PackageTest>
+    <PackageTest>
+        <packageName>pisi</packageName>
+        <status>Fail</status>
+        <comment></comment>
+    </PackageTest>
+</TestSuite>
