@@ -28,10 +28,10 @@ class xmlMapper():
     def setTests(self,dict):
         for tag in self.xmldoc.tags():
             # In our dict, we have metaTest class instances. We get attirbute names and values of this instances and create a xml tree
-            for key in dict.keys():
-                for k,v in dict[key].__dict__.items():
-                    node = tag.getTag(k)
-                    node.hide()
-                    tag.insertTag(k).insertData(v)
+            key = tag.getTagData("packageName")
+            for k,v in dict[key].__dict__.items():
+                node = tag.getTag(k)
+                node.hide()
+                tag.insertTag(k).insertData(str(v))
 
-        print self.xmldoc.toString()
+        print self.xmldoc.toPrettyString().strip("\n        \n        \n        ")
