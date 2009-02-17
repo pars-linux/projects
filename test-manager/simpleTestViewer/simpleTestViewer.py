@@ -44,8 +44,8 @@ class simpleTestViewer(QMainWindow,
         packageList = []
         self.testDict = {}
         dialog = QFileDialog(self)
-        fileName = dialog.getOpenFileName();
-        self.mapper = xmlMapper(str(fileName))
+        self.fileName = dialog.getOpenFileName();
+        self.mapper = xmlMapper(str(self.fileName))
         localAppend = packageList.append
         self.testDict = self.mapper.getTests()
         for packageName in self.testDict.keys():
@@ -62,8 +62,9 @@ class simpleTestViewer(QMainWindow,
     
     @pyqtSignature("")
     def on_action_Save_Test_triggered(self):
-        self.mapper.setTests(self.testDict)
-
+        xmlString = self.mapper.setTests(self.testDict)
+        fileName = QFileDialog.getSaveFileName(self, "Save File", self.fileName, "Images (*.xml)");
+        file(fileName,"w").write(xmlString)
 
     @pyqtSignature("")
     def on_nextButton_clicked(self):

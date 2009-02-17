@@ -1,5 +1,3 @@
-<?xml version="1.0" ?>
-
 <TestSuite>
     <PackageTest>
         <packageName>aria2</packageName>
