@@ -11,6 +11,7 @@ from PyQt4.QtGui import *
 from testObject import metaTest
 from gui import ui_simpleTestViewer
 from xmlMapper import xmlMapper
+from reportGenerator import generator
 
 import pisi
 import commentdlg
@@ -113,6 +114,13 @@ class simpleTestViewer(QMainWindow,
             QMessageBox.warning(self,
                 u'Uyarı',
                 u'Testi geçemeyen aşağıdaki paketler için açıklama girmelisiniz... \n%s' % localString)
+        else:
+            g = generator(self.testDict)
+            report = g.generate()
+            fileName = QFileDialog.getSaveFileName(self, "Save File", "Report.html", "Images (*.html)");
+            file(fileName,"w").write(report)
+
+
 
 class PackageBrowser():
 
