@@ -102,8 +102,11 @@ class simpleTestViewer(QMainWindow,
     @pyqtSignature("")
     def on_finishButton_clicked(self):
         initialList = []
+        append = initialList.append
         tD = self.testDict
-        initialList = [ tD[package].packageName for package in tD if tD[package].status == False and tD[package].comment == None ]
+        for package in tD:
+            if tD[package].status == False and tD[package].comment == None:
+                append(tD[package].packageName)
         if initialList:
             localString = ", ".join(initialList)
             QMessageBox.warning(self,
