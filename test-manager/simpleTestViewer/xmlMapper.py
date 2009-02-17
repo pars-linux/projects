@@ -34,4 +34,4 @@ class xmlMapper():
                 node.hide()
                 tag.insertTag(k).insertData(str(v))
 
-        print self.xmldoc.toPrettyString().strip("\n        \n        \n        ")
+        print self.xmldoc.toPrettyString().replace("\n        \n        \n        \n","\n    ")
