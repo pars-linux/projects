@@ -32,6 +32,10 @@ class xmlMapper():
             for k,v in dict[key].__dict__.items():
                 node = tag.getTag(k)
                 node.hide()
-                tag.insertTag(k).insertData(str(v))
+                if str(v) != "None":
+                    tag.insertTag(k).insertData(str(v))
+                else:
+                    tag.insertTag(k).insertData("")
 
-        print self.xmldoc.toPrettyString().replace("\n        \n        \n        \n","\n    ")
+
+        return self.xmldoc.toPrettyString().replace("\n        \n        \n        \n","\n    ")
