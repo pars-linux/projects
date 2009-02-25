@@ -28,7 +28,6 @@ class SimpleNoteApplet(plasmascript.Applet):
 
         self.layout.addItem(self.editor)
         self.connect(self.editor, SIGNAL("textChanged()"), self.updateContent)
-        self.resize(250, 250)
 
     def constraintsEvent(self, constraints):
         self.setBackgroundHints(Plasma.Applet.NoBackground)
