@@ -24,6 +24,10 @@ class SimpleNoteApplet(plasmascript.Applet):
 
         self.editor = Plasma.TextEdit(self.applet)
         self.editor.setStyleSheet("background:rgba(0,0,0,0);color:white;border:1px solid rgba(0,0,0,10);")
+
+        if not os.path.exists(self.file):
+            file(self.file,'w')
+
         self.editor.nativeWidget().setText(unicode(file(self.file,'r').read()))
 
         self.layout.addItem(self.editor)
