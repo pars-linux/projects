@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-05-31 18:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: virt-wrapper.py:49 virt-wrapper.py:70
+msgid "Authorization"
+msgstr ""
+
+#: virt-wrapper.py:50
+#, python-format
+msgid ""
+"You must be a member of '%s' group in order to use virtualization software."
+msgstr ""
+
+#: virt-wrapper.py:51
+#, python-format
+msgid "Join '%s' Group"
+msgstr ""
+
+#: virt-wrapper.py:51 virt-wrapper.py:111
+msgid "Cancel"
+msgstr ""
+
+#: virt-wrapper.py:65
+msgid "Access denied"
+msgstr ""
+
+#: virt-wrapper.py:66
+msgid "Cannot get authorization to join the group."
+msgstr ""
+
+#: virt-wrapper.py:71
+#, python-format
+msgid ""
+"You are now a member of '%s' group. You must relogin in order the changes "
+"take effect."
+msgstr ""
+
+#: virt-wrapper.py:106
+msgid "Conflicts"
+msgstr ""
+
+#: virt-wrapper.py:107
+msgid ""
+"Cannot remove conflicting kernel modules to run this virtualization "
+"software.\n"
+"There might be several reasons for this:\n"
+"\n"
+" - An authorization problem while removing modules.\n"
+" - Another virtualization software running currently."
+msgstr ""
+
+#: virt-wrapper.py:111
+msgid "Try Again"
+msgstr ""
+
+#: virt-wrapper.py:130
+msgid "Kernel Modules"
+msgstr ""
+
+#: virt-wrapper.py:131
+msgid ""
+"Cannot load some of the kernel modules. You might not use all of the "
+"functionality provided by this virtualization software."
+msgstr ""
