@@ -1,0 +1,13 @@
+virt-wrapper
+============
+
+virt-wrapper is a wrapper for virtualization applications. It warns users
+if they are not a member of virt group and loads the kernel modules
+automatically.
+
+Currently kvm and VirtualBox are supported.
+
+Requirements
+------------
+ - comar
+ - PyQt 4
