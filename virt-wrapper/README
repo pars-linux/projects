@@ -9,5 +9,8 @@ Currently kvm and VirtualBox are supported.
 
 Requirements
 ------------
- - comar
- - PyQt 4
+ - comar-api >= 2.4.3
+ - Comar scripts for the following models:
+    - Boot.Modules
+    - User.Manager
+ - PyQt 4 (optional)
