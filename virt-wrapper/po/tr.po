@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-31 18:06+0300\n"
+"POT-Creation-Date: 2009-06-06 18:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,45 +16,45 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: virt-wrapper.py:49 virt-wrapper.py:70
+#: virt-wrapper.py:95 virt-wrapper.py:114
 msgid "Authorization"
 msgstr ""
 
-#: virt-wrapper.py:50
+#: virt-wrapper.py:96
 #, python-format
 msgid ""
 "You must be a member of '%s' group in order to use virtualization software."
 msgstr ""
 
-#: virt-wrapper.py:51
+#: virt-wrapper.py:97
 #, python-format
 msgid "Join '%s' Group"
 msgstr ""
 
-#: virt-wrapper.py:51 virt-wrapper.py:111
+#: virt-wrapper.py:97 virt-wrapper.py:154
 msgid "Cancel"
 msgstr ""
 
-#: virt-wrapper.py:65
+#: virt-wrapper.py:110
 msgid "Access denied"
 msgstr ""
 
-#: virt-wrapper.py:66
+#: virt-wrapper.py:111
 msgid "Cannot get authorization to join the group."
 msgstr ""
 
-#: virt-wrapper.py:71
+#: virt-wrapper.py:115
 #, python-format
 msgid ""
 "You are now a member of '%s' group. You must relogin in order the changes "
 "take effect."
 msgstr ""
 
-#: virt-wrapper.py:106
+#: virt-wrapper.py:149
 msgid "Conflicts"
 msgstr ""
 
-#: virt-wrapper.py:107
+#: virt-wrapper.py:150
 msgid ""
 "Cannot remove conflicting kernel modules to run this virtualization "
 "software.\n"
@@ -64,15 +64,15 @@ msgid ""
 " - Another virtualization software running currently."
 msgstr ""
 
-#: virt-wrapper.py:111
+#: virt-wrapper.py:154
 msgid "Try Again"
 msgstr ""
 
-#: virt-wrapper.py:130
+#: virt-wrapper.py:172
 msgid "Kernel Modules"
 msgstr ""
 
-#: virt-wrapper.py:131
+#: virt-wrapper.py:173
 msgid ""
 "Cannot load some of the kernel modules. You might not use all of the "
 "functionality provided by this virtualization software."
