@@ -1,47 +1,48 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Turkish translations of virt-wrapper.
+# Copyright (C) 2009
+# This file is distributed under the same license as the virt-wrapper package.
+# Fatih Aşıcı <fatih@pardus.org.tr>, 2009.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-06 18:37+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2009-06-06 18:44+0300\n"
+"Last-Translator: Fatih Aşıcı <fatih@pardus.org.tr>\n"
+"Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: virt-wrapper.py:95 virt-wrapper.py:114
 msgid "Authorization"
-msgstr ""
+msgstr "Yetkilendirme"
 
 #: virt-wrapper.py:96
 #, python-format
 msgid ""
 "You must be a member of '%s' group in order to use virtualization software."
 msgstr ""
+"Sanallaştırma yazılımlarını kullanabilmek için '%s' grubunun bir üyesi olmalısınız."
 
 #: virt-wrapper.py:97
 #, python-format
 msgid "Join '%s' Group"
-msgstr ""
+msgstr "'%s' Grubuna Katıl"
 
 #: virt-wrapper.py:97 virt-wrapper.py:154
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: virt-wrapper.py:110
 msgid "Access denied"
-msgstr ""
+msgstr "Erişim engellendi"
 
 #: virt-wrapper.py:111
 msgid "Cannot get authorization to join the group."
-msgstr ""
+msgstr "Gruba katılmak için yetki alınamadı."
 
 #: virt-wrapper.py:115
 #, python-format
@@ -49,10 +50,12 @@ msgid ""
 "You are now a member of '%s' group. You must relogin in order the changes "
 "take effect."
 msgstr ""
+"Artık '%s' grubunun bir üyesi oldunuz. Değişikliklerin etkin olması için "
+"yeniden oturum açmalısınız."
 
 #: virt-wrapper.py:149
 msgid "Conflicts"
-msgstr ""
+msgstr "Çakışmalar"
 
 #: virt-wrapper.py:150
 msgid ""
@@ -63,17 +66,25 @@ msgid ""
 " - An authorization problem while removing modules.\n"
 " - Another virtualization software running currently."
 msgstr ""
+"Bu sanallaştıma uygulamasını çalıştırmak için bellekten kaldırılması "
+"gereken bazı çekirdek modülleri kaldırılamıyor.\n"
+"Bunun birkaç nedeni olabilir:\n"
+"\n"
+" - Modülleri kaldırırken karşılaşılan bir yetki problemi.\n"
+" - Aynı anda çalışan başka bir sanallaştırma yazılımı."
 
 #: virt-wrapper.py:154
 msgid "Try Again"
-msgstr ""
+msgstr "Yeniden Dene"
 
 #: virt-wrapper.py:172
 msgid "Kernel Modules"
-msgstr ""
+msgstr "Çekirdek Modülleri"
 
 #: virt-wrapper.py:173
 msgid ""
 "Cannot load some of the kernel modules. You might not use all of the "
 "functionality provided by this virtualization software."
 msgstr ""
+"Bazı çekirdek modülleri yüklenemedi. Bu sanallaştırma uygulaması tarafından "
+"sağlanan bütün özellikleri kullanamayabilirsiniz."
