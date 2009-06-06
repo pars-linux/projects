@@ -11,8 +11,6 @@ import gettext
 __trans = gettext.translation('virt-wrapper', fallback=True)
 _ = __trans.ugettext
 
-from PyQt4 import QtGui
-
 VIRT_GROUP = "virt"
 
 class VBox:
@@ -35,6 +33,55 @@ apps = {
         "kvm":          KVM
         }
 
+
+class ConsoleUI:
+    def __ask(self, choices):
+        answer = 0
+        while not (0 < answer <= len(choices)):
+            for n, choice in enumerate(choices):
+                print "  [%d] %s" % (n + 1, choice)
+
+            try:
+                answer = int(raw_input("Your choice [1..%d] > " % len(choices)))
+            except ValueError:
+                pass
+            except (KeyboardInterrupt, EOFError):
+                print
+                sys.exit(1)
+
+        return answer - 1
+
+    def info(self, title, message):
+        print message
+
+    def warn(self, title, message, *buttons):
+        print message
+
+        if len(buttons) > 1:
+            return self.__ask(buttons)
+
+class QtUI:
+    def __init__(self):
+        QtGui.QApplication(sys.argv)
+
+    def info(self, title, message):
+        return QtGui.QMessageBox.information(None, title, message)
+
+    def warn(self, title, message, *buttons):
+        return QtGui.QMessageBox.warning(None, title, message, *buttons)
+
+try:
+    if "DISPLAY" not in os.environ:
+        ui = ConsoleUI()
+    else:
+        from PyQt4 import QtGui
+
+        ui = QtUI()
+
+except ImportError:
+    ui = ConsoleUI()
+
+
 def checkGroup():
     try:
         gid = grp.getgrnam(VIRT_GROUP).gr_gid
@@ -45,10 +92,9 @@ def checkGroup():
     if gid in os.getgroups():
         return
 
-    btn = QtGui.QMessageBox.critical(None,
-            _("Authorization"),
-            _("You must be a member of '%s' group in order to use virtualization software.") % VIRT_GROUP,
-            _("Join '%s' Group") % VIRT_GROUP, _("Cancel"))
+    btn = ui.warn(_("Authorization"),
+                  _("You must be a member of '%s' group in order to use virtualization software.") % VIRT_GROUP,
+                  _("Join '%s' Group") % VIRT_GROUP, _("Cancel"))
 
     if btn == 1:
         sys.exit(1)
@@ -61,13 +107,11 @@ def checkGroup():
     try:
         link.User.Manager["baselayout"].setUser(os.getuid(), "", "", "", "", groups)
     except dbus.exceptions.DBusException:
-        QtGui.QMessageBox.critical(None,
-                _("Access denied"),
+        ui.warn(_("Access denied"),
                 _("Cannot get authorization to join the group."))
         sys.exit(1)
 
-    QtGui.QMessageBox.information(None,
-            _("Authorization"),
+    ui.info(_("Authorization"),
             _("You are now a member of '%s' group. You must relogin in order the changes take effect.") % VIRT_GROUP)
 
     sys.exit(1)
@@ -102,13 +146,12 @@ def checkModules(vapp):
     conflicts = [x for x in vapp.conflictedModules if x.replace("-", "_") in modules]
 
     while not rmmod(conflicts):
-        btn = QtGui.QMessageBox.warning(None,
-                _("Conflicts"),
-                _("Cannot remove conflicting kernel modules to run this virtualization software.\n"
-                  "There might be several reasons for this:\n\n"
-                  " - An authorization problem while removing modules.\n"
-                  " - Another virtualization software running currently."),
-                _("Try Again"), _("Cancel"))
+        btn = ui.warn(_("Conflicts"),
+                      _("Cannot remove conflicting kernel modules to run this virtualization software.\n"
+                        "There might be several reasons for this:\n\n"
+                        " - An authorization problem while removing modules.\n"
+                        " - Another virtualization software running currently."),
+                      _("Try Again"), _("Cancel"))
         if btn == 1:
             sys.exit(1)
 
@@ -126,8 +169,7 @@ def checkModules(vapp):
             failure = True
 
     if failure:
-        QtGui.QMessageBox.warning(None,
-                _("Kernel Modules"),
+        ui.warn(_("Kernel Modules"),
                 _("Cannot load some of the kernel modules. You might not use all of "
                   "the functionality provided by this virtualization software."))
 
@@ -140,7 +182,6 @@ if __name__ == '__main__':
         sys.exit(1)
 
     vapp = apps[appName]()
-    app = QtGui.QApplication(sys.argv)
 
     checkGroup()
     checkModules(vapp)
