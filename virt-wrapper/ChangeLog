@@ -1,7 +1,10 @@
+2009-08-06 Fatih Aşıcı <fatih@pardus.org.tr>
+	* Added vboxnetadp as an optional module for VirtualBox.
+
 2009-06-06 Fatih Aşıcı <fatih@pardus.org.tr>
-		* Added console interface. Fallback if
-		  - PyQt4 is not available,
-		  - not executed under X server
+	* Added console interface. Fallback if
+	  - PyQt4 is not available,
+	  - not executed under X server
 
 2009-05-31 Fatih Aşıcı <fatih@pardus.org.tr>
-		* Initial import.
+	* Initial import.

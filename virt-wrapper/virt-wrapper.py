@@ -16,7 +16,7 @@ VIRT_GROUP = "virt"
 class VBox:
     def __init__(self):
         self.requiredModules = ("vboxdrv",)
-        self.optionalModules = ("vboxnetflt",)
+        self.optionalModules = ("vboxnetadp", "vboxnetflt")
         self.conflictedModules = ("kvm-amd", "kvm-intel", "kvm")
 
 class KVM:
