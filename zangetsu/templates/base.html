@@ -58,6 +58,14 @@
             </form>
         </center>
 
+        <!-- Tags -->
+        <h2>{% trans "Tags" %}</h2>
+        {% build_tag_list %}
+        {% for tag in blog_tag %}
+            <a href="{{ blog_url }}/feed/rss/{{ tag.title }}"><img border="0" alt="rss" src="{{ blog_url }}/static/image/feed-icon-12x12.gif"></a>
+            <a href="{{ blog_url }}/tag/{{ tag.title }}">{{ tag.title }} ({{ tag.count }})</a><br>
+        {% endfor %}
+
         <!-- Latest Comments -->
         <h2>{% trans "Latest Comments" %}</h2>
         <br>
@@ -69,15 +77,6 @@
         {% endfor %}
         <br>
         <a href="{{ blog_url }}/comments">{%trans "All Comments"%}</a>
-
-
-        <!-- Tags -->
-        <h2>{% trans "Tags" %}</h2>
-        {% build_tag_list %}
-        {% for tag in blog_tag %}
-            <a href="{{ blog_url }}/feed/rss/{{ tag.title }}"><img border="0" alt="rss" src="{{ blog_url }}/static/image/feed-icon-12x12.gif"></a>
-            <a href="{{ blog_url }}/tag/{{ tag.title }}">{{ tag.title }} ({{ tag.count }})</a><br>
-        {% endfor %}
 
         <!-- Links -->
         <h2>{% trans "Links" %}</h2>
