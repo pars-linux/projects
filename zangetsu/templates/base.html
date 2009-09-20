@@ -63,7 +63,7 @@
         <br>
         {% build_comment_list %}
         {% for comment in blog_comments %}
-            <a href="{{ object.get_absolute_url }}#comments">{{comment.user_name}} commented;</a> {{ comment.comment|truncatewords:10 }}
+            <a href="{{ object.get_absolute_url }}#comments">{{comment.user_name}} commented;</a> {{ comment.comment|truncatewords:10|safe }}
             <span class="date"> {{ comment.submit_date|date:"d F y, l \@ H:i" }}</span>
             <br>
         {% endfor %}
