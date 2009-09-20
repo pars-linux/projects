@@ -1,56 +1,48 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2006, 2007 TUBITAK/UEKAE
+# Copyright © 2006, 2007, 2008, 2009 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
-# Default Django settings for Zangetsu project.
+# Django settings for zangetsu project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+ROOT = '/path/to/somehere'
+URL  = 'http://localhost:8080'
+
 ADMINS = (
-    ('Your Name', 'you@your-mail-server'),
+    ('S.Çağlar Onur', 'caglar@pardus.org.tr'),
 )
-
-# Get a personal API Key for Akismet if you 
-# don't have it already: http://akismet.com/personal/
-AKISMET_API_KEY = ""
-
-# Web address of the zangetsu:
-WEB_URL = 'http://www.example.com/zangetsu'
-
-# Full path of Zangetsu source direcoty:
-DOCUMENT_ROOT = '/path/to/source/of/zangetsu'
-
-# This e-mail address will appear in the From
-# section of the e-mails from Zangetsu:
-SERVER_EMAIL = 'zangetsu@pardus.org.tr'
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = '%s/db/zangetsu.db' % DOCUMENT_ROOT             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+# 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_ENGINE = 'sqlite3'
+# Or path to database file if using sqlite3.
+DATABASE_NAME = 'db/zangetsu.db'
+# Not used with sqlite3.
+DATABASE_USER = ''
+# Not used with sqlite3.
+DATABASE_PASSWORD = ''
+# Set to empty string for localhost. Not used with sqlite3.
+DATABASE_HOST = ''
+# Set to empty string for default. Not used with sqlite3.
+DATABASE_PORT = ''
 
-CACHE_BACKEND = 'file://%s/cache' % DOCUMENT_ROOT
-CACHE_MIDDLEWARE_SECONDS=600
+# To use Memcached with Django, set CACHE_BACKEND to memcached://ip:port/, where ip is the IP address of the Memcached daemon and port is the port on which Memcached is running.
+#CACHE_BACKEND = 'memcached://127.0.0.1:11211/?timeout=60'
 
-# Local time zone for this installation. All choices can be found here:
-# http://www.postgresql.org/docs/current/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# If running in a Windows environment this must be set to the same as your
+# system time zone.
 TIME_ZONE = 'Europe/Istanbul'
 
 # Language code for this installation. All choices can be found here:
-# http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-# http://blogs.law.harvard.edu/tech/stories/storyReader$15
+# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'tr'
-
-LANGUAGES = (
-  ('en', ('English')),
-  ('tr', ('Turkish')),
-)
 
 SITE_ID = 1
 
@@ -58,44 +50,53 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
+LANGUAGES = (
+    ('tr', ('Turkish')),
+    ('en', ('English')),
+)
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '%s/static' % DOCUMENT_ROOT
+MEDIA_ROOT = '%s/static' % ROOT
 
-# URL that handles the media served from MEDIA_ROOT.
-# Example: "http://media.lawrence.com"
-MEDIA_URL = '%s/static/' % WEB_URL
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_URL = '%s/static' % URL
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '%s/static/admin/media/' % WEB_URL
+ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'I_AM_A_SECRET_KEY_DONT_MAKE_ME_LOLO'
+SECRET_KEY = 'I_AM_A_SECRET_KEY"
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
+#     'django.template.loaders.eggs.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
-#    'django.middleware.cache.CacheMiddleware',
+#    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.csrf.middleware.CsrfMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.doc.XViewMiddleware',
-    'django.middleware.http.ConditionalGetMiddleware',
+#    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'zangetsu.urls'
 
 TEMPLATE_DIRS = (
-    '%s/templates' % DOCUMENT_ROOT,
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    '%s/templates' % ROOT,
 )
 
 INSTALLED_APPS = (
@@ -105,5 +106,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.comments',
+    'django.contrib.sitemaps',
     'zangetsu.blog',
 )

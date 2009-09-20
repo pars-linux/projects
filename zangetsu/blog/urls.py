@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2006, 2007 TUBITAK/UEKAE
+# Copyright © 2006, 2007, 2008, 2009 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
@@ -9,12 +9,17 @@ import datetime
 from django.conf.urls.defaults import *
 from zangetsu.blog.feeds import RssFeed, AtomFeed
 from zangetsu.blog.models import Entry
+from zangetsu.blog.sitemap import ZangetsuSitemap
 
 Now = datetime.datetime.now
 
 info_dict = {
     "queryset": Entry.objects.filter(pubdate__lte=Now()),
     "date_field": "pubdate",
+}
+
+sitemaps = {
+    "blog": ZangetsuSitemap
 }
 
 feed_dict = {
@@ -69,6 +74,8 @@ urlpatterns = patterns("",
     ),
 
     (r"^page/(?P<page>\d+)/$", "zangetsu.blog.views.all_entries"),
+
+    (r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
     (r"^/?$", "zangetsu.blog.views.all_entries"),
 )

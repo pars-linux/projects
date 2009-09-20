@@ -1,170 +1,175 @@
-# Django
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Django\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-27 10:19+0200\n"
+"POT-Creation-Date: 2009-09-20 02:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish LL@li.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/base.html:49 templates/base.html.py:53
-msgid "Archives"
-msgstr "Arşivler"
+#: settings.py:54
+msgid "Turkish"
+msgstr ""
 
-#: templates/base.html:61
-msgid "Search"
-msgstr "Arama"
+#: settings.py:55
+msgid "English"
+msgstr ""
 
-#: templates/base.html:69 templates/base.html.py:70
-msgid "Latest Comments"
-msgstr "Son Yorumlar"
+#: blog/models.py:14 blog/models.py:26 blog/models.py:41
+msgid "title"
+msgstr ""
 
-#: templates/base.html:73
-msgid "Tags"
-msgstr "Etiketler"
+#: blog/models.py:15
+msgid "url"
+msgstr ""
 
-#: templates/base.html:78
-msgid "Links"
-msgstr "Bağlantılar"
+#: blog/models.py:21
+msgid "link"
+msgstr ""
 
-#: templates/base.html:85
-msgid "Banners"
-msgstr "Bir takım şeyler"
+#: blog/models.py:22
+msgid "links"
+msgstr ""
+
+#: blog/models.py:36 blog/models.py:43
+msgid "tag"
+msgstr ""
+
+#: blog/models.py:37
+msgid "tags"
+msgstr ""
+
+#: blog/models.py:42
+msgid "content"
+msgstr ""
+
+#: blog/models.py:44
+msgid "publish date"
+msgstr ""
+
+#: blog/models.py:45
+msgid "comments enabled"
+msgstr ""
+
+#: blog/models.py:54
+msgid "entry"
+msgstr ""
+
+#: blog/models.py:55
+msgid "entries"
+msgstr ""
 
 #: templates/404.html:5
 msgid "No entry found in database!"
-msgstr "Veritabanında girdi bulunamadı!"
+msgstr ""
 
 #: templates/500.html:5
 msgid "An error occured!"
-msgstr "Bir hata oluştu!"
+msgstr ""
+
+#: templates/base.html:43 templates/base.html.py:47
+msgid "Archives"
+msgstr ""
+
+#: templates/base.html:55
+msgid "Search"
+msgstr ""
+
+#: templates/base.html:63 templates/base.html.py:64
+msgid "Latest Comments"
+msgstr ""
+
+#: templates/base.html:67
+msgid "Tags"
+msgstr ""
+
+#: templates/base.html:75
+msgid "Links"
+msgstr ""
+
+#: templates/base.html:82
+msgid "Banners"
+msgstr ""
+
+#: templates/blog/entry_archive_year.html:8
+#, python-format
+msgid "%(year)s archive"
+msgstr ""
+
+#: templates/blog/entry_brief.html:14 templates/blog/entry_detail.html:18
+msgid "Tags:"
+msgstr ""
+
+#: templates/blog/entry_brief.html:20
+msgid "Comments:"
+msgstr ""
+
+#: templates/blog/entry_detail.html:25
+msgid "Comments"
+msgstr ""
+
+#: templates/blog/entry_detail.html:29 templates/blog/recent_comments.html:11
+msgid "commented"
+msgstr ""
+
+#: templates/blog/entry_detail.html:37
+msgid "Post a comment (max. 3000 character)"
+msgstr ""
+
+#: templates/blog/paginator-bottom.html:4 templates/blog/paginator-top.html:4
+msgid " result(s) in "
+msgstr ""
+
+#: templates/blog/paginator-bottom.html:4 templates/blog/paginator-top.html:4
+msgid "page(s)"
+msgstr ""
+
+#: templates/blog/paginator-bottom.html:6
+#: templates/blog/paginator-bottom.html:8 templates/blog/paginator-top.html:6
+#: templates/blog/paginator-top.html:8
+msgid "Previous Page"
+msgstr ""
+
+#: templates/blog/paginator-bottom.html:14
+#: templates/blog/paginator-bottom.html:16
+#: templates/blog/paginator-top.html:14 templates/blog/paginator-top.html:16
+msgid "Next Page"
+msgstr ""
+
+#: templates/comments/free_preview.html:5
+msgid "Preview your comment"
+msgstr ""
+
+#: templates/comments/freeform.html:5
+msgid "Your name:"
+msgstr ""
+
+#: templates/comments/freeform.html:8
+msgid "Comment:"
+msgstr ""
+
+#: templates/comments/freeform.html:14
+msgid "Preview comment"
+msgstr ""
 
 #: templates/comments/posted.html:5
 msgid "Comment posted successfully..."
-msgstr "Yorum başarıyla gönderildi..."
+msgstr ""
 
 #: templates/comments/posted.html:7
 msgid ""
 "Thanks for contributing. Your comment will publish after approved by admin."
 msgstr ""
-"Katkınız için teşekkürler. Yorumunuz onaylandıktan sonra yayımlanacaktır."
 
 #: templates/comments/posted.html:10
 msgid "Return back to entry"
-msgstr "Girdiye geri dön"
-
-#: templates/comments/free_preview.html:5
-msgid "Preview your comment"
-msgstr "Yorumu görüntüle"
-
-#: templates/comments/freeform.html:5
-msgid "Your name:"
-msgstr "İsminiz:"
-
-#: templates/comments/freeform.html:8
-msgid "Comment:"
-msgstr "Yorum:"
-
-#: templates/comments/freeform.html:14
-msgid "Preview comment"
-msgstr "Yorumu görüntüle"
-
-#: templates/blog/recent_comments.html:15 templates/blog/entry_detail.html:31
-msgid "commented"
-msgstr "der ki"
-
-#: templates/blog/entry_brief.html:14 templates/blog/entry_detail.html:19
-msgid "Tags:"
-msgstr "Etiketler:"
-
-#: templates/blog/entry_brief.html:20
-msgid "Comments:"
-msgstr "Yorumlar:"
-
-#: templates/blog/paginator-top.html:4
-msgid " result(s) in "
-msgstr " toplam sonuç "
-
-#: templates/blog/paginator-top.html:4
-msgid "page(s)"
-msgstr "sayfada"
-
-#: templates/blog/paginator-top.html:6 templates/blog/paginator-top.html:8
-#: templates/blog/paginator-bottom.html:5
-#: templates/blog/paginator-bottom.html:7
-msgid "Previous Page"
-msgstr "Önceki Sayfa"
-
-#: templates/blog/paginator-top.html:14 templates/blog/paginator-top.html:16
-#: templates/blog/paginator-bottom.html:13
-#: templates/blog/paginator-bottom.html:15
-msgid "Next Page"
-msgstr "Sonraki Sayfa"
-
-#: templates/blog/entry_detail.html:26
-msgid "Comments"
-msgstr "Yorumlar"
-
-#: templates/blog/entry_detail.html:40
-msgid "Post a comment (max. 3000 character)"
-msgstr "Yorum gönder (en fazla 3000 karakter)"
-
-#: templates/blog/entry_archive_year.html:8
-#, python-format
-msgid "%(year)s archive"
-msgstr "%(year)s arşivi"
-
-#: blog/models.py:12 blog/models.py:27 blog/models.py:41
-msgid "title"
-msgstr "başlık"
-
-#: blog/models.py:13
-msgid "url"
-msgstr "adres"
-
-#: blog/models.py:19
-msgid "link"
-msgstr "bağlantı"
-
-#: blog/models.py:20
-msgid "links"
-msgstr "bağlantılar"
-
-#: blog/models.py:33 blog/models.py:43
-msgid "tag"
-msgstr "etiket"
-
-#: blog/models.py:34
-msgid "tags"
-msgstr "etiketler"
-
-#: blog/models.py:42
-msgid "content"
-msgstr "içerik"
-
-#: blog/models.py:44
-msgid "publish date"
-msgstr "yayınlama tarihi"
-
-#: blog/models.py:45
-msgid "comments enabled"
-msgstr "Yorumlar etkin"
-
-#: blog/models.py:54
-msgid "entry"
-msgstr "girdi"
-
-#: blog/models.py:55
-msgid "entries"
-msgstr "girdiler"
-
-#~ msgid "Number of remaining characters: "
-#~ msgstr "Kalan karakter sayısı: "
+msgstr ""

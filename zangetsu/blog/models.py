@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2006, 2007 TUBITAK/UEKAE
+# Copyright © 2006, 2007, 2008, 2009 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
 from django.db import models
-from zangetsu.settings import WEB_URL
+from django.utils.translation import ugettext as _
+from django.contrib.comments.moderation import CommentModerator, moderator
+from django.db.models import signals
 
 class Link(models.Model):
 
-    title = models.CharField(maxlength = 64, verbose_name=_("title"))
+    title = models.CharField(max_length = 64, verbose_name=_("title"))
     url = models.URLField(verbose_name=_("url"))
 
     def __str__(self):
@@ -19,26 +21,24 @@ class Link(models.Model):
         verbose_name = _("link")
         verbose_name_plural = _("links")
 
-    class Admin:
-        list_display = ["title", "url"]
-
 class Tag(models.Model):
 
-    title = models.CharField(maxlength = 32, verbose_name=_("title"))
+    title = models.CharField(max_length = 32, verbose_name=_("title"))
+    count = models.IntegerField(blank=True, default=0)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return "/tag/%s/" % (self.title)
 
     class Meta:
         verbose_name = _("tag")
         verbose_name_plural = _("tags")
 
-    class Admin:
-        list_display = ("id", "title")
-
 class Entry(models.Model):
 
-    title = models.CharField(maxlength = 256, verbose_name=_("title"))
+    title = models.CharField(max_length = 256, verbose_name=_("title"))
     content = models.TextField(verbose_name=_("content"))
     tag = models.ManyToManyField(Tag, verbose_name=_("tag"))
     pubdate = models.DateTimeField(verbose_name=_("publish date"))
@@ -48,17 +48,25 @@ class Entry(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "%s/blog/%s/%s/" % (WEB_URL, self.pubdate.strftime("%Y/%m/%d").lower(), self.id)
+        return "/%s/%s/" % (self.pubdate.strftime("%Y/%m/%d").lower(), self.id)
 
     class Meta:
         verbose_name = _("entry")
         verbose_name_plural = _("entries")
 
-    class Admin:
-        list_display = ("id", "title", "pubdate", "comments_enabled")
-        list_filter = ["pubdate", "comments_enabled"]
-        search_fields = ["title"]
-        js = (
-            "tinymce/tiny_mce.js",
-            "tinymce/textareas.js",
-        )
+def tag_count(sender, instance, created, **kwargs):
+    if created:
+        for tag in Tag.objects.all():
+            tag.count = len(tag.entry_set.all())
+            tag.save()
+signals.post_save.connect(tag_count, sender=Entry)
+
+class EntryModerator(CommentModerator):
+
+    email_notification = False
+    enable_field = 'comments_enabled'
+    auto_close_field = 'pubdate'
+    close_after = 30
+    auto_moderate_field = 'pubdate'
+    moderate_after = 15
+moderator.register(Entry, EntryModerator)

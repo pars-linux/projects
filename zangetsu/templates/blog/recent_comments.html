@@ -1,28 +1,21 @@
-{% load library %}
-{% load filters %}
-{% load i18n %}
 {% extends "base.html" %}
+{% load library %}
+{% load i18n %}
 {% block content %}
 
-{% if paginator %}
-    {% include "blog/paginator-top.html" %}
-{% endif %}
+{% include "blog/paginator-top.html" %}
 
-{% for comment in results %}
-    {% if comment.approved %}
-        {% if comment.is_public %}
-            <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
-                <b>{{ comment.person_name|striptags|escape }}</b> - <a href="{{comment.get_content_object.get_absolute_url}}">{{comment.get_content_object.title}}</a> {%trans "commented"%}
-                <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
-                <br>
-                {{ comment.comment|linebreaks|urlizetrunc:40|sanitize }}
-            </div>
-        {% endif %}
+{% for comment in results.object_list %}
+    {% if comment.is_public %}
+        <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
+            <b>{{ comment.person_name|striptags|escape }}</b> - <a href="{{comment.content_object.get_absolute_url}}">{{comment.content_object.title}}</a> {%trans "commented"%}
+            <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
+            <br>
+            {{ comment.comment|linebreaks|urlizetrunc:40 }}
+        </div>
     {% endif %}
 {% endfor %}
 
-{% if paginator %}
-    {% include "blog/paginator-bottom.html" %}
-{% endif %}
+{% include "blog/paginator-bottom.html" %}
 
 {% endblock %}
