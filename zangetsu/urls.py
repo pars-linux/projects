@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2006, 2007 TUBITAK/UEKAE
+# Copyright © 2006, 2007, 2008, 2009 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
 from django.conf.urls.defaults import *
-from zangetsu.settings import WEB_URL, DOCUMENT_ROOT
+from django.contrib import admin
+from zangetsu.settings import MEDIA_ROOT
 
-root = "/".join(WEB_URL.split("/")[3:])
+admin.autodiscover()
 
 urlpatterns = patterns("",
-    (r"^%s/comments/" % root, include("django.contrib.comments.urls.comments")),
-    (r"^%s/admin/" % root, include("django.contrib.admin.urls")),
-    (r"^%s/blog/" % root, include("zangetsu.blog.urls")),
-    (r"^%s/$" % root, "django.views.generic.simple.redirect_to", {"url": "/%s/blog" % root}),
-    (r"^%s/static/(.*)$" % root, "django.views.static.serve", {"document_root": "%s/static" % DOCUMENT_ROOT, "show_indexes": True}),
+    (r"^static/(.*)$"   , "django.views.static.serve", {"document_root": MEDIA_ROOT, "show_indexes": True}),
+    (r"^comments/"      , include("django.contrib.comments.urls")),
+    (r"^admin/(.*)"     , admin.site.root),
+    (r"^blog/"          , include("zangetsu.blog.urls")),
+    (r"^"               , include("zangetsu.blog.urls")),
 )

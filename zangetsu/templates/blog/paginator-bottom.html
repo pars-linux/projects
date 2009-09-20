@@ -1,18 +1,19 @@
 {% load i18n %}
 {% block content %}
     <div class="paginator-bottom">
-    {% if prev %}
-        <a href="{{blog_url}}{{url_tip}}{{current_page|add:"-1"}}/">{% trans "Previous Page" %}</a>
+    <i><b>{{results.paginator.count}}</b> {% trans " result(s) in " %} <b>{{results.paginator.num_pages}}</b> {% trans "page(s)" %}<br></i>
+    {% if results.has_previous %}
+        <a href="{{blog_url}}/page/{{results.previous_page_number}}">{% trans "Previous Page" %}</a>
     {% else %}
         {% trans "Previous Page" %}
     {% endif %}
 
-    &nbsp;- <b>{{current_page|add:"1"}}</b> / <b>{{total_page}}</b> -&nbsp;
+    &nbsp;- <b>{{results.number}}</b> / <b>{{results.paginator.num_pages}}</b> -&nbsp;
 
-    {% if next %}
-        <a href="{{blog_url}}{{url_tip}}{{current_page|add:"1"}}/">{% trans "Next Page" %}</a>
+    {% if results.has_next %}
+        <a href="{{blog_url}}/page/{{results.next_page_number}}">{% trans "Next Page" %}</a>
     {% else %}
         {% trans "Next Page" %}
-    {% endif %}
+    {% endif%}
     </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2006, 2007 TUBITAK/UEKAE
+# Copyright © 2006, 2007, 2008, 2009 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
@@ -27,14 +27,8 @@ BLOG_META = """
 
 <meta name="robots" content="ALL,INDEX,FOLLOW,ARCHIVE">
 <meta name="revisit-after" content="7 days">
-
 """
-# Google Analytics tracker code (ex: UA-12345-6)
-GOOGLE_ANALYTICS=None
 
-# Allowed tags and attributes for HTML formatted comments:
-VALID_TAGS  = "em p i hr span font strong b u a h1 h2 h3 pre br img"
-VALID_ATTRS = "href src class width size noshade face size color style align title hspace vspace"
-
-#Blog tag menu format: "list" or "cloud"
-TAG_MENU = "list"
+ITEMS_PER_PAGE=20
+LATEST_COMMENT_NUMBER=10
+RSS_ITEM_NUMBER=10
