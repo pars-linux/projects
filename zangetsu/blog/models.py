@@ -4,10 +4,11 @@
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
-from django.db import models
-from django.utils.translation import ugettext as _
 from django.contrib.comments.moderation import CommentModerator, moderator
+from django.db import models
 from django.db.models import signals
+from django.utils.translation import ugettext as _
+from zangetsu.blog import defaults
 
 class Link(models.Model):
 
@@ -66,7 +67,7 @@ class EntryModerator(CommentModerator):
     email_notification = False
     enable_field = 'comments_enabled'
     auto_close_field = 'pubdate'
-    close_after = 30
+    close_after = defaults.MODERATE_CLOSE_AFTER
     auto_moderate_field = 'pubdate'
-    moderate_after = 15
+    moderate_after = defaults.MODERATE_AFTER
 moderator.register(Entry, EntryModerator)
