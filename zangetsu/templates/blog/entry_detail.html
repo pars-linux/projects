@@ -12,7 +12,7 @@
     <span class="date">{{ object.pubdate|date:"d F y, l \@ H:i" }}</span>
     <br>
     <br>
-    {{ object.content }}
+    {{ object.content|safe }}
     <br>
     <br>
     {% trans "Tags:" %}
