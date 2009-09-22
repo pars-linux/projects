@@ -15,13 +15,13 @@ Now = datetime.datetime.now
 
 def search(request):
     try:
-        search_term = request.GET["s"]
-        search_results = Entry.objects.filter(content__iexact=search_term) | Entry.objects.filter(title__iexact=search_term,pubdate__lte=Now()).order_by("-pubdate")
+        search_term = request.REQUEST["s"]
+        search_results = Entry.objects.filter(content__icontains=search_term) | Entry.objects.filter(title__icontains=search_term,pubdate__lte=Now()).order_by("-pubdate")
     except:
         search_results = None
 
     try:
-        page = int(request.GET["p"])
+        page = int(request.REQUEST["p"])
     except:
         page = 1
 
@@ -43,7 +43,7 @@ def recent_comments(request, page = 1):
         if any_app.__str__().find("comments") != -1:
             app = any_app
             break
-    recent_comments = app.Comment.objects.all()
+    recent_comments = app.Comment.objects.all().order_by("-submit_date")
     paginator = Paginator(recent_comments, defaults.ITEMS_PER_PAGE)
     paginator_result = paginator.page(page)
     return render_to_response("blog/recent_comments.html", {"results": paginator_result})
