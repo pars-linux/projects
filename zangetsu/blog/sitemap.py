@@ -19,4 +19,7 @@ class ZangetsuSitemap(Sitemap):
         return object.pubdate
 
     def changefreq(self, object):
-        return "daily" if object.comments_enabled else "never"
+	if object.comments_enabled:
+		return "daily"
+	else:
+		return "never"        
