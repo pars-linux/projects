@@ -31,7 +31,12 @@ DATABASE_HOST = ''
 DATABASE_PORT = ''
 
 # To use Memcached with Django, set CACHE_BACKEND to memcached://ip:port/, where ip is the IP address of the Memcached daemon and port is the port on which Memcached is running.
-#CACHE_BACKEND = 'memcached://127.0.0.1:11211/?timeout=60'
+# see http://docs.djangoproject.com/en/dev/topics/cache/#memcached for more information
+# Once the cache is set up, the simplest way to use caching is to cache your entire site. You'll need to comment out 'django.middleware.cache.UpdateCacheMiddleware' and 
+# 'django.middleware.cache.FetchFromCacheMiddleware' from MIDDLEWARE_CLASSES setting
+#CACHE_BACKEND = 'memcached://127.0.0.1:11211/?timeout=600'
+#CACHE_MIDDLEWARE_SECONDS = 600
+#CACHE_MIDDLEWARE_KEY_PREFIX = "zangetsu"
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -76,7 +81,6 @@ SECRET_KEY = 'I_AM_A_SECRET_KEY"
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
-#     'django.template.loaders.eggs.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
