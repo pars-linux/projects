@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+{% include "blog/paginator-top.html" %}
+
+{% for object in results.object_list %}
+    {% include "blog/entry_brief.html" %}
+{% endfor %}
+
+{% include "blog/paginator-bottom.html" %}
+
+{% endblock %}
