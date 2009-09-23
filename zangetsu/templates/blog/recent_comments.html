@@ -8,8 +8,8 @@
 {% for comment in results.object_list %}
     {% if comment.is_public %}
         <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
-            <b>{{ comment.user_name|striptags|escape }}</b> - <a href="{{ comment.content_object.get_absolute_url }}#c{{ comment.id }}">{{ comment.content_object.title }}</a> {%trans "commented"%}
-            <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
+            <b>{{ comment.user_name|striptags|escape }}</b> {%trans "commented"%} on <a href="{{ comment.content_object.get_absolute_url }}#c{{ comment.id }}">{{ comment.content_object.title }}</a>                      
+	    <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
             <br>
             {{ comment.comment|striptags|linebreaks|urlizetrunc:40 }}
         </div>
