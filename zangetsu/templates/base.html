@@ -36,8 +36,8 @@
     <!-- menu -->
     <div id="menu">
         <!-- Description -->
-        <center>{{ blog_desc|safe}}</center>
-
+	<center>{{ blog_desc|safe}}</center>
+        
         <!-- Archives -->
         <h2>{% trans "Archives" %}</h2>
         <center>
@@ -71,9 +71,12 @@
         <br>
         {% build_comment_list %}
         {% for comment in blog_comments %}
-            <a href="{{ object.get_absolute_url }}#comments">{{comment.user_name}} commented;</a> {{ comment.comment|truncatewords:10|safe|striptags }}
-            <span class="date"> {{ comment.submit_date|date:"d F y, l \@ H:i" }}</span>
-            <br>
+            <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
+                <b>{{ comment.user_name|striptags|escape }}</b> - <a href="{{ comment.content_object.get_absolute_url }}#c{{ comment.id }}">{{ comment.content_object.title }}</a> {%trans "commented"%} 
+	        <span class="date">{{ comment.submit_date|date:"d F y, l" }} @ {{ comment.submit_date|date:"H:i" }}</span>
+                <br>
+                {{ comment.comment|truncatewords:10|safe|striptags }}
+            </div>
         {% endfor %}
         <br>
         <a href="{{ blog_url }}/comments">{%trans "All Comments"%}</a>
