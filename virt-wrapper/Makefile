@@ -1,5 +1,5 @@
 NAME = virt-wrapper
-VERSION = 0.1
+VERSION = 0.1.1
 
 DIST_FILES = \
 	 AUTHORS \

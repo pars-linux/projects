@@ -1,3 +1,7 @@
+2009-12-22 Fatih Aşıcı <fatih@pardus.org.tr>
+	* Add support for Qt3.
+	* If gui bindings are not available, exit with success.
+
 2009-08-06 Fatih Aşıcı <fatih@pardus.org.tr>
 	* Added vboxnetadp as an optional module for VirtualBox.
 
