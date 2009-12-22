@@ -62,24 +62,28 @@ class ConsoleUI:
 
 class QtUI:
     def __init__(self):
-        QtGui.QApplication(sys.argv)
+        try:
+            from PyQt4 import QtGui
+            self.app = QtGui.QApplication(sys.argv)
+            self.mbox = QtGui.QMessageBox
+        except ImportError:
+            from qt import QApplication, QMessageBox
+            self.app = QApplication(sys.argv)
+            self.mbox = QMessageBox
 
     def info(self, title, message):
-        return QtGui.QMessageBox.information(None, title, message)
+        return self.mbox.information(None, title, message)
 
     def warn(self, title, message, *buttons):
-        return QtGui.QMessageBox.warning(None, title, message, *buttons)
+        return self.mbox.warning(None, title, message, *buttons)
 
-try:
-    if "DISPLAY" not in os.environ:
-        ui = ConsoleUI()
-    else:
-        from PyQt4 import QtGui
-
-        ui = QtUI()
-
-except ImportError:
+if "DISPLAY" not in os.environ:
     ui = ConsoleUI()
+else:
+    try:
+        ui = QtUI()
+    except ImportError:
+        sys.exit(0)
 
 
 def checkGroup():
