@@ -168,7 +168,7 @@ def checkModules(vapp):
     failure = False
     for mod in mods:
         try:
-            link.Boot.Modules["module_init_tools"].load(mod)
+            link.Boot.Modules["module_init_tools"].load(mod, "")
         except dbus.exceptions.DBusException:
             failure = True
 
