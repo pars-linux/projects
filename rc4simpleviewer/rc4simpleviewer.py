@@ -28,23 +28,9 @@ please answer the following questions for customizing your gallery...")
 maxImageWidth = input("Max. width of the presented image (default is 640)? ")
 maxImageHeight = input("Max. height of the presented image (default is 480)? ")
 
-Color = input("Choose frame color 1)red, 2)green, 3)blue, 4)yellow, 5)white, 6)black, 7)gray or enter hex value:")
-if Color == ('1'):
-	frameColor = ('0xff0000')
-elif Color == ('3'):
-	frameColor = ('0x00007f')
-elif Color == ('2'):
-	frameColor = ('0x007f00')
-elif Color == ('4'):
-	frameColor = ('0xffff00')
-elif Color == ('5'):
-	frameColor = ('0xffffff')
-elif Color == ('6'):
-	frameColor = ('0x000000')
-elif Color == ('7'):
-	frameColor = ('0x333333')
-else:
-	frameColor = '0x'+Color
+Color = raw_input("Choose frame color 1)red, 2)green, 3)blue, 4)yellow, 5)white, 6)black, 7)gray or enter hex value:")
+colorlist = {"1":"0xff0000", "2":"0x007f00", "3":"0x00007f", "4":"0xffff00", "5":"0xffffff", "6":"0x000000", "7":"0x333333"}
+cchoice = colorlist.get(Color, '0x%s' % Color)
 
 frameWidth = input("Frame width in pixels (default is 20)? ")
 stagePadding = input("Stage padding (space between thumbs and page)? ")
