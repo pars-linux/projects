@@ -1,0 +1,111 @@
+karşısında // ve paket ismi bulunan paketler, 2011 devel deposunda bulunan, muadili olma ihtimali olan paketlerdir.
+
+karşısında 2009 yazan paketler, 2009 deposunda bulunan paketleri gösterir,
+
+karşısında 2009 yazan ve  paket ismi bulunan paketler, 2009 devel deposunda bulunan, muadili olma ihtimali olan paketlerdir.
+
+
+
+Sadece Fedora'da, "GNOME Desktop" grubunda olanlar:		sadece Gnome-project'te olanlar:
+
+
+								at-spi
+at-spi2-atk
+at-spi2-core					2009
+brasero
+caribou
+compiz-gnome
+control-center
+dconf
+dejavu-dup
+								epiphany
+evince
+fedora-gnome-theme 	(Fedora'ya ozel)
+								fortune-mod
+								gconf-editor
+gnome-backgrounds
+								gnome-control-center
+gnome-color-manager
+								gnome-desktop
+gnome-disk-utility
+gnome-games
+gnome-icon-theme
+gnome-icon-theme-extras
+gnome-icon-theme-symbolic
+								gnome-menus
+								gnome-mount
+								gnome-netstats
+gnome-pilot
+								gnome-python-desktop
+								gnome-settings-daemon
+								gnome-system-tools
+gnome-user-docs
+gnome-user-share
+								gnome-volume-manager
+								gucharmap
+								
+gnote
+gok
+gtk2-engines
+gucharmap
+gvfs-fuse					// gvfs
+								libbeagle
+libcanberra-gtk2				// libcanberra
+								libgdata
+								libgnomekbd
+								liboobs
+mousetweaks
+nautilus-sendto
+networkmanager-gnome
+notification-daemon				2009
+orca
+packageKit-gtk-module
+								pardus-default-settings-gnome (Pardus'a ozel)
+pulseaudio-module-gconf
+pyatspi								2009 python-pyatspi
+								seahorse-plugins
+								system-tools-backends
+								totem-pl-parser
+shotwell
+simple-scan
+xdg-user-dirs-gtk				//xdg-user-dirs-gtk
+yelp						2009
+zenity
+
+
+
+Fedora "admin tools" grubunda olanlar:
+
+system-config-date
+system-config-firewall
+system-config-keyboard
+system-config-users
+gnome-packagekit
+authconfig-gtk
+
+Fedora "kde desktop" grubunda olanlar:
+
+cups-pk-helper					cups
+
+Fedora "games" grubunda olanlar:
+
+gnome-games
+
+Fedora "internet" grubunda olanlar:
+
+empathy
+evolution					//evolution-data-server
+transmission-gtk
+
+Fedora "localization" grubunda olanlar:
+
+im-chooser
+iok
+
+Fedora "multimedia" grubunda olanlar:
+
+sound-juicer
+
+Fedora "office" grubunda olanlar:
+
+evince
