@@ -14,19 +14,16 @@
 # System
 import sys
 import comar
-import context as ctx
 
 # Qt Stuff
 from PyQt4 import QtGui
 from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import *
 
-
 # Application Stuff
-from backend import ServiceIface
-from ui_main import Ui_mainManager
-from widgets import ServiceItemWidget, ServiceItem
-from context import *
+from servicemanager.backend import ServiceIface
+from servicemanager.ui_main import Ui_mainManager
+from servicemanager.widgets import ServiceItemWidget, ServiceItem
 
 class MainManager(QtGui.QWidget):
     def __init__(self, parent, standAlone=True):
@@ -39,11 +36,6 @@ class MainManager(QtGui.QWidget):
             self.ui.setupUi(self)
         else:
             self.ui.setupUi(parent)
-
-
-        self.resize(640, 480)
-        self.setWindowTitle("Service Manager")
-        self.setWindowIcon(KIcon('yellow-flag'))
 
         # Call Comar
         self.iface = ServiceIface(self.exceptionHandler)
