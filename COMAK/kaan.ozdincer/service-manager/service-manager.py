@@ -14,6 +14,8 @@
 # System
 import sys
 import servicemanager.context as ctx
+
+from servicemanager.context import *
 from servicemanager.localedata import setSystemLocale
 
 import dbus
@@ -36,15 +38,15 @@ if __name__ == '__main__':
 
     if ctx.Pds.session == ctx.pds.Kde4:
 
+        # Service Manager
         # PyKDE4 Stuff
         from PyKDE4.kdeui import *
         from PyKDE4.kdecore import *
+        
+        from servicemanager.standalone import ServiceManager
 
         # Application Stuff
         from servicemanager.about import aboutData
-
-        # Service Manager
-        from servicemanager.standalone import ServiceManager
 
         # Set Command-line arguments
         KCmdLineArgs.init(sys.argv, aboutData)
@@ -63,19 +65,26 @@ if __name__ == '__main__':
         app.exec_()
 
     else:
-        #from localedata import setSystemLocale
+        print "kdesiz...."
+
+        import gettext
+
+        __trans = gettext.translation('service-manager', fallback=True)
+        i18n = __trans.ugettext
+        
+        from servicemanager.base import MainManager
         from pds.quniqueapp import QUniqueApplication
-        from servicemanager.base import MainManager as ServiceManager
 
-        app = QUniqueApplication(sys.argv, catalog='service-manager')
+        app = QUniqueApplication(sys.argv, catalog="service-manager")
 
-        #setSystemLocale()
-
-        mainWindow = ServiceManager(None)
-        app.setMainWindow(mainWindow)
-
+        mainWindow = MainManager(None)
         mainWindow.show()
+        mainWindow.resize(640, 480)
+        mainWindow.setWindowTitle(i18n("Service Manager"))
+        mainWindow.setWindowIcon(KIcon("flag-yellow"))
 
         app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
 
         app.exec_()
+
+

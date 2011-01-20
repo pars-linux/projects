@@ -16,9 +16,9 @@ from PyQt4 import QtGui
 from PyQt4.QtCore import *
 
 # KDE Stuff
-from PyKDE4 import kdeui
-from PyKDE4.kdecore import i18n
-from PyKDE4.kdecore import KGlobal
+import localedata
+from context import *
+
 
 # Application Stuff
 from servicemanager.ui_item import Ui_ServiceItemWidget
@@ -60,10 +60,10 @@ class ServiceItemWidget(QtGui.QWidget):
 
         self.toggleButtons()
 
-        self.ui.buttonStart.setIcon(kdeui.KIcon("media-playback-start"))
-        self.ui.buttonStop.setIcon(kdeui.KIcon("media-playback-stop"))
-        self.ui.buttonReload.setIcon(kdeui.KIcon("view-refresh"))
-        self.ui.buttonInfo.setIcon(kdeui.KIcon("dialog-information"))
+        self.ui.buttonStart.setIcon(KIcon("media-playback-start"))
+        self.ui.buttonStop.setIcon(KIcon("media-playback-stop"))
+        self.ui.buttonReload.setIcon(KIcon("view-refresh"))
+        self.ui.buttonInfo.setIcon(KIcon("dialog-information"))
 
         self.toggled = False
         self.root = parent
@@ -100,7 +100,7 @@ class ServiceItemWidget(QtGui.QWidget):
         self.ui.buttonStop.setEnabled(self.running)
         self.ui.buttonReload.setEnabled(self.running)
 
-        self.ui.labelStatus.setPixmap(kdeui.KIcon(icon).pixmap(32, 32))
+        self.ui.labelStatus.setPixmap(KIcon(icon).pixmap(32, 32))
         self.showStatus()
         self.runningAtStart = False
         if state in ('on', 'stopped'):
@@ -161,13 +161,14 @@ def getDescription(service):
     try:
         # TODO add a package map for known services
         service = service.replace('_','-')
-        lang = str(KGlobal.locale().language())
+        lang = str(localedata.getKDELocale())
+        print lang
         desc = pisi.api.info_name(service)[0].package.description
         if desc.has_key(lang):
             return unicode(desc[lang])
         return unicode(desc['en'])
     except Exception, msg:
-        # print "ERROR:", msg
+        print "ERROR:", msg
         return unicode(i18n('Service information is not available'))
 
 class ServiceItemInfo(PAbstractBox):
@@ -178,7 +179,7 @@ class ServiceItemInfo(PAbstractBox):
         self.ui = Ui_InfoWidget()
         self.ui.setupUi(self)
         self.ui.buttonHide.clicked.connect(self.hideDescription)
-        self.ui.buttonHide.setIcon(kdeui.KIcon("dialog-close"))
+        self.ui.buttonHide.setIcon(KIcon("dialog-close"))
 
         self._animation = 2
         self._duration = 500
