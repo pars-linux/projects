@@ -16,7 +16,6 @@ from PyQt4 import QtGui
 from PyQt4.QtCore import *
 
 # KDE Stuff
-import localedata
 from context import *
 
 
@@ -27,6 +26,7 @@ from servicemanager.ui_info import Ui_InfoWidget
 # PDS Stuff
 from pds.gui import *
 from pds.qprogressindicator import QProgressIndicator
+import locale
 
 # Python Stuff
 import time
@@ -161,7 +161,7 @@ def getDescription(service):
     try:
         # TODO add a package map for known services
         service = service.replace('_','-')
-        lang = str(localedata.getKDELocale())
+        lang = locale.getdefaultlocale()[0].split("_")[0]
         print lang
         desc = pisi.api.info_name(service)[0].package.description
         if desc.has_key(lang):

@@ -16,7 +16,6 @@ import sys
 import servicemanager.context as ctx
 
 from servicemanager.context import *
-from servicemanager.localedata import setSystemLocale
 
 import dbus
 

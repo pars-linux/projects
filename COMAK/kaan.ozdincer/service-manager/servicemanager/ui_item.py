@@ -2,11 +2,14 @@
 
 # Form implementation generated from reading ui file 'ui/item.ui'
 #
-# Created: Thu Jan 20 16:07:39 2011
+# Created: Fri Jan 21 12:13:11 2011
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
+import gettext
+__trans = gettext.translation('service-manager', fallback=True)
+i18n = __trans.ugettext
 from PyQt4 import QtCore, QtGui
 
 class Ui_ServiceItemWidget(object):
@@ -120,12 +123,12 @@ class Ui_ServiceItemWidget(object):
         QtCore.QMetaObject.connectSlotsByName(ServiceItemWidget)
 
     def retranslateUi(self, ServiceItemWidget):
-        ServiceItemWidget.setWindowTitle(QtGui.QApplication.translate("ServiceItemWidget", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelName.setText(QtGui.QApplication.translate("ServiceItemWidget", "serviceName", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelDesc.setText(QtGui.QApplication.translate("ServiceItemWidget", "serviceDesc", None, QtGui.QApplication.UnicodeUTF8))
-        self.buttonStart.setToolTip(QtGui.QApplication.translate("ServiceItemWidget", "Start service", None, QtGui.QApplication.UnicodeUTF8))
-        self.buttonReload.setToolTip(QtGui.QApplication.translate("ServiceItemWidget", "Reload service", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkStart.setText(QtGui.QApplication.translate("ServiceItemWidget", "Run on start", None, QtGui.QApplication.UnicodeUTF8))
-        self.buttonStop.setToolTip(QtGui.QApplication.translate("ServiceItemWidget", "Stop service", None, QtGui.QApplication.UnicodeUTF8))
-        self.buttonInfo.setToolTip(QtGui.QApplication.translate("ServiceItemWidget", "More Information", None, QtGui.QApplication.UnicodeUTF8))
+        ServiceItemWidget.setWindowTitle(i18n("Form"))
+        self.labelName.setText(i18n("serviceName"))
+        self.labelDesc.setText(i18n("serviceDesc"))
+        self.buttonStart.setToolTip(i18n("Start service"))
+        self.buttonReload.setToolTip(i18n("Reload service"))
+        self.checkStart.setText(i18n("Run on start"))
+        self.buttonStop.setToolTip(i18n("Stop service"))
+        self.buttonInfo.setToolTip(i18n("More Information"))
 
