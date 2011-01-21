@@ -6,12 +6,12 @@ import traceback
 from time import time
 from pds.qiconloader import QIconLoader
 
-Pds = pds.Pds('service-manager', debug = False)
+Pds = pds.Pds('service-manager', debug = True)
 # Force to use Default Session for testing
-Pds.session = pds.DefaultDe
+# Pds.session = pds.DefaultDe
 # print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 
-i18n = Pds.session.i18n
+i18n = Pds.i18n
 KIconLoader = QIconLoader(Pds)
 KIcon = KIconLoader.icon
 

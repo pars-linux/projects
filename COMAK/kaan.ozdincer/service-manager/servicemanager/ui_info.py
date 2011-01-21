@@ -2,11 +2,14 @@
 
 # Form implementation generated from reading ui file 'ui/info.ui'
 #
-# Created: Thu Jan 20 16:07:39 2011
+# Created: Fri Jan 21 12:13:11 2011
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
+import gettext
+__trans = gettext.translation('service-manager', fallback=True)
+i18n = __trans.ugettext
 from PyQt4 import QtCore, QtGui
 
 class Ui_InfoWidget(object):
@@ -45,7 +48,7 @@ class Ui_InfoWidget(object):
         QtCore.QMetaObject.connectSlotsByName(InfoWidget)
 
     def retranslateUi(self, InfoWidget):
-        InfoWidget.setWindowTitle(QtGui.QApplication.translate("InfoWidget", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.description.setText(QtGui.QApplication.translate("InfoWidget", "Service information is not available", None, QtGui.QApplication.UnicodeUTF8))
-        self.buttonHide.setToolTip(QtGui.QApplication.translate("InfoWidget", "Hide Information", None, QtGui.QApplication.UnicodeUTF8))
+        InfoWidget.setWindowTitle(i18n("Form"))
+        self.description.setText(i18n("Service information is not available"))
+        self.buttonHide.setToolTip(i18n("Hide Information"))
 

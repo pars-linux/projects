@@ -2,11 +2,14 @@
 
 # Form implementation generated from reading ui file 'ui/main.ui'
 #
-# Created: Thu Jan 20 16:07:40 2011
+# Created: Fri Jan 21 12:13:12 2011
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
+import gettext
+__trans = gettext.translation('service-manager', fallback=True)
+i18n = __trans.ugettext
 from PyQt4 import QtCore, QtGui
 
 class Ui_mainManager(object):
@@ -52,11 +55,11 @@ class Ui_mainManager(object):
         QtCore.QMetaObject.connectSlotsByName(mainManager)
 
     def retranslateUi(self, mainManager):
-        mainManager.setWindowTitle(QtGui.QApplication.translate("mainManager", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.filterBox.setItemText(0, QtGui.QApplication.translate("mainManager", "Servers", None, QtGui.QApplication.UnicodeUTF8))
-        self.filterBox.setItemText(1, QtGui.QApplication.translate("mainManager", "System Services", None, QtGui.QApplication.UnicodeUTF8))
-        self.filterBox.setItemText(2, QtGui.QApplication.translate("mainManager", "Startup Services", None, QtGui.QApplication.UnicodeUTF8))
-        self.filterBox.setItemText(3, QtGui.QApplication.translate("mainManager", "Running Services", None, QtGui.QApplication.UnicodeUTF8))
-        self.filterBox.setItemText(4, QtGui.QApplication.translate("mainManager", "All Services", None, QtGui.QApplication.UnicodeUTF8))
-        self.progress.setFormat(QtGui.QApplication.translate("mainManager", "Getting service info... %p%", None, QtGui.QApplication.UnicodeUTF8))
+        mainManager.setWindowTitle(i18n("Form"))
+        self.filterBox.setItemText(0, i18n("Servers"))
+        self.filterBox.setItemText(1, i18n("System Services"))
+        self.filterBox.setItemText(2, i18n("Startup Services"))
+        self.filterBox.setItemText(3, i18n("Running Services"))
+        self.filterBox.setItemText(4, i18n("All Services"))
+        self.progress.setFormat(i18n("Getting service info... %p%"))
 
