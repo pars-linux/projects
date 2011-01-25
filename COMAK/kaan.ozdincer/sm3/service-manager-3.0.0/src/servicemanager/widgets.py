@@ -16,8 +16,12 @@ from PyQt4 import QtGui
 from PyQt4.QtCore import *
 
 # PDS Context Stuff
-from context import *
-
+import context as ctx
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdeui import KIcon
+    from PyKDE4.kdecore import ki18n as i18n
+else:
+    from context import *
 
 # Application Stuff
 from servicemanager.ui_item import Ui_ServiceItemWidget
@@ -26,11 +30,11 @@ from servicemanager.ui_info import Ui_InfoWidget
 # PDS Stuff
 from pds.gui import *
 from pds.qprogressindicator import QProgressIndicator
-import locale
 
 # Python Stuff
 import time
 import textwrap
+import locale
 
 # Pisi Stuff
 import pisi
@@ -46,7 +50,7 @@ class ServiceItemWidget(QtGui.QWidget):
 
     def __init__(self, package, parent, item):
         QtGui.QWidget.__init__(self, None)
-
+        
         self.ui = Ui_ServiceItemWidget()
         self.ui.setupUi(self)
 
