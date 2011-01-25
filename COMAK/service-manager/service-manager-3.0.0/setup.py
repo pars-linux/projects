@@ -26,6 +26,12 @@ from distutils.command.clean import clean
 from distutils.command.install import install
 
 PROJECT = about.appName
+FOR_KDE_4=False
+
+if 'kde4' in sys.argv:
+    sys.argv.remove('kde4')
+    FOR_KDE_4=True
+    print 'UI files will be created for KDE 4.. '
 
 def makeDirs(directory):
     if not os.path.exists(directory):
@@ -48,7 +54,10 @@ def update_messages():
     # Collect UI files
     filelist = []
     for filename in glob.glob1("ui", "*.ui"):
-        os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
+        if FOR_KDE_4:
+            os.system("pykde4uic -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
+        else:
+            os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
 
     # Collect headers for desktop files
     for filename in glob.glob("data/*.desktop.in"):
@@ -100,7 +109,10 @@ class Build(build):
 
         print "Generating UIs..."
         for filename in glob.glob1("ui", "*.ui"):
-            os.system("pyuic4 -o build/servicemanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
+            if FOR_KDE_4:
+                os.system("pykde4uic -o build/servicemanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
+            else:
+                os.system("pyuic4 -o build/servicemanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
 
         print "Generating RCs..."
         for filename in glob.glob1("data", "*.qrc"):
@@ -137,9 +149,10 @@ class Install(install):
 
         # Install desktop files
         print "Installing desktop files..."
-
-        shutil.copy("data/%s.desktop" % PROJECT, apps_dir)
-        #shutil.copy("data/kcm_%s.desktop" % PROJECT, services_dir)
+        if FOR_KDE_4:
+            shutil.copy("data/%s.desktop" % PROJECT, apps_dir)
+        else:
+            shutil.copy("data/kcm_%s.desktop" % PROJECT, apps_dir)
         shutil.rmtree('build/data')
 
         # Install codes
