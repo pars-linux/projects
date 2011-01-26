@@ -136,7 +136,7 @@ class Install(install):
 
         locale_dir = os.path.join(root_dir, "locale")
         apps_dir = os.path.join(root_dir, "applications")
-        #services_dir = os.path.join(root_dir, "kde4/services")
+        services_dir = os.path.join(root_dir, "kde4/services")
         project_dir = os.path.join(root_dir, PROJECT)
 
         # Make directories
@@ -145,14 +145,14 @@ class Install(install):
         makeDirs(locale_dir)
         makeDirs(apps_dir)
         makeDirs(project_dir)
-        #makeDirs(services_dir)
+        makeDirs(services_dir)
 
         # Install desktop files
         print "Installing desktop files..."
         if FOR_KDE_4:
-            shutil.copy("data/%s.desktop" % PROJECT, apps_dir)
+            shutil.copy("data/kcm_%s.desktop" % PROJECT, services_dir)
         else:
-            shutil.copy("data/kcm_%s.desktop" % PROJECT, apps_dir)
+            shutil.copy("data/%s.desktop" % PROJECT, apps_dir)
         shutil.rmtree('build/data')
 
         # Install codes
@@ -201,13 +201,13 @@ class Uninstall(Command):
 
         locale_dir = os.path.join(root_dir, "locale")
         apps_dir = os.path.join(root_dir, "applications")
-        #services_dir = os.path.join(root_dir, "kde4/services")
+        services_dir = os.path.join(root_dir, "kde4/services")
         project_dir = os.path.join(root_dir, PROJECT)
 
         print 'Uninstalling ...'
         remove(project_dir)
         remove(apps_dir +"/%s.desktop" % PROJECT)
-        #remove(services_dir +"/kcm_%s.desktop" % PROJECT)
+        remove(services_dir +"/kcm_%s.desktop" % PROJECT)
         for filename in glob.glob1('po', '*.po'):
             lang = filename.rsplit(".", 1)[0]
             remove(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
