@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>cnazar</Name>
+        <Homepage>http://comakp.blogspot.com</Homepage>
+        <Packager>
+            <Name>Kaan Ozdincer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <PartOf>Pardus</PartOf>
+        <Icon>cnazar</Icon>
+        <IsA>app:gui</IsA>
+        <Summary>Kem Gözlerden Korur</Summary>
+        <Description>CNazar Pardus'u kem gözlerden korur.</Description>
+        <Archive sha1sum="5c741e26d997f2a71b20ed0f78e57b5cf347cbe3" type="tar">./cnazar.tar</Archive>
+        <BuildDependencies>
+            <Dependency>python-qt-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>cnazar</Name>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="all">/</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-01-26</Date>
+            <Version>0.0.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Kaan Ozdincer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
