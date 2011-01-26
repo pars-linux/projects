@@ -11,7 +11,7 @@ class SystemTrayIcon(QtGui.QSystemTrayIcon, QWidget):
     def __init__(self,icon, parent=None):
         QtGui.QSystemTrayIcon.__init__(self, icon, parent)
         self.setIcon(QIcon("/usr/share/cnazar/data/cnazar.png"))
-        self.setToolTip("CNazar kem gözlerden koruyor...")
+        self.setToolTip(unicode("CNazar kem gözlerden koruyor..."))
         menu = QtGui.QMenu(parent)
         menu.addAction(QIcon("/usr/share/cnazar/data/flag-blue.png"), "Koru", self.protect_from_harmfull_looks)
         menu.addAction(QIcon("/usr/share/cnazar/data/flag-red.png"), "Koruma", self.release_from_harmfull_looks)
