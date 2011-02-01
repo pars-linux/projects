@@ -93,12 +93,19 @@ class EditUserWidget(QtGui.QWidget, Ui_EditUserWidget):
         self.connect(self.lineUsername, QtCore.SIGNAL("textEdited(const QString&)"), self.checkFields)
         self.connect(self.lineHomeDir, QtCore.SIGNAL("textEdited(const QString&)"), self.checkFields)
 
-        self.filterAuthorizations.setTreeWidget(self.treeAuthorizations)
-        self.filterGroups.setListWidget(self.listGroups)
+        self.connect(self.filterAuthorizations, QtCore.SIGNAL("textChanged(const QString&)"), self.filterOnAuthorizations)
+        self.connect(self.filterGroups, QtCore.SIGNAL("textChanged(const QString&)"), self.filterOnGroups)
+
 
         self.advancedGroup.hide()
         self.available_shells = []
         self._new = False
+
+    def filterOnAuthorizations(self, text):
+        self.treeAuthorizations.keyboardSearch(text)
+
+    def filterOnGroups(self, text):
+        self.listGroups.keyboardSearch(text)
 
     def reset(self):
         self.wrn = ""
