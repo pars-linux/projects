@@ -25,7 +25,7 @@ from distutils.command.build import build
 from distutils.command.clean import clean
 from distutils.command.install import install
 
-PROJECT = about.appName
+PROJECT = "user-manager"
 
 def makeDirs(directory):
     if not os.path.exists(directory):
@@ -105,7 +105,7 @@ class Build(build):
 
         print "Generating UIs..."
         for filename in glob.glob1("ui", "*.ui"):
-            os.system("pykde4uic -o build/usermanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+            os.system("pyuic4 -o build/usermanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
 
         print "Generating RCs..."
         for filename in glob.glob1("data", "*.qrc"):
