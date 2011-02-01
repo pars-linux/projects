@@ -25,7 +25,7 @@ from distutils.command.build import build
 from distutils.command.clean import clean
 from distutils.command.install import install
 
-PROJECT = "user-manager"
+PROJECT = about.appName
 
 def makeDirs(directory):
     if not os.path.exists(directory):
