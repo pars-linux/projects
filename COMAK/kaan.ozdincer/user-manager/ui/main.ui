@@ -55,7 +55,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox"/>
+         <widget class="QComboBox" name="comboFilter"/>
         </item>
        </layout>
       </item>
