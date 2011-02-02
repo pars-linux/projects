@@ -123,13 +123,13 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
         return unicode(self.lineOptions.text()).replace('\n', ' ')
 
     def slotFileDialog(self):
-        filename=str(QtGui.QFileDialog.getOpenFileName(self,i18n("Dosya Sistemi"),"","İstediğiniz dizini seçiniz"))
+        filename=str(QtGui.QFileDialog.getOpenFileName(self,i18n("Dosya Sistemi"),"",i18n("All files")))
         if filename:
             self.setFile(filename)
     def setFile(self,filename):
         EditWidget.setKernel(self,filename)
     def slotRamDialog(self):
-        ramname=str(QtGui.QFileDialog.getOpenFileName(self,i18n("Dosya Sistemi"),"","İstediğiniz dizini seçiniz"))
+        ramname=str(QtGui.QFileDialog.getOpenFileName(self,i18n("Dosya Sistemi"),"",i18n("All files")))
         if ramname:
             self.setRam(ramname)
     def setRam(self,ramname):
