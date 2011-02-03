@@ -67,6 +67,10 @@ msgstr ""
 "Bu uygulamanın ihtiyaç duyduğu altyapıyı sunan herhangi bir paket yok.\n"
 "Lütfen paketlerin kurulum ve yapılandırmasının düzgün olup olmadığını kontrol edin."
 
+#: src/bootmanager/main.py:117
+msgid "Package Error"
+msgstr "Paket Hatası"
+
 #: src/bootmanager/main.py:198
 msgid "All Items"
 msgstr "Tüm Öğeler"
@@ -75,19 +79,39 @@ msgstr "Tüm Öğeler"
 msgid "Do you want to delete '%1'?"
 msgstr "'%1' silinsin mi?"
 
-#: src/bootmanager/main.py:337
+#: src/bootmanager/main.py:346
+msgid "Remove items"
+msgstr "Öğeleri kaldır"
+
+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
 msgid "Access denied."
 msgstr "Erişim reddedildi."
 
-#: ui/ui_edit.py:139
+#: src/bootmanager/edit.py:126
+msgid "File System"
+msgstr "Dosya Sistemi"
+
+#: src/bootmanager/edit.py:126
+msgid "All Files"
+msgstr "Tüm Dosyalar"
+
+#: src/bootmanager/edit.py:91
+msgid "title"
+msgstr "Başlık"
+
+#: src/bootmanager/edit.py:108
+msgid "kernel"
+msgstr "Çekirdek"
+
+#: ui/ui_edit.py:144
 msgid "Title"
 msgstr "Başlık"
 
-#: ui/ui_edit.py:140
+#: ui/ui_edit.py:145
 msgid "Name of the boot entry to be shown at the boot menu."
 msgstr "Açılış menüsünde gösterilecek metin."
 
-#: ui/ui_edit.py:141
+#: ui/ui_edit.py:146
 msgid "Disk"
 msgstr "Disk"
 
@@ -95,7 +119,7 @@ msgstr "Disk"
 msgid "Disk that contains operating system."
 msgstr "İşletim sisteminin bulunduğu disk."
 
-#: ui/ui_edit.py:143
+#: ui/ui_edit.py:147
 msgid "Kernel"
 msgstr "Çekirdek"
 
@@ -111,23 +135,23 @@ msgstr "Ramdisk Dosyası"
 msgid "File that contains a micro operating system for preloading kernel modules."
 msgstr "Çekirdek bileşenlerini önyükleyecek bir mikro işletim sistemi içeren dosya."
 
-#: ui/ui_edit.py:147
+#: ui/ui_edit.py:151
 msgid "Boot Options"
 msgstr "Açılış Seçenekleri"
 
-#: ui/ui_edit.py:148
+#: ui/ui_edit.py:152
 msgid "Boot options for operating system."
 msgstr "İşletim sisteminin açılış seçenekleri."
 
-#: ui/ui_item.py:74
+#: ui/ui_item.py:75
 msgid "Set or unset entry as default boot entry."
 msgstr "Öntanımlı açılış öğesi olarak ayarlama."
 
-#: ui/ui_item.py:75
+#: ui/ui_item.py:76
 msgid "Edit"
 msgstr "Düzenle"
 
-#: ui/ui_item.py:76
+#: ui/ui_item.py:77
 msgid "Delete"
 msgstr "Sil"
 
@@ -135,7 +159,7 @@ msgstr "Sil"
 msgid "Add New"
 msgstr "Yeni Ekle"
 
-#: ui/ui_options.py:42
+#: ui/ui_options.py:39
 msgid "Boot menu display time:"
 msgstr "Açılış menüsünün görüntüleneceği süre:"
 

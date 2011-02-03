@@ -88,10 +88,10 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
         self.widgetRamdisk.show()
 
     def setTitle(self, title):
-        self.lineTitle.setText(unicode(title))
+        self.lineTitle.setText(i18n(title))
 
     def getTitle(self):
-        return unicode(self.lineTitle.text())
+        return i18n(self.lineTitle.text())
 
     def setDisk(self, disk):
         self.lineDisk.clear()
@@ -99,37 +99,37 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
             self.lineDisk.addItem('')
             self.lineDisk.addItems(disk)
         else:
-            self.lineDisk.addItem(unicode(disk))
+            self.lineDisk.addItem(i18n(disk))
 
     def getDisk(self):
-        return unicode(self.lineDisk.currentText())
+        return i18n(self.lineDisk.currentText())
 
     def setKernel(self, kernel):
-        self.lineKernel.setText(unicode(kernel))
+        self.lineKernel.setText(i18n(kernel))
 
     def getKernel(self):
-        return unicode(self.lineKernel.text())
+        return i18n(self.lineKernel.text())
 
     def setRamdisk(self, ramdisk):
-        self.lineRamdisk.setText(unicode(ramdisk))
+        self.lineRamdisk.setText(i18n(ramdisk))
 
     def getRamdisk(self):
-        return unicode(self.lineRamdisk.text())
+        return i18n(self.lineRamdisk.text())
 
     def setOptions(self, options):
-        self.lineOptions.setText(unicode(options))
+        self.lineOptions.setText(i18n(options))
 
     def getOptions(self):
-        return unicode(self.lineOptions.text()).replace('\n', ' ')
+        return i18n(self.lineOptions.text()).replace('\n', ' ')
 
     def slotFileDialog(self):
-        filename=str(QtGui.QFileDialog.getOpenFileName(self,i18n("Dosya Sistemi"),"","İstediğiniz dizini seçiniz"))
+        filename=str(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"",i18n("All Files")))
         if filename:
             self.setFile(filename)
     def setFile(self,filename):
         EditWidget.setKernel(self,filename)
     def slotRamDialog(self):
-        ramname=str(QtGui.QFileDialog.getOpenFileName(self,i18n("Dosya Sistemi"),"","İstediğiniz dizini seçiniz"))
+        ramname=str(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"",i18n("All Files")))
         if ramname:
             self.setRam(ramname)
     def setRam(self,ramname):
