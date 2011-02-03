@@ -64,6 +64,10 @@ msgstr ""
 "Nincs csomag, amely hátteret biztosítana ennek az alkalmazásnak. \n"
 "Kérlek telepítsd fel a szükséges csomagot és állítsd be helyesen."
 
+#: src/bootmanager/main.py:117
+msgid "Package Error"
+msgstr "Csomag Hiba"
+
 #: src/bootmanager/main.py:198
 msgid "All Items"
 msgstr "Minden elem"
@@ -72,9 +76,17 @@ msgstr "Minden elem"
 msgid "Do you want to delete '%1'?"
 msgstr "Biztosan törölni akarja ezt: '%1'?"
 
-#: src/bootmanager/main.py:337
+#: src/bootmanager/main.py:346
+msgid "Remove items"
+msgstr "Elemek eltávolítása"
+
+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
 msgid "Access denied."
 msgstr "Hozzáférés megtagadva."
+
+#: src/bootmanager/edit.py:126
+msgid "File System"
+msgstr "Fájl Rendszer"
 
 #: ui/ui_edit.py:139
 msgid "Title"

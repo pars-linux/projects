@@ -380,7 +380,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
                 message = unicode(e).lstrip('tr.org.pardus.comar.Exception: ')
             else:
                 message = unicode(e)
-            QtGui.QMessageBox.warning(self,i18n("Uyarı"), message)
+            QtGui.QMessageBox.warning(self,i18n("Access denied"), message)
 
             return
         # Hide edit box

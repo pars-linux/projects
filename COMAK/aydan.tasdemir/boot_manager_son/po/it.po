@@ -69,6 +69,10 @@ msgstr ""
 "Non ci sono pacchetti che forniscano un backend per questa applicazione.\n"
 "Per favore, assicurati che i pacchetti siano installati e configurati correttamente."
 
+#: src/bootmanager/main.py:117
+msgid "Package Error"
+msgstr "Pacchetto di Errore"
+
 #: src/bootmanager/main.py:198
 msgid "All Items"
 msgstr "Tutti"
@@ -77,13 +81,21 @@ msgstr "Tutti"
 msgid "Do you want to delete '%1'?"
 msgstr "Sei sicuro di voler eliminare '%1'?"
 
-#: src/bootmanager/main.py:337
+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
 msgid "Access denied."
 msgstr "Accesso negato."
+
+#: src/bootmanager/main.py:346
+msgid "Remove items"
+msgstr "Rimuovere gli elementi"
 
 #: ui/ui_edit.py:139
 msgid "Title"
 msgstr "Titolo"
+
+#: src/bootmanager/edit.py:126
+msgid "File System"
+msgstr "File System"
 
 #: ui/ui_edit.py:140
 msgid "Name of the boot entry to be shown at the boot menu."

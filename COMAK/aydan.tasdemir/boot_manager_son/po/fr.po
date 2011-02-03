@@ -63,6 +63,10 @@ msgstr ""
 "Cette application n'existe pas en version utilisable dans une console.\n"
 "Merci de vous assurer que les paquets sont correctement installés et configurés."
 
+#: src/bootmanager/main.py:117
+msgid "Package Error"
+msgstr "Erreur Package"
+
 #: src/bootmanager/main.py:198
 msgid "All Items"
 msgstr "Tous les items"
@@ -71,9 +75,17 @@ msgstr "Tous les items"
 msgid "Do you want to delete '%1'?"
 msgstr "Voulez-vous supprimer '%1' ?"
 
-#: src/bootmanager/main.py:337
+#: src/bootmanager/main.py:346
+msgid "Remove items"
+msgstr "Supprimer des éléments"
+
+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
 msgid "Access denied."
 msgstr "Accès refusé."
+
+#: src/bootmanager/edit.py:126
+msgid "File System"
+msgstr "Système de fichiers"
 
 #: ui/ui_edit.py:139
 msgid "Title"
