@@ -85,6 +85,14 @@ msgstr "Fjerne elementer"
 msgid "Access denied."
 msgstr "Adgang nægtet."
 
+#: src/bootmanager/main.py:346
+msgid "Yes"
+msgstr "Ja"
+
+#: src/bootmanager/main.py:346
+msgid "No"
+msgstr "Ingen"
+
 #: src/bootmanager/edit.py:126
 msgid "File System"
 msgstr "Fil System"

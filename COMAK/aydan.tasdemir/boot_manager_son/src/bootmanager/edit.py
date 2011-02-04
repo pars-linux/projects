@@ -88,10 +88,10 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
         self.widgetRamdisk.show()
 
     def setTitle(self, title):
-        self.lineTitle.setText(i18n(title))
+        self.lineTitle.setText(unicode(title))
 
     def getTitle(self):
-        return i18n(self.lineTitle.text())
+        return unicode(self.lineTitle.text())
 
     def setDisk(self, disk):
         self.lineDisk.clear()
@@ -99,28 +99,28 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
             self.lineDisk.addItem('')
             self.lineDisk.addItems(disk)
         else:
-            self.lineDisk.addItem(i18n(disk))
+            self.lineDisk.addItem(unicode(disk))
 
     def getDisk(self):
-        return i18n(self.lineDisk.currentText())
+        return unicode(self.lineDisk.currentText())
 
     def setKernel(self, kernel):
-        self.lineKernel.setText(i18n(kernel))
+        self.lineKernel.setText(unicode(kernel))
 
     def getKernel(self):
-        return i18n(self.lineKernel.text())
+        return unicode(self.lineKernel.text())
 
     def setRamdisk(self, ramdisk):
-        self.lineRamdisk.setText(i18n(ramdisk))
+        self.lineRamdisk.setText(unicode(ramdisk))
 
     def getRamdisk(self):
-        return i18n(self.lineRamdisk.text())
+        return unicode(self.lineRamdisk.text())
 
     def setOptions(self, options):
-        self.lineOptions.setText(i18n(options))
+        self.lineOptions.setText(unicode(options))
 
     def getOptions(self):
-        return i18n(self.lineOptions.text()).replace('\n', ' ')
+        return unicode(self.lineOptions.text()).replace('\n', ' ')
 
     def slotFileDialog(self):
         filename=str(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"",i18n("All Files")))

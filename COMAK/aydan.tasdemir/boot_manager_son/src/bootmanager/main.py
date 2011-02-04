@@ -343,8 +343,8 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             Delete button clicked.
         """
         widget = self.sender()
-        answer=QtGui.QMessageBox.warning(self,i18n("Remove items"),i18n("Do you want to delete '%1'?",widget.getTitle()),QtGui.QMessageBox.Yes,QtGui.QMessageBox.No)
-        if answer == QtGui.QMessageBox.Yes:
+        answer=QtGui.QMessageBox.warning(self,i18n("Remove items"),i18n("Do you want to delete '%1'?",widget.getTitle()),i18n("Yes"),i18n("No"))
+        if answer == 0:
             def handler(package, exception, args):
                 pass
             self.iface.removeEntry(widget.getId(), widget.getTitle(), False, func=handler)
