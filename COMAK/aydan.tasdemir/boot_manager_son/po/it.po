@@ -89,6 +89,14 @@ msgstr "Accesso negato."
 msgid "Remove items"
 msgstr "Rimuovere gli elementi"
 
+#: src/bootmanager/main.py:346
+msgid "Yes"
+msgstr "Si"
+
+#: src/bootmanager/main.py:346
+msgid "No"
+msgstr "No"
+
 #: ui/ui_edit.py:139
 msgid "Title"
 msgstr "Titolo"

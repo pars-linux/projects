@@ -79,6 +79,14 @@ msgstr "Vill du ta bort '%1'?"
 msgid "Remove items"
 msgstr "Ta bort objekt"
 
+#: src/bootmanager/main.py:346
+msgid "Yes"
+msgstr "Ja"
+
+#: src/bootmanager/main.py:346
+msgid "No"
+msgstr "Ingen"
+
 #: src/bootmanager/main.py:337 src/bootmanager/main.py:385
 msgid "Access denied."
 msgstr "Åtkomst nekad."
