@@ -14,7 +14,7 @@
         <IsA>app:gui</IsA>
         <Summary>Kem Gözlerden Korur</Summary>
         <Description>CNazar Pardus'u kem gözlerden korur.</Description>
-        <Archive sha1sum="bf68f79273bd6abb0a0fde8a8b2343369e12bb51" type="tar">http://x86-64.comu.edu.tr/lxde/source/cnazar.tar</Archive>
+        <Archive sha1sum="13e349a6da335eff7d4186944cb174a026756fd0" type="tarbz2">http://x86-64.comu.edu.tr/lxde/cnazar.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>python-qt-devel</Dependency>
         </BuildDependencies>
