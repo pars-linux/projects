@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>pardus-default-settings-lxde</Name>
+        <Summary xml:lang="tr">Pardus LXDE öntanımlı ayarları</Summary>
+        <Description xml:lang="tr">Bu paket, Pardus LXDE için öntanımlı ayarları içerir.</Description>
+    </Source>
+</PISI>
