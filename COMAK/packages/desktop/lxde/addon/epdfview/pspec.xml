@@ -19,7 +19,7 @@
             <Dependency>gtk2-devel</Dependency>
         </BuildDependencies>
         <Patches>
-            <Patch level="1">icon_path.patch</Patch>
+            <Patch level="1">fix-desktop-file.patch</Patch>
         </Patches>
     </Source>
 
