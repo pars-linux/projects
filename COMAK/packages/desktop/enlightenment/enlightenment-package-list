@@ -1,0 +1,73 @@
+Depoda olanlar:
+
+base:
+e_dbus/
+ecore/
+edje/
+eet/
+eeze/
+efreet/
+eina/
+embryo/
+enlightenment/
+evas/
+add-ons:
+e-module-calendar/
+e-module-everything-places/
+e-module-language/
+e-module-notification/
+e-module-places/
+editje/
+elementary/
+ethumb/
+itask-ng/
+libeweather/
+
+gentoo:
+
+e_modules-alarm :yapıldı
+    A module to set Alarms in Enlightenment 17
+genmenu:http://f00l.de/genmenu/: yapıldı
+    menu generator for *box, WindowMaker, and Enlightenment
+e_modules-net
+    Network interface monitor module for e17
+e_modules-mem
+    Memory monitor module for e17
+e_modules-cpu
+    CPU monitor module for e17
+ephoto : yapılıyor
+    EFL-based slideshow creator
+epdf  :yapılıyor
+    PDF viewer with widgets for Evas
+eio: yapılıyor
+emotion : yapılıyor
+    video libraries for e17
+ecomp
+    e17 window manager with compiz
+epsilon
+    The Enlightenment epsilon library.
+esmart
+    The Enlightenment esmart library.
+trash
+    E17 Freedesktop compliant trash module
+e_modules
+    e_modules meta package - merge this to pull in all e_modules
+edgar: yapılıyor
+    E17 Edgar Gadgets Loader
+ecomorph
+    Ecomorph is a compositing manager for e17
+rage : yapılıyor
+    Video frontend using the EFL
+
+ubuntu:
+
+e16keyedit
+e16
+e16menuedit2
+e17-dev
+e17
+e17-data
+efl-dev
+e17-dbg
+imlib2-src
+epplets
