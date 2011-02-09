@@ -1,0 +1,10 @@
+--- Makefile.in	2008-06-12 22:19:56.000000000 +0300
+@@ -811,7 +811,5 @@
+ @INTLTOOL_SCHEMAS_RULE@
+ 
+ install-data-local:
+-	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+-# Tell versions [3.59,3.63) of GNU make to not export all variables.
+-# Otherwise a system limit (for SysV at least) may be exceeded.
++	echo "pass"
+ .NOEXPORT:
