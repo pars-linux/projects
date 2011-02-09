@@ -18,6 +18,9 @@
             <Dependency>evas-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
             <Dependency>poppler-glib-devel</Dependency>
+            <Dependency>doxygen</Dependency>
+            <Dependency>jpeg-devel</Dependency>
+
         </BuildDependencies>
     </Source>
 
@@ -30,8 +33,10 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="data">/usr/share</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="header">/usr/include</Path>
         </Files>
     </Package>
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#ketools.configure() !/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010 TUBITAK/BILGEM
@@ -8,14 +8,16 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
+from pisi.actionsapi import cmaketools
 from pisi.actionsapi import shelltools
 def setup():
     shelltools.system("./autogen.sh \
             --prefix=/usr")
 
+
 def build():
-    autotools.make()
+    cmaketools.make()
 
 def install():
-     autotools.install()
+    cmaketools.install()
 
