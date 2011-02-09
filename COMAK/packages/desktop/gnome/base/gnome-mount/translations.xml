@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-mount</Name>
+        <Summary xml:lang="tr">GNOME disk bağlama araçları</Summary>
+        <Description xml:lang="tr">gnome-mount paketi, disk ayırma, bağlama ve çıkarma ile ilgili programlar içerir.</Description>
+    </Source>
+</PISI>
+
