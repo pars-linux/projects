@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=ephoto
+Name[tr_TR]=ephoto
+Exec=ephoto
+Icon=elementary
+Type=Application
+Comment=Photo viewer!
+Comment[tr_TR]=Resim gösterir!
+Categories=Graphics;
