@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>epdf</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <PartOf> app-text</PartOf>
+        <Summary>Epdf</Summary>
+        <Description>Pdf reader for Enlightenment</Description>
+        <Archive sha1sum="1f2e98454a27931023236c3e1074f4e6e116ad14" type="tarbz2">http://x86-64.comu.edu.tr/lxde/epdf.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+            <Dependency>poppler-glib-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>epdf</Name>
+        <RuntimeDependencies>
+            <Dependency>evas</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>poppler-glib</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-02-08</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
