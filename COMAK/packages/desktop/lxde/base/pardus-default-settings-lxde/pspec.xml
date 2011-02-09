@@ -31,6 +31,9 @@
         <Files>
             <Path fileType="config">/etc</Path>
         </Files>
+        <Provides>
+            <COMAR script="package.py">System.Package</COMAR>
+        </Provides>
     </Package>
 
     <History>
