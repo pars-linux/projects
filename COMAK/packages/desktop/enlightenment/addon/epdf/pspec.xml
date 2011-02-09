@@ -9,7 +9,7 @@
             <Email>ozgebarbaros@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
-        <IsA>app:gui</IsA>
+        <IsA>library</IsA>
         <PartOf> app-text</PartOf>
         <Summary>Epdf</Summary>
         <Description>Pdf reader for Enlightenment</Description>
