@@ -33,6 +33,7 @@
         <Name>lxde-common</Name>
         <RuntimeDependencies>
             <Dependency>gtk2</Dependency>
+            <Dependency>cnazar</Dependency>
             <Dependency>lxpanel</Dependency>
             <Dependency>lxsession</Dependency>
             <Dependency>libfm</Dependency>
