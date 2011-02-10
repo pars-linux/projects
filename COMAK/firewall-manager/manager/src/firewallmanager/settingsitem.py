@@ -33,10 +33,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         self.lineItem.hide()
         self.comboItems.hide()
         self.listItems.hide()
-        self.pushAdd.setEnabled(0)
-        self.pushDelete.setEnabled(0)
-        self.pushUp.setEnabled(0)
-        self.pushDown.setEnabled(0)
+        self.setEnabledAll()
         if type_ == "combo":
             self.comboItems.show()
         elif type_ == "editlist":
@@ -49,39 +46,46 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         self.connect(self.pushUp, QtCore.SIGNAL("clicked()"), self.funcpushUp)
         self.connect(self.pushDown, QtCore.SIGNAL("clicked()"), self.funcpushDown)
         QtCore.QObject.connect(self.listWidget, QtCore.SIGNAL(("currentItemChanged(QListWidgetItem*,QListWidgetItem*)")), self.HideButtons)
-        QtCore.QObject.connect(self.lineEdit, QtCore.SIGNAL(("textChanged(QString)")), self.HideAdd)
+        QtCore.QObject.connect(self.lineEdit, QtCore.SIGNAL(("textChanged(QString)")), self.hideAdd)
         self.pushAdd.setIcon(KIcon("list-add"))
         self.pushDelete.setIcon(KIcon("list-remove"))
         self.pushUp.setIcon(KIcon("arrow-up"))
         self.pushDown.setIcon(KIcon("arrow-down"))
 
-    def HideAdd(self):
+    def setEnabledAll(self):
+        self.pushAdd.setEnabled(0)
+        self.pushDelete.setEnabled(0)
+        self.pushUp.setEnabled(0)
+        self.pushDown.setEnabled(0)
+
+    def hideAdd(self):
         if self.lineEdit.text() <> "":
             self.pushAdd.setEnabled(1)
         else :
             self.pushAdd.setEnabled(0)
 
-    def AlreadyinList(self):
+    def alreadyInList(self):
         for i in range(self.listWidget.count()):
             if (self.lineEdit.text()==self.listWidget.item(i).text()):
-                print self.lineEdit.text()
-                print self.listWidget.item(i).text()
                 return False 
         return True
 
     def addItemToList(self):
-        if (self.AlreadyinList()):
+        if (self.alreadyInList()):
             if self.listWidget.currentItem():
                 self.listWidget.currentItem().setText(self.lineEdit.text())
             else:
                 if self.lineEdit.text()<> "":
                     self.listWidget.insertItem(0,self.lineEdit.text())
         self.lineEdit.setText("")
+        self.listWidget.setCurrentItem(None)
+        self.setEnabledAll()
 
     def removeItemToList(self):
         self.listWidget.takeItem(self.listWidget.currentRow())
         if (self.listWidget.count()==0):
             self.pushDelete.setEnabled(0)
+        if (self.listWidget.count()<2):
             self.pushUp.setEnabled(0)
             self.pushDown.setEnabled(0)
 
@@ -106,8 +110,11 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
             self.pushUp.setEnabled(1)
         if self.listWidget.currentRow :
             self.pushDelete.setEnabled(1)
+        if (self.listWidget.count()<2):
+            self.pushUp.setEnabled(0)
+            self.pushDown.setEnabled(0)
 
-    #TODO  !
+    #TODO Create backend file for listWidget 
     def funcpushDown(self):
         self.listWidget.setCurrentRow(self.listWidget.currentRow()+1)
         degisken = self.listWidget.currentItem().text()
@@ -127,7 +134,6 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         self.listWidget.setCurrentRow(self.listWidget.currentRow()-1)
         self.listWidget.currentItem().setText(degisken_)
         self.listToLineEdit()
-    ####
     def setTitle(self, title):
         self.labelTitle.setText(unicode(title))
 
