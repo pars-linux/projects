@@ -31,6 +31,28 @@ emotion
 gentoo:
 e-module-trash
 imlib2
+component.xml
+e-module-drawer/
+e-module-everything-pidgin/
+e-module-mpdule/
+e-module-photo/
+e-module-trash/
+e-module-weather/
+edje-viewer/
+eio/
+elicit/
+elitaire/
+emotion/
+emphasis/
+empower/
+emprint/
+enhance/
+enjoy/
+ephoto/
+eve/
+exhibit/
+webkit-efl/
+python-emotion/
 
 e_modules-alarm :yapıldı
     A module to set Alarms in Enlightenment 17
