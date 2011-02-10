@@ -78,6 +78,10 @@ msgstr "Дія"
 msgid "Access denied."
 msgstr "Доступ заборонено."
 
+#: src/firewallmanager/main.py:94
+msgid "Error"
+msgstr "Помилка"
+
 #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
 msgid "Settings"
 msgstr "Налаштування"
@@ -113,3 +117,20 @@ msgstr "Вилучити"
 #: ui/ui_main.py:82
 msgid "Add New"
 msgstr "Додати новий"
+
+#: ui/ui_settingsitem:78
+msgid "Add"
+msgstr "Додати"
+
+#: ui/ui_settingsitem:79
+msgid "Remove"
+msgstr "Видалити"
+
+#: ui/ui_settingsitem:80
+msgid "Move Up"
+msgstr "Вгору"
+
+#: ui/ui_settingsitem:81
+msgid "Move Down"
+msgstr "Вниз"
+

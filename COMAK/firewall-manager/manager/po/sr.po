@@ -77,6 +77,10 @@ msgstr "Акција"
 msgid "Access denied."
 msgstr "Приступ забрањен."
 
+#: src/firewallmanager/main.py:94
+msgid "Error"
+msgstr "Грешка"
+
 #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
 msgid "Settings"
 msgstr "Подешавања"
@@ -112,3 +116,20 @@ msgstr "Избриши"
 #: ui/ui_main.py:82
 msgid "Add New"
 msgstr "Додај нови"
+
+#: ui/ui_settingsitem:78
+msgid "Add"
+msgstr "Додај"
+
+#: ui/ui_settingsitem:79
+msgid "Remove"
+msgstr "Уклони"
+
+#: ui/ui_settingsitem:80
+msgid "Move Up"
+msgstr "Напредовати"
+
+#: ui/ui_settingsitem:81
+msgid "Move Down"
+msgstr "Премести надоле"
+

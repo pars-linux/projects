@@ -76,6 +76,10 @@ msgstr "Fəaliyyət"
 msgid "Access denied."
 msgstr "Qadağan olunmuş keçid"
 
+#: src/firewallmanager/main.py:94
+msgid "Error"
+msgstr "Xata"
+
 #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
 msgid "Settings"
 msgstr "Ayarlar"
@@ -111,3 +115,20 @@ msgstr "Sil"
 #: ui/ui_main.py:82
 msgid "Add New"
 msgstr "Yenini əlavə et"
+
+#: ui/ui_settingsitem:78
+msgid "Add"
+msgstr "Əlavə et"
+
+#: ui/ui_settingsitem:79
+msgid "Remove"
+msgstr "Sil"
+
+#: ui/ui_settingsitem:80
+msgid "Move Up"
+msgstr "Yuxarı Daşı"
+
+#: ui/ui_settingsitem:81
+msgid "Move Down"
+msgstr "Aşağı Daşı"
+

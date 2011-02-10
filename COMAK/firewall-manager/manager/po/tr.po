@@ -80,6 +80,10 @@ msgstr "Eylem"
 msgid "Access denied."
 msgstr "Erişim reddedildi."
 
+#: src/firewallmanager/main.py:94
+msgid "Error"
+msgstr "Hata"
+
 #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
 msgid "Settings"
 msgstr "Ayarlar"
@@ -115,6 +119,22 @@ msgstr "Sil"
 #: ui/ui_main.py:82
 msgid "Add New"
 msgstr "Yeni Ekle"
+
+#: ui/ui_settingsitem:78
+msgid "Add"
+msgstr "Ekle"
+
+#: ui/ui_settingsitem:79
+msgid "Remove"
+msgstr "Sil"
+
+#: ui/ui_settingsitem:80
+msgid "Move Up"
+msgstr "Yukarı Taşı"
+
+#: ui/ui_settingsitem:81
+msgid "Move Down"
+msgstr "Asağı Taşı"
 
 #~ msgid " "
 #~ msgstr " "
