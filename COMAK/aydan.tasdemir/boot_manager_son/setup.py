@@ -55,9 +55,9 @@ def update_messages():
     filelist = []
     for filename in glob.glob1("ui", "*.ui"):
         if FOR_KDE_4:
-            os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+            os.system("pykde4uic -o ui/ui_%s.py ui/%s -g &s" % (filename.split(".")[0], filename, PROJECT))
         else:
-            os.system("pyuic4 -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+            os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
     # Collect headers for desktop files
     for filename in glob.glob("data/*.desktop.in"):
         os.system("intltool-extract --type=gettext/ini %s" % filename)
@@ -114,9 +114,9 @@ class Build(build):
         print "Generating UIs..."
         for filename in glob.glob1("ui", "*.ui"):
             if FOR_KDE_4:
-                os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+                os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
             else:
-                os.system("pyuic4 -o build/bootmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+                os.system("pyuic4 -o build/bootmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
         print "Generating RCs..."
         for filename in glob.glob1("data", "*.qrc"):
             os.system("pyrcc4 data/%s -o build/%s_rc.py" % (filename, filename.split(".")[0]))
