@@ -25,13 +25,10 @@ itask-ng/
 libeweather/
 
 playground:
-ephoto
-eio
-emotion
-gentoo:
-e-module-trash
+
 imlib2
-component.xml
+
+igungur/e17/addon:
 e-module-drawer/
 e-module-everything-pidgin/
 e-module-mpdule/
@@ -52,6 +49,7 @@ ephoto/
 eve/
 exhibit/
 webkit-efl/
+igungur/e17/binding:
 python-emotion/
 
 e_modules-alarm :yapıldı
