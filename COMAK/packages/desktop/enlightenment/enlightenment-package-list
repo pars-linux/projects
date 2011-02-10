@@ -56,7 +56,7 @@ e_modules-alarm :yapıldı
     A module to set Alarms in Enlightenment 17
 genmenu:http://f00l.de/genmenu/: yapıldı
     menu generator for *box, WindowMaker, and Enlightenment
-e_modules-net
+e_modules-net:yapılıyor
     Network interface monitor module for e17
 e_modules-mem
     Memory monitor module for e17
