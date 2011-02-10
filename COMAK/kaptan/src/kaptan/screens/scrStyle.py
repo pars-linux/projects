@@ -57,10 +57,11 @@ class Widget(QtGui.QWidget, Screen):
              defaultDesktopNumber = int(group.readEntry('Number'))
 
         else:
-             self.config = QSettings('kwinrc')
-            # defaultDesktopNumber = int(self.config.value('Number'))
+            #şimdilik diğer masaüstü ortamlarının 
+            #masaüstü sayısını es geç
+            defaultDesktopNumber =3
              
-        self.ui.spinBoxDesktopNumbers.setValue(1)
+        self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
         # self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
         lst2 = glob.glob1("/usr/share/kde4/apps/kaptan/kaptan/kde-themes", "*.style")
 
