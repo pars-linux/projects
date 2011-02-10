@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>package-manager</Name>
+        <Name>package-manager-pds</Name>
         <Homepage>http://www.pardus.org.tr/</Homepage>
         <Packager>
             <Name>Gökmen Göksel</Name>
@@ -21,7 +21,7 @@
     </Source>
 
     <Package>
-        <Name>package-manager</Name>
+        <Name>package-manager-pds</Name>
         <RuntimeDependencies>
             <Dependency versionFrom="2.4_alpha2">pisi</Dependency>
             <Dependency>python-qt</Dependency>
