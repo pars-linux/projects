@@ -17,6 +17,9 @@ from kaptan.tools import tools
 from kaptan.tools.progress_pie import DrawPie
 from kaptan.tools.kaptan_menu import Menu
 
+HOME_DIR = os.environ["HOME"]
+QSettings.setPath(QSettings.IniFormat, QSettings.UserScope, HOME_DIR)
+
 class Kaptan(QtGui.QWidget):
     def __init__(self, parent = None):
         QtGui.QWidget.__init__(self, parent)
@@ -34,7 +37,7 @@ class Kaptan(QtGui.QWidget):
         self.currentDir = os.path.dirname(os.path.realpath(__file__))
         self.screensPath = self.currentDir + "/kaptan/screens/scr*py"
        # self.kaptanConfig = KConfig("kaptanrc")
-        self.kaptanConfig = QSettings("kaptanrc")
+        self.kaptanConfig = QSettings(".kde4/share/config/kaptanrc",QSettings.IniFormat)
     def signalHandler(self):
         ''' connects signals to slots '''
         self.connect(self.ui.buttonNext, QtCore.SIGNAL("clicked()"), self.slotNext)
@@ -214,8 +217,9 @@ class Kaptan(QtGui.QWidget):
         return self.buttonBack.isEnabled()
 
     def __del__(self):
-        group = self.kaptanConfig.group("General")
-        group.writeEntry("RunOnStart", "False")
+        self.kaptanConfig.setValue("General/RunOnStart",False)
+        #group = self.kaptanConfig.group("General")
+        #group.writeEntry("RunOnStart", "False")
 
 if __name__ == "__main__":
     
