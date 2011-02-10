@@ -33,7 +33,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         self.lineItem.hide()
         self.comboItems.hide()
         self.listItems.hide()
-        self.setEnabledAll()
+        self.setDisabledAll()
         if type_ == "combo":
             self.comboItems.show()
         elif type_ == "editlist":
@@ -52,7 +52,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         self.pushUp.setIcon(KIcon("arrow-up"))
         self.pushDown.setIcon(KIcon("arrow-down"))
 
-    def setEnabledAll(self):
+    def setDisabledAll(self):
         self.pushAdd.setEnabled(0)
         self.pushDelete.setEnabled(0)
         self.pushUp.setEnabled(0)
@@ -79,7 +79,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
                     self.listWidget.insertItem(0,self.lineEdit.text())
         self.lineEdit.setText("")
         self.listWidget.setCurrentItem(None)
-        self.setEnabledAll()
+        self.setDisabledAll()
 
     def removeItemToList(self):
         self.listWidget.takeItem(self.listWidget.currentRow())
