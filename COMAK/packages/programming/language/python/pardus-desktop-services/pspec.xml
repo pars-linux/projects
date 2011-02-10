@@ -16,6 +16,9 @@
         <BuildDependencies>
             <Dependency>python-qt</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">pds-fix-config-path-variable.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>

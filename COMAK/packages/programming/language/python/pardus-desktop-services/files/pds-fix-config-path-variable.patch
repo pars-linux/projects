@@ -1,0 +1,12 @@
+diff -Naur pds-1.2.4_20110210.orig//pds/qiconloader.py pds-1.2.4_20110210/pds/qiconloader.py
+--- pds-1.2.4_20110210.orig//pds/qiconloader.py	2011-02-10 17:48:26.496999908 +0200
++++ pds-1.2.4_20110210/pds/qiconloader.py	2011-02-10 17:50:21.968000250 +0200
+@@ -61,7 +61,7 @@
+             dataDirs = QString('/usr/local/share/:/usr/share/')
+ 
+         dataDirs.prepend(QDir.homePath() + ":")
+-        dataDirs.prepend(self.pds.config_path + 'share:')
++        dataDirs.prepend(str(self.pds.config_path) + 'share:')
+ 
+         if self.pds.session.ExtraDirs:
+             dirs = QFile.decodeName(
