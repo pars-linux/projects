@@ -252,7 +252,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             self.iface.setModuleState(widget.getId(), state == QtCore.Qt.Checked)
         except Exception, e:
             if "Comar.PolicyKit" in e._dbus_error_name:
-                createMessage(self,"Error","Access denied")
+                createMessage(self,"Error","Access denied.")
             else:
                 createMessage(self,"Error", unicode(e))
             self.buildItemList()
@@ -275,7 +275,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
                 self.iface.setModuleParameters(widget.getId(), dialog.getValues())
             except Exception, e:
                 if "Comar.PolicyKit" in e._dbus_error_name:
-                    createMessage(self,"Error","Access denied")
+                    createMessage(self,"Error","Access denied.")
                 else:
                     createMessage(self,"Error", unicode(e))
 
@@ -312,7 +312,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             self.iface.setState(state)
         except Exception, e:
             if "Comar.PolicyKit" in e._dbus_error_name:
-                createMessage(self,"Error", "Access denied")
+                createMessage(self,"Error", "Access denied.")
             else:
                 createMessage(self,"Error", unicode(e))
         self.widgetService.setEnabled(True)

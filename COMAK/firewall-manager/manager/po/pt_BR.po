@@ -77,6 +77,10 @@ msgstr "Ação"
 msgid "Access denied."
 msgstr "Acesso negado."
 
+#: src/firewallmanager/main.py:94
+msgid "Error"
+msgstr "Erro"
+
 #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
 msgid "Settings"
 msgstr "Configurações"
@@ -112,6 +116,22 @@ msgstr "Deletar"
 #: ui/ui_main.py:82
 msgid "Add New"
 msgstr "Adicionar Novo"
+
+#: ui/ui_settingsitem:78
+msgid "Add"
+msgstr "Adicionar"
+
+#: ui/ui_settingsitem:79
+msgid "Remove"
+msgstr "Remover"
+
+#: ui/ui_settingsitem:80
+msgid "Move Up"
+msgstr "Mover para cima"
+
+#: ui/ui_settingsitem:81
+msgid "Move Down"
+msgstr "Descer"
 
 #~ msgid " "
 #~ msgstr " "

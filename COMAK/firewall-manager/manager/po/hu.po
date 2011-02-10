@@ -79,6 +79,10 @@ msgstr "Művelet"
 msgid "Access denied."
 msgstr "Hozzáférés megtagadva."
 
+#: src/firewallmanager/main.py:94
+msgid "Error"
+msgstr "Hiba"
+
 #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
 msgid "Settings"
 msgstr "Beállítások"
@@ -114,6 +118,22 @@ msgstr "Törlés"
 #: ui/ui_main.py:82
 msgid "Add New"
 msgstr "Új hozzáadása"
+
+#: ui/ui_settingsitem:78
+msgid "Add"
+msgstr "Hozzáadása"
+
+#: ui/ui_settingsitem:79
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: ui/ui_settingsitem:80
+msgid "Move Up"
+msgstr "felköltözik"
+
+#: ui/ui_settingsitem:81
+msgid "Move Down"
+msgstr "Lefelé"
 
 #~ msgid " "
 #~ msgstr " "
