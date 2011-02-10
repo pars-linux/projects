@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Pardus Desktop Services</Summary>
         <Description>pardus-desktop-services is a wrapper python module for integrating various desktop environments using PyQt.</Description>
-        <Archive sha1sum="e09f9f2f3d67d66955b0eb9c9881e28c09f9ad78" type="targz">http://x86-64.comu.edu.tr/lxde/pds-1.2.4_20110210.tar.gz</Archive>
+        <Archive sha1sum="9c402c419b459414c1ded049de99c6de6a461a03" type="targz">http://x86-64.comu.edu.tr/lxde/pds-1.2.4_20110210.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>python-qt</Dependency>
         </BuildDependencies>
