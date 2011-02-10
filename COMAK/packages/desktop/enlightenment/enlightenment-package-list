@@ -11,6 +11,7 @@ eina/
 embryo/
 enlightenment/
 evas/
+
 add-ons:
 e-module-calendar/
 e-module-everything-places/
@@ -23,7 +24,13 @@ ethumb/
 itask-ng/
 libeweather/
 
+playground:
+ephoto
+eio
+emotion
 gentoo:
+e-module-trash
+imlib2
 
 e_modules-alarm :yapıldı
     A module to set Alarms in Enlightenment 17
@@ -35,23 +42,14 @@ e_modules-mem
     Memory monitor module for e17
 e_modules-cpu
     CPU monitor module for e17
-ephoto : yapılıyor
-    EFL-based slideshow creator
-epdf  :yapılıyor
+epdf  :yapıldı
     PDF viewer with widgets for Evas
-eio: yapılıyor
-emotion : yapılıyor
-    video libraries for e17
 ecomp
     e17 window manager with compiz
 epsilon
     The Enlightenment epsilon library.
 esmart
     The Enlightenment esmart library.
-trash
-    E17 Freedesktop compliant trash module
-e_modules
-    e_modules meta package - merge this to pull in all e_modules
 edgar: yapılıyor
     E17 Edgar Gadgets Loader
 ecomorph
@@ -69,5 +67,4 @@ e17
 e17-data
 efl-dev
 e17-dbg
-imlib2-src
 epplets
