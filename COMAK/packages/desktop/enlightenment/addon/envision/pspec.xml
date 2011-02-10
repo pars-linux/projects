@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>envision</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Pdf Reader</Summary>
+        <Description>The goal of this project is to create a new, simple and beautiful, PDF reader application powered by the Enlightenment Foundation Libraries.</Description>
+        <Archive sha1sum="0cd2f087baa6190b513734a73608afc522fd7aef" type="targz">http://x86-64.comu.edu.tr/lxde/envision-0.0.1.tar.gz</Archive>
+        </Provides>
+        <BuildDependencies>
+            <Dependency>epdf</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>elementary</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>ecore</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>envision</Name>
+        <RuntimeDependencies>
+            <Dependency>epdf</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>elementary</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>ecore</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-02-11</Date>
+            <Version>0.0.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
