@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM 'http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd'>
+<PISI>
+    <Source>
+        <Name>emotion</Name>
+        <Homepage>http://wiki.enlightenment.org/index.php/Emotion</Homepage>
+        <Packager>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>ibrahim@pardus.org.tr</Email>
+        </Packager>
+        <License>BSD</License>
+        <IsA>library</IsA>
+        <Summary>Enlightenment video and media library</Summary>
+        <Description>Emotion is a video and media object library designed to interface with Evas and Ecore to provide autonomous "video" and "audio" objects that can be moved, resized and positioned like any normal object, but instead they can play video and audio and can be controlled from a high-level control API allowing the programmer to quickly piece together a multi-media system with minimal work.</Description>
+        <Archive sha1sum="5f622482c9dfc34c44f55af7dcc30f216d01a558" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/emotion-0.2.0_55413.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>emotion</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="1.0.0_beta3">eina</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">evas</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">ecore</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">edje</Dependency>
+            <Dependency>gstreamer</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="data">/usr/share/emotion</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>emotion-devel</Name>
+        <Summary>Development files for emotion</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">emotion</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+            <Path fileType="man">/usr/share/man/man3</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="6">
+            <Date>2010-12-09</Date>
+            <Version>0.2.0_55413</Version>
+            <Comment>Version bump.</Comment>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>ibrahim@pardus.org.tr</Email>
+        </Update>
+        <Update release="5">
+            <Date>2008-01-26</Date>
+            <Version>0.1.0.042</Version>
+            <Comment>New snapshot</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2006-11-03</Date>
+            <Version>0.0.1.20060926</Version>
+            <Comment>Link and dep. fix</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2006-10-20</Date>
+            <Version>0.0.1.20060926</Version>
+            <Comment>Version bump</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2006-07-31</Date>
+            <Version>0.0.1.004</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2006-06-10</Date>
+            <Version>0.0.1.004</Version>
+            <Comment>First release</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
