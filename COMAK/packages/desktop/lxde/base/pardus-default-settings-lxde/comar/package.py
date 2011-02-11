@@ -22,3 +22,7 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
         environments = open("/usr/lib/python2.7/site-packages/pds/environments.py","w")
         environments.writelines(environments_array)
         environments.close()
+
+    fileassociations = open("/usr/share/applications/mimeapps.list","a")
+    fileassociations.write("application/pdf=epdview.desktop;")
+    fileassociations.close()
