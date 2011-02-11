@@ -64,7 +64,7 @@ e_modules-cpu
     CPU monitor module for e17
 epdf  :yapıldı
     PDF viewer with widgets for Evas
-ecomp
+ecomp : YAPILIYOR
     e17 window manager with compiz
 epsilon
     The Enlightenment epsilon library.
