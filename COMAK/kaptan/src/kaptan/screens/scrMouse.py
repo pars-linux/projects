@@ -149,11 +149,12 @@ class Widget(QtGui.QWidget, Screen):
 
     def execute(self):
         self.__class__.screenSettings["summaryMessage"] ={}
-
-        self.__class__.screenSettings["summaryMessage"].update({"selectedMouse": ki18n("Left Handed") if self.__class__.screenSettings["selectedMouse"] == "LeftHanded" else ki18n("Right Handed")})
-        self.__class__.screenSettings["summaryMessage"].update({"clickBehaviour": ki18n("Single Click ") if self.clickBehaviour == "True" else ki18n("Double Click")})
-      
+        
         if ctx.Pds.session == ctx.pds.Kde4:
+
+            self.__class__.screenSettings["summaryMessage"].update({"selectedMouse": i18n("Left Handed") if self.__class__.screenSettings["selectedMouse"] == "LeftHanded" else i18n("Right Handed")})
+
+            self.__class__.screenSettings["summaryMessage"].update({"clickBehaviour": i18n("Single Click ") if self.clickBehaviour == "True" else i18n("Double Click")})
 
             config = KConfig("kdeglobals")
             group = config.group("KDE")

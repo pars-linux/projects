@@ -12,10 +12,13 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtCore import *
+        
+import kaptan.screens.context as ctx
+from kaptan.screens.context import *
 
-from PyKDE4.kdecore import ki18n, KConfig, KProcess
-
-from PyKDE4 import kdeui
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdecore import ki18n, KConfig, KProcess
+    from PyKDE4 import kdeui
 
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrPackage import Ui_packageWidget
@@ -25,8 +28,8 @@ import subprocess
 isUpdateOn = False
 
 class Widget(QtGui.QWidget, Screen):
-    title = ki18n("Packages")
-    desc = ki18n("Install / Remove Programs")
+    title = i18n("Packages")
+    desc = i18n("Install / Remove Programs")
 
     # min update time
     updateTime = 12
@@ -81,15 +84,17 @@ class Widget(QtGui.QWidget, Screen):
         return True
 
 class Config:
-    def __init__(self, config):
-        self.config = KConfig(config)
-        self.group = None
+    if ctx.Pds.session == ctx.pds.Kde4:
+        def __init__(self, config):
+            self.config = KConfig(config)
+            self.group = None
 
-    def setValue(self, option, value):
-        self.group = self.config.group("General")
-        self.group.writeEntry(option, QVariant(value))
-        self.config.sync()
-
+        def setValue(self, option, value):
+            self.group = self.config.group("General")
+            self.group.writeEntry(option, QVariant(value))
+            self.config.sync()
+    else:
+        pass
 class PMConfig(Config):
     def __init__(self):
         Config.__init__(self, "package-managerrc")
