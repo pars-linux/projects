@@ -13,9 +13,15 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtGui import QFileDialog
+        
+import kaptan.screens.context as ctx
+from kaptan.screens.context import *
 
 from PyQt4.QtCore import *
-from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
+
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
+
 import os, sys, subprocess
 
 from kaptan.screen import Screen
@@ -31,8 +37,8 @@ class Widget(QtGui.QWidget, Screen):
     screenSettings["hasChanged"] = False
 
     # title and description at the top of the dialog window
-    title = ki18n("Wallpaper")
-    desc = ki18n("Choose a Wallpaper")
+    title = i18n("Wallpaper")
+    desc = i18n("Choose a Wallpaper")
 
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
@@ -45,11 +51,13 @@ class Widget(QtGui.QWidget, Screen):
         rect =  QtGui.QDesktopWidget().screenGeometry()
 
         # Get metadata.desktop files from shared wallpaper directory
-        lst= KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
-
-        for desktopFiles in lst:
-            parser = DesktopParser()
-            parser.read(str(desktopFiles))
+        
+        if ctx.Pds.session == ctx.pds.Kde4:
+            lst= KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
+        
+            for desktopFiles in lst:
+                parser = DesktopParser()
+                parser.read(str(desktopFiles))
 
             try:
                 wallpaperTitle = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
@@ -89,7 +97,7 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.listWallpaper.setItemWidget(item, widget)
             # Add a hidden value to each item for detecting selected wallpaper's path.
             item.setStatusTip(wallpaperFile)
-
+        
         self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.setWallpaper)
         self.ui.checkBox.connect(self.ui.checkBox, SIGNAL("stateChanged(int)"), self.disableWidgets)
         self.ui.buttonChooseWp.connect(self.ui.buttonChooseWp, SIGNAL("clicked()"), self.selectWallpaper)
