@@ -40,7 +40,7 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_welcomeWidget()
         self.ui.setupUi(self)
-        Widget.desc = unicode(Widget.desc) % tools.getRelease()
+        Widget.desc = Widget.desc % tools.getRelease()
 
     def shown(self):
         pass
