@@ -23,6 +23,7 @@ from distutils.command.build import build
 from distutils.command.install import install
 
 import about
+PROJECT = about.appName
 
 def update_messages():
     # Create empty directory
@@ -31,7 +32,7 @@ def update_messages():
 
     # Collect UI files
     for filename in glob.glob1("ui", "*.ui"):
-        os.system("pykde4uic -o .tmp/%s.py ui/%s" % (filename.split(".")[0], filename))
+        os.system("pyuic4 -o .tmp/%s.py ui/%s -g %s" % (filename.split(".")[0], filename,PROJECT))
 
     # Collect Python files
     directories = [ "src/kaptan",
@@ -90,7 +91,7 @@ class Build(build):
         # Copy compiled UIs and RCs
         print "Generating UIs..."
         for filename in glob.glob1("ui", "*.ui"):
-            os.system("pykde4uic -o build/kaptan/screens/%s.py ui/%s" % (filename.split(".")[0], filename))
+            os.system("pyuic4 -o build/kaptan/screens/%s.py ui/%s -g %s" % (filename.split(".")[0], filename,PROJECT))
         print "Generating RCs..."
         for filename in glob.glob1("data", "*.qrc"):
             os.system("pyrcc4 data/%s -o build/kaptan/%s_rc.py" % (filename, filename.split(".")[0]))

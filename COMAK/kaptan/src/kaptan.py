@@ -11,12 +11,12 @@ from kaptan.screens.context import *
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QTimeLine,QSettings
 
-
+#Kaptan Stuff
 from kaptan.screens.ui_kaptan import Ui_kaptan
 from kaptan.tools import tools
 from kaptan.tools.progress_pie import DrawPie
 from kaptan.tools.kaptan_menu import Menu
-
+#QSettings path ayarı
 HOME_DIR = os.environ["HOME"]
 QSettings.setPath(QSettings.IniFormat, QSettings.UserScope, HOME_DIR)
 
@@ -36,8 +36,12 @@ class Kaptan(QtGui.QWidget):
         self.descriptions = []
         self.currentDir = os.path.dirname(os.path.realpath(__file__))
         self.screensPath = self.currentDir + "/kaptan/screens/scr*py"
-       # self.kaptanConfig = KConfig("kaptanrc")
-        self.kaptanConfig = QSettings(".kde4/share/config/kaptanrc",QSettings.IniFormat)
+        #Config
+        if ctx.Pds.session == ctx.pds.Kde4:
+            self.kaptanConfig = KConfig("kaptanrc")
+            self.plasmaConfig = KConfig("plasma-desktop-appletsrc")
+        else:
+            self.kaptanConfig = QSettings(".kde4/share/config/kaptanrc",QSettings.IniFormat)
     def signalHandler(self):
         ''' connects signals to slots '''
         self.connect(self.ui.buttonNext, QtCore.SIGNAL("clicked()"), self.slotNext)
@@ -49,7 +53,7 @@ class Kaptan(QtGui.QWidget):
     def initializeUI(self):
         ''' initializes the human interface '''
         self.ui = Ui_kaptan()
-        self. ui.setupUi(self)
+        self.ui.setupUi(self)
 
         # load screens
         tools.loadScreens(self.screensPath, globals())
@@ -64,7 +68,10 @@ class Kaptan(QtGui.QWidget):
 
         # Get Screen Titles
         for screen in self.screens:
-            title = str(screen.Widget.title)
+            ####################
+            #title = screen.Widget.title.toString()
+            title = i18n(screen.Widget.title)
+            
             self.titles.append(title)
 
         # draw progress pie
@@ -156,6 +163,7 @@ class Kaptan(QtGui.QWidget):
             self.ui.mainStack.setCurrentIndex(id)
 
             # Set screen title
+    
             self.ui.screenTitle.setText(self.descriptions[id])
 
             _w = self.ui.mainStack.currentWidget()
@@ -190,7 +198,8 @@ class Kaptan(QtGui.QWidget):
             _scr = screen.Widget()
 
             # Append screen descriptions to list
-            self.descriptions.append(str(_scr.desc))
+            #self.descriptions.append(_scr.desc.toString())
+            self.descriptions.append(_scr.desc)
 
             # Append screens to stack widget
             self.ui.mainStack.addWidget(_scr)
@@ -253,7 +262,6 @@ if __name__ == "__main__":
         app.exec_()
      else:
         import gettext
-
         __trans = gettext.translation('kaptan', fallback=True)
         i18n = __trans.ugettext
         
@@ -267,7 +275,7 @@ if __name__ == "__main__":
         kaptan.show()
         tools.centerWindow(kaptan)
 
-        print "kdesiz efem"
+    
 
         app.exec_()
 
