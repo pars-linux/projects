@@ -7,8 +7,6 @@
 
 from pisi.actionsapi import pythonmodules
 
-WorkDir="boot-manager"
-
 def install():
     pythonmodules.install()
 
