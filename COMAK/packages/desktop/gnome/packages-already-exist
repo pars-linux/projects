@@ -1,0 +1,34 @@
+gconf			2.31.0      	2.32.1
+atk			1.30.0 		1.33.6
+gdk-pixbuf		2.22.1		2.23.0
+glibmm			2.24.2		2.27.93
+gnome-desktop		2.32.0		2.32.1
+gnome-doc-utils		0.20.1		0.20.4
+gobject-introspection	0.9.12		0.10.1
+gst-plugins-base	0.10.30		0.10.32
+gst-plugins-good	0.10.25		0.10.27
+gstreamer		0.10.30		0.10.32
+gtk+-2(gtk2)		2.22.1		2.24.0
+gtk-doc			1.15		1.16
+gvfs			1.6.3		1.7.2
+libgnome-keyring	2.32.3		2.32.0
+libgtop			2.28.2		2.28.2
+libgweather		2.30.2		2.30.3
+librsvg			2.31.0		2.32.1
+libsoup			2.32.2		2.33.6
+libwnck			2.30.6		2.30.6
+network-manager-applet	0.8.2		0.8.2
+notification-daemon	0.5.0		0.7.0
+pango 			1.28.3		1.28.3
+pangomm			2.26.2		2.27.1
+vte			0.26.1		0.27.5
+
+
+evolution-data-server	2.30.2		2.91.6
+gnome-keyring		2.32.0		2.91.4
+gnome-menus		2.26.1		2.91.6     	(lxde depo)
+gtkmm			2.20.3		2.99.3
+gnome-desktop		2.32.0		2.91.6.1
+gtk+-2(gtk2)		2.22.1		2.99.3
+libgweather		2.30.2		2.91.6
+libwnck			2.30.6		2.91.6
