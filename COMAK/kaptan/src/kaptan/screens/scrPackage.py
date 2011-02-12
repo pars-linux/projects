@@ -68,13 +68,15 @@ class Widget(QtGui.QWidget, Screen):
 
     def applySettings(self):
         # write selected configurations to future package-managerrc
-        config = PMConfig()
-        config.setSystemTray(QVariant(self.ui.showTray.isChecked()))
-        config.setUpdateCheck(QVariant(self.ui.checkUpdate.isChecked()))
-        config.setUpdateCheckInterval(QVariant(self.ui.updateInterval.value() * 60))
+        if ctx.Pds.session == ctx.pds.Kde4:
 
-        if self.ui.showTray.isChecked():
-            p = subprocess.Popen(["package-manager"], stdout=subprocess.PIPE)
+            config = PMConfig()
+            config.setSystemTray(QVariant(self.ui.showTray.isChecked()))
+            config.setUpdateCheck(QVariant(self.ui.checkUpdate.isChecked()))
+            config.setUpdateCheckInterval(QVariant(self.ui.updateInterval.value() * 60))
+
+            if self.ui.showTray.isChecked():
+                p = subprocess.Popen(["package-manager"], stdout=subprocess.PIPE)
 
     def shown(self):
         pass
@@ -96,14 +98,16 @@ class Config:
     else:
         pass
 class PMConfig(Config):
-    def __init__(self):
-        Config.__init__(self, "package-managerrc")
+    if ctx.Pds.session == ctx.pds.Kde4:
 
-    def setSystemTray(self, enabled):
-        self.setValue("SystemTray", enabled)
+        def __init__(self):
+            Config.__init__(self, "package-managerrc")
 
-    def setUpdateCheck(self, enabled):
-        self.setValue("UpdateCheck", enabled)
+        def setSystemTray(self, enabled):
+            self.setValue("SystemTray", enabled)
 
-    def setUpdateCheckInterval(self, value):
-        self.setValue("UpdateCheckInterval", value)
+        def setUpdateCheck(self, enabled):
+            self.setValue("UpdateCheck", enabled)
+
+        def setUpdateCheckInterval(self, value):
+            self.setValue("UpdateCheckInterval", value)
