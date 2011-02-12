@@ -62,7 +62,7 @@ class Widget(QtGui.QWidget, Screen):
         content.append("""<html><body><ul>""")
 
         # Mouse Settings
-        content.append(subject % ki18n("Mouse Settings").toString())
+        content.append(subject % i18n("Mouse Settings").toString())
 
         content.append(item % i18n("Selected Mouse configuration: <b>%s</b>").toString() % self.mouseSettings["summaryMessage"]["selectedMouse"].toString())
         content.append(item % i18n("Selected clicking behaviour: <b>%s</b>").toString() % self.mouseSettings["summaryMessage"]["clickBehaviour"].toString())
