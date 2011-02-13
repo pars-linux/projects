@@ -133,3 +133,11 @@ msgstr "Podnieść Się"
 msgid "Move Down"
 msgstr "Opuszczać"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "w porządku"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "anulować"
+

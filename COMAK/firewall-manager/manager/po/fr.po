@@ -1,3 +1,5 @@
+#ifndef FR.PO
+#define FR.PO
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # 
@@ -133,5 +135,15 @@ msgstr "Déplacer vers le haut"
 msgid "Move Down"
 msgstr "Descendre"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "Bien"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "Annuler"
+
 #~ msgid " "
+
 #~ msgstr " "
+#endif // FR.PO

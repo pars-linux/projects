@@ -137,5 +137,13 @@ msgstr "Subir"
 msgid "Move Down"
 msgstr "Bajar"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "Bien"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "Cancelar"
+
 #~ msgid " "
 #~ msgstr " "

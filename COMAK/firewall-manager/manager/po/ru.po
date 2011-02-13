@@ -132,3 +132,11 @@ msgstr "придвигаться"
 msgid "Move Down"
 msgstr "спускать"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "хорошо"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "Отменить"
+

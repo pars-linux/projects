@@ -132,3 +132,11 @@ msgstr "Yuxarı Daşı"
 msgid "Move Down"
 msgstr "Aşağı Daşı"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "Əvət"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "ləğv etmək"
+
