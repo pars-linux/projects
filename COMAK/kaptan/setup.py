@@ -16,6 +16,7 @@ import glob
 import shutil
 import sys
 import fnmatch
+sys.path.append(os.path.join(os.path.split(__file__)[0],"src","kaptan","screens"))
 
 from distutils.core import setup
 from distutils.cmd import Command
