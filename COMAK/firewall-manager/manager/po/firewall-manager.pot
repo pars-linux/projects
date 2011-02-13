@@ -130,3 +130,12 @@ msgstr ""
 #:ui/ui_settingsitem.py:78
 msgid "Move Down"
 msgstr ""
+
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr ""
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr ""
+

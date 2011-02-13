@@ -134,5 +134,13 @@ msgstr "overgaan"
 msgid "Move Down"
 msgstr "Naar beneden"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "Okay"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "Annuleren"
+
 #~ msgid " "
 #~ msgstr " "

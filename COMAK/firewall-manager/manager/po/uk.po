@@ -134,3 +134,11 @@ msgstr "Вгору"
 msgid "Move Down"
 msgstr "Вниз"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "добре"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "Скасувати"
+

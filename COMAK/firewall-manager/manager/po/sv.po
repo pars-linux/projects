@@ -133,5 +133,13 @@ msgstr "Flytta upp"
 msgid "Move Down"
 msgstr "Flytta ned"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "okej"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "avbryta"
+
 #~ msgid " "
 #~ msgstr " "

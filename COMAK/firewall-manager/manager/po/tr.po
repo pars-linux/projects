@@ -136,5 +136,13 @@ msgstr "Yukarı Taşı"
 msgid "Move Down"
 msgstr "Asağı Taşı"
 
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "Tamam"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "İptal"
+
 #~ msgid " "
 #~ msgstr " "
