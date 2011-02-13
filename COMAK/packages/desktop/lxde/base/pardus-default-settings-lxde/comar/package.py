@@ -24,7 +24,7 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
         environments.close()
 
     fileassociations = open("/usr/share/applications/mimeapps.list","a")
-    fileassociations.write("application/pdf=epdview.desktop;\n")
+    fileassociations.write("application/pdf=epdfview.desktop;\n")
     fileassociations.write("application/zip=xarchiver.desktop;\n")
     fileassociations.write("application/x-rar=xarchiver.desktop;\n")
     fileassociations.write("application/x-compressed-tar=xarchiver.desktop;\n")
