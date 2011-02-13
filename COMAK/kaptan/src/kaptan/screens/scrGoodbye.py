@@ -38,7 +38,6 @@ class Widget(QtGui.QWidget, Screen):
        # lang = KGlobal.locale().language()
         locale=QLocale()
         lang = locale.language()
-        print lang
         if lang == "tr":
             self.helpPageUrl = "http://www.pardus.org.tr/destek"
         else:
