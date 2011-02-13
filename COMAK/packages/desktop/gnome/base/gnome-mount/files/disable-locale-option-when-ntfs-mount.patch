@@ -1,0 +1,12 @@
+diff -Nuar gnome-mount-0.8.orig//gnome-mount.schemas.in gnome-mount-0.8//gnome-mount.schemas.in
+--- gnome-mount-0.8.orig//gnome-mount.schemas.in	2011-02-13 03:49:49.986000046 +0200
++++ gnome-mount-0.8//gnome-mount.schemas.in	2011-02-13 03:50:11.264000045 +0200
+@@ -64,7 +64,7 @@
+         <applyto>/system/storage/default_options/ntfs-3g/mount_options</applyto>
+         <type>list</type>
+         <list_type>string</list_type>
+-        <default>[locale=]</default>
++        <default></default>
+         <locale name="C">
+           <short>Default mount options for ntfs-3g fs</short>
+           <long>A list of default mount options for volumes formatted with the ntfs file system using ntfs-3g.</long>

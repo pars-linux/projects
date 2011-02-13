@@ -22,6 +22,7 @@
         </BuildDependencies>
         <Patches>
             <Patch>disable-gconf-schemas-install.patch</Patch>
+            <Patch level="1">disable-locale-option-when-ntfs-mount.patch</Patch>
         </Patches>
     </Source>
 
