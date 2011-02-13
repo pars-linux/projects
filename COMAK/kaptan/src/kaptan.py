@@ -163,8 +163,10 @@ class Kaptan(QtGui.QWidget):
             self.ui.mainStack.setCurrentIndex(id)
 
             # Set screen title
-    
-            self.ui.screenTitle.setText(self.descriptions[id])
+            try:    
+                self.ui.screenTitle.setText(self.descriptions[id].toString())
+            except AttributeError:
+                self.ui.screenTitle.setText(self.descriptions[id])
 
             _w = self.ui.mainStack.currentWidget()
             _w.update()
