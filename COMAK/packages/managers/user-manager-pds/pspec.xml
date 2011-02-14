@@ -15,6 +15,7 @@
         <Archive sha1sum="6dfa2be384d903a99daf2f5c959bafad92824234" type="tarbz2">http://www.mesutcankurt.com/comak/user-manager.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>pardus-desktop-services</Dependency>
+            <Dependency>intltool</Dependency>
             <Dependency>docutils</Dependency>
             <Dependency>python-qt-devel</Dependency>
         </BuildDependencies>
