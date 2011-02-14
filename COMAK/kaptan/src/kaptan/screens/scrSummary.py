@@ -36,6 +36,7 @@ import kaptan.screens.scrSmolt  as smoltWidget
 import kaptan.screens.scrAvatar  as avatarWidget
 
 from kaptan.tools import tools
+from kaptan.tools.tools import toString
 
 class Widget(QtGui.QWidget, Screen):
     title = i18n("Summary")
@@ -62,72 +63,47 @@ class Widget(QtGui.QWidget, Screen):
         content.append("""<html><body><ul>""")
 
         # Mouse Settings
-        try:
-            content.append(subject % i18n("Mouse Settings").toString())
-            content.append(item % i18n("Selected Mouse configuration: <b>%s</b>").toString() % self.mouseSettings["summaryMessage"]["selectedMouse"].toString())
-            content.append(item % i18n("Selected clicking behaviour: <b>%s</b>").toString() % self.mouseSettings["summaryMessage"]["clickBehaviour"].toString())
-            content.append(end)
-            
-        except:
-            content.append(subject % i18n("Mouse Settings"))
-            #content.append(item % i18n("Selected Mouse configuration: <b>%s</b>") % self.mouseSettings["summaryMessage"]["selectedMouse"])
-            #content.append(item % i18n("Selected clicking behaviour: <b>%s</b>") % self.mouseSettings["summaryMessage"]["clickBehaviour"])
-            content.append(end)
+        content.append(subject % toString(i18n("Mouse Settings")))
+        #-content.append(item % toString(i18n("Selected Mouse configuration: <b>%s</b>")) % toString(self.mouseSettings["summaryMessage"]["selectedMouse"]))
+        #-content.append(item % i18n("Selected clicking behaviour: <b>%s</b>").toString() % toString(self.mouseSettings["summaryMessage"]["clickBehaviour"]))
+        content.append(end)
+
 
         # Menu Settings
-        try:
-            content.append(subject % i18n("Menu Settings").toString())
-            content.append(item % i18n("Selected Menu: <b>%s</b>").toString() % self.menuSettings["summaryMessage"].toString())
-            content.append(end)
-        except:
-            content.append(subject % i18n("Menu Settings"))
-            #content.append(item % i18n("Selected Menu: <b>%s</b>") % self.menuSettings["summaryMessage"])
-            content.append(end)
-        # Wallpaper Settings
-        try:
-            content.append(subject % i18n("Wallpaper Settings").toString())
-        except:
-            content.append(subject % i18n("Wallpaper Settings"))
-           
-            """ if not self.wallpaperSettings["hasChanged"]:
-                    content.append(item % i18n("You haven't selected any wallpaper.").toString())
-                else:
-                    content.append(item % i18n("Selected Wallpaper: <b>%s</b>").toString() % os.path.basename(str(self.wallpaperSettings["selectedWallpaper"])))
-                    content.append(end)
-            """
-        # Style Settings
-        try:
-            content.append(subject % i18n("Style Settings").toString())
-        except:
-            content.append(subject % i18n("Style Settings"))
-        if not self.styleSettings["hasChanged"]:
-            try:
-                content.append(item % i18n("You haven't selected any style.").toString())
-            except:
+        content.append(subject % toString(i18n("Menu Settings")))
+        #-content.append(item % toString(i18n("Selected Menu: <b>%s</b>")) % toString(self.menuSettings["summaryMessage"]))
+        content.append(end)
 
-                content.append(item % i18n("You haven't selected any style."))
+        # Wallpaper Settings
+        content.append(subject % toString(i18n("Wallpaper Settings")))
+
+        if not self.wallpaperSettings["hasChanged"]:
+            content.append(item % toString(i18n("You haven't selected any wallpaper.")))
         else:
-            content.append(item % i18n("Selected Style: <b>%s</b>").toString() % unicode(self.styleSettings["summaryMessage"]))
+            content.append(item % toString(i18n("Selected Wallpaper: <b>%s</b>")) % os.path.basename(str(self.wallpaperSettings["selectedWallpaper"])))
+        content.append(end)
+
+       # Style Settings
+        content.append(subject % toString(i18n("Style Settings")))
+
+        if not self.styleSettings["hasChanged"]:
+            content.append(item % toString(i18n("You haven't selected any style.")))
+        else:
+            content.append(item % toString(i18n("Selected Style: <b>%s</b>")) % unicode(self.styleSettings["summaryMessage"]))
 
         content.append(end)
 
         # Smolt Settings
         try:
             if self.smoltSettings["summaryMessage"]:
-                content.append(subject %i18n("Smolt Settings").toString())
-                content.append(item % i18n("Send my profile: <b>%s</b>").toString() % self.smoltSettings["summaryMessage"])
+                content.append(subject % toString(i18n("Smolt Settings")))
+                content.append(item % toString(i18n("Send my profile: <b>%s</b>")) % self.smoltSettings["summaryMessage"])
                 #content.append(ki18n("(<i><u>Warning:</u> Sending profile requires to set up communication with Smolt server and can take between 30 seconds to a minute. Kaptan may freeze during this time.</i>)").toString())
                 content.append(end)
         except:
-            #print "WARNING: Your Smolt profile is already sent."
+            print "WARNING: Your Smolt profile is already sent."
 
-            content.append(subject %i18n("Smolt Settings"))
-            content.append(item % i18n("Send my profile: <b>%s</b>") % self.smoltSettings["summaryMessage"])
-            content.append(end)
-            
-            content.append(subject %i18n("Smolt Settings"))
-            content.append(item % i18n("Send my profile: <b>%s</b>") % self.smoltSettings["summaryMessage"])
-            content.append(end)
+
         content.append("""</ul></body></html>""")
         self.ui.textSummary.setHtml(content)
 

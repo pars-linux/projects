@@ -45,11 +45,19 @@ class Widget(QtGui.QWidget, Screen):
         # set initial checkbox visibility
         self.ui.checkUpdate.setVisible(False)
         self.ui.updateInterval.setVisible(False)
-
+        
         # set signals
         self.ui.showTray.connect(self.ui.showTray, SIGNAL("toggled(bool)"), self.enableCheckTime)
         self.ui.checkUpdate.connect(self.ui.checkUpdate, SIGNAL("toggled(bool)"), self.updateSelected)
+        
+        self.connect(self.ui.checkBox,SIGNAL("stateChanged(int)"),self.addRepo)
 
+    def addRepo(self):
+        if(self.ui.checkBox.isChecked()):
+            from pisi import api as addRepo
+            addRepo.add_repo("lxde", "http://x86-64.comu.edu.tr/lxde/i686/pisi-index.xml.xz")
+        else:
+            print "deneme"
     def enableCheckTime(self):
         if self.ui.showTray.isChecked():
             self.ui.checkUpdate.setVisible(True)
