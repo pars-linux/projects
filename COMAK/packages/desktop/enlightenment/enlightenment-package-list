@@ -66,9 +66,9 @@ epdf  :yapıldı
     PDF viewer with widgets for Evas
 ecomp : YAPILIYOR
     e17 window manager with compiz
-epsilon
+epsilon : İptal edildi(Eski olduğundan değerliyemedim))
     The Enlightenment epsilon library.
-esmart
+esmart : yapiliyor
     The Enlightenment esmart library.
 edgar: yapılıyor
     E17 Edgar Gadgets Loader
