@@ -68,7 +68,7 @@ ecomp : YAPILIYOR
     e17 window manager with compiz
 epsilon : İptal edildi(Eski olduğundan değerliyemedim))
     The Enlightenment epsilon library.
-esmart : yapiliyor
+esmart :
     The Enlightenment esmart library.
 edgar: yapılıyor
     E17 Edgar Gadgets Loader
