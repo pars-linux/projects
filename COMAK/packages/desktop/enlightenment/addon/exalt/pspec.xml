@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>exalt</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPL2</License>
+        <IsA>library</IsA>
+        <Summary>Netwok manager</Summary>
+        <Description>Netwok manager based on EFL</Description>
+        <Archive sha1sum="dfcc8dfb3d02135c126a98b5f850752349de483d" type="targz">http://x86-64.comu.edu.tr/lxde/source/exalt-0.9.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.4.0">eet-devel</Dependency>
+            <Dependency versionFrom="1.0.0">e_dbus-devel</Dependency>
+            <Dependency versionFrom="1.0.0">eina-devel</Dependency>
+            <Dependency versionFrom="1.0.0">ecore-devel</Dependency>
+            <Dependency>dhclient</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>exalt</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="1.4.0">eet</Dependency>
+            <Dependency versionFrom="1.0.0">e_dbus</Dependency>
+            <Dependency versionFrom="1.0.0">eina</Dependency>
+            <Dependency versionFrom="1.0.0">ecore</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/sbin</Path>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/etc/dbus-1/system.d/exalt.conf">exalt.conf</AdditionalFile>
+        </AdditionalFiles>
+    </Package>
+    <Package>
+        <Name>exalt-devel</Name>
+        <RuntimeDependencies>
+            <Dependency>exalt</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+            <Path fileType="header">/usr/include/</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-02-15</Date>
+            <Version>0.9</Version>
+            <Comment>First release</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
