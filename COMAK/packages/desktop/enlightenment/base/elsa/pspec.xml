@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>elsa</Name>
+        <Homepage>http://</Homepage>
+        <Packager>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>elsa is the login manager of enlightenment desktop environment</Summary>
+        <Description>elsa</Description>
+        <Archive sha1sum="ba010eb3984c5d53949de0abde096fb8efaf15f5" type="targz">./elsa-0.17.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>efreet</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>eet</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>ecore-file</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>elsa</Name>
+        <RuntimeDependencies>
+            <Dependency>xorg-server</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-02-15</Date>
+            <Version>0.17</Version>
+            <Comment>First release.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
+    </History>
+</PISI>
+
