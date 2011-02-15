@@ -12,20 +12,25 @@
         <IsA>library</IsA>
         <Summary>e-modules-cpu</Summary>
         <Description>CPU monitor module for e17</Description>
-        <Archive sha1sum="e91174aaf5218b78e619ccee7ed810484f18f54f" type="tarbz2">./cpu-0.0.1_55225.tar.bz2</Archive>
-        <!--<BuildDependencies>
-            <Dependency></Dependency>
+        <Archive sha1sum="e91174aaf5218b78e619ccee7ed810484f18f54f" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/cpu-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>eet</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>ecore</Dependency>
         </BuildDependencies>
-        <Patches>
-            <Patch level=""></Patch>
-        </Patches>-->
     </Source>
 
     <Package>
-        <Name>e-module-net</Name>
-        <!--<RuntimeDependencies>
-            <Dependency versionFrom=""></Dependency>
-        </RuntimeDependencies>-->
+        <Name>e-modules-cpu</Name>
+        <RuntimeDependencies>
+            <Dependency>eet</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>ecore</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
