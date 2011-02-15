@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e-modules-cpu</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>e-modules-cpu</Summary>
+        <Description>CPU monitor module for e17</Description>
+        <Archive sha1sum="e91174aaf5218b78e619ccee7ed810484f18f54f" type="tarbz2">./cpu-0.0.1_55225.tar.bz2</Archive>
+        <!--<BuildDependencies>
+            <Dependency></Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level=""></Patch>
+        </Patches>-->
+    </Source>
+
+    <Package>
+        <Name>e-module-net</Name>
+        <!--<RuntimeDependencies>
+            <Dependency versionFrom=""></Dependency>
+        </RuntimeDependencies>-->
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-02-14</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
