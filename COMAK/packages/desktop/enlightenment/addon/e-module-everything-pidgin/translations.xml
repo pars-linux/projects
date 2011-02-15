@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-everything-pidgin</Name>
+        <Summary xml:lang="tr">Enlightenment için Everything Pidgin modülü</Summary>
+        <Description xml:lang="tr">e-module-everything-pidgin Pidgin arkadaş listenizdeki kişilerle daha rahat konuşabilmek için kısayollar sunan bir Everything eklentisidir.</Description>
+    </Source>
+</PISI>
+
