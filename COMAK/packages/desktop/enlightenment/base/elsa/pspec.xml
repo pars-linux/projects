@@ -18,7 +18,6 @@
             <Dependency>eina</Dependency>
             <Dependency>eet</Dependency>
             <Dependency>ecore</Dependency>
-            <Dependency>ecore-file</Dependency>
         </BuildDependencies>
     </Source>
 
