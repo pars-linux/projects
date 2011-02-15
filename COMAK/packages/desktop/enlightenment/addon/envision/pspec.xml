@@ -13,7 +13,6 @@
         <Summary>Pdf Reader</Summary>
         <Description>The goal of this project is to create a new, simple and beautiful, PDF reader application powered by the Enlightenment Foundation Libraries.</Description>
         <Archive sha1sum="0cd2f087baa6190b513734a73608afc522fd7aef" type="targz">http://x86-64.comu.edu.tr/lxde/envision-0.0.1.tar.gz</Archive>
-        </Provides>
         <BuildDependencies>
             <Dependency>epdf</Dependency>
             <Dependency>eina</Dependency>
