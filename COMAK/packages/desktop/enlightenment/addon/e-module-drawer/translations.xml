@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e17-module-drawer</Name>
+        <Summary xml:lang="tr">Enlightenment17 için bir çizici modülü</Summary>
+        <Description xml:lang="tr">e17-module-drawer, Enlightenment17 için basit bir çizici modülüdür.</Description>
+    </Source>
+</PISI>
