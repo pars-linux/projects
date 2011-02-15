@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>rage</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPL2</License>
+        <IsA>library</IsA>
+        <Summary>Video Frontend</Summary>
+        <Description>Video frontend using the EFL</Description>
+        <Archive sha1sum="766b35e9f3c9f808732677e27be81493d4517501" type="tarbz2">http://x86-64.comu.edu.tr/lxde/rage-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
+            <Dependency>emotion-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>rage</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="1.4.0_beta3">eet</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">evas</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">eina</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">edje</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">ecore</Dependency>
+            <Dependency>emotion</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-01-07</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
