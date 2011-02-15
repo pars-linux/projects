@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>empower</Name>
+        <Summary xml:lang="tr">Enlightenment için grafik arabirimli bir sudo aracı</Summary>
+        <Description xml:lang="tr">Empower, Enlightenment için grafik arabirimli bir sudo aracıdır.</Description>
+    </Source>
+</PISI>
