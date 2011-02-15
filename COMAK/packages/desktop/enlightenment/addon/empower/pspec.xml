@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>empower</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Packager>
+        <License>BSD</License>
+        <IsA>app:gui</IsA>
+        <Summary>A graphical sudo tool based on Enlightenment</Summary>
+        <Description>A graphical sudo tool based on Enlightenment.</Description>
+        <Archive sha1sum="eb2769a259dee41b48faa2af814565e22d8f0a60" type="targz">http://x86-64.comu.edu.tr/lxde/source/empower-2.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.7.3.4">git</Dependency>
+            <Dependency versionFrom="1.0.0">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.0">ecore-devel</Dependency>
+            <Dependency versionFrom="0.7.0_55225">elementary</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>empower</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="1.0.0">evas</Dependency>
+            <Dependency versionFrom="1.0.0">ecore</Dependency>
+            <Dependency versionFrom="0.7.0_55225">elementary</Dependency>
+        </RuntimeDependencies>
+
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="4">
+            <Date>2010-02-15</Date>
+            <Version>2.0.0</Version>
+            <Comment>Update</Comment>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2009-01-25</Date>
+            <Version>1.5.2_20090122</Version>
+            <Comment>Bump to fresh ss of trunk.</Comment>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>h.ibrahim.gungor@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-11-23</Date>
+            <Version>1.5.0_20080128</Version>
+            <Comment>Minor fixes.</Comment>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>h.ibrahim.gungor@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-01-28</Date>
+            <Version>1.5.0_20080128</Version>
+            <Comment>New snapshot</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
