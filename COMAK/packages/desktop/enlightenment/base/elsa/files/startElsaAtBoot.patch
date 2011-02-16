@@ -1,0 +1,23 @@
+diff -Nuar elsa.orig//src/daemon/elsa.c elsa//src/daemon/elsa.c
+--- elsa.orig//src/daemon/elsa.c	2011-02-16 16:08:31.681971762 +0200
++++ elsa//src/daemon/elsa.c	2011-02-16 18:09:23.961180915 +0200
+@@ -1,6 +1,7 @@
+ #include "elsa.h"
+ #include <sys/types.h>
+ #include <unistd.h>
++#include <string.h>
+ #include "Ecore_Getopt.h"
+ #include <xcb/xcb.h>
+ 
+@@ -193,7 +194,10 @@
+         ECORE_GETOPT_VALUE_BOOL(quit_option),
+         ECORE_GETOPT_VALUE_NONE
+      };
+-
++   char parameterFromXdm[] = { '-','n','o','d','a','e','m','o','n','\0'};
++   if (strcmp(argv[1],parameterFromXdm) == 0 ) {
++       argv[1] ="--nodaemon"; //{'-','-','n','o','d','a','e','m','o','n','\0'};
++    }
+    args = ecore_getopt_parse(&options, values, argc, argv);
+    if (args < 0)
+      {
