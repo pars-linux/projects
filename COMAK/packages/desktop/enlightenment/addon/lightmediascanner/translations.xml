@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>lightmediascanner</Name>
+        <Summary xml:lang="tr">Hafif bir ortam tarayıcı</Summary>
+        <Description xml:lang="tr">lightmediascanner, gömülü sistemlerde veya eski makineler gibi işlem gücü yüksek olmayan sistemlerde kullanılan hafif bir ortam tarayıcısıdır.</Description>
+    </Source>
+
+    <Package>
+        <Name>lightmediascanner-devel</Name>
+        <Summary xml:lang="tr">lightmediascanner için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+
