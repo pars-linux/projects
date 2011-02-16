@@ -18,6 +18,7 @@
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
+            <Dependency versionFrom="1.1.19">xine-lib-devel</Dependency>
             <Dependency>gstreamer-devel</Dependency>
         </BuildDependencies>
     </Source>
@@ -29,6 +30,7 @@
             <Dependency versionFrom="1.0.0_beta3">evas</Dependency>
             <Dependency versionFrom="1.0.0_beta3">ecore</Dependency>
             <Dependency versionFrom="1.0.0_beta3">edje</Dependency>
+            <Dependency versionFrom="1.1.19">xine-lib</Dependency>
             <Dependency>gstreamer</Dependency>
         </RuntimeDependencies>
         <Files>
