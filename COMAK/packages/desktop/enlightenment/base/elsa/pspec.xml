@@ -14,10 +14,11 @@
         <Description>elsa</Description>
         <Archive sha1sum="ba010eb3984c5d53949de0abde096fb8efaf15f5" type="targz">./elsa-0.17.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>efreet</Dependency>
+            <Dependency>efreet-devel</Dependency>
             <Dependency>eina</Dependency>
             <Dependency>eet</Dependency>
-            <Dependency>ecore</Dependency>
+            <Dependency>ecore-devel</Dependency>
+            <Dependency>elementary-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -28,8 +29,8 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/sbin</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
@@ -37,7 +38,6 @@
             <Path fileType="data">/usr/share</Path>
         </Files>
     </Package>
-
     <History>
         <Update release="1">
             <Date>2011-02-15</Date>
