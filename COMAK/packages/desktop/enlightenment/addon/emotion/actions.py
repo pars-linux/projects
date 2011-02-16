@@ -12,8 +12,7 @@ from pisi.actionsapi import get
 def setup():
     shelltools.touch("README")
     autotools.autoreconf("-fi")
-    autotools.configure("--disable-static \
-                         --disable-xine \
+    autotools.configure("--disable-static\
                          --enable-gstreamer")
 
 def build():
