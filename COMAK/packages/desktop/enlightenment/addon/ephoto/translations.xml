@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>ephoto</Name>
+        <Summary xml:lang="tr">Enlightenment Fotoğraf Gösterici</Summary>
+        <Description xml:lang="tr">EFL çekirdeği kullanılarak yazılmış kapsamlı bir resim gösterici.</Description>
+    </Source>
+</PISI>

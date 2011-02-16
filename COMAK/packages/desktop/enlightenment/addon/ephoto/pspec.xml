@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Enlightenment Photo Viewer</Summary>
         <Description>A comprehensive image viewer written using the core EFL</Description>
-        <Archive sha1sum="e78b15475f6ee07317ab2704d64d2676d072516b" type="tarbz2">http://x86-64.comu.edu.tr/lxde/ephoto-0.1.1.0_55225.tar.bz2</Archive>
+        <Archive sha1sum="a2fd67d2cfc1d5d12a32800d1d2d6a5ed7d2cb71" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/ephoto-0.1.1.0_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
