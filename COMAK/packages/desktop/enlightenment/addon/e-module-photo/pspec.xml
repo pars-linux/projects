@@ -25,12 +25,11 @@
     <Package>
         <Name>e-module-photo</Name>
         <RuntimeDependencies>
-            <Dependency versionFrom="0.16.999">enlightenment</Dependency>
-            <Dependency versionFrom="0.1.1">exhibit</Dependency>
-            <Dependency versionFrom="1.4.0">eet-devel</Dependency>
-            <Dependency versionFrom="1.0.0">edje-devel</Dependency>
-            <Dependency versionFrom="1.0.0">eina-devel</Dependency>
-            <Dependency versionFrom="1.0.0">ecore-devel</Dependency>
+            <Dependency versionFrom="1.4.0">eet</Dependency>
+            <Dependency versionFrom="1.0.0">edje</Dependency>
+            <Dependency versionFrom="1.0.0">evas</Dependency>
+            <Dependency versionFrom="1.0.0">eina</Dependency>
+            <Dependency versionFrom="1.0.0">ecore</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="data">/usr/lib/enlightenment</Path>
