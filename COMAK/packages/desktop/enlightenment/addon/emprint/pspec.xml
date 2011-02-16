@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>emprint</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Packager>
+        <License>BSD</License>
+        <IsA>app:gui</IsA>
+        <Summary>Enlightenment screen capture utility</Summary>
+        <Description>Emprint is a utility for taking screenshots of the entire screen, a specific window, or a specific region.</Description>
+        <Archive sha1sum="12a84299507bc0b71007b6c9f9d43116cfdfc37a" type="targz">http://x86-64.comu.edu.tr/lxde/source/emprint-0.1.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.0.0">edje-devel</Dependency>
+            <Dependency versionFrom="1.0.0">eina-devel</Dependency>
+            <Dependency versionFrom="1.0.0">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.0">ecore-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>emprint</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="1.0.0">edje</Dependency>
+            <Dependency versionFrom="1.0.0">eina</Dependency>
+            <Dependency versionFrom="1.0.0">evas</Dependency>
+            <Dependency versionFrom="1.0.0">ecore</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="data">/usr/share/emprint</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="3">
+            <Date>2011-02-16</Date>
+            <Version>0.1.0</Version>
+            <Comment>Update to new version</Comment>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2009-01-22</Date>
+            <Version>0.0.1_20090122</Version>
+            <Comment>Bump to fresh ss of trunk</Comment>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>h.ibrahim.gungor@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-11-25</Date>
+            <Version>0.0.1_20081126</Version>
+            <Comment>First release</Comment>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>h.ibrahim.gungor@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

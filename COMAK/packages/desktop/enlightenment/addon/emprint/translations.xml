@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>emprint</Name>
+        <Summary xml:lang="tr">Enlightenment görüntü yakalama uygulaması</Summary>
+        <Description xml:lang="tr">Emprint, tüm ekranı, belirli bir pencere ya da bölgenin resmini çekmek için kullanılan bir uygulamadır.</Description>
+    </Source>
+</PISI>
