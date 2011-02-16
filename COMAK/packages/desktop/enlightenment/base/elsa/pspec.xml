@@ -25,7 +25,13 @@
     <Package>
         <Name>elsa</Name>
         <RuntimeDependencies>
-            <Dependency>xorg-server</Dependency>
+            <Dependency>eet</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>efreet</Dependency>
+            <Dependency>elementary</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
