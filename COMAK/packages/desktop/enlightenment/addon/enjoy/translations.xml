@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>enjoy</Name>
+        <Summary xml:lang="tr">Media player written with Enlightenment Foundation Libraries</Summary>
+        <Description xml:lang="tr">Enjoy is a lightweight media player written using Enlightenment Foundation Libraries.</Description>
+    </Source>
+</PISI>
