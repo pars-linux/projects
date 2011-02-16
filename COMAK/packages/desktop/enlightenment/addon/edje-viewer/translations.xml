@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>edje_viewer</Name>
+        <Summary xml:lang="tr">Edje dosyaları için basit bir görüntüleyici</Summary>
+        <Description xml:lang="tr">Edje_viewer, edje dosyaları için basit bir görüntüleyicidir. Edje ile beraber gelen görüntüleyiciye göre kullanımı daha kolaydır.</Description>
+    </Source>
+</PISI>
