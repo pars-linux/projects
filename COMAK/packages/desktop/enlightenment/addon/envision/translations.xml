@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>envision</Name>
+        <Summary xml:lang="tr">PDF okuyucu</Summary>
+        <Description xml:lang="tr">Bu projenin amacı EFL ile yazılmış yeni, güzel ve basit bir PDF okuyucu yaratmaktır.</Description>
+    </Source>
+</PISI>
