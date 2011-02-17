@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e17-module-mpdule</Name>
+        <Summary xml:lang="tr">Enlightenment17 için bir MPD modülü</Summary>
+        <Description xml:lang="tr">e17-module-mpdule, Müzik Çalıcı Sunucusu kontrolcüsü ve durum gösterici bir modülüdür.</Description>
+    </Source>
+</PISI>
