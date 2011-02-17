@@ -56,11 +56,11 @@ e_modules-alarm :yapıldı
     A module to set Alarms in Enlightenment 17
 genmenu:http://f00l.de/genmenu/: yapıldı
     menu generator for *box, WindowMaker, and Enlightenment
-e_modules-net:yapılıyor
+e_modules-net:yapıldı
     Network interface monitor module for e17
-e_modules-mem
+e_modules-mem:yapılıyor
     Memory monitor module for e17
-e_modules-cpu
+e_modules-cpu:yapıldı
     CPU monitor module for e17
 epdf  :yapıldı
     PDF viewer with widgets for Evas
@@ -70,7 +70,7 @@ epsilon : İptal edildi(OLD)
     The Enlightenment epsilon library.
 esmart : İptal edildi (OLD)
     The Enlightenment esmart library.
-edgar: yapılıyor
+edgar: yapıldı
     E17 Edgar Gadgets Loader
 ecomorph
     Ecomorph is a compositing manager for e17
