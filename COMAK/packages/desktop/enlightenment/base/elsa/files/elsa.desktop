@@ -1,0 +1,9 @@
+[Desktop Entry]
+Exec=/usr/sbin/elsa
+Icon=xorg
+Type=Application
+X-Pardus-XCursorTheme=Jimmac
+
+Name=elsa
+GenericName=Enlightenment Login Manager
+GenericName[tr]=Enlightenment Giriş Yöneticisi
