@@ -15,8 +15,8 @@
         <Archive sha1sum="ba010eb3984c5d53949de0abde096fb8efaf15f5" type="targz">./elsa-0.17.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>efreet-devel</Dependency>
-            <Dependency>eina</Dependency>
-            <Dependency>eet</Dependency>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>eet-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
             <Dependency>elementary-devel</Dependency>
         </BuildDependencies>
@@ -46,6 +46,10 @@
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/display-managers/elsa.desktop">elsa.desktop</AdditionalFile>
+        </AdditionalFiles>
+
     </Package>
     <History>
         <Update release="1">
