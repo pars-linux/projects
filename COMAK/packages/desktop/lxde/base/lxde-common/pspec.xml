@@ -23,7 +23,7 @@
             <Patch level="1">04_pcmanfm0.9.patch</Patch>
             <Patch level="1">10_ensure-dbus-launch.patch</Patch>
             <Patch level="1">11_ensure-desktop-folder.patch</Patch>
-            <Patch level="1">12_autostart-gnome-polkit_and_cnazar.patch</Patch>
+            <Patch level="1">12_autostart-gnome-polkit.patch</Patch>
             <Patch level="1">13_ensure-menu-prefix.patch</Patch>
             <Patch level="1">desktop.patch</Patch>
         </Patches>
@@ -33,7 +33,6 @@
         <Name>lxde-common</Name>
         <RuntimeDependencies>
             <Dependency>gtk2</Dependency>
-            <Dependency>cnazar</Dependency>
             <Dependency>lxpanel</Dependency>
             <Dependency>lxsession</Dependency>
             <Dependency>libfm</Dependency>
