@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>e_modules-net</Name>
+        <Name>e-module-net</Name>
         <Homepage>http://www.enlightenment.org</Homepage>
         <Packager>
             <Name>Özge Barbaros</Name>
@@ -10,7 +10,7 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>e_modules-net</Summary>
+        <Summary>e-module-net</Summary>
         <Description>Network interface monitor module for E17</Description>
         <Archive sha1sum="2b56d956c7dba80fe5fb47e3b538a698d8f43ebe" type="tarbz2">http://x86-64.comu.edu.tr/lxde/e_modules-net-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
@@ -24,7 +24,7 @@
     </Source>
 
     <Package>
-        <Name>e_modules-net</Name>
+        <Name>e-module-net</Name>
         <RuntimeDependencies>
             <Dependency>eet</Dependency>
             <Dependency>edje</Dependency>

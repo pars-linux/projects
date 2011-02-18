@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>e-modules-cpu</Name>
+        <Name>e-module-cpu</Name>
         <Homepage>http://www.enlightenment.org</Homepage>
         <Packager>
             <Name>Özge Barbaros</Name>
@@ -10,7 +10,7 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>e-modules-cpu</Summary>
+        <Summary>e-module-cpu</Summary>
         <Description>CPU monitor module for e17</Description>
         <Archive sha1sum="e91174aaf5218b78e619ccee7ed810484f18f54f" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/cpu-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
@@ -23,7 +23,7 @@
     </Source>
 
     <Package>
-        <Name>e-modules-cpu</Name>
+        <Name>e-module-cpu</Name>
         <RuntimeDependencies>
             <Dependency>eet</Dependency>
             <Dependency>edje</Dependency>
