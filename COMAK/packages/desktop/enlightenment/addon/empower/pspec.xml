@@ -17,7 +17,7 @@
             <Dependency versionFrom="1.7.3.4">git</Dependency>
             <Dependency versionFrom="1.0.0">evas-devel</Dependency>
             <Dependency versionFrom="1.0.0">ecore-devel</Dependency>
-            <Dependency versionFrom="0.7.0_55225">elementary</Dependency>
+            <Dependency versionFrom="0.7.0_55225">elementary-devel</Dependency>
         </BuildDependencies>
     </Source>
 
