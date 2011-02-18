@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e17-module-trash</Name>
+        <Summary xml:lang="tr">Enlightenment17 için çöp kutusu modülü</Summary>
+        <Description xml:lang="tr">e17-module-trash, Enlightenment17 için FreeDesktop.org standartlarına uygun bir çöp kutusu modülüdür.</Description>
+    </Source>
+</PISI>
