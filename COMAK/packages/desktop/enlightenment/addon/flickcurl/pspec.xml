@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>flickcurl</Name>
+        <Homepage>http://librdf.org/flickcurl/</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>C library for the Flickr API</Summary>
+        <Description>Flickcurl is a C library for the Flickr API, handling creating the requests, signing, token management, calling the API, marshalling request parameters and decoding responses.</Description>
+        <Archive sha1sum="135d86b26aa47d94bcf75003f7387096d6720fc2" type="targz">http://download.dajobe.org/flickcurl/flickcurl-1.20.tar.gz</Archive>
+        <BuildDependencies>
+            <!--<Dependency>libcurl</Dependency>-->
+            <!--<Dependency>libxml</Dependency>-->
+            <Dependency>raptor</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>flickcurl</Name>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-02-18</Date>
+            <Version>1.20</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
