@@ -1,0 +1,12 @@
+--- e17-module-trash_20090404/src/e_mod_main.c.orig	2009-04-10 18:10:46.000000000 +0300
++++ e17-module-trash_20090404/src/e_mod_main.c	2009-04-10 18:11:11.000000000 +0300
+@@ -23,7 +23,8 @@
+ #include "Efreet.h"
+ #include "Efreet_Trash.h"
+ 
+-#define FILE_MANAGER "thunar"
++#define FILE_MANAGER "enlightenment_fm_open"
++//#define FILE_MANAGER "thunar"
+ //#define FILE_MANAGER "konqueror"
+ //#define FILE_MANAGER "nautilus --no-desktop"
+ 
