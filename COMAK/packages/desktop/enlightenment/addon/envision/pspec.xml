@@ -15,11 +15,11 @@
         <Archive sha1sum="ade6ff7a06e71ed907fd2875e402708ce0b913f7" type="targz">http://x86-64.comu.edu.tr/lxde/source/envision-0.0.1.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>epdf</Dependency>
-            <Dependency>eina</Dependency>
-            <Dependency>evas</Dependency>
-            <Dependency>elementary</Dependency>
-            <Dependency>edje</Dependency>
-            <Dependency>ecore</Dependency>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>elementary-devel</Dependency>
+            <Dependency>edje-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
         </BuildDependencies>
     </Source>
 

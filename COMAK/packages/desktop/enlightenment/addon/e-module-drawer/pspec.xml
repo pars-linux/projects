@@ -14,7 +14,7 @@
         <Description>e-module-drawer is a simple drawer module for Enlightenment17 desktop shell.</Description>
         <Archive sha1sum="4156e109e8eceda26fc6a8c1725b0e95f7f51b05" type="targz">http://x86-64.comu.edu.tr/lxde/source/e-module-drawer-0.0.1.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency versionFrom="0.16.999_55225">enlightenment</Dependency>
+            <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
         </BuildDependencies>
     </Source>
 
