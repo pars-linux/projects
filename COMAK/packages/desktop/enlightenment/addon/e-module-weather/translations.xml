@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-weather</Name>
+        <Summary xml:lang="tr">Enlightenment için hava durumu göstericisi modülü</Summary>
+        <Description xml:lang="tr">e-module-weather, Enlightenment için yaklaşık hava tahmin raporlarını Internet'ten alan ve masaüstünde gösteren bir modülüdür.</Description>
+    </Source>
+</PISI>
