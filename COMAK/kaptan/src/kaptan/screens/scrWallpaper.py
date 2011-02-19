@@ -13,9 +13,16 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtGui import QFileDialog
+#Context
+from kaptan.screens.context import * 
+import kaptan.screens.context as ctx
 
 from PyQt4.QtCore import *
-from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
+
+#PyKde4 Stuff
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
+
 import os, sys, subprocess
 
 from kaptan.screen import Screen
@@ -31,64 +38,68 @@ class Widget(QtGui.QWidget, Screen):
     screenSettings["hasChanged"] = False
 
     # title and description at the top of the dialog window
-    title = ki18n("Wallpaper")
-    desc = ki18n("Choose a Wallpaper")
+    title = i18n("Wallpaper")
+    desc = i18n("Choose a Wallpaper")
 
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_wallpaperWidget()
         self.ui.setupUi(self)
-        # Get system locale
-        self.catLang = KGlobal.locale().language()
 
+        if ctx.Pds.session == ctx.pds.Kde4:
+            # Get system locale
+            self.catLang = KGlobal.locale().language()
+        else:
+            self.catLang = QLocale().language()
         # Get screen resolution
         rect =  QtGui.QDesktopWidget().screenGeometry()
-
+        
+        if ctx.Pds.session == ctx.pds.Kde4:
         # Get metadata.desktop files from shared wallpaper directory
-        lst= KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
+            lst= KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
 
-        for desktopFiles in lst:
-            parser = DesktopParser()
-            parser.read(str(desktopFiles))
+            for desktopFiles in lst:
+                parser = DesktopParser()
+                parser.read(str(desktopFiles))
 
-            try:
-                wallpaperTitle = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
-            except:
-                wallpaperTitle = parser.get_locale('Desktop Entry', 'Name', '')
+                try:
+                    wallpaperTitle = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
+                except:
+                    wallpaperTitle = parser.get_locale('Desktop Entry', 'Name', '')
 
-            try:
-                wallpaperDesc = parser.get_locale('Desktop Entry', 'X-KDE-PluginInfo-Author', '')
-            except:
-                wallpaperDesc = "Unknown"
+                try:
+                    wallpaperDesc = parser.get_locale('Desktop Entry', 'X-KDE-PluginInfo-Author', '')
+                except:
+                    wallpaperDesc = "Unknown"
 
-            # Get all files in the wallpaper's directory
-            thumbFolder = os.listdir(os.path.join(os.path.split(str(desktopFiles))[0], "contents"))
+                # Get all files in the wallpaper's directory
+                thumbFolder = os.listdir(os.path.join(os.path.split(str(desktopFiles))[0], "contents"))
 
-            """
-            Appearantly the thumbnail names doesn't have a standart.
-            So we get the file list from the contents folder and
-            choose the file which has a name that starts with "scre".
+        #    """
+        #    Appearantly the thumbnail names doesn't have a standart.
+        #    So we get the file list from the contents folder and
+        #    choose the file which has a name that starts with "scre".
 
-            File names I've seen so far;
-            screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
-            """
+        #    File names I've seen so far;
+        #    screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
+        #    """
 
-            wallpaperThumb = ""
+                wallpaperThumb = ""
 
-            for thumb in thumbFolder:
-                if thumb.startswith('scre'):
-                    wallpaperThumb = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
+                for thumb in thumbFolder:
+                    if thumb.startswith('scre'):
+                        wallpaperThumb = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
 
-            wallpaperFile = os.path.split(str(desktopFiles))[0]
+                wallpaperFile = os.path.split(str(desktopFiles))[0]
 
-            # Insert wallpapers to listWidget.
-            item = QtGui.QListWidgetItem(self.ui.listWallpaper)
-            # Each wallpaper item is a widget. Look at widgets.py for more information.
-            widget = WallpaperItemWidget(unicode(wallpaperTitle), unicode(wallpaperDesc), wallpaperThumb, self.ui.listWallpaper)
-            item.setSizeHint(QSize(120,170))
-            self.ui.listWallpaper.setItemWidget(item, widget)
-            # Add a hidden value to each item for detecting selected wallpaper's path.
-            item.setStatusTip(wallpaperFile)
+                # Insert wallpapers to listWidget.
+                item = QtGui.QListWidgetItem(self.ui.listWallpaper)
+                # Each wallpaper item is a widget. Look at widgets.py for more information.
+                widget = WallpaperItemWidget(unicode(wallpaperTitle), unicode(wallpaperDesc), wallpaperThumb, self.ui.listWallpaper)
+                item.setSizeHint(QSize(120,170))
+                self.ui.listWallpaper.setItemWidget(item, widget)
+                # Add a hidden value to each item for detecting selected wallpaper's path.
+                item.setStatusTip(wallpaperFile)
 
         self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.setWallpaper)
         self.ui.checkBox.connect(self.ui.checkBox, SIGNAL("stateChanged(int)"), self.disableWidgets)

@@ -17,9 +17,13 @@
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from PyKDE4.kdecore import ki18n
-from PyKDE4.kdecore import i18n
+#from PyKDE4.kdecore import ki18n
+#from PyKDE4.kdecore import i18n
 import ImageQt
+
+#Pds Stuff
+import kaptan.screens.context as ctx
+from kaptan.screens.context import *
 
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrAvatar import Ui_Form
@@ -33,7 +37,7 @@ import v4l2capture
 
 class Widget(QtGui.QWidget, Screen):
 
-    title = ki18n("User Picture")
+    title = i18n("User Picture")
 
     screenSettings = {}
     screenSettings["hasChanged"] = False
@@ -45,7 +49,7 @@ class Widget(QtGui.QWidget, Screen):
 
         self.camActive = False
 
-        Widget.desc = QVariant(unicode(ki18n("Create Your User Picture").toString()))
+        Widget.desc = QVariant(unicode(i18n(str("Create Your User Picture"))))
 
         self.pictureTaken = 0
         self.ui.takeButton.hide()

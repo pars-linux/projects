@@ -4,16 +4,21 @@
 import sys
 import os
 
+#Pds Stuff
+import kaptan.screens.context as ctx
+from kaptan.screens.context import *
+#Qt Stuff
 from PyQt4 import QtCore, QtGui
-from PyKDE4 import kdeui
-from PyQt4.QtCore import QTimeLine
-from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KConfig
+from PyQt4.QtCore import QTimeLine,QSettings
 
+#Kaptan Stuff
 from kaptan.screens.ui_kaptan import Ui_kaptan
-
 from kaptan.tools import tools
 from kaptan.tools.progress_pie import DrawPie
 from kaptan.tools.kaptan_menu import Menu
+#QSettings path ayarı
+HOME_DIR = os.environ["HOME"]
+QSettings.setPath(QSettings.IniFormat, QSettings.UserScope, HOME_DIR)
 
 class Kaptan(QtGui.QWidget):
     def __init__(self, parent = None):
@@ -31,9 +36,12 @@ class Kaptan(QtGui.QWidget):
         self.descriptions = []
         self.currentDir = os.path.dirname(os.path.realpath(__file__))
         self.screensPath = self.currentDir + "/kaptan/screens/scr*py"
-        self.kaptanConfig = KConfig("kaptanrc")
-        self.plasmaConfig = KConfig("plasma-desktop-appletsrc")
-
+        #Config
+        if ctx.Pds.session == ctx.pds.Kde4:
+            self.kaptanConfig = KConfig("kaptanrc")
+            self.plasmaConfig = KConfig("plasma-desktop-appletsrc")
+        else:
+            self.kaptanConfig = QSettings(".kde4/share/config/kaptanrc",QSettings.IniFormat)
     def signalHandler(self):
         ''' connects signals to slots '''
         self.connect(self.ui.buttonNext, QtCore.SIGNAL("clicked()"), self.slotNext)
@@ -60,7 +68,10 @@ class Kaptan(QtGui.QWidget):
 
         # Get Screen Titles
         for screen in self.screens:
-            title = screen.Widget.title.toString()
+            ####################
+            #title = screen.Widget.title.toString()
+            title = i18n(screen.Widget.title)
+            
             self.titles.append(title)
 
         # draw progress pie
@@ -152,7 +163,10 @@ class Kaptan(QtGui.QWidget):
             self.ui.mainStack.setCurrentIndex(id)
 
             # Set screen title
-            self.ui.screenTitle.setText(self.descriptions[id])
+            try:    
+                self.ui.screenTitle.setText(self.descriptions[id].toString())
+            except AttributeError:
+                self.ui.screenTitle.setText(self.descriptions[id])
 
             _w = self.ui.mainStack.currentWidget()
             _w.update()
@@ -186,7 +200,8 @@ class Kaptan(QtGui.QWidget):
             _scr = screen.Widget()
 
             # Append screen descriptions to list
-            self.descriptions.append(_scr.desc.toString())
+            #self.descriptions.append(_scr.desc.toString())
+            self.descriptions.append(_scr.desc)
 
             # Append screens to stack widget
             self.ui.mainStack.addWidget(_scr)
@@ -213,32 +228,57 @@ class Kaptan(QtGui.QWidget):
         return self.buttonBack.isEnabled()
 
     def __del__(self):
-        group = self.kaptanConfig.group("General")
-        group.writeEntry("RunOnStart", "False")
+        self.kaptanConfig.setValue("General/RunOnStart",False)
+        #group = self.kaptanConfig.group("General")
+        #group.writeEntry("RunOnStart", "False")
 
 if __name__ == "__main__":
-    appName     = "kaptan"
-    catalog     = ""
-    programName = ki18n("kaptan")
-    version     = "5.0.1"
-    description = ki18n("Kaptan lets you configure your Pardus workspace at first login")
-    license     = KAboutData.License_GPL
-    copyright   = ki18n("(c) 2011 Pardus")
-    text        = ki18n("none")
-    homePage    = "http://developer.pardus.org.tr/projects/kaptan"
-    bugEmail    = "renan@pardus.org.tr"
+    
+     # attach dbus to main loop
+     tools.DBus()
 
-    aboutData   = KAboutData(appName,catalog, programName, version, description,
+     if ctx.Pds.session == ctx.pds.Kde4:
+        from PyKDE4 import kdeui
+        from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KConfig
+
+        appName     = "kaptan"
+        catalog     = ""
+        programName = ki18n("kaptan")
+        version     = "5.0.1"
+        description = ki18n("Kaptan lets you configure your Pardus workspace at first login")
+        license     = KAboutData.License_GPL
+        copyright   = ki18n("(c) 2011 Pardus")
+        text        = ki18n("none")
+        homePage    = "http://developer.pardus.org.tr/projects/kaptan"
+        bugEmail    = "renan@pardus.org.tr"
+
+        aboutData   = KAboutData(appName,catalog, programName, version, description,
                                 license, copyright,text, homePage, bugEmail)
 
-    KCmdLineArgs.init(sys.argv, aboutData)
-    app =  kdeui.KApplication()
+        KCmdLineArgs.init(sys.argv, aboutData)
+        app =  kdeui.KApplication()
 
-    # attach dbus to main loop
-    tools.DBus()
+        kaptan = Kaptan()
+        kaptan.show()
+        tools.centerWindow(kaptan)
+        app.exec_()
+     else:
+        import gettext
+        __trans = gettext.translation('kaptan', fallback=True)
+        i18n = __trans.ugettext
+        
+        from pds.quniqueapp import QUniqueApplication
 
-    kaptan = Kaptan()
-    kaptan.show()
-    tools.centerWindow(kaptan)
-    app.exec_()
+        app = QUniqueApplication(sys.argv, catalog="kaptan")
+
+        
+        from pds.quniqueapp import QUniqueApplication
+        kaptan = Kaptan()
+        kaptan.show()
+        tools.centerWindow(kaptan)
+
+    
+
+        app.exec_()
+
 

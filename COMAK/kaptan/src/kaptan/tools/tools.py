@@ -76,3 +76,11 @@ def centerWindow(window):
 
     window.resize(width, height)
     window.move(rect.width()/2 - window.width()/2, rect.height()/2 - window.height()/2)
+def toString(obj):
+    try:
+        return obj.toString()
+    except AttributeError:
+        return obj
+    except:
+        return obj
+

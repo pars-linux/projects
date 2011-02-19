@@ -11,22 +11,30 @@
 # Please read the COPYING file.
 #
 
-# PyKDE
-from PyKDE4.kdecore import KAboutData, ki18n
 
-# Application Data
-appName     = "kaptan"
-programName = ki18n("Kaptan")
-modName     = "kaptan"
-version     = "5.0.4"
-description = ki18n("Kaptan")
-license     = KAboutData.License_GPL
-copyright   = ki18n("(c) 2005-2011 TUBITAK/UEKAE")
-text        = ki18n(" ")
-homePage    = "http://developer.pardus.org.tr/projects/kaptan"
-bugEmail    = "renan@pardus.org.tr"
-catalog     = appName
-aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
 
-# Author(s)
-aboutData.addAuthor(ki18n("Renan Çakırerk"), ki18n("Current Maintainer"))
+import context as ctx
+PACKAGE = "Kaptan"
+appName="kaptan"
+version="3.0.0"
+
+if ctx.Pds.session == ctx.pds.Kde4:
+  # PyKDE
+  from PyKDE4.kdecore import KAboutData, ki18n
+
+  # Application Data
+  appName     = "kaptan"
+  programName = ki18n("Kaptan")
+  modName     = "kaptan"
+  version     = "5.0.4"
+  description = ki18n("Kaptan")
+  license     = KAboutData.License_GPL
+  copyright   = ki18n("(c) 2005-2011 TUBITAK/UEKAE")
+  text        = ki18n(" ")
+  homePage    = "http://developer.pardus.org.tr/projects/kaptan"
+  bugEmail    = "renan@pardus.org.tr"
+  catalog     = appName
+  aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
+
+  # Author(s)
+  aboutData.addAuthor(ki18n("Renan Çakırerk"), ki18n("Current Maintainer"))

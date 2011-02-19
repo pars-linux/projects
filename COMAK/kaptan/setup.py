@@ -16,6 +16,7 @@ import glob
 import shutil
 import sys
 import fnmatch
+sys.path.append(os.path.join(os.path.split(__file__)[0],"src","kaptan","screens"))
 
 from distutils.core import setup
 from distutils.cmd import Command
@@ -23,6 +24,7 @@ from distutils.command.build import build
 from distutils.command.install import install
 
 import about
+PROJECT = about.appName
 
 def update_messages():
     # Create empty directory
@@ -31,7 +33,7 @@ def update_messages():
 
     # Collect UI files
     for filename in glob.glob1("ui", "*.ui"):
-        os.system("pykde4uic -o .tmp/%s.py ui/%s" % (filename.split(".")[0], filename))
+        os.system("pyuic4 -o .tmp/%s.py ui/%s -g %s" % (filename.split(".")[0], filename,PROJECT))
 
     # Collect Python files
     directories = [ "src/kaptan",
@@ -90,7 +92,7 @@ class Build(build):
         # Copy compiled UIs and RCs
         print "Generating UIs..."
         for filename in glob.glob1("ui", "*.ui"):
-            os.system("pykde4uic -o build/kaptan/screens/%s.py ui/%s" % (filename.split(".")[0], filename))
+            os.system("pyuic4 -o build/kaptan/screens/%s.py ui/%s -g %s" % (filename.split(".")[0], filename,PROJECT))
         print "Generating RCs..."
         for filename in glob.glob1("data", "*.qrc"):
             os.system("pyrcc4 data/%s -o build/kaptan/%s_rc.py" % (filename, filename.split(".")[0]))
@@ -163,11 +165,11 @@ if "update_messages" in sys.argv:
 setup(
       name              = about.appName,
       version           = about.version,
-      description       = unicode(about.description),
-      license           = unicode(about.license),
+     #description       = unicode(about.description),
+     #license           = unicode(about.license),
       author            = "",
-      author_email      = about.bugEmail,
-      url               = about.homePage,
+     #author_email      = about.bugEmail,
+     #url               = about.homePage,
       packages          = [''],
       package_dir       = {'': ''},
       data_files        = [],
