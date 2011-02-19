@@ -16,7 +16,11 @@ import pardus.netutils
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
-from PyKDE4 import kdecore
+#Pds Stuff
+import kaptan.screens.context as ctx
+from kaptan.screens.context import *
+
+#from PyKDE4 import kdecore
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrSmolt import Ui_smoltWidget
 
@@ -28,8 +32,8 @@ class Widget(QtGui.QWidget, Screen):
     screenSettings = {}
     screenSettings["profileSend"] = False
 
-    title = kdecore.ki18n("Smolt")
-    desc = kdecore.ki18n("Help Pardus Improve!")
+    title = i18n("Smolt")
+    desc = i18n("Help Pardus Improve!")
 
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
@@ -65,8 +69,8 @@ class Widget(QtGui.QWidget, Screen):
     def setTableWidget(self):
         ''' Specify the tableWidget properties '''
 
-        colLabel = kdecore.ki18n("Label").toString()
-        colData = kdecore.ki18n("Data").toString()
+        colLabel = i18n(str("Label"))
+        colData = i18n(str("Data"))
         item = QtGui.QTableWidgetItem(colLabel)
         self.ui.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtGui.QTableWidgetItem(colData)
@@ -105,34 +109,34 @@ class Widget(QtGui.QWidget, Screen):
 
         if self.ui.stackedWidget.currentIndex() == 0:
             self.ui.stackedWidget.setCurrentIndex(1)
-            self.ui.privacyButton.setText(kdecore.i18n("&Host Information"))
+            self.ui.privacyButton.setText(i18n("&Host Information"))
         else:
             self.ui.stackedWidget.setCurrentIndex(0)
-            self.ui.privacyButton.setText(kdecore.i18n("&Privacy policy"))
+            self.ui.privacyButton.setText(i18n("&Privacy policy"))
 
     def getLabels(self):
-        self.sendable_host_labels = [ kdecore.i18n("UUID"),
-                                      kdecore.i18n("OS"),
-                                      kdecore.i18n("Default Run Level"),
-                                      kdecore.i18n("Language"),
-                                      kdecore.i18n("Platform"),
-                                      kdecore.i18n("BogoMIPS"),
-                                      kdecore.i18n("CPU Vendor"),
-                                      kdecore.i18n("CPU Model"),
-                                      kdecore.i18n("CPU Stepping"),
-                                      kdecore.i18n("CPU Family"),
-                                      kdecore.i18n("CPU Model Num"),
-                                      kdecore.i18n("Number of CPUs"),
-                                      kdecore.i18n("CPU Speed"),
-                                      kdecore.i18n("System Memory"),
-                                      kdecore.i18n("System Swap"),
-                                      kdecore.i18n("Vendor"),
-                                      kdecore.i18n("System"),
-                                      kdecore.i18n("Form Factor"),
-                                      kdecore.i18n("Kernel"),
-                                      kdecore.i18n("SELinux Enabled"),
-                                      kdecore.i18n("SELinux Policy"),
-                                      kdecore.i18n("SELinux Enforce") ]
+        self.sendable_host_labels = [ i18n("UUID"),
+                                      i18n("OS"),
+                                      i18n("Default Run Level"),
+                                      i18n("Language"),
+                                      i18n("Platform"),
+                                      i18n("BogoMIPS"),
+                                      i18n("CPU Vendor"),
+                                      i18n("CPU Model"),
+                                      i18n("CPU Stepping"),
+                                      i18n("CPU Family"),
+                                      i18n("CPU Model Num"),
+                                      i18n("Number of CPUs"),
+                                      i18n("CPU Speed"),
+                                      i18n("System Memory"),
+                                      i18n("System Swap"),
+                                      i18n("Vendor"),
+                                      i18n("System"),
+                                      i18n("Form Factor"),
+                                      i18n("Kernel"),
+                                      i18n("SELinux Enabled"),
+                                      i18n("SELinux Policy"),
+                                      i18n("SELinux Enforce") ]
 
         return self.sendable_host_labels
 
@@ -145,8 +149,8 @@ class Widget(QtGui.QWidget, Screen):
 
     def execute(self):
         if self.__class__.screenSettings["profileSend"]:
-            self.__class__.screenSettings["summaryMessage"] = kdecore.i18n("Yes")
+            self.__class__.screenSettings["summaryMessage"] = i18n("Yes")
         else:
-            self.__class__.screenSettings["summaryMessage"] = kdecore.i18n("No")
+            self.__class__.screenSettings["summaryMessage"] = i18n("No")
 
         return True

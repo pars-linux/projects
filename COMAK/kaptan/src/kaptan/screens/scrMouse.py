@@ -9,15 +9,13 @@
 #
 # Please read the COPYING file.
 #
-
 from PyQt4 import QtGui
 from PyQt4.QtCore import *
-from PyKDE4.kdecore import ki18n, KConfig
-from PyKDE4.kdeui import KGlobalSettings
-
+from PyQt4 import QtCore
+import kaptan.screens.context as ctx
+from kaptan.screens.context import *
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrMouse import Ui_mouseWidget
-
 from Xlib import display
 RIGHT_HANDED, LEFT_HANDED = range(2)
 
@@ -26,37 +24,51 @@ class Widget(QtGui.QWidget, Screen):
     screenSettings["hasChanged"] = False
 
     # title and description at the top of the dialog window
-    title = ki18n("Mouse")
-    desc = ki18n("Setup Mouse Behavior")
+    title = i18n("Mouse")
+    desc = i18n("Setup Mouse Behavior")
 
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_mouseWidget()
         self.ui.setupUi(self)
-
         # Our default click behavior is double click. So make SingleClick = false (kdeglobals)
         self.clickBehavior = False
-
-        # read default settings
+        
+       # read default settings
         try:
-            config = KConfig("kcminputrc")
-            group = config.group("Mouse")
-            self.__class__.screenSettings["selectedMouse"] = group.readEntry("MouseButtonMapping")
+            settings=QSettings("lxsession/LXDE","desktop")
+            settings.beginGroup("Mouse")
+            self.__class__.screenSettings["selectedMouse"] = settings.value("LeftHanded").toInt()
 
-            config = KConfig("kdeglobals")
-            group = config.group("KDE")
-
-            self.__class__.screenSettings["selectedBehavior"] = str(group.readEntry("SingleClick"))
-
-            self.ui.singleClick.setChecked(self.str2bool(self.__class__.screenSettings["selectedBehavior"]))
-            self.clickBehavior = self.str2bool(self.__class__.screenSettings["selectedBehavior"])
-
-            if self.__class__.screenSettings["selectedMouse"] == "LeftHanded":
-                self.ui.radioButtonLeftHand.setChecked(True)
-
+            settings=QSettings("lxsession", "libfm")
+            settings.beginGroup("single_click")
+            self.__class__.screenSettings["selectedBehavior"] = settings.value("single_click").toInt()
+            if self.__class__.screenSettings == 1:
+                self.ui.singleClick.setChecked(True)
+            self.clickBehavior = True
         except:
             pass
+        # read default settings
+###
+#        try:
+            
+#            config = KConfig("kcminputrc")
+#            group = config.group("Mouse")
+#            self.__class__.screenSettings["selectedMouse"] = group.readEntry("MouseButtonMapping")
 
+#            config = KConfig("kdeglobals")
+#            group = config.group("KDE")
+
+#            self.__class__.screenSettings["selectedBehavior"] = str(group.readEntry("SingleClick"))
+
+#            self.ui.singleClick.setChecked(self.str2bool(self.__class__.screenSettings["selectedBehavior"]))
+#            self.clickBehavior = self.str2bool(self.__class__.screenSettings["selectedBehavior"])
+
+#            if self.__class__.screenSettings["selectedMouse"] == "LeftHanded":
+#                self.ui.radioButtonLeftHand.setChecked(True)
+#        except:
+#            pass
+###
         # set signals
         self.connect(self.ui.radioButtonRightHand, SIGNAL("toggled(bool)"), self.setHandedness)
         self.connect(self.ui.checkReverse, SIGNAL("toggled(bool)"), self.setHandedness)
@@ -68,6 +80,9 @@ class Widget(QtGui.QWidget, Screen):
 
     def clickBehaviorToggle(self):
         self.clickBehavior = self.ui.singleClick.isChecked()
+    
+    def signalHandler(self, package, signal, args):
+                pass
 
     def getMouseMap(self):
         self.mapMouse = {}
@@ -114,37 +129,56 @@ class Widget(QtGui.QWidget, Screen):
                         self.mapMouse[pos], self.mapMouse[pos + 1] = 4, 5
 
         display.Display().set_pointer_mapping(self.mapMouse)
-
-        config = KConfig("kcminputrc")
-        group = config.group("Mouse")
-
+        settings=QSettings("lxsession/LXDE","desktop")
+        settings.beginGroup("Mouse")
         if self.handed == RIGHT_HANDED:
-            group.writeEntry("MouseButtonMapping", QString("RightHanded"))
+            settings.setValue("LeftHanded",0)
             self.__class__.screenSettings["selectedMouse"] = "RightHanded"
         else:
-            group.writeEntry("MouseButtonMapping", QString("LeftHanded"))
+            settings.setValue("LeftHanded",1)
             self.__class__.screenSettings["selectedMouse"] = "LeftHanded"
-
-        group.writeEntry("ReverseScrollPolarity", QString(str(self.ui.checkReverse.isChecked())))
-        config.sync()
-
-        KGlobalSettings.self().emitChange(KGlobalSettings.SettingsChanged, KGlobalSettings.SETTINGS_MOUSE)
-
+        settings.sync()
+###
+#        config = KConfig("kcminputrc")
+#        group = config.group("Mouse")
+#
+#        if self.handed == RIGHT_HANDED:
+#            group.writeEntry("MouseButtonMapping", QString("RightHanded"))
+#            self.__class__.screenSettings["selectedMouse"] = "RightHanded"
+#        else:
+#            group.writeEntry("MouseButtonMapping", QString("LeftHanded"))
+#            self.__class__.screenSettings["selectedMouse"] = "LeftHanded"
+#
+#      group.writeEntry("ReverseScrollPolarity", QString(str(self.ui.checkReverse.isChecked())))
+#       config.sync()
+#
+#     KGlobalSettings.self().emitChange(KGlobalSettings.SettingsChanged, KGlobalSettings.SETTINGS_MOUSE)
+###
     def shown(self):
         pass
 
     def execute(self):
+        
+
         self.__class__.screenSettings["summaryMessage"] ={}
+        
+        self.__class__.screenSettings["summaryMessage"].update({"selectedMouse": i18n("Left Handed") if self.__class__.screenSettings["selectedMouse"] == "LeftHanded" else i18n("Right Handed")})
+        self.__class__.screenSettings["summaryMessage"].update({"clickBehavior": i18n("Single Click ") if self.clickBehavior else i18n("Double Click")})
+        settings=QSettings("libfm", "libfm")
+        settings.beginGroup("config")
+        if self.clickBehavior == True:
+            settings.setValue("single_click",0)
+        else:
+            settings.setValue("single_click",1)
+        settings.sync()
 
-        self.__class__.screenSettings["summaryMessage"].update({"selectedMouse": ki18n("Left Handed") if self.__class__.screenSettings["selectedMouse"] == "LeftHanded" else ki18n("Right Handed")})
-        self.__class__.screenSettings["summaryMessage"].update({"clickBehavior": ki18n("Single Click ") if self.clickBehavior else ki18n("Double Click")})
 
-        config = KConfig("kdeglobals")
-        group = config.group("KDE")
-        group.writeEntry("SingleClick", str(self.clickBehavior))
+#        config = KConfig("kdeglobals")
+#        group = config.group("KDE")
+#        group.writeEntry("SingleClick", str(self.clickBehavior))
 
-        config.sync()
-        KGlobalSettings.self().emitChange(KGlobalSettings.SettingsChanged, KGlobalSettings.SETTINGS_MOUSE)
-
+#        config.sync()
+#        KGlobalSettings.self().emitChange(KGlobalSettings.SettingsChanged, KGlobalSettings.SETTINGS_MOUSE)
+#
         return True
 
