@@ -21,6 +21,7 @@ from kaptan.screens.ui_scrKeyboard import Ui_keyboardWidget
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
+from kaptan.plugins import desktop
 
 import subprocess
 
@@ -40,9 +41,7 @@ class Widget(QtGui.QWidget, Screen):
         self.ui.setupUi(self)
 
         # get layout config
-        self.config = QSettings("kxkbrc")
-        self.group = self.config.group("Layout")
-        self.layoutList = str(self.group.readEntry("LayoutList"))
+        self.layoutList = desktop.getKeyboardLayoutList()
         self.lastLayout = 0
 
         # get language list
@@ -110,23 +109,6 @@ class Widget(QtGui.QWidget, Screen):
         pass
 
     def execute(self):
-        if self.lastLayout:
-            layoutArr = self.layoutList.split(",")
-
-            if self.lastLayout not in layoutArr:
-                layoutArr.insert(0, str(self.lastLayout))
-            else:
-                layoutArr.remove(self.lastLayout)
-                layoutArr.insert(0, str(self.lastLayout))
-
-            for i in layoutArr:
-                if i == "":
-                    layoutArr.remove(i)
-
-            layoutList =  ",".join(layoutArr)
-            self.group.writeEntry("LayoutList", layoutList)
-            self.group.writeEntry("DisplayNames", layoutList)
-            self.config.sync()
-        return True
+        return desktop.setKeyboardLayoutList(self.layoutList,lastLayout)
 
 
