@@ -16,6 +16,7 @@ from kaptan.screens.ui_kaptan import Ui_kaptan
 from kaptan.tools import tools
 from kaptan.tools.progress_pie import DrawPie
 from kaptan.tools.kaptan_menu import Menu
+
 #QSettings path ayarı
 HOME_DIR = os.environ["HOME"]
 QSettings.setPath(QSettings.IniFormat, QSettings.UserScope, HOME_DIR)
