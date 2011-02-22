@@ -1,0 +1,11 @@
+--- configure.orig	2011-02-22 13:31:11.526443652 +0200
++++ configure	2011-02-22 13:31:22.497443651 +0200
+@@ -13119,7 +13119,7 @@
+ 
+ 
+ GETTEXT_PACKAGE=guake
+-ALL_LINGUAS="pt_BR ja es ru pl no de it fa hu el zh_CN fr"
++ALL_LINGUAS="pt_BR ja es ru pl no de it fa hu el zh_CN fr tr"
+ 
+ 
+ 
