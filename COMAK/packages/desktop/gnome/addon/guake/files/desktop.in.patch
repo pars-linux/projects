@@ -1,0 +1,15 @@
+diff -Nuar data.orig//guake.desktop.in data/guake.desktop.in
+--- data.orig//guake.desktop.in	2011-02-22 18:03:55.214284650 +0200
++++ data/guake.desktop.in	2011-02-22 18:10:19.333382277 +0200
+@@ -3,9 +3,11 @@
+ Name=Guake Terminal
+ Name[pt]=Guake Terminal
+ Name[pt_BR]=Guake Terminal
++Name[tr]=Guake Uçbirim
+ Comment=Use the command line in a Quake-like terminal
+ Comment[pt]=Utilizar a linha de comando em um terminal estilo Quake
+ Comment[pt_BR]=Utilizar a linha de comando em um terminal estilo Quake
++Comment[tr]=Yukarıdan açılan Uçbirim
+ TryExec=guake
+ Exec=guake
+ Icon=@DATADIR@/pixmaps/guake/guake.png
