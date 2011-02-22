@@ -66,7 +66,6 @@ if __name__ == "__main__":
         i18n = __trans.ugettext
 
         from pds.quniqueapp import QUniqueApplication
-        print "kdesiz efem"
         app = QUniqueApplication(sys.argv, catalog="disk-manager")
         window = MainWindow()
         window.show()
@@ -76,5 +75,5 @@ if __name__ == "__main__":
 
         app.exec_()
 
-#def CreatePlugin(widget_parent, parent, component_data):
-    #return Module(component_data, parent)
+def CreatePlugin(widget_parent, parent, component_data):
+    return Module(component_data, parent)
