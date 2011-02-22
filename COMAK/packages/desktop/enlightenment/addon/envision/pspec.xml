@@ -11,10 +11,10 @@
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>Pdf Reader</Summary>
-        <Description>The goal of this project is to create a new, simple and beautiful, PDF reader application powered by the Enlightenment Foundation Libraries</Description>
+        <Description>The goal of this project is to create a new, simple and beautiful, PDF reader application powered by the Enlightenment Foundation Libraries.</Description>
         <Archive sha1sum="ade6ff7a06e71ed907fd2875e402708ce0b913f7" type="targz">http://x86-64.comu.edu.tr/lxde/source/envision-0.0.1.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>epdf</Dependency>
+            <Dependency>epdf-devel</Dependency>
             <Dependency>eina-devel</Dependency>
             <Dependency>evas-devel</Dependency>
             <Dependency>elementary-devel</Dependency>
@@ -34,12 +34,8 @@
             <Dependency>ecore</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
-            <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
