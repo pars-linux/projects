@@ -8,18 +8,20 @@
 # any later version.
 #
 # Please read the COPYING file.
-#
+#QT Stuff
 from PyQt4.QtCore import QString
-from PyKDE4.kdecore import KConfig
-from PyKDE4.kdeui import KGlobalSettings
 
+#PyKDE4 Stuff
+from PyKDE4.kdeui import KGlobalSettings
+from PyKDE4.kdecore import KStandardDirs, KGlobal, KConfig
 class KdePlugin:
 
     def __init__(self):
         self._keyboard_config = KConfig("kxkbrc")
         self.mouse_config_hand = KConfig("kcminputrc")
         self.mouse_config_singleclick= KConfig("kdeglobals")
-    
+        self.menu_config =KConfig("plasma-desktop-appletsrc")
+
     def getKeyboardLayoutList(self):
         group = self._keyboard_config.group("Layout")
         return str(group.readEntry("LayoutList"))
@@ -71,3 +73,15 @@ class KdePlugin:
     def emitChange(self):
         KGlobalSettings.self().emitChange(KGlobalSettings.SettingsChanged,KGlobalSettings.SETTINGS_MOUSE)
 
+    def getDefaultMenuStyle(self):
+        group= self.menu_config.group("Containments")
+        for each in list(group.groupList()):
+            subgroup = group.group(each)
+            subcomponent = subgroup.readEntry('plugin')
+            if subcomponent == 'panel':
+                subg = subgroup.group('Applets')
+                for i in list(subg.groupList()):
+                    subg2 = subg.group(i)
+                    launcher = subg2.readEntry('plugin')
+                    if str(launcher).find('launcher') >= 0:
+                        return subg2.readEntry('plugin')
