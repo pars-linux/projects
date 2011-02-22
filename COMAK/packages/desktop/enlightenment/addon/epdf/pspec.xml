@@ -16,6 +16,7 @@
         <Archive sha1sum="1f2e98454a27931023236c3e1074f4e6e116ad14" type="tarbz2">http://x86-64.comu.edu.tr/lxde/epdf.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>evas-devel</Dependency>
+            <Dependency>eina</Dependency>
             <Dependency>ecore-devel</Dependency>
             <Dependency>poppler-glib-devel</Dependency>
             <Dependency>doxygen</Dependency>
