@@ -11,7 +11,9 @@ from pisi.actionsapi import pisitools
 
 def setup():
     autotools.configure("--disable-static \
-                        --disable-dependency-tracking")
+                        --disable-dependency-tracking \
+                        --enable-nls \
+                        --disable-schemas-install")
 
 def build():
     autotools.make()
