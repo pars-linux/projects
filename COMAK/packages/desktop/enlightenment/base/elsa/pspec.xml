@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>elsa is the login manager of enlightenment desktop environment</Summary>
         <Description>elsa</Description>
-        <Archive sha1sum="1d6d5e3d3703d405609f9e1057867f4527ee4729" type="targz">./elsa-0.0_20110218.tar.gz</Archive>
+        <Archive sha1sum="1d6d5e3d3703d405609f9e1057867f4527ee4729" type="targz">http://x86-64.comu.edu.tr/lxde/source/elsa-0.0_20110218.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>efreet-devel</Dependency>
             <Dependency>eina-devel</Dependency>
@@ -38,13 +38,11 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
+            <Path fileType="config">/etc/pam.d</Path>
             <Path fileType="executable">/usr/sbin</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="library">/usr/lib</Path>
-            <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
-            <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
+            <Path fileType="data">/usr/share/display-managers</Path>
         </Files>
         <AdditionalFiles>
             <AdditionalFile owner="root" permission="0644" target="/usr/share/display-managers/elsa.desktop">elsa.desktop</AdditionalFile>
