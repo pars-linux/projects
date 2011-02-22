@@ -15,6 +15,8 @@ def setup():
                         --enable-nls \
                         --disable-schemas-install")
 
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+
 def build():
     autotools.make()
 
