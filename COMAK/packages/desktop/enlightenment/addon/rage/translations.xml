@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>rage</Name>
-        <Summary xml:lang="tr">Video Ön Ucu (Frontend)</Summary>
-        <Description xml:lang="tr">EFL ile yazılmış video ön ucu.</Description>
+        <Summary xml:lang="tr">Enlightenment için video Ön Ucu (Frontend)</Summary>
+        <Description xml:lang="tr">Rage, Enlightenment için EFL ile yazılmış bir video ön ucudur.</Description>
     </Source>
 </PISI>
