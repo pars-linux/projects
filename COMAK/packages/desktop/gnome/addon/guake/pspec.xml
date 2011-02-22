@@ -22,6 +22,7 @@
         <Patches>
             <Patch>turkish-translation.patch</Patch>
             <Patch>configure-turkish.patch</Patch>
+            <Patch>desktop.in.patch</Patch>
         </Patches>
     </Source>
 
