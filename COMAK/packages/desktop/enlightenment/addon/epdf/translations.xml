@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>epdf</Name>
+        <Summary xml:lang="tr">Envision için gerekli kitaplıklar</Summary>
+        <Description xml:lang="tr">epdf, envision pdf gösterici için gerekli kitaplıkları içerir.</Description>
+    </Source>
+</PISI>
+

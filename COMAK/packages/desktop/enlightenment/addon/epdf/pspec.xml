@@ -11,9 +11,9 @@
         <License>GPLv2</License>
         <IsA>library</IsA>
         <PartOf> app-text</PartOf>
-        <Summary>Epdf</Summary>
-        <Description>Pdf reader for Enlightenment</Description>
-        <Archive sha1sum="1f2e98454a27931023236c3e1074f4e6e116ad14" type="tarbz2">http://x86-64.comu.edu.tr/lxde/epdf.tar.bz2</Archive>
+        <Summary>Libraries for envision</Summary>
+        <Description>Pdf reader for Enlightenment.</Description>
+        <Archive sha1sum="1f2e98454a27931023236c3e1074f4e6e116ad14" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/epdf-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>evas-devel</Dependency>
             <Dependency>eina</Dependency>
@@ -36,12 +36,23 @@
             <Dependency>ecore-devel</Dependency>
             <Dependency>eina</Dependency>
         </RuntimeDependencies>
+
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="data">/usr/share</Path>
-            <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>epdf-devel</Name>
+        <Summary>Development files for epdf</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">epdf</Dependency>
+        </RuntimeDependencies>
+        <Files>
             <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
 
