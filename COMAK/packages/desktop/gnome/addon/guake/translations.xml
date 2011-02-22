@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>guake</Name>
+        <Summary xml:lang="tr">Gnome için yapılmış yakuake benzeri bir terminal</Summary>
+        <Description xml:lang="tr">Guake, Gnome için yapılmış, kısayol, çoklu sekme ve şeffaflık gibi özellikleri destekleyen, tek bir tuş ile açılabilen, güçlü bir açılır-kapanır konsoldur.</Description>
+    </Source>
+</PISI>
