@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>elsa is the login manager of enlightenment desktop environment</Summary>
         <Description>elsa</Description>
-        <Archive sha1sum="ba010eb3984c5d53949de0abde096fb8efaf15f5" type="targz">./elsa-0.17.tar.gz</Archive>
+        <Archive sha1sum="1d6d5e3d3703d405609f9e1057867f4527ee4729" type="targz">./elsa-0.0_20110218.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>efreet-devel</Dependency>
             <Dependency>eina-devel</Dependency>
@@ -54,7 +54,7 @@
     <History>
         <Update release="1">
             <Date>2011-02-15</Date>
-            <Version>0.17</Version>
+            <Version>0.0_20110218</Version>
             <Comment>First release.</Comment>
             <Name>Engin Manap</Name>
             <Email>engin@comu.edu.tr</Email>
