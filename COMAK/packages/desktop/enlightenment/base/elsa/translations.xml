@@ -2,8 +2,8 @@
 <PISI>
     <Source>
         <Name>elsa</Name>
-        <Summary xml:lang="tr">elsa Enlightenment masaüstü ortamının giriş yöneticisidir</Summary>
-        <Description xml:lang="tr">elsa, entrance yerine gelen Enlightenment masaüstü ortamının giriş yöneticisidir. pam kullanır ve /etc/elsa.conf dosyası aracılığıyla bütün özellikleri ayarlanabilir.</Description>
+        <Summary xml:lang="tr">Enlightenment masaüstü ortamının giriş yöneticisi</Summary>
+        <Description xml:lang="tr">Elsa, entrance yerine gelen Enlightenment masaüstü ortamının giriş yöneticisidir. Pam kullanır ve /etc/elsa.conf dosyası aracılığıyla bütün özellikleri ayarlanabilir.</Description>
     </Source>
 </PISI>
 
