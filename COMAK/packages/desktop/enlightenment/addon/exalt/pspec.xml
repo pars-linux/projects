@@ -10,9 +10,9 @@
         </Packager>
         <License>GPL2</License>
         <IsA>library</IsA>
-        <Summary>Netwok manager</Summary>
-        <Description>Netwok manager based on EFL</Description>
-        <Archive sha1sum="dfcc8dfb3d02135c126a98b5f850752349de483d" type="targz">http://x86-64.comu.edu.tr/lxde/source/exalt-0.9.tar.gz</Archive>
+        <Summary>Netwok manager for Enlightenment</Summary>
+        <Description>Exalt is a netwok manager front end based on EFL for Enlightenment.</Description>
+        <Archive sha1sum="dfcc8dfb3d02135c126a98b5f850752349de483d" type="targz">http://x86-64.comu.edu.tr/lxde/source/exalt-0.9_55225.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.4.0">eet-devel</Dependency>
             <Dependency versionFrom="1.0.0">e_dbus-devel</Dependency>
@@ -40,20 +40,22 @@
             <AdditionalFile owner="root" permission="0644" target="/etc/dbus-1/system.d/exalt.conf">exalt.conf</AdditionalFile>
         </AdditionalFiles>
     </Package>
+
     <Package>
         <Name>exalt-devel</Name>
         <RuntimeDependencies>
-            <Dependency>exalt</Dependency>
+            <Dependency version="current">exalt</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="data">/usr/lib/pkgconfig</Path>
             <Path fileType="header">/usr/include/</Path>
         </Files>
     </Package>
+    
     <History>
         <Update release="1">
             <Date>2011-02-15</Date>
-            <Version>0.9</Version>
+            <Version>0.9_55225</Version>
             <Comment>First release</Comment>
             <Name>Alper Tekinalp</Name>
             <Email>alper.tekinalp@gmail.com</Email>

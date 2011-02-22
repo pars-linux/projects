@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>exalt</Name>
+        <Summary xml:lang="tr">Enlightenment için ağ yönetecisi</Summary>
+        <Description xml:lang="tr">Exalt, EFL kitaplıklarına dayalı Enlightenment için yazılmış bir ağ yöneticisidir. </Description>
+    </Source>
+</PISI>
+
