@@ -23,6 +23,8 @@
             <Patch>turkish-translation.patch</Patch>
             <Patch>configure-turkish.patch</Patch>
             <Patch>desktop.in.patch</Patch>
+            <Patch>guake-0.4.2-int-ssl-port.patch</Patch>
+            <Patch>guake-0.4.2-prefs-spinbox.patch</Patch>
         </Patches>
     </Source>
 
@@ -34,6 +36,13 @@
             <Dependency>notify-python</Dependency>
             <Dependency>gnome-python</Dependency>
             <Dependency>notification-daemon</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
