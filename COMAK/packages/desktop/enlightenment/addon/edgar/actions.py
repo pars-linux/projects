@@ -12,6 +12,7 @@ from pisi.actionsapi import get
 
 def setup():
     shelltools.system("./autogen.sh \
+                        --disable-static \
                         --prefix=/usr")
 
 
