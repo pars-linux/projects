@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011 - Comak Enlightenment i686</Title>
+    <Title>Pardus 2011 - Comak Enlightenment i686 Dolly</Title>
     <WorkDir>/home/alper/iso/enligtenment</WorkDir>
     <ReleaseFiles>/home/alper/iso/enligtenment/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="file:///home/alper/iso/repo/pisi-index.xml.xz">
