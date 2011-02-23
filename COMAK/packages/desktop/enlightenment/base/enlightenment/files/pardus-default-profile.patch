@@ -1,6 +1,6 @@
 diff -Nuar enlightenment-0.16.999_52995.orig/config/standard/e.src enlightenment-0.16.999_52995/config/standard/e.src
 --- enlightenment-0.16.999_52995.orig/config/standard/e.src	2010-10-03 22:06:05.000000000 +0300
-+++ enlightenment-0.16.999_52995/config/standard/e.src	2011-02-23 17:09:12.406000004 +0200
++++ enlightenment-0.16.999_52995/config/standard/e.src	2011-02-23 17:28:02.926000005 +0200
 @@ -2,6 +2,7 @@
    value "config_version" int: 65847;
    value "show_splash" int: 1;
@@ -9,3 +9,14 @@ diff -Nuar enlightenment-0.16.999_52995.orig/config/standard/e.src enlightenment
    value "desktop_default_name" string: "Desktop %i, %i";
    value "menus_scroll_speed" double: 1000.0000000000000000000000000;
    value "menus_fast_mouse_move_threshhold" double: 300.0000000000000000000000000;
+@@ -1893,8 +1894,8 @@
+   value "border_raise_on_focus" int: 1;
+   value "desk_flip_wrap" int: 0;
+   value "fullscreen_flip" int: 1;
+-  value "icon_theme" string: "Tango";
+-  value "icon_theme_overrides" uchar: 0;
++  value "icon_theme" string: "oxygen";
++  value "icon_theme_overrides" uchar: 1;
+   value "desk_flip_animate_mode" int: 1;
+   value "desk_flip_animate_interpolation" int: 0;
+   value "desk_flip_animate_time" double: 0.2000000000000000111022302;
