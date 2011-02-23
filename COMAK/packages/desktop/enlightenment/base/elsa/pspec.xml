@@ -5,10 +5,10 @@
         <Name>elsa</Name>
         <Homepage>http://www.enlightenment.org</Homepage>
         <Packager>
-            <Name>Engin Manap</Name>
-            <Email>engin@comu.edu.tr</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
-        <License>GPLv2</License>
+        <License>GPLv3</License>
         <IsA>app:gui</IsA>
         <Summary>Login manager of enlightenment desktop environment</Summary>
         <Description>Elsa is the login manager for Enlightenment desktop environment that replaces entrance. It uses pam, and can be configured with /etc/elsa.conf.</Description>
