@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>edgar</Name>
+        <Summary xml:lang="tr">E17 Edgar Araç Yükleyici</Summary>
+        <Description xml:lang="tr">Basit edje dosyalarını yüklemek ve yönetmek için E17 modül.</Description>
+    </Source>
+</PISI>
+
