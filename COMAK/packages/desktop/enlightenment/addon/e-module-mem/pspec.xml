@@ -10,9 +10,9 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>e-module-mem</Summary>
-        <Description>Memory monitor module for e17</Description>
-        <Archive sha1sum="af435505db7270fbb9fcad3619f5d314b3e4cf68" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-mem.tar.bz2</Archive>
+        <Summary>Memory monitor module for e17</Summary>
+        <Description>Used to monitor memory utilization.</Description>
+        <Archive sha1sum="f45b1f05e7f8d5a943bd2bb61187024e10f31485" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-mem-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>catbox</Dependency>
             <Dependency>git</Dependency>
@@ -22,6 +22,9 @@
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">add-tr-to-desktop.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>

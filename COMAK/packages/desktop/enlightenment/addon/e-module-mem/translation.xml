@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-mem</Name>
+        <Summary xml:lang="tr">Bellek izleme modulü</Summary>
+        <Description xml:lang="tr">E-module-mem, bellek gözlemlemek için bir E17 modülüdür.</Description>
+    </Source>
+</PISI>
