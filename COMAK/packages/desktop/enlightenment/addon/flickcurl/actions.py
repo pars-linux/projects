@@ -10,15 +10,15 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
-
 from pisi.actionsapi import get
 from pisi.actionsapi import shelltools
+
 def setup():
-        shelltools.system("./autogen.sh \
-                                    --prefix=/usr")
+        autotools.configure()
 
 def build():
         autotools.make()
 
 def install():
         autotools.install()
+        pisitools.dodoc("LICENSE-2.0.txt", "ChangeLog", "AUTHORS", "COPYING", "*.html", "NEWS")
