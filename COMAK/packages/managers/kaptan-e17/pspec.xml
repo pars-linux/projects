@@ -17,6 +17,9 @@
             <Dependency>python-qt-devel</Dependency>
             <Dependency>pardus-desktop-services</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">kaptanAutostartRemove.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
