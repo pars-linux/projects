@@ -10,9 +10,9 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>e-module-cpu</Summary>
-        <Description>CPU monitor module for e17</Description>
-        <Archive sha1sum="e91174aaf5218b78e619ccee7ed810484f18f54f" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/cpu-0.0.1_55225.tar.bz2</Archive>
+        <Summary>CPU monitor module</Summary>
+        <Description>E-module-cpu is a E17 module for monitor cpu.</Description>
+        <Archive sha1sum="979c02a84928857701c14800270dea76572baf61" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-cpu-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>eet</Dependency>
             <Dependency>edje</Dependency>
@@ -20,6 +20,9 @@
             <Dependency>eina</Dependency>
             <Dependency>ecore</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">add-tr-to-desktop.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
@@ -32,13 +35,7 @@
             <Dependency>ecore</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
-            <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
-            <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
-            <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
     </Package>
