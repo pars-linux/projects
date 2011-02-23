@@ -36,13 +36,7 @@
             <Dependency>notify-python</Dependency>
             <Dependency>gnome-python</Dependency>
             <Dependency>notification-daemon</Dependency>
-            <Dependency>atk</Dependency>
             <Dependency>gtk2</Dependency>
-            <Dependency>cairo</Dependency>
-            <Dependency>pango</Dependency>
-            <Dependency>freetype</Dependency>
-            <Dependency>fontconfig</Dependency>
-            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
