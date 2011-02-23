@@ -64,15 +64,20 @@ if __name__ == "__main__":
         import gettext
         __trans = gettext.translation('disk-manager', fallback=True)
         i18n = __trans.ugettext
-
+        #Pds Stuff
         from pds.quniqueapp import QUniqueApplication
+
+        #Create a QUniqueApp instance
         app = QUniqueApplication(sys.argv, catalog="disk-manager")
+
+        #Create Main Widget
         window = MainWindow()
         window.show()
         window.resize(550, 484)
         window.setWindowTitle(i18n("Disk Manager"))
         window.setWindowIcon(KIcon("drive-harddisk"))
 
+        #Run the application
         app.exec_()
 
 def CreatePlugin(widget_parent, parent, component_data):
