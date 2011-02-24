@@ -29,7 +29,6 @@
             <Dependency>alsa-lib-devel</Dependency>
         </BuildDependencies>
         <Patches>
-            <Patch level="1">autostart_xdg.patch</Patch>
             <Patch level="1">fileman-default.patch</Patch>
             <Patch level="1">wizard.patch</Patch>
             <Patch level="1">no-desktop-file.patch</Patch>
