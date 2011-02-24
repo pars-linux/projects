@@ -29,6 +29,7 @@
             <Dependency>alsa-lib-devel</Dependency>
         </BuildDependencies>
         <Patches>
+            <Patch level="1">autostart_xdg.patch</Patch>
             <Patch level="1">fileman-default.patch</Patch>
             <Patch level="1">wizard.patch</Patch>
             <Patch level="1">no-desktop-file.patch</Patch>
@@ -68,6 +69,7 @@
             <AdditionalFile owner="root" permission="0644" target="/usr/share/xsessions/enlightenment.desktop">enlightenment.desktop</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/usr/share/enlightenment/data/images/lang-tr_TR.png">lang-tr_TR.png</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/etc/enlightenment/sysactions.conf">sysactions.conf</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/enlightenment/data/backgrounds/pardus-2011_background.edj">pardus-2011_background.edj</AdditionalFile>
         </AdditionalFiles>
     </Package>
 

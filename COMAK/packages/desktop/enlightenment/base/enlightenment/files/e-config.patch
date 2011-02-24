@@ -128,14 +128,13 @@ Index: enlightenment-0.16.999.49539/config/standard/e.src
            value "geom.size" int: 32;
            value "geom.res" int: 800;
            value "geom.pos_x" double: 0.0000000000000000000000000;
-@@ -2086,8 +2094,8 @@ group "E_Config" struct {
+@@ -2086,7 +2094,7 @@ group "E_Config" struct {
    value "border_raise_on_focus" int: 1;
    value "desk_flip_wrap" int: 0;
    value "fullscreen_flip" int: 1;
 -  value "icon_theme" string: "Tango";
--  value "icon_theme_overrides" uchar: 0;
-+  value "icon_theme" string: "Milky";
-+  value "icon_theme_overrides" uchar: 1;
++  value "icon_theme" string: "oxygen";
+   value "icon_theme_overrides" uchar: 0;
    value "desk_flip_animate_mode" int: 1;
    value "desk_flip_animate_interpolation" int: 0;
    value "desk_flip_animate_time" double: 0.2000000000000000111022302;
