@@ -9,6 +9,8 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 
+WorkDir = "elsa"
+
 def setup():
     shelltools.system("./autogen.sh \
                        --sysconfdir=/etc \
