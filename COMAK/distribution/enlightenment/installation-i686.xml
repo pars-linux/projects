@@ -55,7 +55,6 @@
         <SelectedPackage>edje_viewer</SelectedPackage>
         <SelectedPackage>eio</SelectedPackage>
         <SelectedPackage>eio-devel</SelectedPackage>
-        <SelectedPackage>elsa</SelectedPackage>
         <SelectedPackage>emotion</SelectedPackage>
         <SelectedPackage>emotion-devel</SelectedPackage>
         <SelectedPackage>empower</SelectedPackage>
@@ -93,6 +92,7 @@
         <SelectedPackage>gtk-engines</SelectedPackage>
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
+        <SelectedPackage>guake</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
         <SelectedPackage>hplip</SelectedPackage>
         <SelectedPackage>htop</SelectedPackage>
@@ -107,7 +107,6 @@
         <SelectedPackage>irqbalance</SelectedPackage>
         <SelectedPackage>iw</SelectedPackage>
         <SelectedPackage>jfsutils</SelectedPackage>
-        <SelectedPackage>kaptan-e17</SelectedPackage>
         <SelectedPackage>kernel</SelectedPackage>
         <SelectedPackage>leafpad</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
@@ -356,14 +355,12 @@
         <Package>eject</Package>
         <Package>elementary</Package>
         <Package>elementary-devel</Package>
-        <Package>elsa</Package>
         <Package>embryo</Package>
         <Package>embryo-devel</Package>
         <Package>emotion</Package>
         <Package>enca</Package>
         <Package>enchant</Package>
         <Package>enlightenment</Package>
-        <Package>enlightenment-devel</Package>
         <Package>enscript</Package>
         <Package>epdf</Package>
         <Package>ethumb</Package>
@@ -428,6 +425,7 @@
         <Package>gmp</Package>
         <Package>gnome-keyring</Package>
         <Package>gnome-mplayer</Package>
+        <Package>gnome-python</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
         <Package>gnutls</Package>
@@ -514,6 +512,7 @@
         <Package>libXpm</Package>
         <Package>libXrandr</Package>
         <Package>libXrender</Package>
+        <Package>libXres</Package>
         <Package>libXt</Package>
         <Package>libXtst</Package>
         <Package>libXv</Package>
@@ -662,6 +661,7 @@
         <Package>libvorbis</Package>
         <Package>libvpx</Package>
         <Package>libwmf</Package>
+        <Package>libwnck</Package>
         <Package>libwpd</Package>
         <Package>libwpg</Package>
         <Package>libwps</Package>
@@ -724,6 +724,8 @@
         <Package>net-snmp</Package>
         <Package>net-tools</Package>
         <Package>netcat</Package>
+        <Package>notification-daemon</Package>
+        <Package>notify-python</Package>
         <Package>nspr</Package>
         <Package>nss</Package>
         <Package>nss-mdns</Package>
@@ -805,14 +807,13 @@
         <Package>python-gtk</Package>
         <Package>python-nose</Package>
         <Package>python-numpy</Package>
+        <Package>python-orbit</Package>
         <Package>python-pyaspects</Package>
         <Package>python-pyblock</Package>
         <Package>python-pygobject</Package>
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
         <Package>python-setuptools</Package>
-        <Package>python-simplejson</Package>
-        <Package>python-xlib</Package>
         <Package>python-zope-interface</Package>
         <Package>qt</Package>
         <Package>qt-sql-sqlite</Package>
@@ -846,7 +847,6 @@
         <Package>slang</Package>
         <Package>slf4j</Package>
         <Package>slv2</Package>
-        <Package>smolt</Package>
         <Package>smpeg</Package>
         <Package>soprano</Package>
         <Package>soundtouch</Package>
@@ -893,6 +893,7 @@
         <Package>virtuoso</Package>
         <Package>vixie-cron</Package>
         <Package>vlc-libs</Package>
+        <Package>vte</Package>
         <Package>wavpack</Package>
         <Package>webkit-gtk</Package>
         <Package>which</Package>
@@ -1376,7 +1377,6 @@
         <Package>yali-theme-pardus</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
-        <Package>zorg</Package>
     </InstallImagePackages>
     <LanguageSelection default_language="tr_TR">
         <Language>tr_TR</Language>
