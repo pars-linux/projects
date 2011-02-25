@@ -10,7 +10,7 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
-        <Summary>Enki: Photo Manager</Summary>
+        <Summary>Photo Manager for Enlightenment</Summary>
         <Description>Enki is a photo manager using the EFL and allows the user to manage a list of albums and photos.</Description>
         <Archive sha1sum="9900938f40a4cfb29cf187593f614b0a5035206f" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/enki-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
@@ -18,7 +18,8 @@
             <Dependency>ecore-devel</Dependency>
             <!--<Dependency>ecore-file</Dependency>-->
             <Dependency>eet-devel</Dependency>
-            <Dependency>enlil</Dependency>
+            <Dependency>enlil-devel</Dependency>
+            <Dependency>eio-devel</Dependency>
             <Dependency>elementary</Dependency>
         </BuildDependencies>
     </Source>
