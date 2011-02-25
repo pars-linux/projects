@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>e-module-mem</Name>
-        <Summary xml:lang="tr">Bellek izleme modulü</Summary>
-        <Description xml:lang="tr">E-module-mem, bellek gözlemlemek için bir E17 modülüdür.</Description>
+        <Summary xml:lang="tr">Enlightenment için bellek izleme modulü</Summary>
+        <Description xml:lang="tr">E-module-mem, Enlightenment için bir bellek gözlemleme modülüdür.</Description>
     </Source>
 </PISI>
