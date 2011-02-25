@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>enlil</Name>
+        <Summary xml:lang="tr">Fotoğrafları ve albümleri yönetmeye izin veren bir kitaplık</Summary>
+        <Description xml:lang="tr">enlil, fotoğrafları ve albümleri yönetmeye izin veren EFL ile yazılmış bir kitaplıktır.</Description>
+    </Source>
+</PISI>
+

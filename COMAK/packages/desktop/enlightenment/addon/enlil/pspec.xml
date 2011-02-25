@@ -9,8 +9,9 @@
             <Email>ozgebarbaros@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
+        <IsA>app:console</IsA>
         <IsA>library</IsA>
-        <Summary>Enlil </Summary>
+        <Summary>A library which allows to manage a list of albums and photos</Summary>
         <Description>Enlil is a library using the EFL which allows to manage a list of albums and photos.</Description>
         <Archive sha1sum="72df96c82606e9a2d071bdd928bc110b03e78a54" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/enlil-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
@@ -18,7 +19,7 @@
             <Dependency>eet-devel</Dependency>
             <Dependency>ethumb</Dependency>
             <Dependency>libexif-devel</Dependency>
-            <Dependency>libiptcdata</Dependency>
+            <Dependency>libiptcdata-devel</Dependency>
             <Dependency>perl-libxml</Dependency>
         </BuildDependencies>
     </Source>
@@ -27,14 +28,29 @@
         <Name>enlil</Name>
         <RuntimeDependencies>
              <Dependency>ecore</Dependency>
-             <!--<Dependency>ecore-file</Dependency>-->
+             <Dependency>evas</Dependency>
              <Dependency>eet</Dependency>
-             <!--<Dependency>ethumb-client</Dependency>-->
+             <Dependency>eina</Dependency>
+             <Dependency>ethumb</Dependency>
+             <Dependency>libexif</Dependency>
+             <Dependency>libiptcdata</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>enlil-devel</Name>
+        <IsA>library</IsA>
+        <Summary>Development files for enlil</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">enlil</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
 
