@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>enjoy</Name>
-        <Summary xml:lang="tr">Media player written with Enlightenment Foundation Libraries</Summary>
-        <Description xml:lang="tr">Enjoy is a lightweight media player written using Enlightenment Foundation Libraries.</Description>
+        <Summary xml:lang="tr">Enlightenment Foundation Libraries (ELF) kullanılarak yazılmış bir müzik oynatıcı</Summary>
+        <Description xml:lang="tr">Enjoy hız ve mobil kullanım göz önüne alınarak ELF kullanılarak yazılmış bir müzik çalma programıdır.</Description>
     </Source>
 </PISI>

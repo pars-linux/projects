@@ -11,8 +11,8 @@
         <License>BSD</License>
         <IsA>app:gui</IsA>
         <IsA>library</IsA>
-        <Summary>.</Summary>
-        <Description>.</Description>
+        <Summary>A music player written using Enlightenment Foundation Libraries</Summary>
+        <Description>Enjoy is a music player written using Enlightenment Foundation Libraries (EFL) with focus on speed and mobile usability, yet should be usable on desktops as well.</Description>
         <Archive sha1sum="fe9fb6276bf6325ba0afc27bf75265661953b401" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/enjoy-0.1.0_55404.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
@@ -42,9 +42,7 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
-            <Path fileType="data">/usr/lib/pkgconfig</Path>
             <Path fileType="data">/usr/share/applications</Path>
             <Path fileType="data">/usr/share/enjoy</Path>
             <Path fileType="data">/usr/share/icons</Path>
