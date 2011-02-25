@@ -14,28 +14,28 @@
         <Description>A module to set Alarms in Enlightenment 17</Description>
         <Archive sha1sum="0b0c5fdda040df80ca705a422238b46574e8ad53" type="tarbz2">http://x86-64.comu.edu.tr/lxde/e-module-alarm-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
-            <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">efreet-devel</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">e_dbus-devel</Dependency>
-            <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>eet-devel</Dependency>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+            <Dependency>edje-devel</Dependency>
+            <Dependency>efreet-devel</Dependency>
+            <Dependency>e_dbus-devel</Dependency>
+            <Dependency>enlightenment-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>e-module-alarm</Name>
         <RuntimeDependencies>
-            <Dependency versionFrom="1.0.0_beta3">eina</Dependency>
-            <Dependency versionFrom="1.4.0_beta3">eet</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">evas</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">ecore</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">edje</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">efreet</Dependency>
-            <Dependency versionFrom="1.0.0_beta3">e_dbus</Dependency>
-            <Dependency versionFrom="0.16.999_55225">enlightenment</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>eet</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>efreet</Dependency>
+            <Dependency>e_dbus</Dependency>
+            <Dependency>enlightenment</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="data">/usr/lib/enlightenment/modules/alarm/</Path>
