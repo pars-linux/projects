@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-cpu</Name>
+        <Summary xml:lang="tr">Enlightenment için işlemci görüntüleme modülü</Summary>
+        <Description xml:lang="tr">e-module-cpu Enlightenment için işlemci görüntüleme modülüdür.</Description>
+    </Source>
+</PISI>
+

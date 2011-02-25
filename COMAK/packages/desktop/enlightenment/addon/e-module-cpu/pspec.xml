@@ -37,6 +37,7 @@
         <Files>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="data">/usr/share</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
         </Files>
     </Package>
 
