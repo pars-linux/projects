@@ -20,12 +20,22 @@
         <Name>libiptcdata</Name>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
-            <Path fileType="data">/usr/lib/pkgconfig</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
             <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>libiptcdata-devel</Name>
+        <Summary>Development files for libiptcdata</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">libiptcdata</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
 
