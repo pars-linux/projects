@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>enki</Name>
+        <Summary xml:lang="tr">Enlightenment için fotoğraf yöneticisi</Summary>
+        <Description xml:lang="tr">Enki, fotoğraflarınızı yönetebileceğiniz ELF ile yazılmış bir araçtır.</Description>
+    </Source>
+</PISI>
+
