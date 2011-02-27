@@ -23,6 +23,7 @@ class KdePlugin:
         self.mouse_config_singleclick= KConfig("kdeglobals")
         self.menu_config = KConfig("plasma-desktop-appletsrc")
         self.desktop_number = KConfig("kwinrc")
+        self.configPlasmaRc = KConfig("plasmarc")
 
     def getKeyboardLayoutList(self):
         group = self._keyboard_config.group("Layout")
@@ -92,7 +93,7 @@ class KdePlugin:
         if _hasChanged:
             hasChanged = True
             if wallpaper:
-                group = menu_config.group("Containments")
+                group = self.menu_config.group("Containments")
                 for each in list(group.groupList()):
                     subgroup = group.group(each)
                     subcomponent = subgroup.readEntry('plugin')
@@ -101,8 +102,8 @@ class KdePlugin:
                         subg_2 = subg.group('image')
                         subg_2.writeEntry("wallpaper", wallpaper)
 
-    def setMenuSettings(self,menuSettings):
-        if self.menuSettings["hasChanged"]:
+    def setMenuSettings(self,has_changed,menuSettings):
+        if has_changed:
             hasChanged = True
             group = menu_config.group("Containments")
             for each in list(group.groupList()):
@@ -134,6 +135,25 @@ class KdePlugin:
     def getDesktopNumber(self):
         group=self.desktop_number.group("Desktops")
         return int(group.readEntry("Number"))
+    def setDesktopNumber(self):
+        group=self.desktop_number.group("Desktops")
+        group.writeEntry('Number', self.styleSettings["desktopNumber"])
+        group.sync()
+
+        info =  kdeui.NETRootInfo(QtGui.QX11Info.display(), kdeui.NET.NumberOfDesktops | kdeui.NET.DesktopNames)
+        info.setNumberOfDesktops(int(self.styleSettings["desktopNumber"]))
+        info.activate()
+
+        session = dbus.SessionBus()
+
+        try:
+            proxy = session.get_object('org.kde.kwin', '/KWin')
+            proxy.reconfigure()
+        except dbus.DBusException:
+            pass
+
+        self.desktop_number.sync()
+
 
     def package_config(self,config):
         self.config = KConfig(config)
@@ -152,4 +172,77 @@ class KdePlugin:
         self.procSettings.start(command)
     def quit(self):
         kdeui.KApplication.kApplication().quit()
+    def setDesktopType(self):
+        group = self.menu_config.group("Containments")
+        for each in list(group.groupList()):
+            subgroup = group.group(each)
+            subcomponent = subgroup.readEntry('plugin')
+            subcomponent2 = subgroup.readEntry('screen')
+            if subcomponent == 'desktop' or subcomponent == 'folderview':
+                if int(subcomponent2) == 0:
+                    subgroup.writeEntry('plugin', self.styleSettings["desktopType"])
+             # Remove folder widget - normally this would be done over dbus but thanks to improper naming of the plasma interface
+            # this is not possible
+            # ValueError: Invalid interface or error name 'org.kde.plasma-desktop': contains invalid character '-'
+            #
+            # Related Bug:
+            # Bug 240358 - Invalid D-BUS interface name 'org.kde.plasma-desktop.PlasmaApp' found while parsing introspection
+            # https://bugs.kde.org/show_bug.cgi?id=240358
+
+        if self.styleSettings["desktopType"] == "folderview":
+            removeFolderViewWidget()
+
+        self.menu_config.sync()
+
+    def deleteIconCache(self):
+        for i in range(kdeui.KIconLoader.LastGroup):
+                kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.IconChanged, i)
+    def setThemeSettings(self):
+        group = self.mouse_config_singleclick.group("General")
+
+        groupIconTheme = configKdeGlobals.group("Icons")
+        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
+
+        mouse_config_singleclick.sync()
+    def changeIconTheme(self):
+        kdeui.KIconTheme.reconfigure()
+        kdeui.KIconCache.deleteCache()
+    def setStyleSettings(self):
+        group = self.mouse_config_singleclick.group("General")
+        group.writeEntry("widgetStyle", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["widgetStyle"])
+
+        groupIconTheme = configKdeGlobals.group("Icons")
+        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
+        #groupIconTheme.writeEntry("Theme", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["iconTheme"])
+
+        mouse_config_singleclick.sync()
+
+    def setChangeWidget(self):
+        for key, value in self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["colorScheme"].items():
+                colorGroup = self.mouse_config_singleclick.group(key)
+                for key2, value2 in value.items():
+                        colorGroup.writeEntry(str(key2), str(value2))
+
+        self.mouse_config_singleclick.sync()
+    def emitChangeStyle(self):
+        kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.StyleChanged)
+    def configPlasmarc(self):
+        groupDesktopTheme = self.configPlasmaRc.group("Theme")
+        groupDesktopTheme.writeEntry("name", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["desktopTheme"])
+        configPlasmaRc.sync()
+    def setPlasma(self):
+        group = self.menu_config.group("Containments")
+        for each in list(group.groupList()):
+            subgroup = group.group(each)
+            subcomponent = subgroup.readEntry('plugin')
+            if subcomponent == 'panel':
+                #print subcomponent
+                subgroup.writeEntry('location', self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["panelPosition"])
+
+        self.menu_config.sync()
+    
+    def configKwinRC(self):
+        groupWindowDecoration = self.desktop_number.group("Style")
+        groupWindowDecoration.writeEntry("PluginLib", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["windowDecoration"])
+        desktop_number.sync()
 
