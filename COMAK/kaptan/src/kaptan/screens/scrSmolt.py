@@ -16,6 +16,8 @@ import pardus.netutils
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
+#from PyKDE4 import kdecore
+
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
@@ -69,8 +71,8 @@ class Widget(QtGui.QWidget, Screen):
     def setTableWidget(self):
         ''' Specify the tableWidget properties '''
 
-        colLabel = i18n(str("Label"))
-        colData = i18n(str("Data"))
+        colLabel = i18n("Label")
+        colData = i18n("Data")
         item = QtGui.QTableWidgetItem(colLabel)
         self.ui.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtGui.QTableWidgetItem(colData)
@@ -109,10 +111,10 @@ class Widget(QtGui.QWidget, Screen):
 
         if self.ui.stackedWidget.currentIndex() == 0:
             self.ui.stackedWidget.setCurrentIndex(1)
-            self.ui.privacyButton.setText(i18n("&Host Information"))
+            self.ui.privacyButton.setText(kdecore.i18n("&Host Information"))
         else:
             self.ui.stackedWidget.setCurrentIndex(0)
-            self.ui.privacyButton.setText(i18n("&Privacy policy"))
+            self.ui.privacyButton.setText(kdecore.i18n("&Privacy policy"))
 
     def getLabels(self):
         self.sendable_host_labels = [ i18n("UUID"),

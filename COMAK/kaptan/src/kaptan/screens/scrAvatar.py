@@ -16,14 +16,17 @@
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+
+#from PyQt4.QtGui import *
 #from PyKDE4.kdecore import ki18n
 #from PyKDE4.kdecore import i18n
-import ImageQt
 
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
+from kaptan.plugins import desktop
+
+import ImageQt
 
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrAvatar import Ui_Form
@@ -49,7 +52,7 @@ class Widget(QtGui.QWidget, Screen):
 
         self.camActive = False
 
-        Widget.desc = QVariant(unicode(i18n(str("Create Your User Picture"))))
+        Widget.desc = QVariant(unicode(i18n("Create Your User Picture")))
 
         self.pictureTaken = 0
         self.ui.takeButton.hide()

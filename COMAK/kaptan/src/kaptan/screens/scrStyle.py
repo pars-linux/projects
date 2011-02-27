@@ -12,15 +12,13 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtCore import *
+#from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
+#from PyKDE4 import kdeui
 
+#Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-
-if ctx.Pds.session == ctx.pds.Kde4:
-    from PyKDE4.kdecore import  KStandardDirs, KGlobal, KConfig
-    from PyKDE4 import kdeui
-
-
+from kaptan.plugins import desktop
 
 import os, sys, Image, dbus, glob
 
@@ -29,7 +27,7 @@ from kaptan.screens.ui_scrStyle import Ui_styleWidget
 from kaptan.screens.styleItem import StyleItemWidget
 
 from kaptan.tools.desktop_parser import DesktopParser
-from ConfigParser import ConfigParser 
+from ConfigParser import ConfigParser
 
 class Widget(QtGui.QWidget, Screen):
     screenSettings = {}
@@ -50,19 +48,13 @@ class Widget(QtGui.QWidget, Screen):
         self.ui.setupUi(self)
 
         self.styleDetails = {}
-        if ctx.Pds.session == ctx.pds.Kde4:
-             self.catLang = KGlobal.locale().language()
-             config = KConfig("kwinrc")
-             group = config.group("Desktops")
-             defaultDesktopNumber = int(group.readEntry('Number'))
+        self.catLang = desktop.getLanguage()
 
-        else:
-            #şimdilik diğer masaüstü ortamlarının 
-            #masaüstü sayısını es geç
-            defaultDesktopNumber =3
-             
+        #config = KConfig("kwinrc")
+        #group = config.group("Desktops")
+        defaultDesktopNumber = desktop.getDesktopNumber()
+
         self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
-        # self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
         lst2 = glob.glob1("/usr/share/kde4/apps/kaptan/kaptan/kde-themes", "*.style")
 
         for desktopFiles in lst2:
@@ -101,7 +93,7 @@ class Widget(QtGui.QWidget, Screen):
                     color = colorDir + "Oxygen.colors"
 
                 self.Config.read(color)
-               # colorConfig= KConfig("kdeglobals")
+                #colorConfig= KConfig("kdeglobals")
                 for i in self.Config.sections():
                     #colorGroup = colorConfig.group(str(i))
                     colorDict[i] = {}
