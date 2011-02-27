@@ -19,8 +19,8 @@ from PyQt4 import QtCore
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
+from kaptan.plugins import desktop
 
-#from PyKDE4 import kdecore
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrSmolt import Ui_smoltWidget
 

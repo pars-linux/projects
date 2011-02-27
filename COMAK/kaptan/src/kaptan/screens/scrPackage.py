@@ -12,13 +12,15 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtCore import *
-        
+
+#from PyKDE4.kdecore import ki18n, KConfig, KProcess
+
+#from PyKDE4 import kdeui
+
+#Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-
-if ctx.Pds.session == ctx.pds.Kde4:
-    from PyKDE4.kdecore import ki18n, KConfig, KProcess
-    from PyKDE4 import kdeui
+from kaptan.plugins import desktop
 
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrPackage import Ui_packageWidget
@@ -29,7 +31,7 @@ isUpdateOn = False
 
 class Widget(QtGui.QWidget, Screen):
     title = i18n("Packages")
-    desc = i18n("Install / Remove Programs")
+    desc  = i18n("Install / Remove Programs")
 
     # min update time
     updateTime = 12
@@ -42,22 +44,14 @@ class Widget(QtGui.QWidget, Screen):
         # set updateTime
         self.ui.updateInterval.setValue(self.updateTime)
 
-        # set initial checkbox visibility
-        self.ui.checkUpdate.setVisible(False)
-        self.ui.updateInterval.setVisible(False)
-        
+        # set initial states
+        self.ui.checkUpdate.setChecked(True)
+        self.ui.showTray.setChecked(True)
+
         # set signals
         self.ui.showTray.connect(self.ui.showTray, SIGNAL("toggled(bool)"), self.enableCheckTime)
         self.ui.checkUpdate.connect(self.ui.checkUpdate, SIGNAL("toggled(bool)"), self.updateSelected)
-        
-#        self.connect(self.ui.checkBox,SIGNAL("stateChanged(int)"),self.addRepo)
 
-#   def addRepo(self):
-#      if(self.ui.checkBox.isChecked()):
-#         from pisi import api as addRepo
-#        addRepo.add_repo("lxde", "http://x86-64.comu.edu.tr/lxde/i686/pisi-index.xml.xz")
-#   else:
-#      print "deneme
     def enableCheckTime(self):
         if self.ui.showTray.isChecked():
             self.ui.checkUpdate.setVisible(True)
@@ -76,15 +70,13 @@ class Widget(QtGui.QWidget, Screen):
 
     def applySettings(self):
         # write selected configurations to future package-managerrc
-        if ctx.Pds.session == ctx.pds.Kde4:
+        config = PMConfig()
+        config.setSystemTray(QVariant(self.ui.showTray.isChecked()))
+        config.setUpdateCheck(QVariant(self.ui.checkUpdate.isChecked()))
+        config.setUpdateCheckInterval(QVariant(self.ui.updateInterval.value() * 60))
 
-            config = PMConfig()
-            config.setSystemTray(QVariant(self.ui.showTray.isChecked()))
-            config.setUpdateCheck(QVariant(self.ui.checkUpdate.isChecked()))
-            config.setUpdateCheckInterval(QVariant(self.ui.updateInterval.value() * 60))
-
-            if self.ui.showTray.isChecked():
-                p = subprocess.Popen(["package-manager"], stdout=subprocess.PIPE)
+        if self.ui.showTray.isChecked():
+            p = subprocess.Popen(["package-manager"], stdout=subprocess.PIPE)
 
     def shown(self):
         pass
@@ -94,28 +86,21 @@ class Widget(QtGui.QWidget, Screen):
         return True
 
 class Config:
-    if ctx.Pds.session == ctx.pds.Kde4:
-        def __init__(self, config):
-            self.config = KConfig(config)
-            self.group = None
+    def __init__(self, config):
+        desktop.package_config(config)
 
-        def setValue(self, option, value):
-            self.group = self.config.group("General")
-            self.group.writeEntry(option, QVariant(value))
-            self.config.sync()
-    else:
-        pass
+    def setValue(self, option, value):
+        desktop.package_setValue(option,value)
+
 class PMConfig(Config):
-    if ctx.Pds.session == ctx.pds.Kde4:
+    def __init__(self):
+        Config.__init__(self, "package-managerrc")
 
-        def __init__(self):
-            Config.__init__(self, "package-managerrc")
+    def setSystemTray(self, enabled):
+        self.setValue("SystemTray", enabled)
 
-        def setSystemTray(self, enabled):
-            self.setValue("SystemTray", enabled)
+    def setUpdateCheck(self, enabled):
+        self.setValue("UpdateCheck", enabled)
 
-        def setUpdateCheck(self, enabled):
-            self.setValue("UpdateCheck", enabled)
-
-        def setUpdateCheckInterval(self, value):
-            self.setValue("UpdateCheckInterval", value)
+    def setUpdateCheckInterval(self, value):
+        self.setValue("UpdateCheckInterval", value)

@@ -16,12 +16,11 @@ from PyQt4.QtGui import QFileDialog
 #Context
 from kaptan.screens.context import * 
 import kaptan.screens.context as ctx
-
+from kaptan.plugins import desktop
 from PyQt4.QtCore import *
 
 #PyKde4 Stuff
-if ctx.Pds.session == ctx.pds.Kde4:
-    from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
+#from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
 
 import os, sys, subprocess
 
@@ -46,34 +45,32 @@ class Widget(QtGui.QWidget, Screen):
         self.ui = Ui_wallpaperWidget()
         self.ui.setupUi(self)
 
-        if ctx.Pds.session == ctx.pds.Kde4:
-            # Get system locale
-            self.catLang = KGlobal.locale().language()
-        else:
-            self.catLang = QLocale().language()
+        # Get system locale
+        self.catLang = desktop.getLanguage()
+        
+        #self.catLang = QLocale().language()
         # Get screen resolution
         rect =  QtGui.QDesktopWidget().screenGeometry()
         
-        if ctx.Pds.session == ctx.pds.Kde4:
         # Get metadata.desktop files from shared wallpaper directory
-            lst= KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
+        lst= desktop.getMetaData()
 
-            for desktopFiles in lst:
-                parser = DesktopParser()
-                parser.read(str(desktopFiles))
+        for desktopFiles in lst:
+            parser = DesktopParser()
+            parser.read(str(desktopFiles))
 
-                try:
-                    wallpaperTitle = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
-                except:
-                    wallpaperTitle = parser.get_locale('Desktop Entry', 'Name', '')
+            try:
+                wallpaperTitle = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
+            except:
+                wallpaperTitle = parser.get_locale('Desktop Entry', 'Name', '')
 
-                try:
-                    wallpaperDesc = parser.get_locale('Desktop Entry', 'X-KDE-PluginInfo-Author', '')
-                except:
-                    wallpaperDesc = "Unknown"
+            try:
+                wallpaperDesc = parser.get_locale('Desktop Entry', 'X-KDE-PluginInfo-Author', '')
+            except:
+                wallpaperDesc = "Unknown"
 
                 # Get all files in the wallpaper's directory
-                thumbFolder = os.listdir(os.path.join(os.path.split(str(desktopFiles))[0], "contents"))
+            thumbFolder = os.listdir(os.path.join(os.path.split(str(desktopFiles))[0], "contents"))
 
         #    """
         #    Appearantly the thumbnail names doesn't have a standart.
@@ -84,22 +81,22 @@ class Widget(QtGui.QWidget, Screen):
         #    screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
         #    """
 
-                wallpaperThumb = ""
+            wallpaperThumb = ""
 
-                for thumb in thumbFolder:
-                    if thumb.startswith('scre'):
-                        wallpaperThumb = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
+            for thumb in thumbFolder:
+                if thumb.startswith('scre'):
+                    wallpaperThumb = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
 
-                wallpaperFile = os.path.split(str(desktopFiles))[0]
+            wallpaperFile = os.path.split(str(desktopFiles))[0]
 
-                # Insert wallpapers to listWidget.
-                item = QtGui.QListWidgetItem(self.ui.listWallpaper)
-                # Each wallpaper item is a widget. Look at widgets.py for more information.
-                widget = WallpaperItemWidget(unicode(wallpaperTitle), unicode(wallpaperDesc), wallpaperThumb, self.ui.listWallpaper)
-                item.setSizeHint(QSize(120,170))
-                self.ui.listWallpaper.setItemWidget(item, widget)
-                # Add a hidden value to each item for detecting selected wallpaper's path.
-                item.setStatusTip(wallpaperFile)
+            # Insert wallpapers to listWidget.
+            item = QtGui.QListWidgetItem(self.ui.listWallpaper)
+            # Each wallpaper item is a widget. Look at widgets.py for more information.
+            widget = WallpaperItemWidget(unicode(wallpaperTitle), unicode(wallpaperDesc), wallpaperThumb, self.ui.listWallpaper)
+            item.setSizeHint(QSize(120,170))
+            self.ui.listWallpaper.setItemWidget(item, widget)
+            # Add a hidden value to each item for detecting selected wallpaper's path.
+            item.setStatusTip(wallpaperFile)
 
         self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.setWallpaper)
         self.ui.checkBox.connect(self.ui.checkBox, SIGNAL("stateChanged(int)"), self.disableWidgets)

@@ -16,9 +16,7 @@ from PyQt4.QtCore import *
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-
-if ctx.Pds.session == ctx.pds.Kde4:
-    from PyKDE4.kdecore import ki18n, KGlobal, KConfig
+from kaptan.plugins import desktop
 
 import subprocess, sys
 
@@ -35,10 +33,9 @@ class Widget(QtGui.QWidget, Screen):
         self.ui = Ui_goodbyeWidget()
         self.ui.setupUi(self)
 
-       # lang = KGlobal.locale().language()
-        locale=QLocale()
-        lang = locale.language()
-        if lang == "tr":
+        lang = desktop.getLanguage()
+
+        if lang == 125:
             self.helpPageUrl = "http://www.pardus.org.tr/destek"
         else:
             self.helpPageUrl = "http://www.pardus.org.tr/eng/support"
@@ -50,15 +47,12 @@ class Widget(QtGui.QWidget, Screen):
         self.procSettings.start("systemsettings")
 
     def on_buttonHelpPages_clicked(self):
-        self.procSettings = QProcess()
-        command = "kfmclient openURL " + self.helpPageUrl
-        self.procSettings.start(command)
-
+        desktop.showUrl(self.helpPageUrl)
     def on_buttonSystemSettings_2_clicked(self):
-        self.procSettings = QProcess()
-        command = "kfmclient openURL " + self.smoltUrl
-        self.procSettings.start(command)
-
+        desktop.showUrl(self.smoltUrl)
+        
+        #Qt
+        #QtGui.QDesktopServices().openUrl(QUrl(self.smoltUrl))
     def setSmolt(self):
         if not self.smoltSettings["profileSend"]:
             self.ui.smoltGroupBox.hide()
