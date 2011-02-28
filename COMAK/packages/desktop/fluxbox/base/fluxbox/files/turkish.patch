@@ -1,0 +1,774 @@
+diff -Naur fluxbox-1.0.1_20080730.orig/nls/tr_TR/generated-ISO-8859-1.m fluxbox-1.0.1_20080730/nls/tr_TR/generated-ISO-8859-1.m
+--- fluxbox-1.0.1_20080730.orig/nls/tr_TR/generated-ISO-8859-1.m	2008-07-30 22:21:09.000000000 +0300
++++ fluxbox-1.0.1_20080730/nls/tr_TR/generated-ISO-8859-1.m	2008-07-31 03:09:01.000000000 +0300
+@@ -19,66 +19,181 @@
+ 
+ $set 2 #BaseDisplay
+ 
++1 İptal ediliyor... çekirdek boşaltılıyor\n
++2 Kapatılıyor\n
++3 %s:      sinyal %d yakalandı\n
+ 
+ $set 3 #Common
+ 
+-2 Otomatik Gizle
++1 Alfa
++2 Otomatik gizle
++3 Derlendi
++4 Derleme özellikleri
++5 Derleyici
++6 Derleyici sürümü
++7     init
++8     anahtarlar
++9      nls
++10     menü
++11    stil
++12 Varsayılanlar
++13 Seçilemez
++14 Hata
++15 Fluxbox sürümü
++16 Maximize Over
++17 GIT Düzeltmesi
++18 Görünür
++19 Bu stilde belirlenmiş bir arkaplan seçeneği yok.\nLütfen yardım alın veya SSS.i okuyun.
+ 
+ $set 4 #Configmenu
+ 
++1 AntiAlias
+ 2 Otomatik Göster
+-4 Hizalamak için tıkla
+-7 Masaüstü değişiminde pencereyi hizala
++4 Hizalamak İçin Tıkla
++5 Decorate Transient Windows
++6 Fare Tekerleği İle Masaüstü Değiştirme
++7 Masaüstü Değişiminde Pencereyi Hizala
+ 8 Hizalama
+ 9 Yeni Pencereleri Hizala
+ 10 Ekranı Kapla
+-11 Resim oluşturulması
++11 Resim Oluşturulması
+ 12 Donuk Pencere Taşınması
+ 13 Aynıları Hizala
+ 14 Yavaş Hizala
+ 15 Masaüstü Sapması
++16 Zorla Pseudo-Transparanlık
++17 Alfa Menüsü
++18 Transparanlık
++19 Alfa penceresi odaklı
++20 Alfa penceresi odaklı değil
++21 Sekme Seçenekleri
++22 Başlık Çubuğunda Sekmeler
++23 Harici Sekme Genişliği
++24 Tıklama Sekmesi Odağı
++25 Fare Sekmesi Odağı
++26 Maximize Options
++27 Ignore Resize Increment
++28 Taşımayı İptal Et
++29 Yeniden Boyutlandırmayı İptal Et
+ 
+ $set 5 #Ewmh
+ 
++1 Ölümcül: Yetersiz bellek,  EWMH istemci listesi için ayrılamadı
+ 
+ $set 6 #FbTkError
+ 
++1 Uyarı! Yükseklik > 3200, yüksellik ayarı = 3200
++2 Uyarı! Genişlik > 3200, genişlik ayarı = 3200
++3 Uyarı: can't load fallback font
++4 Ayırma hatası.
++5 Pixmap yaratılma hatası
++6 XImage yaratılamaz
++7 Okuma hatası
++8 Uyarı: Alfa için geçerli biçim bulunamadı.
++9 Uyarı: Alfa resmi yaratımı hatası.
++10 Uyarı: Alpha pixmap resmi yaratımı hatası.
++11 Ekran(%d) için biçim bulunamadı.
++12 Yetersiz bellek
++13 Mavi tampon ayrılana kadar yetersiz bellek.
++14 Yeşil tampon ayrılana kadar yetersiz bellek.
++15 Kırmızı tampon ayrılana kadar yetersiz bellek.
++16 Tema unsuru okuma hatası
++17 Desteklenmeyen görsel
++18 Varsayılan değer ayarı
+ 
+ $set 7 #Fluxbox
+ 
++1 rc dosya ismi geçersiz!
++2 Grup dosyası yükleme hatası
++3 Veritabanı yükleme hatası
++4 Tekrar deneniyor
++5 Uyarı! Ekranda pencere haritası bulunamadı!
++6 %s dizini oluşturulamadı
++7 Yönetmek için ekran bulunamadı.\nBaşka pencere yöneticisi çalışmadığından emin olun.
++8 Error parsing regular expression
++9 Ölümcül! Sadece bir tane fluxbox sınıfı örneği olabilir.
++10 X sunucusuna bağlanılamadı.\nX'i Fluxbox'tan önce çalıştırdığınıza emin olun.
++11 Uyarı: X sunucusu yereli desteklemiyor.
++12 Uyarı: Belirtilen yereli ayarlayamazsınız
+ 
+ $set 8 #Gnome
+ 
++1 Ölümcül: Yetersiz bellek, GNOME istemci listesi için ayrılamadı
+ 
+ $set 9 #Keys
+ 
++1 Anahtarlar: Dizide hata
++2 Anahtarlar: Anahtar ağacını birleştirmede hata!
++3 Anahtarlar: Geçersiz anahtar/Belirtilen dizide
+ 
+ $set 10 #Menu
+ 
++1 Yapılandırma
++2 Fluxbox varsayılan menü
+ 3 Çık
+-4 İkonlar
++4 Simgeler
++5 Katman...
++6 Baştaki...
+ 7 Yerleşim
++8 Yapılandırmayı Yenile
+ 9 Yeniden Başlat
++10 Uyarı: Dengesiz [kodlama] biçimler
+ 
+ $set 11 #Remember
+ 
++1 Dekorasyonlar
++2 Boyutlar
++3 Çalışma alanına git
++4 Katman
++5 Hatırla...
++6 Pozisyon
++7 Kapanışta kaydet
++8 Gölgeli
++9 Yapışkan
++10 Bilinmeyen program anahtarları
++11 Çalışma alanı
++12 Başl
++13 Transparanlık
+ 
+ $set 12 #Screen
+ 
++1 BScreen::BScreen: X sunucusu sorgulanması sırasında bir hata meydana geldi.\n	Başka bir pencere yöneticisi zaten ekranda çalışıyor 
+ 2 Y: %4d x E: %4d
++3 BScreen::BScreen: ekran yönetimi %d kullanılan görsel 0x%lx, derinlik %d\n
+ 4 Y: %04d x E: %04d
+ 
+ $set 13 #Slit
+ 
+-4 Slit yönü
+-7 Slit yerleşimi
++1 İstemciler
++2 Aşağı Döndür
++3 Yukarı Döndür
++4 Slit Yönü
++5 Slit Katmanı
++6 Slit Başı
++7 Slit Yerleşimi
+ 8 Slit
++9 Slit Listesini kaydet
+ 
+ $set 14 #Toolbar
+ 
+-1 Masaüstü ismini değiştir
++1 Masaüstü İsmini Değiştir
++2 Simge Çubuğu Modu
++3 Tüm Pencereler
++4 Simgeler
++5 Hiçbiri
++6 Çalışma Alanı
++7 Çalışma Alanı Simgeleri
++8 Araç Çubuğu Katmanı
++9 Araç Çubuğu Başı
+ 10 Araç Çubuğu Yerleşimi
+ 11 Araç Çubuğu
++12 Araç Çubuğu Genişliği
++13 Saat: 24h
++14 Saat: 12h
++15 Saat Formatını Düzenle
++16 Resimleri Göster
++17 Simge Yok
++18 Simgesiz Çalışma Alanı
+ 
+ $set 15 #Window
+ 
+@@ -87,13 +202,16 @@
+ $set 16 #Windowmenu
+ 
+ 1 Kapat
+-2 Küçült
+-4 Küçült
++2 Simge
++3 Katman
++4 Azalt
+ 5 Ekranı Kapla
+ 6 Göster
+ 7 Gönder ...
+ 8 Şekillendir
+ 9 Yapıştır
++10 Etkiyi Yoket
++11 Varsayılanı Kullan
+ 
+ $set 17 #Workspace
+ 
+@@ -105,6 +223,7 @@
+ $set 18 #fbsetroot
+ 
+ 1 hata : -solid, -mod yada -gradient'den en az birisini belirlemek zorundasınız\n
++2 Pixmap atomları yaratılamadı, vazgeçiyorum!
+ 3 -display <metin>         bağlantıyı göster\n\
+ -mod <x> <y>             yerleştirme\n\
+ -foreground, -fg <renk>  önplan rengi\n\
+@@ -118,13 +237,36 @@
+ $set 19 #main
+ 
+ 1 hata : '-display' bir argüman gerektirir
++2 Hatalı Ayrım
++3 Kötü Yayın
++4 Yayın Dışı
++5 Çalışma Hatası
++6 Standard Kural Dışı
++7 Bilinmeyen hata
++8 hata: '-log' bir argüman gerektirir
++9 Log dosyası
++10 Giriş yapılıyor
+ 11 hata : '-rc' bir argüman gerektirir
++12 hata: '-screen' bir argüman gerektirir
+ 13 Fluxbox %s: (c) %s Henrik Kinnunen\n\n\
++Website: http://www.fluxbox.org/\n\n\
+ -display <metin>\t\tekran bağlantısı kullan.\n\
++-screen <all|int,int,int>\trun on specified screens only.\n\
+ -rc <metin>\t\t\talternatif bir ayar kaynak dosyası kullan.\n\
+ -version\t\t\tsürümü göster.\n\
+--info\t\t\t\tdisplay some useful information.\n\
++-info\t\t\t\tbazı yararlı bilgileri göster.\n\
++-list-commands\t\t\tlist all valid key commands.\n\
+ -log <filename>\t\t\tlog output to file.\n\
+ -help\t\t\t\tyardım ekranı.\n\n
++14 uyarı: çevre değişkeni ayarlanmadı 'DISPLAY'
++
++$set 20 #layers
++
++1 Above Dock
++2 Alt
++3 Masaüstü
++4 Dock
++5 Normal
++6 Üst
+ 
+ 
+diff -Naur fluxbox-1.0.1_20080730.orig/nls/tr_TR/generated-UTF-8.m fluxbox-1.0.1_20080730/nls/tr_TR/generated-UTF-8.m
+--- fluxbox-1.0.1_20080730.orig/nls/tr_TR/generated-UTF-8.m	2008-07-30 22:21:09.000000000 +0300
++++ fluxbox-1.0.1_20080730/nls/tr_TR/generated-UTF-8.m	2008-07-31 03:01:43.000000000 +0300
+@@ -19,66 +19,181 @@
+ 
+ $set 2 #BaseDisplay
+ 
++1 İptal ediliyor... çekirdek boşaltılıyor\n
++2 Kapatılıyor\n
++3 %s:      sinyal %d yakalandı\n
+ 
+ $set 3 #Common
+ 
+-2 Otomatik Gizle
++1 Alfa
++2 Otomatik gizle
++3 Derlendi
++4 Derleme özellikleri
++5 Derleyici
++6 Derleyici sürümü
++7     init
++8     anahtarlar
++9      nls
++10     menü
++11    stil
++12 Varsayılanlar
++13 Seçilemez
++14 Hata
++15 Fluxbox sürümü
++16 Maximize Over
++17 GIT Düzeltmesi
++18 Görünür
++19 Bu stilde belirlenmiş bir arkaplan seçeneği yok.\nLütfen yardım alın veya SSS.i okuyun.
+ 
+ $set 4 #Configmenu
+ 
++1 AntiAlias
+ 2 Otomatik Göster
+-4 Hizalamak için tıkla
+-7 Masaüstü değişiminde pencereyi hizala
++4 Hizalamak İçin Tıkla
++5 Decorate Transient Windows
++6 Fare Tekerleği İle Masaüstü Değiştirme
++7 Masaüstü Değişiminde Pencereyi Hizala
+ 8 Hizalama
+ 9 Yeni Pencereleri Hizala
+ 10 Ekranı Kapla
+-11 Resim oluşturulması
++11 Resim Oluşturulması
+ 12 Donuk Pencere Taşınması
+ 13 Aynıları Hizala
+ 14 Yavaş Hizala
+ 15 Masaüstü Sapması
++16 Zorla Pseudo-Transparanlık
++17 Alfa Menüsü
++18 Transparanlık
++19 Alfa penceresi odaklı
++20 Alfa penceresi odaklı değil
++21 Sekme Seçenekleri
++22 Başlık Çubuğunda Sekmeler
++23 Harici Sekme Genişliği
++24 Tıklama Sekmesi Odağı
++25 Fare Sekmesi Odağı
++26 Maximize Options
++27 Ignore Resize Increment
++28 Taşımayı İptal Et
++29 Yeniden Boyutlandırmayı İptal Et
+ 
+ $set 5 #Ewmh
+ 
++1 Ölümcül: Yetersiz bellek,  EWMH istemci listesi için ayrılamadı
+ 
+ $set 6 #FbTkError
+ 
++1 Uyarı! Yükseklik > 3200, yüksellik ayarı = 3200
++2 Uyarı! Genişlik > 3200, genişlik ayarı = 3200
++3 Uyarı: can't load fallback font
++4 Ayırma hatası.
++5 Pixmap yaratılma hatası
++6 XImage yaratılamaz
++7 Okuma hatası
++8 Uyarı: Alfa için geçerli biçim bulunamadı.
++9 Uyarı: Alfa resmi yaratımı hatası.
++10 Uyarı: Alpha pixmap resmi yaratımı hatası.
++11 Ekran(%d) için biçim bulunamadı.
++12 Yetersiz bellek
++13 Mavi tampon ayrılana kadar yetersiz bellek.
++14 Yeşil tampon ayrılana kadar yetersiz bellek.
++15 Kırmızı tampon ayrılana kadar yetersiz bellek.
++16 Tema unsuru okuma hatası
++17 Desteklenmeyen görsel
++18 Varsayılan değer ayarı
+ 
+ $set 7 #Fluxbox
+ 
++1 rc dosya ismi geçersiz!
++2 Grup dosyası yükleme hatası
++3 Veritabanı yükleme hatası
++4 Tekrar deneniyor
++5 Uyarı! Ekranda pencere haritası bulunamadı!
++6 %s dizini oluşturulamadı
++7 Yönetmek için ekran bulunamadı.\nBaşka pencere yöneticisi çalışmadığından emin olun.
++8 Error parsing regular expression
++9 Ölümcül! Sadece bir tane fluxbox sınıfı örneği olabilir.
++10 X sunucusuna bağlanılamadı.\nX'i Fluxbox'tan önce çalıştırdığınıza emin olun.
++11 Uyarı: X sunucusu yereli desteklemiyor.
++12 Uyarı: Belirtilen yereli ayarlayamazsınız
+ 
+ $set 8 #Gnome
+ 
++1 Ölümcül: Yetersiz bellek, GNOME istemci listesi için ayrılamadı
+ 
+ $set 9 #Keys
+ 
++1 Anahtarlar: Dizide hata
++2 Anahtarlar: Anahtar ağacını birleştirmede hata!
++3 Anahtarlar: Geçersiz anahtar/Belirtilen dizide
+ 
+ $set 10 #Menu
+ 
++1 Yapılandırma
++2 Fluxbox varsayılan menü
+ 3 Çık
+-4 İkonlar
++4 Simgeler
++5 Katman...
++6 Baştaki...
+ 7 Yerleşim
++8 Yapılandırmayı Yenile
+ 9 Yeniden Başlat
++10 Uyarı: Dengesiz [kodlama] biçimler
+ 
+ $set 11 #Remember
+ 
++1 Dekorasyonlar
++2 Boyutlar
++3 Çalışma alanına git
++4 Katman
++5 Hatırla...
++6 Pozisyon
++7 Kapanışta kaydet
++8 Gölgeli
++9 Yapışkan
++10 Bilinmeyen program anahtarları
++11 Çalışma alanı
++12 Başl
++13 Transparanlık
+ 
+ $set 12 #Screen
+ 
++1 BScreen::BScreen: X sunucusu sorgulanması sırasında bir hata meydana geldi.\n	Başka bir pencere yöneticisi zaten ekranda çalışıyor 
+ 2 Y: %4d x E: %4d
++3 BScreen::BScreen: ekran yönetimi %d kullanılan görsel 0x%lx, derinlik %d\n
+ 4 Y: %04d x E: %04d
+ 
+ $set 13 #Slit
+ 
+-4 Slit yönü
+-7 Slit yerleşimi
++1 İstemciler
++2 Aşağı Döndür
++3 Yukarı Döndür
++4 Slit Yönü
++5 Slit Katmanı
++6 Slit Başı
++7 Slit Yerleşimi
+ 8 Slit
++9 Slit Listesini kaydet
+ 
+ $set 14 #Toolbar
+ 
+-1 Masaüstü ismini değiştir
++1 Masaüstü İsmini Değiştir
++2 Simge Çubuğu Modu
++3 Tüm Pencereler
++4 Simgeler
++5 Hiçbiri
++6 Çalışma Alanı
++7 Çalışma Alanı Simgeleri
++8 Araç Çubuğu Katmanı
++9 Araç Çubuğu Başı
+ 10 Araç Çubuğu Yerleşimi
+ 11 Araç Çubuğu
++12 Araç Çubuğu Genişliği
++13 Saat: 24h
++14 Saat: 12h
++15 Saat Formatını Düzenle
++16 Resimleri Göster
++17 Simge Yok
++18 Simgesiz Çalışma Alanı
+ 
+ $set 15 #Window
+ 
+@@ -87,13 +202,16 @@
+ $set 16 #Windowmenu
+ 
+ 1 Kapat
+-2 Küçült
+-4 Küçült
++2 Simge
++3 Katman
++4 Azalt
+ 5 Ekranı Kapla
+ 6 Göster
+ 7 Gönder ...
+ 8 Şekillendir
+ 9 Yapıştır
++10 Etkiyi Yoket
++11 Varsayılanı Kullan
+ 
+ $set 17 #Workspace
+ 
+@@ -105,6 +223,7 @@
+ $set 18 #fbsetroot
+ 
+ 1 hata : -solid, -mod yada -gradient'den en az birisini belirlemek zorundasınız\n
++2 Pixmap atomları yaratılamadı, vazgeçiyorum!
+ 3 -display <metin>         bağlantıyı göster\n\
+ -mod <x> <y>             yerleştirme\n\
+ -foreground, -fg <renk>  önplan rengi\n\
+@@ -118,13 +237,36 @@
+ $set 19 #main
+ 
+ 1 hata : '-display' bir argüman gerektirir
++2 Hatalı Ayrım
++3 Kötü Yayın
++4 Yayın Dışı
++5 Çalışma Hatası
++6 Standard Kural Dışı
++7 Bilinmeyen hata
++8 hata: '-log' bir argüman gerektirir
++9 Log dosyası
++10 Giriş yapılıyor
+ 11 hata : '-rc' bir argüman gerektirir
++12 hata: '-screen' bir argüman gerektirir
+ 13 Fluxbox %s: (c) %s Henrik Kinnunen\n\n\
++Website: http://www.fluxbox.org/\n\n\
+ -display <metin>\t\tekran bağlantısı kullan.\n\
++-screen <all|int,int,int>\trun on specified screens only.\n\
+ -rc <metin>\t\t\talternatif bir ayar kaynak dosyası kullan.\n\
+ -version\t\t\tsürümü göster.\n\
+--info\t\t\t\tdisplay some useful information.\n\
++-info\t\t\t\tbazı yararlı bilgileri göster.\n\
++-list-commands\t\t\tlist all valid key commands.\n\
+ -log <filename>\t\t\tlog output to file.\n\
+ -help\t\t\t\tyardım ekranı.\n\n
++14 uyarı: çevre değişkeni ayarlanmadı 'DISPLAY'
++
++$set 20 #layers
++
++1 Above Dock
++2 Alt
++3 Masaüstü
++4 Dock
++5 Normal
++6 Üst
+ 
+ 
+diff -Naur fluxbox-1.0.1_20080730.orig/nls/tr_TR/Translation.m fluxbox-1.0.1_20080730/nls/tr_TR/Translation.m
+--- fluxbox-1.0.1_20080730.orig/nls/tr_TR/Translation.m	2008-07-30 22:21:09.000000000 +0300
++++ fluxbox-1.0.1_20080730/nls/tr_TR/Translation.m	2008-07-31 03:09:08.000000000 +0300
+@@ -19,66 +19,181 @@
+ 
+ $set 2 #BaseDisplay
+ 
++1 İptal ediliyor... çekirdek boşaltılıyor\n
++2 Kapatılıyor\n
++3 %s:      sinyal %d yakalandı\n
+ 
+ $set 3 #Common
+ 
+-2 Otomatik Gizle
++1 Alfa
++2 Otomatik gizle
++3 Derlendi
++4 Derleme özellikleri
++5 Derleyici
++6 Derleyici sürümü
++7     init
++8     anahtarlar
++9      nls
++10     menü
++11    stil
++12 Varsayılanlar
++13 Seçilemez
++14 Hata
++15 Fluxbox sürümü
++16 Maximize Over
++17 GIT Düzeltmesi
++18 Görünür
++19 Bu stilde belirlenmiş bir arkaplan seçeneği yok.\nLütfen yardım alın veya SSS.i okuyun.
+ 
+ $set 4 #Configmenu
+ 
++1 AntiAlias
+ 2 Otomatik Göster
+-4 Hizalamak için tıkla
+-7 Masaüstü değişiminde pencereyi hizala
++4 Hizalamak İçin Tıkla
++5 Decorate Transient Windows
++6 Fare Tekerleği İle Masaüstü Değiştirme
++7 Masaüstü Değişiminde Pencereyi Hizala
+ 8 Hizalama
+ 9 Yeni Pencereleri Hizala
+ 10 Ekranı Kapla
+-11 Resim oluşturulması
++11 Resim Oluşturulması
+ 12 Donuk Pencere Taşınması
+ 13 Aynıları Hizala
+ 14 Yavaş Hizala
+ 15 Masaüstü Sapması
++16 Zorla Pseudo-Transparanlık
++17 Alfa Menüsü
++18 Transparanlık
++19 Alfa penceresi odaklı
++20 Alfa penceresi odaklı değil
++21 Sekme Seçenekleri
++22 Başlık Çubuğunda Sekmeler
++23 Harici Sekme Genişliği
++24 Tıklama Sekmesi Odağı
++25 Fare Sekmesi Odağı
++26 Maximize Options
++27 Ignore Resize Increment
++28 Taşımayı İptal Et
++29 Yeniden Boyutlandırmayı İptal Et
+ 
+ $set 5 #Ewmh
+ 
++1 Ölümcül: Yetersiz bellek,  EWMH istemci listesi için ayrılamadı
+ 
+ $set 6 #FbTkError
+ 
++1 Uyarı! Yükseklik > 3200, yüksellik ayarı = 3200
++2 Uyarı! Genişlik > 3200, genişlik ayarı = 3200
++3 Uyarı: can't load fallback font
++4 Ayırma hatası.
++5 Pixmap yaratılma hatası
++6 XImage yaratılamaz
++7 Okuma hatası
++8 Uyarı: Alfa için geçerli biçim bulunamadı.
++9 Uyarı: Alfa resmi yaratımı hatası.
++10 Uyarı: Alpha pixmap resmi yaratımı hatası.
++11 Ekran(%d) için biçim bulunamadı.
++12 Yetersiz bellek
++13 Mavi tampon ayrılana kadar yetersiz bellek.
++14 Yeşil tampon ayrılana kadar yetersiz bellek.
++15 Kırmızı tampon ayrılana kadar yetersiz bellek.
++16 Tema unsuru okuma hatası
++17 Desteklenmeyen görsel
++18 Varsayılan değer ayarı
+ 
+ $set 7 #Fluxbox
+ 
++1 rc dosya ismi geçersiz!
++2 Grup dosyası yükleme hatası
++3 Veritabanı yükleme hatası
++4 Tekrar deneniyor
++5 Uyarı! Ekranda pencere haritası bulunamadı!
++6 %s dizini oluşturulamadı
++7 Yönetmek için ekran bulunamadı.\nBaşka pencere yöneticisi çalışmadığından emin olun.
++8 Error parsing regular expression
++9 Ölümcül! Sadece bir tane fluxbox sınıfı örneği olabilir.
++10 X sunucusuna bağlanılamadı.\nX'i Fluxbox'tan önce çalıştırdığınıza emin olun.
++11 Uyarı: X sunucusu yereli desteklemiyor.
++12 Uyarı: Belirtilen yereli ayarlayamazsınız
+ 
+ $set 8 #Gnome
+ 
++1 Ölümcül: Yetersiz bellek, GNOME istemci listesi için ayrılamadı
+ 
+ $set 9 #Keys
+ 
++1 Anahtarlar: Dizide hata
++2 Anahtarlar: Anahtar ağacını birleştirmede hata!
++3 Anahtarlar: Geçersiz anahtar/Belirtilen dizide
+ 
+ $set 10 #Menu
+ 
++1 Yapılandırma
++2 Fluxbox varsayılan menü
+ 3 Çık
+-4 İkonlar
++4 Simgeler
++5 Katman...
++6 Baştaki...
+ 7 Yerleşim
++8 Yapılandırmayı Yenile
+ 9 Yeniden Başlat
++10 Uyarı: Dengesiz [kodlama] biçimler
+ 
+ $set 11 #Remember
+ 
++1 Dekorasyonlar
++2 Boyutlar
++3 Çalışma alanına git
++4 Katman
++5 Hatırla...
++6 Pozisyon
++7 Kapanışta kaydet
++8 Gölgeli
++9 Yapışkan
++10 Bilinmeyen program anahtarları
++11 Çalışma alanı
++12 Başl
++13 Transparanlık
+ 
+ $set 12 #Screen
+ 
++1 BScreen::BScreen: X sunucusu sorgulanması sırasında bir hata meydana geldi.\n	Başka bir pencere yöneticisi zaten ekranda çalışıyor 
+ 2 Y: %4d x E: %4d
++3 BScreen::BScreen: ekran yönetimi %d kullanılan görsel 0x%lx, derinlik %d\n
+ 4 Y: %04d x E: %04d
+ 
+ $set 13 #Slit
+ 
+-4 Slit yönü
+-7 Slit yerleşimi
++1 İstemciler
++2 Aşağı Döndür
++3 Yukarı Döndür
++4 Slit Yönü
++5 Slit Katmanı
++6 Slit Başı
++7 Slit Yerleşimi
+ 8 Slit
++9 Slit Listesini kaydet
+ 
+ $set 14 #Toolbar
+ 
+-1 Masaüstü ismini değiştir
++1 Masaüstü İsmini Değiştir
++2 Simge Çubuğu Modu
++3 Tüm Pencereler
++4 Simgeler
++5 Hiçbiri
++6 Çalışma Alanı
++7 Çalışma Alanı Simgeleri
++8 Araç Çubuğu Katmanı
++9 Araç Çubuğu Başı
+ 10 Araç Çubuğu Yerleşimi
+ 11 Araç Çubuğu
++12 Araç Çubuğu Genişliği
++13 Saat: 24h
++14 Saat: 12h
++15 Saat Formatını Düzenle
++16 Resimleri Göster
++17 Simge Yok
++18 Simgesiz Çalışma Alanı
+ 
+ $set 15 #Window
+ 
+@@ -87,13 +202,16 @@
+ $set 16 #Windowmenu
+ 
+ 1 Kapat
+-2 Küçült
+-4 Küçült
++2 Simge
++3 Katman
++4 Azalt
+ 5 Ekranı Kapla
+ 6 Göster
+ 7 Gönder ...
+ 8 Şekillendir
+ 9 Yapıştır
++10 Etkiyi Yoket
++11 Varsayılanı Kullan
+ 
+ $set 17 #Workspace
+ 
+@@ -105,6 +223,7 @@
+ $set 18 #fbsetroot
+ 
+ 1 hata : -solid, -mod yada -gradient'den en az birisini belirlemek zorundasınız\n
++2 Pixmap atomları yaratılamadı, vazgeçiyorum!
+ 3 -display <metin>         bağlantıyı göster\n\
+ -mod <x> <y>             yerleştirme\n\
+ -foreground, -fg <renk>  önplan rengi\n\
+@@ -118,13 +237,36 @@
+ $set 19 #main
+ 
+ 1 hata : '-display' bir argüman gerektirir
++2 Hatalı Ayrım
++3 Kötü Yayın
++4 Yayın Dışı
++5 Çalışma Hatası
++6 Standard Kural Dışı
++7 Bilinmeyen hata
++8 hata: '-log' bir argüman gerektirir
++9 Log dosyası
++10 Giriş yapılıyor
+ 11 hata : '-rc' bir argüman gerektirir
++12 hata: '-screen' bir argüman gerektirir
+ 13 Fluxbox %s: (c) %s Henrik Kinnunen\n\n\
++Website: http://www.fluxbox.org/\n\n\
+ -display <metin>\t\tekran bağlantısı kullan.\n\
++-screen <all|int,int,int>\trun on specified screens only.\n\
+ -rc <metin>\t\t\talternatif bir ayar kaynak dosyası kullan.\n\
+ -version\t\t\tsürümü göster.\n\
+--info\t\t\t\tdisplay some useful information.\n\
++-info\t\t\t\tbazı yararlı bilgileri göster.\n\
++-list-commands\t\t\tlist all valid key commands.\n\
+ -log <filename>\t\t\tlog output to file.\n\
+ -help\t\t\t\tyardım ekranı.\n\n
++14 uyarı: çevre değişkeni ayarlanmadı 'DISPLAY'
++
++$set 20 #layers
++
++1 Above Dock
++2 Alt
++3 Masaüstü
++4 Dock
++5 Normal
++6 Üst
+ 
+ 
