@@ -84,7 +84,7 @@ class Build(build):
         os.system("cp -R src build/")
 
         # Copy kde-themes
-        print "Copying kde-themes..."
+        print "Copying themes..."
         os.system("cp -R data/kde-themes build/kaptan/")
 
         #update_messages()
@@ -108,14 +108,14 @@ class Install(install):
             kde_dir = "/usr"
         bin_dir = os.path.join(kde_dir, "bin")
         locale_dir = os.path.join(kde_dir, "share/locale")
-        autostart_dir = os.path.join(kde_dir, "share/autostart")
+        autostart_dir = os.path.join(kde_dir,"share/autostart")
         project_dir = os.path.join(kde_dir, "share/", about.appName)
-
+        kd= os.getenv("HOME")
         #kaptanrc
-        QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,"/home/sertac/.kaptanrc" )
-        kaptanConfig = QSettings("/home/sertac/.kaptanrc" ,QSettings.IniFormat)
-        kaptanConfig.setValue("General/RunOnStart",True)
-
+        QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
+        kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
+        kaptanConfig.setValue("General/RunOnStart","true")
+        kaptanConfig.sync()
         # Make directories
         print "Making directories..."
         makeDirs(bin_dir)
