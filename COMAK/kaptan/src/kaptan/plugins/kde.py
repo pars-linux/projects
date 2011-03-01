@@ -14,43 +14,17 @@ from PyQt4.QtCore import QString,QVariant,QProcess
 #PyKDE4 Stuff
 from PyKDE4.kdeui import KGlobalSettings
 from PyKDE4.kdecore import KStandardDirs, KGlobal, KConfig
+from . import base
 
-class KdePlugin:
+class Keyboard(base.Keyboard):
 
     def __init__(self):
         self._keyboard_config = KConfig("kxkbrc")
-        self.mouse_config_hand = KConfig("kcminputrc")
-        self.mouse_config_singleclick= KConfig("kdeglobals")
-        self.menu_config = KConfig("plasma-desktop-appletsrc")
-        self.desktop_number = KConfig("kwinrc")
         self.configPlasmaRc = KConfig("plasmarc")
 
     def getKeyboardLayoutList(self):
         group = self._keyboard_config.group("Layout")
         return str(group.readEntry("LayoutList"))
-
-    def getMouseSingleClick(self):
-        group = self.mouse_config_singleclick.group("KDE")
-        return str(group.readEntry("SingleClick"))
-
-    def getMouseHand(self):
-        group = self.mouse_config_hand.group("Mouse")
-        return group.readEntry("MouseButtonMapping")
-
-    def setMouseHand(self,mouseHand):
-        group = self.mouse_config_hand.group("Mouse")
-        group.writeEntry("MouseButtonMapping",QString(mouseHand))
-        self.mouse_config_hand.sync()
-
-    def setMouseSingleClick(self,clickBehaviour):
-        group= self.mouse_config_singleclick.group("KDE")
-        group.writeEntry("SingleClick",str(clickBehaviour))
-        self.mouse_config_singleclick.sync()
-
-    def setReverseScrollPolarity(self,isChecked):
-        group = self.mouse_config_hand.group("Mouse")
-        group.writeEntry("ReverseScrollPolarity",QString(str(isChecked)))
-        self.mouse_config_hand.sync()
 
     def setKeyboardLayoutList(self, layoutList, lastLayout):
         if lastLayout:
@@ -73,8 +47,43 @@ class KdePlugin:
             self._keyboard_config.sync()
         return True
 
+class Mouse(base.Mouse):
+
+    def __init__(self):
+        self.mouse_config_hand = KConfig("kcminputrc")
+        self.mouse_config_singleclick= KConfig("kdeglobals")
+
+    def getMouseHand(self):
+        group = self.mouse_config_hand.group("Mouse")
+        return group.readEntry("MouseButtonMapping")
+
+    def setMouseHand(self,mouseHand):
+        group = self.mouse_config_hand.group("Mouse")
+        group.writeEntry("MouseButtonMapping",QString(mouseHand))
+        self.mouse_config_hand.sync()
+
+    def setMouseSingleClick(self,clickBehaviour):
+        group= self.mouse_config_singleclick.group("KDE")
+        group.writeEntry("SingleClick",str(clickBehaviour))
+        self.mouse_config_singleclick.sync()
+
+    def getMouseSingleClick(self):
+        group = self.mouse_config_singleclick.group("KDE")
+        return str(group.readEntry("SingleClick"))
+
+    def setReverseScrollPolarity(self,isChecked):
+        group = self.mouse_config_hand.group("Mouse")
+        group.writeEntry("ReverseScrollPolarity",QString(str(isChecked)))
+        self.mouse_config_hand.sync()
+
     def emitChange(self):
         KGlobalSettings.self().emitChange(KGlobalSettings.SettingsChanged,KGlobalSettings.SETTINGS_MOUSE)
+
+
+class Menu(base.Menu):
+
+    def __init__(self):
+        self.menu_config = KConfig("plasma-desktop-appletsrc")
 
     def getDefaultMenuStyle(self):
         group= self.menu_config.group("Containments")
@@ -102,6 +111,7 @@ class KdePlugin:
                         subg_2 = subg.group('image')
                         subg_2.writeEntry("wallpaper", wallpaper)
 
+
     def setMenuSettings(self,has_changed,menuSettings):
         if has_changed:
             hasChanged = True
@@ -117,24 +127,30 @@ class KdePlugin:
                         if str(launcher).find('launcher') >= 0:
                             subg2.writeEntry('plugin',menuSettings)
 
-    def removeFolderViewWidget(self):
-        sub_lvl_0 = config.group("Containments")
-        for sub in list(sub_lvl_0.groupList()):
-            sub_lvl_1 = sub_lvl_0.group(sub)
-            if sub_lvl_1.hasGroup("Applets"):
-                sub_lvl_2 = sub_lvl_1.group("Applets")
-                for sub2 in list(sub_lvl_2.groupList()):
-                    sub_lvl_3 = sub_lvl_2.group(sub2)
-                    plugin = sub_lvl_3.readEntry('plugin')
-                    if plugin == 'folderview':
-                        sub_lvl_3.deleteGroup()
+class Wallpaper(base.Wallpaper):
 
-    def getLanguage(self):
-        return "tr"
+    def setWallpaper(self ,wallpaper,_hasChanged):
+        if _hasChanged:
+            hasChanged = True
+            if wallpaper:
+                group = menu_config.group("Containments")
+                for each in list(group.groupList()):
+                    subgroup = group.group(each)
+                    subcomponent = subgroup.readEntry('plugin')
+                    if subcomponent == 'desktop' or subcomponent == 'folderview':
+                        subg = subgroup.group('Wallpaper')
+                        subg_2 = subg.group('image')
+                        subg_2.writeEntry("wallpaper", wallpaper)
+
+class Style(base.Style):
+
+    def __init__(self):
+        self.desktop_number = KConfig("kwinrc")
 
     def getDesktopNumber(self):
         group=self.desktop_number.group("Desktops")
         return int(group.readEntry("Number"))
+
     def setDesktopNumber(self):
         group=self.desktop_number.group("Desktops")
         group.writeEntry('Number', self.styleSettings["desktopNumber"])
@@ -155,6 +171,39 @@ class KdePlugin:
         self.desktop_number.sync()
 
 
+    def setThemeSettings(self):
+        group = self.mouse_config_singleclick.group("General")
+
+        groupIconTheme = configKdeGlobals.group("Icons")
+        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
+
+        mouse_config_singleclick.sync()
+
+    def changeIconTheme(self):
+        kdeui.KIconTheme.reconfigure()
+        kdeui.KIconCache.deleteCache()
+
+    def setStyleSettings(self):
+        group = self.mouse_config_singleclick.group("General")
+        group.writeEntry("widgetStyle", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["widgetStyle"])
+
+        groupIconTheme = configKdeGlobals.group("Icons")
+        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
+        #groupIconTheme.writeEntry("Theme", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["iconTheme"])
+
+        mouse_config_singleclick.sync()
+
+    def setChangeWidget(self):
+        for key, value in self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["colorScheme"].items():
+                colorGroup = self.mouse_config_singleclick.group(key)
+                for key2, value2 in value.items():
+                        colorGroup.writeEntry(str(key2), str(value2))
+
+        self.mouse_config_singleclick.sync()
+    def emitChangeStyle(self):
+        kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.StyleChanged)
+
+class Package(base.Package):
     def package_config(self,config):
         self.config = KConfig(config)
         self.group = None
@@ -163,15 +212,40 @@ class KdePlugin:
         self.group = self.config.group("General")
         self.group.writeEntry(option, QVariant(value))
         self.config.sync()
-    def getMetaData(self):
-        return KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
-    
+
+
+class Goodbye(base.Goodbye):
+
     def showUrl(self,Url):
         self.procSettings = QProcess()
         command = "kfmclient openURL " + Url
         self.procSettings.start(command)
+
+
+class Common(base.Summary):
+
+    def removeFolderViewWidget(self):
+        sub_lvl_0 = config.group("Containments")
+        for sub in list(sub_lvl_0.groupList()):
+            sub_lvl_1 = sub_lvl_0.group(sub)
+            if sub_lvl_1.hasGroup("Applets"):
+                sub_lvl_2 = sub_lvl_1.group("Applets")
+                for sub2 in list(sub_lvl_2.groupList()):
+                    sub_lvl_3 = sub_lvl_2.group(sub2)
+                    plugin = sub_lvl_3.readEntry('plugin')
+                    if plugin == 'folderview':
+                        sub_lvl_3.deleteGroup()
+
+    def getLanguage(self):
+        return "tr"
+
+    def getMetaData(self):
+        return KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
+
+
     def quit(self):
         kdeui.KApplication.kApplication().quit()
+
     def setDesktopType(self):
         group = self.menu_config.group("Containments")
         for each in list(group.groupList()):
@@ -197,35 +271,6 @@ class KdePlugin:
     def deleteIconCache(self):
         for i in range(kdeui.KIconLoader.LastGroup):
                 kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.IconChanged, i)
-    def setThemeSettings(self):
-        group = self.mouse_config_singleclick.group("General")
-
-        groupIconTheme = configKdeGlobals.group("Icons")
-        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
-
-        mouse_config_singleclick.sync()
-    def changeIconTheme(self):
-        kdeui.KIconTheme.reconfigure()
-        kdeui.KIconCache.deleteCache()
-    def setStyleSettings(self):
-        group = self.mouse_config_singleclick.group("General")
-        group.writeEntry("widgetStyle", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["widgetStyle"])
-
-        groupIconTheme = configKdeGlobals.group("Icons")
-        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
-        #groupIconTheme.writeEntry("Theme", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["iconTheme"])
-
-        mouse_config_singleclick.sync()
-
-    def setChangeWidget(self):
-        for key, value in self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["colorScheme"].items():
-                colorGroup = self.mouse_config_singleclick.group(key)
-                for key2, value2 in value.items():
-                        colorGroup.writeEntry(str(key2), str(value2))
-
-        self.mouse_config_singleclick.sync()
-    def emitChangeStyle(self):
-        kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.StyleChanged)
     def configPlasmarc(self):
         groupDesktopTheme = self.configPlasmaRc.group("Theme")
         groupDesktopTheme.writeEntry("name", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["desktopTheme"])

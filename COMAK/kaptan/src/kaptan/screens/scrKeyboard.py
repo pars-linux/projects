@@ -21,7 +21,7 @@ from kaptan.screens.ui_scrKeyboard import Ui_keyboardWidget
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-from kaptan.plugins import desktop
+from kaptan.plugins import active_desktop
 
 import subprocess
 
@@ -35,6 +35,7 @@ class Widget(QtGui.QWidget, Screen):
     title = i18n("Keyboard")
     desc = i18n("Keyboard Layout Language")
 
+    desktop = active_desktop.get_component("keyboard")
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_keyboardWidget()
