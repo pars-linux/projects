@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>tenr-de-styles</Name>
+        <Homepage>http://tenr.de/styles/</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>CCPL-Attribution-ShareAlike-2.5</License>
+        <IsA>data</IsA>
+        <Summary>A collection of styles for fluxbox</Summary>
+        <Description>A collection of styles/themes for use with Fluxbox. All styles/themes are compatible with fluxStyle.</Description>
+        <Archive sha1sum="ff044417b4647a7208bdecbd46a6ad14bc4dfa16" type="tarbz2">http://tenr.de/styles/archives/tenr.de-styles-pkg.tar.bz2</Archive>
+    </Source>
+
+    <Package>
+        <Name>tenr-de-styles</Name>
+        <RuntimeDependencies>
+            <Dependency>fluxbox</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="data">/usr/share/fluxbox/styles</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2008-07-29</Date>
+            <Version>0.344</Version>
+            <Comment>First release</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
