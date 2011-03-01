@@ -16,7 +16,7 @@ class Content(Ui_content, QtGui.QWidget):
     def __init__(self, parent, title, icon, description, item):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
-        self.header.setText(title)
+        self.header.setText(unicode(title))
         self.detailsButton.clicked.connect(lambda: parent.parentWidget().openItem(item))
         self.container.hide()
         #self.description.setText(description)
