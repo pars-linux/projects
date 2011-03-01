@@ -675,15 +675,6 @@ msgstr ""
 msgid "Test Layout"
 msgstr ""
 
-#: src/kaptan/screens/scrPackage.py:96
-msgid "enlightenment-repo is already available on your system."
-msgstr ""
 
-#: src/kaptan/screens/scrPackage.py:54
-msgid "enlightenment-repo added to your repo list."
-msgstr ""
 
-#: src/kaptan/screens/scrPackage.py:107
-msgid "enlightenment-repo deleted from your repo list."
-msgstr ""
 

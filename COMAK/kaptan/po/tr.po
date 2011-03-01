@@ -612,17 +612,8 @@ msgstr "duvarkağıdıİsmi"
 msgid "wallpaperDesc"
 msgstr "duvarkağıdıAçıklaması"
 
-#: src/kaptan/screens/scrPackage.py:96
-msgid "enlightenment-repo is already available on your system."
-msgstr "enlightenment-repo adli depo sisteminizde mevcuttur."
 
-#: src/kaptan/screens/scrPackage.py:54
-msgid "enlightenment-repo added to your repo list."
-msgstr "enlightenment-repo adli depo , depo listenize eklendi."                       
 
-#: src/kaptan/screens/scrPackage.py:107
-msgid "enlightenment-repo deleted from your repo list."
-msgstr "enlightenment-repo adli depo , depo listesinden silindi."
 
 
 
