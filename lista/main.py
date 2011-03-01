@@ -25,8 +25,9 @@ class Lista(Ui_lista, QtGui.QWidget):
     def __init__(self, parent = None):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
-        self.listWidget.itemDoubleClicked.connect(self.openItem)
+        # self.listWidget.itemDoubleClicked.connect(self.openItem)
         self.last_item = None
+        self.tico = QtCore.QTimeLine(1000, self)
 
     def addItem(self, title, icon='', description=''):
         item = QtGui.QListWidgetItem(self.listWidget)
@@ -35,17 +36,22 @@ class Lista(Ui_lista, QtGui.QWidget):
         self.listWidget.setItemWidget(item, Content(self.listWidget, title, icon, description, item))
 
     def openItem(self, item):
+        if not self.tico.state() == QtCore.QTimeLine.NotRunning:
+            return
+
+        self.listWidget.itemWidget(item).detailsButton.setEnabled(False)
+
         if self.last_item:
             self.closeItem(self.last_item)
             if item == self.last_item:
                 self.last_item = None
                 return
 
-        tico = QtCore.QTimeLine(1000, self)
-        tico.setFrameRange(36,146)
-        tico.frameChanged.connect(lambda x: item.setSizeHint(QtCore.QSize(32, x)))
-        tico.start()
-
+        self.tico = QtCore.QTimeLine(600, self)
+        self.tico.setFrameRange(36,146)
+        self.tico.frameChanged.connect(lambda x: item.setSizeHint(QtCore.QSize(32, x)))
+        self.tico.start()
+        self.tico.finished.connect(lambda: self.listWidget.itemWidget(item).detailsButton.setEnabled(True))
         self.listWidget.itemWidget(item).container.show()
         self.last_item = item
 
@@ -55,6 +61,7 @@ class Lista(Ui_lista, QtGui.QWidget):
         tico.frameChanged.connect(lambda x: item.setSizeHint(QtCore.QSize(32, x)))
         tico.start()
         tico.finished.connect(lambda: self.listWidget.itemWidget(item).container.hide())
+        tico.finished.connect(lambda: self.listWidget.itemWidget(item).detailsButton.setEnabled(True))
 
 if __name__ == "__main__":
     import sys
