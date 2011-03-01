@@ -229,15 +229,16 @@ class Kaptan(QtGui.QWidget):
 
 if __name__ == "__main__":
      if len(sys.argv) > 1 and sys.argv[1] == "-a":
-         import ConfigParser
-         config = ConfigParser.RawConfigParser()
-         config.read(os.path.join(os.getenv('HOME'),'.kaptanrc'))
-         start = config.get('General','RunOnStart')
-         if start == "True":
-             config.set('General', 'RunOnStart', 'False')
-             with open(os.path.join(os.getenv('HOME'),'.kaptanrc'), 'wb') as configfile:
-                 config.write(configfile)
-         elif start == "False":
+        kd= os.getenv("HOME")
+        #kaptanrc
+        QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
+        kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
+        start = kaptanConfig.value("General/RunOnStart").toString()
+        print start
+        if start == "true":
+            kaptanConfig.setValue("General/RunOnStart","False")
+            kaptanConfig.sync()
+        elif start == "False":
              exit(1);
 
      # attach dbus to main loop
