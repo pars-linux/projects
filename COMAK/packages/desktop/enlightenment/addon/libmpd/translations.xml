@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<PISI>
-    <Source>
-        <Name>libmpd</Name>
-        <Summary xml:lang="tr">MPD için istemci geliştirme kütüphanesi</Summary>
-    </Source>
-</PISI>
