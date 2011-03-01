@@ -228,7 +228,18 @@ class Kaptan(QtGui.QWidget):
         #group.writeEntry("RunOnStart", "False")
 
 if __name__ == "__main__":
-    
+     if len(sys.argv) > 1 and sys.argv[1] == "-a":
+         import ConfigParser
+         config = ConfigParser.RawConfigParser()
+         config.read(os.path.join(os.getenv('HOME'),'.kaptanrc'))
+         start = config.get('General','RunOnStart')
+         if start == "True":
+             config.set('General', 'RunOnStart', 'False')
+             with open(os.path.join(os.getenv('HOME'),'.kaptanrc'), 'wb') as configfile:
+                 config.write(configfile)
+         elif start == "False":
+             exit(1);
+
      # attach dbus to main loop
      tools.DBus()
 
