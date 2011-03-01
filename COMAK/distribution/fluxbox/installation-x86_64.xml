@@ -42,10 +42,12 @@
         <SelectedPackage>ethtool</SelectedPackage>
         <SelectedPackage>example-content</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
+        <SelectedPackage>fbdesk</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
         <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
+        <SelectedPackage>fluxbox</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
         <SelectedPackage>gecko-mediaplayer</SelectedPackage>
@@ -161,6 +163,7 @@
         <SelectedPackage>service-manager-pds</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
+        <SelectedPackage>slim</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
         <SelectedPackage>soprano-plugin-virtuoso</SelectedPackage>
         <SelectedPackage>splix</SelectedPackage>
@@ -292,6 +295,7 @@
         <Package>flac</Package>
         <Package>flite</Package>
         <Package>fluidsynth</Package>
+        <Package>fluxbox</Package>
         <Package>fontconfig</Package>
         <Package>foomatic-db</Package>
         <Package>foomatic-db-engine</Package>
@@ -942,6 +946,7 @@
         <Package>cracklib</Package>
         <Package>cups</Package>
         <Package>curl</Package>
+        <Package>cursor-theme-oxygen-white</Package>
         <Package>cyrus-sasl</Package>
         <Package>db4</Package>
         <Package>dbus</Package>
@@ -1082,7 +1087,10 @@
         <Package>man-pages</Package>
         <Package>mcpp</Package>
         <Package>mdadm</Package>
+        <Package>mdadm-static</Package>
+        <Package>memtest86</Package>
         <Package>mesa</Package>
+        <Package>microcode-ctl</Package>
         <Package>mingetty</Package>
         <Package>miscfiles</Package>
         <Package>mit-kerberos</Package>
@@ -1120,9 +1128,11 @@
         <Package>piksemel</Package>
         <Package>pisi</Package>
         <Package>pixman</Package>
+        <Package>plymouth</Package>
         <Package>plymouth-core-libs</Package>
         <Package>plymouth-graphics-libs</Package>
         <Package>plymouth-plugin-script</Package>
+        <Package>plymouth-theme-pardus</Package>
         <Package>polkit</Package>
         <Package>poppler</Package>
         <Package>poppler-data</Package>
@@ -1137,6 +1147,7 @@
         <Package>pyqtermwidget</Package>
         <Package>python</Package>
         <Package>python-decorator</Package>
+        <Package>python-networkmanager</Package>
         <Package>python-pyaspects</Package>
         <Package>python-pyblock</Package>
         <Package>python-pyliblzma</Package>
@@ -1170,6 +1181,7 @@
         <Package>usbutils</Package>
         <Package>util-linux</Package>
         <Package>v86d</Package>
+        <Package>virtualbox-guest-utils</Package>
         <Package>vixie-cron</Package>
         <Package>which</Package>
         <Package>wireless-tools</Package>
@@ -1180,9 +1192,59 @@
         <Package>xinit</Package>
         <Package>xkeyboard-config</Package>
         <Package>xorg-app</Package>
+        <Package>xorg-input-acecad</Package>
+        <Package>xorg-input-aiptek</Package>
+        <Package>xorg-input-elographics</Package>
+        <Package>xorg-input-evdev</Package>
+        <Package>xorg-input-fpit</Package>
+        <Package>xorg-input-hyperpen</Package>
+        <Package>xorg-input-joystick</Package>
+        <Package>xorg-input-kbd</Package>
+        <Package>xorg-input-mouse</Package>
+        <Package>xorg-input-mutouch</Package>
+        <Package>xorg-input-penmount</Package>
+        <Package>xorg-input-synaptics</Package>
+        <Package>xorg-input-vmmouse</Package>
+        <Package>xorg-input-wacom</Package>
         <Package>xorg-server</Package>
         <Package>xorg-server-common</Package>
+        <Package>xorg-video-apm</Package>
+        <Package>xorg-video-ark</Package>
+        <Package>xorg-video-ast</Package>
+        <Package>xorg-video-chips</Package>
+        <Package>xorg-video-cirrus</Package>
+        <Package>xorg-video-fbdev</Package>
+        <Package>xorg-video-glint</Package>
+        <Package>xorg-video-i128</Package>
+        <Package>xorg-video-i740</Package>
+        <Package>xorg-video-intel</Package>
+        <Package>xorg-video-mach64</Package>
+        <Package>xorg-video-mga</Package>
+        <Package>xorg-video-neomagic</Package>
+        <Package>xorg-video-newport</Package>
+        <Package>xorg-video-nouveau</Package>
+        <Package>xorg-video-nv</Package>
+        <Package>xorg-video-openchrome</Package>
+        <Package>xorg-video-r128</Package>
+        <Package>xorg-video-radeon</Package>
+        <Package>xorg-video-rendition</Package>
+        <Package>xorg-video-s3</Package>
+        <Package>xorg-video-s3virge</Package>
+        <Package>xorg-video-savage</Package>
+        <Package>xorg-video-siliconmotion</Package>
+        <Package>xorg-video-sis</Package>
+        <Package>xorg-video-sisimedia</Package>
+        <Package>xorg-video-sisusb</Package>
+        <Package>xorg-video-tdfx</Package>
+        <Package>xorg-video-tga</Package>
+        <Package>xorg-video-trident</Package>
+        <Package>xorg-video-tseng</Package>
+        <Package>xorg-video-v4l</Package>
+        <Package>xorg-video-vesa</Package>
+        <Package>xorg-video-vmware</Package>
+        <Package>xorg-video-voodoo</Package>
         <Package>xz</Package>
+        <Package>yali</Package>
         <Package>yali-branding-pardus</Package>
         <Package>yali-theme-pardus</Package>
         <Package>zip</Package>
