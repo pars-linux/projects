@@ -51,14 +51,13 @@ class Widget(QtGui.QWidget, Screen):
         if self.repodb.has_repo(self.repoName):
             #self.pushDelete.setEnabled(0)
             self.ui.checkBox.setEnabled(0)
-            errorMessage= i18n("enlightenment-repo isimli Depo sisteminizde mevcuttur.")
+            errorMessage= i18n("enlightenment-repo is already available on your system.")
             self.ui.information_label.setText(errorMessage)
     
     def controlRepo(self):
-        print "kontrol ediliyor..."
         if self.repodb.has_repo_url(self.repoAddress):
             self.ui.checkBox.setCheckState(False)
-            errorMessage= i18n("enlightenment-repo isimli Depo sisteminizde mevcuttur.")
+            errorMessage= i18n("enlightenment-repo is already available on your system.")
             self.ui.information_label.setText(errorMessage)
             return False
         else:
@@ -93,7 +92,7 @@ class Widget(QtGui.QWidget, Screen):
                 link = comar.Link()
                 link.setLocale()
                 link.System.Manager["pisi"].addRepository(r_name, r_address)
-                self.ui.information_label.setText("enlightenment-repo adli depo , depo listenize eklendi.")
+                self.ui.information_label.setText("enlightenment-repo added to your repo list.")
                 return True
             except:
                 return False
@@ -104,28 +103,14 @@ class Widget(QtGui.QWidget, Screen):
                 link = comar.Link()
                 link.setLocale()
                 link.System.Manager["pisi"].removeRepository(r_name)
-                self.ui.information_label.setText("enlightenment-repo adli depo , depo listesinden silindi.")
+                self.ui.information_label.setText("enlightenment-repo deleted from your repo list.")
                 return True
             except:
                 return False
-
-
-#    def applySettings(self):
-#        # write selected configurations to future package-managerrc
-#        if ctx.Pds.session == ctx.pds.Kde4:
-#
-#            config = PMConfig()
-#            config.setSystemTray(QVariant(self.ui.showTray.isChecked()))
-#            config.setUpdateCheck(QVariant(self.ui.checkUpdate.isChecked()))
-#            config.setUpdateCheckInterval(QVariant(self.ui.updateInterval.value() * 60))
-#
-#            if self.ui.showTray.isChecked():
-#                p = subprocess.Popen(["package-manager"], stdout=subprocess.PIPE)
 
     def shown(self):
         pass
 
     def execute(self):
- #       self.applySettings()
         return True
 
