@@ -108,14 +108,13 @@ class Install(install):
             kde_dir = "/usr"
         bin_dir = os.path.join(kde_dir, "bin")
         locale_dir = os.path.join(kde_dir, "share/locale")
-        autostart_dir = os.path.join(kde_dir,"share/autostart")
+        autostart_dir = os.path.join("/etc/xdg/autostart")
         project_dir = os.path.join(kde_dir, "share/", about.appName)
         kd= os.getenv("HOME")
         #kaptanrc
         QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
         kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
         kaptanConfig.setValue("General/RunOnStart","true")
-        kaptanConfig.sync()
         # Make directories
         print "Making directories..."
         makeDirs(bin_dir)
