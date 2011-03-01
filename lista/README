@@ -1,0 +1,8 @@
+Build
+-----
+ $ make
+
+Usage
+-----
+ $ python main.py
+
