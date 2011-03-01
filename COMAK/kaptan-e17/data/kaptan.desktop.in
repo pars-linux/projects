@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=kaptan
+Exec=kaptan -a
 Icon=kaptan
 Type=Application
 
