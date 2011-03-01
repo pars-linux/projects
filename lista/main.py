@@ -60,9 +60,9 @@ if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
     lista = Lista()
-    lista.addItem("Bok","Kaka",unicode("Bi sürrü bişi"))
-    lista.addItem("KAKA","Kaka",unicode("Bi sürrü bişi"))
-    lista.addItem("Pardus filen","Kaka",unicode("Bi sürrü bişi"))
+    lista.addItem("Birinci Eleman","IconName",unicode("Bi sürrü bişi"))
+    lista.addItem("İkinci Eleman","IconName",unicode("Bi sürrü bişi"))
+    lista.addItem("Pardus Elemanı","IconName",unicode("Bi sürrü bişi"))
     lista.show()
     sys.exit(app.exec_())
 
