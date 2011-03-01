@@ -103,6 +103,9 @@ border-bottom-right-radius: 4px;
         </item>
         <item>
          <widget class="QLabel" name="information_label">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(30, 43, 51)</string>
+          </property>
           <property name="text">
            <string/>
           </property>
