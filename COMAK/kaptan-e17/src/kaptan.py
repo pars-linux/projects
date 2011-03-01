@@ -238,7 +238,7 @@ if __name__ == "__main__":
         if start <> "False":
             kaptanConfig.setValue("General/RunOnStart","False")
         elif start == "False":
-             exit(1);
+             exit();
 
      # attach dbus to main loop
      tools.DBus()
