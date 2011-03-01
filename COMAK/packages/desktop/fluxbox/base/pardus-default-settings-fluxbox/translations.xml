@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>pardus-default-settings-fluxbox</Name>
+        <Summary xml:lang="tr">Pardus Fluxbox öntanımlı ayarları</Summary>
+        <Description xml:lang="tr">Bu paket, Pardus Fluxbox için öntanımlı ayarları içerir.</Description>
+    </Source>
+</PISI>

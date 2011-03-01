@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>pardus-default-settings-fluxbox</Name>
+        <Homepage>http://comakp.blogspot.com</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>data</IsA>
+        <Summary>Pardus default settings for Fluxbox</Summary>
+        <Description>This package contains the Fluxbox default settings for Pardus.</Description>
+        <Archive sha1sum="8d68ade7931afbfd941666180d3be0dc34b7ab75" type="tarbz2">http://www.mesutcankurt.com/comak/pardus-default-settings-fluxbox-0.0.1.tar.bz2</Archive>
+    </Source>
+
+    <Package>
+        <Name>pardus-default-settings-fluxbox</Name>
+        <RuntimeDependencies>
+            <Dependency>dejavu-fonts</Dependency>
+            <Dependency>cursor-theme-oxygen-white</Dependency>
+            <Dependency versionFrom="1.0.0">gtk-style-oxygen</Dependency>
+            <Dependency>icon-theme-milky-png</Dependency>
+            <Dependency>icon-theme-oxygen-png</Dependency>
+            <Dependency>xdg-user-dirs</Dependency>
+        </RuntimeDependencies>
+        <Conflicts>
+            <Package>pardus-default-settings</Package>
+            <Package>pardus-default-settings-lxde</Package>
+        </Conflicts>
+        <Files>
+            <Path fileType="config">/etc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-01</Date>
+            <Version>0.0.1</Version>
+            <Comment>First release</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
