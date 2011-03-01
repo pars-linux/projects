@@ -13,6 +13,7 @@
         <Summary>A Lightweight Login Manager</Summary>
         <Description>SLiM is a Desktop-independent graphical login manager for X11, derived from Login.app.</Description>
         <Archive sha1sum="e421d5487732c8317f8f591906661e014b036358" type="targz">http://download.berlios.de/slim/slim-1.3.2.tar.gz</Archive>
+        <Archive sha1sum="964a19aaf44e28787ff41d14f1b2bdc633f104d5" type="tarbz2" target="slim-1.3.2/themes/">http://www.mesutcankurt.com/comak/pardus-slim-theme.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libX11-devel</Dependency>
             <Dependency>libXmu-devel</Dependency>
@@ -28,6 +29,7 @@
             <Patch level="1">261713-restart-xserver-if-killed.patch</Patch>
             <Patch>346037-stop_setting_host_for_pam_ck_connector_so.patch</Patch>
             <Patch>slim-1.3.2-r2-config.diff</Patch>
+            <Patch level="1">default-theme-for-pardus.patch</Patch>
         </Patches>
     </Source>
 
