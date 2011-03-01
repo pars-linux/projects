@@ -234,10 +234,9 @@ if __name__ == "__main__":
         QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
         kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
         start = kaptanConfig.value("General/RunOnStart").toString()
-        print start
-        if start == "true":
+
+        if start <> "False":
             kaptanConfig.setValue("General/RunOnStart","False")
-            kaptanConfig.sync()
         elif start == "False":
              exit(1);
 
