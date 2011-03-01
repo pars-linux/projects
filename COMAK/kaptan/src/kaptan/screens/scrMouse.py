@@ -19,7 +19,7 @@ from kaptan.screens.ui_scrMouse import Ui_mouseWidget
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-from kaptan.plugins import desktop
+from kaptan.plugins import active_desktop
 
 from Xlib import display
 RIGHT_HANDED, LEFT_HANDED = range(2)
@@ -31,6 +31,8 @@ class Widget(QtGui.QWidget, Screen):
     # title and description at the top of the dialog window
     title = i18n("Mouse")
     desc = i18n("Setup Mouse Behavior")
+
+    desktop = active_desktop.get_component("mouse")
 
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)

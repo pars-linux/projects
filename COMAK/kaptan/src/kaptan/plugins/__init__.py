@@ -11,22 +11,32 @@
 #
 
 from kaptan.screens import context as ctx
+
 import pds
 
 
 __plugins = {
-            pds.Kde4:("kde","KdePlugin"),
-            pds.DefaultDe:("kde","KdePlugin"), #FIXME: temporary
+            pds.Kde4:"kde",
+            pds.DefaultDe:"kde", #FIXME: temporary
             }
 
+class ActiveDesktop:
+    components = {}
 
-desktop = None
+    def get_component(self,name):
+        return self.components[name]
+
+    def set_component(self,name,object):
+        self.components[name] = object
+
+active_desktop = ActiveDesktop()
+
 def init(session):
-    global desktop
-    module_name, class_name = __plugins[session]
-    exec "from kaptan.plugins.%s import %s as Plugin" % (module_name, class_name)
-    desktop = Plugin()
-
+    global active_desktop
+    module_name, clas_name = __plugins[session]
+    exec "from kaptan.plugins.%s import Keyboard,Mouse" % (module_name, class_name)
+    active_desktop.set_component("keyboard", Keyboard())
+    active_desktop.set_component("mouse", Mouse())
 
 init(ctx.Pds.session)
 
