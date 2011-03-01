@@ -17,7 +17,7 @@ import shutil
 import sys
 import fnmatch
 sys.path.append(os.path.join(os.path.split(__file__)[0],"src","kaptan","screens"))
-
+from PyQt4.Qt import QSettings
 from distutils.core import setup
 from distutils.cmd import Command
 from distutils.command.build import build
@@ -110,6 +110,11 @@ class Install(install):
         locale_dir = os.path.join(kde_dir, "share/locale")
         autostart_dir = os.path.join(kde_dir, "share/autostart")
         project_dir = os.path.join(kde_dir, "share/", about.appName)
+
+        #kaptanrc
+        QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,"/home/sertac/.kaptanrc" )
+        kaptanConfig = QSettings("/home/sertac/.kaptanrc" ,QSettings.IniFormat)
+        kaptanConfig.setValue("General/RunOnStart",True)
 
         # Make directories
         print "Making directories..."
