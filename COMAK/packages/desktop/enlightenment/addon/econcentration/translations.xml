@@ -3,7 +3,7 @@
     <Source>
         <Name>econcentration</Name>
         <Summary xml:lang="tr">Konsantrasyon Oyunu</Summary>
-        <Description xml:lang="tr">Econcentration -hafıza becerilerini ve konsantrasyonu geliştirmek için konsantrasyon oyunu.</Description>
+        <Description xml:lang="tr">Econcentration, hafıza becerilerini ve konsantrasyonu geliştiren bir konsantrasyon oyunudur.</Description>
     </Source>
 </PISI>
 
