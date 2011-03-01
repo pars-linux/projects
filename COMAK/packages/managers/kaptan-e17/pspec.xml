@@ -12,14 +12,11 @@
         <IsA>app:gui</IsA>
         <Summary>Kaptan, Pardus workspace configuration wizard</Summary>
         <Description>Kaptan lets you configure your workspace on first login.</Description>
-        <Archive sha1sum="c7b1d774fe7299f2a0a47f565f37a5d07a0464b7" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/kaptan-e17.tar.bz2</Archive>
+        <Archive sha1sum="7a2570ad5f2c8ff965fb11a716d151a34e63590e" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/kaptan-e17.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>python-qt-devel</Dependency>
             <Dependency>pardus-desktop-services</Dependency>
         </BuildDependencies>
-        <Patches>
-            <Patch level="1">kaptanAutostartRemove.patch</Patch>
-        </Patches>
     </Source>
 
     <Package>
@@ -31,8 +28,6 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
-            <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="data">/usr/share</Path>
             <Path fileType="data">/etc/xdg/autostart</Path>
