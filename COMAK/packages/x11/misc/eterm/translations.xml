@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>eterm</Name>
+        <Summary xml:lang="tr">X için bir terminal uçbirimi</Summary>
+        <Description xml:lang="tr">xterm 'den esinlenmiş Enligtenment tipi ayar dosyaları olan bir terminal uçbirimi.</Description>
+    </Source>
+</PISI>
