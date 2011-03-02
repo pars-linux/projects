@@ -64,7 +64,7 @@ fi
 #    fi
 #done
 #=====================
-sessionscript="startfluxbox"
+sessionscript="/usr/bin/startfluxbox"
 
 if [ -n "$sessionscript" ]; then
 
