@@ -9,67 +9,59 @@ from PyQt4 import QtCore, QtGui
 from lista import Ui_lista
 from content import Ui_content
 
-CLOSED_SIZE = QtCore.QSize(32,36)
-EXPANDED_SIZE = QtCore.QSize(32,146)
+CLOSED_SIZE = 36
+ANIMATE_TIME = 400
+EXPANDED_SIZE = 146
 
 class Content(Ui_content, QtGui.QWidget):
     def __init__(self, parent, title, icon, description, item):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.header.setText(unicode(title))
-        self.detailsButton.clicked.connect(lambda: parent.parentWidget().openItem(item))
-        self.container.hide()
-        #self.description.setText(description)
+        # self.description.setText(description)
 
 class Lista(Ui_lista, QtGui.QWidget):
     def __init__(self, parent = None):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
-        # self.listWidget.itemDoubleClicked.connect(self.openItem)
+        self.listWidget.itemClicked.connect(self.openItem)
         self.last_item = None
-        self.tico = QtCore.QTimeLine(1000, self)
 
     def addItem(self, title, icon='', description=''):
         item = QtGui.QListWidgetItem(self.listWidget)
-        item.setSizeHint(CLOSED_SIZE)
+        item.setSizeHint(QtCore.QSize(36, CLOSED_SIZE))
         self.listWidget.addItem(item)
         self.listWidget.setItemWidget(item, Content(self.listWidget, title, icon, description, item))
+        return item
 
     def openItem(self, item):
-        if not self.tico.state() == QtCore.QTimeLine.NotRunning:
+        if item == self.last_item:
             return
-
-        self.listWidget.itemWidget(item).detailsButton.setEnabled(False)
 
         if self.last_item:
             self.closeItem(self.last_item)
-            if item == self.last_item:
-                self.last_item = None
-                return
 
-        self.tico = QtCore.QTimeLine(600, self)
-        self.tico.setFrameRange(36,146)
+        self.tico = QtCore.QTimeLine(ANIMATE_TIME, self)
+        self.tico.setFrameRange(36, EXPANDED_SIZE)
         self.tico.frameChanged.connect(lambda x: item.setSizeHint(QtCore.QSize(32, x)))
         self.tico.start()
-        self.tico.finished.connect(lambda: self.listWidget.itemWidget(item).detailsButton.setEnabled(True))
-        self.listWidget.itemWidget(item).container.show()
         self.last_item = item
+        self.tico.finished.connect(lambda: self.listWidget.setCurrentItem(item))
 
     def closeItem(self, item):
-        tico = QtCore.QTimeLine(600, self)
-        tico.setFrameRange(146,36)
+        tico = QtCore.QTimeLine(ANIMATE_TIME, self)
+        tico.setFrameRange(146, CLOSED_SIZE)
         tico.frameChanged.connect(lambda x: item.setSizeHint(QtCore.QSize(32, x)))
         tico.start()
-        tico.finished.connect(lambda: self.listWidget.itemWidget(item).container.hide())
-        tico.finished.connect(lambda: self.listWidget.itemWidget(item).detailsButton.setEnabled(True))
 
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
     lista = Lista()
-    lista.addItem("Birinci Eleman","IconName",unicode("Bi sürrü bişi"))
-    lista.addItem("İkinci Eleman","IconName",unicode("Bi sürrü bişi"))
-    lista.addItem("Pardus Elemanı","IconName",unicode("Bi sürrü bişi"))
+    first_item = lista.addItem("Birinci Eleman","IconName", unicode("Bi sürrü bişi"))
+    lista.addItem("İkinci Eleman", "IconName", unicode("Bi sürrü bişi"))
+    lista.addItem("Pardus Elemanı","IconName", unicode("Bi sürrü bişi"))
+    lista.openItem(first_item)
     lista.show()
     sys.exit(app.exec_())
 
