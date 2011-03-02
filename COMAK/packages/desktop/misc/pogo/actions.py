@@ -8,12 +8,6 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 
-def setup():
-    pass
-
-def build():
-    pass
-
 def install():
     autotools.install()
 
