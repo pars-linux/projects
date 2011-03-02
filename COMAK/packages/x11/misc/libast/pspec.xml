@@ -16,6 +16,7 @@
         <BuildDependencies>
             <Dependency>imlib2-devel</Dependency>
             <Dependency>libSM-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -26,6 +27,7 @@
             <Dependency>libSM</Dependency>
             <Dependency>libXext</Dependency>
             <Dependency>freetype</Dependency>
+            <Dependency>libICE</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
