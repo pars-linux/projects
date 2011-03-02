@@ -51,15 +51,20 @@ fi
 
 # ripped directly from /etc/X11/chooser.sh
 
-sessionscript=""
-for x in /etc/X11/Sessions/* ; do
-    if [ "`echo ${x##*/} | awk '{ print toupper($1) }'`" \
-      = "`echo ${command} | awk '{ print toupper($1) }'`" ]; then
-        # Found the matching session
-	sessionscript="${x}"
-        break
-    fi
-done
+
+#FIXME: Fix these lines
+#======================
+#sessionscript=""
+#for x in /etc/X11/Sessions/* ; do
+#    if [ "`echo ${x##*/} | awk '{ print toupper($1) }'`" \
+#      = "`echo ${command} | awk '{ print toupper($1) }'`" ]; then
+#        # Found the matching session
+#	sessionscript="${x}"
+#        break
+#    fi
+#done
+#=====================
+sessionscript="startfluxbox"
 
 if [ -n "$sessionscript" ]; then
 
