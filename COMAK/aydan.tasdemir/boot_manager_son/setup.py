@@ -28,6 +28,7 @@ from distutils.command.install import install
 PROJECT = about.appName
 FOR_KDE_4= False
 
+#Environment control
 if 'kde4' in sys.argv:
     sys.argv.remove('kde4')
     FOR_KDE_4 = True
@@ -54,8 +55,10 @@ def update_messages():
     # Collect UI files
     filelist = []
     for filename in glob.glob1("ui", "*.ui"):
+        #If environments is Kde , ui files will be created by pykde4uic
         if FOR_KDE_4:
             os.system("pykde4uic -o ui/ui_%s.py ui/%s -g &s" % (filename.split(".")[0], filename, PROJECT))
+        #Else ui files created by pyuic4
         else:
             os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
     # Collect headers for desktop files
@@ -113,6 +116,7 @@ class Build(build):
 
         print "Generating UIs..."
         for filename in glob.glob1("ui", "*.ui"):
+            #Environment control for ui files.
             if FOR_KDE_4:
                 os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
             else:
@@ -152,6 +156,7 @@ class Install(install):
 
         # Install desktop files
         print "Installing desktop files..."
+        #Environment control for desktop files
         if FOR_KDE_4:
             shutil.copy("data/kcm_%s.desktop" % PROJECT, apps_dir)
         else:

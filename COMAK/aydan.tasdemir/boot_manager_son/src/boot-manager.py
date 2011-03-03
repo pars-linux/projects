@@ -46,7 +46,8 @@ if __name__ == "__main__":
 
         #Set Command Line arguments
         KCmdLineArgs.init(sys.argv, aboutData)
-        #Create a Kapplication instanca
+
+        #Create a Kapplication instance
         app = KApplication()
 
         #Create Main Window
@@ -56,18 +57,27 @@ if __name__ == "__main__":
         #Run the application
         app.exec_()
     else:
+        #Import gettext for translations
         import gettext
-
         __trans =gettext.translation('boot-manager',fallback=True)
         i18n = __trans.ugettext
 
+        #Boot Manager Pds stuff
         from pds.quniqueapp import QUniqueApplication
+
+        #Create Main window
         app=QUniqueApplication(sys.argv, catalog="boot-manager")
         window= MainWindow()
         window.show()
         window.resize(640,480)
+
+        #Set Main  Window Title
         window.setWindowTitle(i18n("Boot Manager"))
+
+        #Set Main Window Icon
         window.setWindowIcon(KIcon("computer"))
+
+        #Run the application
         app.exec_()
 
 
