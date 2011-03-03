@@ -87,10 +87,10 @@ class Widget(QtGui.QWidget, Screen):
 
 class Config:
     def __init__(self, config):
-        desktop.package_config(config)
+        desktop.get_component("package").package_config(config)
 
     def setValue(self, option, value):
-        desktop.package_setValue(option,value)
+        desktop.get_component("package").package_setValue(option,value)
 
 class PMConfig(Config):
     def __init__(self):

@@ -33,7 +33,7 @@ class Widget(QtGui.QWidget, Screen):
         self.ui = Ui_goodbyeWidget()
         self.ui.setupUi(self)
 
-        lang = desktop.getLanguage()
+        lang = desktop.get_component("common").getLanguage()
 
         if lang == 125:
             self.helpPageUrl = "http://www.pardus.org.tr/destek"

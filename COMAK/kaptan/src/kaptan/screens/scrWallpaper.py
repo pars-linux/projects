@@ -19,9 +19,6 @@ import kaptan.screens.context as ctx
 from kaptan.plugins import desktop
 from PyQt4.QtCore import *
 
-#PyKde4 Stuff
-#from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
-
 import os, sys, subprocess
 
 from kaptan.screen import Screen
@@ -40,65 +37,32 @@ class Widget(QtGui.QWidget, Screen):
     title = i18n("Wallpaper")
     desc = i18n("Choose a Wallpaper")
 
+    wallpaper_conf = desktop.get_component("wallpaper")
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_wallpaperWidget()
         self.ui.setupUi(self)
 
         # Get system locale
-        self.catLang = desktop.getLanguage()
-        
+        self.catLang = desktop.get_component("common").getLanguage()
+
         #self.catLang = QLocale().language()
         # Get screen resolution
         rect =  QtGui.QDesktopWidget().screenGeometry()
-        
+
         # Get metadata.desktop files from shared wallpaper directory
-        lst= desktop.getMetaData()
-
-        for desktopFiles in lst:
-            parser = DesktopParser()
-            parser.read(str(desktopFiles))
-
-            try:
-                wallpaperTitle = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
-            except:
-                wallpaperTitle = parser.get_locale('Desktop Entry', 'Name', '')
-
-            try:
-                wallpaperDesc = parser.get_locale('Desktop Entry', 'X-KDE-PluginInfo-Author', '')
-            except:
-                wallpaperDesc = "Unknown"
-
-                # Get all files in the wallpaper's directory
-            thumbFolder = os.listdir(os.path.join(os.path.split(str(desktopFiles))[0], "contents"))
-
-        #    """
-        #    Appearantly the thumbnail names doesn't have a standart.
-        #    So we get the file list from the contents folder and
-        #    choose the file which has a name that starts with "scre".
-
-        #    File names I've seen so far;
-        #    screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
-        #    """
-
-            wallpaperThumb = ""
-
-            for thumb in thumbFolder:
-                if thumb.startswith('scre'):
-                    wallpaperThumb = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
-
-            wallpaperFile = os.path.split(str(desktopFiles))[0]
-
+        lst = self.wallpaper_conf.getWallpaperSettings()
+        for wallpaper in lst:
             # Insert wallpapers to listWidget.
             item = QtGui.QListWidgetItem(self.ui.listWallpaper)
             # Each wallpaper item is a widget. Look at widgets.py for more information.
-            widget = WallpaperItemWidget(unicode(wallpaperTitle), unicode(wallpaperDesc), wallpaperThumb, self.ui.listWallpaper)
+            widget = WallpaperItemWidget(unicode(wallpaper["wallpaperTitle"]), unicode(wallpaper["wallpaperDesc"]), wallpaper["wallpaperThumb"], self.ui.listWallpaper)
             item.setSizeHint(QSize(120,170))
             self.ui.listWallpaper.setItemWidget(item, widget)
             # Add a hidden value to each item for detecting selected wallpaper's path.
-            item.setStatusTip(wallpaperFile)
+            item.setStatusTip(wallpaper["wallpaperFile"])
 
-        self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.setWallpaper)
+        self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.wallpaperChanged)
         self.ui.checkBox.connect(self.ui.checkBox, SIGNAL("stateChanged(int)"), self.disableWidgets)
         self.ui.buttonChooseWp.connect(self.ui.buttonChooseWp, SIGNAL("clicked()"), self.selectWallpaper)
 
@@ -112,7 +76,7 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.buttonChooseWp.setDisabled(False)
             self.ui.listWallpaper.setDisabled(False)
 
-    def setWallpaper(self):
+    def wallpaperChanged(self):
         self.__class__.screenSettings["selectedWallpaper"] =  self.ui.listWallpaper.currentItem().statusTip()
         self.__class__.screenSettings["hasChanged"] = True
 

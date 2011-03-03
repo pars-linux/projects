@@ -42,17 +42,19 @@ class Widget(QtGui.QWidget, Screen):
     title = i18n("Themes")
     desc = i18n("Customize Your Desktop")
 
+    style_config = desktop.get_component("style")
+
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_styleWidget()
         self.ui.setupUi(self)
 
         self.styleDetails = {}
-        self.catLang = desktop.getLanguage()
+        self.catLang = desktop.get_component("common").getLanguage()
 
         #config = KConfig("kwinrc")
         #group = config.group("Desktops")
-        defaultDesktopNumber = desktop.getDesktopNumber()
+        defaultDesktopNumber = self.style_config.getDesktopNumber()
 
         self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
         lst2 = glob.glob1("/usr/share/kde4/apps/kaptan/kaptan/kde-themes", "*.style")

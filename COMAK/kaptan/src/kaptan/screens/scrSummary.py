@@ -38,6 +38,8 @@ class Widget(QtGui.QWidget, Screen):
     title = i18n("Summary")
     desc = i18n("Save Your Settings")
 
+    menu_config = desktop.get_component("menu")
+    wallpaper_config = desktop.get_component("wallpaper")
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_summaryWidget()
@@ -118,7 +120,7 @@ class Widget(QtGui.QWidget, Screen):
                 self.startPlasma()
         except:
             QMessageBox.critical(self, i18n("Error"), i18n("Cannot restart plasma-desktop. Kaptan will now shutdown."))
-            desktop.quit()
+            kdeui.KApplication.kApplication().quit()
 
     def startPlasma(self):
         p = subprocess.Popen(["plasma-desktop"], stdout=subprocess.PIPE)
@@ -127,10 +129,10 @@ class Widget(QtGui.QWidget, Screen):
     def execute(self):
 
         # Wallpaper Settings
-        desktop.setWallpaper(self.wallpaperSettings["selectedWallpaper"],self.styleSettings["hasChanged"])
+        self.wallpaper_config.setWallpaper(self.wallpaperSettings["selectedWallpaper"],self.styleSettings["hasChanged"])
 
         # Menu Settings
-        desktop.setMenuSettings(self.menuSettings["hasChanged"],self.menuSettings["selectedMenu"])
+        self.menu_config.setMenuSettings(self.menuSettings["selectedMenu"], self.menuSettings["hasChanged"])
 
         def removeFolderViewWidget():
             desktop.removeFolderViewWidget()
@@ -199,9 +201,6 @@ class Widget(QtGui.QWidget, Screen):
 
         # Avatar Settings
         if self.avatarSettings["hasChanged"]:
-            hasChanged = True
-
-        if hasChanged:
             self.killPlasma()
 
         return True

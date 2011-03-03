@@ -20,7 +20,7 @@ __plugins = {
             pds.DefaultDe:"kde", #FIXME: temporary
             }
 
-class ActiveDesktop:
+class Desktop:
     components = {}
 
     def get_component(self,name):
@@ -29,14 +29,20 @@ class ActiveDesktop:
     def set_component(self,name,object):
         self.components[name] = object
 
-active_desktop = ActiveDesktop()
+desktop = Desktop()
 
 def init(session):
-    global active_desktop
-    module_name, clas_name = __plugins[session]
-    exec "from kaptan.plugins.%s import Keyboard,Mouse" % (module_name, class_name)
-    active_desktop.set_component("keyboard", Keyboard())
-    active_desktop.set_component("mouse", Mouse())
+    global desktop
+    module_name = __plugins[session]
+    exec "from kaptan.plugins.%s import Keyboard,Mouse,Menu\
+,Wallpaper,Common,Style,Package" % module_name
+    desktop.set_component("keyboard", Keyboard())
+    desktop.set_component("mouse", Mouse())
+    desktop.set_component("menu", Menu())
+    desktop.set_component("wallpaper", Wallpaper())
+    desktop.set_component("common", Common())
+    desktop.set_component("style", Style())
+    desktop.set_component("package", Package())
 
 init(ctx.Pds.session)
 
