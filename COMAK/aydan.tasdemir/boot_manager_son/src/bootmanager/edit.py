@@ -26,7 +26,9 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
         self.setupUi(self)
         self.id = None
         self.type = None
+        #Kernel button signal connect
         self.connect(self.toolButton, QtCore.SIGNAL("clicked()"),self.slotFileDialog)
+        #Ramdisk button signal connect
         self.connect(self.toolButton_2, QtCore.SIGNAL("clicked()"),self.slotRamDialog)
     def isNew(self):
         return self.id == None
@@ -122,13 +124,17 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
     def getOptions(self):
         return unicode(self.lineOptions.text()).replace('\n', ' ')
 
+    #Get file name from file dialog
     def slotFileDialog(self):
         filename=str(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"",i18n("All Files")))
         if filename:
+            #Set file name
             self.setFile(filename)
     def setFile(self,filename):
         EditWidget.setKernel(self,filename)
+    #Get file name from RamFile dialog
     def slotRamDialog(self):
+        #set ram name
         ramname=str(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"",i18n("All Files")))
         if ramname:
             self.setRam(ramname)
