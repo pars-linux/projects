@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>esmart</Name>
+        <Summary xml:lang="tr">Evas akıllı nesnelerine ait bir koleksiyon</Summary>
+        <Description xml:lang="tr">Evas akıllı nesnelerine ait bir koleksiyon</Description>
+    </Source>
+</PISI>

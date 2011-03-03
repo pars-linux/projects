@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>ewl</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>ibrahim@pardus.org.tr</Email>
+        </Packager>
+        <License>LGPLv2</License>
+        <IsA>library</IsA>
+        <Summary>simple-to-use general purpose widget library</Summary>
+        <Description>simple-to-use general purpose widget library</Description>
+        <Archive sha1sum="c003a1b0423a61a28b76aa68bde59e0f333ae6d3" type="targz">http://enlightenment.freedesktop.org/files/ewl-0.0.4.007.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="0.5.0.036">edje</Dependency>
+            <Dependency versionFrom="1.0.5.006">edb</Dependency>
+            <Dependency versionFrom="0.9.9.036">evas</Dependency>
+            <Dependency versionFrom="0.9.9.036">ecore</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>ewl</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="0.5.0.036">edje</Dependency>
+            <Dependency versionFrom="1.0.5.007">edb</Dependency>
+            <Dependency versionFrom="0.9.9.036">evas</Dependency>
+            <Dependency versionFrom="0.9.9.036">ecore</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="4">
+            <Date>2006-11-03</Date>
+            <Version>0.0.4.007</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2006-10-21</Date>
+            <Version>0.0.4.007</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2006-07-30</Date>
+            <Version>0.0.4.007</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2006-06-10</Date>
+            <Version>0.0.4.007</Version>
+            <Comment>First release</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

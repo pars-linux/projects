@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>eterm-bg</Name>
+        <Summary xml:lang="tr">Eterm için arkaplan dosyaları</Summary>
+        <Description xml:lang="tr">Eterm için arkaplan dosyaları</Description>
+    </Source>
+</PISI>

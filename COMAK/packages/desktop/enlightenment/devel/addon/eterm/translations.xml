@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>eterm</Name>
+        <Summary xml:lang="tr">X için A vt 102 terminal emulatörü</Summary>
+        <Description xml:lang="tr">X için A vt 102 terminal emulatörü</Description>
+    </Source>
+</PISI>

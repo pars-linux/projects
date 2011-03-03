@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=Eterm
+Icon=konsole
+MimeType=application/x-konsole
+Terminal=false
+Name=Eterm Terminal
+Name[af]=Eterm Terminal
+Name[tr]=Eterm Terminal
+Categories=Qt;KDE;System;TerminalEmulator;
+StartupNotify=false

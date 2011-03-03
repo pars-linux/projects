@@ -1,0 +1,11 @@
+--- src/include/epsilon_private.h.orig	2006-03-28 12:10:14.000000000 +0300
++++ src/include/epsilon_private.h	2006-10-20 23:18:46.000000000 +0300
+@@ -41,7 +41,7 @@
+ Epsilon_Message *epsilon_message_new(int clientid, char *path, char *dst, int status);
+ 
+ int epsilon_ipc_client_send(Ecore_Con_Client *cl, Epsilon_Message *msg);
+-int epsilon_ipc_server_send(Ecore_Con_Client *cl, Epsilon_Message *msg);
++int epsilon_ipc_server_send(Ecore_Con_Server *cl, Epsilon_Message *msg);
+ 
+ Epsilon_Message *epsilon_ipc_consume(Epsilon_Ipc_End *end);
+ 
