@@ -1,0 +1,39 @@
+[Desktop Entry]
+Exec=kcmshell4 kcm_boot-manager
+Icon=computer
+Type=Service
+ServiceTypes=KCModule
+
+X-KDE-FactoryName=bootmanager
+X-KDE-Library=kpythonpluginfactory
+X-KDE-ParentApp=kcontrol
+X-KDE-PluginKeyword=boot-manager/boot-manager.py
+X-KDE-System-Settings-Parent-Category=hardware
+X-KDE-Weight=70
+
+Name=Boot Manager
+Name[da]=Opstartsindlæser
+Name[de]=Boot-Menü
+Name[es]=Administrador de Arranque
+Name[fr]=Démarrage du système
+Name[hu]=Rendszerindítás kezelő
+Name[it]=Gestore Boot
+Name[nl]=Opstartbeheer
+Name[pt_BR]=Gerenciador de Inicialização
+Name[ru]=Менеджер загрузки
+Name[sr]=Boot Менаџер
+Name[sv]=Starthanteraren
+Name[tr]=Açılış Yöneticisi
+Comment=An application for managing boot loader.
+Comment[de]=Verwaltung der Menüeinträge beim Systemstart (GRUB).
+Comment[es]=Un programa para configurar el cargador de arranque
+Comment[fr]=Une application de gestion du chargeur de démarrage.
+Comment[hu]=Alkalmazás a rendszertöltő kezeléséhez
+Comment[it]=Un'applicazione per gestire il bootloader.
+Comment[nl]=Een toepassing voor het beheren van de opstartlader.
+Comment[pt_BR]=Um aplicativo para gerenciar o carregador de boot.
+Comment[ru]=Приложение для управления загрузкой.
+Comment[sr]=Апликација за управљање boot loaderom.
+Comment[sv]=Ett program för hantering av startladdaren.
+Comment[tr]=Önyükleyici yapılandırması için bir uygulama.
+X-KDE-Keywords=python boot grub managers
