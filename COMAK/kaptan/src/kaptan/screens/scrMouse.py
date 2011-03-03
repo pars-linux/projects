@@ -19,7 +19,7 @@ from kaptan.screens.ui_scrMouse import Ui_mouseWidget
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-from kaptan.plugins import active_desktop
+from kaptan.plugins import desktop
 
 from Xlib import display
 RIGHT_HANDED, LEFT_HANDED = range(2)
@@ -32,7 +32,7 @@ class Widget(QtGui.QWidget, Screen):
     title = i18n("Mouse")
     desc = i18n("Setup Mouse Behavior")
 
-    desktop = active_desktop.get_component("mouse")
+    mouse_config = desktop.get_component("mouse")
 
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
@@ -44,10 +44,10 @@ class Widget(QtGui.QWidget, Screen):
 
         # read default settings
         try:
-            self.__class__.screenSettings["selectedMouse"] = desktop.getMouseHand()
+            self.__class__.screenSettings["selectedMouse"] = self.mouse_config.getMouseHand()
 
 
-            self.__class__.screenSettings["selectedBehavior"] = desktop.getMouseSingleClick()
+            self.__class__.screenSettings["selectedBehavior"] = self.mouse_config.getMouseSingleClick()
 
             self.ui.singleClick.setChecked(self.str2bool(self.__class__.screenSettings["selectedBehavior"]))
             self.clickBehavior = self.str2bool(self.__class__.screenSettings["selectedBehavior"])
@@ -118,14 +118,14 @@ class Widget(QtGui.QWidget, Screen):
 
 
         if self.handed == RIGHT_HANDED:
-            desktop.setMouseHand(QString("RightHanded"))
+            self.mouse_config.setMouseHand(QString("RightHanded"))
             self.__class__.screenSettings["selectedMouse"] = "RightHanded"
         else:
-            desktop. setMouseHand(QString("LeftHanded"))
+            self.mouse_config. setMouseHand(QString("LeftHanded"))
             self.__class__.screenSettings["selectedMouse"] = "LeftHanded"
 
-        desktop.setReverseScrollPolarity(QString(str(self.ui.checkReverse.isChecked())))
-        desktop.emitChange()
+        self.mouse_config.setReverseScrollPolarity(QString(str(self.ui.checkReverse.isChecked())))
+        self.mouse_config.emitChange()
 
     def shown(self):
         pass
@@ -135,7 +135,7 @@ class Widget(QtGui.QWidget, Screen):
 
         self.__class__.screenSettings["summaryMessage"].update({"selectedMouse": i18n("Left Handed") if self.__class__.screenSettings["selectedMouse"] == "LeftHanded" else i18n("Right Handed")})
         self.__class__.screenSettings["summaryMessage"].update({"clickBehavior": i18n("Single Click ") if self.clickBehavior else i18n("Double Click")})
-        desktop.setMouseSingleClick(str(self.clickBehavior))
-        desktop.emitChange()
+        self.mouse_config.setMouseSingleClick(str(self.clickBehavior))
+        self.mouse_config.emitChange()
         return True
 

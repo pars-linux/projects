@@ -29,6 +29,7 @@ class Widget(QtGui.QWidget, Screen):
     title = i18n("Menu")
     desc = i18n("Choose a Menu Style")
 
+    menu_config = desktop.get_component("menu")
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_menuWidget()
@@ -54,7 +55,7 @@ class Widget(QtGui.QWidget, Screen):
                 "description": i18n("Lancelot is an advanced and highly customizable menu for Pardus.<br><br>The program shortcuts are easy to access and well organized.")
                 }
         # read default menu style first
-        self.__class__.screenSettings["selectedMenu"] = desktop.getDefaultMenuStyle()
+        self.__class__.screenSettings["selectedMenu"] = self.menu_config.getMenuStyle()
 
         # set menu preview to default menu
         # if default menu could not found, default to kickoff
