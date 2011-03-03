@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>eterm-bg</Name>
+        <Homepage>http://www.eterm.org/download</Homepage>
+        <Packager>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Background files for Eterm</Summary>
+        <Description>Background files for Eterm</Description>
+        <Archive sha1sum="26e81a1e91228c971c70ba06e006ef69490ef208" type="targz">http://www.eterm.org/download/Eterm-bg-0.9.4.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="0.9.4">eterm</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>eterm-bg</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="0.9.4">eterm</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="3">
+            <Date>2006-09-26</Date>
+            <Version>0.9.4</Version>
+            <Comment>Version bump</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2006-07-30</Date>
+            <Version>0.9.3</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2006-06-10</Date>
+            <Version>0.9.3</Version>
+            <Comment>First release</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

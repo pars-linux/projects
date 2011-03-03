@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>enterminus</Name>
+        <Homepage>www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>ibrahim@pardus.org.tr</Email>
+        </Packager>
+        <License>as-is</License>
+        <IsA>app:gui</IsA>
+        <Summary>An EFL Based Terminal</Summary>
+        <Description>An EFL Based Terminal</Description>
+        <Archive sha1sum="bd61ad5867ac887d67adc7bb544eb4ffaba2f8d7" type="tarbz2">http://sunner.elcomnet.ru/~stas/enterminus-20060926.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="0.9.9.036">ecore</Dependency>
+            <Dependency versionFrom="0.9.9.036">evas</Dependency>
+            <Dependency>imlib2</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>enterminus</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="0.9.9.036">ecore</Dependency>
+            <Dependency versionFrom="0.9.9.036">evas</Dependency>
+            <Dependency>imlib2</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="2">
+            <Date>2006-11-03</Date>
+            <Version>0.1_20060926</Version>
+            <Comment>Link and dep. fix</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2006-10-25</Date>
+            <Version>0.1_20060926</Version>
+            <Comment>First release</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

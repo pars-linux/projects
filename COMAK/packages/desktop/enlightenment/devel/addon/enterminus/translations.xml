@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>enterminus</Name>
+        <Summary xml:lang="tr">EFL tabanlı terminal</Summary>
+        <Description xml:lang="tr">EFL tabanlı terminal</Description>
+    </Source>
+</PISI>

@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>esmart</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>ibrahim@pardus.org.tr</Email>
+        </Packager>
+        <License>LGPLv2</License>
+        <IsA>library</IsA>
+        <Summary>A collection of evas smart objects</Summary>
+        <Description>A collection of evas smart objects</Description>
+        <Archive sha1sum="d8674ec44466770f0cfab39b16570bdcf677fb54" type="targz">http://enlightenment.freedesktop.org/files/esmart-0.9.0.007.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="0.9.9.036">evas</Dependency>
+            <Dependency versionFrom="0.9.9.036">ecore</Dependency>
+            <Dependency versionFrom="0.5.0.036">edje</Dependency>
+            <Dependency versionFrom="0.3.0.007">epsilon</Dependency>
+            <Dependency versionFrom="1.2.1">imlib2</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>esmart</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="0.9.9.036">evas</Dependency>
+            <Dependency versionFrom="0.9.9.036">ecore</Dependency>
+            <Dependency versionFrom="0.5.0.036">edje</Dependency>
+            <Dependency versionFrom="0.3.0.007">epsilon</Dependency>
+            <Dependency versionFrom="1.2.1">imlib2</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="4">
+            <Date>2006-11-03</Date>
+            <Version>0.9.0.007</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2006-10-21</Date>
+            <Version>0.9.0.007</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2006-07-30</Date>
+            <Version>0.9.0.007</Version>
+            <Comment>sync</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2006-06-15</Date>
+            <Version>0.9.0.007</Version>
+            <Comment>First release</Comment>
+            <Name>Kenan Pelit</Name>
+            <Email>kpelit@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
