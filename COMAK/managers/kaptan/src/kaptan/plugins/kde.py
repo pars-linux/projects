@@ -18,9 +18,13 @@ from PyQt4.QtCore import QString,QVariant,QProcess
 #PyKDE4 Stuff
 from PyKDE4.kdeui import KGlobalSettings
 from PyKDE4.kdecore import KStandardDirs, KGlobal, KConfig
+from PyKDE4 import kdeui
+from PyQt4 import QtGui
+
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
+from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
 
 
@@ -34,7 +38,7 @@ CONFIG_KWINRC = KConfig("kwinrc")
 
 # shared KDE methods
 
-def deleteIconCache(self):
+def deleteIconCache():
     try:
         os.remove("/var/tmp/kdecache-%s/icon-cache.kcache" % os.environ.get("USER"))
     except:
@@ -205,11 +209,11 @@ class Style(base.Style):
 
     def setDesktopNumber(self):
         group = CONFIG_KWINRC.group("Desktops")
-        group.writeEntry('Number', self.styleSettings["desktopNumber"])
+        group.writeEntry('Number', scrStyleWidget.screenSettings["desktopNumber"])
         group.sync()
 
         info =  kdeui.NETRootInfo(QtGui.QX11Info.display(), kdeui.NET.NumberOfDesktops | kdeui.NET.DesktopNames)
-        info.setNumberOfDesktops(int(self.styleSettings["desktopNumber"]))
+        info.setNumberOfDesktops(int(scrStyleWidget.screenSettings["desktopNumber"]))
         info.activate()
 
         self.reconfigure()
@@ -219,8 +223,8 @@ class Style(base.Style):
     def setThemeSettings(self):
         group = CONFIG_KDEGLOBALS.group("General")
 
-        groupIconTheme = configKdeGlobals.group("Icons")
-        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
+        groupIconTheme = CONFIG_KDEGLOBALS.group("Icons")
+        groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["iconTheme"])
 
         CONFIG_KDEGLOBALS.sync()
 
@@ -230,16 +234,16 @@ class Style(base.Style):
 
     def setStyleSettings(self):
         group = CONFIG_KDEGLOBALS.group("General")
-        group.writeEntry("widgetStyle", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["widgetStyle"])
+        group.writeEntry("widgetStyle", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["widgetStyle"])
 
-        groupIconTheme = configKdeGlobals.group("Icons")
-        groupIconTheme.writeEntry("Theme", self.styleSettings["iconTheme"])
-        #groupIconTheme.writeEntry("Theme", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["iconTheme"])
+        groupIconTheme = CONFIG_KDEGLOBALS.group("Icons")
+        groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["iconTheme"])
+        #groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["iconTheme"])
 
         CONFIG_KDEGLOBALS.sync()
 
         # set color scheme
-        for key, value in self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["colorScheme"].items():
+        for key, value in scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["colorScheme"].items():
                 colorGroup = CONFIG_KDEGLOBALS.group(key)
                 for key2, value2 in value.items():
                         colorGroup.writeEntry(str(key2), str(value2))
@@ -251,7 +255,7 @@ class Style(base.Style):
 
         # config plasmarc
         groupDesktopTheme = CONFIG_PLASMARC.group("Theme")
-        groupDesktopTheme.writeEntry("name", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["desktopTheme"])
+        groupDesktopTheme.writeEntry("name", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["desktopTheme"])
         CONFIG_PLASMARC.sync()
 
         # set plasma
@@ -261,13 +265,13 @@ class Style(base.Style):
             subcomponent = subgroup.readEntry('plugin')
             if subcomponent == 'panel':
                 #print subcomponent
-                subgroup.writeEntry('location', self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["panelPosition"])
+                subgroup.writeEntry('location', scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["panelPosition"])
 
         CONFIG_APPLETSRC.sync()
 
         # config kwinrc
         groupWindowDecoration = CONFIG_KWINRC.group("Style")
-        groupWindowDecoration.writeEntry("PluginLib", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["windowDecoration"])
+        groupWindowDecoration.writeEntry("PluginLib", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["windowDecoration"])
         CONFIG_KWINRC.sync()
 
     def setDesktopType(self):
@@ -278,7 +282,7 @@ class Style(base.Style):
             subcomponent2 = subgroup.readEntry('screen')
             if subcomponent == 'desktop' or subcomponent == 'folderview':
                 if int(subcomponent2) == 0:
-                    subgroup.writeEntry('plugin', self.styleSettings["desktopType"])
+                    subgroup.writeEntry('plugin', scrStyleWidget.screenSettings["desktopType"])
              # Remove folder widget - normally this would be done over dbus but thanks to improper naming of the plasma interface
             # this is not possible
             # ValueError: Invalid interface or error name 'org.kde.plasma-desktop': contains invalid character '-'
@@ -287,7 +291,7 @@ class Style(base.Style):
             # Bug 240358 - Invalid D-BUS interface name 'org.kde.plasma-desktop.PlasmaApp' found while parsing introspection
             # https://bugs.kde.org/show_bug.cgi?id=240358
 
-        if self.styleSettings["desktopType"] == "folderview":
+        if scrStyleWidget.screenSettings["desktopType"] == "folderview":
             sub_lvl_0 = CONFIG_APPLETSRC.group("Containments")
             for sub in list(sub_lvl_0.groupList()):
                 sub_lvl_1 = sub_lvl_0.group(sub)
