@@ -31,6 +31,20 @@ CONFIG_KDEGLOBALS = KConfig("kdeglobals")
 CONFIG_APPLETSRC = KConfig("plasma-desktop-appletsrc")
 CONFIG_KWINRC = KConfig("kwinrc")
 
+
+# shared KDE methods
+
+def deleteIconCache(self):
+    try:
+        os.remove("/var/tmp/kdecache-%s/icon-cache.kcache" % os.environ.get("USER"))
+    except:
+        pass
+    for i in range(kdeui.KIconLoader.LastGroup):
+        kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.IconChanged, i)
+
+# end of shared methods
+
+
 class Keyboard(base.Keyboard):
 
     def getKeyboardLayoutList(self):
@@ -113,21 +127,19 @@ class Menu(base.Menu):
                     if str(launcher).find('launcher') >= 0:
                         return subg2.readEntry('plugin')
 
-    def setMenuSettings(self, menuSettings, has_changed):
+    def setMenuSettings(self, menuSettings):
         '''set menu style'''
-        if has_changed:
-            hasChanged = True
-            group = CONFIG_APPLETSRC.group("Containments")
-            for each in list(group.groupList()):
-                subgroup = group.group(each)
-                subcomponent = subgroup.readEntry('plugin')
-                if subcomponent == 'panel':
-                    subg = subgroup.group('Applets')
-                    for i in list(subg.groupList()):
-                        subg2 = subg.group(i)
-                        launcher = subg2.readEntry('plugin')
-                        if str(launcher).find('launcher') >= 0:
-                            subg2.writeEntry('plugin',menuSettings)
+        group = CONFIG_APPLETSRC.group("Containments")
+        for each in list(group.groupList()):
+            subgroup = group.group(each)
+            subcomponent = subgroup.readEntry('plugin')
+            if subcomponent == 'panel':
+                subg = subgroup.group('Applets')
+                for i in list(subg.groupList()):
+                    subg2 = subg.group(i)
+                    launcher = subg2.readEntry('plugin')
+                    if str(launcher).find('launcher') >= 0:
+                        subg2.writeEntry('plugin',menuSettings)
 
 class Wallpaper(base.Wallpaper):
 
@@ -174,17 +186,16 @@ class Wallpaper(base.Wallpaper):
         return items
 
 
-    def setWallpaper(self ,wallpaper, _hasChanged):
-        if _hasChanged:
-            if wallpaper:
-                group = CONFIG_APPLETSRC.group("Containments")
-                for each in list(group.groupList()):
-                    subgroup = group.group(each)
-                    subcomponent = subgroup.readEntry('plugin')
-                    if subcomponent == 'desktop' or subcomponent == 'folderview':
-                        subg = subgroup.group('Wallpaper')
-                        subg_2 = subg.group('image')
-                        subg_2.writeEntry("wallpaper", wallpaper)
+    def setWallpaper(self ,wallpaper):
+        if wallpaper:
+            group = CONFIG_APPLETSRC.group("Containments")
+            for each in list(group.groupList()):
+                subgroup = group.group(each)
+                subcomponent = subgroup.readEntry('plugin')
+                if subcomponent == 'desktop' or subcomponent == 'folderview':
+                    subg = subgroup.group('Wallpaper')
+                    subg_2 = subg.group('image')
+                    subg_2.writeEntry("wallpaper", wallpaper)
 
 class Style(base.Style):
 
@@ -201,9 +212,9 @@ class Style(base.Style):
         info.setNumberOfDesktops(int(self.styleSettings["desktopNumber"]))
         info.activate()
 
+        self.reconfigure()
 
         CONFIG_KWINRC.sync()
-
 
     def setThemeSettings(self):
         group = CONFIG_KDEGLOBALS.group("General")
@@ -213,7 +224,7 @@ class Style(base.Style):
 
         CONFIG_KDEGLOBALS.sync()
 
-    def changeIconTheme(self):
+        deleteIconCache()
         kdeui.KIconTheme.reconfigure()
         kdeui.KIconCache.deleteCache()
 
@@ -227,7 +238,7 @@ class Style(base.Style):
 
         CONFIG_KDEGLOBALS.sync()
 
-    def setChangeWidget(self):
+        # set color scheme
         for key, value in self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["colorScheme"].items():
                 colorGroup = CONFIG_KDEGLOBALS.group(key)
                 for key2, value2 in value.items():
@@ -235,34 +246,29 @@ class Style(base.Style):
 
         CONFIG_KDEGLOBALS.sync()
 
-    def emitChangeStyle(self):
+        #emit change style
         kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.StyleChanged)
 
-class Package(base.Package):
+        # config plasmarc
+        groupDesktopTheme = CONFIG_PLASMARC.group("Theme")
+        groupDesktopTheme.writeEntry("name", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["desktopTheme"])
+        CONFIG_PLASMARC.sync()
 
-    def package_config(self,config):
-        self.config = KConfig(config)
-        self.group = None
+        # set plasma
+        group = CONFIG_APPLETSRC.group("Containments")
+        for each in list(group.groupList()):
+            subgroup = group.group(each)
+            subcomponent = subgroup.readEntry('plugin')
+            if subcomponent == 'panel':
+                #print subcomponent
+                subgroup.writeEntry('location', self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["panelPosition"])
 
-    def package_setValue(self,option,value):
-        self.group = self.config.group("General")
-        self.group.writeEntry(option, QVariant(value))
-        self.config.sync()
+        CONFIG_APPLETSRC.sync()
 
-
-class Goodbye(base.Goodbye):
-
-    def showUrl(self,Url):
-        self.procSettings = QProcess()
-        command = "kfmclient openURL " + Url
-        self.procSettings.start(command)
-
-
-class Common(base.Common):
-
-
-    def getLanguage(self):
-        return "tr"
+        # config kwinrc
+        groupWindowDecoration = CONFIG_KWINRC.group("Style")
+        groupWindowDecoration.writeEntry("PluginLib", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["windowDecoration"])
+        CONFIG_KWINRC.sync()
 
     def setDesktopType(self):
         group = CONFIG_APPLETSRC.group("Containments")
@@ -295,36 +301,36 @@ class Common(base.Common):
 
         CONFIG_APPLETSRC.sync()
 
-    def deleteIconCache(self):
-        for i in range(kdeui.KIconLoader.LastGroup):
-                kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.IconChanged, i)
-
-    def configPlasmarc(self):
-        groupDesktopTheme = CONFIG_PLASMARC.group("Theme")
-        groupDesktopTheme.writeEntry("name", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["desktopTheme"])
-        CONFIG_PLASMARC.sync()
-
-    def setPlasma(self):
-        group = CONFIG_APPLETSRC.group("Containments")
-        for each in list(group.groupList()):
-            subgroup = group.group(each)
-            subcomponent = subgroup.readEntry('plugin')
-            if subcomponent == 'panel':
-                #print subcomponent
-                subgroup.writeEntry('location', self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["panelPosition"])
-
-        CONFIG_APPLETSRC.sync()
-
-    def configKwinRC(self):
-        groupWindowDecoration = CONFIG_KWINRC.group("Style")
-        groupWindowDecoration.writeEntry("PluginLib", self.styleSettings["styleDetails"][unicode(self.styleSettings["styleName"])]["windowDecoration"])
-        CONFIG_KWINRC.sync()
-
     def reconfigure(self):
-        CONFIG_APPLETSRC.sync()
         session = dbus.SessionBus()
         try:
             proxy = session.get_object('org.kde.kwin', '/KWin')
             proxy.reconfigure()
         except dbus.DBusException:
             pass
+
+class Package(base.Package):
+
+    def package_config(self,config):
+        self.config = KConfig(config)
+        self.group = None
+
+    def package_setValue(self,option,value):
+        self.group = self.config.group("General")
+        self.group.writeEntry(option, QVariant(value))
+        self.config.sync()
+
+
+class Goodbye(base.Goodbye):
+
+    def showUrl(self,Url):
+        self.procSettings = QProcess()
+        command = "kfmclient openURL " + Url
+        self.procSettings.start(command)
+
+
+class Common(base.Common):
+
+
+    def getLanguage(self):
+        return "tr"

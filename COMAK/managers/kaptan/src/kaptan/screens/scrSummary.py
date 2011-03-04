@@ -123,72 +123,34 @@ class Widget(QtGui.QWidget, Screen):
     def startPlasma(self):
         p = subprocess.Popen(["plasma-desktop"], stdout=subprocess.PIPE)
 
-
     def execute(self):
 
         # Wallpaper Settings
-        Desktop.wallpaper.setWallpaper(self.wallpaperSettings["selectedWallpaper"],self.wallpaperSettings["hasChanged"])
+        if self.wallpaperSettings["hasChanged"]:
+            Desktop.wallpaper.setWallpaper(self.wallpaperSettings["selectedWallpaper"])
 
         # Menu Settings
-        Desktop.menu.setMenuSettings(self.menuSettings["selectedMenu"], self.menuSettings["hasChanged"])
-
-        def removeFolderViewWidget():
-            desktop.removeFolderViewWidget()
+        if self.menuSettings["hasChanged"]:
+            Desktop.menu.setMenuSettings(self.menuSettings["selectedMenu"])
 
         # Desktop Type
         if self.styleSettings["hasChangedDesktopType"]:
-            hasChanged = True
-            desktop.setDesktopType()
+            Desktop.style.setDesktopType()
 
         # Number of Desktops
         if self.styleSettings["hasChangedDesktopNumber"]:
-            hasChanged = True
-            desktop.setDesktopNumber()
-
-
-        def deleteIconCache():
-            try:
-                os.remove("/var/tmp/kdecache-%s/icon-cache.kcache" % os.environ.get("USER"))
-            except:
-                pass
-
-            desktop.deleteIconCache()
+            Desktop.style.setDesktopNumber()
 
         # Theme Settings
         if self.styleSettings["hasChanged"]:
+
             if self.styleSettings["iconChanged"]:
-                hasChanged = True
-                desktop.setThemeSettings()
+                Desktop.style.setThemeSettings()
 
-                # Change Icon theme
-                desktop.changeIconTheme()
-                deleteIconCache()
             if self.styleSettings["styleChanged"]:
-                hasChanged = True
-                desktop.setStyleSettings()
+                Desktop.style.setStyleSettings()
 
-                # Change Icon theme
-                desktop.changeIconTheme()
-                deleteIconCache()
-
-
-                desktop.deleteIconCache()
-
-                # Change widget style & color
-                desktop.setChangeWidget()
-                desktop.emitChangeStyle()
-
-                desktop.configPlasmarc()
-                desktop.setPlasma()
-                desktop.configKwinRC()
-
-            session = dbus.SessionBus()
-
-            try:
-                proxy = session.get_object('org.kde.kwin', '/KWin')
-                proxy.reconfigure()
-            except dbus.DBusException:
-                pass
+        Desktop.style.reconfigure()
 
         # Smolt Settings
         if self.smoltSettings["profileSend"]:
@@ -197,8 +159,11 @@ class Widget(QtGui.QWidget, Screen):
             arguments = ["-a", "--submitOnly"]
             self.procSettings.startDetached(command, arguments)
 
-        # Avatar Settings
-        if self.avatarSettings["hasChanged"]:
-            self.killPlasma()
+        for settings in [self.wallpaperSettings, self.mouseSettings,\
+self.menuSettings, self.styleSettings, self.smoltSettings,\
+self.avatarSettings]:
+            if (ctx.Pds.session==ctx.pds.Kde4) and settings["hasChanged"]:
+                self.killPlasma()
+                break
 
         return True
