@@ -13,9 +13,6 @@
         <Summary>Pardus default settings for Enlightenment</Summary>
         <Description>This package contains the Enlightenment default settings for Pardus.</Description>
         <Archive sha1sum="023749b43a0a2feb6afd17af62cde0c10eabf4a3" type="targz">http://x86-64.comu.edu.tr/lxde/source/pardus-default-settings-enlightenment-0.0.1.tar.gz</Archive>
-        <Patches>
-            <Patch level="1">lxdm.patch</Patch>
-        </Patches>
     </Source>
 
     <Package>
