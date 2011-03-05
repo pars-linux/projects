@@ -1,10 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011-Comak Enlightenment-i686[Dolly]</Title>
-    <WorkDir>/home/alper/iso/enligtenment</WorkDir>
-    <ReleaseFiles>/home/alper/iso/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="file:///home/alper/iso/repo/pisi-index.xml.xz">
-        <SelectedComponent>desktop.enlightenment.addon</SelectedComponent>
-        <SelectedComponent>desktop.enlightenment.base</SelectedComponent>
+    <Title>Pardus 2011-Comak Enlightenment-x86-64[Dolly]</Title>
+    <WorkDir>/home/engin/pardusman/e17-work</WorkDir>
+    <ReleaseFiles>/home/engin/releaseNotes</ReleaseFiles>
+    <PackageSelection repo_uri="file:///home/engin/iso/repo/pisi-index.xml.xz">
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
@@ -39,18 +37,24 @@
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>dvd+rw-tools</SelectedPackage>
         <SelectedPackage>e-module-alarm</SelectedPackage>
+        <SelectedPackage>e-module-calendar</SelectedPackage>
         <SelectedPackage>e-module-cpu</SelectedPackage>
         <SelectedPackage>e-module-drawer</SelectedPackage>
         <SelectedPackage>e-module-everything-pidgin</SelectedPackage>
+        <SelectedPackage>e-module-everything-places</SelectedPackage>
         <SelectedPackage>e-module-exalt-client</SelectedPackage>
+        <SelectedPackage>e-module-language</SelectedPackage>
         <SelectedPackage>e-module-mem</SelectedPackage>
         <SelectedPackage>e-module-mpdule</SelectedPackage>
         <SelectedPackage>e-module-net</SelectedPackage>
+        <SelectedPackage>e-module-notification</SelectedPackage>
         <SelectedPackage>e-module-photo</SelectedPackage>
+        <SelectedPackage>e-module-places</SelectedPackage>
         <SelectedPackage>e-module-trash</SelectedPackage>
         <SelectedPackage>e-module-weather</SelectedPackage>
         <SelectedPackage>econcentration</SelectedPackage>
         <SelectedPackage>edgar</SelectedPackage>
+        <SelectedPackage>editje</SelectedPackage>
         <SelectedPackage>edje_viewer</SelectedPackage>
         <SelectedPackage>eio</SelectedPackage>
         <SelectedPackage>eio-devel</SelectedPackage>
@@ -62,7 +66,6 @@
         <SelectedPackage>encfs</SelectedPackage>
         <SelectedPackage>enchant-zemberek</SelectedPackage>
         <SelectedPackage>enjoy</SelectedPackage>
-        <SelectedPackage>enlightenment-devel</SelectedPackage>
         <SelectedPackage>enlil</SelectedPackage>
         <SelectedPackage>enlil-devel</SelectedPackage>
         <SelectedPackage>envision</SelectedPackage>
@@ -118,9 +121,7 @@
         <SelectedPackage>leafpad</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
         <SelectedPackage>libeweather</SelectedPackage>
-        <SelectedPackage>libeweather-devel</SelectedPackage>
         <SelectedPackage>libiptcdata</SelectedPackage>
-        <SelectedPackage>libiptcdata-devel</SelectedPackage>
         <SelectedPackage>libreoffice</SelectedPackage>
         <SelectedPackage>libreoffice-extension-pdfimport</SelectedPackage>
         <SelectedPackage>libreoffice-extension-presentation-minimizer</SelectedPackage>
@@ -132,7 +133,7 @@
         <SelectedPackage>libreoffice-langpack-tr</SelectedPackage>
         <SelectedPackage>libreoffice-python</SelectedPackage>
         <SelectedPackage>libvisual-plugins</SelectedPackage>
-        <SelectedPackage>lightmediascanner-devel</SelectedPackage>
+        <SelectedPackage>lightmediascanner</SelectedPackage>
         <SelectedPackage>lm_sensors</SelectedPackage>
         <SelectedPackage>logrotate</SelectedPackage>
         <SelectedPackage>lsscsi</SelectedPackage>
@@ -158,7 +159,6 @@
         <SelectedPackage>ntfsprogs</SelectedPackage>
         <SelectedPackage>ntp-client</SelectedPackage>
         <SelectedPackage>nvidia-settings</SelectedPackage>
-        <SelectedPackage>obconf</SelectedPackage>
         <SelectedPackage>p7zip</SelectedPackage>
         <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
@@ -338,34 +338,22 @@
         <Package>dnsmasq</Package>
         <Package>dosfstools</Package>
         <Package>droid-fonts</Package>
-        <Package>e-module-calendar</Package>
-        <Package>e-module-everything-places</Package>
-        <Package>e-module-language</Package>
-        <Package>e-module-notification</Package>
-        <Package>e-module-places</Package>
         <Package>e2fsprogs</Package>
         <Package>e3</Package>
         <Package>e_dbus</Package>
-        <Package>e_dbus-devel</Package>
         <Package>ecore</Package>
         <Package>ecore-devel</Package>
-        <Package>editje</Package>
         <Package>edje</Package>
-        <Package>edje-devel</Package>
         <Package>eet</Package>
         <Package>eet-devel</Package>
         <Package>eeze</Package>
-        <Package>eeze-devel</Package>
         <Package>efreet</Package>
-        <Package>efreet-devel</Package>
         <Package>eina</Package>
         <Package>eina-devel</Package>
         <Package>eio</Package>
         <Package>eject</Package>
         <Package>elementary</Package>
-        <Package>elementary-devel</Package>
         <Package>embryo</Package>
-        <Package>embryo-devel</Package>
         <Package>emotion</Package>
         <Package>enca</Package>
         <Package>enchant</Package>
@@ -375,7 +363,6 @@
         <Package>epdf</Package>
         <Package>eterm</Package>
         <Package>ethumb</Package>
-        <Package>ethumb-devel</Package>
         <Package>evas</Package>
         <Package>evas-devel</Package>
         <Package>exalt</Package>
@@ -568,7 +555,6 @@
         <Package>libebml</Package>
         <Package>libechonest</Package>
         <Package>libevent</Package>
-        <Package>libeweather</Package>
         <Package>libexif</Package>
         <Package>libfame</Package>
         <Package>libffado</Package>
@@ -690,7 +676,6 @@
         <Package>lpsolve</Package>
         <Package>lsb-release</Package>
         <Package>lua</Package>
-        <Package>lua-devel</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
         <Package>lzo</Package>
@@ -744,7 +729,6 @@
         <Package>ntfsprogs</Package>
         <Package>nvidia-xconfig</Package>
         <Package>openal</Package>
-        <Package>openbox</Package>
         <Package>opencore-amr</Package>
         <Package>openexr-libs</Package>
         <Package>openjpeg</Package>
@@ -946,7 +930,6 @@
         <Package>xorg-video-chips</Package>
         <Package>xorg-video-cirrus</Package>
         <Package>xorg-video-fbdev</Package>
-        <Package>xorg-video-geode</Package>
         <Package>xorg-video-glint</Package>
         <Package>xorg-video-i128</Package>
         <Package>xorg-video-i740</Package>
@@ -1390,6 +1373,7 @@
         <Package>yali-theme-pardus</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
+        <Package>zorg</Package>
     </InstallImagePackages>
     <LanguageSelection default_language="tr_TR">
         <Language>tr_TR</Language>
