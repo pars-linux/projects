@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>seahorse</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>GNOME keyring manager</Summary>
+        <Description>Seahorse is a graphical interface for managing and using encryption keys</Description>
+        <Archive sha1sum="1469884b67483c876cfe5b986a76495739927a99" type="tarbz2">mirrors://gnome/seahorse/2.32/seahorse-2.32.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>gpgme-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>gnome-keyring-devel</Dependency>
+            <Dependency>avahi-glib-devel</Dependency>
+            <Dependency>openldap-client</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>libgpg-error-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level="1">dbus-libs.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>seahorse</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>gpgme</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>libsoup</Dependency>
+            <Dependency>gnome-keyring</Dependency>
+            <Dependency>avahi-glib</Dependency>
+            <Dependency>openldap-client</Dependency>
+            <Dependency>libgpg-error</Dependency>
+            <Dependency>libSM</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/mime</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/dbus-1</Path>
+            <Path fileType="data">/usr/share/gnome-2.0</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/pixmaps</Path>
+            <Path fileType="data">/usr/share/seahorse</Path>
+        </Files>
+    </Package>
+    
+    <Package>
+        <Name>seahorse-docs</Name>
+        <IsA>data:doc</IsA>
+        <Summary>seahorse reference documents</Summary>
+        <Files>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>seahorse-devel</Name>
+        <Summary>Development files for seahorse</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">seahorse</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="3">
+            <Date>2010-10-03</Date>
+            <Version>2.32.0</Version>
+            <Comment>
+                - Version bump.
+                - Split devel package.
+            </Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2009-07-02</Date>
+            <Version>2.26.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-08-30</Date>
+            <Version>2.22.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

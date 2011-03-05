@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-terminal</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Terminal emulation application for the GNOME desktop.</Summary>
+        <Description>GNOME terminal is a emulation application that designed to run xterm, VT102 and VT220</Description>
+        <Archive sha1sum="a4d803e4d372227f8a61ca3f5ed40391ff135adf" type="tarbz2">mirrors://gnome/gnome-terminal/2.32/gnome-terminal-2.32.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>vte-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libglade-devel</Dependency>
+            <Dependency>startup-notification-devel</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>gnome-common</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-terminal</Name>
+        <RuntimeDependencies>
+            <Dependency>vte</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>libglade</Dependency>
+            <Dependency>startup-notification</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gnome-terminal</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="8">
+            <Date>2010-12-09</Date>
+            <Version>2.32.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="7">
+            <Date>2010-08-28</Date>
+            <Version>2.32.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="6">
+            <Date>2009-06-04</Date>
+            <Version>2.26.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="5">
+            <Date>2009-03-17</Date>
+            <Version>2.26.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2008-09-24</Date>
+            <Version>2.24.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2008-07-10</Date>
+            <Version>2.22.3</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-06-02</Date>
+            <Version>2.22.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-05-03</Date>
+            <Version>2.22.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

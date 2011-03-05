@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>totem-pl-parser</Name>
+        <Summary xml:lang="tr">Totem çokluortam oynatma listesi ayrıştırıcı</Summary>
+        <Description xml:lang="tr">Totem; müzik ve video oynatıcıları tarafından kullanılan, çokluortam oynatma listelerini ayrıştıran ve kaydeden bir kütüphanedir.</Description>
+    </Source>
+</PISI>
+

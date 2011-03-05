@@ -1,0 +1,14 @@
+diff -Naur gdm-2.20.9.orig/daemon/slave.c gdm-2.20.9/daemon/slave.c
+--- gdm-2.20.9.orig/daemon/slave.c	2008-12-11 00:25:43.000000000 +0200
++++ gdm-2.20.9/daemon/slave.c	2009-03-08 18:58:27.000000000 +0200
+@@ -3934,9 +3934,7 @@
+ 	 * to here in the above code if we can't find gnome-session */
+ 	if (strcmp (session, GDM_SESSION_FAILSAFE_XTERM) == 0) {
+ 		gchar *test_exec;
+-		gchar *geometry = g_strdup_printf (" -geometry 80x24-%d-%d",
+-						   d->lrh_offsetx,
+-						   d->lrh_offsety);
++		gchar *geometry = g_strdup_printf (" -geometry 129x44");
+ 		test_exec = find_prog ("xterm");
+ 		if (test_exec == NULL) {
+ 			gdm_errorgui_error_box (d, GTK_MESSAGE_ERROR,

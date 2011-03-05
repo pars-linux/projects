@@ -1,0 +1,10 @@
+--- gui/gdmsetup.desktop.in.in	2008-06-30 20:53:05.000000000 +0300
+@@ -3,7 +3,7 @@
+ _Name=Login Window
+ _Comment=Configure GDM login window appearance and behavior
+ TryExec=@sbindir@/gdmsetup
+-Exec=@sbindir@/gdmsetup
++Exec=xdg-su -c @sbindir@/gdmsetup
+ Icon=gdmsetup
+ StartupNotify=true
+ Terminal=false

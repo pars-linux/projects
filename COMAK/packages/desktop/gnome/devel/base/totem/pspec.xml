@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>totem</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Video player for the GNOME desktop</Summary>
+        <Description>Video player for the GNOME desktop</Description>
+        <Archive sha1sum="46589181aee29e021d686a4804bbbb04149a61dc" type="tarbz2">mirrors://gnome/totem/2.32/totem-2.32.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>totem-pl-parser</Dependency>
+            <Dependency>gst-plugins-base-devel</Dependency>
+            <Dependency>gst-plugins-good</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>icon-theme-gnome</Dependency>
+            <Dependency>nautilus-devel</Dependency>
+            <Dependency>iso-codes</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml4_5</Dependency>
+            <Dependency>gtk-doc</Dependency>
+            <Dependency>gnome-common</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>libgdata-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level="1">do-not-check-gstreamer.patch</Patch>
+            <!--
+            <Patch level="1">totem-2.26.1-smclient-target-detection.patch</Patch>
+            <Patch level="1">gtk-libs.patch</Patch>-->
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>totem</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>totem-pl-parser</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
+            <Dependency>gst-plugins-good</Dependency>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>icon-theme-gnome</Dependency>
+            <Dependency>nautilus</Dependency>
+            <Dependency>iso-codes</Dependency>
+            <Dependency>libgdata</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/totem</Path>
+        </Files>
+    </Package>
+    
+    <Package>
+        <Name>totem-docs</Name>
+        <IsA>data:doc</IsA>
+        <Summary>totem reference documents</Summary>
+        <Files>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="6">
+            <Date>2010-10-29</Date>
+            <Version>2.32.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="5">
+            <Date>2009-06-30</Date>
+            <Version>2.26.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2009-03-17</Date>
+            <Version>2.26.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2008-11-10</Date>
+            <Version>2.24.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-09-27</Date>
+            <Version>2.24.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-08-10</Date>
+            <Version>2.22.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

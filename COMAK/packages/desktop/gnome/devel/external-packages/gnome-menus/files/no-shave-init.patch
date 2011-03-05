@@ -1,0 +1,11 @@
+diff -ur gnome-menus-2.26.2.orig/configure.in gnome-menus-2.26.2/configure.in
+--- gnome-menus-2.26.2.orig/configure.in	2009-06-30 02:06:44.000000000 +0300
++++ gnome-menus-2.26.2/configure.in	2009-08-27 16:40:57.559661704 +0300
+@@ -122,7 +122,6 @@
+ fi
+ AC_SUBST(NO_STRICT_ALIASING_CFLAGS)
+ 
+-SHAVE_INIT([.], [enable])
+ 
+ AC_OUTPUT([
+ Makefile

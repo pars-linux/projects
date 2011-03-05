@@ -1,0 +1,110 @@
+diff -ur gnome-menus-2.30.2.orig/layout/applications.menu gnome-menus-2.30.2/layout/applications.menu
+--- gnome-menus-2.30.2.orig/layout/applications.menu	2010-02-09 14:21:04.000000000 +0200
++++ gnome-menus-2.30.2/layout/applications.menu	2010-08-28 22:04:15.119000033 +0300
+@@ -31,6 +31,7 @@
+ 	     applications here -->
+         <Not><Category>Accessibility</Category></Not>
+         <Not><Category>System</Category></Not>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu> <!-- End Accessories -->
+@@ -43,6 +44,7 @@
+       <And>
+         <Category>Accessibility</Category>
+         <Not><Category>Settings</Category></Not>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu> <!-- End Accessibility -->
+@@ -54,6 +56,7 @@
+     <Include>
+       <And>
+         <Category>Development</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+       <Filename>emacs.desktop</Filename>
+     </Include>
+@@ -66,6 +69,7 @@
+     <Include>
+       <And>
+         <Category>Education</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu> <!-- End Education -->
+@@ -77,6 +81,7 @@
+     <Include>
+       <And>
+         <Category>Game</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu> <!-- End Games -->
+@@ -88,6 +93,7 @@
+     <Include>
+       <And>
+         <Category>Graphics</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu> <!-- End Graphics -->
+@@ -99,6 +105,7 @@
+     <Include>
+       <And>
+         <Category>Network</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu>   <!-- End Internet -->
+@@ -110,6 +117,7 @@
+     <Include>
+       <And>
+         <Category>AudioVideo</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu>   <!-- End Multimedia -->
+@@ -121,6 +129,7 @@
+     <Include>
+       <And>
+         <Category>Office</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu> <!-- End Office -->
+@@ -133,6 +142,7 @@
+       <And>
+         <Category>System</Category>
+         <Not><Category>Settings</Category></Not>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu>   <!-- End System Tools -->
+@@ -147,6 +157,7 @@
+         <Not><Category>Core</Category></Not>
+         <Not><Category>Settings</Category></Not>
+         <Not><Category>Screensaver</Category></Not>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu> <!-- End Other -->
+diff -ur gnome-menus-2.30.2.orig/layout/settings.menu gnome-menus-2.30.2/layout/settings.menu
+--- gnome-menus-2.30.2.orig/layout/settings.menu	2010-02-09 14:21:04.000000000 +0200
++++ gnome-menus-2.30.2/layout/settings.menu	2010-08-28 22:10:40.385000036 +0300
+@@ -28,6 +28,7 @@
+         <Not>
+           <Or>
+             <Category>System</Category>
++            <Category>KDE</Category>
+             <Filename>gnomecc.desktop</Filename>
+           </Or>
+         </Not>
+@@ -43,6 +44,7 @@
+       <And>
+         <Category>Settings</Category>
+         <Category>System</Category>
++        <Not><Category>KDE</Category></Not>
+       </And>
+     </Include>
+   </Menu>     <!-- End System Settings -->

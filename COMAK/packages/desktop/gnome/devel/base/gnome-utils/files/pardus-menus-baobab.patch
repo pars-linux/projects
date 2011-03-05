@@ -1,0 +1,10 @@
+--- baobab/data/baobab.desktop.in.in	2007-09-06 16:49:04.000000000 +0300
+@@ -9,7 +9,7 @@
+ Terminal=false
+ Type=Application
+ StartupNotify=true
+-Categories=GTK;GNOME;System;
++Categories=GTK;GNOME;System;Settings;
+ OnlyShowIn=GNOME
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=gnome-utils
