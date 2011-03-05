@@ -49,29 +49,40 @@
         <SelectedPackage>e-module-photo</SelectedPackage>
         <SelectedPackage>e-module-trash</SelectedPackage>
         <SelectedPackage>e-module-weather</SelectedPackage>
+        <SelectedPackage>e-modules-cpu</SelectedPackage>
+        <SelectedPackage>econcentration</SelectedPackage>
         <SelectedPackage>edgar</SelectedPackage>
         <SelectedPackage>edje_viewer</SelectedPackage>
         <SelectedPackage>eio</SelectedPackage>
         <SelectedPackage>eio-devel</SelectedPackage>
+        <SelectedPackage>elsa</SelectedPackage>
         <SelectedPackage>emotion</SelectedPackage>
         <SelectedPackage>emotion-devel</SelectedPackage>
         <SelectedPackage>empower</SelectedPackage>
         <SelectedPackage>emprint</SelectedPackage>
         <SelectedPackage>encfs</SelectedPackage>
         <SelectedPackage>enchant-zemberek</SelectedPackage>
+        <SelectedPackage>enjoy</SelectedPackage>
+        <SelectedPackage>enlightenment-devel</SelectedPackage>
+        <SelectedPackage>enlil</SelectedPackage>
+        <SelectedPackage>enlil-devel</SelectedPackage>
         <SelectedPackage>envision</SelectedPackage>
         <SelectedPackage>epdf</SelectedPackage>
         <SelectedPackage>epdf-devel</SelectedPackage>
         <SelectedPackage>epdfview</SelectedPackage>
         <SelectedPackage>ephoto</SelectedPackage>
+        <SelectedPackage>eterm</SelectedPackage>
+        <SelectedPackage>eterm-bg</SelectedPackage>
         <SelectedPackage>ethtool</SelectedPackage>
         <SelectedPackage>exalt</SelectedPackage>
+        <SelectedPackage>exalt-devel</SelectedPackage>
         <SelectedPackage>example-content</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
         <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
+        <SelectedPackage>flickcurl</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
         <SelectedPackage>gecko-mediaplayer</SelectedPackage>
@@ -87,6 +98,7 @@
         <SelectedPackage>gtk-engines</SelectedPackage>
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
+        <SelectedPackage>guake</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
         <SelectedPackage>hplip</SelectedPackage>
         <SelectedPackage>htop</SelectedPackage>
@@ -99,13 +111,17 @@
         <SelectedPackage>ipython</SelectedPackage>
         <SelectedPackage>irda-utils</SelectedPackage>
         <SelectedPackage>irqbalance</SelectedPackage>
+        <SelectedPackage>itask-ng</SelectedPackage>
         <SelectedPackage>iw</SelectedPackage>
         <SelectedPackage>jfsutils</SelectedPackage>
         <SelectedPackage>kaptan-e17</SelectedPackage>
         <SelectedPackage>kernel</SelectedPackage>
         <SelectedPackage>leafpad</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
+        <SelectedPackage>libeweather</SelectedPackage>
+        <SelectedPackage>libeweather-devel</SelectedPackage>
         <SelectedPackage>libiptcdata</SelectedPackage>
+        <SelectedPackage>libiptcdata-devel</SelectedPackage>
         <SelectedPackage>libreoffice</SelectedPackage>
         <SelectedPackage>libreoffice-extension-pdfimport</SelectedPackage>
         <SelectedPackage>libreoffice-extension-presentation-minimizer</SelectedPackage>
@@ -123,7 +139,6 @@
         <SelectedPackage>lsscsi</SelectedPackage>
         <SelectedPackage>lvm2</SelectedPackage>
         <SelectedPackage>lvm2-static</SelectedPackage>
-        <SelectedPackage>lxdm</SelectedPackage>
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
@@ -356,8 +371,10 @@
         <Package>enca</Package>
         <Package>enchant</Package>
         <Package>enlightenment</Package>
+        <Package>enlil</Package>
         <Package>enscript</Package>
         <Package>epdf</Package>
+        <Package>eterm</Package>
         <Package>ethumb</Package>
         <Package>ethumb-devel</Package>
         <Package>evas</Package>
@@ -420,6 +437,7 @@
         <Package>gmp</Package>
         <Package>gnome-keyring</Package>
         <Package>gnome-mplayer</Package>
+        <Package>gnome-python</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
         <Package>gnutls</Package>
@@ -470,7 +488,6 @@
         <Package>iptables</Package>
         <Package>iputils</Package>
         <Package>iscan-firmware</Package>
-        <Package>itask-ng</Package>
         <Package>iw</Package>
         <Package>jack-audio-connection-kit</Package>
         <Package>jasper</Package>
@@ -506,6 +523,7 @@
         <Package>libXpm</Package>
         <Package>libXrandr</Package>
         <Package>libXrender</Package>
+        <Package>libXres</Package>
         <Package>libXt</Package>
         <Package>libXtst</Package>
         <Package>libXv</Package>
@@ -517,6 +535,7 @@
         <Package>libarchive</Package>
         <Package>libart_lgpl</Package>
         <Package>libass</Package>
+        <Package>libast</Package>
         <Package>libasyncns</Package>
         <Package>libavc1394</Package>
         <Package>libbonobo</Package>
@@ -551,7 +570,6 @@
         <Package>libechonest</Package>
         <Package>libevent</Package>
         <Package>libeweather</Package>
-        <Package>libeweather-devel</Package>
         <Package>libexif</Package>
         <Package>libfame</Package>
         <Package>libffado</Package>
@@ -584,6 +602,7 @@
         <Package>libindicate</Package>
         <Package>libindicate-qt</Package>
         <Package>libiodbc</Package>
+        <Package>libiptcdata</Package>
         <Package>libkate</Package>
         <Package>libkms</Package>
         <Package>liblastfm</Package>
@@ -654,6 +673,7 @@
         <Package>libvorbis</Package>
         <Package>libvpx</Package>
         <Package>libwmf</Package>
+        <Package>libwnck</Package>
         <Package>libwpd</Package>
         <Package>libwpg</Package>
         <Package>libwps</Package>
@@ -716,6 +736,8 @@
         <Package>net-snmp</Package>
         <Package>net-tools</Package>
         <Package>netcat</Package>
+        <Package>notification-daemon</Package>
+        <Package>notify-python</Package>
         <Package>nspr</Package>
         <Package>nss</Package>
         <Package>nss-mdns</Package>
@@ -797,6 +819,7 @@
         <Package>python-gtk</Package>
         <Package>python-nose</Package>
         <Package>python-numpy</Package>
+        <Package>python-orbit</Package>
         <Package>python-pyaspects</Package>
         <Package>python-pyblock</Package>
         <Package>python-pygobject</Package>
@@ -826,6 +849,7 @@
         <Package>sane-backends</Package>
         <Package>schroedinger</Package>
         <Package>scim-libs</Package>
+        <Package>screen</Package>
         <Package>sdl-gfx</Package>
         <Package>sdl-image</Package>
         <Package>sed</Package>
@@ -885,6 +909,7 @@
         <Package>virtuoso</Package>
         <Package>vixie-cron</Package>
         <Package>vlc-libs</Package>
+        <Package>vte</Package>
         <Package>wavpack</Package>
         <Package>webkit-gtk</Package>
         <Package>which</Package>
