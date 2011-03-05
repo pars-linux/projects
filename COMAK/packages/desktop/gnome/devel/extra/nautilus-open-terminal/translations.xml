@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>nautilus-open-terminal</Name>
+        <Summary xml:lang="tr">Nautilus-open-terminal eklentisi</Summary>
+        <Description xml:lang="tr">Bu nautilus eklentisi çalışılan dizinde yeni bir terminal açmayı sağlar.</Description>
+    </Source>
+</PISI>
+

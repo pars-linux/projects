@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-media</Name>
+        <Summary xml:lang="tr">GNOME çokluortam uygulamaları</Summary>
+        <Description xml:lang="tr">Bu paket GNOME çokluortam uygulamalarını içerir, ses kaydedicisi ve mikseri gibi.</Description>
+    </Source>
+
+    <Package>
+        <Name>gnome-media-devel</Name>
+        <Summary xml:lang="tr">gnome-media için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+

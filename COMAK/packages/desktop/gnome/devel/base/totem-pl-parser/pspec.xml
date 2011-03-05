@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>totem-pl-parser</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Totem playlist parser</Summary>
+        <Description>Totem is a library that parse and save playlists, as used in music and movie players.</Description>
+        <Archive sha1sum="0975a66109048c2ce2af85355be4d3b4aa4c60fd" type="tarbz2">mirrors://gnome/totem-pl-parser/2.32/totem-pl-parser-2.32.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gmime</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>totem-pl-parser</Name>
+        <RuntimeDependencies>
+            <Dependency>gmime</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="5">
+            <Date>2010-08-29</Date>
+            <Version>2.30.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2009-06-04</Date>
+            <Version>2.26.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2008-09-27</Date>
+            <Version>2.24.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-06-18</Date>
+            <Version>2.22.3</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-05-25</Date>
+            <Version>2.22.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

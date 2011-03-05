@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-power-manager</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>GNOME power manager</Summary>
+        <Description>GNOME Power Manager is a session daemon that acts as a policy agent on top of UPower.</Description>
+        <Archive sha1sum="829d65addba1dc3a7e91ebb871525dc16223a082" type="tarbz2">mirrors://gnome/gnome-power-manager/2.32/gnome-power-manager-2.32.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>libgnome-keyring-devel</Dependency>
+            <Dependency>hal-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>libwnck-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+            <Dependency>libXext-devel</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>libunique-devel</Dependency>
+            <Dependency>upower-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>always-show-icon.patch</Patch>
+            <!--<Patch>pardus-menus.patch</Patch>-->
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gnome-power-manager</Name>
+        <RuntimeDependencies>
+            <Dependency>libgnome-keyring</Dependency>
+            <Dependency>hal</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>libwnck</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>upower</Dependency>
+            <Dependency>libunique</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/xdg</Path>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="executable">/usr/sbin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/dbus-1</Path>
+            <Path fileType="data">/usr/share/gnome-2.0</Path>
+            <Path fileType="data">/usr/share/gnome-power-manager</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/polkit-1</Path>
+        </Files>
+        <Provides>
+            <COMAR script="package.py">System.Package</COMAR>
+        </Provides>
+    </Package>
+
+    <History>
+       <Update release="4">
+            <Date>2010-10-02</Date>
+            <Version>2.32.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2008-11-11</Date>
+            <Version>2.24.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-09-27</Date>
+            <Version>2.24.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-05-05</Date>
+            <Version>2.22.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

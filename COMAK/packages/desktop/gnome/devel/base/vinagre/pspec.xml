@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>vinagre</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Summary>A VNC and SSH client</Summary>
+        <Description>Vinagre is a remote desktop viewer and SSH client for the GNOME Desktop.</Description>
+        <Archive sha1sum="17eaf74fa49eeda85fc6cd9e2db7a11720c45e34" type="tarbz2">mirrors://gnome/vinagre/2.30/vinagre-2.30.3.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libgnome-keyring-devel</Dependency>           
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>gtk-vnc-devel</Dependency>
+            <Dependency>vino</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>avahi-ui-devel</Dependency>
+            <Dependency>docbook-xml4_3</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>vinagre</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>libgnome-keyring</Dependency>           
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>gtk-vnc</Dependency>          
+            <Dependency>vino</Dependency>
+            <Dependency>avahi-ui</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/vinagre</Path>
+            <Path fileType="data">/usr/share/vinagre-1</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="3">
+            <Date>2010-10-03</Date>
+            <Version>2.30.3</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2009-06-28</Date>
+            <Version>2.26.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-06-30</Date>
+            <Version>0.5.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
