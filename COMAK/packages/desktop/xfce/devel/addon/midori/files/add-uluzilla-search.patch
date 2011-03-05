@@ -1,0 +1,16 @@
+--- midori-0.1.7/data/search.orig	2009-07-09 14:15:34.000000000 +0300
++++ midori-0.1.7/data/search	2009-07-09 14:19:38.000000000 +0300
+@@ -6,6 +6,13 @@
+ icon=
+ token=g
+ 
++[Uluzilla]
++name=Pardus Uluzilla
++text=Pardus Uluzilla
++uri=http://bugs.pardus.org.tr/buglist.cgi?quicksearch=%s
++icon=
++token=pu
++
+ [Wikipedia]
+ name=Wikipedia
+ text=The free encyclopedia
