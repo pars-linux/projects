@@ -20,6 +20,7 @@
             <Dependency versionFrom="2">freetype-devel</Dependency>
             <Dependency>libpcre-devel</Dependency>
             <Dependency>utempter-devel</Dependency>
+            <Dependency>libXt-devel</Dependency>
         </BuildDependencies>
     </Source>
 
