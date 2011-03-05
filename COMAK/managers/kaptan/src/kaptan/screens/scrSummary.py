@@ -34,6 +34,9 @@ import kaptan.screens.scrAvatar  as avatarWidget
 
 from kaptan.tools import tools
 
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4 import kdeui
+
 class Widget(QtGui.QWidget, Screen):
     title = i18n("Summary")
     desc = i18n("Save Your Settings")
@@ -162,7 +165,7 @@ class Widget(QtGui.QWidget, Screen):
         for settings in [self.wallpaperSettings, self.mouseSettings,\
 self.menuSettings, self.styleSettings, self.smoltSettings,\
 self.avatarSettings]:
-            if (ctx.Pds.session==ctx.pds.Kde4) and settings["hasChanged"]:
+            if (ctx.Pds.session==ctx.pds.Kde4) and settings.get("hasChanged",False):
                 self.killPlasma()
                 break
 
