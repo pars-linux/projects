@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Background files for Eterm</Summary>
         <Description>Background files for Eterm</Description>
-        <Archive sha1sum="26e81a1e91228c971c70ba06e006ef69490ef208" type="targz">http://www.eterm.org/download/Eterm-bg-0.9.4.tar.gz</Archive>
+        <Archive sha1sum="26e81a1e91228c971c70ba06e006ef69490ef208" type="targz">http://www.eterm.org/download/Eterm-bg-0.9.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.9.4">eterm</Dependency>
         </BuildDependencies>
@@ -30,6 +30,13 @@
     </Package>
 
     <History>
+        <Update release="4">
+            <Date>2011-03-05</Date>
+            <Version>0.9.5</Version>
+            <Comment>Version bump</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="3">
             <Date>2006-09-26</Date>
             <Version>0.9.4</Version>
