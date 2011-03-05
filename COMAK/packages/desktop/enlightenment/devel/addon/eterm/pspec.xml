@@ -12,14 +12,14 @@
         <IsA>app:gui</IsA>
         <Summary>A vt102 terminal emulator for X</Summary>
         <Description>A vt102 terminal emulator for X</Description>
-        <Archive sha1sum="d63628098b3aa08c8f2bc1bd756683e5fd227995" type="targz">http://www.eterm.org/download/Eterm-0.9.4.tar.gz</Archive>
+        <Archive sha1sum="f2d75354a48734f63f018f7173cebee81f2358c7" type="targz">http://www.eterm.org/download/Eterm-0.9.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.6.1">libast</Dependency>
-            <Dependency>imlib2</Dependency>
+            <Dependency>imlib2-devel</Dependency>
             <Dependency>screen</Dependency>
-            <Dependency versionFrom="2">freetype</Dependency>
-            <Dependency>libpcre</Dependency>
-            <Dependency>utempter</Dependency>
+            <Dependency versionFrom="2">freetype-devel</Dependency>
+            <Dependency>libpcre-devel</Dependency>
+            <Dependency>utempter-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -47,6 +47,13 @@
     </Package>
 
     <History>
+        <Update release="4">
+            <Date>2011-03-04</Date>
+            <Version>0.9.5</Version>
+            <Comment>Version bump</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="3">
             <Date>2006-09-24</Date>
             <Version>0.9.4</Version>

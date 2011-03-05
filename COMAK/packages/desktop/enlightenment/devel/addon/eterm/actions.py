@@ -8,7 +8,7 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
-WorkDir="Eterm-0.9.4"
+WorkDir="Eterm-0.9.5"
 
 def setup():
     autotools.configure("--prefix=/usr \
@@ -33,5 +33,4 @@ def build():
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-    pisitools.dodoc("Changelog", "README", "ReleaseNotes*", "bg/README.backgrounds")
-
+    pisitools.dodoc("README", "ReleaseNotes*", "bg/README.backgrounds")
