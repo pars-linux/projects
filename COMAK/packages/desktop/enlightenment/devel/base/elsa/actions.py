@@ -14,7 +14,8 @@ WorkDir = "elsa"
 def setup():
     shelltools.system("./autogen.sh \
                        --sysconfdir=/etc \
-                       --prefix=/usr")
+                       --prefix=/usr \
+                       --with-consolekit")
 
 def build():
     autotools.make()
