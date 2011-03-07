@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>shellementary</Name>
+        <Summary xml:lang="tr">Elementary ve C ile yazılmış Zenity muadili</Summary>
+        <Description xml:lang="tr">Shellementary elementary için yazılmış zenity muadilidir. Zenity'nin birçok parametresini desteklemektedir.</Description>
+    </Source>
+</PISI>
+
