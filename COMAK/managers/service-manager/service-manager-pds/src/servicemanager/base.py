@@ -20,15 +20,11 @@ from PyQt4 import QtGui
 from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import *
 
-# PyKDE4 Stuff
-from PyKDE4.kdeui import *
-from PyKDE4.kdecore import *
-
 # Application Stuff
 from servicemanager.backend import ServiceIface
-from servicemanager.about import aboutData
 from servicemanager.ui_main import Ui_mainManager
 from servicemanager.widgets import ServiceItemWidget, ServiceItem
+from servicemanager.context import i18n
 
 class MainManager(QtGui.QWidget):
     def __init__(self, parent, standAlone=True):
