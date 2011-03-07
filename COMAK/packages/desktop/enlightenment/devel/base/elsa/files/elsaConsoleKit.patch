@@ -1,10 +1,11 @@
-diff -Nuar elsa.orig//configure.ac elsa//configure.ac
---- elsa.orig//configure.ac	2011-02-24 16:33:02.000000000 +0200
-+++ elsa//configure.ac	2011-03-05 23:05:08.865000034 +0200
-@@ -46,6 +46,20 @@
- AC_MSG_CHECKING([whether to support pam])
- AC_MSG_RESULT([${enable_pam}])
+diff -Nuar elsa.orig/configure.ac elsa/configure.ac
+--- elsa.orig/configure.ac	2011-03-06 18:53:17.470237250 +0200
++++ elsa/configure.ac	2011-03-07 11:27:07.565603217 +0200
+@@ -30,7 +30,19 @@
  
+ 
+ ### Additional options to configure
+-
 +# ConsoleKit support
 +AC_ARG_WITH(consolekit, AC_HELP_STRING([--with-consolekit], [Use ConsoleKit]),
 +   [USE_CONSOLEKIT=$withval], [USE_CONSOLEKIT=yes])
@@ -18,62 +19,72 @@ diff -Nuar elsa.orig//configure.ac elsa//configure.ac
 +   fi
 +fi
 +dnl AM_CONDITIONAL(USE_CONSOLEKIT, test$USE_CONSOLEKIT = xyes)
-+
- # Set edje_cc path
- AC_ARG_WITH([edje-cc],
-    [AC_HELP_STRING([ --with-edje-cc=PATH], [specify a specific path to edje_cc])],
-diff -Nuar elsa.orig//src/daemon/elsa_session.c elsa//src/daemon/elsa_session.c
---- elsa.orig//src/daemon/elsa_session.c	2011-02-24 16:33:00.000000000 +0200
-+++ elsa//src/daemon/elsa_session.c	2011-03-05 23:06:56.764000034 +0200
+ # Pam
+ AC_ARG_ENABLE([pam],
+    [AC_HELP_STRING([--disable-pam], [disable pam support. @<:@default=enabled@:>@])],
+diff -Nuar elsa.orig/src/daemon/elsa_session.c elsa/src/daemon/elsa_session.c
+--- elsa.orig/src/daemon/elsa_session.c	2011-03-06 18:53:17.481242750 +0200
++++ elsa/src/daemon/elsa_session.c	2011-03-07 23:53:18.196843630 +0200
 @@ -8,7 +8,8 @@
  #include <stdlib.h>
  #include <sys/types.h>
  #include <sys/wait.h>
 -
-+#include <ConsoleKit/ck-connector/ck-connector.h>
++#include <ck-connector.h>
 +#include <glib.h>
  #include "elsa.h"
  
  
-@@ -19,6 +20,10 @@
- static pid_t _session_pid;
+@@ -20,6 +21,12 @@
  static int _elsa_session_userid_set(struct passwd *pwd);
  static void _elsa_session_run(struct passwd *pwd, const char *cmd, const char *cookie);
-+static CkConnector *ckc;
-+static int tty = 7;
-+GKeyFile *config;
-+
  
++static CkConnector *connector;
++
++
++
++
++
  long
  elsa_session_seed_get()
-@@ -108,6 +113,30 @@
+ {
+@@ -108,6 +115,31 @@
  #ifdef HAVE_PAM
     char **tmp;
     char buf[PATH_MAX];
-+   char *user;
-+   ckc = ck_connector_new();
-+   if( ckc != NULL )
-+    {
++     printf(": ENGIN start\n");
++    connector = ck_connector_new();
 +
-+        user = g_key_file_get_string(config, "base", "autologin", 0);
-+        struct passwd *pw;
-+        pw = getpwnam(user);
-+        DBusError error;
-+        char x[256], *d, *n;
-+        sprintf(x, "/dev/tty%d", tty);
-+        dbus_error_init(&error);
-+        d = x; n = getenv("DISPLAY");
-+        if( ck_connector_open_session_with_parameters(ckc, &error,
-+                                                      "unix-user", &pw->pw_uid,
-+                                                      "display-device", &d,
-+                                                      "x11-display-device", &d,
-+                                                      "x11-display", &n,
-+                                                      NULL) )
-+            setenv("XDG_SESSION_COOKIE", ck_connector_get_cookie(ckc), 1);
-+    }
++   printf(": ENGIN connector olusturuldu\n");
++   if(connector!=NULL){
++       dbus_bool_t is_local;
++       is_local= 1==1;
++      DBusError error;
++      dbus_error_init (&error);
++   printf(": ENGIN dbus hata baslatildi\n");
++   ck_connector_open_session(connector,&error);
++    /*ck_connector_open_session_with_parameters(
++        connector, &error,
++        //"unix-user", 1000,
++        //"x11-display", "",
++        //"x11-display-device", "/dev/tty7",
++        //"remote-host-name", "",
++        "is-local", &is_local,
++        NULL);*/
++    setenv("XDG_SESSION_COOKIE",ck_connector_get_cookie(connector),1);
++    printf(" ENGIN cookie %s\n",ck_connector_get_cookie(connector));
 +
-+
-+
++   }
++   printf(": ENGIN bitti\n");
++ 
     pid_t pid;
     pid = fork();
     if (pid == 0)
+@@ -137,6 +169,7 @@
+         remove(buf);
+         snprintf(buf, sizeof(buf), "%s > %s/.elsa_session.log 2>&1",
+                  cmd, pwd->pw_dir);
++
+         execle(pwd->pw_shell, pwd->pw_shell, "-c", buf, NULL, env);
+         fprintf(stderr, PACKAGE": The Xsessions are not launched :(\n");
+      }
