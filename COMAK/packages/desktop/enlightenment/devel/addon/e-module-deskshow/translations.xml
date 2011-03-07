@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-deskshow</Name>
+        <Summary xml:lang="tr">Masaüstünü Göster Modulü</Summary>
+        <Description xml:lang="tr">Masaüstünü hızlıca göstermeye yarayan modul.</Description>
+    </Source>
+</PISI>
+

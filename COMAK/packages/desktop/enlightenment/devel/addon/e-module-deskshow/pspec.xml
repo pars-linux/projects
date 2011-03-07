@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e-module-deskshow</Name>
+        <Homepage>http://www.enlightenment.com</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Show Desktop Module</Summary>
+        <Description>Gadget to allow you to quickly uncover your desktop</Description>
+        <Archive sha1sum="28524a8cc464fd589eba4c1807adfc866534e72f" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-deskshow-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>edje-devel</Dependency>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+        </BuildDependencies>
+        <!--<Patches>
+            <Patch level=""></Patch>
+        </Patches>-->
+    </Source>
+
+    <Package>
+        <Name>e-module-deskshow</Name>
+        <RuntimeDependencies>
+            <Dependency>edje</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>ecore</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-07</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
