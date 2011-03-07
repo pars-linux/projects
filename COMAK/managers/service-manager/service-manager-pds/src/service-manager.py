@@ -19,7 +19,7 @@ import dbus
 import servicemanager.context as ctx
 
 # Application Stuff
-import servicemanager.about
+import servicemanager.about as about
 
 # Qt Stuff
 from PyQt4.QtCore import SIGNAL
@@ -69,8 +69,9 @@ if __name__ == '__main__':
         __trans = gettext.translation(about.appName, fallback=True)
         i18n = __trans.ugettext
 
-        from servicemanager.base import MainManageri
+        from servicemanager.base import MainManager
         from pds.quniqueapp import QUniqueApplication
+        from servicemanager.context import KIcon
 
         app = QUniqueApplication(sys.argv, catalog=about.appName)
 
