@@ -13,46 +13,74 @@
 
 # System
 import sys
-
 import dbus
+
+# Pds Stuff
+import servicemanager.context as ctx
+
+# Application Stuff
+import servicemanager.about
 
 # Qt Stuff
 from PyQt4.QtCore import SIGNAL
 
-# PyKDE4 Stuff
-from PyKDE4.kdeui import *
-from PyKDE4.kdecore import *
-
-def CreatePlugin(widget_parent, parent, component_data):
-    from servicemanager.kcmodule import ServiceManager
-    return ServiceManager(component_data, parent)
-
 if __name__ == '__main__':
-
-    # Service Manager
-    from servicemanager.standalone import ServiceManager
-
-    # Application Stuff
-    from servicemanager.about import aboutData
-
-    # Set Command-line arguments
-    KCmdLineArgs.init(sys.argv, aboutData)
-
-    # Create a Kapplitcation instance
-    app = KApplication()
 
     # DBUS MainLoop
     if not dbus.get_default_main_loop():
         from dbus.mainloop.qt import DBusQtMainLoop
         DBusQtMainLoop(set_as_default = True)
 
-    # Create Main Widget
-    mainWindow = ServiceManager(None, 'service-manager')
-    mainWindow.show()
+    # Pds vs KDE
+    if ctx.Pds.session == ctx.pds.Kde4:
 
-    # Create connection for lastWindowClosed signal to quit app
-    app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
+        def CreatePlugin(widget_parent, parent, component_data):
+            from servicemanager.kcmodule import ServiceManager
+            return ServiceManager(component_data, parent)
 
-    # Run the application
-    app.exec_()
+        # PyKDE4 Stuff
+        from PyKDE4.kdeui import *
+        from PyKDE4.kdecore import *
+
+        # Application Stuff
+        from servicemanager.standalone import ServiceManager
+        from servicemanager.about import aboutData
+
+        # Set Command-line arguments
+        KCmdLineArgs.init(sys.argv, aboutData)
+
+        # Create a Kapplitcation instance
+        app = KApplication()
+
+        # Create Main Widget
+        mainWindow = ServiceManager(None, aboutData.appName)
+        mainWindow.show()
+
+        # Create connection for lastWindowClosed signal to quit app
+        app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
+
+        # Run the application
+        app.exec_()
+
+    else:
+
+        import gettext
+
+        __trans = gettext.translation(about.appName, fallback=True)
+        i18n = __trans.ugettext
+
+        from servicemanager.base import MainManageri
+        from pds.quniqueapp import QUniqueApplication
+
+        app = QUniqueApplication(sys.argv, catalog=about.appName)
+
+        mainWindow = MainManager(None)
+        mainWindow.show()
+        mainWindow.resize(640, 480)
+        mainWindow.setWindowTitle(i18n(about.PACKAGE))
+        mainWindow.setWindowIcon(KIcon(about.icon))
+
+        app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
+
+        app.exec_()
 
