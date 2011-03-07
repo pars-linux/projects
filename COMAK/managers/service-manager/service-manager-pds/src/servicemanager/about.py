@@ -22,6 +22,7 @@ version     = "3.0.0"
 homePage    = "http://developer.pardus.org.tr/projects/service-manager"
 bugEmail    = "bugs@pardus.org.tr"
 icon        = "flag-yellow"
+catalog     = appName
 
 if ctx.Pds.session == ctx.pds.Kde4:
 
@@ -33,7 +34,6 @@ if ctx.Pds.session == ctx.pds.Kde4:
     license     = KAboutData.License_GPL
     copyright   = ki18n("(c) 2009-2010 TUBITAK/UEKAE")
     text        = ki18n(None)
-    catalog     = appName
     aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
 
     # Authors
