@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>GTK+ Xfce theme engine</Summary>
         <Description>Gtk2-engines-xfce is a GTK+ engine for Xfce desktop environment.</Description>
-        <Archive sha1sum="25d68780ed6fb8c0cc39f480d85422947b5a23e5" type="tarbz2">http://archive.xfce.org/xfce/4.8/src/gtk-xfce-engine-2.8.0.tar.bz2</Archive>
+        <Archive sha1sum="d7779f07cc76585be063bc25fa91e660e1fd9c97" type="tarbz2">http://archive.xfce.org/src/xfce/gtk-xfce-engine/2.8/gtk-xfce-engine-2.8.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>xfce4-dev-tools</Dependency>
             <Dependency>gtk2-devel</Dependency>
@@ -35,6 +35,15 @@
     </Package>
 
     <History>
+        <Update release="13">
+            <Date>2011-03-06</Date>
+            <Version>2.8.1</Version>
+            <Comment>
+                * Version bump.
+            </Comment>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Update>
         <Update release="12">
             <Date>2011-01-19</Date>
             <Version>2.8.0</Version>
