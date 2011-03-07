@@ -34,6 +34,7 @@ from pds.qprogressindicator import QProgressIndicator
 # Python Stuff
 import time
 import textwrap
+import locale
 
 # Pisi Stuff
 import pisi
@@ -164,7 +165,7 @@ def getDescription(service):
     try:
         # TODO add a package map for known services
         service = service.replace('_','-')
-        lang = str(KGlobal.locale().language())
+        lang = str(locale.getdefaultlocale()[0].split("_")[0])
         desc = pisi.api.info_name(service)[0].package.description
         if desc.has_key(lang):
             return unicode(desc[lang])
