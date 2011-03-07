@@ -18,6 +18,7 @@
         </BuildDependencies>
         <Patches>
             <Patch level="1">pds-fix-config-path-variable.patch</Patch>
+            <Patch level="0">lxde_support.patch</Patch>
         </Patches>
     </Source>
 
