@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-diskio</Name>
+        <Summary xml:lang="tr">Bağlı diskleri izleme modulü</Summary>
+        <Description xml:lang="">E-module-diskio bağlı diskleri gözlemlemek için Enlightenment modülü</Description>
+    </Source>
+</PISI>
+
