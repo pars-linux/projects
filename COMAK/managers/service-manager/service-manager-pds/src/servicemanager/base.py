@@ -24,7 +24,13 @@ from PyQt4.QtCore import *
 from servicemanager.backend import ServiceIface
 from servicemanager.ui_main import Ui_mainManager
 from servicemanager.widgets import ServiceItemWidget, ServiceItem
-from servicemanager.context import i18n
+
+# Pds vs KDE
+import servicemanager.context as ctx
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdecore import i18n
+else:
+    from servicemanager.context import i18n
 
 class MainManager(QtGui.QWidget):
     def __init__(self, parent, standAlone=True):
