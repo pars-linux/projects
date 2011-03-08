@@ -18,6 +18,7 @@
             <Dependency>libX11-devel</Dependency>
             <Dependency>libXmu-devel</Dependency>
             <Dependency>libXt-devel</Dependency>
+            <Dependency>libXft-devel</Dependency>
             <Dependency>libpng-devel</Dependency>
             <Dependency>jpeg-devel</Dependency>
             <Dependency>freetype-devel</Dependency>
@@ -40,6 +41,7 @@
             <Dependency>libX11</Dependency>
             <Dependency>libXmu</Dependency>
             <Dependency>libXt</Dependency>
+            <Dependency>libXft</Dependency>
             <Dependency>libpng</Dependency>
             <Dependency>jpeg</Dependency>
             <Dependency>freetype</Dependency>
