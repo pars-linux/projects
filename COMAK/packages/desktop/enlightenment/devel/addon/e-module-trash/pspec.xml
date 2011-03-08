@@ -15,7 +15,6 @@
         <Archive sha1sum="6b0c1a2e49c07d84125754fb513d524a2179cdb9" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-trash-0.0.4.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.16.999">enlightenment-devel</Dependency>
-            <Dependency>git</Dependency>
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
             <Dependency>evas-devel</Dependency>
@@ -31,7 +30,6 @@
         <Name>e-module-trash</Name>
         <RuntimeDependencies>
             <Dependency versionFrom="0.16.999">enlightenment</Dependency>
-            <Dependency>git</Dependency>
             <Dependency>eina</Dependency>
             <Dependency>ecore</Dependency>
             <Dependency>evas</Dependency>
