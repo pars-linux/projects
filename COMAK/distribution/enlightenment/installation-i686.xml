@@ -1,8 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011-Comak Enlightenment-x86-64[Dolly]</Title>
-    <WorkDir>/home/engin/pardusman/e17-work</WorkDir>
-    <ReleaseFiles>/home/engin/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="file:///home/engin/iso/repo/pisi-index.xml.xz">
+    <Title>Pardus 2011-Comak Enlightenment-i686[Dolly]</Title>
+    <WorkDir>/home/alper/iso/enligtenment</WorkDir>
+    <ReleaseFiles>/home/alper/iso/releaseNotes</ReleaseFiles>
+    <PackageSelection repo_uri="file:///home/alper/iso/repo/pisi-index.xml.xz">
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
@@ -39,6 +39,8 @@
         <SelectedPackage>e-module-alarm</SelectedPackage>
         <SelectedPackage>e-module-calendar</SelectedPackage>
         <SelectedPackage>e-module-cpu</SelectedPackage>
+        <SelectedPackage>e-module-deskshow</SelectedPackage>
+        <SelectedPackage>e-module-diskio</SelectedPackage>
         <SelectedPackage>e-module-drawer</SelectedPackage>
         <SelectedPackage>e-module-everything-pidgin</SelectedPackage>
         <SelectedPackage>e-module-everything-places</SelectedPackage>
@@ -48,8 +50,10 @@
         <SelectedPackage>e-module-mpdule</SelectedPackage>
         <SelectedPackage>e-module-net</SelectedPackage>
         <SelectedPackage>e-module-notification</SelectedPackage>
+        <SelectedPackage>e-module-penguins</SelectedPackage>
         <SelectedPackage>e-module-photo</SelectedPackage>
         <SelectedPackage>e-module-places</SelectedPackage>
+        <SelectedPackage>e-module-snow</SelectedPackage>
         <SelectedPackage>e-module-trash</SelectedPackage>
         <SelectedPackage>e-module-weather</SelectedPackage>
         <SelectedPackage>econcentration</SelectedPackage>
@@ -79,7 +83,9 @@
         <SelectedPackage>exalt</SelectedPackage>
         <SelectedPackage>exalt-devel</SelectedPackage>
         <SelectedPackage>example-content</SelectedPackage>
+        <SelectedPackage>exquisite</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
+        <SelectedPackage>eyelight</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
         <SelectedPackage>firewall-manager-pds</SelectedPackage>
@@ -220,6 +226,7 @@
         <SelectedPackage>service-manager-pds</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
+        <SelectedPackage>shellementary</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
         <SelectedPackage>soprano-plugin-virtuoso</SelectedPackage>
         <SelectedPackage>splix</SelectedPackage>
@@ -930,6 +937,7 @@
         <Package>xorg-video-chips</Package>
         <Package>xorg-video-cirrus</Package>
         <Package>xorg-video-fbdev</Package>
+        <Package>xorg-video-geode</Package>
         <Package>xorg-video-glint</Package>
         <Package>xorg-video-i128</Package>
         <Package>xorg-video-i740</Package>
@@ -1373,7 +1381,6 @@
         <Package>yali-theme-pardus</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
-        <Package>zorg</Package>
     </InstallImagePackages>
     <LanguageSelection default_language="tr_TR">
         <Language>tr_TR</Language>
