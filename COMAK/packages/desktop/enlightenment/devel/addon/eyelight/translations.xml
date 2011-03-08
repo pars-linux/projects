@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>eyelight</Name>
+        <Summary xml:lang="tr">Bir sunum hazırlama programı</Summary>
+        <Description xml:lang="tr">Eyelight ile basit ASCII dosyalarından güzel sunumlar hazırlayabiliriz.</Description>
+    </Source>
+</PISI>
+
