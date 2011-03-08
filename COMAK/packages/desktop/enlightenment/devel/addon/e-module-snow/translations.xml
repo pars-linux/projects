@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-snow</Name>
+        <Summary xml:lang="tr">Enlightenment için kar modülü</Summary>
+        <Description xml:lang="tr">Snow, masaüstüne kar yağdıran bir modüldür.</Description>
+    </Source>
+</PISI>
+
