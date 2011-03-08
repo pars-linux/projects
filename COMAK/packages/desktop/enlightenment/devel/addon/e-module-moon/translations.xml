@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-moon</Name>
+        <Summary xml:lang="tr">E17 için ay saati modülü</Summary>
+        <Description xml:lang="tr">Moon, masaüstünde ay saatini gösteren bir modüldür.</Description>
+    </Source>
+</PISI>
+
