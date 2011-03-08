@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e-module-penguins</Name>
+        <Homepage>http://www.enlightenment.org/</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>E17 Module that display penguins</Summary>
+        <Description>penguins is a module that display fancy penguins on your desktop.</Description>
+        <Archive sha1sum="d62fa5c0a518d657d4e7c5745bd27874b67cf9a6" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-penguins-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
+            <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
+            <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>e-module-penguins</Name>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib/enlightenment</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="data">/usr/share/enlightenment</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-07</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
