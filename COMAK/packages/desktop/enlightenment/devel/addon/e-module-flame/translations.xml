@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-flame</Name>
+        <Summary xml:lang="tr">Enlightenment için alev modülü</Summary>
+        <Description xml:lang="tr">Flame, masaüstünde alevleri gösteren modüldür.</Description>
+    </Source>
+</PISI>
+
