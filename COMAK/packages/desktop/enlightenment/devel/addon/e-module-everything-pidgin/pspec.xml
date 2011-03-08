@@ -30,7 +30,7 @@
         <RuntimeDependencies>
             <Dependency versionFrom="0.9.9.49539">eina</Dependency>
             <Dependency versionFrom="0.5.0.49539">e_dbus</Dependency>
-            <Dependency versionFrom="0.16.999.49539">enlightenment</Dependency>
+            <Dependency versionFrom="0.16.999_49539">enlightenment</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib/enlightenment/modules/evry-pidgin/*/module.so</Path>
