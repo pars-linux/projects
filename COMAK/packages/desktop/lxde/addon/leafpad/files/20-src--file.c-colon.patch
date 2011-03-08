@@ -1,0 +1,44 @@
+From 16b430fcaedc06eecb1b9ee0c81e902a3063b1da Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Fri, 26 Feb 2010 07:45:38 +0200
+Subject: [PATCH] src/file.c: Do not consider colon(:) as URL. Patch thanks to Michael Dickson <dickson.michael@gmail.com>
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ src/file.c |    9 ++++++---
+ 1 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/src/file.c b/src/file.c
+index 839c1a8..2a72138 100644
+--- a/src/file.c
++++ b/src/file.c
+@@ -81,19 +81,22 @@ gchar *get_file_basename(gchar *filename, gboolean bracket)
+ 
+ gchar *parse_file_uri(gchar *uri)
+ {
+-	gchar *filename;
++	gchar *filename = NULL;
+ //	gchar **strs;
+ 	
+ 	if (strstr(uri, ":")) {
+ 		if (g_strstr_len(uri, 5, "file:"))
+ 			filename = g_filename_from_uri(uri, NULL, NULL);
+ 		else
+-			return NULL;  // other URI error
+-	} else
++			;  // other URI - or a filename
++	}
++	
++	if (!filename) {
+ 		if (g_path_is_absolute(uri))
+ 			filename = g_strdup(uri);
+ 		else
+ 			filename = g_build_filename(g_get_current_dir(), uri, NULL);
++	}
+ 	
+ /*	if (strstr(filename, " ")) {
+ 		strs = g_strsplit(filename, " ", -1);
+-- 
+1.6.6.1
+
