@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e-module-rain</Name>
+        <Homepage>http://www.enlightenment.org/</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>As-Is</License>
+        <IsA>library</IsA>
+        <Summary>Rain module for Enlightenment</Summary>
+        <Description>Rain is a module that rains on the desktop.</Description>
+        <Archive sha1sum="2f5c1f6785b62242704e47498697f1fb0a4db39d" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-rain-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
+            <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
+            <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
+            <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>e-module-rain</Name>
+        <Files>
+            <Path fileType="library">/usr/lib/enlightenment/modules/rain/*.so</Path>
+            <Path fileType="localedata">/usr/lib/enlightenment/modules/rain/locale/</Path>
+            <Path fileType="data">/usr/lib/enlightenment/modules/rain/</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-08</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
