@@ -1,0 +1,24 @@
+From a092663f1634be48e628a251e5d5bf49395401fe Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Sat, 19 Dec 2009 01:37:18 +0200
+Subject: [PATCH] data/leafpad.desktop.in: delete encoding
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ data/leafpad.desktop.in |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+diff --git a/data/leafpad.desktop.in b/data/leafpad.desktop.in
+index e1ae640..b4577f5 100644
+--- a/data/leafpad.desktop.in
++++ b/data/leafpad.desktop.in
+@@ -1,5 +1,4 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+ _Name=Leafpad
+ _Comment=Simple text editor
+ Exec=leafpad %f
+-- 
+1.6.5
+

@@ -1,0 +1,11 @@
+diff -Nuar gtknetcat-0.1.orig/gtknetcat.desktop.in gtknetcat-0.1/gtknetcat.desktop.in
+--- gtknetcat-0.1.orig/gtknetcat.desktop.in	2010-10-31 00:06:48.816466534 +0300
++++ gtknetcat-0.1/gtknetcat.desktop.in	2010-10-31 00:10:28.461216748 +0300
+@@ -1,6 +1,7 @@
+ [Desktop Entry]
+ Name=GtkNetCat
+ Comment=Inter-computer direct file transmission via netcat
++Comment[tr]=Netcat için grafik kullanıcı arayüzü
+ Icon=
+ Exec=gtknetcat
+ Terminal=false
