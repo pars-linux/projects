@@ -31,8 +31,10 @@
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="data">/usr/share</Path>
             <Path fileType="data">/etc/xdg/autostart</Path>
-
         </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/etc/xdg/autostart/kaptan.desktop">kaptan.desktop</AdditionalFile>
+        </AdditionalFiles>
     </Package>
 
     <History>
