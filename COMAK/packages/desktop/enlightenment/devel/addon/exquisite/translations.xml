@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>exquisite</Name>
+        <Summary xml:lang="tr">EFL kullanan psplash programı</Summary>
+        <Description xml:lang="tr">Exquisite platform-bağımlı tema ve modüllere gerek duymadan, güçlü bir tema yeteneğine sahip basit bir programdır.</Description>
+    </Source>
+</PISI>
+
