@@ -1,0 +1,17 @@
+diff -Nuar lxrandr-0.1.1.orig/data/lxrandr.desktop.in lxrandr-0.1.1/data/lxrandr.desktop.in
+--- lxrandr-0.1.1.orig/data/lxrandr.desktop.in	2010-10-31 01:08:10.907466478 +0300
++++ lxrandr-0.1.1/data/lxrandr.desktop.in	2010-10-31 01:10:36.262475655 +0300
+@@ -4,11 +4,13 @@
+ Name[fi]=Näytön asetukset
+ Name[et]=Monitori sätted
+ Name[ja]=モニタの設定
++Name[tr]=Monitor Ayarları
+ Comment=Change screen resolution and configure external monitors
+ Comment[zh_TW]=變更螢幕解析度以及設定外接顯示器
+ Comment[fi]=Muuta näytön tarkkuutta ja aseta ulkoiset näytöt
+ Comment[et]=Muuda ekraani eraldusvõimet ja seadista väliseid kuvareid
+ Comment[ja]=解像度の変更と外部モニタの設定を行います
++Comment[tr]=Ekran çözünürlüğünüzü değiştirin ve harici monitörünüzü yapılandırın
+ Exec=lxrandr
+ Encoding=UTF-8
+ Type=Application
