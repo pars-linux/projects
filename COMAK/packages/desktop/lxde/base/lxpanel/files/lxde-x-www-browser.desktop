@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Web Browser
+GenericName=X Web Browser
+GenericName[tr]=X Web Tarayıcı
+Exec=/usr/bin/firefox
+Terminal=false
+Type=Application
+Categories=GTK;WebBrowser;Network
+Icon=applications-internet
+NoDisplay=true
