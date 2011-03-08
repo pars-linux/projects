@@ -41,6 +41,7 @@
             <Dependency>libpng</Dependency>
             <Dependency>jpeg</Dependency>
             <Dependency>freetype</Dependency>
+            <Dependency>fluxbox</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
