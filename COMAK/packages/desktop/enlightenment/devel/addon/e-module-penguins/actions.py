@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010 TUBITAK/BILGEM
@@ -8,13 +8,15 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
+from pisi.actionsapi import get
 
 def setup():
-    shelltools.system("./autogen.sh")
+    autotools.autoreconf("-vfi")
+    autotools.configure("--disable-static")
 
 def build():
     autotools.make()
 
 def install():
-    autotools.install()
+    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     pisitools.dodoc("README", "COPYING", "AUTHORS")

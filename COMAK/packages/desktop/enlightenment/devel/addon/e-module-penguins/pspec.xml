@@ -26,13 +26,10 @@
     <Package>
         <Name>e-module-penguins</Name>
         <Files>
-            <Path fileType="config">/etc</Path>
-            <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="library">/usr/lib/enlightenment</Path>
-            <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="data">/usr/share</Path>
-            <Path fileType="data">/usr/share/enlightenment</Path>
+            <Path fileType="library">/usr/lib/enlightenment/modules/penguins/*.so</Path>
+            <Path fileType="localedata">/usr/lib/enlightenment/modules/penguins/locale/</Path>
+            <Path fileType="data">/usr/lib/enlightenment/modules/penguins/</Path>
+             <Path fileType="doc">/usr/share/doc</Path>
         </Files>
     </Package>
 
@@ -46,4 +43,3 @@
         </Update>
     </History>
 </PISI>
-
