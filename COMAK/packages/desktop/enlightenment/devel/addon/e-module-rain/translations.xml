@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-rain</Name>
+        <Summary xml:lang="tr">Enlightenment için yağmur modülü</Summary>
+        <Description xml:lang="tr">Rain, masaüstüne yağmur yağdıran modüldür.</Description>
+    </Source>
+</PISI>
+
