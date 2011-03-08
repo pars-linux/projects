@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>libast</Name>
+        <Summary xml:lang="tr">LIBrary of Assorted Spiffy Things</Summary>
+        <Description xml:lang="tr">LIBrary of Assorted Spiffy Things</Description>
+    </Source>
+</PISI>
