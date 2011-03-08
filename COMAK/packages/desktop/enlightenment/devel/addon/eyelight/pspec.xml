@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A presentation maker program</Summary>
         <Description>With Eyelight we can create a presentation from a simple ASCII file and get a beautiful presentation.</Description>
-        <Archive sha1sum="134a2f58b30269e2a1e9df951717f096eeda8d74" type="tarbz2">eyelight-0.5_55225.tar.bz2</Archive>
+        <Archive sha1sum="134a2f58b30269e2a1e9df951717f096eeda8d74" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/eyelight-0.5_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>eina-devel</Dependency>
             <Dependency>edje-devel</Dependency>
