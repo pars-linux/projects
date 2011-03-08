@@ -14,7 +14,7 @@
         <Description>A vt102 terminal emulator for X</Description>
         <Archive sha1sum="f2d75354a48734f63f018f7173cebee81f2358c7" type="targz">http://www.eterm.org/download/Eterm-0.9.5.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency versionFrom="0.6.1">libast</Dependency>
+            <Dependency versionFrom="0.6.1">libast-devel</Dependency>
             <Dependency>imlib2-devel</Dependency>
             <Dependency>screen</Dependency>
             <Dependency versionFrom="2">freetype-devel</Dependency>
