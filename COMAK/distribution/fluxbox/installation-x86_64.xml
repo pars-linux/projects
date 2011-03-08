@@ -39,6 +39,7 @@
         <SelectedPackage>encfs</SelectedPackage>
         <SelectedPackage>enchant-zemberek</SelectedPackage>
         <SelectedPackage>epdfview</SelectedPackage>
+        <SelectedPackage>eterm</SelectedPackage>
         <SelectedPackage>ethtool</SelectedPackage>
         <SelectedPackage>example-content</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
@@ -429,6 +430,7 @@
         <Package>libarchive</Package>
         <Package>libart_lgpl</Package>
         <Package>libass</Package>
+        <Package>libast</Package>
         <Package>libasyncns</Package>
         <Package>libavc1394</Package>
         <Package>libbonobo</Package>
@@ -715,6 +717,7 @@
         <Package>sane-backends</Package>
         <Package>schroedinger</Package>
         <Package>scim-libs</Package>
+        <Package>screen</Package>
         <Package>sdl-gfx</Package>
         <Package>sdl-image</Package>
         <Package>sed</Package>
