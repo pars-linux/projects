@@ -5,8 +5,6 @@ e_phys
 ----------------------
 e-module
 ----------------------
-deskshow
-diskio
 efm_nav
 efm_path
 efm_pathbar
@@ -15,7 +13,6 @@ everything-wallpaper
 everything-websearch
 eweather
 exalt-client
-exebuf
 execwatch
 itask
 itask-ng
@@ -26,7 +23,6 @@ mail
 moon
 news
 eooorg
-penguins
 quickaccess
 rain
 screenshot
