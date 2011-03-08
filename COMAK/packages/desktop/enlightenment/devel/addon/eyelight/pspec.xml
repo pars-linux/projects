@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>eyelight</Name>
+        <Homepage>http://www.enlightenment.org/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A presentation maker program</Summary>
+        <Description>With Eyelight we can create a presentation from a simple ASCII file and get a beautiful presentation.</Description>
+        <Archive sha1sum="134a2f58b30269e2a1e9df951717f096eeda8d74" type="tarbz2">eyelight-0.5_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>edje-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>emotion-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>eyelight</Name>
+        <RuntimeDependencies>
+            <Dependency>eina</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>emotion</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>eyelight-devel</Name>
+        <Summary>Development files for eyelight</Summary>
+        <RuntimeDependencies>
+            <Dependency>eina</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>emotion</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-07</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
