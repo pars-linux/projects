@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Network interface monitor module for Enlightenment</Summary>
         <Description>e-module-net is a network interface monitor module for Enlightenment.</Description>
-        <Archive sha1sum="2b56d956c7dba80fe5fb47e3b538a698d8f43ebe" type="tarbz2">http://x86-64.comu.edu.tr/lxde/e_modules-net-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="2b56d956c7dba80fe5fb47e3b538a698d8f43ebe" type="tarbz2">http://comak.comu.edu.tr/source/e_modules-net-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>git</Dependency>
             <Dependency>eet-devel</Dependency>

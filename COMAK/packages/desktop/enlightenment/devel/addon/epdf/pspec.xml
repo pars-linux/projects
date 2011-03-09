@@ -13,7 +13,7 @@
         <PartOf> app-text</PartOf>
         <Summary>Libraries for envision</Summary>
         <Description>Pdf reader for Enlightenment.</Description>
-        <Archive sha1sum="1f2e98454a27931023236c3e1074f4e6e116ad14" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/epdf-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="1f2e98454a27931023236c3e1074f4e6e116ad14" type="tarbz2">http://comak.comu.edu.tr/source/epdf-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>evas-devel</Dependency>
             <Dependency>eina</Dependency>

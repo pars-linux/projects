@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Moon Clock module for Enlightenment</Summary>
         <Description>Moon is a module that shows moon-clock on the desktop.</Description>
-        <Archive sha1sum="c200a5f3064883128d46d3288378d2876a2703d2" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-moon-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="c200a5f3064883128d46d3288378d2876a2703d2" type="tarbz2">http://comak.comu.edu.tr/source/e-module-moon-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>

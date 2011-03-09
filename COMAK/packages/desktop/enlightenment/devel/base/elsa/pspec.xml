@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Login manager of enlightenment desktop environment</Summary>
         <Description>Elsa is the login manager for Enlightenment desktop environment that replaces entrance. It uses pam, and can be configured with /etc/elsa.conf.</Description>
-        <Archive sha1sum="03c06ea98189e7d8aba23a25a5be929b86633d41" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/elsa-0.0.1_20110224.tar.bz2</Archive>
+        <Archive sha1sum="03c06ea98189e7d8aba23a25a5be929b86633d41" type="tarbz2">http://comak.comu.edu.tr/source/elsa-0.0.1_20110224.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>efreet-devel</Dependency>
             <Dependency>eina-devel</Dependency>

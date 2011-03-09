@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Flame module for Enlightenment</Summary>
         <Description>Flame is a module that shows flame on the desktop.</Description>
-        <Archive sha1sum="273c1bec738bbdd4316d7aef5a593cd669a7e85d" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-flame-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="273c1bec738bbdd4316d7aef5a593cd669a7e85d" type="tarbz2">http://comak.comu.edu.tr/source/e-module-flame-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>

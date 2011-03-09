@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>Photo module for Enlightenment17 desktop shell</Summary>
         <Description>A simple photo viewer module for Enlightenment17 desktop shell.</Description>
-        <Archive sha1sum="42d92597320c19692dd2a071409894d900ffd02d" type="targz">http://x86-64.comu.edu.tr/lxde/source/e-module-photo-0.1.0.tar.gz</Archive>
+        <Archive sha1sum="42d92597320c19692dd2a071409894d900ffd02d" type="targz">http://comak.comu.edu.tr/source/e-module-photo-0.1.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.16.999">enlightenment-devel</Dependency>
             <Dependency versionFrom="1.4.0">eet-devel</Dependency>
