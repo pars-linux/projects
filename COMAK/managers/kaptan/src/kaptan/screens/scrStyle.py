@@ -51,6 +51,9 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_styleWidget()
         self.ui.setupUi(self)
+        if ctx.Pds.session.Name == "LXDE":
+            self.ui.labelDesktopType.setVisible(False)
+            self.ui.comboBoxDesktopType.setVisible(False)
         self.ui.label.setText(str(ctx.Pds.session.Name)+" Themes")
         self.styleDetails = {}
         self.catLang = Desktop.common.getLanguage()

@@ -68,7 +68,6 @@ class Kaptan(QtGui.QWidget):
             for screen2 in Desktop.TAIL_SCREENS:
                 if screen2 in screen.__name__:
                     self.tailScreens.append(screen)
-        print self.headScreens,self.tailScreens
         self.screens = self.screenOrganizer(self.headScreens, self.tailScreens)
 
         # Add screens to StackWidget
