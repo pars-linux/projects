@@ -10,7 +10,6 @@
 # Please read the COPYING file.
 #
 
-
 from PyQt4 import QtGui
 from PyQt4.QtGui import QFileDialog
 #Context
@@ -28,7 +27,6 @@ from kaptan.screens.wallpaperItem import WallpaperItemWidget
 from kaptan.tools.desktop_parser import DesktopParser
 from ConfigParser import ConfigParser
 
-
 class Widget(QtGui.QWidget, Screen):
     screenSettings = {}
     screenSettings["hasChanged"] = False
@@ -41,13 +39,10 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_wallpaperWidget()
         self.ui.setupUi(self)
-
         # Get system locale
         self.catLang = Desktop.common.getLanguage()
-
-        #self.catLang = QLocale().language()
         # Get screen resolution
-        rect =  QtGui.QDesktopWidget().screenGeometry()
+        self.rect =  QtGui.QDesktopWidget().screenGeometry()
 
         # Get metadata.desktop files from shared wallpaper directory
         lst = Desktop.wallpaper.getWallpaperSettings()
@@ -61,7 +56,7 @@ class Widget(QtGui.QWidget, Screen):
             # Add a hidden value to each item for detecting selected wallpaper's path.
             item.setStatusTip(wallpaper["wallpaperThumb"])
 
-        self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.wallpaperChanged)
+        self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.setWallpaper)
         self.ui.checkBox.connect(self.ui.checkBox, SIGNAL("stateChanged(int)"), self.disableWidgets)
         self.ui.buttonChooseWp.connect(self.ui.buttonChooseWp, SIGNAL("clicked()"), self.selectWallpaper)
 
@@ -75,12 +70,13 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.buttonChooseWp.setDisabled(False)
             self.ui.listWallpaper.setDisabled(False)
 
-    def wallpaperChanged(self):
+    def setWallpaper(self):
         self.__class__.screenSettings["selectedWallpaper"] =  self.ui.listWallpaper.currentItem().statusTip()
         self.__class__.screenSettings["hasChanged"] = True
 
     def selectWallpaper(self):
         selectedFile = QFileDialog.getOpenFileName(None,"Open Image", os.environ["HOME"], 'Image Files (*.png *.jpg *bmp)')
+
         if selectedFile.isNull():
             return
         else:
@@ -88,11 +84,14 @@ class Widget(QtGui.QWidget, Screen):
             wallpaperName = os.path.splitext(os.path.split(str(selectedFile))[1])[0]
             widget = WallpaperItemWidget(unicode(wallpaperName), unicode("Unknown"), selectedFile, self.ui.listWallpaper)
             item.setSizeHint(QSize(120,170))
-            self.ui.listWallpaper.setItemWidget(item,widget)
+            self.ui.listWallpaper.setItemWidget(item, widget)
             item.setStatusTip(selectedFile)
             self.ui.listWallpaper.setCurrentItem(item)
-            self.resize(120,170)
-        self.execute()
+            x= self.size()
+            sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+            self.resize(2,4)
+            self.resize(x)
+            
     def shown(self):
         pass
 
