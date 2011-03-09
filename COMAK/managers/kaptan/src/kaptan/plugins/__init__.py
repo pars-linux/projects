@@ -16,8 +16,9 @@ import pds
 
 
 __plugins = {
-            pds.Kde4:"kde",
-            pds.DefaultDe:"kde", #FIXME: temporary
+            pds.Kde4 : "kde",
+            pds.LXDE : "lxde",
+            #pds.DefaultDe:"kde", #FIXME: temporary
             }
 
 class Desktop:
