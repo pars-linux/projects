@@ -26,6 +26,8 @@ from . import base
 from kaptan.tools.desktop_parser import DesktopParser
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
+HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrMenu', 'scrWallpaper']
+TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
 
 CONFIG_KXBRC = KConfig("kxkbrc")
