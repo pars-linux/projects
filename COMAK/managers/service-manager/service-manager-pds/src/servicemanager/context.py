@@ -13,6 +13,7 @@ Pds = pds.Pds('service-manager', debug = False)
 
 i18n = Pds.i18n
 KIconLoader = QIconLoader(Pds)
+KIconLoader._forceCache = True
 KIcon = KIconLoader.icon
 
 time_counter = 0
