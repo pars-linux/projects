@@ -9,6 +9,7 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
+from pisi.actionsapi import get
 
 def setup():
     shelltools.system("./autogen.sh")
@@ -17,6 +18,6 @@ def build():
     autotools.make()
 def install():
     autotools.install()
-    pisitools.domove("/usr/share/linux-gnu-x86_64-ver-pre-svn-08/module.so","/usr/share/enlightenment/module/iiirk/")
+    pisitools.domove("/usr/share/linux-gnu-%s-ver-pre-svn-08/module.so" % get.ARCH(),"/usr/share/enlightenment/module/iiirk/")
     pisitools.domove("/usr/share/module.desktop","/usr/share/enlightenment/module/iiirk/")
     pisitools.dodoc("AUTHORS", "COPYING", "README")
