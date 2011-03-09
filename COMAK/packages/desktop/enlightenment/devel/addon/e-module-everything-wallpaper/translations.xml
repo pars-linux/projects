@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-everything-wallpaper</Name>
+        <Summary xml:lang="tr">Duvar kağıdı ayar modülü</Summary>
+        <Description xml:lang="">Duvar kağıdını ayarlamak için E17 modülü.</Description>
+    </Source>
+</PISI>
+
