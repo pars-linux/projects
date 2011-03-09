@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>elmdentica</Name>
+        <Summary xml:lang="tr">Elementary için yapılmış basit bir Identi.ca istemcisi</Summary>
+        <Description xml:lang="tr">Elmdentica, Elementary için yapılmış basit bir Identi.ca istemcisidir. Kullanması son derece kolaydır. Kurulumdan sonra hesaplarınızı eklemeniz gerekmektedir.</Description>
+    </Source>
+</PISI>
+

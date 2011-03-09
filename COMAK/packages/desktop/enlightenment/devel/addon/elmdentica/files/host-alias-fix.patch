@@ -1,0 +1,65 @@
+diff -Naur elmdentica-0.8.0.orig//aclocal.m4 elmdentica-0.8.0/aclocal.m4
+--- elmdentica-0.8.0.orig//aclocal.m4	2009-12-27 22:58:09.000000000 +0200
++++ elmdentica-0.8.0/aclocal.m4	2011-03-09 17:02:31.098000002 +0200
+@@ -2786,7 +2786,7 @@
+ 
+ # Always use our own libtool.
+ LIBTOOL='$(SHELL) $(top_builddir)'
+-LIBTOOL="$LIBTOOL/$host_alias-libtool"
++LIBTOOL="$LIBTOOL/$host-libtool"
+ AC_SUBST(LIBTOOL)dnl
+ 
+ _LT_SETUP
+@@ -2908,7 +2908,7 @@
+ no_glob_subst='s/\*/\\\*/g'
+ 
+ # Global variables:
+-ofile=${host_alias}-libtool
++ofile=${host}-libtool
+ can_build_shared=yes
+ 
+ # All known linkers require a `.a' archive for static linking (except MSVC,
+diff -Naur elmdentica-0.8.0.orig//configure elmdentica-0.8.0/configure
+--- elmdentica-0.8.0.orig//configure	2009-12-27 22:58:10.000000000 +0200
++++ elmdentica-0.8.0/configure	2011-03-09 17:42:40.058000002 +0200
+@@ -10564,7 +10564,7 @@
+ 
+ # Always use our own libtool.
+ LIBTOOL='$(SHELL) $(top_builddir)'
+-LIBTOOL="$LIBTOOL/$host_alias-libtool"
++LIBTOOL="$LIBTOOL/$host-libtool"
+ 
+ 
+ 
+@@ -10682,7 +10682,7 @@
+ no_glob_subst='s/\*/\\\*/g'
+ 
+ # Global variables:
+-ofile=${host_alias}-libtool
++ofile=${host}-libtool
+ can_build_shared=yes
+ 
+ # All known linkers require a `.a' archive for static linking (except MSVC,
+diff -Naur elmdentica-0.8.0.orig//src/settings.c elmdentica-0.8.0/src/settings.c
+--- elmdentica-0.8.0.orig//src/settings.c	2009-12-27 17:18:00.000000000 +0200
++++ elmdentica-0.8.0/src/settings.c	2011-03-09 17:20:44.138000001 +0200
+@@ -861,16 +861,16 @@
+ 			icon = elm_photo_add(settings_win);
+ 				elm_photo_file_set(icon, "head.png");
+ 				evas_object_show(icon);
+-			item = elm_toolbar_item_add(toolbar, icon, _("Accounts"), on_settings_accounts, NULL);
++			item = elm_toolbar_item_append(toolbar, icon, _("Accounts"), on_settings_accounts, NULL);
+ 
+ 			icon = elm_photo_add(settings_win);
+ 				elm_icon_standard_set(icon, "apps");
+ 				evas_object_show(icon);
+-			elm_toolbar_item_add(toolbar, icon, _("Cache"), on_settings_cache, NULL);
++			elm_toolbar_item_append(toolbar, icon, _("Cache"), on_settings_cache, NULL);
+ 
+ 		elm_box_pack_start(box, toolbar);
+ 		evas_object_show(toolbar);
+-		elm_toolbar_item_select(item);
++		elm_toolbar_item_selected_set(item, EINA_TRUE);
+ 
+ 	evas_object_show(box);
+ 	evas_object_resize(settings_win, 300, 300);
