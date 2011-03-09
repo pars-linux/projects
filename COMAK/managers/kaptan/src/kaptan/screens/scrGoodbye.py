@@ -16,7 +16,9 @@ from PyQt4.QtCore import *
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-from kaptan.plugins import Desktop
+
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdecore import ki18n, KGlobal, KConfig
 
 import subprocess, sys
 
@@ -33,8 +35,10 @@ class Widget(QtGui.QWidget, Screen):
         self.ui = Ui_goodbyeWidget()
         self.ui.setupUi(self)
 
-        lang = Desktop.common.getLanguage()
+       # lang = KGlobal.locale().language()
 
+        lang=QLocale().language()
+    
         if lang == 125:
             self.helpPageUrl = "http://www.pardus.org.tr/destek"
         else:
@@ -47,16 +51,27 @@ class Widget(QtGui.QWidget, Screen):
         self.procSettings.start("systemsettings")
 
     def on_buttonHelpPages_clicked(self):
-        Desktop.common.showUrl(self.helpPageUrl)
+	#self.procSettings = QProcess()
+        #command = "openURL (" + self.helpPageUrl+")"
+        #self.procSettings.start(command)
+	QtGui.QDesktopServices().openUrl(QUrl(self.helpPageUrl))
     def on_buttonSystemSettings_2_clicked(self):
-        Desktop.common.showUrl(self.smoltUrl)
-        
-        #Qt
-        #QtGui.QDesktopServices().openUrl(QUrl(self.smoltUrl))
+        #self.procSettings = QProcess()
+        #command = "openURL (" + self.smoltUrl+")"
+        #self.procSettings.start(command)
+	QtGui.QDesktopServices().openUrl(QUrl(self.smoltUrl))
+    
     def setSmolt(self):
-        if not self.smoltSettings["profileSend"]:
-            self.ui.smoltGroupBox.hide()
-            self.ui.label.hide()
+      # Smolt Settings
+        if self.smoltSettings["profileSend"]:
+            self.procSettings = QProcess()
+            command = "smoltSendProfile"
+            arguments = ["-a", "--submitOnly"]
+            self.procSettings.startDetached(command, arguments)
+
+#       if not self.smoltSettings["profileSend"]:
+#            self.ui.smoltGroupBox.hide()
+#            self.ui.label.hide()
 
     def shown(self):
        self.smoltSettings = smoltWidget.Widget.screenSettings
@@ -64,5 +79,6 @@ class Widget(QtGui.QWidget, Screen):
 
     def execute(self):
        return True
+       
 
 

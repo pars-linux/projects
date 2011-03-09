@@ -11,7 +11,7 @@
 #
 #PyQt4 Stuff
 from PyQt4 import QtGui
-from PyQt4.QtCore import QString
+from PyQt4.QtCore import QString,QProcess
 from PyQt4.QtGui import QMessageBox
 
 import subprocess,os, dbus
@@ -28,10 +28,9 @@ from kaptan.screens.ui_scrSummary import Ui_summaryWidget
 import kaptan.screens.scrWallpaper as wallpaperWidget
 import kaptan.screens.scrMouse as mouseWidget
 import kaptan.screens.scrStyle as styleWidget
-import kaptan.screens.scrMenu as menuWidget
 import kaptan.screens.scrSmolt  as smoltWidget
 import kaptan.screens.scrAvatar  as avatarWidget
-
+import kaptan.screens.scrPackage as packageWidget
 from kaptan.tools import tools
 
 if ctx.Pds.session == ctx.pds.Kde4:
@@ -49,11 +48,9 @@ class Widget(QtGui.QWidget, Screen):
     def shown(self):
         self.wallpaperSettings = wallpaperWidget.Widget.screenSettings
         self.mouseSettings = mouseWidget.Widget.screenSettings
-        self.menuSettings = menuWidget.Widget.screenSettings
         self.styleSettings = styleWidget.Widget.screenSettings
         self.smoltSettings = smoltWidget.Widget.screenSettings
         self.avatarSettings = avatarWidget.Widget.screenSettings
-
         subject = "<p><li><b>%s</b></li><ul>"
         item    = "<li>%s</li>"
         end     = "</ul></p>"
@@ -68,10 +65,6 @@ class Widget(QtGui.QWidget, Screen):
         content.append(item % i18n("Selected clicking behavior: <b>%s</b>")% self.mouseSettings["summaryMessage"]["clickBehavior"])
         content.append(end)
 
-        # Menu Settings
-        content.append(subject % i18n("Menu Settings"))
-        content.append(item % i18n("Selected Menu: <b>%s</b>") % self.menuSettings["summaryMessage"])
-        content.append(end)
 
         # Wallpaper Settings
         content.append(subject % i18n("Wallpaper Settings"))
@@ -82,14 +75,25 @@ class Widget(QtGui.QWidget, Screen):
         content.append(end)
 
         # Style Settings
+        
         content.append(subject % i18n("Style Settings"))
 
         if not self.styleSettings["hasChanged"]:
             content.append(item % i18n("You haven't selected any style."))
         else:
             content.append(item % i18n("Selected Style: <b>%s</b>") % unicode(self.styleSettings["summaryMessage"]))
+            content.append(item % i18n("Desktop Number: <b>%s</b>") % unicode(self.styleSettings["desktopNumber"]))
 
         content.append(end)
+
+        # Package Settings
+        
+        #content.append(subject % i18n("Package Settings"))
+        #if not self.packageWidget.ui.checkBox.isChecked():
+        #    content.append(item % i18n("You haven't added any repo."))
+        #else:
+        #    content.append(item % i18n("You have add "+ctx.Pds.session.Name +" repo."))
+        #content.append(end)
 
         # Smolt Settings
         try:
@@ -132,9 +136,6 @@ class Widget(QtGui.QWidget, Screen):
         if self.wallpaperSettings["hasChanged"]:
             Desktop.wallpaper.setWallpaper(self.wallpaperSettings["selectedWallpaper"])
 
-        # Menu Settings
-        if self.menuSettings["hasChanged"]:
-            Desktop.menu.setMenuSettings(self.menuSettings["selectedMenu"])
 
         # Desktop Type
         if self.styleSettings["hasChangedDesktopType"]:
@@ -163,7 +164,7 @@ class Widget(QtGui.QWidget, Screen):
             self.procSettings.startDetached(command, arguments)
 
         for settings in [self.wallpaperSettings, self.mouseSettings,\
-self.menuSettings, self.styleSettings, self.smoltSettings,\
+ self.styleSettings, self.smoltSettings,\
 self.avatarSettings]:
             if (ctx.Pds.session==ctx.pds.Kde4) and settings.get("hasChanged",False):
                 self.killPlasma()
