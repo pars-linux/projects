@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>PCMan File Manager</Summary>
         <Description>PCMan File Manager is an extremly fast and lightweight file manager for LXDE.</Description>
-        <Archive sha1sum="bbc5c56d24597f59a98c69dc0b51af64561836af" type="tarbz2">http://x86-64.comu.edu.tr/lxde/pcmanfm-0.9.8_20110202.tar.bz2</Archive>
+        <Archive sha1sum="bbc5c56d24597f59a98c69dc0b51af64561836af" type="tarbz2">http://comak.comu.edu.tr/source/pcmanfm-0.9.8_20110202.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
