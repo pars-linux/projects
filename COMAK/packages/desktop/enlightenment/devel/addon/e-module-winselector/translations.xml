@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-winselector</Name>
+        <Summary xml:lang="tr">Enlightenment için pencere seçme modülü</Summary>
+        <Description xml:lang="tr">e-module-winselector, Enlightenment için bir pencere seçme modülüdür.</Description>
+    </Source>
+</PISI>
+
