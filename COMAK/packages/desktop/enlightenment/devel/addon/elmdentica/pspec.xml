@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>elmdentica</Name>
+        <Homepage>http://code.google.com/p/elmdentica/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>a simple Identi.ca client made with Elementary</Summary>
+        <Description>Elmdentica is a simple Identi.ca client made with Elementary. It's easy to use, and it will be even easier to setup. After installing you need to add your accounts.</Description>
+        <Archive sha1sum="2ea24d85e6088ad7649fa76eb3a94e75816d8fed" type="targz">http://elmdentica.googlecode.com/files/elmdentica-0.8.0.tar.gz</Archive>
+        <!--BuildDependencies>
+            <Dependency></Dependency>
+        </BuildDependencies-->
+        <Patches>
+            <Patch level="1">host-alias-fix.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>elmdentica</Name>
+        <!--RuntimeDependencies>
+            <Dependency versionFrom=""></Dependency>
+        </RuntimeDependencies-->
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-09</Date>
+            <Version>0.8.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
