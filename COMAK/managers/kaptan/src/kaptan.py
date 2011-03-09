@@ -16,10 +16,7 @@ from kaptan.screens.ui_kaptan import Ui_kaptan
 from kaptan.tools import tools
 from kaptan.tools.progress_pie import DrawPie
 from kaptan.tools.kaptan_menu import Menu
-
-#QSettings path ayarı
-HOME_DIR = os.environ["HOME"]
-QSettings.setPath(QSettings.IniFormat, QSettings.UserScope, HOME_DIR)
+from kaptan.plugins import Desktop
 
 class Kaptan(QtGui.QWidget):
     def __init__(self, parent = None):
@@ -60,8 +57,18 @@ class Kaptan(QtGui.QWidget):
         tools.loadScreens(self.screensPath, globals())
 
         # kaptan screen settings
-        self.headScreens = [scrWelcome, scrMouse, scrStyle, scrMenu, scrWallpaper]
-        self.tailScreens = [scrSummary, scrGoodbye]
+        availableScreens = [scrWelcome, scrMouse, scrStyle, scrMenu, scrWallpaper, scrSummary, scrGoodbye]
+        self.headScreens = []
+        self.tailScreens = []
+        for screen in availableScreens:
+            for screen2 in Desktop.HEAD_SCREENS:
+                if screen2 in screen.__name__:
+                    self.headScreens.append(screen)
+
+            for screen2 in Desktop.TAIL_SCREENS:
+                if screen2 in screen.__name__:
+                    self.tailScreens.append(screen)
+        print self.headScreens,self.tailScreens
         self.screens = self.screenOrganizer(self.headScreens, self.tailScreens)
 
         # Add screens to StackWidget
@@ -95,7 +102,7 @@ class Kaptan(QtGui.QWidget):
         otherScreens.remove(scrSmolt)
 
         screens.extend(headScreens)
-        screens.extend(otherScreens)
+        #screens.extend(otherScreens)
 
         # Append other screens depending on the following cases
         if tools.isLiveCD():
@@ -108,7 +115,7 @@ class Kaptan(QtGui.QWidget):
                 screens.append(scrSmolt)
 
         screens.extend(tailScreens)
-
+        print screens
         return screens
 
     def getCur(self, d):

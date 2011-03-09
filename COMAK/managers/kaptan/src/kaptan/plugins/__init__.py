@@ -22,6 +22,9 @@ __plugins = {
             }
 
 class Desktop:
+    HEAD_SCREENS = []
+    TAIL_SCREENS = []
+
     keyboard = None
     mouse = None
     menu = None
@@ -33,7 +36,7 @@ class Desktop:
 def init(session):
     module_name = __plugins[session]
     exec "from kaptan.plugins.%s import Keyboard,Mouse,Menu\
-,Wallpaper,Common,Style,Package" % module_name
+,Wallpaper,Common,Style,Package,HEAD_SCREENS,TAIL_SCREENS" % module_name
     Desktop.keyboard = Keyboard()
     Desktop.mouse =  Mouse()
     Desktop.menu = Menu()
@@ -41,6 +44,8 @@ def init(session):
     Desktop.common = Common()
     Desktop.style = Style()
     Desktop.package = Package()
+    Desktop.HEAD_SCREENS = HEAD_SCREENS
+    Desktop.TAIL_SCREENS = TAIL_SCREENS
 
 init(ctx.Pds.session)
 
