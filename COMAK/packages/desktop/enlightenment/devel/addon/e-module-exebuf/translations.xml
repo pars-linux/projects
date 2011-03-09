@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-exebuf</Name>
+        <Summary xml:lang="tr">Exebuf Program Başlatıcı</Summary>
+        <Description xml:lang="tr">Exebuf, Enlightenment için program başlatıcı modül.</Description>
+    </Source>
+</PISI>
+
