@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Library for file management</Summary>
         <Description>libfm is a LXDE library for file management.</Description>
-        <Archive sha1sum="24c1c0cdf27509eb05f89bdac8b79d6253e14837" type="tarbz2">http://x86-64.comu.edu.tr/lxde/libfm-0.1.14_20110202.tar.bz2</Archive>
+        <Archive sha1sum="24c1c0cdf27509eb05f89bdac8b79d6253e14837" type="tarbz2">http://comak.comu.edu.tr/source/libfm-0.1.14_20110202.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>lxde-menu-cache-devel</Dependency>
             <Dependency>fontconfig-devel</Dependency>
