@@ -1,8 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011 - Comak LXDE i686 (Bonobo)</Title>
-    <WorkDir>/home/mesutcan/pardusman/release</WorkDir>
-    <ReleaseFiles>/home/mesutcan/pardusman/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="file:///home/mesutcan/pardusman/repo/pisi-index.xml">
+    <Title>Pardus 2011 - Comak LXDE i686 [Bonobo]</Title>
+    <WorkDir>/root/pardusman/work/lxde/workDir</WorkDir>
+    <ReleaseFiles>/root/pardusman/work/lxde/releaseNotes</ReleaseFiles>
+    <PackageSelection repo_uri="file:///root/pardusman/repo/pisi-index.xml.xz">
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
