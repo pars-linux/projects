@@ -14,6 +14,14 @@ import piksemel
 from PyQt4.QtCore import QSettings,QDir,QStringList
 from . import base
 
+from kaptan.tools.desktop_parser import DesktopParser
+from kaptan.screens.scrStyle import Widget as scrStyleWidget
+
+CONFIG_KEYBOARD = QSettings("lxsession/LXDE","desktop")
+CONFIG_MOUSE_singleclick = QSettings("libfm","libfm")
+CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
+CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
+
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
