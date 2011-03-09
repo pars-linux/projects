@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-iiirk</Name>
+        <Summary xml:lang="tr">Görev çubuğu benzeri modul</Summary>
+        <Description xml:lang="tr">Sadece seçilen uygulamalar için görev çubuğu gibi davranan bir modüldür.</Description>
+    </Source>
+</PISI>
+
