@@ -124,7 +124,6 @@ class Widget(QtGui.QWidget, Screen):
             self.__class__.screenSettings["selectedMouse"] = "LeftHanded"
 
         Desktop.mouse.setReverseScrollPolarity(QString(str(self.ui.checkReverse.isChecked())))
-        Desktop.mouse.emitChange()
 
     def shown(self):
         pass
@@ -135,6 +134,5 @@ class Widget(QtGui.QWidget, Screen):
         self.__class__.screenSettings["summaryMessage"].update({"selectedMouse": i18n("Left Handed") if self.__class__.screenSettings["selectedMouse"] == "LeftHanded" else i18n("Right Handed")})
         self.__class__.screenSettings["summaryMessage"].update({"clickBehavior": i18n("Single Click ") if self.clickBehavior else i18n("Double Click")})
         Desktop.mouse.setMouseSingleClick(str(self.clickBehavior))
-        Desktop.mouse.emitChange()
         return True
 

@@ -76,11 +76,7 @@ class Widget(QtGui.QWidget, Screen):
             self.__class__.screenSettings["selectedMenu"] = 'launcher'
 
             self.ui.pictureMenuStyles.setPixmap(self.menuNames["launcher"]["image"])
-            try:
-                self.ui.labelMenuDescription.setText(self.menuNames["launcher"]["description"].toString())
-            except AttributeError:
-                self.ui.labelMenuDescription.setText(self.menuNames["launcher"]["description"])
-
+            self.ui.labelMenuDescription.setText(self.menuNames["launcher"]["description"].toString())
         elif currentIndex == 1:
             self.__class__.screenSettings["selectedMenu"] = 'simplelauncher'
 

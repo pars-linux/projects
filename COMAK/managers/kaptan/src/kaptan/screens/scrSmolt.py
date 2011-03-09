@@ -111,10 +111,10 @@ class Widget(QtGui.QWidget, Screen):
 
         if self.ui.stackedWidget.currentIndex() == 0:
             self.ui.stackedWidget.setCurrentIndex(1)
-            self.ui.privacyButton.setText(kdecore.i18n("&Host Information"))
+            self.ui.privacyButton.setText(i18n("&Host Information"))
         else:
             self.ui.stackedWidget.setCurrentIndex(0)
-            self.ui.privacyButton.setText(kdecore.i18n("&Privacy policy"))
+            self.ui.privacyButton.setText(i18n("&Privacy policy"))
 
     def getLabels(self):
         self.sendable_host_labels = [ i18n("UUID"),

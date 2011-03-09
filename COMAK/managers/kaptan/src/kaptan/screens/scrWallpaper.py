@@ -59,7 +59,7 @@ class Widget(QtGui.QWidget, Screen):
             item.setSizeHint(QSize(120,170))
             self.ui.listWallpaper.setItemWidget(item, widget)
             # Add a hidden value to each item for detecting selected wallpaper's path.
-            item.setStatusTip(wallpaper["wallpaperFile"])
+            item.setStatusTip(wallpaper["wallpaperThumb"])
 
         self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.wallpaperChanged)
         self.ui.checkBox.connect(self.ui.checkBox, SIGNAL("stateChanged(int)"), self.disableWidgets)
@@ -81,7 +81,6 @@ class Widget(QtGui.QWidget, Screen):
 
     def selectWallpaper(self):
         selectedFile = QFileDialog.getOpenFileName(None,"Open Image", os.environ["HOME"], 'Image Files (*.png *.jpg *bmp)')
-
         if selectedFile.isNull():
             return
         else:
@@ -89,11 +88,11 @@ class Widget(QtGui.QWidget, Screen):
             wallpaperName = os.path.splitext(os.path.split(str(selectedFile))[1])[0]
             widget = WallpaperItemWidget(unicode(wallpaperName), unicode("Unknown"), selectedFile, self.ui.listWallpaper)
             item.setSizeHint(QSize(120,170))
-            self.ui.listWallpaper.setItemWidget(item, widget)
+            self.ui.listWallpaper.setItemWidget(item,widget)
             item.setStatusTip(selectedFile)
             self.ui.listWallpaper.setCurrentItem(item)
             self.resize(120,170)
-
+        self.execute()
     def shown(self):
         pass
 

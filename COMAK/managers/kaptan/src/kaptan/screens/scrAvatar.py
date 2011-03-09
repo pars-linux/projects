@@ -16,7 +16,7 @@
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import *
-
+from PyQt4.QtGui import QFileDialog
 #from PyQt4.QtGui import *
 #from PyKDE4.kdecore import ki18n
 #from PyKDE4.kdecore import i18n

@@ -10,8 +10,12 @@
 # Please read the COPYING file.
 #
 
-from PyQt4 import QtGui
+from kaptan.screens.ui_scrWallpaper import Ui_wallpaperWidget
+from kaptan.screens.wallpaperItem import WallpaperItemWidget
+
+from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import *
+from PyQt4.QtGui import QListWidgetItem
 #from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
 #from PyKDE4 import kdeui
 
@@ -47,79 +51,42 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_styleWidget()
         self.ui.setupUi(self)
-
+        self.ui.label.setText(str(ctx.Pds.session.Name)+" Themes")
         self.styleDetails = {}
         self.catLang = Desktop.common.getLanguage()
-
         #config = KConfig("kwinrc")
         #group = config.group("Desktops")
         defaultDesktopNumber = Desktop.style.getDesktopNumber()
-
+        self.__class__.screenSettings["desktopNumber"]= defaultDesktopNumber
         self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
-        lst2 = glob.glob1("/usr/share/kde4/apps/kaptan/kaptan/kde-themes", "*.style")
+        dir = QtCore.QDir("/usr/share/themes")
+        dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
+        lst2 = dir.entryList()
 
-        for desktopFiles in lst2:
-            parser = DesktopParser()
-            parser.read("/usr/share/kde4/apps/kaptan/kaptan/kde-themes/" +str(desktopFiles))
+        for themes in lst2:
             try:
-                styleName = unicode(parser.get_locale('Style', 'name[%s]'%self.catLang, ''))
+                try:
+                    StyleName = themes
+                except :
+                    StyleName = themes+"title"
+                try:
+                    StyleDesc = themes+"Desc"
+                except:
+                    StyleDesc = "unknown"
             except:
-                styleName = unicode(parser.get_locale('Style', 'name', ''))
-            try:
-                styleDesc = unicode(parser.get_locale('Style', 'description[%s]'%self.catLang, ''))
-            except:
-                styleDesc = unicode(parser.get_locale('Style', 'description', ''))
-            try:
-                # TODO find a fallback values for these & handle exceptions seperately.
-                #styleApplet = parser.get_locale('Style', 'applets', '')
-                panelPosition = parser.get_locale('Style', 'panelPosition', '')
-                #styleColorScheme = parser.get_locale('Style', 'colorScheme', '')
-                widgetStyle = unicode(parser.get_locale('Style', 'widgetStyle', ''))
-                desktopTheme = unicode(parser.get_locale('Style', 'desktopTheme', ''))
-                colorScheme = unicode(parser.get_locale('Style', 'colorScheme', ''))
-
-                self.iconTheme =  unicode(self.ui.listIcon.selectedItems()[0].text())
-                self.iconTheme = str(self.iconTheme.split()[0]).lower()
-                self.__class__.screenSettings["iconTheme"] = self.iconTheme
-
-                windowDecoration = unicode(parser.get_locale('Style', 'windowDecoration', ''))
-                styleThumb = unicode(os.path.join("/usr/share/kde4/apps/kaptan/kaptan/kde-themes/",  parser.get_locale('Style', 'thumbnail','')))
-
-                colorDict = {}
-                colorDir = "/usr/share/kde4/apps/color-schemes/"
-                self.Config = ConfigParser()
-                self.Config.optionxform = str
-                color = colorDir + colorScheme + ".colors"
-                if not os.path.exists(color):
-                    color = colorDir + "Oxygen.colors"
-
-                self.Config.read(color)
-                #colorConfig= KConfig("kdeglobals")
-                for i in self.Config.sections():
-                    #colorGroup = colorConfig.group(str(i))
-                    colorDict[i] = {}
-                    for key, value in self.ConfigSectionMap(i).items():
-                        colorDict[i][key] = value
-                        #colorGroup.writeEntry(str(key), str(value))
-
-                self.styleDetails[styleName] = {
-                        "description": styleDesc, 
-                        "widgetStyle": widgetStyle, 
-                        "colorScheme": colorDict, 
-                        "desktopTheme": desktopTheme, 
-                        "iconTheme": self.iconTheme, 
-                        "windowDecoration": windowDecoration, 
-                        "panelPosition": panelPosition
-                        }
-
+                print "Warning! Invalid syntax in ", themes
+            ThemeFile = themes
+            thumbFolder = "/usr/share/kaptan/kaptan/themes/" +themes+ ".png"
+            if (os.path.exists("/usr/share/kaptan/kaptan/themes/"+themes+".png")):
+                styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
-                widget = StyleItemWidget(unicode(styleName), unicode(styleDesc), styleThumb, self.ui.listStyles)
-                self.ui.listStyles.setItemWidget(item, widget)
+                widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
                 item.setSizeHint(QSize(120,170))
-                item.setStatusTip(styleName)
-            except:
-                print "Warning! Invalid syntax in ", desktopFiles
-
+                self.ui.listStyles.setItemWidget(item,widget)
+                item.setStatusTip(ThemeFile)
+                self.styleDetails[StyleName] = {
+                        "description":StyleDesc
+                        }
         self.ui.listStyles.connect(self.ui.listStyles, SIGNAL("itemSelectionChanged()"), self.setStyle)
         self.ui.listIcon.connect(self.ui.listIcon, SIGNAL("itemClicked(QListWidgetItem *)"), self.setIcon)
         self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
@@ -161,9 +128,7 @@ class Widget(QtGui.QWidget, Screen):
 
         self.__class__.screenSettings["styleDetails"] = self.styleDetails
         self.__class__.screenSettings["styleName"] = styleName
-
     def setIcon(self):
-        print "icon item pressed"
         self.__class__.screenSettings["hasChanged"] = True
         self.iconTheme =  unicode(self.ui.listIcon.selectedItems()[0].text())
         self.iconTheme = str(self.iconTheme.split()[0]).lower()
