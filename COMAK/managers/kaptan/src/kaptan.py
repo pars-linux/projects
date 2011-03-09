@@ -114,7 +114,6 @@ class Kaptan(QtGui.QWidget):
                 screens.append(scrSmolt)
 
         screens.extend(tailScreens)
-        print screens
         return screens
 
     def getCur(self, d):

@@ -10,9 +10,6 @@
 # Please read the COPYING file.
 #
 
-from kaptan.screens.ui_scrWallpaper import Ui_wallpaperWidget
-from kaptan.screens.wallpaperItem import WallpaperItemWidget
-
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import *
 from PyQt4.QtGui import QListWidgetItem
@@ -65,7 +62,6 @@ class Widget(QtGui.QWidget, Screen):
         dir = QtCore.QDir("/usr/share/themes")
         dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
         lst2 = dir.entryList()
-
         for themes in lst2:
             try:
                 try:

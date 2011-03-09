@@ -10,17 +10,17 @@
 # Please read the COPYING file.
 
 import os,sys
+import time
 import piksemel
-from PyQt4.QtCore import QSettings,QDir,QStringList
+from PyQt4.QtCore import *
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
-CONFIG_KEYBOARD = QSettings("lxsession/LXDE","desktop")
-CONFIG_MOUSE_singleclick = QSettings("libfm","libfm")
-CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
-CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
+#CONFIG_KEYBOARD = QSettings("lxsession/LXDE","desktop")
+#CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
+#CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
 
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
@@ -29,6 +29,7 @@ CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"],
                         QSettings.IniFormat)
 FILE_OPENBOXRC = "%s/.config/openbox/lxde-rc.xml"%os.environ["HOME"]
 CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
+CONFIG_LXSESSION = QSettings("%s/.config/lxsession/LXDE/desktop.conf"%os.environ["HOME"])
 
 # shared LXDE methods
 
@@ -40,50 +41,34 @@ def save_openboxrc(tree):
 # end of shared LXDE methods
 
 class Keyboard(base.Keyboard):
-
-    def getKeyboardDelay(self):
-        '''get available keyboard delay from conf 
-        file'''
-        group = CONFIG_KEYBOARD.beginGroup("Keyboard")
-        return str(group.value("Delay"))
-    def getKeyboardInterval(self):
-        '''get available keyboard Interval from conf·
-        file'''
-        group = CONFIG_KEYBOARD.beginGroup("Keyboard")
-        return str(group.value("Interval"))
-
-    def setKeyboardLayoutList(self,delay,interval):
-        '''set keyboard delay'''
-        group =CONFIG_KEYBOARD.beginGroup("Keyboard")
-        group.setValue("Delay",delay)
-        group.setValue("Interval",interval)
-        CONFIG_KEYBOARD.sync()
-        return True
+    pass
 
 class Mouse(base.Mouse):
 
     def getMouseHand(self):
         '''get mouse hand from conf file'''
-        return CONFIG_MOUSE_lefthanded.value("Mouse/LeftHanded")
+        return CONFIG_LIBFM.value("Mouse/LeftHanded")
 
     def setMouseHand(self,mouseHand):
         '''set mouse hand to conf file'''
-        CONFIG_MOUSE_lefthanded.setValue("Mouse/LeftHanded",QString(mouseHand))
-        CONFIG_MOUSE_lefthanded.sync()
+        CONFIG_LIBFM.setValue("Mouse/LeftHanded",QString(mouseHand))
+        CONFIG_LIBFM.sync()
 
     def setMouseSingleClick(self,clickBehaviour):
         '''set single/double click choice'''
-        CONFIG_MOUSE_singleclick.setValue("Mouse/single_click",str(clickBehaviour))
-        CONFIG_MOUSE_singleclick.sync()
+        new_value = (clickBehaviour and 1) or 0
+        CONFIG_LIBFM.setValue("config/single_click",new_value)
+        return True
 
     def getMouseSingleClick(self):
         '''get if single/double click is choiced'''
-        return str(CONFIG_MOUSE_singleclick.readEntry("Mouse/single_click"))
+        single_click = CONFIG_LIBFM.value("config/single_click").toInt()[0]
+        return single_click and True or False
 
     def setReverseScrollPolarity(self,isChecked):
         '''set reverse scroll polarity'''
-        CONFIG_MOUSE_singleclick.setValue("Mouse/ReverseScrollPolarity",QString(str(isChecked)))
-        CONFIG_MOUSE_singleclick.sync()
+        CONFIG_LIBFM.setValue("Mouse/ReverseScrollPolarity",QString(str(isChecked)))
+        CONFIG_LIBFM.sync()
 
 class Wallpaper(base.Wallpaper):
 
@@ -143,20 +128,29 @@ class Common(base.Common):
 class Style(base.Style):
 
     def getDesktopNumber(self):
-        return 3
+        desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
+        return desktop_number
 
     def setDesktopNumber(self):
-        pass
+        dn = scrStyleWidget.screenSettings["desktopNumber"]
+        CONFIG_OPENBOX.getTag("desktops").getTag("number").setData(dn)
+        save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
-        pass
+        themeName = scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["widgetStyle"]
+        print themeName
 
     def setStyleSettings(self):
         pass
+
     def setDesktopType(self):
         pass
+
     def reconfigure(self):
-        pass
+        os.system("openbox --restart")
+        os.system("pcmanfm --desktop-off")
+        time.sleep(1)
+        os.system("pcmanfm -d")
 
 class Package(base.Package):
 
