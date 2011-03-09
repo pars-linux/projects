@@ -13,7 +13,7 @@ import os
 import dbus
 
 #QT Stuff
-from PyQt4.QtCore import QString,QVariant,QProcess,QSettings
+from PyQt4.QtCore import QString,QVariant,QProcess,QSettings,QLocale
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import QDir,QStringList
 from . import base
@@ -93,7 +93,10 @@ class Common(base.Common):
 
 
     def getLanguage(self):
-        return "tr"
+        locale= str(QLocale.system().name())
+        lang=locale.split("_")[0]
+        return lang
+
 
 class Style(base.Style):
 
