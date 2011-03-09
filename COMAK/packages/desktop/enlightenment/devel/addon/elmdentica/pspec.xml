@@ -13,9 +13,11 @@
         <Summary>a simple Identi.ca client made with Elementary</Summary>
         <Description>Elmdentica is a simple Identi.ca client made with Elementary. It's easy to use, and it will be even easier to setup. After installing you need to add your accounts.</Description>
         <Archive sha1sum="2ea24d85e6088ad7649fa76eb3a94e75816d8fed" type="targz">http://elmdentica.googlecode.com/files/elmdentica-0.8.0.tar.gz</Archive>
-        <!--BuildDependencies>
-            <Dependency></Dependency>
-        </BuildDependencies-->
+        <BuildDependencies>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>elementary-devel</Dependency>
+        </BuildDependencies>
         <Patches>
             <Patch level="1">host-alias-fix.patch</Patch>
         </Patches>
@@ -23,17 +25,15 @@
 
     <Package>
         <Name>elmdentica</Name>
-        <!--RuntimeDependencies>
-            <Dependency versionFrom=""></Dependency>
-        </RuntimeDependencies-->
+        <RuntimeDependencies>
+            <Dependency>evas</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>elementary</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
-            <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
-            <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
     </Package>
