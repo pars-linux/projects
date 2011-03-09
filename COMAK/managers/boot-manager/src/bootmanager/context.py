@@ -9,7 +9,7 @@ from pds.qiconloader import QIconLoader
 Pds = pds.Pds('boot-manager', debug = False)
 # Force to use Default Session for testing
 #Pds.session = pds.DefaultDe
-
+print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 
 i18n = Pds.i18n
 KIconLoader = QIconLoader(Pds)
