@@ -18,7 +18,7 @@ import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 
 from kaptan.screen import Screen
-from kaptan.screens.ui_scrPackage import Ui_packageWidget
+from kaptan.screens.ui_scrPackage_lxde import Ui_packageWidget
 
 import subprocess
 import pisi
