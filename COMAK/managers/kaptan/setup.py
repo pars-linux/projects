@@ -84,8 +84,8 @@ class Build(build):
         os.system("cp -R src build/")
 
         # Copy kde-themes
-        print "Copying kde-themes..."
-        os.system("cp -R data/kde-themes build/kaptan/")
+        print "Copying themes..."
+        os.system("cp -R data/themes build/kaptan/")
 
         #update_messages()
 
@@ -109,7 +109,7 @@ class Install(install):
         bin_dir = os.path.join(kde_dir, "bin")
         locale_dir = os.path.join(kde_dir, "share/locale")
         autostart_dir = os.path.join(kde_dir, "share/autostart")
-        project_dir = os.path.join(kde_dir, "share/kde4/apps", about.appName)
+        project_dir = os.path.join(kde_dir, "share", about.appName)
 
         # Make directories
         print "Making directories..."
