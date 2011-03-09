@@ -6,13 +6,14 @@ import traceback
 from time import time
 from pds.qiconloader import QIconLoader
 
-Pds = pds.Pds('boot-manager', debug = True)
+Pds = pds.Pds('boot-manager', debug = False)
 # Force to use Default Session for testing
 #Pds.session = pds.DefaultDe
 
 
 i18n = Pds.i18n
 KIconLoader = QIconLoader(Pds)
+KIconLoader._forceCache = True
 KIcon = KIconLoader.icon
 
 time_counter = 0
