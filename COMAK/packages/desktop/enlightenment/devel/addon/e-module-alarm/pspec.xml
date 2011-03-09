@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Enlightenment Alarm Module</Summary>
         <Description>A module to set Alarms in Enlightenment 17</Description>
-        <Archive sha1sum="0b0c5fdda040df80ca705a422238b46574e8ad53" type="tarbz2">http://x86-64.comu.edu.tr/lxde/e-module-alarm-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="0b0c5fdda040df80ca705a422238b46574e8ad53" type="tarbz2">http://comak.comu.edu.tr/source/e-module-alarm-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>eina-devel</Dependency>
             <Dependency>eet-devel</Dependency>

@@ -12,8 +12,7 @@
         <IsA>library</IsA>
         <Summary>E17 Edgar Gadgets Loader</Summary>
         <Description>Edgar is the E17 module that load and manage simple edje file.</Description>
-        <Archive sha1sum="04cffa3fcf5237e3a870e8495b41cc776fd00e73" type="">http://x86-64.comu.edu.tr/lxde/edgar-0.0.1_55225.tar.bz2</Archive>
-
+        <Archive sha1sum="04cffa3fcf5237e3a870e8495b41cc776fd00e73" type="bz2">http://comak.comu.edu.tr/source/edgar-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>edje-devel</Dependency>
             <Dependency>enlightenment-devel</Dependency>

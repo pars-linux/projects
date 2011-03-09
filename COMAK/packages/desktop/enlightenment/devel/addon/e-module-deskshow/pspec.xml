@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Show Desktop Module</Summary>
         <Description>Gadget to allow you to quickly uncover your desktop</Description>
-        <Archive sha1sum="28524a8cc464fd589eba4c1807adfc866534e72f" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-deskshow-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="28524a8cc464fd589eba4c1807adfc866534e72f" type="tarbz2">http://comak.comu.edu.tr/source/e-module-deskshow-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>edje-devel</Dependency>
             <Dependency>evas-devel</Dependency>

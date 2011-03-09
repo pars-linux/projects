@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>A Video Frontend for Enlightenment</Summary>
         <Description>Rage is a video frontend using the EFL for Enlightenment.</Description>
-        <Archive sha1sum="f36c8cbb4a8ad9ccf725853b7212c3b2f1facbfa" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/rage-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="f36c8cbb4a8ad9ccf725853b7212c3b2f1facbfa" type="tarbz2">http://comak.comu.edu.tr/source/rage-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>

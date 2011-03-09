@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>E17 Module that display penguins</Summary>
         <Description>penguins is a module that display fancy penguins on your desktop.</Description>
-        <Archive sha1sum="d62fa5c0a518d657d4e7c5745bd27874b67cf9a6" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/e-module-penguins-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="d62fa5c0a518d657d4e7c5745bd27874b67cf9a6" type="tarbz2">http://comak.comu.edu.tr/source/e-module-penguins-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
