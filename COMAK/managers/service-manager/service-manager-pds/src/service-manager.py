@@ -73,15 +73,19 @@ if __name__ == '__main__':
         from pds.quniqueapp import QUniqueApplication
         from servicemanager.context import KIcon
 
+        # Create a QUniqueApllication instance
         app = QUniqueApplication(sys.argv, catalog=about.appName)
 
+        # Create Main Widget and make some settings
         mainWindow = MainManager(None)
         mainWindow.show()
         mainWindow.resize(640, 480)
         mainWindow.setWindowTitle(i18n(about.PACKAGE))
         mainWindow.setWindowIcon(KIcon(about.icon))
 
+        # Create connection for lastWindowClosed signal to quit app
         app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
 
+        # Run the applications
         app.exec_()
 
