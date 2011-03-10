@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-winlist-ng</Name>
+        <Summary xml:lang="tr">Enlightenment için Winlist NG modülü</Summary>
+        <Description xml:lang="tr">Bu modül e17 winlist modülünden farklı görünmekle kalmayıp bir çok yeni özellik de katmaktadır.</Description>
+    </Source>
+</PISI>
+
