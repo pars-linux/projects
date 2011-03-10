@@ -33,8 +33,12 @@ from diskmanager.item import ItemListWidgetItem, ItemWidget
 # Edit widget
 from diskmanager.pagedialog import PageDialog
 
-#Pds Stuff
-from context import *
+#Pds ve Kde4 Stuff
+from diskmanager.context import *
+import diskmanager.context as ctx
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdeui import KIcon
+    from PyKDE4.kdecore import i18n
 
 class MainWidget(QtGui.QWidget, Ui_MainWidget):
     def __init__(self, parent, embed=False):

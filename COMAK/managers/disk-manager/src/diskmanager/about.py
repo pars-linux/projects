@@ -11,28 +11,29 @@
 # Please read the COPYING file.
 #
 
+#Pds Stuff
 import context as ctx
-PACKAGE = "Disk Manager"
-appName= "disk-manager"
-version= "3.0.0"
+
+# Application Data
+PACKAGE  = "Disk Manager"
+appName  = "disk-manager"
+modName  = "diskmanager"
+version  = "3.0.0"
+bugEmail = "bugs@pardus.org.tr"
+homePage = "http://www.pardus.org.tr/eng/projects"
+icon     = "drive-harddisk"
+catalog  = appName
 
 if ctx.Pds.session == ctx.pds.Kde4:
 
-    # PyKDE
+    # PyKDE4 Stuff
     from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
 
-    # Application Data
-    appName     = "disk-manager"
-    modName     = "diskmanager"
     programName = ki18n(PACKAGE)
-    version     = "3.0.0"
     description = ki18n(PACKAGE)
     license     = KAboutData.License_GPL
     copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
     text        = ki18n(None)
-    homePage    = "http://www.pardus.org.tr/eng/projects"
-    bugEmail    = "bugs@pardus.org.tr"
-    catalog     = appName
     aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
 
     # Author(s)

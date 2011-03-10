@@ -15,8 +15,12 @@
 from PyQt4 import QtCore
 from PyQt4 import QtGui
 
-# Pds Stuff
-from diskmanager.context import *
+# Pds ve Kde Stuff
+import context as ctx
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdeui import KIcon
+else:
+    from diskmanager.context import *
 
 # UI
 from diskmanager.ui_item import Ui_ItemWidget
