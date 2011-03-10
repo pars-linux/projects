@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-tclock</Name>
+        <Summary xml:lang="tr">Enlightenment için saat modülü</Summary>
+        <Description xml:lang="tr">e-module-tclock, saati dijital olarak gösteren bir saat modülüdür.</Description>
+    </Source>
+</PISI>
+
