@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-taskbar</Name>
+        <Summary xml:lang="tr">Enlightenment için görev çubuğu modülü</Summary>
+        <Description xml:lang="tr">e-module-taskbar, Enlightenment için yazılmış bir görev çubuğu modülüdür.</Description>
+    </Source>
+</PISI>
+
