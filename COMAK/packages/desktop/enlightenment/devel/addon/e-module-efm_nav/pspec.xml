@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e-module-efm_nav</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>EFM Navigator</Summary>
+        <Description>E17 module that include back-next-up button for E17 file manager.</Description>
+        <Archive sha1sum="0f3ce97f85ca6fa707342fdf5735dacf754d9708" type="tarbz2">http://comak.comu.edu.tr/source/e-module-efm_nav-0.0.1_55225.tar.bz2</Archive>
+        <!--<BuildDependencies>
+            <Dependency></Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level=""></Patch>
+        </Patches>-->
+    </Source>
+
+    <Package>
+        <Name>e-module-efm_nav</Name>
+        <!--<RuntimeDependencies>
+            <Dependency versionFrom=""></Dependency>
+        </RuntimeDependencies>-->
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-10</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
