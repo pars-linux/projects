@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-everything-websearch</Name>
+        <Summary xml:lang="tr">E17 için web arama modulü</Summary>
+        <Description xml:lang="tr">Google ile arama veya Wikipedia sayfalarını gösterme özellikleri sunar.Ayrıca resim upload etme ve Youtube'ta arama yapma özelliklerini içerir.</Description>
+    </Source>
+</PISI>
+
