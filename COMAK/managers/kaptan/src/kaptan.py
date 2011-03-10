@@ -239,11 +239,23 @@ class Kaptan(QtGui.QWidget):
         #group.writeEntry("RunOnStart", "False")
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "-a":
+        kd= os.getenv("HOME")
+        #kaptanrc
+        QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
+        kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
+        start = kaptanConfig.value("General/RunOnStart").toString()
+
+        if start != "False":
+            kaptanConfig.setValue("General/RunOnStart","False")
+        elif start == "False":
+             exit();
+    
     
      # attach dbus to main loop
-     tools.DBus()
+    tools.DBus()
 
-     if ctx.Pds.session == ctx.pds.Kde4:
+    if ctx.Pds.session == ctx.pds.Kde4:
         from PyKDE4 import kdeui
         from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KConfig
 
@@ -272,7 +284,7 @@ if __name__ == "__main__":
         import gettext
         __trans = gettext.translation('kaptan', fallback=True)
         i18n = __trans.ugettext
-        
+
         from pds.quniqueapp import QUniqueApplication
 
         app = QUniqueApplication(sys.argv, catalog="kaptan")

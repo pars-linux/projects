@@ -109,7 +109,7 @@ class Install(install):
         bin_dir = os.path.join(kde_dir, "bin")
         locale_dir = os.path.join(kde_dir, "share/locale")
         autostart_dir = os.path.join(kde_dir, "share/autostart")
-        project_dir = os.path.join(kde_dir, "share", about.appName)
+        project_dir = os.path.join(kde_dir, "share/kde4/apps", about.appName)
 
         # Make directories
         print "Making directories..."
