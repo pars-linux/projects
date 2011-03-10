@@ -11,6 +11,7 @@
 
 import os,sys
 import time
+import re
 import piksemel
 from PyQt4.QtCore import *
 from . import base
@@ -25,11 +26,16 @@ from kaptan.screens.scrStyle import Widget as scrStyleWidget
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
-CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"],
-                        QSettings.IniFormat)
+#libfm configuration files
+CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"], QSettings.IniFormat)
+
+#openbox configuration files
 FILE_OPENBOXRC = "%s/.config/openbox/lxde-rc.xml"%os.environ["HOME"]
 CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
-CONFIG_LXSESSION = QSettings("%s/.config/lxsession/LXDE/desktop.conf"%os.environ["HOME"],QSettings.IniFormat)
+
+#lxsession configuration files
+FILE_LXSESSION = "%s/.config/lxsession/LXDE/desktop.conf"%os.environ["HOME"]
+CONFIG_LXSESSION = ""
 
 # shared LXDE methods
 
@@ -37,6 +43,15 @@ def save_openboxrc(tree):
     fl = open(FILE_OPENBOXRC, "w")
     fl.write(tree.toString())
     fl.close()
+
+def save_lxsession(new):
+    fl = open(FILE_LXSESSION, "w")
+    fl.write(new)
+    fl.close()
+
+def update_lxsession():
+    global CONFIG_LXSESSION
+    CONFIG_LXSESSION = open(FILE_LXSESSION).read()
 
 # end of shared LXDE methods
 
@@ -139,10 +154,10 @@ class Style(base.Style):
         save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
+        update_lxsession()
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
-        CONFIG_LXSESSION.setValue("GTK/sNet/IconThemeName", iconTheme)
-        CONFIG_LXSESSION.setValue("GTK/sNet\IconThemeName", iconTheme)
-        CONFIG_LXSESSION.sync()
+        new_text = re.sub(r"sNet/IconThemeName[ ]?=[ ]?([a-zA-Z_1-9-]{0,100})","sNet/IconThemeName="+iconTheme, CONFIG_LXSESSION)
+        save_lxsession(new_text)
         print iconTheme
 
     def setStyleSettings(self):
@@ -150,15 +165,14 @@ class Style(base.Style):
         CONFIG_OPENBOX.getTag("theme").getTag("name").setData(styleName)
         save_openboxrc(CONFIG_OPENBOX)
 
-
     def setDesktopType(self):
         pass
 
     def reconfigure(self):
-        os.system("lxsession -r")
-        os.system("openbox --restart")
         os.system("pcmanfm --desktop-off")
         os.system("pcmanfm -d --desktop")
+        os.system("lxsession -r")
+        os.system("openbox --restart")
 
 class Package(base.Package):
 
