@@ -19,8 +19,13 @@ from PyQt4 import QtGui
 # UI
 from bootmanager.ui_item import Ui_ItemWidget
 
-#PDS Stuff
-from bootmanager.context import *
+#PDS vs KDE
+import boot.manager.context as ctx
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdeui import KIcon
+    from PyKDE4.kdecore import i18n
+else:
+    from bootmanager.context import KIcon, i18n
 
 class ItemListWidgetItem(QtGui.QListWidgetItem):
     def __init__(self, parent, widget):

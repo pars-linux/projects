@@ -11,14 +11,20 @@
 # Please read the COPYING file.
 #
 
-# PyQt
+# PyQt sruff
 from PyQt4 import QtCore
 from PyQt4 import QtGui
 
-
 # UI
 from bootmanager.ui_edit import Ui_EditWidget
-from context import *
+
+#PDS stuff
+import bootmanager.context as ctx
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdeui import KIcon
+    from PyKDE4.kdecore import i18n
+else:
+    from bootmanager.context import KIcon, i18n
 
 class EditWidget(QtGui.QWidget, Ui_EditWidget):
     def __init__(self, parent):

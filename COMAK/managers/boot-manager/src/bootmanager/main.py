@@ -38,12 +38,15 @@ from bootmanager.options import OptionsWidget
 
 from pardus.diskutils import getPartitions
 
-#PDS stuff
-
-from context import *
+# Pds vs KDE
+import bootmanager.context as ctx
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdeui import KIcon
+    from PyKDE4.kdecore import i18n
+else:
+    from bootmanager.context import KIcon, i18n
 
 PARTITIONS = getPartitions()
-
 
 def getSuggestion(fstypes):
     return filter(lambda x: PARTITIONS[x]['fstype'] in fstypes, PARTITIONS)
