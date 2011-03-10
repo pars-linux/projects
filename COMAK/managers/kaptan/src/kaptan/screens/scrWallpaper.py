@@ -11,7 +11,7 @@
 #
 
 from PyQt4 import QtGui
-from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QFileDialog,QPalette
 #Context
 from kaptan.screens.context import * 
 import kaptan.screens.context as ctx
@@ -45,7 +45,9 @@ class Widget(QtGui.QWidget, Screen):
         self.rect =  QtGui.QDesktopWidget().screenGeometry()
 
         # Get metadata.desktop files from shared wallpaper directory
+        
         lst = Desktop.wallpaper.getWallpaperSettings()
+        self.lst = lst
         for wallpaper in lst:
             # Insert wallpapers to listWidget.
             item = QtGui.QListWidgetItem(self.ui.listWallpaper)
@@ -71,10 +73,18 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.listWallpaper.setDisabled(False)
 
     def setWallpaper(self):
+        for wallpaper_index in range (self.ui.listWallpaper.count()):
+            self.ui.listWallpaper.item(wallpaper_index).setBackground(Qt.white);
+        self.ui.listWallpaper.currentItem().setBackground(Qt.blue)
+
         self.__class__.screenSettings["selectedWallpaper"] =  self.ui.listWallpaper.currentItem().statusTip()
         self.__class__.screenSettings["hasChanged"] = True
 
     def selectWallpaper(self):
+        for wallpaper_index in range(self.ui.listWallpaper.count()):
+            self.ui.listWallpaper.item(wallpaper_index).setBackground(Qt.white);
+        self.ui.listWallpaper.currentItem().setBackground(Qt.blue)
+
         selectedFile = QFileDialog.getOpenFileName(None,"Open Image", os.environ["HOME"], 'Image Files (*.png *.jpg *bmp)')
 
         if selectedFile.isNull():
@@ -88,10 +98,9 @@ class Widget(QtGui.QWidget, Screen):
             item.setStatusTip(selectedFile)
             self.ui.listWallpaper.setCurrentItem(item)
             x= self.size()
-            sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
             self.resize(2,4)
             self.resize(x)
-            
+
     def shown(self):
         pass
 
