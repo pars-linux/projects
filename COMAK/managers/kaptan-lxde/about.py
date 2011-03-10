@@ -17,6 +17,7 @@ import context as ctx
 PACKAGE = "Kaptan"
 appName="kaptan"
 version="3.0.0"
+catalog=appName
 
 if ctx.Pds.session == ctx.pds.Kde4:
   # PyKDE
@@ -33,7 +34,7 @@ if ctx.Pds.session == ctx.pds.Kde4:
   text        = ki18n(" ")
   homePage    = "http://developer.pardus.org.tr/projects/kaptan"
   bugEmail    = "renan@pardus.org.tr"
-  catalog     = appName
+  #catalog     = appName
   aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
 
   # Author(s)
