@@ -579,7 +579,7 @@ diff -Naur '--exclude=help' boot-manager-orig//po/tr.po boot-manager-comak//po/t
  
 diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setup.py
 --- boot-manager-orig//setup.py	2010-12-17 19:11:26.000000000 +0200
-+++ boot-manager-comak//setup.py	2011-03-10 12:44:59.964000032 +0200
++++ boot-manager-comak//setup.py	2011-03-10 15:40:08.136000030 +0200
 @@ -18,7 +18,6 @@
  import tempfile
  
@@ -635,23 +635,27 @@ diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setu
          print "Generating RCs..."
          for filename in glob.glob1("data", "*.qrc"):
              os.system("pyrcc4 data/%s -o build/%s_rc.py" % (filename, filename.split(".")[0]))
-@@ -128,9 +140,12 @@
+@@ -128,9 +140,16 @@
              bin_dir = "/usr/bin"
  
          locale_dir = os.path.join(root_dir, "locale")
 -        apps_dir = os.path.join(root_dir, "applications/kde4")
 -        services_dir = os.path.join(root_dir, "kde4/services")
 -        project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
-+        apps_dir = os.path.join(root_dir, "applications")
-+        project_dir = os.path.join(root_dir, PROJECT)
 +        #For Kde4 making services_dir
 +        if FOR_KDE_4:
++            apps_dir = os.path.join(root_dir, "applications/kde4")
 +            services_dir = os.path.join(root_dir, "kde4/services")
++            project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
 +            makeDirs(services_dir)
++        else:
++            apps_dir = os.path.join(root_dir, "applications")
++            project_dir = os.path.join(root_dir, PROJECT)
++
  
          # Make directories
          print "Making directories..."
-@@ -138,13 +153,15 @@
+@@ -138,13 +157,15 @@
          makeDirs(locale_dir)
          makeDirs(apps_dir)
          makeDirs(project_dir)
@@ -670,15 +674,21 @@ diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setu
          shutil.rmtree('build/data')
  
          # Install codes
-@@ -192,14 +209,14 @@
+@@ -192,14 +213,20 @@
          bin_dir = "/usr/bin"
  
          locale_dir = os.path.join(root_dir, "locale")
 -        apps_dir = os.path.join(root_dir, "applications/kde4")
 -        services_dir = os.path.join(root_dir, "kde4/services")
 -        project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
-+        apps_dir = os.path.join(root_dir, "applications")
-+        project_dir = os.path.join(root_dir, PROJECT)
++        if FOR_KDE_4:
++            apps_dir = os.path.join(root_dir, "applications/kde4")
++            services_dir = os.path.join(root_dir, "kde4/services")
++            project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
++        else:
++            apps_dir = os.path.join(root_dir, "applications")
++            project_dir = os.path.join(root_dir, PROJECT)
++
  
          print 'Uninstalling ...'
          remove(project_dir)
@@ -689,7 +699,7 @@ diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setu
          for filename in glob.glob1('po', '*.po'):
              lang = filename.rsplit(".", 1)[0]
              remove(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
-@@ -225,8 +242,8 @@
+@@ -225,8 +252,8 @@
        description       = unicode(about.PACKAGE),
        license           = unicode('GPL'),
        author            = "Pardus Developers",
@@ -1013,8 +1023,15 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/options.py boot-m
  
 diff -Naur '--exclude=help' boot-manager-orig//src/boot-manager.py boot-manager-comak//src/boot-manager.py
 --- boot-manager-orig//src/boot-manager.py	2010-07-06 14:16:33.000000000 +0300
-+++ boot-manager-comak//src/boot-manager.py	2011-03-10 14:56:34.594000029 +0200
-@@ -17,48 +17,67 @@
++++ boot-manager-comak//src/boot-manager.py	2011-03-10 15:50:17.171000030 +0200
+@@ -11,54 +11,76 @@
+ # Please read the COPYING file.
+ #
+ 
++#System
+ import sys
+ import dbus
+ 
  from PyQt4 import QtGui
  from PyQt4 import QtCore
  
@@ -1052,14 +1069,16 @@ diff -Naur '--exclude=help' boot-manager-orig//src/boot-manager.py boot-manager-
 -    window.show()
 -
 -    app.exec_()
--
--
+ 
++    if ctx.Pds.session == ctx.pds.Kde4:
+ 
 -class Module(KCModule):
 -    def __init__(self, component_data, parent):
 -        KCModule.__init__(self, component_data, parent)
++        def CreatePlugin(widget_parent, parent, component_data):
++                return Module(component_data, parent)
  
 -        KGlobal.locale().insertCatalog(catalog)
-+    if ctx.Pds.session == ctx.pds.Kde4:
 +        #Boot Manager PyKDE4 Stuff
 +        from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
 +        from PyKDE4.kdecore import KCmdLineArgs, KGlobal
@@ -1104,8 +1123,8 @@ diff -Naur '--exclude=help' boot-manager-orig//src/boot-manager.py boot-manager-
 +        #Run the application
 +        app.exec_()
  
- def CreatePlugin(widget_parent, parent, component_data):
-     return Module(component_data, parent)
+-def CreatePlugin(widget_parent, parent, component_data):
+-    return Module(component_data, parent)
 diff -Naur '--exclude=help' boot-manager-orig//ui/edit.ui boot-manager-comak//ui/edit.ui
 --- boot-manager-orig//ui/edit.ui	2010-12-14 16:32:22.000000000 +0200
 +++ boot-manager-comak//ui/edit.ui	2011-03-03 14:42:33.505000022 +0200
