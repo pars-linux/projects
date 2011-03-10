@@ -29,7 +29,7 @@ CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"],
                         QSettings.IniFormat)
 FILE_OPENBOXRC = "%s/.config/openbox/lxde-rc.xml"%os.environ["HOME"]
 CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
-CONFIG_LXSESSION = QSettings("%s/.config/lxsession/LXDE/desktop.conf"%os.environ["HOME"])
+CONFIG_LXSESSION = QSettings("%s/.config/lxsession/LXDE/desktop.conf"%os.environ["HOME"],QSettings.IniFormat)
 
 # shared LXDE methods
 
@@ -56,8 +56,10 @@ class Mouse(base.Mouse):
 
     def setMouseSingleClick(self,clickBehaviour):
         '''set single/double click choice'''
-        new_value = (clickBehaviour and 1) or 0
+        new_value = (not clickBehaviour and 1) or 0
         CONFIG_LIBFM.setValue("config/single_click",new_value)
+        CONFIG_LIBFM.sync()
+        print new_value
         return True
 
     def getMouseSingleClick(self):
@@ -137,20 +139,26 @@ class Style(base.Style):
         save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
-        themeName = scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["widgetStyle"]
-        print themeName
+        iconTheme = scrStyleWidget.screenSettings["iconTheme"]
+        CONFIG_LXSESSION.setValue("GTK/sNet/IconThemeName", iconTheme)
+        CONFIG_LXSESSION.setValue("GTK/sNet\IconThemeName", iconTheme)
+        CONFIG_LXSESSION.sync()
+        print iconTheme
 
     def setStyleSettings(self):
-        pass
+        styleName = scrStyleWidget.screenSettings["styleName"]
+        CONFIG_OPENBOX.getTag("theme").getTag("name").setData(styleName)
+        save_openboxrc(CONFIG_OPENBOX)
+
 
     def setDesktopType(self):
         pass
 
     def reconfigure(self):
+        os.system("lxsession -r")
         os.system("openbox --restart")
         os.system("pcmanfm --desktop-off")
-        time.sleep(1)
-        os.system("pcmanfm -d")
+        os.system("pcmanfm -d --desktop")
 
 class Package(base.Package):
 
