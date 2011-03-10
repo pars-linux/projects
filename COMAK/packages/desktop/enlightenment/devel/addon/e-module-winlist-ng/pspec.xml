@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>the Winlist NG module for Enlightenment</Summary>
         <Description>This module should not only look different as the e17 winlist, it also will get a lot of functionality.</Description>
-        <Archive sha1sum="9808cde5d4890bca30405c74e82ded28c0db7567" type="tarbz2">e-module-winlist-ng-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="9808cde5d4890bca30405c74e82ded28c0db7567" type="tarbz2">http://comak.comu.edu.tr/source/e-module-winlist-ng-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>

@@ -10,10 +10,11 @@ from pisi.actionsapi import get
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 
+WorkDir = "wlan-0.0.1_55225"
+
 def setup():
     autotools.autoreconf("-vfi")
-    autotools.configure("--disable-static \
-                         --disable-rpath")
+    autotools.configure("--disable-static")
 
 def build():
     autotools.make()
