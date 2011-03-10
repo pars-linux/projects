@@ -121,6 +121,11 @@ class Widget(QtGui.QWidget, Screen):
 
     def setStyle(self):
         styleName =  str(self.ui.listStyles.currentItem().statusTip())
+        for wallpaper_index in range (self.ui.listStyles.count()):
+            self.ui.listStyles.item(wallpaper_index).setBackground(Qt.white);
+            self.ui.listStyles.currentItem().setBackground(Qt.blue)
+
+
         self.__class__.screenSettings["summaryMessage"] = unicode(styleName)
         self.__class__.screenSettings["hasChanged"] = True
         self.__class__.screenSettings["styleChanged"] = True
