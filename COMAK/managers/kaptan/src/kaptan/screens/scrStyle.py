@@ -132,6 +132,7 @@ class Widget(QtGui.QWidget, Screen):
 
         self.__class__.screenSettings["styleDetails"] = self.styleDetails
         self.__class__.screenSettings["styleName"] = styleName
+
     def setIcon(self):
         self.__class__.screenSettings["hasChanged"] = True
         self.iconTheme =  unicode(self.ui.listIcon.selectedItems()[0].text())
