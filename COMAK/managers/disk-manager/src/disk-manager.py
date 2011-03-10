@@ -54,6 +54,10 @@ if __name__ == "__main__":
 
         #Run the application
         app.exec_()
+
+        def CreatePlugin(widget_parent, parent, component_data):
+            from diskmanager.kcmodule import Module
+            return Module(component_data, parent)
     else:
         #Translation Stuff
         import gettext
@@ -75,6 +79,3 @@ if __name__ == "__main__":
 
         #Run the application
         app.exec_()
-
-def CreatePlugin(widget_parent, parent, component_data):
-    return Module(component_data, parent)
