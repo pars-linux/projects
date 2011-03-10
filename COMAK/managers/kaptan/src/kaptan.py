@@ -254,7 +254,6 @@ if __name__ == "__main__":
     
      # attach dbus to main loop
     tools.DBus()
-
     if ctx.Pds.session == ctx.pds.Kde4:
         from PyKDE4 import kdeui
         from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KConfig
@@ -280,7 +279,7 @@ if __name__ == "__main__":
         kaptan.show()
         tools.centerWindow(kaptan)
         app.exec_()
-     else:
+    else:
         import gettext
         __trans = gettext.translation('kaptan', fallback=True)
         i18n = __trans.ugettext

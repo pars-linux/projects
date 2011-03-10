@@ -48,7 +48,7 @@ class Widget(QtGui.QWidget, Screen):
 
     def on_buttonSystemSettings_clicked(self):
         self.procSettings = QProcess()
-        self.procSettings.start("systemsettings")
+        self.procSettings.start("pcmanfm menu://applications/System")
 
     def on_buttonHelpPages_clicked(self):
 	#self.procSettings = QProcess()

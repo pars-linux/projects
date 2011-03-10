@@ -234,17 +234,17 @@ class Kaptan(QtGui.QWidget):
         #group.writeEntry("RunOnStart", "False")
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "-a":
-        kd= os.getenv("HOME")
+    #if len(sys.argv) > 1 and sys.argv[1] == "-a":
+    #    kd= os.getenv("HOME")
         #kaptanrc
-        QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
-        kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
-        start = kaptanConfig.value("General/RunOnStart").toString()
+     #   QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
+      #  kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
+      #  start = kaptanConfig.value("General/RunOnStart").toString()
 
-        if start != "False":
-            kaptanConfig.setValue("General/RunOnStart","False")
-        elif start == "False":
-             exit();
+      #  if start != "False":
+       #     kaptanConfig.setValue("General/RunOnStart","False")
+       # elif start == "False":
+         #    exit();
 
      # attach dbus to main loop
     tools.DBus() 
@@ -274,7 +274,7 @@ if __name__ == "__main__":
         kaptan.show()
         tools.centerWindow(kaptan)
         app.exec_()
-     else:
+    else:
         import gettext
         __trans = gettext.translation('kaptan', fallback=True)
         i18n = __trans.ugettext

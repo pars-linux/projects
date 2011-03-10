@@ -20,7 +20,7 @@ from kaptan.screens.context import *
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4.kdecore import ki18n, KGlobal, KConfig
 
-import subprocess, sys
+import subprocess, sys,os
 
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrGoodbye import Ui_goodbyeWidget
@@ -47,9 +47,7 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltUrl = "http://smolt.pardus.org.tr:8090"
 
     def on_buttonSystemSettings_clicked(self):
-        self.procSettings = QProcess()
-        self.procSettings.start("systemsettings")
-
+        os.popen("pcmanfm menu://applications/System")
     def on_buttonHelpPages_clicked(self):
 	#self.procSettings = QProcess()
         #command = "openURL (" + self.helpPageUrl+")"
