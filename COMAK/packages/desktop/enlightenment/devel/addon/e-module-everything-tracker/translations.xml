@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-tracker</Name>
+        <Summary xml:lang="tr">Herşey için arama</Summary>
+        <Description xml:lang="tr">İzci ile dosyaları arar,müzik tarayıcı özelliği sunar.</Description>
+    </Source>
+</PISI>
+
