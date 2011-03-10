@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e-module-everything-tracker</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Tracker search for Everything</Summary>
+        <Description>Search files with tracker (0.8), it also features a music browser</Description>
+        <Archive sha1sum="5b1621fcee74a5a57c7d3a5e028b00c2b6aa0341" type="tarbz2">http://comak.comu.edu.tr/source/e-module-everything-tracker-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>enlightenment-devel</Dependency>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+            <Dependency>e_dbus-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>e-module-everything-tracker</Name>
+        <RuntimeDependencies>
+            <Dependency>eina</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>e_dbus</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-10</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
