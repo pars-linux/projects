@@ -14,13 +14,14 @@
 import sys
 import dbus
 
+#Qt Stuff
 from PyQt4 import QtGui
 from PyQt4 import QtCore
-
 
 from bootmanager.about import *
 from bootmanager.main import MainWidget
 
+#Pds stuff
 from bootmanager.context import *
 
 class MainWindow(QtGui.QMainWindow):
