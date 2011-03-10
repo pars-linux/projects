@@ -8,12 +8,11 @@ from pds.qiconloader import QIconLoader
 
 Pds = pds.Pds('service-manager', debug = False)
 # Force to use Default Session for testing
-# Pds.session = pds.DefaultDe
-# print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
+Pds.session = pds.DefaultDe
+print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 
 i18n = Pds.i18n
-KIconLoader = QIconLoader(Pds)
-KIconLoader._forceCache = True
+KIconLoader = QIconLoader(Pds, forceCache=True)
 KIcon = KIconLoader.icon
 
 time_counter = 0
