@@ -17,6 +17,9 @@
         <BuildDependencies>
             <Dependency>elementary-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">desktop.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
@@ -29,12 +32,8 @@
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share/icons</Path>
-            <Path fileType="data">/usr/local/share/econcentration/applications</Path>
             <Path fileType="data">/usr/share/</Path>
         </Files>
-        <AdditionalFiles>
-            <AdditionalFile owner="root" permission="0644" target="/usr/local/share/econcentration/applications/econcentration.desktop">econcentration.desktop</AdditionalFile>
-        </AdditionalFiles>
     </Package>
 
     <History>
