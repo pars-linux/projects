@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-skel</Name>
+        <Summary xml:lang="tr">Enlightenment için yazılmış bir modül</Summary>
+        <Description xml:lang="tr">e-module-skel, kullanıcılar için bir modül değildir.</Description>
+    </Source>
+</PISI>
+
