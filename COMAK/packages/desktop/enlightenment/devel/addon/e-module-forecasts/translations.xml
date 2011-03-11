@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-forecast</Name>
+        <Summary xml:lang="tr">Enlightenment için hava tahmini modülü</Summary>
+        <Description xml:lang="tr">e-module-forecast, hava koşullarını ve birkaç günün hava durumunu gösteren bir modüldür.</Description>
+    </Source>
+</PISI>
+
