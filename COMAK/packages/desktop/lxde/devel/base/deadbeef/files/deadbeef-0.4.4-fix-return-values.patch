@@ -1,0 +1,51 @@
+diff -ur deadbeef-0.4.4.orig/junklib.c deadbeef-0.4.4/junklib.c
+--- deadbeef-0.4.4.orig/junklib.c	2010-11-14 16:38:28.000000000 +0100
++++ deadbeef-0.4.4/junklib.c	2010-12-02 11:42:12.000000000 +0100
+@@ -830,6 +830,7 @@
+             }
+         }
+     }
++    return 0;
+ }
+ 
+ int
+diff -ur deadbeef-0.4.4.orig/plugins/cdda/cdda.c deadbeef-0.4.4/plugins/cdda/cdda.c
+--- deadbeef-0.4.4.orig/plugins/cdda/cdda.c	2010-11-14 16:38:28.000000000 +0100
++++ deadbeef-0.4.4/plugins/cdda/cdda.c	2010-12-02 11:41:20.000000000 +0100
+@@ -551,6 +551,7 @@
+     deadbeef->pl_add_file ("all.cda", NULL, NULL);
+     //Wtf?
+     //playlist_refresh ();
++    return 0;
+ }
+ 
+ static DB_plugin_action_t add_cd_action = {
+diff -ur deadbeef-0.4.4.orig/plugins/lastfm/lastfm.c deadbeef-0.4.4/plugins/lastfm/lastfm.c
+--- deadbeef-0.4.4.orig/plugins/lastfm/lastfm.c	2010-11-14 16:38:28.000000000 +0100
++++ deadbeef-0.4.4/plugins/lastfm/lastfm.c	2010-12-02 11:42:58.000000000 +0100
+@@ -849,12 +849,14 @@
+     printf ("executing %s\n", command);
+     system (command);
+     free (command);
++    return 0;
+ }
+ 
+ static int
+ lfm_action_love (DB_plugin_action_t *act, DB_playItem_t *it)
+ {
+     printf ("Love starts here\n");
++    return 0;
+ }
+ 
+ static DB_plugin_action_t love_action = {
+diff -ur deadbeef-0.4.4.orig/plugins/vorbis/vorbis.c deadbeef-0.4.4/plugins/vorbis/vorbis.c
+--- deadbeef-0.4.4.orig/plugins/vorbis/vorbis.c	2010-11-14 16:37:27.000000000 +0100
++++ deadbeef-0.4.4/plugins/vorbis/vorbis.c	2010-12-02 11:43:44.000000000 +0100
+@@ -154,6 +154,7 @@
+     if (refresh_playlist) {
+         deadbeef->plug_trigger_event_playlistchanged ();
+     }
++    return 0;
+ }
+ 
+ static DB_fileinfo_t *
