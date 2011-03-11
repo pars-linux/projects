@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-efm_pathbar</Name>
+        <Summary xml:lang="tr">EFM yol cubuğu modülü</Summary>
+        <Description xml:lang="tr">e-module-efm_path, E17 dosya yöneticisine yol çubuğu etklemektedir.</Description>
+    </Source>
+</PISI>
+
