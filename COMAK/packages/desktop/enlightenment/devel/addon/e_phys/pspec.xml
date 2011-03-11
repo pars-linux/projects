@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e_phys</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Engin Manap</Name>
+            <Email>enginmanap@gmail.com</Email>
+        </Packager>
+        <License>as-is</License>
+        <IsA>library</IsA>
+        <Summary>A graphical Physics engine for Enlightenment</Summary>
+        <Description>e_phys is a verlet integrating physics engine inspire by Akamaru and Advanced Character Physics.</Description>
+        <Archive sha1sum="446fd709cbf08ca6d6caff72c5cfeddfbad2d66d" type="tarbz2">http://comak.comu.edu.tr/source/e_phys-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>e_phys</Name>
+        <RuntimeDependencies>
+            <Dependency>evas</Dependency>
+            <Dependency>ecore</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include/e_phys</Path>
+            <Path fileType="library">/usr/lib</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-11</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>enginmanap@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
