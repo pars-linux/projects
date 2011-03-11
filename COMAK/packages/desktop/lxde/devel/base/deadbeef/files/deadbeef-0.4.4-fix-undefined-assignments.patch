@@ -1,0 +1,92 @@
+diff -ur deadbeef-0.4.4.orig/plugins/adplug/adplug/cff.cpp deadbeef-0.4.4/plugins/adplug/adplug/cff.cpp
+--- deadbeef-0.4.4.orig/plugins/adplug/adplug/cff.cpp	2010-10-14 18:35:04.000000000 +0200
++++ deadbeef-0.4.4/plugins/adplug/adplug/cff.cpp	2010-12-02 11:34:12.000000000 +0100
+@@ -377,8 +377,10 @@
+ 	    goto out;
+ 	  }
+ 
+-	  for (unsigned int i=0;i<repeat_counter*repeat_length;i++)
+-	    output[output_length++] = output[output_length - repeat_length];
++	  for (unsigned int i=0;i<repeat_counter*repeat_length;i++) {
++	    output[output_length] = output[output_length - repeat_length];
++	    output_length++;
++	  }
+ 
+ 	  code_length = old_code_length;
+ 
+diff -ur deadbeef-0.4.4.orig/plugins/adplug/adplug/dmo.cpp deadbeef-0.4.4/plugins/adplug/adplug/dmo.cpp
+--- deadbeef-0.4.4.orig/plugins/adplug/adplug/dmo.cpp	2010-10-14 18:35:05.000000000 +0200
++++ deadbeef-0.4.4/plugins/adplug/adplug/dmo.cpp	2010-12-02 11:37:20.000000000 +0100
+@@ -317,7 +317,10 @@
+ 	    return -1;
+ 
+ 	  for(int i=0;i<cx;i++)
+-	    *opos++ = *(opos - ax);
++	    {
++	    *opos = *(opos - ax);
++	    *opos++;
++	    }
+ 
+ 	  continue;
+ 	}
+@@ -337,7 +340,10 @@
+ 	    return -1;
+ 
+ 	  for(i=0;i<cx;i++)
+-	    *opos++ = *(opos - ax);
++	    {
++	      *opos++ = *(opos - ax);
++	      *opos++;
++	    }
+ 
+ 	  for (i=0;i<bx;i++)
+ 	    *opos++ = *ipos++;
+@@ -361,7 +367,10 @@
+ 	    return -1;
+ 
+ 	  for(i=0;i<cx;i++)
+-	    *opos++ = *(opos - bx);
++	    {
++	      *opos = *(opos - bx);
++	      *opos++;
++	    }
+ 
+ 	  for (i=0;i<ax;i++)
+ 	    *opos++ = *ipos++;
+diff -ur deadbeef-0.4.4.orig/plugins/tta/ttadec.c deadbeef-0.4.4/plugins/tta/ttadec.c
+--- deadbeef-0.4.4.orig/plugins/tta/ttadec.c	2010-10-14 18:33:31.000000000 +0200
++++ deadbeef-0.4.4/plugins/tta/ttadec.c	2010-12-02 11:33:00.000000000 +0100
+@@ -461,7 +461,7 @@
+ 	byte *p = buffer;
+ 	decoder *dec = info->tta;
+ 	int *prev = info->cache;
+-	int value, res;
++	int value, res, tmpvalue;
+ 
+ 	for (res = 0; p < buffer + info->pcm_buffer_size;) {
+ 		fltst *fst = &dec->fst;
+@@ -514,7 +514,8 @@
+ 			rice->k0++;
+ 		}
+ 
+-		value = DEC(value);
++		tmpvalue = DEC(value);
++		value = tmpvalue;
+ 
+ 		// decompress stage 1: adaptive hybrid filter
+ 		hybrid_filter(fst, &value);
+diff -ur deadbeef-0.4.4.orig/plugins/vtx/lh5dec.c deadbeef-0.4.4/plugins/vtx/lh5dec.c
+--- deadbeef-0.4.4.orig/plugins/vtx/lh5dec.c	2010-10-14 18:33:24.000000000 +0200
++++ deadbeef-0.4.4/plugins/vtx/lh5dec.c	2010-12-02 11:30:27.000000000 +0100
+@@ -92,7 +92,10 @@
+     start[i] >>= jutbits;
+     weight[i] = 1U << (tablebits - i);
+   }
+-  while (i <= 16) weight[i++] = 1U << (16 - i);
++  while (i <= 16) {
++    weight[i] = 1U << (16 - i);
++    i++;
++  }
+ 
+   i = start[tablebits + 1] >> jutbits;
+   if (i != (unsigned short)(1U << 16)) {
