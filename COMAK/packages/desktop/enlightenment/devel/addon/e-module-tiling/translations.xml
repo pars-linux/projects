@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+                <Summary>Exalt-client module for Enlightenment</Summary>
+                        <Description>Exalt-client is a module for using exalt network manager.</Description>
+
+        <Name>e-module-exalt-client</Name>
+        <Summary xml:lang="tr">Enlightenment için exalt-client modülü</Summary>
+        <Description xml:lang="tr">Exalt-client, exalt ag yoneticisini kullanmak icin bir moduldür.</Description>
+    </Source>
+</PISI>
+
