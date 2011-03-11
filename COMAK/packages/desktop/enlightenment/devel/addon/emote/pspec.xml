@@ -9,9 +9,9 @@
             <Email>m.z.samat@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
-        <IsA>library</IsA>
-        <Summary>asdasd</Summary>
-        <Description>asdasd</Description>
+        <IsA>app:gui</IsA>
+        <Summary>Enlightenment IRC Application</Summary>
+        <Description>Enlightenment IRC Application</Description>
         <Archive sha1sum="7bbefdcbc981080ee6e17e751b9ce36c88f2823f" type="tarbz2">http://comak.comu.edu.tr/source/emote-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
