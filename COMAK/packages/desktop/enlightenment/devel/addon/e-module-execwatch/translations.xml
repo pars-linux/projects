@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-execwatc</Name>
+        <Summary xml:lang="tr">Enlightenment için komut izleme modülü</Summary>
+        <Description xml:lang="tr">e-module-execwatc, periyodik çalıştırılan cmd'lerin son durumunu gösterir.</Description>
+    </Source>
+</PISI>
+
