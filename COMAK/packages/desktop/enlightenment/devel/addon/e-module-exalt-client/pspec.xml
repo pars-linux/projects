@@ -20,7 +20,7 @@
             <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
             <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
-            <Dependency versionFrom="0.9.55225">exalt-devel</Dependency>
+            <Dependency versionFrom="0.9_55225">exalt-devel</Dependency>
         </BuildDependencies>
     </Source>
 
