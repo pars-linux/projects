@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>User Management Interface</Summary>
         <Description>The User Manager can add a new user to Pardus or modify other users. You can add, modify or delete a user, add a new group, add users to groups or delete groups and you can allow or restrict users to do certain tasks such as using the CD drive, playing audio or having superuser privileges.</Description>
-        <Archive sha1sum="b98d6e9e42e1dad705e34cd7463228bab0f1a6b8" type="targz">./usermanager.tar.gz</Archive>
+        <Archive sha1sum="b98d6e9e42e1dad705e34cd7463228bab0f1a6b8" type="targz">http://comak.comu.edu.tr/source//user-manager-pds.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>pardus-desktop-services</Dependency>
             <Dependency>docutils</Dependency>
@@ -20,7 +20,7 @@
         </BuildDependencies>
         <Patches>
             <!-- Remove inclusion modem-manager policy since it doesn't have translations and it's useless #16437 -->
-            <Patch>remove-modem-manager-privs.diff</Patch>
+            <!-- <Patch>remove-modem-manager-privs.diff</Patch> -->
         </Patches>
     </Source>
 
