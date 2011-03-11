@@ -1,0 +1,451 @@
+diff -Nuar '--exclude=*.pyc' user-manager-3.0.2/src/usermanager//about.py user-manager-pds/src/usermanager//about.py
+--- user-manager-3.0.2/src/usermanager//about.py	2011-01-30 20:55:33.000000000 +0200
++++ user-manager-pds/src/usermanager//about.py	2011-03-01 22:25:27.000000000 +0200
+@@ -11,29 +11,40 @@
+ # Please read the COPYING file.
+ #
+ 
+-# PyKDE
+-from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
++
++import context as ctx
++from context import *
++
+ 
+ PACKAGE = "User Manager"
++appName= "user-manager"
++version="3.0.0"
++
++
++
++if ctx.Pds.session == ctx.pds.Kde4:
++
++    # PyKDE
++    from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
++
++    # Application Data
++    appName     = "user-manager"
++    modName     = "usermanager"
++    programName = ki18n("User Manager")
++    version     = "3.0.0"
++    description = ki18n("User Manager")
++    license     = KAboutData.License_GPL
++    copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
++    text        = ki18n(None)
++    homePage    = "http://www.pardus.org.tr/eng/projects"
++    bugEmail    = "bugs@pardus.org.tr"
++    catalog     = appName
++    aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
+ 
+-# Application Data
+-appName     = "user-manager"
+-modName     = "usermanager"
+-programName = ki18n(PACKAGE)
+-version     = "3.0.2"
+-description = ki18n(PACKAGE)
+-license     = KAboutData.License_GPL
+-copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
+-text        = ki18n(None)
+-homePage    = "http://developer.pardus.org.tr/projects/user-manager"
+-bugEmail    = "bugs@pardus.org.tr"
+-catalog     = appName
+-aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
+-
+-# Author(s)
+-aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
+-aboutData.addAuthor(ki18n("Bahadır Kandemir"), ki18n("First Developer"))
+-aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))
++    # Author(s)
++    aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
++    aboutData.addAuthor(ki18n("Bahadır Kandemir"), ki18n("First Developer"))
++    aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))
+ 
+-# Use this if icon name is different than appName
+-aboutData.setProgramIconName("system-users")
++    # Use this if icon name is different than appName
++    aboutData.setProgramIconName("drive-harddisk")
+diff -Nuar '--exclude=*.pyc' user-manager-3.0.2/src/usermanager//context.py user-manager-pds/src/usermanager//context.py
+--- user-manager-3.0.2/src/usermanager//context.py	1970-01-01 02:00:00.000000000 +0200
++++ user-manager-pds/src/usermanager//context.py	2011-03-11 15:38:07.000000000 +0200
+@@ -0,0 +1,33 @@
++import pds
++import traceback
++from time import time
++from pds.qiconloader import QIconLoader
++
++Pds = pds.Pds('user-manager', debug = True)
++# Force to use Default Session for testing
++Pds.session = pds.DefaultDe
++# print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
++
++i18n = Pds.i18n
++KIconLoader = QIconLoader(Pds,forceCache=True)
++KIcon = KIconLoader.icon
++
++time_counter = 0
++start_time = time()
++last_time = time()
++
++
++def _time():
++    global last_time, time_counter
++    trace = list(traceback.extract_stack())
++    diff = time() - start_time
++    print ('%s ::: %s:%s' % (time_counter, trace[-2][0].split('/')[-1], trace[-2][1])), diff, diff - last_time
++    last_time = diff
++    time_counter += 1
++def askForActions(packages, reason, title, details_title):
++    msgbox = QMessageBox()
++    msgbox.setText('<b>%s</b>' % reason)
++    msgbox.setInformativeText(i18n("Do you want to continue ?"))
++    msgbox.setDetailedText(details_title + '\n' + '-'*60 + '\n  - ' + '\n  - '.join(packages))
++    msgbox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
++    return msgbox.exec_() == QMessageBox.Yes
+diff -Nuar '--exclude=*.pyc' user-manager-3.0.2/src/usermanager//edit.py user-manager-pds/src/usermanager//edit.py
+--- user-manager-3.0.2/src/usermanager//edit.py	2011-01-30 20:27:30.000000000 +0200
++++ user-manager-pds/src/usermanager//edit.py	2011-03-07 15:45:50.000000000 +0200
+@@ -17,11 +17,11 @@
+ # PyQt
+ from PyQt4 import QtCore
+ from PyQt4 import QtGui
++from PyQt4.QtGui import QMessageBox
++from PyQt4.QtGui import QLineEdit
+ 
+-# PyKDE
+-from PyKDE4 import kdeui
+-from PyKDE4 import kdecore
+-from PyKDE4.kdecore import i18n
++#PDS
++from context import *
+ 
+ # UI
+ from usermanager.ui_edituser import Ui_EditUserWidget
+@@ -39,7 +39,7 @@
+         self.action_id = action_id
+         self.type = 0
+         self.setText(0, text)
+-        self.setIcon(0, kdeui.KIcon("security-medium"))
++        self.setIcon(0,KIcon("security-medium"))
+ 
+     def getAction(self):
+         return self.action_id
+@@ -47,11 +47,11 @@
+     def setType(self, type_):
+         self.type = type_
+         if type_ == -1:
+-            self.setIcon(0, kdeui.KIcon("security-low"))
++            self.setIcon(0,KIcon("security-low"))
+         elif type_ == 0:
+-            self.setIcon(0, kdeui.KIcon("security-medium"))
++            self.setIcon(0,KIcon("security-medium"))
+         elif type_ == 1:
+-            self.setIcon(0, kdeui.KIcon("security-high"))
++            self.setIcon(0,KIcon("security-high"))
+ 
+     def getType(self):
+         return self.type
+@@ -72,7 +72,7 @@
+         self.buildPolicies()
+ 
+         # Warning icon
+-        self.labelSign.setPixmap(kdeui.KIcon("process-stop").pixmap(32, 32))
++        self.labelSign.setPixmap(KIcon("process-stop").pixmap(32, 32))
+         self.labelSign.hide()
+ 
+         # Signals
+@@ -93,8 +93,8 @@
+         self.connect(self.lineUsername, QtCore.SIGNAL("textEdited(const QString&)"), self.checkFields)
+         self.connect(self.lineHomeDir, QtCore.SIGNAL("textEdited(const QString&)"), self.checkFields)
+ 
+-        self.filterAuthorizations.setTreeWidget(self.treeAuthorizations)
+-        self.filterGroups.setListWidget(self.listGroups)
++        #self.filterAuthorizations.setTreeWidget(self.treeAuthorizations)
++        #self.filterGroups.setListWidget(self.listGroups)
+ 
+         self.advancedGroup.hide()
+         self.available_shells = []
+@@ -124,22 +124,17 @@
+         self._vendors = []
+ 
+         categories = {"tr.org.pardus.comar.user.manager": (i18n("User/group operations"), "system-users"),
+-                      "tr.org.pardus.comar.system.manager|org.kde.fontinst": (i18n("Package operations"), "applications-other"),
++                      "tr.org.pardus.comar.system.manager": (i18n("Package operations"), "applications-other"),
+                       "tr.org.pardus.comar.system.service": (i18n("Service operations"), "services"),
+-                      "tr.org.pardus.comar.time|org.kde.kcontrol.kcmclock": (i18n("Date/time operations"), "clock"),
+-                      "tr.org.pardus.comar.boot.modules|org.kde.ksysguard": (i18n("Kernel/Process operations"), "utilities-terminal"),
+-                      "tr.org.pardus.comar.boot.loader": (i18n("Bootloader settings"), "media-floppy"),
+-                      "org.kde.kcontrol.kcmpanda": (i18n("Screen settings"), "video-display"),
+-                      "org.kde.kcontrol.kcmlocale": (i18n("Locale settings"), "preferences-desktop-locale"),
+-                      "org.freedesktop.network-manager-settings|org.freedesktop.ModemManager|org.freedesktop.NetworkManager": (i18n("Network settings"), "networkmanager"),
+-                      "org.kde.kcontrol.kcmkdm": (i18n("Login Manager settings"), "preferences-system-login"),
+-                      "org.kde.kcontrol.kcmkeyboard": (i18n("Keyboard settings"), "input-keyboard")}
++                      "tr.org.pardus.comar.time": (i18n("Date/time operations"), "clock"),
++                      "tr.org.pardus.comar.boot.modules": (i18n("Kernel/Process operations"), "utilities-terminal"),
++                      "tr.org.pardus.comar.boot.loader": (i18n("Bootloader settings"), "media-floppy")}
+ 
+         # do not show policies require policy type yes or no, only the ones require auth_* type
+         allActions = filter(lambda x: polkit.action_info(x)['policy_active'].startswith("auth_"),polkit.action_list())
+         for _category in categories.keys():
+             parent_item = QtGui.QTreeWidgetItem(self.treeAuthorizations)
+-            parent_item.setIcon(0, kdeui.KIcon(categories[_category][1]))
++            parent_item.setIcon(0,KIcon(categories[_category][1]))
+             parent_item.setText(0, unicode(categories[_category][0]))
+             for category in _category.split('|'):
+                 catactions = filter(lambda x: x.startswith(category), allActions)
+@@ -305,7 +300,7 @@
+ 
+     def checkLastItem(self):
+         if self.comboMainGroup.count() == 1:
+-            kdeui.KMessageBox.error(self, i18n("There has to be at least one group selected."))
++            QMessageBox.critical(self,"Error",i18n("There has to be at least one group selected"))
+             return False
+         return True
+ 
+@@ -421,6 +416,24 @@
+             self.labelWarning.setText("")
+             self.labelSign.hide()
+             self.emit(QtCore.SIGNAL("buttonStatusChanged(int)"),1)
++    def searchListWidget(self):
++        srcList=self.filtergroups.text()
++        for i in range(self.listGroups.count()):
++            if self.listGroups.item(i).text().indexOf(srcList) == -1 :
++                #print self.listGroups.item(i).text()
++                self.listGroups.item(i).setHidden(True)
++            else :
++                self.listGroups.item(i).setHidden(False)
++ 
++    def searchTreeListWidget(self):
++        srcTreeList=str(self.filterAuthorizations.text()).lower()
++        for i in range(self.treeAuthorizations.topLevelItemCount()):
++            for j in range(self.treeAuthorizations.topLevelItem(i).childCount()):
++               #print self.treeAuthorizations.topLevelItem(i).child(j).text(0)
++               if (len([True for each in str(self.treeAuthorizations.topLevelItem(i).child(j).text(0)).lower().split(' ') if each.count(srcTreeList)>0])) or (len([True for each in str(self.treeAuthorizations.topLevelItem(i).text(0)).lower().split(' ') if each.count(srcTreeList)>0])):
++                   self.treeAuthorizations.topLevelItem(i).setHidden(False)
++               else:
++                   self.treeAuthorizations.topLevelItem(i).setHidden(True)
+ 
+ class EditGroupWidget(QtGui.QWidget, Ui_EditGroupWidget):
+     def __init__(self, parent):
+diff -Nuar '--exclude=*.pyc' user-manager-3.0.2/src/usermanager//item.py user-manager-pds/src/usermanager//item.py
+--- user-manager-3.0.2/src/usermanager//item.py	2010-07-06 14:16:21.000000000 +0300
++++ user-manager-pds/src/usermanager//item.py	2011-03-01 22:20:47.000000000 +0200
+@@ -15,8 +15,13 @@
+ from PyQt4 import QtCore
+ from PyQt4 import QtGui
+ 
+-# PyKDE
+-from PyKDE4.kdeui import KIcon
++import context as ctx
++if ctx.Pds.session==ctx.pds.Kde4:
++    # PyKDE
++    from PyKDE4.kdeui import KIcon
++else:
++    #PDS
++    from context import *
+ 
+ # UI
+ from usermanager.ui_item import Ui_ItemWidget
+diff -Nuar '--exclude=*.pyc' user-manager-3.0.2/src/usermanager//main.py user-manager-pds/src/usermanager//main.py
+--- user-manager-3.0.2/src/usermanager//main.py	2011-01-30 20:14:48.000000000 +0200
++++ user-manager-pds/src/usermanager//main.py	2011-03-07 14:34:16.000000000 +0200
+@@ -16,10 +16,12 @@
+ # PyQt
+ from PyQt4 import QtCore
+ from PyQt4 import QtGui
++from PyQt4.QtGui import QMessageBox,QIcon
+ 
+ # PyKDE
+-from PyKDE4 import kdeui
+-from PyKDE4 import kdecore
++#from PyKDE4 import kdeui
++#from PyKDE4 import kdecore
++
+ 
+ # UI
+ from usermanager.ui_main import Ui_MainWidget
+@@ -30,6 +32,10 @@
+ # Config
+ from usermanager.config import DEFAULT_GROUPS, ANIM_SHOW, ANIM_TARGET, ANIM_DEFAULT, ANIM_TIME
+ 
++#Context
++
++from context import *
++
+ # Item widget
+ from usermanager.item import ItemListWidgetItem, ItemWidget
+ 
+@@ -107,8 +113,8 @@
+             Check if there are packages that provide required backend.
+         """
+         if not len(self.iface.getPackages()):
+-            kdeui.KMessageBox.error(self, kdecore.i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
+-            return False
++           QMessageBox.critical(self,"Error", i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly"))
++           return False
+         return True
+ 
+     def clearItemList(self):
+@@ -141,7 +147,7 @@
+             icon = "user-identity"
+ 
+         # Build widget and widget item
+-        widget = self.makeItemWidget(id_, name, description, type_, kdeui.KIcon(icon), None)
++        widget = self.makeItemWidget(id_, name, description, type_,KIcon(icon), None)
+         widgetItem = ItemListWidgetItem(self.listItems, widget)
+ 
+         # Groups are uneditable
+@@ -198,10 +204,10 @@
+             method()
+         except Exception, e:
+             if "Comar.PolicyKit" in e._dbus_error_name:
+-                kdeui.KMessageBox.error(self, kdecore.i18n("Access denied."))
++                QMessageBox.critical(self,"Error", i18n("Access denied"))
+             else:
+-                kdeui.KMessageBox.error(self, unicode(e))
+-            return False
++               QMessageBox.critical(self,"Error", unicode(e))
++               return False
+ 
+     def itemMatchesFilter(self, item):
+         """
+@@ -223,10 +229,10 @@
+             Builds item filter.
+         """
+         self.comboFilter.clear()
+-        self.comboFilter.addItem(kdecore.i18n("Users"), QtCore.QVariant("users"))
+-        self.comboFilter.addItem(kdecore.i18n("Groups"), QtCore.QVariant("groups"))
+-        self.comboFilter.addItem(kdecore.i18n("All Users"), QtCore.QVariant("all-users"))
+-        self.comboFilter.addItem(kdecore.i18n("All Groups"), QtCore.QVariant("all-groups"))
++        self.comboFilter.addItem(i18n("Users"), QtCore.QVariant("users"))
++        self.comboFilter.addItem(i18n("Groups"), QtCore.QVariant("groups"))
++        self.comboFilter.addItem(i18n("All Users"), QtCore.QVariant("all-users"))
++        self.comboFilter.addItem(i18n("All Groups"), QtCore.QVariant("all-groups"))
+ 
+     def buildMenu(self):
+         """
+@@ -237,12 +243,12 @@
+         self.pushNew.setMenu(menu)
+ 
+         # New user action
+-        action_user = QtGui.QAction(kdecore.i18n("Add User"), self)
++        action_user = QtGui.QAction((i18n("Add User")), self)
+         action_user.setData(QtCore.QVariant("user"))
+         menu.addAction(action_user)
+ 
+         # New group action
+-        action_group = QtGui.QAction(kdecore.i18n("Add Group"), self)
++        action_group = QtGui.QAction((i18n("Add Group")), self)
+         action_group.setData(QtCore.QVariant("group"))
+         menu.addAction(action_group)
+ 
+@@ -260,9 +266,9 @@
+                     username, fullname, gid, homedir, shell, groups = self.iface.userInfo(id_)
+                 except Exception, e: # TODO: Named exception should be raised
+                     if "Comar.PolicyKit" in e._dbus_error_name:
+-                        kdeui.KMessageBox.error(self, kdecore.i18n("Access denied."))
++                       QMessageBox.critical(self,"Error",i18n("Access denied"))
+                     else:
+-                        kdeui.KMessageBox.error(self, unicode(e))
++                        QMessageBox.critical(self,"Error",unicode(e))
+                     return
+                 self.widgetUserEdit._new = False
+                 self.widgetUserEdit.setId(id_)
+@@ -275,9 +281,9 @@
+                     self.widgetUserEdit.setAuthorizations(self.iface.getAuthorizations(id_))
+                 except Exception, e: # TODO: Named exception should be raised
+                     if "Comar.PolicyKit" in e._dbus_error_name:
+-                        kdeui.KMessageBox.error(self, kdecore.i18n("Access denied."))
++                        QMessageBox.critical(self,"Error",i18n("Access denied"))
+                     else:
+-                        kdeui.KMessageBox.error(self, unicode(e))
++                        QMessageBox.critical(self,"Error",unicode(e))
+                     return
+             else:
+                 authorizations = []
+@@ -354,12 +360,13 @@
+ 
+             # If the user is logged in display warning, else delete user
+             if self.userLoggedOn(username):
+-                message = kdecore.i18n("Cannot delete <b>%1</b>. The user is currently logged in.", username)
+-                kdeui.KMessageBox.sorry(self, message, 'Message')
++                message =i18n("Cannot delete <b>%1</b>. The user is currently logged in.", username)
++                QMessageBox.information(self,'Message',message)
++
+             else:
+                 dialog = DialogQuestion(self)
+-                dialog.setQuestion(kdecore.i18n("Do you want to delete user '%1' (%2)?", fullname, username))
+-                dialog.setCheckBox(kdecore.i18n("Also remove user files. (This may take long.)"))
++                dialog.setQuestion(i18n("Do you want to delete user '%1' (%2)?", fullname, username))
++                dialog.setCheckBox(i18n("Also remove user files. (This may take long.)"))
+                 if dialog.exec_():
+                     self.callIface(lambda: self.iface.deleteUser(uid, deleteFiles=dialog.getCheckBox()))
+                     # User.Manager does not emit signals, refresh whole list.
+@@ -367,10 +374,14 @@
+         else:
+             gid = widget.getId()
+             groupname = widget.getTitle()
+-            if kdeui.KMessageBox.questionYesNo(self, kdecore.i18n("Do you want to delete group '%1'?", groupname)) == kdeui.KMessageBox.Yes:
+-                self.callIface(lambda: self.iface.deleteGroup(gid))
+-                # User.Manager does not emit signals, refresh whole list.
+-                self.buildItemList()
++            dialog=DialogQuestion(self)
++            dialog.setQuestion(i18n("Do yu want to delete group '%1'?",groupname))
++            dialog.checkBox.hide()
++            if dialog.exec_():
++                 self.callIface(lambda: self.iface.deleteGroup(gid))
++                 self.buildItemList()
++
++
+ 
+     def userLoggedOn(self, userToDelete):
+         """
+@@ -408,7 +419,8 @@
+                 grant, revoke, block = widget.getAuthorizations()
+ 
+                 if widget.wrn:
+-                    if kdeui.KMessageBox.warningContinueCancel(self, unicode(widget.wrn)) == kdeui.KMessageBox.Cancel:
++                    answer=QtGui.QMessageBox.warning(self,i18n("Remove items"),unicode(widget.wrn),QtGui.QMessageBox.Yes,QtGui.QMessageBox.No)
++                    if answer == QtGui.QMessageBox.No:
+                         return
+ 
+                 if widget.isNew():
+@@ -432,9 +444,9 @@
+                 self.callIface(lambda: self.iface.addGroup(widget.getId(), widget.getGroupname()))
+         except Exception, e: # TODO: Named exception should be raised
+             if "Comar.PolicyKit" in e:
+-                kdeui.KMessageBox.error(self, kdecore.i18n("Access denied."))
++                QMessageBox.critical(self,"Error",i18n("Access denied"))
+             else:
+-                kdeui.KMessageBox.error(self, unicode(e))
++                QMessageBox.critical(self,"Error",unicode(e))
+             return
+         finally:
+             self._in_progress = False
+diff -Nuar '--exclude=*.pyc' user-manager-3.0.2/src/usermanager//question.py user-manager-pds/src/usermanager//question.py
+--- user-manager-3.0.2/src/usermanager//question.py	2010-07-06 14:16:21.000000000 +0300
++++ user-manager-pds/src/usermanager//question.py	2011-03-01 22:20:47.000000000 +0200
+@@ -15,19 +15,19 @@
+ from PyQt4 import QtCore
+ from PyQt4 import QtGui
+ 
+-# PyKDE
+-from PyKDE4 import kdeui
+-from PyKDE4 import kdecore
+-
+ # UI
+ from usermanager.ui_question import Ui_DialogQuestion
+ 
++#PDS
++
++from context import *
++
+ class DialogQuestion(QtGui.QDialog, Ui_DialogQuestion):
+     def __init__(self, parent):
+         QtGui.QDialog.__init__(self, parent)
+         self.setupUi(self)
+ 
+-        self.pixmapIcon.setPixmap(kdeui.KIcon("dialog-information").pixmap(48, 48))
++        self.pixmapIcon.setPixmap(KIcon("dialog-information").pixmap(48, 48))
+ 
+     def setQuestion(self, question):
+         self.labelQuestion.setText(question)
