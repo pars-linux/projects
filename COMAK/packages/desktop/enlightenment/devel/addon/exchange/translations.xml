@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-slideshow</Name>
+        <Summary xml:lang="tr">Enlightenment için yazılmış slide gösterisi modülü</Summary>
+        <Description xml:lang="tr">e-module-slideshow, Enlightenment için yazılmış arkaplanı slayt gösterisine çeviren bir modüldür.</Description>
+    </Source>
+</PISI>
+
