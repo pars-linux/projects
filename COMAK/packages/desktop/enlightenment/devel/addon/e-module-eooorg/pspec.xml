@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>e-module-eooorg</Name>
+        <Homepage>http://www.enlightenment.org</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>openoffice preloader module for Enlightenment</Summary>
+        <Description>e-module-eooorg, preloads the openoffice process to save stsrt time with the costs of some memory.</Description>
+        <Archive sha1sum="68c431f777477ed1628fe65a8f597dc1c6f9b3d8" type="tarbz2">http://comak.comu.edu.tr/source/e-module-eooorg-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>eet-devel</Dependency>
+            <Dependency>edje-devel</Dependency>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>e-module-eooorg</Name>
+        <RuntimeDependencies>
+            <Dependency>eet</Dependency>
+            <Dependency>edje</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>ecore</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-10</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
