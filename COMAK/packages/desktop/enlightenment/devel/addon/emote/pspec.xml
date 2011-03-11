@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>emote</Name>
+        <Homepage>http://www.enlightenment.org/</Homepage>
+        <Packager>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>asdasd</Summary>
+        <Description>asdasd</Description>
+        <Archive sha1sum="7bbefdcbc981080ee6e17e751b9ce36c88f2823f" type="tarbz2">http://comak.comu.edu.tr/source/emote-0.0.1_55225.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>eet-devel</Dependency>
+            <Dependency>efreet-devel</Dependency>
+            <Dependency>eina-devel</Dependency>
+            <Dependency>evas-devel</Dependency>
+            <Dependency>ecore-devel</Dependency>
+            <Dependency>elementary-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>emote</Name>
+        <RuntimeDependencies>
+            <Dependency>eet</Dependency>
+            <Dependency>eina</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>ecore</Dependency>
+            <Dependency>efreet</Dependency>
+            <Dependency>elementary</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>emote-devel</Name>
+        <RuntimeDependencies>
+            <Dependency release="current">emote</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-11</Date>
+            <Version>0.0.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
