@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>Pardus default settings for Fluxbox</Summary>
         <Description>This package contains the Fluxbox default settings for Pardus.</Description>
-        <Archive sha1sum="8d68ade7931afbfd941666180d3be0dc34b7ab75" type="tarbz2">http://www.mesutcankurt.com/comak/pardus-default-settings-fluxbox-0.0.1.tar.bz2</Archive>
+        <Archive sha1sum="8d68ade7931afbfd941666180d3be0dc34b7ab75" type="tarbz2">http://comak.comu.edu.tr/source/pardus-default-settings-fluxbox-0.0.1.tar.bz2</Archive>
     </Source>
 
     <Package>
