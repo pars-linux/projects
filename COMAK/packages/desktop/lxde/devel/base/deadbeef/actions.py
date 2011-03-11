@@ -13,8 +13,7 @@ def setup():
 
     shelltools.makedirs("%s/%s/m4" % (get.workDIR(), get.srcDIR()))
     autotools.autoreconf("-vfi")
-    autotools.configure("--disable-threads \
-                         --disable-static")
+    autotools.configure("--disable-static")
 
 def build():
     autotools.make()
