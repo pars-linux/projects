@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>e-module-mail</Name>
+        <Summary xml:lang="tr">Enlightenment için e-mail modülü</Summary>
+        <Description xml:lang="tr">e-module-mail, bir e-mail bildirim modülüdür. Mail kutularını, mail dizinini, IMAP ve POP3'ü kontrol eder.</Description>
+    </Source>
+</PISI>
+
