@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>e-module-exalt-client</Name>
+        <Name>e-module-tiling</Name>
         <Homepage>http://www.enlightenment.org/</Homepage>
         <Packager>
             <Name>Engin manap</Name>
@@ -10,9 +10,9 @@
         </Packager>
         <License>As-Is</License>
         <IsA>library</IsA>
-        <Summary>Exalt-client module for Enlightenment</Summary>
-        <Description>Exalt-client is a module for using exalt network manager.</Description>
-        <Archive sha1sum="908cce6c0e66e6d026a828a363597f2cc28bd73f" type="tarbz2">http://comak.comu.edu.tr/source/e-module-exalt-client-0.0.1_55225.tar.bz2</Archive>
+        <Summary>Tiling module for Enlightenment</Summary>
+        <Description>New tiling module by Michael Stapelberg.</Description>
+        <Archive sha1sum="50033f40c59c0881d38eb949139b065a0a05ced3" type="tarbz2">http://comak.comu.edu.tr/source/e-module-tiling-0.0.1_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
@@ -20,32 +20,29 @@
             <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">edje-devel</Dependency>
             <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
-            <Dependency versionFrom="0.9_55225">exalt-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
-        <Name>e-module-exalt-client</Name>
+        <Name>e-module-tiling</Name>
         <RuntimeDependencies>
-            <Dependency>e_dbus</Dependency>
             <Dependency>ecore</Dependency>
             <Dependency>exalt</Dependency>
             <Dependency>evas</Dependency>
             <Dependency>eina</Dependency>
-            <Dependency>edje</Dependency>
             <Dependency>eet</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="library">/usr/lib/enlightenment/modules/exalt/</Path>
-            <Path fileType="data">/usr/lib/enlightenment/modules/exalt</Path>
-            <Path fileType="localedata">/usr/lib/enlightenment/modules/exalt/locale/</Path>
+            <Path fileType="library">/usr/lib/enlightenment/modules/tiling</Path>
+            <Path fileType="data">/usr/lib/enlightenment/modules/tiling</Path>
+            <Path fileType="localedata">/usr/lib/enlightenment/modules/tiling/locale</Path>
             <Path fileType="doc">/usr/share/doc</Path>
         </Files>
     </Package>
 
     <History>
         <Update release="1">
-            <Date>2011-03-10</Date>
+            <Date>2011-03-11</Date>
             <Version>0.0.1_55225</Version>
             <Comment>First release.</Comment>
             <Name>Engin Manap</Name>
