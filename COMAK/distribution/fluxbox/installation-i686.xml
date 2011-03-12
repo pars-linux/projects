@@ -63,6 +63,7 @@
         <SelectedPackage>htop</SelectedPackage>
         <SelectedPackage>hunspell</SelectedPackage>
         <SelectedPackage>hunspell-dict-en</SelectedPackage>
+        <SelectedPackage>icon-theme-gnome</SelectedPackage>
         <SelectedPackage>icon-theme-hicolor</SelectedPackage>
         <SelectedPackage>icon-theme-oxygen-png</SelectedPackage>
         <SelectedPackage>iptraf</SelectedPackage>
@@ -372,6 +373,7 @@
         <Package>hal-libs</Package>
         <Package>hdparm</Package>
         <Package>hunspell</Package>
+        <Package>icon-theme-hicolor</Package>
         <Package>icon-theme-oxygen-index</Package>
         <Package>icon-theme-oxygen-png</Package>
         <Package>icu4c</Package>
