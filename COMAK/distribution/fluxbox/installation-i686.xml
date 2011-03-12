@@ -168,7 +168,6 @@
         <SelectedPackage>splix</SelectedPackage>
         <SelectedPackage>sshfs</SelectedPackage>
         <SelectedPackage>startup-notification</SelectedPackage>
-        <SelectedPackage>subversion</SelectedPackage>
         <SelectedPackage>sudo</SelectedPackage>
         <SelectedPackage>sun-jre</SelectedPackage>
         <SelectedPackage>suspend</SelectedPackage>
@@ -209,8 +208,6 @@
         <Package>alsa-lib</Package>
         <Package>alsa-utils</Package>
         <Package>alternatives</Package>
-        <Package>apr</Package>
-        <Package>apr-util</Package>
         <Package>atk</Package>
         <Package>atmel-firmware</Package>
         <Package>attr</Package>
@@ -592,7 +589,6 @@
         <Package>mtools</Package>
         <Package>mudur</Package>
         <Package>musicbrainz3</Package>
-        <Package>mysql-lib</Package>
         <Package>nano</Package>
         <Package>ncompress</Package>
         <Package>ncurses</Package>
@@ -654,7 +650,6 @@
         <Package>poppler-glib</Package>
         <Package>poppler-utils</Package>
         <Package>popt</Package>
-        <Package>postgresql-lib</Package>
         <Package>ppp</Package>
         <Package>procps</Package>
         <Package>psmisc</Package>
