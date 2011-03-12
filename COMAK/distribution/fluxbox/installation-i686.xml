@@ -21,7 +21,6 @@
         <SelectedPackage>boot-manager-pds</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
-        <SelectedPackage>clementine</SelectedPackage>
         <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
@@ -41,7 +40,6 @@
         <SelectedPackage>epdfview</SelectedPackage>
         <SelectedPackage>eterm</SelectedPackage>
         <SelectedPackage>ethtool</SelectedPackage>
-        <SelectedPackage>example-content</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
         <SelectedPackage>fbdesk</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
@@ -61,13 +59,13 @@
         <SelectedPackage>gtk-engines</SelectedPackage>
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
+        <SelectedPackage>gvtray</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
         <SelectedPackage>hplip</SelectedPackage>
         <SelectedPackage>htop</SelectedPackage>
         <SelectedPackage>hunspell</SelectedPackage>
         <SelectedPackage>hunspell-dict-en</SelectedPackage>
         <SelectedPackage>icon-theme-hicolor</SelectedPackage>
-        <SelectedPackage>icon-theme-milky-png</SelectedPackage>
         <SelectedPackage>icon-theme-oxygen-png</SelectedPackage>
         <SelectedPackage>iptraf</SelectedPackage>
         <SelectedPackage>ipython</SelectedPackage>
@@ -133,6 +131,7 @@
         <SelectedPackage>plymouth-theme-solar</SelectedPackage>
         <SelectedPackage>plymouth-theme-spinfinity</SelectedPackage>
         <SelectedPackage>plymouth-utils</SelectedPackage>
+        <SelectedPackage>pogo</SelectedPackage>
         <SelectedPackage>polkit-gnome</SelectedPackage>
         <SelectedPackage>poster</SelectedPackage>
         <SelectedPackage>powertop</SelectedPackage>
@@ -153,6 +152,7 @@
         <SelectedPackage>rp-pppoe</SelectedPackage>
         <SelectedPackage>rpm2targz</SelectedPackage>
         <SelectedPackage>rsync</SelectedPackage>
+        <SelectedPackage>rxvt-unicode</SelectedPackage>
         <SelectedPackage>samba</SelectedPackage>
         <SelectedPackage>scim-immodule-gtk</SelectedPackage>
         <SelectedPackage>screen</SelectedPackage>
@@ -180,7 +180,6 @@
         <SelectedPackage>tree</SelectedPackage>
         <SelectedPackage>unarj</SelectedPackage>
         <SelectedPackage>unrar</SelectedPackage>
-        <SelectedPackage>urxvt</SelectedPackage>
         <SelectedPackage>usb-modeswitch</SelectedPackage>
         <SelectedPackage>user-manager-pds</SelectedPackage>
         <SelectedPackage>vim</SelectedPackage>
@@ -222,7 +221,6 @@
         <Package>audit</Package>
         <Package>avahi</Package>
         <Package>avahi-autoipd</Package>
-        <Package>avahi-compat-libdns_sd</Package>
         <Package>avahi-glib</Package>
         <Package>avahi-libs</Package>
         <Package>b43-firmware</Package>
@@ -259,6 +257,7 @@
         <Package>cyrus-sasl</Package>
         <Package>db4</Package>
         <Package>dbus</Package>
+        <Package>dbus-c++</Package>
         <Package>dbus-glib</Package>
         <Package>dbus-java</Package>
         <Package>dbus-python</Package>
@@ -285,17 +284,14 @@
         <Package>enca</Package>
         <Package>enchant</Package>
         <Package>enscript</Package>
-        <Package>exempi</Package>
         <Package>expat</Package>
         <Package>faac</Package>
         <Package>faad2</Package>
         <Package>farsight2</Package>
         <Package>ffmpeg</Package>
-        <Package>fftw3</Package>
         <Package>file</Package>
         <Package>findutils</Package>
         <Package>flac</Package>
-        <Package>flite</Package>
         <Package>fluidsynth</Package>
         <Package>fluxbox</Package>
         <Package>fontconfig</Package>
@@ -313,6 +309,7 @@
         <Package>gconfmm</Package>
         <Package>gdbm</Package>
         <Package>gdk-pixbuf</Package>
+        <Package>gdl</Package>
         <Package>gettext</Package>
         <Package>gfxtheme-base</Package>
         <Package>gfxtheme-pardus-install</Package>
@@ -337,6 +334,8 @@
         <Package>gmp</Package>
         <Package>gnome-keyring</Package>
         <Package>gnome-mplayer</Package>
+        <Package>gnome-python</Package>
+        <Package>gnome-python-extras</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
         <Package>gnutls</Package>
@@ -351,9 +350,9 @@
         <Package>gsm</Package>
         <Package>gssdp</Package>
         <Package>gst-ffmpeg</Package>
-        <Package>gst-plugins-bad</Package>
         <Package>gst-plugins-base</Package>
         <Package>gst-plugins-good</Package>
+        <Package>gst-python</Package>
         <Package>gstreamer</Package>
         <Package>gtk-style-oxygen</Package>
         <Package>gtk2</Package>
@@ -375,12 +374,11 @@
         <Package>hal-libs</Package>
         <Package>hdparm</Package>
         <Package>hunspell</Package>
-        <Package>icon-theme-milky-index</Package>
-        <Package>icon-theme-milky-png</Package>
         <Package>icon-theme-oxygen-index</Package>
         <Package>icon-theme-oxygen-png</Package>
         <Package>icu4c</Package>
         <Package>imlib2</Package>
+        <Package>iniparser</Package>
         <Package>iproute2</Package>
         <Package>iptables</Package>
         <Package>iputils</Package>
@@ -420,6 +418,7 @@
         <Package>libXpm</Package>
         <Package>libXrandr</Package>
         <Package>libXrender</Package>
+        <Package>libXres</Package>
         <Package>libXt</Package>
         <Package>libXtst</Package>
         <Package>libXv</Package>
@@ -441,14 +440,11 @@
         <Package>libcanberra-gtk</Package>
         <Package>libcap</Package>
         <Package>libcap-ng</Package>
-        <Package>libcdaudio</Package>
         <Package>libcddb</Package>
         <Package>libcdio</Package>
         <Package>libconfig</Package>
         <Package>libcroco</Package>
         <Package>libdaemon</Package>
-        <Package>libdbusmenu-common</Package>
-        <Package>libdbusmenu-glib</Package>
         <Package>libdc1394</Package>
         <Package>libdca</Package>
         <Package>libdiscid</Package>
@@ -463,7 +459,6 @@
         <Package>libdvdnav</Package>
         <Package>libdvdread</Package>
         <Package>libebml</Package>
-        <Package>libechonest</Package>
         <Package>libevent</Package>
         <Package>libexif</Package>
         <Package>libfame</Package>
@@ -495,19 +490,13 @@
         <Package>libiec61883</Package>
         <Package>libieee1284</Package>
         <Package>libimobiledevice</Package>
-        <Package>libindicate</Package>
-        <Package>libindicate-qt</Package>
         <Package>libiodbc</Package>
         <Package>libkate</Package>
         <Package>libkms</Package>
-        <Package>liblastfm</Package>
-        <Package>liblrdf</Package>
         <Package>libmad</Package>
         <Package>libmatroska</Package>
         <Package>libmatthew-java</Package>
         <Package>libmikmod</Package>
-        <Package>libmimic</Package>
-        <Package>libmms</Package>
         <Package>libmng</Package>
         <Package>libmodplug</Package>
         <Package>libmp4v2</Package>
@@ -519,21 +508,18 @@
         <Package>libnl</Package>
         <Package>libnotify</Package>
         <Package>libnut</Package>
-        <Package>libofa</Package>
         <Package>libogg</Package>
         <Package>liboil</Package>
         <Package>libpaper</Package>
         <Package>libpcap</Package>
         <Package>libpciaccess</Package>
+        <Package>libpciaccess-devel</Package>
         <Package>libpcre</Package>
         <Package>libplist</Package>
         <Package>libpng</Package>
         <Package>libprojectM</Package>
         <Package>libproxy</Package>
         <Package>libpurple</Package>
-        <Package>libqjson</Package>
-        <Package>libquicktime</Package>
-        <Package>libqxt</Package>
         <Package>libraw1394</Package>
         <Package>librsvg</Package>
         <Package>libsamplerate</Package>
@@ -574,7 +560,6 @@
         <Package>lirc</Package>
         <Package>live555</Package>
         <Package>lsb-release</Package>
-        <Package>lv2core</Package>
         <Package>lvm2</Package>
         <Package>lxde-menu-cache</Package>
         <Package>lzo</Package>
@@ -588,11 +573,12 @@
         <Package>minizip</Package>
         <Package>miscfiles</Package>
         <Package>mit-kerberos</Package>
-        <Package>mjpegtools</Package>
         <Package>mkinitramfs</Package>
         <Package>mobile-broadband-provider-info</Package>
         <Package>module-alsa-driver-userspace</Package>
         <Package>module-broadcom-wl-userspace</Package>
+        <Package>module-fglrx</Package>
+        <Package>module-fglrx-userspace</Package>
         <Package>module-init-tools</Package>
         <Package>module-ndiswrapper-userspace</Package>
         <Package>module-nvidia-current</Package>
@@ -608,7 +594,6 @@
         <Package>mplayer</Package>
         <Package>mtools</Package>
         <Package>mudur</Package>
-        <Package>musicbrainz</Package>
         <Package>musicbrainz3</Package>
         <Package>mysql-lib</Package>
         <Package>nano</Package>
@@ -618,6 +603,7 @@
         <Package>net-snmp</Package>
         <Package>net-tools</Package>
         <Package>netcat</Package>
+        <Package>notify-python</Package>
         <Package>nspr</Package>
         <Package>nss</Package>
         <Package>nss-mdns</Package>
@@ -654,6 +640,7 @@
         <Package>pinentry</Package>
         <Package>pisi</Package>
         <Package>pixman</Package>
+        <Package>pixman-devel</Package>
         <Package>plymouth-core-libs</Package>
         <Package>plymouth-graphics-libs</Package>
         <Package>plymouth-plugin-fade-throbber</Package>
@@ -689,20 +676,23 @@
         <Package>python-decorator</Package>
         <Package>python-foolscap</Package>
         <Package>python-gtk</Package>
+        <Package>python-imaging</Package>
+        <Package>python-mutagen</Package>
         <Package>python-nose</Package>
         <Package>python-numpy</Package>
+        <Package>python-orbit</Package>
+        <Package>python-pyalsaaudio</Package>
         <Package>python-pyaspects</Package>
         <Package>python-pyblock</Package>
         <Package>python-pygobject</Package>
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
         <Package>python-setuptools</Package>
+        <Package>python-tk</Package>
         <Package>python-zope-interface</Package>
         <Package>qt</Package>
-        <Package>qt-sql-sqlite</Package>
         <Package>qt-webkit</Package>
         <Package>qtermwidget</Package>
-        <Package>qtiocompressor</Package>
         <Package>raptor</Package>
         <Package>rasqal</Package>
         <Package>readline</Package>
@@ -713,13 +703,11 @@
         <Package>rpcbind</Package>
         <Package>rsyslog</Package>
         <Package>rtkit</Package>
-        <Package>ruby</Package>
         <Package>samba</Package>
         <Package>sane-backends</Package>
         <Package>schroedinger</Package>
         <Package>scim-libs</Package>
         <Package>screen</Package>
-        <Package>sdl-gfx</Package>
         <Package>sdl-image</Package>
         <Package>sed</Package>
         <Package>setserial</Package>
@@ -730,10 +718,8 @@
         <Package>skey</Package>
         <Package>slang</Package>
         <Package>slf4j</Package>
-        <Package>slv2</Package>
         <Package>smpeg</Package>
         <Package>soprano</Package>
-        <Package>soundtouch</Package>
         <Package>speedtouch-firmware</Package>
         <Package>speex</Package>
         <Package>spidermonkey</Package>
@@ -793,24 +779,37 @@
         <Package>xorg-input-aiptek</Package>
         <Package>xorg-input-elographics</Package>
         <Package>xorg-input-evdev</Package>
+        <Package>xorg-input-evdev-devel</Package>
         <Package>xorg-input-fpit</Package>
         <Package>xorg-input-hyperpen</Package>
         <Package>xorg-input-joystick</Package>
+        <Package>xorg-input-joystick-devel</Package>
         <Package>xorg-input-kbd</Package>
         <Package>xorg-input-mouse</Package>
         <Package>xorg-input-mutouch</Package>
         <Package>xorg-input-penmount</Package>
         <Package>xorg-input-synaptics</Package>
+        <Package>xorg-input-synaptics-devel</Package>
         <Package>xorg-input-vmmouse</Package>
+        <Package>xorg-input-void</Package>
         <Package>xorg-input-wacom</Package>
+        <Package>xorg-input-wacom-devel</Package>
         <Package>xorg-server</Package>
         <Package>xorg-server-common</Package>
+        <Package>xorg-server-devel</Package>
+        <Package>xorg-server-xdmx</Package>
+        <Package>xorg-server-xephyr</Package>
+        <Package>xorg-server-xvfb</Package>
+        <Package>xorg-server-xvnc</Package>
         <Package>xorg-video-apm</Package>
         <Package>xorg-video-ark</Package>
         <Package>xorg-video-ast</Package>
         <Package>xorg-video-chips</Package>
         <Package>xorg-video-cirrus</Package>
+        <Package>xorg-video-dummy</Package>
         <Package>xorg-video-fbdev</Package>
+        <Package>xorg-video-fglrx</Package>
+        <Package>xorg-video-geode</Package>
         <Package>xorg-video-glint</Package>
         <Package>xorg-video-i128</Package>
         <Package>xorg-video-i740</Package>
@@ -844,6 +843,7 @@
         <Package>xorg-video-vmware</Package>
         <Package>xorg-video-voodoo</Package>
         <Package>xulrunner</Package>
+        <Package>xvba-video</Package>
         <Package>xvid</Package>
         <Package>xz</Package>
         <Package>yali-branding-pardus</Package>
@@ -852,7 +852,6 @@
         <Package>zemberek-server</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
-        <Package>zorg</Package>
         <Package>zvbi</Package>
     </PackageSelection>
     <InstallImagePackages>
@@ -1253,7 +1252,6 @@
         <Package>yali-theme-pardus</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
-        <Package>zorg</Package>
     </InstallImagePackages>
     <LanguageSelection default_language="tr_TR">
         <Language>tr_TR</Language>
