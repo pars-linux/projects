@@ -21,6 +21,7 @@
             <Dependency>libpcre-devel</Dependency>
             <Dependency>utempter-devel</Dependency>
             <Dependency>libXt-devel</Dependency>
+            <Dependency>libXres-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -33,6 +34,7 @@
             <Dependency versionFrom="2">freetype</Dependency>
             <Dependency>libpcre</Dependency>
             <Dependency>utempter</Dependency>
+            <Dependency>libXres</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
