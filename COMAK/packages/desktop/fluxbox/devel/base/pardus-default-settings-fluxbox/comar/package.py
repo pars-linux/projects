@@ -52,8 +52,8 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     sudoers_array = sudoers.readlines()
     x= 0
     for i in range(0,sudoers_array.__len__()):
-        if sudoers_array[i].find("%wheel· ALL=(ALL)·  ALL") != -1:
-            sudoers_array[i] ="%wheel· ALL=(ALL)·  ALL\n%wheel ALL = NOPASSWD: /sbin/shutdown\n"
+        if sudoers_array[i].find("# Uncomment to allow people in group wheel to run all commands") != -1:
+            sudoers_array[i] ="# Uncomment to allow people in group wheel to run all commands\n%wheel ALL = NOPASSWD: /sbin/shutdown\n"
             x = 42
             break
     sudoers.close()
