@@ -59,7 +59,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         self.pushDown.setEnabled(0)
 
     def hideAdd(self):
-        if self.lineEdit.text() <> "":
+        if not(self.lineEdit.text()==""):
             self.pushAdd.setEnabled(1)
         else :
             self.pushAdd.setEnabled(0)
@@ -75,7 +75,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
             if self.listWidget.currentItem():
                 self.listWidget.currentItem().setText(self.lineEdit.text())
             else:
-                if self.lineEdit.text()<> "":
+                if not(self.lineEdit.text()== ""):
                     self.listWidget.insertItem(0,self.lineEdit.text())
         self.lineEdit.setText("")
         self.listWidget.setCurrentItem(None)
@@ -97,7 +97,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
 
     def HideButtons(self):
         self.listToLineEdit()
-        if self.lineEdit.text()<> "":
+        if not(self.lineEdit.text()==""):
             self.pushAdd.setEnabled(1)
         if self.listWidget.currentRow() == 0 :
             self.pushUp.setEnabled(0)
