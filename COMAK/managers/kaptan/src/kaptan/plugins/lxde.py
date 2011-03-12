@@ -124,7 +124,7 @@ class Wallpaper(base.Wallpaper):
             #    File names I've seen so far;
             #    screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
             #    """
-            wallpaper["wallpaperThumb"] = "/usr/share/wallpapers/"+desktopFile
+            wallpaper["wallpaperThumb"] = "/usr/share/wallpapers/%s"%desktopFile
             wallpaper["wallpaperFile"] = desktopFile
             items.append(wallpaper)
 
@@ -140,8 +140,11 @@ class Wallpaper(base.Wallpaper):
 class Common(base.Common):
 
     def getLanguage(self):
-        return "tr"
-
+        locale_app = QLocale()
+        locale_os = QLocale.system()
+        info = []
+        var = QLocale.languageToString(locale_app.language())
+        return var
 class Style(base.Style):
 
     def getDesktopNumber(self):
@@ -202,7 +205,7 @@ def test_config_files():
     print ">openbox options..."
     print " reading theme/name option"
     theme_name = CONFIG_OPENBOX.getTag("theme").getTag("name").firstChild().data()
-    print " theme/name="+theme_name
+    print " theme/name=%s"%theme_name
     print " setting value to 'onyx'"
     CONFIG_OPENBOX.getTag("theme").getTag("name").setData("onyx")
     save_openboxrc(CONFIG_OPENBOX)
@@ -210,7 +213,7 @@ def test_config_files():
 
     print " reading desktops/number"
     desktop_number = CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data()
-    print " desktop number="+desktop_number
+    print " desktop number=%s"%desktop_number
     print " setting desktop number to 3"
     CONFIG_OPENBOX.getTag("desktops").getTag("number").setData("3")
     save_openboxrc(CONFIG_OPENBOX)

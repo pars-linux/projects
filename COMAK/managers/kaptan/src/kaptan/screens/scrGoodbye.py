@@ -17,6 +17,13 @@ from PyQt4.QtCore import *
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 
+#Context
+from kaptan.screens.context import *
+import kaptan.screens.context as ctx
+from kaptan.plugins import Desktop
+from PyQt4.QtCore import *
+
+
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4.kdecore import ki18n, KGlobal, KConfig
 
@@ -38,8 +45,12 @@ class Widget(QtGui.QWidget, Screen):
        # lang = KGlobal.locale().language()
 
         lang=QLocale().language()
-    
-        if lang == 125:
+        locale_app = QLocale()
+        locale_os = QLocale.system()
+        info = []
+        var = QLocale.languageToString(locale_app.language())
+
+        if var == "Turkish":
             self.helpPageUrl = "http://www.pardus.org.tr/destek"
         else:
             self.helpPageUrl = "http://www.pardus.org.tr/eng/support"
