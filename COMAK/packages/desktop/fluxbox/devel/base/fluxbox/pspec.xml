@@ -31,6 +31,7 @@
             <Patch level="1">default-theme-solaris.patch</Patch>
             <!--<Patch level="1">pardus-default-configuration.patch</Patch>-->
             <Patch level="1" compressionType="bz2">icons.patch.tar.bz2</Patch>
+            <Patch level="1">autostart-some-apps.patch</Patch>
         </Patches>
     </Source>
 
