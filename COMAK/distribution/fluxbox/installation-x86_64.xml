@@ -183,6 +183,7 @@
         <SelectedPackage>wget</SelectedPackage>
         <SelectedPackage>whois</SelectedPackage>
         <SelectedPackage>wpa_supplicant</SelectedPackage>
+        <SelectedPackage>xarchiver</SelectedPackage>
         <SelectedPackage>xdelta</SelectedPackage>
         <SelectedPackage>xdg-user-dirs</SelectedPackage>
         <SelectedPackage>xdg-utils</SelectedPackage>
@@ -608,6 +609,7 @@
         <Package>openssh</Package>
         <Package>openssl</Package>
         <Package>orbit2</Package>
+        <Package>p7zip</Package>
         <Package>pam</Package>
         <Package>pam_python</Package>
         <Package>panda</Package>
@@ -726,7 +728,9 @@
         <Package>timidity-shompatches</Package>
         <Package>twolame</Package>
         <Package>udev</Package>
+        <Package>udev</Package>
         <Package>unixODBC</Package>
+        <Package>unrar</Package>
         <Package>unzip</Package>
         <Package>urlgrabber</Package>
         <Package>usbmuxd</Package>
