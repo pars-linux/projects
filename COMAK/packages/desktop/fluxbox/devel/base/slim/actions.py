@@ -10,7 +10,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def build():
-    autotools.make()
+    autotools.make("USE_PAM=1")
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
