@@ -35,7 +35,7 @@ diff -Naur fluxbox-1.1.2_20081122.orig/data/init.in fluxbox-1.1.2_20081122/data/
 +session.styleOverlay:	~/.fluxbox/overlay
 +session.groupFile:	~/.fluxbox/groups
 +session.cacheLife:	5
-+session.styleFile:	/usr/share/fluxbox/styles/solaris
++session.styleFile:	/usr/share/fluxbox/styles/qnx-photon
 +session.keyFile: ~/.fluxbox/keys
 +session.colorsPerChannel:	4
 +session.doubleClickInterval:	250
