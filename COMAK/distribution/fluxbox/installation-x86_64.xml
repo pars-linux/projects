@@ -14,7 +14,6 @@
         <SelectedPackage>alsa-plugins-pulseaudio</SelectedPackage>
         <SelectedPackage>apmd</SelectedPackage>
         <SelectedPackage>aria2</SelectedPackage>
-        <SelectedPackage>artwork-pardus-release</SelectedPackage>
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
@@ -63,6 +62,7 @@
         <SelectedPackage>htop</SelectedPackage>
         <SelectedPackage>hunspell</SelectedPackage>
         <SelectedPackage>hunspell-dict-en</SelectedPackage>
+        <SelectedPackage>icon-theme-gnome</SelectedPackage>
         <SelectedPackage>icon-theme-hicolor</SelectedPackage>
         <SelectedPackage>icon-theme-oxygen-png</SelectedPackage>
         <SelectedPackage>iptraf</SelectedPackage>
@@ -83,7 +83,6 @@
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
-        <SelectedPackage>mercurial</SelectedPackage>
         <SelectedPackage>mesa-utils</SelectedPackage>
         <SelectedPackage>microcode-ctl</SelectedPackage>
         <SelectedPackage>min12xxw</SelectedPackage>
@@ -169,7 +168,6 @@
         <SelectedPackage>splix</SelectedPackage>
         <SelectedPackage>sshfs</SelectedPackage>
         <SelectedPackage>startup-notification</SelectedPackage>
-        <SelectedPackage>subversion</SelectedPackage>
         <SelectedPackage>sudo</SelectedPackage>
         <SelectedPackage>sun-jre</SelectedPackage>
         <SelectedPackage>suspend</SelectedPackage>
@@ -199,7 +197,6 @@
         <SelectedPackage>zemberek</SelectedPackage>
         <SelectedPackage>zemberek-server</SelectedPackage>
         <SelectedPackage>zorg</SelectedPackage>
-        <SelectedPackage>zsh</SelectedPackage>
         <Package>ConsoleKit</Package>
         <Package>DirectFB</Package>
         <Package>ModemManager</Package>
@@ -211,8 +208,6 @@
         <Package>alsa-lib</Package>
         <Package>alsa-utils</Package>
         <Package>alternatives</Package>
-        <Package>apr</Package>
-        <Package>apr-util</Package>
         <Package>atk</Package>
         <Package>atmel-firmware</Package>
         <Package>attr</Package>
@@ -372,6 +367,7 @@
         <Package>hal-libs</Package>
         <Package>hdparm</Package>
         <Package>hunspell</Package>
+        <Package>icon-theme-hicolor</Package>
         <Package>icon-theme-oxygen-index</Package>
         <Package>icon-theme-oxygen-png</Package>
         <Package>icu4c</Package>
@@ -593,7 +589,6 @@
         <Package>mtools</Package>
         <Package>mudur</Package>
         <Package>musicbrainz3</Package>
-        <Package>mysql-lib</Package>
         <Package>nano</Package>
         <Package>ncompress</Package>
         <Package>ncurses</Package>
@@ -655,7 +650,6 @@
         <Package>poppler-glib</Package>
         <Package>poppler-utils</Package>
         <Package>popt</Package>
-        <Package>postgresql-lib</Package>
         <Package>ppp</Package>
         <Package>procps</Package>
         <Package>psmisc</Package>
