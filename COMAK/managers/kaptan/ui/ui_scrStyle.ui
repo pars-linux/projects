@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
+    <width>743</width>
     <height>615</height>
    </rect>
   </property>
@@ -352,7 +352,7 @@ border-top-right-radius: 4px;</string>
            <bool>false</bool>
           </property>
           <property name="currentRow">
-           <number>0</number>
+           <number>-1</number>
           </property>
           <item>
            <property name="text">
@@ -367,6 +367,15 @@ border-top-right-radius: 4px;</string>
            <property name="icon">
             <iconset resource="../data/kaptan.qrc">
              <normaloff>:/raw/pixmap/oxygen.png</normaloff>:/raw/pixmap/oxygen.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Oxygen - The official icon set of LXDE</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../data/kaptan.qrc">
+             <normaloff>:/raw/pixmap/oxygen_lxde.png</normaloff>:/raw/pixmap/oxygen_lxde.png</iconset>
            </property>
           </item>
           <item>
