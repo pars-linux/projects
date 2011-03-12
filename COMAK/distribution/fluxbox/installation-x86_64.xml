@@ -13,7 +13,6 @@
         <SelectedPackage>alsa-plugins</SelectedPackage>
         <SelectedPackage>alsa-plugins-pulseaudio</SelectedPackage>
         <SelectedPackage>apmd</SelectedPackage>
-        <SelectedPackage>aria2</SelectedPackage>
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
@@ -79,7 +78,6 @@
         <SelectedPackage>lsscsi</SelectedPackage>
         <SelectedPackage>lvm2</SelectedPackage>
         <SelectedPackage>lvm2-static</SelectedPackage>
-        <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
         <SelectedPackage>mesa-utils</SelectedPackage>
@@ -229,7 +227,6 @@
         <Package>boost</Package>
         <Package>busybox</Package>
         <Package>bzip2</Package>
-        <Package>c-ares</Package>
         <Package>cairo</Package>
         <Package>cairomm</Package>
         <Package>cdparanoia</Package>
