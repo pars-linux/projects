@@ -150,6 +150,7 @@
         <SelectedPackage>rp-pppoe</SelectedPackage>
         <SelectedPackage>rpm2targz</SelectedPackage>
         <SelectedPackage>rsync</SelectedPackage>
+        <SelectedPackage>ruby</SelectedPackage>
         <SelectedPackage>rxvt-unicode</SelectedPackage>
         <SelectedPackage>samba</SelectedPackage>
         <SelectedPackage>scim-immodule-gtk</SelectedPackage>
