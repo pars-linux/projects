@@ -1,7 +1,8 @@
-[begin] (FluxBox)
+[begin] (Falco Peregrinus)
 [encoding] {UTF-8}
         [exec] (Run) {fbrun} </usr/share/fluxbox/icons/fluxbox.png>
         [exec] (Eterm) {Eterm} </usr/share/fluxbox/icons/flux-terminal.png>
+        [exec] (Pcmanfm) {pcmanfm} </usr/share/icons/oxygen/128x128/apps/system-file-manager.png>
         [exec] (FireFox) {firefox} </usr/share/pixmaps/firefox.png>
         [exec] (Cnazar) {cnazar} </usr/share/cnazar/data/cnazar.png>
     [separator] (--------)
