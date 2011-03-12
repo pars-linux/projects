@@ -14,7 +14,6 @@
         <SelectedPackage>alsa-plugins-pulseaudio</SelectedPackage>
         <SelectedPackage>apmd</SelectedPackage>
         <SelectedPackage>aria2</SelectedPackage>
-        <SelectedPackage>artwork-pardus-release</SelectedPackage>
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
@@ -84,7 +83,6 @@
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
-        <SelectedPackage>mercurial</SelectedPackage>
         <SelectedPackage>mesa-utils</SelectedPackage>
         <SelectedPackage>microcode-ctl</SelectedPackage>
         <SelectedPackage>min12xxw</SelectedPackage>
@@ -200,7 +198,6 @@
         <SelectedPackage>zemberek</SelectedPackage>
         <SelectedPackage>zemberek-server</SelectedPackage>
         <SelectedPackage>zorg</SelectedPackage>
-        <SelectedPackage>zsh</SelectedPackage>
         <Package>ConsoleKit</Package>
         <Package>DirectFB</Package>
         <Package>ModemManager</Package>
