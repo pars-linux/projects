@@ -24,7 +24,7 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     x= 0
     for i in range(0,qiconloader_array.__len__()):
         if qiconloader_array[i].find("dataDirs.prepend(self.pds.config_path + 'share:')") != -1:
-            qiconloader_array[i] ="\t\tdataDirs.prepend(str(self.pds.config_path) + 'share:')"
+            qiconloader_array[i]="        dataDirs.prepend(str(self.pds.config_path) + 'share:')\n"
             x = 42
             break
     qiconloader.close()
