@@ -20,7 +20,6 @@
         <SelectedPackage>bogofilter</SelectedPackage>
         <SelectedPackage>boot-manager-pds</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
-        <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
@@ -34,7 +33,6 @@
         <SelectedPackage>disk-manager-pds</SelectedPackage>
         <SelectedPackage>djvu-plugin</SelectedPackage>
         <SelectedPackage>droid-fonts</SelectedPackage>
-        <SelectedPackage>dvd+rw-tools</SelectedPackage>
         <SelectedPackage>encfs</SelectedPackage>
         <SelectedPackage>enchant-zemberek</SelectedPackage>
         <SelectedPackage>epdfview</SelectedPackage>
@@ -240,7 +238,6 @@
         <Package>cairo</Package>
         <Package>cairomm</Package>
         <Package>cdparanoia</Package>
-        <Package>cdrtools</Package>
         <Package>check</Package>
         <Package>clucene</Package>
         <Package>comar</Package>
