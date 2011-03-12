@@ -6,9 +6,6 @@ import platform
 import subprocess
 
 def postInstall(fromVersion, fromRelease, toVersion, toRelease):
-    #pisiapi.add_repo("lxde-repo", "http://x86-64.comu.edu.tr/lxde/%s/pisi-index.xml.xz" % platform.machine())
-    subprocess.Popen(["pisi ar enlightenment-repo http://x86-64.comu.edu.tr/enlightenment/%s/pisi-index.xml.xz" % platform.machine()], shell=True, stdout=subprocess.PIPE)
-    #mzs
     environments = open ("/usr/lib/python2.7/site-packages/pds/environments.py","r")
     environments_array = environments.readlines()
     x= 0
@@ -21,7 +18,7 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
         environments = open("/usr/lib/python2.7/site-packages/pds/environments.py","w")
         environments.writelines(environments_array)
         environments.close()
-        
+
     fileassociations = open("/usr/share/applications/mimeapps.list","a")
     fileassociations.write("application/pdf=epdfview.desktop;\n")
     fileassociations.write("application/zip=xarchiver.desktop;\n")
