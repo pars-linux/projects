@@ -50,6 +50,13 @@
 
     </Package>
     <History>
+        <Update release="2">
+            <Date>2011-03-12</Date>
+            <Version>0.0.1_20110224</Version>
+            <Comment>add ConsoleKit integration.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-15</Date>
             <Version>0.0.1_20110224</Version>
