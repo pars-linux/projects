@@ -66,7 +66,6 @@
         <SelectedPackage>icon-theme-hicolor</SelectedPackage>
         <SelectedPackage>icon-theme-oxygen-png</SelectedPackage>
         <SelectedPackage>iptraf</SelectedPackage>
-        <SelectedPackage>ipython</SelectedPackage>
         <SelectedPackage>irda-utils</SelectedPackage>
         <SelectedPackage>irqbalance</SelectedPackage>
         <SelectedPackage>iw</SelectedPackage>
@@ -657,16 +656,12 @@
         <Package>pulseaudio-gconf</Package>
         <Package>pulseaudio-libs</Package>
         <Package>pycurl</Package>
-        <Package>pyopenssl</Package>
         <Package>pyparted</Package>
         <Package>pypolkit</Package>
         <Package>pyqtermwidget</Package>
         <Package>python</Package>
-        <Package>python-Pygments</Package>
-        <Package>python-Twisted</Package>
         <Package>python-cairo</Package>
         <Package>python-decorator</Package>
-        <Package>python-foolscap</Package>
         <Package>python-gtk</Package>
         <Package>python-imaging</Package>
         <Package>python-mutagen</Package>
@@ -679,9 +674,7 @@
         <Package>python-pygobject</Package>
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
-        <Package>python-setuptools</Package>
         <Package>python-tk</Package>
-        <Package>python-zope-interface</Package>
         <Package>qt</Package>
         <Package>qt-webkit</Package>
         <Package>qtermwidget</Package>
