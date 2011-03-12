@@ -62,6 +62,7 @@
             <AdditionalFile owner="root" permission="0644" target="/usr/share/fluxbox/menu-kde">menu-kde</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/usr/share/fluxbox/menu-apps">menu-apps</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/usr/share/fluxbox/backgrounds/default.png">default.png</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/fluxbox/backgrounds/background-falco.jpg">background-falco.jpg</AdditionalFile>
         </AdditionalFiles>
     </Package>
 
