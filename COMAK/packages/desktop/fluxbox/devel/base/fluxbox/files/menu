@@ -1,17 +1,17 @@
 [begin] (Falco Peregrinus)
 [encoding] {UTF-8}
         [exec] (Run) {fbrun} </usr/share/fluxbox/icons/fluxbox.png>
-        [exec] (Eterm) {Eterm} </usr/share/fluxbox/icons/flux-terminal.png>
         [exec] (Pcmanfm) {pcmanfm} </usr/share/icons/oxygen/128x128/apps/system-file-manager.png>
         [exec] (FireFox) {firefox} </usr/share/pixmaps/firefox.png>
         [exec] (Cnazar) {cnazar} </usr/share/cnazar/data/cnazar.png>
     [separator] (--------)
-        [submenu] (Favori) </usr/share/fluxbox/icons/flux-gg.png>
+        [submenu] (Uygulamalar) </usr/share/fluxbox/icons/flux-gg.png>
             [exec] (Pogo) {pogo} </usr/share/pixmaps/pogo.png>
             [exec] (SMplayer) {smplayer} </usr/share/icons/hicolor/64x64/apps/smplayer.png>
             [exec] (Pidgin) {pidgin} </usr/share/icons/hicolor/48x48/apps/pidgin.png>
             [exec] (EPdfview) {epdfview} </usr/share/epdfview/pixmaps/icon_epdfview-48.png>
             [exec] (Firefox) {firefox} </usr/share/pixmaps/firefox.png>
+            [exec] (Urxvt) {urxvt} </usr/share/fluxbox/icons/flux-terminal.png>
             [exec] (Eterm) {Eterm} </usr/share/fluxbox/icons/flux-terminal.png>
             [exec] (Pcmanfm) {pcmanfm} </usr/share/icons/oxygen/128x128/apps/system-file-manager.png>
         [end]
