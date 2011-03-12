@@ -12,6 +12,7 @@
             [exec] (EPdfview) {epdfview} </usr/share/epdfview/pixmaps/icon_epdfview-48.png>
             [exec] (Firefox) {firefox} </usr/share/pixmaps/firefox.png>
             [exec] (Eterm) {Eterm} </usr/share/fluxbox/icons/flux-terminal.png>
+            [exec] (Pcmanfm) {pcmanfm} </usr/share/icons/oxygen/128x128/apps/system-file-manager.png>
         [end]
         [submenu] (Sistem) </usr/share/fluxbox/icons/flux-utils.png>
             [exec] (Cnazar) {cnazar} </usr/share/cnazar/data/cnazar.png>
