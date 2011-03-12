@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gvtray</Name>
+        <Homepage>http://code.google.com/p/gtk-tray-utils/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A master volume mixer in the system tray</Summary>
+        <Description>gvtray is a volume mixer in the system tray which enables you to control volume.</Description>
+        <Archive sha1sum="cae51a932a0e89c2166b9d65dbab59541908b310" type="targz">http://gtk-tray-utils.googlecode.com/svn/trunk/gvtray-1.1.tar.gz</Archive>
+    </Source>
+
+    <Package>
+        <Name>gvtray</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-python-extras</Dependency>
+            <Dependency>python-pyalsaaudio</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-12</Date>
+            <Version>1.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
