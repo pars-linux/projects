@@ -58,6 +58,7 @@
             <AdditionalFile owner="root" permission="0644" target="/usr/share/display-managers/slim.desktop">slim.desktop</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/usr/share/slim/Xsession">Xsession</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/etc/logrotate.d/slim">slim.logrotate</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/etc/pam.d/slim">slim.pam</AdditionalFile>
         </AdditionalFiles>
     </Package>
 
