@@ -47,3 +47,8 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     fileassociations.write("text/plain=leafpad.desktop;\n")
     fileassociations.write("application/x-pisi=package-manager.desktop;\n")
     fileassociations.close()
+
+    sudoers = open("/etc/sudoers", "a")
+    sudoers.write("%wheel ALL = NOPASSWD: /sbin/shutdown")
+    sudoers.close()
+
