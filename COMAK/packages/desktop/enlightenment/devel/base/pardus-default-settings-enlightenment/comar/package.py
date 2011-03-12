@@ -3,7 +3,6 @@
 
 from pisi import api as pisiapi
 import platform
-import subprocess
 
 def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     environments = open ("/usr/lib/python2.7/site-packages/pds/environments.py","r")
