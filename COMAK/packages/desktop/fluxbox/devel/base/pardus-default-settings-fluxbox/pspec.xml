@@ -27,6 +27,7 @@
         <Conflicts>
             <Package>pardus-default-settings</Package>
             <Package>pardus-default-settings-lxde</Package>
+            <Package>pardus-default-settings-enlightenment</Package>
         </Conflicts>
         <Files>
             <Path fileType="config">/etc</Path>
