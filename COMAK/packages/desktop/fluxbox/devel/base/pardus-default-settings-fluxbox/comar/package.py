@@ -53,7 +53,7 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     x= 0
     for i in range(0,sudoers_array.__len__()):
         if sudoers_array[i].find("%wheel") != -1 and sudoers_array[i].find("ALL=(ALL)") != -1:
-            sudoers_array[i] ="%wheel· ALL=(ALL)·  ALL\n%wheel ALL = NOPASSWD: /sbin/shutdown\n"
+            sudoers_array[i] ="%wheel \tALL=(ALL) \tALL\n%wheel ALL = NOPASSWD: /sbin/shutdown\n"
             x = 42
             break
     sudoers.close()
