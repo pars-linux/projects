@@ -9,19 +9,25 @@
 #
 # Please read the COPYING file.
 #
-
+import os,subprocess
+from Xlib import display
 from PyQt4 import QtGui
 from PyQt4.QtCore import *
 
 from kaptan.screen import Screen
-from kaptan.screens.ui_scrMouse import Ui_mouseWidget
 
 #Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
 
-from Xlib import display
+FOR_LXDE = ctx.Pds.session == ctx.pds.LXDE
+print "FOR_LXDE:",FOR_LXDE
+if FOR_LXDE:
+    from kaptan.screens.ui_scrMouse_lxde import Ui_mouseWidget
+else:
+    from kaptan.screens.ui_scrMouse import Ui_mouseWidget
+
 RIGHT_HANDED, LEFT_HANDED = range(2)
 
 class Widget(QtGui.QWidget, Screen):
@@ -37,6 +43,8 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_mouseWidget()
         self.ui.setupUi(self)
+        self.ui.Sensitivity.hide() #FIXME: use these or delete that option
+        self.ui.lbl_Sensitivity.hide() #FIXME: 
 
         # Our default click behavior is double click. So make SingleClick = false (kdeglobals)
         self.clickBehavior = False
@@ -60,8 +68,12 @@ class Widget(QtGui.QWidget, Screen):
         # set signals
         self.connect(self.ui.radioButtonRightHand, SIGNAL("toggled(bool)"), self.setHandedness)
         self.connect(self.ui.checkReverse, SIGNAL("toggled(bool)"), self.setHandedness)
-        self.connect(self.ui.singleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
-        self.connect(self.ui.DoubleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
+        if FOR_LXDE:
+            self.connect(self.ui.Acceleration, SIGNAL("sliderMoved(int)"), self.setMouseAcceleration)
+        else:
+            self.connect(self.ui.singleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
+            self.connect(self.ui.DoubleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
+        self.getMouseAcceleration()
 
     def str2bool(self, s):
         return bool(eval(s).capitalize())
@@ -124,6 +136,20 @@ class Widget(QtGui.QWidget, Screen):
             self.__class__.screenSettings["selectedMouse"] = "LeftHanded"
 
         Desktop.mouse.setReverseScrollPolarity(QString(str(self.ui.checkReverse.isChecked())))
+    def getMouseAcceleration(self):
+        command = subprocess.Popen(["xset","q"], stdout=subprocess.PIPE)
+        out,err = command.communicate()
+        rate = out.split("acceleration:")[1].split()[0]
+        #turn rational number that is in form a/b into float
+        exec("rate="+rate+".0")
+        rate = rate*33
+        self.ui.Acceleration.setValue(rate)
+
+    def setMouseAcceleration(self,rate):
+        #turn integer to x/5 form
+        rate = (rate*15)/100
+        print "xset m %s/5 0"%rate
+        os.system("xset m %s/5 0"%rate)
 
     def shown(self):
         pass
