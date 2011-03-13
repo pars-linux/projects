@@ -23,6 +23,8 @@
         </RuntimeDependencies>
         <Conflicts>
             <Package>pardus-default-settings</Package>
+            <Package>pardus-default-settings-fluxbox</Package>
+            <Package>pardus-default-settings-lxde</Package>
         </Conflicts>
         <Files>
             <Path fileType="config">/etc</Path>
