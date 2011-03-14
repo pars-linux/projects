@@ -10,7 +10,6 @@ xfce4-dict (Xfce4 Dictionary - A client program to query different dictionaries)
 xfmpc (Graphical GTK+ MPD client (Music Player Daemon))
 xfce4-vala
 thunarx-python
-xfce4-battery-plugin (Battery monitor panel plugin for XFce4.)
 xfce4-cddrive-plugin (xfce4-cddrive-plugin puts a button in the XFCE panel which allow to open or close a CD-ROM drive tray)
 xfce4-cpufreq-plugin (xfce4-cpufreq-plugin is a Plugin for the Xfce Panel, which shows CPU Informations)
 xfce4-dict-plugin (A plugin to query a Dict server and other dictionary sources)
@@ -35,3 +34,7 @@ thunar-shares-plugin
 thunar-svn-plugin
 thunar-vcs-plugin
 thunar-wallpaper-plugin
+
+FIXME:
+
+xfce4-battery-plugin (Battery monitor panel plugin for XFce4.)
