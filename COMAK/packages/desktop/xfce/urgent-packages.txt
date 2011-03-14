@@ -2,7 +2,6 @@ eatmonkey (Simple download manager for Xfce)
 postler (A lean mail reader with an opinionated interface)
 sion (Sion is a frontend to easily manage connections to remote filesystems using GIO/GVFS.)
 thunar-thumbnailers (The thunar-thumbnailers project provides additional thumbnailers for use by the Thunar file manager.)
-xfbib (Xfbib is a lightweight BibTeX editor developed for the Xfce)
 xfcalendar (Time-managing application for the Xfce desktop environment.)
 xfce4-vala
 thunarx-python
