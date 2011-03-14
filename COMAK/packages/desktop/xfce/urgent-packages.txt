@@ -1,5 +1,4 @@
 eatmonkey (Simple download manager for Xfce)
-gigolo (Gigolo is a frontend to easily manage connections to remote filesystems using GIO/GVfs.)
 postler (A lean mail reader with an opinionated interface)
 sion (Sion is a frontend to easily manage connections to remote filesystems using GIO/GVFS.)
 thunar-thumbnailers (The thunar-thumbnailers project provides additional thumbnailers for use by the Thunar file manager.)
