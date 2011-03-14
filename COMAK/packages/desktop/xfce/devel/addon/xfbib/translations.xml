@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>xfbib</Name>
+        <Summary xml:lang="tr">Hafif bi BibTeX düzenleyici</Summary>
+        <Description xml:lang="tr">Xfbib Xfce masaüstü yöneticisi için geliştirilmiş hafif bi BibTeX düzenleyicidir.</Description>
+    </Source>
+</PISI>
+
