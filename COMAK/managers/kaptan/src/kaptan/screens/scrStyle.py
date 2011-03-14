@@ -63,23 +63,33 @@ class Widget(QtGui.QWidget, Screen):
         defaultDesktopNumber = Desktop.style.getDesktopNumber()
         self.__class__.screenSettings["desktopNumber"]= defaultDesktopNumber
         self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
-        dir = QtCore.QDir("/usr/share/themes")
-        dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
-        lst2 = dir.entryList()
+        if ctx.Pds.session.Name =="enlightenment":
+            dir = QDir("/usr/share/themes")
+            dir.setFilter( QDir.NoSymLinks | QDir.Files )
+            a = QStringList()
+            a.append("*.edj")
+            dir.setNameFilters(a)
+            lst2 = dir.entryList()
+        else:
+            dir = QtCore.QDir("/usr/share/themes")
+            dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
+            lst2 = dir.entryList()
         for themes in lst2:
+            print themes
             try:
                 try:
-                    StyleName = themes
+                    StyleName = themes.split(".")[0]
                 except :
                     StyleName = themes+"title"
                 try:
-                    StyleDesc = themes+"Desc"
+                    StyleDesc = themes.split(".")[0]+"Desc"
                 except:
                     StyleDesc = "unknown"
             except:
                 print "Warning! Invalid syntax in ", themes
             ThemeFile = themes
             thumbFolder = "/usr/share/kaptan/kaptan/themes/" +themes+ ".png"
+            print thumbFolder
             if (os.path.exists("/usr/share/kaptan/kaptan/themes/"+themes+".png")):
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
@@ -126,7 +136,7 @@ class Widget(QtGui.QWidget, Screen):
     def setStyle(self):
         styleName =  str(self.ui.listStyles.currentItem().statusTip())
         for wallpaper_index in range (self.ui.listStyles.count()):
-            self.ui.listStyles.item(wallpaper_index).setBackground(Qt.white);
+            self.ui.listStyles.item(wallpaper_index).setBackground(Qt.gray);
             self.ui.listStyles.currentItem().setBackground(Qt.blue)
 
 
