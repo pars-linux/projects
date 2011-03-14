@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>libxfce4mcs</Name>
+        <Homepage>http://www.xfce.org</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>libxfce4mcs</Summary>
+        <Description>libxfce4mcs</Description>
+        <Archive sha1sum="0f0d43534cae2971ca787ebc698ce6db14c5542d" type="tarbz2">http://archive.xfce.org/src/archive/libxfce4mcs/4.4/libxfce4mcs-4.4.3.tar.bz2</Archive>
+        <!--<BuildDependencies>
+            <Dependency></Dependency>
+        </BuildDependencies>-->
+    </Source>
+
+    <Package>
+        <Name>libxfce4mcs</Name>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>libxfce4mcs-devel</Name>
+        <RuntimeDependencies>
+            <Dependency>libxfce4mcs</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-03-14</Date>
+            <Version>4.4.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
