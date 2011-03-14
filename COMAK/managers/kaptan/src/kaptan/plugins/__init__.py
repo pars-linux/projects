@@ -18,6 +18,7 @@ import pds
 __plugins = {
             pds.Kde4 : "kde",
             pds.LXDE : "lxde",
+            pds.Enlightenment : "enlightenment",
             #pds.DefaultDe:"kde", #FIXME: temporary
             }
 
