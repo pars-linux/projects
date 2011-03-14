@@ -21,12 +21,12 @@ import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
 
-FOR_LXDE = ctx.Pds.session == ctx.pds.LXDE
-print "FOR_LXDE:",FOR_LXDE
-if FOR_LXDE:
-    from kaptan.screens.ui_scrMouse_lxde import Ui_mouseWidget
-else:
+FOR_Kde4 = ctx.Pds.session == ctx.pds.Kde4
+print "FOR_Kde4:",FOR_Kde4
+if FOR_Kde4:
     from kaptan.screens.ui_scrMouse import Ui_mouseWidget
+else:
+    from kaptan.screens.ui_scrMouse_lxde import Ui_mouseWidget
 
 RIGHT_HANDED, LEFT_HANDED = range(2)
 
@@ -68,12 +68,12 @@ class Widget(QtGui.QWidget, Screen):
         # set signals
         self.connect(self.ui.radioButtonRightHand, SIGNAL("toggled(bool)"), self.setHandedness)
         self.connect(self.ui.checkReverse, SIGNAL("toggled(bool)"), self.setHandedness)
-        if FOR_LXDE:
-            self.connect(self.ui.Acceleration, SIGNAL("sliderMoved(int)"), self.setMouseAcceleration)
-        else:
+        if FOR_Kde4:
             self.connect(self.ui.singleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
             self.connect(self.ui.DoubleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
-        self.getMouseAcceleration()
+        else:
+            self.connect(self.ui.Acceleration, SIGNAL("sliderMoved(int)"), self.setMouseAcceleration)
+            self.getMouseAcceleration()
 
     def str2bool(self, s):
         return bool(eval(s).capitalize())
