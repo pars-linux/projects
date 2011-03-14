@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>xfmpc</Name>
+        <Homepage>http://goodies.xfce.org/projects/applications/xfmpc</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Graphical GTK+ MPD client (Music Player Daemon)</Summary>
+        <Description>xfmpc is a graphical GTK+ MPD client focusing on low footprint.</Description>
+        <Archive sha1sum="d64c74a4862a61c73f7b68f96d7c4eecfb2ec193" type="tarbz2">http://archive.xfce.org/src/apps/xfmpc/0.2/xfmpc-0.2.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="2.12">gtk2-devel</Dependency>
+            <Dependency versionFrom="4.4.0">libxfcegui4-devel</Dependency>
+            <Dependency>libxfce4ui-devel</Dependency>
+            <Dependency versionFrom="4.4.0">libxfce4util-devel</Dependency>
+            <Dependency versionFrom="0.15.0">libmpd-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>xfmpc</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libmpd</Dependency>
+            <Dependency>libxfce4ui</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libxfce4util</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-14</Date>
+            <Version>0.2.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
