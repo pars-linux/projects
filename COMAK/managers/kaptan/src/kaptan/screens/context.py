@@ -8,7 +8,7 @@ from pds.qiconloader import QIconLoader
 
 Pds = pds.Pds('kaptan', debug = True)
 # Force to use Default Session for testing
-Pds.session = pds.LXDE
+Pds.session = pds.Enlightenment
 # print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 
 i18n = Pds.i18n
