@@ -48,10 +48,10 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_styleWidget()
         self.ui.setupUi(self)
-        if ctx.Pds.session.Name == "LXDE":
+        if ctx.Pds.session.Name != "KDE":
             self.ui.labelDesktopType.setVisible(False)
             self.ui.comboBoxDesktopType.setVisible(False)
-        if ctx.Pds.session.Name == "LXDE":
+        if ctx.Pds.session.Name != "KDE":
             self.ui.listIcon.item(0).setHidden(1)
         elif ctx.Pds.session.Name == "KDE":
             self.ui.listIcon.item(1).setHidden(1)
