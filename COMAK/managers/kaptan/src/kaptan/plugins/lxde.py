@@ -74,7 +74,6 @@ class Mouse(base.Mouse):
         new_value = (not clickBehaviour and 1) or 0
         CONFIG_LIBFM.setValue("config/single_click",new_value)
         CONFIG_LIBFM.sync()
-        print new_value
         return True
 
     def getMouseSingleClick(self):
@@ -161,7 +160,6 @@ class Style(base.Style):
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
         new_text = re.sub(r"sNet/IconThemeName[ ]?=[ ]?([a-zA-Z_1-9-]{0,100})","sNet/IconThemeName="+iconTheme, CONFIG_LXSESSION)
         save_lxsession(new_text)
-        print iconTheme
 
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
@@ -172,10 +170,12 @@ class Style(base.Style):
         pass
 
     def reconfigure(self):
-        os.system("pcmanfm --desktop-off")
-        os.system("pcmanfm -d --desktop")
-        os.system("lxsession -r")
-        os.system("openbox --restart")
+        commands = ["pcmanfm --desktop-off",
+                    "pcmanfm -d --desktop",
+                    "lxsession -r",
+                    "openbox --restart"]
+        command = ";".join(commands)
+        os.system(command)
 
 class Package(base.Package):
 
