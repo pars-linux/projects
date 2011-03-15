@@ -1,0 +1,79 @@
+diff -Nuar xfce4-vala-4.8.0.orig//configure xfce4-vala-4.8.0//configure
+--- xfce4-vala-4.8.0.orig//configure	2011-02-13 22:49:20.000000000 +0200
++++ xfce4-vala-4.8.0//configure	2011-03-15 11:21:51.498000011 +0200
+@@ -2490,12 +2490,12 @@
+     pkg_cv_VALA_CFLAGS="$VALA_CFLAGS"
+  elif test -n "$PKG_CONFIG"; then
+     if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"vala-0.10 >= 0.10.0\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "vala-0.10 >= 0.10.0") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libvala-0.12 >= 0.10.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "libvala-0.12 >= 0.10.0") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+-  pkg_cv_VALA_CFLAGS=`$PKG_CONFIG --cflags "vala-0.10 >= 0.10.0" 2>/dev/null`
++  pkg_cv_VALA_CFLAGS=`$PKG_CONFIG --cflags "libvala-0.12 >= 0.10.0" 2>/dev/null`
+ else
+   pkg_failed=yes
+ fi
+@@ -2506,12 +2506,12 @@
+     pkg_cv_VALA_LIBS="$VALA_LIBS"
+  elif test -n "$PKG_CONFIG"; then
+     if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"vala-0.10 >= 0.10.0\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "vala-0.10 >= 0.10.0") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libvala-0.12 >= 0.10.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "libvala-0.12 >= 0.10.0") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+-  pkg_cv_VALA_LIBS=`$PKG_CONFIG --libs "vala-0.10 >= 0.10.0" 2>/dev/null`
++  pkg_cv_VALA_LIBS=`$PKG_CONFIG --libs "libvala-0.12 >= 0.10.0" 2>/dev/null`
+ else
+   pkg_failed=yes
+ fi
+@@ -2531,14 +2531,14 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        VALA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "vala-0.10 >= 0.10.0" 2>&1`
++	        VALA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "libvala-0.12 >= 0.10.0" 2>&1`
+         else
+-	        VALA_PKG_ERRORS=`$PKG_CONFIG --print-errors "vala-0.10 >= 0.10.0" 2>&1`
++	        VALA_PKG_ERRORS=`$PKG_CONFIG --print-errors "libvala-0.12 >= 0.10.0" 2>&1`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$VALA_PKG_ERRORS" >&5
+ 
+-	as_fn_error $? "Package requirements (vala-0.10 >= 0.10.0) were not met:
++	as_fn_error $? "Package requirements (libvala-0.12 >= 0.10.0) were not met:
+ 
+ $VALA_PKG_ERRORS
+ 
+@@ -2612,13 +2612,13 @@
+ fi
+ 
+ 
+-VAPIGEN=`$PKG_CONFIG --variable=vapigen vala-0.10`
++VAPIGEN=`$PKG_CONFIG --variable=vapigen libvala-0.12`
+ 
+-VALAGI=`$PKG_CONFIG --variable=vala_gen_introspect vala-0.10`
++VALAGI=`$PKG_CONFIG --variable=vala_gen_introspect libvala-0.12`
+ 
+ 
+ 
+-vapidir=`$PKG_CONFIG --variable=vapidir vala-0.10`
++vapidir=`$PKG_CONFIG --variable=vapidir libvala-0.12`
+ 
+ 
+ 
+@@ -2631,7 +2631,7 @@
+ fi
+ 
+ if test x"$with_default_vapidir" == xno ; then
+-	vapidir=${datarootdir}/vala-0.10/vapi
++	vapidir=${datarootdir}/libvala-0.12/vapi
+ 
+ fi
+ 
