@@ -1,7 +1,7 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
     <Title>Pardus 2011 - Comak LXDE i686 [Gelibolu]</Title>
-    <WorkDir>/root/pardusman/work/lxde/workDir</WorkDir>
-    <ReleaseFiles>/root/pardusman/work/lxde/releaseNotes</ReleaseFiles>
+    <WorkDir>/root/pardusman/work/xfce/workDir</WorkDir>
+    <ReleaseFiles>/root/pardusman/work/xfce/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://192.168.1.125/repo/pisi-index.xml.xz">
         <SelectedComponent>desktop.xfce.library</SelectedComponent>
         <SelectedComponent>hardware.firmware</SelectedComponent>
