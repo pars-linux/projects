@@ -15,7 +15,6 @@ xfce4-sensors-plugin (Reads your hardware sensor values and displays them in you
 xfce4-smartbookmark-plugin
 xfce4-smartpm-plugin (It checks for package updates using the Smart Package Manager)
 xfce4-xfapplet-plugin
-xfce4-xmms-plugin
 xfmedia-remote-plugin
 xfswitch-plugin
 thunar-shares-plugin
@@ -32,3 +31,4 @@ xfce4-mount-plugin (This little plugin behaves like the "kwikdisk - removable me
 xfce4-time-out-plugin ( It's a comfortable tool for taking a break from computer work every now and then.)
 xfce4-trigger-launcher
 xfce4-wavelan-plugin
+xfce4-xmms-plugin
