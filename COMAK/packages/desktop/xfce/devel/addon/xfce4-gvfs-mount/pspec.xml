@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>xfce4-gvfs-mount</Name>
+        <Homepage>http://</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Nice little mounter working with gvfs.</Summary>
+        <Description> It lets you to mount remote file-systems in a GUI fashion supporting different schemes like samba,sftp, and ftp</Description>
+        <Archive sha1sum="a782b1204049839eb01d792ce67dd32e320adff1" type="tarbz2">http://archive.xfce.org/src/panel-plugins/xfce4-gvfs-mount/0.0/xfce4-gvfs-mount-0.0.4-6d2684b.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>glib2-devel</Dependency>
+            <Dependency>libxfce4util-devel</Dependency>
+            <Dependency>libglade-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>xfce4-panel-devel</Dependency>
+        </BuildDependencies>
+        <!--<Patches>
+            <Patch level=""></Patch>
+        </Patches>-->
+    </Source>
+
+    <Package>
+        <Name>xfce4-gvfs-mount</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="2.12">gtk2</Dependency>
+            <Dependency versionFrom="4.4.0">libxfce4util</Dependency>
+            <Dependency versionFrom="2.16">glib2</Dependency>
+            <Dependency versionFrom="2.16">gdk-pixbuf</Dependency>
+            <Dependency versionFrom="2.16">xfce4-panel</Dependency>
+            <Dependency versionFrom="2.16">libxfcegui4</Dependency>
+            <Dependency versionFrom="2.16">libglade</Dependency>
+            <Dependency versionFrom="2.16">cairo</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-15</Date>
+            <Version>0.0.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
