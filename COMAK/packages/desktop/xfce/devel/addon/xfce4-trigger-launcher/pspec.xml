@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>xfce4-trigger-launcher</Name>
+        <Homepage>http://goodies.xfce.org/projects/panel-plugins/es/xfce4-trigger-launcher</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>FIXME!!</Summary>
+        <Description>FIXME!!</Description>
+        <Archive sha1sum="931db72a5e9d88eb6f5cfa2f45a8b5847670e11e" type="targz">http://archive.xfce.org/src/panel-plugins/xfce4-trigger-launcher/4.2/xfce4-trigger-launcher-4.2.4.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>xfce4-panel-devel</Dependency>
+        </BuildDependencies>
+        <!--
+        <Patches>
+            <Patch level="1"></Patch>
+        </Patches>
+        -->
+    </Source>
+
+    <Package>
+        <Name>xfce4-trigger-launcher</Name>
+        <RuntimeDependencies>
+            <Dependency>xfce4-panel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="doc">/usr/share/xfce4/doc</Path>
+            <Path fileType="data">/usr/share/xfce4</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-14</Date>
+            <Version>4.2.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
