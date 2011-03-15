@@ -83,7 +83,10 @@ class Widget(QtGui.QWidget, Screen):
     def selectWallpaper(self):
         for wallpaper_index in range(self.ui.listWallpaper.count()):
             self.ui.listWallpaper.item(wallpaper_index).setBackground(Qt.gray);
-        self.ui.listWallpaper.currentItem().setBackground(Qt.blue)
+        try:
+            self.ui.listWallpaper.currentItem().setBackground(Qt.blue)
+        except:
+            pass
 
         selectedFile = QFileDialog.getOpenFileName(None,"Open Image", os.environ["HOME"], 'Image Files (*.png *.jpg *bmp)')
 
