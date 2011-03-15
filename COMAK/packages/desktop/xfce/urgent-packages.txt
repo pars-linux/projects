@@ -5,7 +5,6 @@ thunar-thumbnailers (The thunar-thumbnailers project provides additional thumbna
 xfce4-vala
 thunarx-python
 xfce4-cddrive-plugin (xfce4-cddrive-plugin puts a button in the XFCE panel which allow to open or close a CD-ROM drive tray)
-xfce4-cpufreq-plugin (xfce4-cpufreq-plugin is a Plugin for the Xfce Panel, which shows CPU Informations)
 xfce4-dict-plugin (A plugin to query a Dict server and other dictionary sources)
 xfce4-genmon-plugin (The GenMon plugin cyclically spawns the indicated script/program, captures its output and displays the result into the panel.)
 xfce4-gvfs-mount (It lets you to mount remote file-systems in a GUI fashion supporting different schemes like samba,sftp, and ftp.)
@@ -32,3 +31,4 @@ thunar-wallpaper-plugin
 FIXME:
 
 xfce4-battery-plugin (Battery monitor panel plugin for XFce4.)
+xfce4-cpufreq-plugin (xfce4-cpufreq-plugin is a Plugin for the Xfce Panel, which shows CPU Informations)
