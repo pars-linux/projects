@@ -2,8 +2,7 @@
 <PISI>
     <Source>
         <Name>xfmpc</Name>
-        <Summary xml:lang="tr">Grafiksel GTK+ MPD İstemcisi (Music Player Daemon)</Summary>
-        <Description xml:lang="tr">xfmpc düşük kaplama alanı(footprint) üzerine yoğunlaşan bir grafiksel GTK+ MPD İstemcisidir.</Description>
+        <Summary xml:lang="tr">Xfce'nin MPD istemcisi</Summary>
+        <Description xml:lang="tr">Xfmpc, Xfce için yazılmış, az yer kaplama amaçlı GTK+ arayüzlü MPD (Müzik Çalar Servisi) istemcisidir.</Description>
     </Source>
 </PISI>
-

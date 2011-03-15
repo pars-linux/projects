@@ -5,49 +5,101 @@
         <Name>xfmpc</Name>
         <Homepage>http://goodies.xfce.org/projects/applications/xfmpc</Homepage>
         <Packager>
-            <Name>Alper Tekinalp</Name>
-            <Email>alper.tekinalp@gmail.com</Email>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
+        <Icon>xfmpc</Icon>
         <IsA>app:gui</IsA>
-        <Summary>Graphical GTK+ MPD client (Music Player Daemon)</Summary>
-        <Description>xfmpc is a graphical GTK+ MPD client focusing on low footprint.</Description>
+        <Summary>A MPD client for Xfce4</Summary>
+        <Description>Xfmpc is a MPD (Music Player Daemon) client focusing on low footprint for Xfce desktop environment.</Description>
         <Archive sha1sum="d64c74a4862a61c73f7b68f96d7c4eecfb2ec193" type="tarbz2">http://archive.xfce.org/src/apps/xfmpc/0.2/xfmpc-0.2.1.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency versionFrom="2.12">gtk2-devel</Dependency>
-            <Dependency versionFrom="4.4.0">libxfcegui4-devel</Dependency>
-            <Dependency>libxfce4ui-devel</Dependency>
-            <Dependency versionFrom="4.4.0">libxfce4util-devel</Dependency>
-            <Dependency versionFrom="0.15.0">libmpd-devel</Dependency>
+            <Dependency>libxfcegui4-devel</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libxfce4util-devel</Dependency>
+            <Dependency>libmpd</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch>desktop.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
         <Name>xfmpc</Name>
         <RuntimeDependencies>
+            <Dependency>libxfcegui4</Dependency>
             <Dependency>gtk2</Dependency>
             <Dependency>pango</Dependency>
-            <Dependency>libmpd</Dependency>
-            <Dependency>libxfce4ui</Dependency>
-            <Dependency>gdk-pixbuf</Dependency>
             <Dependency>libxfce4util</Dependency>
+            <Dependency>libmpd</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
-            <Path fileType="data">/usr/share</Path>
         </Files>
-    </Package>
+   </Package>
 
-    <History>
-        <Update release="1">
-            <Date>2011-03-14</Date>
-            <Version>0.2.0</Version>
-            <Comment>First release.</Comment>
-            <Name>Alper Tekinalp</Name>
-            <Email>alper.tekinalp@gmail.com</Email>
-        </Update>
+   <History>
+       <Update release="6">
+           <Date>2011-03-15</Date>
+           <Version>0.2.1</Version>
+           <Comment>Version bump</Comment>
+           <Name>Alper Tekinapl</Name>
+           <Email>alper.tekinalp@gmail.com</Email>
+       </Update>
+       <Update release="5">
+           <Date>2009-09-03</Date>
+           <Version>0.2.0</Version>
+           <Comment>
+               * Version bump:
+               - Rewrite into Vala
+               - Install a manpage for xfmpc
+               - Handle MPD connections through a thread
+               - Fix misc bugs
+               - Translations update: eu, ja, cs, da, de, pt, tr, sv, cs, nl, it, gl, id, fi, es, uk, pt_BR, ca, sl, zh_CN, hu, ur/ur_PK, ast, en_GB, fr
+           </Comment>
+           <Name>Gökmen Görgen</Name>
+           <Email>gkmngrgn@gmail.com</Email>
+       </Update>
+       <Update release="4">
+           <Date>2009-07-24</Date>
+           <Version>0.1.0</Version>
+           <Comment>
+               * Fix dependencies.
+               * Fix descriptions.
+               * Fix configuration parameters.
+           </Comment>
+           <Name>Gökmen Görgen</Name>
+           <Email>gkmngrgn@gmail.com</Email>
+       </Update>
+       <Update release="3">
+           <Date>2009-03-29</Date>
+           <Version>0.1.0</Version>
+           <Comment>
+               * Version bump.
+               * Added description.
+           </Comment>
+           <Name>Gökmen Görgen</Name>
+           <Email>gkmngrgn@gmail.com</Email>
+       </Update>
+       <Update release="2">
+           <Date>2008-09-01</Date>
+           <Version>0.0.7</Version>
+           <Comment>Version bump</Comment>
+           <Name>Gökmen Görgen</Name>
+           <Email>gkmngrgn@gmail.com</Email>
+       </Update>
+       <Update release="1">
+           <Date>2008-05-21</Date>
+           <Version>0.0.6</Version>
+           <Comment>First release.</Comment>
+           <Name>Gökmen Görgen</Name>
+           <Email>gkmngrgn@gmail.com</Email>
+       </Update>
     </History>
 </PISI>
-
