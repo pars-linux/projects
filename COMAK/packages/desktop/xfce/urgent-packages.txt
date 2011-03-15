@@ -2,7 +2,6 @@ eatmonkey (Simple download manager for Xfce)
 postler (A lean mail reader with an opinionated interface)
 sion (Sion is a frontend to easily manage connections to remote filesystems using GIO/GVFS.)
 thunar-thumbnailers (The thunar-thumbnailers project provides additional thumbnailers for use by the Thunar file manager.)
-xfce4-vala
 thunarx-python
 xfce4-cddrive-plugin (xfce4-cddrive-plugin puts a button in the XFCE panel which allow to open or close a CD-ROM drive tray)
 xfce4-genmon-plugin (The GenMon plugin cyclically spawns the indicated script/program, captures its output and displays the result into the panel.)
