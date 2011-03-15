@@ -150,12 +150,16 @@ class Install(install):
         os.chmod(os.path.join(project_dir, "%s.py" % about.appName), 0755)
         # Symlink
         try:
+            try:
+                os.remove(os.path.join(bin_dir,about.appName))
+            except OSError:
+                pass
             if self.root:
                 os.symlink(os.path.join(project_dir.replace(self.root, ""), "%s.py" % about.appName), os.path.join(bin_dir, about.appName))
             else:
                 os.symlink(os.path.join(project_dir, "%s.py" % about.appName), os.path.join(bin_dir, about.appName))
         except OSError:
-            pass
+            raise
 
 
 if "update_messages" in sys.argv:
