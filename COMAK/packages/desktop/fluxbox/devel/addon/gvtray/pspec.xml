@@ -13,6 +13,9 @@
         <Summary>A master volume mixer in the system tray</Summary>
         <Description>gvtray is a volume mixer in the system tray which enables you to control volume.</Description>
         <Archive sha1sum="cae51a932a0e89c2166b9d65dbab59541908b310" type="targz">http://gtk-tray-utils.googlecode.com/svn/trunk/gvtray-1.1.tar.gz</Archive>
+        <Patches>
+            <Patch level="1">42.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
@@ -34,6 +37,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-15</Date>
+            <Version>1.1</Version>
+            <Comment>Add a patch to set volume 42.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-12</Date>
             <Version>1.1</Version>
