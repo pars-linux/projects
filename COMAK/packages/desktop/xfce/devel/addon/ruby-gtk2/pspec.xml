@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>ruby-gtk2</Name>
+        <Homepage>http://ruby-gnome2.sourceforge.jp/</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>LLGPL-2.1</License>
+        <IsA>library</IsA>
+        <Summary>GNOME 2 bindings for Ruby</Summary>
+        <Description>Ruby-gtk2 is a set of bindings for the GNOME-2.x libraries to use from Ruby</Description>
+        <Archive sha1sum="2f383dbb61ecdf8c053ac8c9e468d37ad4a244f2" type="">http://downloads.sourceforge.net/sourceforge/ruby-gnome2/ruby-gtk2-0.19.3.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>ruby</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+        </BuildDependencies> 
+    </Source>
+
+    <Package>
+        <Name>ruby-gtk2</Name>
+        <RuntimeDependencies>
+            <Dependency>atk</Dependency>
+            <Dependency>ruby</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-15</Date>
+            <Version>0.19.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
