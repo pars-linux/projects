@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-quicklauncher-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-quicklauncher-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Xfce hızlı başlatma eklentisi</Summary>
+        <Description xml:lang="tr">xfce4-quicklauncher-plugin, Xfce'de uygulamaları hızlı başlatmanızı sağlayan bir eklentidir.</Description>
     </Source>
 </PISI>
