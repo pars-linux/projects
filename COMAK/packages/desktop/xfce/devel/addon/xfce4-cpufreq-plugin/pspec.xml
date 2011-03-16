@@ -29,13 +29,9 @@
             <Dependency>xfce4-panel</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
-            <Path fileType="executable">/usr/bin</Path>
             <Path fileType="executable">/usr/libexec</Path>
             <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="doc">/usr/share/xfce4/doc</Path>
             <Path fileType="data">/usr/share/xfce4</Path>
-            <Path fileType="data">/usr/share/applications</Path>
             <Path fileType="data">/usr/share/icons</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
         </Files>
