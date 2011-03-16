@@ -21,5 +21,3 @@ xfce4-trigger-launcher
 xfce4-wavelan-plugin
 xfce4-xmms-plugin
 xfce4-modemlights-plugin (The xfce4-modem-lights is an xfce4 panel plugin intended to simplify establishing a ppp connection via a modem.)
-xfce4-quicklauncher-plugin
-xfce4-smartbookmark-plugin
