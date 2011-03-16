@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-mount-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-mount-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Bir bağlama(mount)/koparma(umount) modülü</Summary>
+        <Description xml:lang="tr">xfce4-mount-plugin Xfce için bir bağlama(mount)/koparma(umount) modülüdür.</Description>
     </Source>
 </PISI>
