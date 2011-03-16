@@ -16,7 +16,5 @@ thunar-wallpaper-plugin
 
 FIXME:
 
-xfce4-dict-plugin (A plugin to query a Dict server and other dictionary sources)
 xfce4-trigger-launcher
 xfce4-wavelan-plugin
-xfce4-xmms-plugin
