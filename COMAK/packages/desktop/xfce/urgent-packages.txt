@@ -1,5 +1,4 @@
 postler (A lean mail reader with an opinionated interface)
-sion (Sion is a frontend to easily manage connections to remote filesystems using GIO/GVFS.)
 xfce4-cddrive-plugin (xfce4-cddrive-plugin puts a button in the XFCE panel which allow to open or close a CD-ROM drive tray)
 xfce4-genmon-plugin (The GenMon plugin cyclically spawns the indicated script/program, captures its output and displays the result into the panel.)
 
