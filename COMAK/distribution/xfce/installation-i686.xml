@@ -65,11 +65,13 @@
         <SelectedPackage>gigolo</SelectedPackage>
         <SelectedPackage>gimp</SelectedPackage>
         <SelectedPackage>gimp-i18n-tr</SelectedPackage>
+        <SelectedPackage>glade-xfce</SelectedPackage>
         <SelectedPackage>glew</SelectedPackage>
         <SelectedPackage>gnome-menus</SelectedPackage>
         <SelectedPackage>gnome-mount</SelectedPackage>
         <SelectedPackage>gst-ffmpeg</SelectedPackage>
         <SelectedPackage>gtk-engines</SelectedPackage>
+        <SelectedPackage>gtk-xfce-engine</SelectedPackage>
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
@@ -77,6 +79,7 @@
         <SelectedPackage>htop</SelectedPackage>
         <SelectedPackage>hunspell</SelectedPackage>
         <SelectedPackage>hunspell-dict-en</SelectedPackage>
+        <SelectedPackage>icon-theme-gnome</SelectedPackage>
         <SelectedPackage>icon-theme-hicolor</SelectedPackage>
         <SelectedPackage>icon-theme-milky-png</SelectedPackage>
         <SelectedPackage>icon-theme-oxygen-png</SelectedPackage>
@@ -139,6 +142,7 @@
         <SelectedPackage>p7zip</SelectedPackage>
         <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
+        <SelectedPackage>pardus-default-settings-xfce</SelectedPackage>
         <SelectedPackage>pardus-desktop-services</SelectedPackage>
         <SelectedPackage>parole</SelectedPackage>
         <SelectedPackage>pavucontrol</SelectedPackage>
@@ -206,7 +210,10 @@
         <SelectedPackage>suspend</SelectedPackage>
         <SelectedPackage>synergy</SelectedPackage>
         <SelectedPackage>telnet-bsd</SelectedPackage>
+        <SelectedPackage>thunar-sendto-clamtk</SelectedPackage>
+        <SelectedPackage>thunar-thumbnailers</SelectedPackage>
         <SelectedPackage>thunar-vfs</SelectedPackage>
+        <SelectedPackage>thunarx-python</SelectedPackage>
         <SelectedPackage>traceroute</SelectedPackage>
         <SelectedPackage>tree</SelectedPackage>
         <SelectedPackage>unarj</SelectedPackage>
@@ -227,14 +234,26 @@
         <SelectedPackage>xfce-utils</SelectedPackage>
         <SelectedPackage>xfce4-appfinder</SelectedPackage>
         <SelectedPackage>xfce4-battery-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-cpufreq-plugin</SelectedPackage>
         <SelectedPackage>xfce4-dev-tools</SelectedPackage>
         <SelectedPackage>xfce4-dict</SelectedPackage>
+        <SelectedPackage>xfce4-dict-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-gvfs-mount</SelectedPackage>
+        <SelectedPackage>xfce4-modemlights-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-mount-plugin</SelectedPackage>
         <SelectedPackage>xfce4-panel</SelectedPackage>
         <SelectedPackage>xfce4-panel-devel</SelectedPackage>
+        <SelectedPackage>xfce4-quicklauncher-plugin</SelectedPackage>
         <SelectedPackage>xfce4-session</SelectedPackage>
         <SelectedPackage>xfce4-session-devel</SelectedPackage>
         <SelectedPackage>xfce4-settings</SelectedPackage>
+        <SelectedPackage>xfce4-smartbookmark-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-time-out-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-vala</SelectedPackage>
+        <SelectedPackage>xfce4-wavelan-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-xmms-plugin</SelectedPackage>
         <SelectedPackage>xfmpc</SelectedPackage>
+        <SelectedPackage>xfwm4</SelectedPackage>
         <SelectedPackage>xscreensaver</SelectedPackage>
         <SelectedPackage>xterm</SelectedPackage>
         <SelectedPackage>xvattr</SelectedPackage>
@@ -293,6 +312,8 @@
         <Package>cdparanoia</Package>
         <Package>cdrtools</Package>
         <Package>check</Package>
+        <Package>clamav</Package>
+        <Package>clamtk</Package>
         <Package>clucene</Package>
         <Package>comar</Package>
         <Package>comar-api</Package>
@@ -304,6 +325,7 @@
         <Package>ctdb</Package>
         <Package>cups</Package>
         <Package>curl</Package>
+        <Package>cursor-theme-oxygen-white</Package>
         <Package>cyrus-sasl</Package>
         <Package>db4</Package>
         <Package>db4-java</Package>
@@ -312,6 +334,7 @@
         <Package>dbus-glib</Package>
         <Package>dbus-java</Package>
         <Package>dbus-python</Package>
+        <Package>dcraw</Package>
         <Package>dejavu-fonts</Package>
         <Package>desktop-file-utils</Package>
         <Package>device-mapper</Package>
@@ -344,6 +367,7 @@
         <Package>faad2</Package>
         <Package>farsight2</Package>
         <Package>ffmpeg</Package>
+        <Package>ffmpegthumbnailer</Package>
         <Package>fftw3</Package>
         <Package>file</Package>
         <Package>findutils</Package>
@@ -419,6 +443,7 @@
         <Package>gst-plugins-good</Package>
         <Package>gst-plugins-ugly</Package>
         <Package>gstreamer</Package>
+        <Package>gtk-style-oxygen</Package>
         <Package>gtk2</Package>
         <Package>gtk2-devel</Package>
         <Package>gtkmm</Package>
@@ -443,9 +468,12 @@
         <Package>hunspell</Package>
         <Package>icon-theme-hicolor</Package>
         <Package>icon-theme-milky-index</Package>
+        <Package>icon-theme-milky-png</Package>
         <Package>icon-theme-oxygen-index</Package>
+        <Package>icon-theme-oxygen-png</Package>
         <Package>icu4c</Package>
         <Package>ilmbase</Package>
+        <Package>imagemagick</Package>
         <Package>imlib2</Package>
         <Package>iniparser</Package>
         <Package>iproute2</Package>
@@ -551,6 +579,7 @@
         <Package>libgnome-keyring</Package>
         <Package>libgnomecanvas</Package>
         <Package>libgnomeui</Package>
+        <Package>libgomp</Package>
         <Package>libgpg-error</Package>
         <Package>libgphoto2</Package>
         <Package>libgpod</Package>
@@ -569,6 +598,7 @@
         <Package>libkate</Package>
         <Package>libkms</Package>
         <Package>liblastfm</Package>
+        <Package>liblqr</Package>
         <Package>liblrdf</Package>
         <Package>libmad</Package>
         <Package>libmatroska</Package>
@@ -663,6 +693,7 @@
         <Package>lpsolve</Package>
         <Package>lsb-release</Package>
         <Package>lua</Package>
+        <Package>luatex</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
         <Package>lzo</Package>
@@ -718,6 +749,7 @@
         <Package>openal</Package>
         <Package>openbox</Package>
         <Package>opencore-amr</Package>
+        <Package>openexr</Package>
         <Package>openexr-libs</Package>
         <Package>openjpeg</Package>
         <Package>openldap-client</Package>
@@ -739,12 +771,30 @@
         <Package>pcmciautils</Package>
         <Package>pcsc-lite</Package>
         <Package>perl</Package>
+        <Package>perl-Bit-Vector</Package>
+        <Package>perl-Cairo</Package>
+        <Package>perl-Carp-Clan</Package>
         <Package>perl-Crypt-PasswdMD5</Package>
+        <Package>perl-Date-Calc</Package>
+        <Package>perl-Digest-HMAC</Package>
         <Package>perl-Digest-SHA1</Package>
+        <Package>perl-File-Find-Rule</Package>
         <Package>perl-Glib</Package>
+        <Package>perl-Gtk2</Package>
         <Package>perl-HTML-Parser</Package>
         <Package>perl-HTML-Tagset</Package>
+        <Package>perl-IO-Socket-INET6</Package>
+        <Package>perl-Locale-gettext</Package>
+        <Package>perl-Net-DNS</Package>
+        <Package>perl-Net-IP</Package>
+        <Package>perl-Number-Compare</Package>
+        <Package>perl-Pango</Package>
+        <Package>perl-Socket6</Package>
+        <Package>perl-Sub-Uplevel</Package>
+        <Package>perl-Test-Exception</Package>
+        <Package>perl-Text-Glob</Package>
         <Package>perl-URI</Package>
+        <Package>perl-libwww</Package>
         <Package>phonon</Package>
         <Package>physfs</Package>
         <Package>piksemel</Package>
@@ -846,7 +896,11 @@
         <Package>tcl</Package>
         <Package>tcltk</Package>
         <Package>tcp-wrappers</Package>
+        <Package>teckit</Package>
         <Package>texinfo</Package>
+        <Package>texlive-basic</Package>
+        <Package>texlive-core</Package>
+        <Package>texlive-latex</Package>
         <Package>tiff</Package>
         <Package>time</Package>
         <Package>timezone</Package>
@@ -977,6 +1031,7 @@
         <Package>zip</Package>
         <Package>zlib</Package>
         <Package>zvbi</Package>
+        <Package>zziplib</Package>
     </PackageSelection>
     <InstallImagePackages>
         <SelectedComponent>hardware.firmware</SelectedComponent>
