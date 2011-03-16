@@ -15,5 +15,3 @@ thunar-vcs-plugin
 thunar-wallpaper-plugin
 
 FIXME:
-
-xfce4-trigger-launcher
