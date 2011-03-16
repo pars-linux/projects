@@ -3,7 +3,7 @@
     <Source>
         <Name>xfce4-vala</Name>
         <Summary xml:lang="tr">Xfce vala bağlayıcıları</Summary>
-        <Description xml:lang="tr">xfce4-vala Xfce masaüstü ortamına vala bağlayıcıları sunar.</Description>
+        <Description xml:lang="tr">xfce4-vala Xfce masaüstü ortamına vala bağlayıcıları sağlar.</Description>
     </Source>
 </PISI>
 
