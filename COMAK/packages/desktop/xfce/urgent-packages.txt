@@ -16,7 +16,8 @@ thunar-wallpaper-plugin
 
 FIXME:
 
-xfce4-battery-plugin (Battery monitor panel plugin for XFce4.)
+xfce4-battery-plugin (Battery monitor panel plugin for
+XFce4.)/translations.xml fixed.
 xfce4-cpufreq-plugin (xfce4-cpufreq-plugin is a Plugin for the Xfce Panel, which shows CPU Informations)
 xfce4-dict-plugin (A plugin to query a Dict server and other dictionary sources)
 xfce4-trigger-launcher
