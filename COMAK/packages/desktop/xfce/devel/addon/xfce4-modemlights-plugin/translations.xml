@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-modemlights-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-modemlights-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Modemle ppp bağlantısını kolaylaştırmayı amaçlayan bir modül</Summary>
+        <Description xml:lang="tr">Xfce 4 Modem Lights panel eklentisi modem ile ppp bağlantısını kolaylaştırmayı amaçlayan bir eklentidir.</Description>
     </Source>
 </PISI>
