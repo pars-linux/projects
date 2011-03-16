@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-cpufreq-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-cpufreq-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Xfce4 için CPU frekans eklentisi</Summary>
+        <Description xml:lang="tr">xfce4-cpufreq-plugin, Xfce panelinde CPU frekansını gösterir.</Description>
     </Source>
 </PISI>
