@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-battery-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-battery-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Xfce4 için pil izleme paneli eklentisi</Summary>
+        <Description xml:lang="tr">Xfce4 için bir pil izleme paneli eklentisidir, Linux ve *BSD için APM ve ACPI ile uyumludur.</Description>
     </Source>
 </PISI>
