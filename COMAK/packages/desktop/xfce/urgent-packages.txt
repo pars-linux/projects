@@ -17,4 +17,3 @@ thunar-wallpaper-plugin
 FIXME:
 
 xfce4-trigger-launcher
-xfce4-wavelan-plugin
