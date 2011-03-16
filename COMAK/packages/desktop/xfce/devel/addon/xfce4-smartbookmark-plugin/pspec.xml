@@ -10,8 +10,8 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>FIXME!!</Summary>
-        <Description>FIXME!!</Description>
+        <Summary>A plugin allows you to send requests directly to your browser to make search</Summary>
+        <Description>xfce4-smartbookmark-plugin is a plugin allows you to send requests directly to your browser and perform a custom search.</Description>
         <Archive sha1sum="18ec35f91b244a07f663b3180baa129d75e2fb2b" type="targz">http://archive.xfce.org/src/panel-plugins/xfce4-smartbookmark-plugin/0.4/xfce4-smartbookmark-plugin-0.4.2.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>xfce4-panel-devel</Dependency>
@@ -29,15 +29,9 @@
             <Dependency>xfce4-panel</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
-            <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="executable">/usr/libexec</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="doc">/usr/share/xfce4/doc</Path>
             <Path fileType="data">/usr/share/xfce4</Path>
-            <Path fileType="data">/usr/share/applications</Path>
-            <Path fileType="data">/usr/share/icons</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
         </Files>
     </Package>

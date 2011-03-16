@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-smartbookmark-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-smartbookmark-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Tarayıcınıza arama yapmak için direk istek göndermenizi sağlayan modül</Summary>
+        <Description xml:lang="tr">xfce4-smartbookmark-plugin tarayıcınıza direkt istek göndermenizi ve arama yapmanızı sağlayan bir Xfce modülüdür.</Description>
     </Source>
 </PISI>
