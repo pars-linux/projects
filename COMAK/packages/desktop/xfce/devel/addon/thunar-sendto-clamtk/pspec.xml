@@ -23,7 +23,7 @@
         <Files>
             <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/Thunar/sendto/thunar-sendto-clamtk.desktop</Path>
         </Files>
     </Package>
 
