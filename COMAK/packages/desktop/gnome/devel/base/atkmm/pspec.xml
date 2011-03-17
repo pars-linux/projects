@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>atkmm</Name>
+        <Homepage>http://www.gtkmm.org/</Homepage>
+        <Packager>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>C++ binding for the ATK library</Summary>
+        <Description>Atkmm is the C++ binding for the ATK library and  part of the GNOME C++ bindings effort.</Description>
+        <Archive sha1sum="071b36209f43402f9035b25b2cba10d172179e0a" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/atkmm/2.22/atkmm-2.22.2.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>glibmm-devel</Dependency>
+        </BuildDependencies>
+        <!--Patches>
+            <Patch level=""></Patch>
+        </Patches-->
+    </Source>
+
+    <Package>
+        <Name>atkmm</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="1.12">atk</Dependency>
+            <Dependency>glibmm</Dependency>
+            <Dependency>libsigc++</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+        <!--AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
+        </AdditionalFiles-->
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-17</Date>
+            <Version>2.22.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
