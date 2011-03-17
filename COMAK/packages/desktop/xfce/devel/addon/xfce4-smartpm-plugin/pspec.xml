@@ -10,8 +10,8 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>FIXME!!</Summary>
-        <Description>FIXME!!</Description>
+        <Summary>This plugin checks for package updates</Summary>
+        <Description>This plugin checks for package updates using the Smart Package Manager.</Description>
         <Archive sha1sum="c52cab6137fffd913e33097010ace4580b7a456e" type="targz">http://archive.xfce.org/src/panel-plugins/xfce4-smartpm-plugin/0.4/xfce4-smartpm-plugin-0.4.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>xfce4-panel-devel</Dependency>
