@@ -8,12 +8,15 @@
             <Name>Gökmen Görgen</Name>
             <Email>gkmngrgn@gmail.com</Email>
         </Packager>
-        <License>GPLv2</License>
+        <License>LGPLv2</License>
         <IsA>library</IsA>
         <Summary>Xfce gui library</Summary>
         <Description>libxfce4ui is a various GTK+ widgets for Xfce desktop environment.</Description>
         <Archive sha1sum="107f9d8e3e583f3cf5330074e89ea72eb2a82888" type="tarbz2">http://archive.xfce.org/xfce/4.8/src/libxfce4ui-4.8.0.tar.bz2</Archive>
         <BuildDependencies>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>libxfce4util-devel</Dependency>
             <Dependency>xfconf-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
@@ -28,6 +31,9 @@
     <Package>
         <Name>libxfce4ui</Name>
         <RuntimeDependencies>
+            <Dependency>atk</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
             <Dependency>libxfce4util</Dependency>
             <Dependency>xfconf</Dependency>
             <Dependency>gtk2</Dependency>
