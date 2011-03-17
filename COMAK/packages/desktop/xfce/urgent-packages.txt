@@ -1,5 +1,5 @@
 postler (A lean mail reader with an opinionated interface)
-xfce4-genmon-plugin (The GenMon plugin cyclically spawns the indicated script/program, captures its output and displays the result into the panel.)
+xfce4-genmon-plugin (The GenMon plugin cyclically spawns the indicate script/program, captures its output and displays the result into the panel.) (not working in 4.8 https://bbs.archlinux.org/viewtopic.php?pid=880729 . there is a patch but not working)
 
 xfce4-indicator-plugin (A Panelplugin that uses indicator-applet to show new messages.)
 xfce4-sample-plugin/
