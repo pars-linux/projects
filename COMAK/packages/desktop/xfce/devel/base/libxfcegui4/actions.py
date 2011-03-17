@@ -22,4 +22,4 @@ def install():
 
     #pisitools.removeDir("/etc")
 
-    pisitools.dodoc("COPYING", "NEWS", "README", "TODO", "ChangeLog", "AUTHORS")
+    pisitools.dodoc("COPYING*", "NEWS", "README", "TODO", "ChangeLog", "AUTHORS")
