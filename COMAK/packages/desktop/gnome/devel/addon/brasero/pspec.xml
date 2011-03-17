@@ -12,29 +12,57 @@
         <IsA>app:gui</IsA>
         <Summary>Brasero (aka Bonfire) is yet another application to burn CD/DVD for the gnome desktop.</Summary>
         <Description>Brasero (aka Bonfire) is yet another application to burn CD/DVD for the gnome desktop.</Description>
-        <Archive sha1sum="" type="">ftp://ftp.gnome.org/pub/GNOME/sources/brasero/2.32/brasero-2.32.1.tar.bz2</Archive>
+        <Archive sha1sum="56141108561f2b8d45998662b86cf6e20f0ff4f2" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/brasero/2.32/brasero-2.32.1.tar.bz2</Archive>
+            <Dependency versionFrom="2.0.0">gconf-devel</Dependency>
         <BuildDependencies>
-            <Dependency versionFrom="2.32.1">gnome-doc-utils</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
             <Dependency versionFrom="0.10.0">gstreamer-devel</Dependency>
             <Dependency versionFrom="0.10.0">gst-plugins-base-devel</Dependency>
             <Dependency versionFrom="1.0.0">libunique-devel</Dependency>
+            <Dependency versionFrom="2.0.0">gconf-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency versionFrom="0.1.0">libcanberra-devel</Dependency>
+            <Dependency>libxml2-devel</Dependency>
+            <Dependency>libburn-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>brasero</Name>
         <RuntimeDependencies>
-            <Dependency versionFrom=""></Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>libunique</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>libcanberra-gtk</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>brasero-devel</Name>
+        <RuntimeDependencies>
+            <Dependency release="current">emote</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
 
