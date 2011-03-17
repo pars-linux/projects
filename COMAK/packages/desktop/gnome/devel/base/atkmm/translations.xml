@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>atkmm</Name>
+        <Summary xml:lang="tr">ATK kütüphanesi için C++ bağlayıcıları</Summary>
+        <Description xml:lang="tr">ATK kütüphanesi için GNOME C++ bağlayıcılarından biri.</Description>
+    </Source>
+</PISI>
+
