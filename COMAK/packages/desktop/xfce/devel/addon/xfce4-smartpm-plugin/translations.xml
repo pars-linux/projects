@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-smartpm-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-smartpm-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Bu eklenti paketler için güncellemeleri kontrol eder</Summary>
+        <Description xml:lang="tr">Bu eklenti paketler için Smart Paket Yöneticisini kullanarak güncellemeleri kontrol eder.</Description>
     </Source>
 </PISI>
