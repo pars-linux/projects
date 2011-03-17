@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-smartpm-plugin</Name>
-        <Summary xml:lang="tr">Bu eklenti paketler için güncellemeleri kontrol eder</Summary>
-        <Description xml:lang="tr">Bu eklenti paketler için Smart Paket Yöneticisini kullanarak güncellemeleri kontrol eder.</Description>
+        <Summary xml:lang="tr">Paketler için güncellemeleri kontrol eden eklenti</Summary>
+        <Description xml:lang="tr">Paketler için Smart Paket Yöneticisini kullanarak güncellemeleri kontrol eden eklenti.</Description>
     </Source>
 </PISI>
