@@ -9,6 +9,7 @@
             <Email>gkmngrgn@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
+        <License>LGPLv2.1</License>
         <IsA>library</IsA>
         <Summary>Xfce GUI library</Summary>
         <Description>Libxfcegui4 is a various GTK+ widgets for Xfce desktop environment.</Description>
@@ -48,6 +49,7 @@
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
         </Files>
     </Package>
 
@@ -64,7 +66,6 @@
         <Files>
             <Path fileType="header">/usr/include</Path>
             <Path fileType="data">/usr/lib/pkgconfig</Path>
-            <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
         </Files>
     </Package>
