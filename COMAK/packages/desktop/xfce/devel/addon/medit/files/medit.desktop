@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Encoding=UTF-8
+Name=Medit
+Name[tr]=Medit
+GenericName=Text Editor
+GenericName[tr]=Metin Düzenleyici
+Icon=medit
+Exec=medit
+Terminal=false
+StartupNotify=false
+Categories=Application;TextEditor;
