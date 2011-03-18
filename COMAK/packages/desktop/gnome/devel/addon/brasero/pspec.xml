@@ -25,6 +25,7 @@
             <Dependency>libxml2-devel</Dependency>
             <Dependency>libburn-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
+            <Dependency>libcanberra-gtk</Dependency>
         </BuildDependencies>
     </Source>
 
