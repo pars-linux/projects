@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>postler</Name>
+        <Summary xml:lang="tr">Vala ile yazılmış çok basit bir e-posta istemcisi</Summary>
+        <Description xml:lang="tr">Postler güzel,temiz, basit ve kolay olmayı amaçlamaktadır.</Description>
+    </Source>
+</PISI>
+
