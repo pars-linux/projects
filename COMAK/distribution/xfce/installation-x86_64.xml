@@ -69,8 +69,10 @@
         <SelectedPackage>glew</SelectedPackage>
         <SelectedPackage>gnome-menus</SelectedPackage>
         <SelectedPackage>gnome-mount</SelectedPackage>
+        <SelectedPackage>gpicview</SelectedPackage>
         <SelectedPackage>gst-ffmpeg</SelectedPackage>
         <SelectedPackage>gtk-engines</SelectedPackage>
+        <SelectedPackage>gtk-style-xfce</SelectedPackage>
         <SelectedPackage>gtk-xfce-engine</SelectedPackage>
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
@@ -83,6 +85,7 @@
         <SelectedPackage>icon-theme-hicolor</SelectedPackage>
         <SelectedPackage>icon-theme-milky-png</SelectedPackage>
         <SelectedPackage>icon-theme-oxygen-png</SelectedPackage>
+        <SelectedPackage>icon-theme-xfce4</SelectedPackage>
         <SelectedPackage>iptraf</SelectedPackage>
         <SelectedPackage>ipython</SelectedPackage>
         <SelectedPackage>irda-utils</SelectedPackage>
@@ -234,6 +237,7 @@
         <SelectedPackage>xfce-utils</SelectedPackage>
         <SelectedPackage>xfce4-appfinder</SelectedPackage>
         <SelectedPackage>xfce4-battery-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-cddrive-plugin</SelectedPackage>
         <SelectedPackage>xfce4-cpufreq-plugin</SelectedPackage>
         <SelectedPackage>xfce4-dev-tools</SelectedPackage>
         <SelectedPackage>xfce4-dict</SelectedPackage>
@@ -248,11 +252,16 @@
         <SelectedPackage>xfce4-session-devel</SelectedPackage>
         <SelectedPackage>xfce4-settings</SelectedPackage>
         <SelectedPackage>xfce4-smartbookmark-plugin</SelectedPackage>
+        <SelectedPackage>xfce4-smartpm-plugin</SelectedPackage>
         <SelectedPackage>xfce4-time-out-plugin</SelectedPackage>
         <SelectedPackage>xfce4-vala</SelectedPackage>
         <SelectedPackage>xfce4-wavelan-plugin</SelectedPackage>
         <SelectedPackage>xfce4-xmms-plugin</SelectedPackage>
+        <SelectedPackage>xfconf</SelectedPackage>
+        <SelectedPackage>xfconf-devel</SelectedPackage>
+        <SelectedPackage>xfdesktop</SelectedPackage>
         <SelectedPackage>xfmpc</SelectedPackage>
+        <SelectedPackage>xfswitch-plugin</SelectedPackage>
         <SelectedPackage>xfwm4</SelectedPackage>
         <SelectedPackage>xscreensaver</SelectedPackage>
         <SelectedPackage>xterm</SelectedPackage>
