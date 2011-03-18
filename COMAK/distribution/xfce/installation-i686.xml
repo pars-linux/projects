@@ -24,6 +24,7 @@
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
         <SelectedPackage>boot-manager-pds</SelectedPackage>
+        <SelectedPackage>brasero</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
@@ -172,6 +173,7 @@
         <SelectedPackage>plymouth-utils</SelectedPackage>
         <SelectedPackage>polkit-gnome</SelectedPackage>
         <SelectedPackage>poster</SelectedPackage>
+        <SelectedPackage>postler</SelectedPackage>
         <SelectedPackage>powertop</SelectedPackage>
         <SelectedPackage>psutils</SelectedPackage>
         <SelectedPackage>pulseaudio</SelectedPackage>
@@ -746,6 +748,7 @@
         <Package>mpfr</Package>
         <Package>mpg123</Package>
         <Package>mplayer</Package>
+        <Package>msmtp</Package>
         <Package>mtools</Package>
         <Package>mudur</Package>
         <Package>musicbrainz</Package>
