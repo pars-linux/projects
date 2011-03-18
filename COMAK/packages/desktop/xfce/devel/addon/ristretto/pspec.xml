@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>ristretto</Name>
+        <Homepage>http://www.xfce.org</Homepage>
+        <Packager>
+            <Name>Engin Manap</Name>
+            <Email>enginmanap@comu.edu.tr</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Image viewer for Xfce</Summary>
+        <Description>Ristretto is a fast and lightweight picture-viewer for the Xfce desktop environment.</Description>
+        <Archive sha1sum="45a0497a69953f03ad1ddb23fdea1426a38d13ec" type="tarbz2">http://git.xfce.org/apps/ristretto/snapshot/ristretto-0.0.93.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>thunar-vfs-devel</Dependency>
+            <Dependency>libxfce4util-devel</Dependency>
+            <Dependency>libxfcegui4-devel</Dependency>
+            <Dependency>libexif-devel</Dependency>
+            <Dependency>libdbusmenu-glib</Dependency>
+        </BuildDependencies>
+        <!--<Patches>
+            <Patch level=""></Patch>
+        </Patches>-->
+    </Source>
+
+    <Package>
+        <Name>ristretto</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>thunar-vfs</Dependency>
+            <Dependency>libxfce4util</Dependency>
+            <Dependency>libxfcegui4</Dependency>
+            <Dependency>libexif</Dependency>
+            <Dependency>libdbusmenu-glib</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+        <!--<AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
+        </AdditionalFiles>
+        <Provides>
+            <COMAR script=""></COMAR>
+        </Provides>-->
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-18</Date>
+            <Version>0.0.93</Version>
+            <Comment>First release.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
+    </History>
+</PISI>
+
