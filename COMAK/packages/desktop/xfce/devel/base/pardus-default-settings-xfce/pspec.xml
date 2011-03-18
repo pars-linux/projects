@@ -31,11 +31,15 @@
             <Package>pardus-default-settings-fluxbox</Package>
         </Conflicts>
         <Files>
-            <Path fileType="config">/etc</Path>
+            <Path fileType="config">/etc/default</Path>
+            <Path fileType="config">/etc/xdg</Path>
+            <Path fileType="data">/usr/share/xfce4/backdrops</Path>
         </Files>
         <AdditionalFiles>
             <AdditionalFile owner="root" permission="0644" target="/etc/xdg/autostart/cnazar.desktop">cnazar.desktop</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/etc/xdg/autostart/polkit-gnome.desktop">polkit-gnome.desktop</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/xfce4/backdrops/pardus-2011_background.png">pardus-2011_background.png</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml">xfce4-desktop.xml</AdditionalFile>
         </AdditionalFiles>
         <Provides>
             <COMAR script="package.py">System.Package</COMAR>
