@@ -33,6 +33,10 @@
         <Files>
             <Path fileType="config">/etc</Path>
         </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/etc/xdg/autostart/cnazar.desktop">cnazar.desktop</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/etc/xdg/autostart/polkit-gnome.desktop">polkit-gnome.desktop</AdditionalFile>
+        </AdditionalFiles>
         <Provides>
             <COMAR script="package.py">System.Package</COMAR>
         </Provides>
