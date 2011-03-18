@@ -59,7 +59,7 @@
     <Package>
         <Name>brasero-devel</Name>
         <RuntimeDependencies>
-            <Dependency release="current">emote</Dependency>
+            <Dependency release="current">brasero</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
