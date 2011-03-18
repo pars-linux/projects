@@ -1,7 +1,5 @@
 postler (A lean mail reader with an opinionated interface)
 
-thunar-wallpaper-plugin
-
 FIXME:
 
 thunar-shares-plugin
@@ -15,3 +13,4 @@ xfce4-genmon-plugin (The GenMon plugin cyclically spawns the indicate script/pro
 xfce4-sensors-plugin (Reads your hardware sensor values and displays them in your panel)
 xfce4-xfapplet-plugin
 xfce4-indicator-plugin (A Panelplugin that uses indicator-applet to show new messages.)
+thunar-wallpaper-plugin
