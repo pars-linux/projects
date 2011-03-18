@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>brasero</Name>
+        <Summary xml:lang="tr">GNOME masaüstü için CD/DVD yakma aracı.</Summary>
+        <Description xml:lang="tr">Brasero GNOME masaüstü için CD/DVD yakma aracıdır. Mümkün olduğunca basit şekilde tasarlanmıştır ve kullanının kendi disklerini yapması için benzersiz özelliklere sahiptir.</Description>
+    </Source>
+</PISI>
