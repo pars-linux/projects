@@ -28,6 +28,8 @@
             <Dependency>evolution-data-server-devel</Dependency>
             <Dependency>librsvg-devel</Dependency>
             <Dependency>libXrandr-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">panel-default-settings.patch</Patch>
