@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010 TUBITAK/BILGEM
+# Copyright 2011 TUBITAK/BILGEM
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
 
@@ -16,7 +16,8 @@ def setup():
             --with-gtk=2.0 \
             --disable-search \
             --enable-cdrtools \
-            --enable-cdrkit")
+            --enable-cdrkit \
+            --enable-nautilus")
 
 def build():
     autotools.make("-j1")
