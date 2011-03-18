@@ -36,6 +36,15 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     fileassociations.close()
 
     #FIXME:
-    os.unlink("/usr/share/xsessions/gnome.desktop")
-    os.unlink("/usr/share/xsessions/openbox-gnome.desktop")
-    os.unlink("/usr/share/xsessions/openbox-kde.desktop")
+    try:
+        os.unlink("/usr/share/xsessions/gnome.desktop")
+    except:
+        pass
+    try:
+        os.unlink("/usr/share/xsessions/openbox-gnome.desktop")
+    except:
+        pass
+    try:
+        os.unlink("/usr/share/xsessions/openbox-kde.desktop")
+    except:
+        pass
