@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Totem playlist parser</Summary>
         <Description>Totem is a library that parse and save playlists, as used in music and movie players.</Description>
-        <Archive sha1sum="f6697f785727c5d6e14c9ad64ea71bda86b7bdfe" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/totem-pl-parser/2.32/totem-pl-parser-2.32.3.tar.bz2</Archive>
+        <Archive sha1sum="f6697f785727c5d6e14c9ad64ea71bda86b7bdfe" type="tarbz2">mirrors://gnome/totem-pl-parser/2.32/totem-pl-parser-2.32.3.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gmime-devel</Dependency>
             <Dependency>libsoup-devel</Dependency>
