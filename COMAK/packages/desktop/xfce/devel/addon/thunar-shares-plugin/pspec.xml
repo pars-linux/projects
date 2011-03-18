@@ -10,18 +10,13 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>FIXME!!</Summary>
-        <Description>FIXME!!</Description>
+        <Summary>A plugin which allows you to quickly share a folder using Samba</Summary>
+        <Description>thunar-shares-plugin allows you to quickly share a folder using Samba from Thunar (the XFCE file manager) without requiring root access.</Description>
         <Archive sha1sum="c890d970c57ee5da422022f354873f167be30a20" type="targz">http://archive.xfce.org/src/thunar-plugins/thunar-shares-plugin/0.2/thunar-shares-plugin-0.2.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>Thunar-devel</Dependency>
             <Dependency>thunar-vfs-devel</Dependency>
         </BuildDependencies>
-        <!--
-        <Patches>
-            <Patch level="1"></Patch>
-        </Patches>
-        -->
     </Source>
 
     <Package>
@@ -31,15 +26,8 @@
             <Dependency>thunar-vfs</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
-            <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="executable">/usr/libexec</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="doc">/usr/share/xfce4/doc</Path>
-            <Path fileType="data">/usr/share/xfce4</Path>
-            <Path fileType="data">/usr/share/applications</Path>
-            <Path fileType="data">/usr/share/icons</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
         </Files>
     </Package>
