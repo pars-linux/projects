@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>postler</Name>
+        <Homepage>https://launchpad.net/postler</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <License>GPLv2.1</License>
+        <IsA>app:gui</IsA>
+        <Summary>A super sexy, ultra simple desktop mail client built in vala</Summary>
+        <Description>Postler aims to be easy, simple, clean, beautiful, and automagic. It handles IMAP beautifully, and provides the user with smart, sensible defaults.</Description>
+        <Archive sha1sum="a8c7fdff740c3d4e46b842d6b70fcea56b4b766a" type="tarbz2">http://git.xfce.org/apps/postler/snapshot/postler-0.1.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency version="0.10.0">vala</Dependency>
+            <Dependency>glib2-devel</Dependency>
+            <Dependency>libindicate-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>libunique-devel</Dependency>
+            <Dependency>msmtp</Dependency>
+            <Dependency>webkit-gtk-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>postler</Name>
+        <RuntimeDependencies>
+            <Dependency>libunique</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libsoup</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>webkit-gtk</Dependency>
+            <Dependency>msmtp</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>libindicate</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-12</Date>
+            <Version>0.1.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
