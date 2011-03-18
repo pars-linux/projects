@@ -33,3 +33,8 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     fileassociations.write("text/plain=medit.desktop;\n")
     fileassociations.write("application/x-pisi=package-manager.desktop;\n")
     fileassociations.close()
+
+    #FIXME:
+    os.unlink("/usr/share/xsessions/gnome.desktop")
+    os.unlink("/usr/share/xsessions/openbox-gnome.desktop")
+    os.unlink("/usr/share/xsessions/openbox-kde.desktop")
