@@ -71,6 +71,7 @@
         <SelectedPackage>glew</SelectedPackage>
         <SelectedPackage>gnome-menus</SelectedPackage>
         <SelectedPackage>gnome-mount</SelectedPackage>
+        <SelectedPackage>gnome-session</SelectedPackage>
         <SelectedPackage>gst-ffmpeg</SelectedPackage>
         <SelectedPackage>gtk-engines</SelectedPackage>
         <SelectedPackage>gtk-style-xfce</SelectedPackage>
@@ -122,6 +123,7 @@
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
+        <SelectedPackage>medit</SelectedPackage>
         <SelectedPackage>mercurial</SelectedPackage>
         <SelectedPackage>mesa-utils</SelectedPackage>
         <SelectedPackage>microcode-ctl</SelectedPackage>
@@ -439,6 +441,7 @@
         <Package>gnome-menus</Package>
         <Package>gnome-mplayer</Package>
         <Package>gnome-panel</Package>
+        <Package>gnome-session</Package>
         <Package>gnome-settings-daemon</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
