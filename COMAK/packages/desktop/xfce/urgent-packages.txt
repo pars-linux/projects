@@ -2,7 +2,6 @@ postler (A lean mail reader with an opinionated interface)
 xfce4-genmon-plugin (The GenMon plugin cyclically spawns the indicate script/program, captures its output and displays the result into the panel.) (not working in 4.8 https://bbs.archlinux.org/viewtopic.php?pid=880729 . there is a patch but not working)
 
 xfce4-indicator-plugin (A Panelplugin that uses indicator-applet to show new messages.)
-xfce4-sample-plugin/
 xfce4-sensors-plugin (Reads your hardware sensor values and displays them in your panel)
 xfce4-xfapplet-plugin
 xfswitch-plugin
@@ -14,3 +13,7 @@ thunar-wallpaper-plugin
 FIXME:
 
 xfce4-cddrive-plugin (xfce4-cddrive-plugin puts a button in the XFCE panel which allow to open or close a CD-ROM drive tray)
+
+REVIEW:
+
+xfce4-sample-plugin
