@@ -1,0 +1,12 @@
+diff -Nuar thunar-archive-plugin-0.2.4.orig//configure.in thunar-archive-plugin-0.2.4/configure.in
+--- thunar-archive-plugin-0.2.4.orig//configure.in	2011-03-17 02:49:28.968000006 +0200
++++ thunar-archive-plugin-0.2.4/configure.in	2011-03-17 02:49:47.071000007 +0200
+@@ -68,7 +68,7 @@
+ dnl ***********************************
+ dnl *** Check for required packages ***
+ dnl ***********************************
+-XDT_CHECK_PACKAGE([THUNARX], [thunarx-1], [0.4.0])
++XDT_CHECK_PACKAGE([THUNARX], [thunarx-2], [0.4.0])
+ XDT_CHECK_PACKAGE([THUNAR_VFS], [thunar-vfs-1], [0.4.0])
+ 
+ dnl ***********************************
