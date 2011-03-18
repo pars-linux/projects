@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>xfce4-sensors-plugin</Name>
+        <Homepage>http://goodies.xfce.org/projects/panel-plugins/es/xfce4-sensors-plugin</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>FIXME!!</Summary>
+        <Description>FIXME!!</Description>
+        <Archive sha1sum="5c0f2e30463068ac4ae619faf8b4966ee8d77710" type="tarbz2">http://archive.xfce.org/src/panel-plugins/xfce4-sensors-plugin/1.0/xfce4-sensors-plugin-1.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>xfce4-panel-devel</Dependency>
+        </BuildDependencies>
+        <!--
+        <Patches>
+            <Patch level="1"></Patch>
+        </Patches>
+        -->
+    </Source>
+
+    <Package>
+        <Name>xfce4-sensors-plugin</Name>
+        <RuntimeDependencies>
+            <Dependency>xfce4-panel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="doc">/usr/share/xfce4/doc</Path>
+            <Path fileType="data">/usr/share/xfce4</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-14</Date>
+            <Version>1.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
