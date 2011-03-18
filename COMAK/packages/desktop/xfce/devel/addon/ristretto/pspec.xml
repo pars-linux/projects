@@ -35,6 +35,10 @@
             <Dependency>libxfcegui4</Dependency>
             <Dependency>libexif</Dependency>
             <Dependency>libdbusmenu-glib</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>xfconf</Dependency>
+            <Dependency>libxfce4ui</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
