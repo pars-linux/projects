@@ -1,7 +1,6 @@
 postler (A lean mail reader with an opinionated interface)
 
 xfswitch-plugin
-thunar-svn-plugin
 thunar-wallpaper-plugin
 
 FIXME:
