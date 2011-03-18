@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011 - Comak XFCE x86_64 [Gelibolu]</Title>
+    <Title>Pardus 2011 - Comak XFCE x86_64 [Nusrat]</Title>
     <WorkDir>/root/pardusman/work/xfce/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/xfce/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://192.168.1.71/repo/pisi-index.xml.xz">
