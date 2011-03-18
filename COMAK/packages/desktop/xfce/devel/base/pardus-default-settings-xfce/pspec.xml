@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>Pardus default settings for xfce</Summary>
         <Description>This package contains the xfce default settings for Pardus.</Description>
-        <Archive sha1sum="0a174a334a8559914354a4f1d14cfcf16b2c4a7a" type="targz">http://comak.comu.edu.tr/source/pardus-default-settings-xfce-0.0.1.tar.gz</Archive>
+        <Archive sha1sum="5b1078b866ef666379f796142623cbf37009d4f6" type="targz">http://comak.comu.edu.tr/source/pardus-default-settings-xfce-0.0.1.tar.gz</Archive>
     </Source>
 
     <Package>
