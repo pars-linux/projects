@@ -4,7 +4,6 @@ thunar-wallpaper-plugin
 
 FIXME:
 
-xfce4-cddrive-plugin (xfce4-cddrive-plugin puts a button in the XFCE panel which allow to open or close a CD-ROM drive tray)
 thunar-shares-plugin
 thunar-vcs-plugin
 xfswitch-plugin
