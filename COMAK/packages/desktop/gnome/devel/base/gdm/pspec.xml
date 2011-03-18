@@ -42,6 +42,7 @@
             <Dependency>libcanberra-gtk</Dependency>
             <Dependency>gnome-panel</Dependency> <!-- for libpanelapplet -->
             <Dependency>gnome-settings-daemon</Dependency>
+            <Dependency>gnome-session</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/dbus-1</Path>
