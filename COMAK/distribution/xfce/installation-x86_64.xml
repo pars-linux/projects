@@ -24,6 +24,7 @@
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
         <SelectedPackage>boot-manager-pds</SelectedPackage>
+        <SelectedPackage>brasero</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
@@ -59,6 +60,7 @@
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
         <SelectedPackage>garcon</SelectedPackage>
         <SelectedPackage>garcon-docs</SelectedPackage>
+        <SelectedPackage>gdm</SelectedPackage>
         <SelectedPackage>gecko-mediaplayer</SelectedPackage>
         <SelectedPackage>gfxboot</SelectedPackage>
         <SelectedPackage>gfxtheme-pardus-boot</SelectedPackage>
@@ -69,7 +71,6 @@
         <SelectedPackage>glew</SelectedPackage>
         <SelectedPackage>gnome-menus</SelectedPackage>
         <SelectedPackage>gnome-mount</SelectedPackage>
-        <SelectedPackage>gpicview</SelectedPackage>
         <SelectedPackage>gst-ffmpeg</SelectedPackage>
         <SelectedPackage>gtk-engines</SelectedPackage>
         <SelectedPackage>gtk-style-xfce</SelectedPackage>
@@ -118,7 +119,6 @@
         <SelectedPackage>lsscsi</SelectedPackage>
         <SelectedPackage>lvm2</SelectedPackage>
         <SelectedPackage>lvm2-static</SelectedPackage>
-        <SelectedPackage>lxdm</SelectedPackage>
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
@@ -173,6 +173,7 @@
         <SelectedPackage>plymouth-utils</SelectedPackage>
         <SelectedPackage>polkit-gnome</SelectedPackage>
         <SelectedPackage>poster</SelectedPackage>
+        <SelectedPackage>postler</SelectedPackage>
         <SelectedPackage>powertop</SelectedPackage>
         <SelectedPackage>psutils</SelectedPackage>
         <SelectedPackage>pulseaudio</SelectedPackage>
@@ -188,6 +189,7 @@
         <SelectedPackage>redland-virtuoso</SelectedPackage>
         <SelectedPackage>reiserfsprogs</SelectedPackage>
         <SelectedPackage>rfkill</SelectedPackage>
+        <SelectedPackage>ristretto</SelectedPackage>
         <SelectedPackage>rp-pppoe</SelectedPackage>
         <SelectedPackage>rpm2targz</SelectedPackage>
         <SelectedPackage>rsync</SelectedPackage>
@@ -368,6 +370,7 @@
         <Package>enca</Package>
         <Package>enchant</Package>
         <Package>enscript</Package>
+        <Package>evolution-data-server</Package>
         <Package>exempi</Package>
         <Package>exo</Package>
         <Package>exo-devel</Package>
@@ -430,8 +433,13 @@
         <Package>glitz</Package>
         <Package>glitz-devel</Package>
         <Package>gmp</Package>
+        <Package>gnome-common</Package>
+        <Package>gnome-desktop</Package>
         <Package>gnome-keyring</Package>
+        <Package>gnome-menus</Package>
         <Package>gnome-mplayer</Package>
+        <Package>gnome-panel</Package>
+        <Package>gnome-settings-daemon</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
         <Package>gnutls</Package>
@@ -587,6 +595,7 @@
         <Package>libgnome</Package>
         <Package>libgnome-keyring</Package>
         <Package>libgnomecanvas</Package>
+        <Package>libgnomekbd</Package>
         <Package>libgnomeui</Package>
         <Package>libgomp</Package>
         <Package>libgpg-error</Package>
@@ -596,6 +605,8 @@
         <Package>libgssglue</Package>
         <Package>libgtop</Package>
         <Package>libgudev1</Package>
+        <Package>libgweather</Package>
+        <Package>libical</Package>
         <Package>libid3tag</Package>
         <Package>libidn</Package>
         <Package>libiec61883</Package>
@@ -737,6 +748,7 @@
         <Package>mpfr</Package>
         <Package>mpg123</Package>
         <Package>mplayer</Package>
+        <Package>msmtp</Package>
         <Package>mtools</Package>
         <Package>mudur</Package>
         <Package>musicbrainz</Package>
@@ -910,6 +922,7 @@
         <Package>texlive-basic</Package>
         <Package>texlive-core</Package>
         <Package>texlive-latex</Package>
+        <Package>thunar-vfs</Package>
         <Package>tiff</Package>
         <Package>time</Package>
         <Package>timezone</Package>
@@ -922,6 +935,7 @@
         <Package>unixODBC</Package>
         <Package>unrar</Package>
         <Package>unzip</Package>
+        <Package>upower</Package>
         <Package>urlgrabber</Package>
         <Package>usbmuxd</Package>
         <Package>usbutils</Package>
