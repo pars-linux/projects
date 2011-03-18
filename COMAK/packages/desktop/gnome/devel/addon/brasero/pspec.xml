@@ -27,6 +27,9 @@
             <Dependency>gconf-devel</Dependency>
             <Dependency>libcanberra-gtk</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">brasero-2.32.0-build-plugins-against-local-library.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
