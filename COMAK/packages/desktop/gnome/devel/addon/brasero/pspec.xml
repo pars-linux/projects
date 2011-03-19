@@ -26,6 +26,7 @@
             <Dependency>libburn-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>libcanberra-gtk</Dependency>
+            <Dependency>totem-pl-parser-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">brasero-2.32.0-build-plugins-against-local-library.patch</Patch>
@@ -49,6 +50,7 @@
             <Dependency>libcanberra</Dependency>
             <Dependency>libcanberra-gtk</Dependency>
             <Dependency>gst-plugins-base</Dependency>
+            <Dependency>totem-pl-parser</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
