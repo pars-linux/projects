@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>assogiate</Name>
+        <Homepage>http://www.kdau.com/projects/assogiate</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>An editor of the MIME file types database for GNOME</Summary>
+        <Description>assoGiate is an editor of the file types database for GNOME</Description>
+        <Archive sha1sum="89c23847d6efd96194b2a35723eb811e7226de03" type="tarbz2">http://www.sourcefiles.org/Editors/GNOME/assogiate-0.2.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>glib2-devel</Dependency>
+            <Dependency>glibmm-devel</Dependency>
+            <Dependency>gtkmm-devel</Dependency>
+            <Dependency>libxmlpp-devel</Dependency>
+            <Dependency>gnome-vfsmm-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>assogiate</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-doc-utils</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>0.2.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+

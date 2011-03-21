@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>assogiate</Name>
+        <Summary xml:lang="tr">Gnome için MIME dosya tipi veritabanı editörü</Summary>
+        <Description xml:lang="tr">assoGiate Gnome için dosya tipleri veritabanını düzenlemek için kullanılan bir editördür.</Description>
+    </Source>
+</PISI>
+
