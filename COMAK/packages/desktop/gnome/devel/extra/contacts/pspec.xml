@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>contacts</Name>
+        <Homepage>http://pimlico-project.org/contacts.html</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A small, lightweight addressbook for GNOME</Summary>
+        <Description>Contacts is a small, lightweight addressbook that uses libebook, part of EDS.</Description>
+        <Archive sha1sum="f836963997c9dbdb34a6491a9f5a5431375a710c" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/contacts/0.12/contacts-0.12.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>gnome-vfs-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>contacts-0.11-fix-make-3.82.patch</Patch>
+            <Patch level="1">contacts-0.9-dbus.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>contacts</Name>
+        <RuntimeDependencies>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>gnome-vfs</Dependency>
+            <Dependency>gtk2</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>0.12</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
