@@ -1,0 +1,83 @@
+PACKAGES NONEXIST:
+assogiate  -- assoGiate is an editor of the file types database for GNOME  -- NonExist
+avant-window-navigator  -- Fully customisable dock-like window navigator  -- NonExist
+avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExist
+bug-buddy  --  A graphical bug reporting tool  --  NonExist
+connman-gnome  --  Provides a daemon for managing internet connections  -- NonExist (connman in playground)
+contacts  --  A small, lightweight addressbook for GNOME  --  NonExist
+deskbar-applet  --  An Omnipresent Versatile Search Interface  --  NonExist
+docky  --  Elegant, powerful, clean dock  --  NonExist
+drwright  --  A GNOME2 Applet that forces you to take regular breaks to prevent RSI.  --NonExist
+evolution-exchange  --  Evolution module for connecting to Microsoft Exchange  --  NonExist
+evolution-webcal  --  A GNOME URL handler for web-published ical calendar files  -- NonExist
+fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
+file-browser-applet  --  Browse, open and manage files in your computer directly from the GNOME panel.  --  NonExist
+gcursor  --  GTK+ based xcursor theme selector  --  NonExist
+gdesklets-core  --  GNOME Desktop Applets: Core library for desktop applets  --  NonExist
+gget  --  A DownLoad Manager for GNOME  --  NonExist
+gnome-audio  --  Gnome Desktop Sound Effects Package  --  NonExist
+gnome-color-chooser  --  GTK+/GNOME color customization tool.  --  NonExist
+gnome-color-manager  --  Color profile manager for the GNOME desktop  --  NonExist
+gnome-do  --  GNOME Do allows you to get things done quickly  --  NonExist
+gnome-do-plugins  --  Plugins to put the Do in Gnome Do  --  NonExist
+gnome-games  --  Collection of games for the GNOME desktop  --  NonExist
+gnome-games-extra-data  --  Optional additional graphics for gnome-games  --  NonExist
+gnome-hdaps-applet  --  Visualization of the Hard Disc Active Protection System State as Gnome applet  -- NonExist
+gnome-lirc-properties  --  GTK+ based utilty to configure LIRC remotes  -- NonExist
+gnome-swallow  --  An applet for Gnome that 'swallows' normal apps. Useful for docks that are made for other DEs or WMs  -- NonExist
+gnome-user-docs  --  GNOME end user documentation  --  NonExist
+gnome-user-share  --  Personal file sharing for the GNOME desktop  --  NonExist
+gnome-web-photo  --  a tool to generate images and thumbnails from HTML files  -- NonExist
+gpointing-device-settings  -- A GTK+ based configuration utility for the synaptics driver  -- NonExist
+hamster-applet  --  Time tracking for the masses, in a GNOME applet  --  NonExist
+hardware-monitor  -- Gnome2 Hardware Monitor Applet  --  NonExist
+indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
+libgail-gnome -- Gail libraries for GNOME  -- NonExist
+libgnomedb  -- Database widget library from the GNOME-DB project  --  NonExist
+lock-keys-applet  --  An applet that shows the status of your Caps, Num and Scroll Lock keys  -- NonExist
+mousetweaks  --  Mouse accessibility enhancements for the GNOME desktop  --  NonExist
+music-applet  --  GNOME applet to control various music players  --  NonExist
+nautilus-dropbox  --  Store, Sync and Share Files Online  --  NonExist
+nautilus-sendto  --  A nautilus extension for sending files to locations  --  NonExist
+panflute  --  GNOME applet to control various music players  -- NonExist
+quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
+swfdec-gnome  --  Flash player and thumbnailer for GNOME  -- NonExist (swfdec-mozilla,swfdec,swftools in playground)
+synapse  --  A program launcher in the style of GNOME Do  --  NonExist
+tasks  --  A small, lightweight to-do list for Gnome  --  NonExist
+wp_tray  --  Wallpaper Manager for the Gnome Desktop  --  NonExist
+zeitgeist  --  Service to log activities and present to other apps  --  NonExist 
+zeitgeist-datahub  --  Provides passive plugins to insert events into zeitgeist  --  NonExist
+
+PACKAGES IN PLAYGROUND:
+zenity  --  Tool to display dialogs from the commandline and shell scripts  -- Playground(brkclskn)
+at-spi -- The Gnome Accessibility Toolkit  -- Playground(brkclskn)
+gcalctool  --  A calculator application for GNOME  -- Playground(brkclskn)
+gconf-editor  --  An editor to the GNOME 2 config system  --  Playground(brkclskn)
+gucharmap  --  Unicode character map viewer  --  Playground(brkclskn)
+libgda  -- Gnome Database Access Library  -- Playground(serdardalgıç)
+
+PACKAGES IN BURAK CALISKAN'S REPO:
+gnome-media  --  Multimedia related programs for the GNOME desktop  -- brkclskni686
+sensors-applet  --  GNOME panel applet to display readings from hardware sensors  -- brkclskni686
+gnome-power-manager  --  Gnome Power Manager  --  brkclskni686
+gnome-screensaver  --  Replaces xscreensaver, integrating with the desktop.  -- brkclskni686
+gnome-system-monitor  --  The Gnome System Monitor  --  brkclskni686
+gnome-utils  --  Utilities for the Gnome2 desktop  --  brkclskni686
+nautilus-open-terminal  --  Nautilus Plugin for Opening Terminals  --  brkclskni686
+
+PACKAGES IN PARDUS2011:
+polkit-gnome  --  PolicyKit policies and configurations for the GNOME desktop  --  Pardus2011devel
+evolution-data-server    -- Evolution groupware backend  --  Pardus2011devel
+libgsf  --  The GNOME Structured File Library  --  Pardus2011devel
+nm-applet  --  Gnome applet for NetworkManager.  --  Pardus2011devel(as network-manager-applet)
+gtkhtml  --  a Gtk+ based HTML rendering library  -- Pardus2011devel(gtkhtml3)
+
+PACKAGES IN PARDUS2009:
+yelp  --  Help browser for GNOME  --  pardus2009
+
+aramayapılan depolar:
+contrip2009: http://packages.pardus.org.tr/contrib-2009/
+pardus2009: http://packages.pardus.org.tr/pardus-2009/
+playground: http://paketler.pardus.org.tr/info/playground/sources.html
+brkclskni686: http://gnome.brkclskn.org/2011/i686/
+Pardus2011devel: http://packages.pardus.org.tr/pardus/2011/devel/i686/

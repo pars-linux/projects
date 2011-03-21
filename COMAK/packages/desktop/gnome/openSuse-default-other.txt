@@ -1,0 +1,111 @@
+--admin-tools
+file-roller              brkclskni686
+
+--desktop (other)
+xdg-user-dirs            Pardus2011devel
+
+--documentation
+gnome-user-docs          NonExist
+
+--communication
+ekiga                    Playground(fahri tugrul gurkaynak)
+
+
+--education
+gcalctool                Playground(burak caliskan)
+
+--games
+aisleriot                NonExist
+gbrainy                  
+glchess
+gnome-games-recommended
+games-sudoku
+gnomine
+iagno
+lightoff
+mahjongg
+phalanx
+quadrapassel
+swell-foop
+
+--graphics
+cheese                      Pardus2011devel
+eog (Eye of GNOME)          brkclskni686
+f-spot                      NonExist
+gnome-web-photo             NonExist
+
+--multimedia
+brasero                     ourrepo
+brasero-nautilus            
+totem                       brkclskni686
+totem-browser-plugin        NonExist
+totem-browser-plugin-gmp    NonExist
+totem-pl-parser             brkclskni686
+totem-plugins               NonExist
+
+--network
+empathy                      Playground(h. ibrahim gungor)
+evolution                    NonExist
+evolution-mono-plugins       NonExist
+evolution-pilot              NonExist
+evolution-python-plugins     NonExist
+evolution-sharp              NonExist
+gnome-user-share             NonExist
+ModemManager                 Pardus2011devel
+NetworkManager               Pardus2011devel
+NetworkManager-gnome         NonExist
+NetworkManager-openvpn       Pardus2011devel
+NetworkManager-pptp          Pardus2011devel
+NetworkManager-strongswan    NonExist
+NetworkManager-vpnc          Pardus2011devel
+vino                         brkclskni686
+vinagre                      brkclskni686
+
+--office
+enchant                      Pardus2011devel
+gedit                        Pardus2011devel
+
+--system
+audiofile                     Pardus2011devel
+avahi                         Pardus2011devel
+cups-pk-helper                Playground(ozan caglayan)
+PackageKit                    Playground(gokcen eraslan)
+libcheese-gtk18               NonExist
+gegl                          Pardus2011devel        
+glibmm2                       Pardus2011devel (without 2)
+pkg-config                    Pardus2011devel (without -)
+pango                         Pardus2011devel
+system-config-printer         Pardus2011devel
+startup-notification          Pardus2011devel
+orbit2                     Pardus2011devel
+opal                       Playground(fahri tugrul gurkaynak)
+
+--utilities
+evince                     brkclskni686
+tomboy                     NonExist
+nautilus                   brkclskni686
+
+--programming
+at-spi                     Playground(burak caliskan)
+cairo                      Pardus2011devel
+glib2                      Pardus2011devel
+gnome-js-common            NonExist
+vte                        Pardus2011devel
+seed                       NonExist
+python-gtk                 Pardus2011devel
+python-gtksourceview       Pardus2011devel
+python-gstreamer           Pardus2011devel (as gst-python)
+python-gobject             Pardus2011devel (as python-pygobject)
+python-gnome               Pardus2011devel (as gnome-python)
+
+--security
+seahorse                   brkclskni686
+seahorse-plugins           Playground(burak caliskan)
+
+
+aramayapılan depolar:
+contrip2009: http://packages.pardus.org.tr/contrib-2009/
+pardus2009: http://packages.pardus.org.tr/pardus-2009/
+playground: http://paketler.pardus.org.tr/info/playground/sources.html
+brkclskni686: http://gnome.brkclskn.org/2011/i686/
+Pardus2011devel: http://packages.pardus.org.tr/pardus/2011/devel/i686/
