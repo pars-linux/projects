@@ -11,15 +11,19 @@
 # Please read the COPYING file.
 #
 
+#System
 import sys
 import dbus
 
+#Qt Stuff
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
+#Application Stuff
 from diskmanager.about import *
 from diskmanager.main import MainWidget
 
+#Pds stuff
 from diskmanager.context import *
 
 class MainWindow(QtGui.QMainWindow):
@@ -29,6 +33,10 @@ class MainWindow(QtGui.QMainWindow):
         self.resize(widget.size())
         self.setCentralWidget(widget)
 
+if ctx.Pds.session == ctx.pds.Kde4:
+    def CreatePlugin(widget_parent, parent, component_data):
+        from diskmanager.kcmodule import Module
+        return Module(component_data, parent)
 
 if __name__ == "__main__":
 
@@ -52,30 +60,20 @@ if __name__ == "__main__":
         window = MainWindow()
         window.show()
 
-        #Run the application
-        app.exec_()
-
-        def CreatePlugin(widget_parent, parent, component_data):
-            from diskmanager.kcmodule import Module
-            return Module(component_data, parent)
     else:
-        #Translation Stuff
-        import gettext
-        __trans =gettext.translation('disk-manager',fallback=True)
-        i18n = __trans.ugettext
 
         #Pds Stuff
         from pds.quniqueapp import QUniqueApplication
 
         #Create Main Window
-        app = QUniqueApplication(sys.argv, catalog="disk-manager")
+        app = QUniqueApplication(sys.argv, catalog=about.appName)
         window = MainWindow()
         window.show()
         window.resize(640,480)
 
         #Set Main Window Title and Icon
-        window.setWindowTitle(i18n("Disk Manager"))
-        window.setWindowIcon(KIcon("drive-harddisk"))
+        window.setWindowTitle(i18n(about.PACKAGE))
+        window.setWindowIcon(KIcon(about.icon))
 
-        #Run the application
-        app.exec_()
+    #Run the application
+    app.exec_()
