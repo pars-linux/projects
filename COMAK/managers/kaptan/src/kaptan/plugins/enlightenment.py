@@ -70,9 +70,9 @@ class Wallpaper(base.Wallpaper):
         lst = dir.entryList()
         items = []
         for desktopFile in lst:
-            print desktopFile
+            #print desktopFile
             wallpaper = {}
-
+            print desktopFile
             try:
                 wallpaper["wallpaperTitle"] = "picture"
             except:
@@ -94,7 +94,7 @@ class Wallpaper(base.Wallpaper):
             #    File names I've seen so far;
             #    screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
             #    """
-            wallpaper["wallpaperThumb"] = "/usr/share/wallpapers/%s"%desktopFile
+            wallpaper["wallpaperThumb"] = "/usr/share/wallpapers/Pardus_Mood/contents/%s"%desktopFile
             wallpaper["wallpaperFile"] = desktopFile
             items.append(wallpaper)
 

@@ -42,8 +42,9 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_mouseWidget()
         self.ui.setupUi(self)
-        self.ui.Sensitivity.hide() #FIXME: use these or delete that option
-        self.ui.lbl_Sensitivity.hide() #FIXME: 
+        if FOR_LXDE:
+            self.ui.Sensitivity.hide() #FIXME: use these or delete that option
+            self.ui.lbl_Sensitivity.hide() #FIXME: 
 
         # Our default click behavior is double click. So make SingleClick = false (kdeglobals)
         self.clickBehavior = False
@@ -69,10 +70,10 @@ class Widget(QtGui.QWidget, Screen):
         self.connect(self.ui.checkReverse, SIGNAL("toggled(bool)"), self.setHandedness)
         if FOR_LXDE:
             self.connect(self.ui.Acceleration, SIGNAL("sliderMoved(int)"), self.setMouseAcceleration)
+            self.getMouseAcceleration()
         else:
             self.connect(self.ui.singleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
             self.connect(self.ui.DoubleClick, SIGNAL("clicked()"), self.clickBehaviorToggle)
-        self.getMouseAcceleration()
 
     def str2bool(self, s):
         return bool(eval(s).capitalize())
