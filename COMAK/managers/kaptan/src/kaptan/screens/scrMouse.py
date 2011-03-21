@@ -22,7 +22,10 @@ from kaptan.screens.context import *
 from kaptan.plugins import Desktop
 
 FOR_LXDE = ctx.Pds.session == ctx.pds.LXDE
-if FOR_LXDE:
+FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
+
+SHOW_MOUSE_SPEED = FOR_LXDE | FOR_ENLIGHTENMENT
+if SHOW_MOUSE_SPEED:
     from kaptan.screens.ui_scrMouse_lxde import Ui_mouseWidget
 else:
     from kaptan.screens.ui_scrMouse import Ui_mouseWidget
@@ -42,7 +45,7 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_mouseWidget()
         self.ui.setupUi(self)
-        if FOR_LXDE:
+        if SHOW_MOUSE_SPEED:
             self.ui.Sensitivity.hide() #FIXME: use these or delete that option
             self.ui.lbl_Sensitivity.hide() #FIXME: 
 
@@ -68,7 +71,7 @@ class Widget(QtGui.QWidget, Screen):
         # set signals
         self.connect(self.ui.radioButtonRightHand, SIGNAL("toggled(bool)"), self.setHandedness)
         self.connect(self.ui.checkReverse, SIGNAL("toggled(bool)"), self.setHandedness)
-        if FOR_LXDE:
+        if SHOW_MOUSE_SPEED:
             self.connect(self.ui.Acceleration, SIGNAL("sliderMoved(int)"), self.setMouseAcceleration)
             self.getMouseAcceleration()
         else:

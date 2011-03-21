@@ -132,6 +132,9 @@ class Install(install):
         print "Installing codes..."
         os.system("cp -R build/* %s/" % project_dir)
 
+        print "Installing custom themes..."
+        os.system("cp -R data/custom-themes/* /usr/share/themes")
+
         # Install locales
         print "Installing locales..."
         for filename in glob.glob1("po", "*.po"):
