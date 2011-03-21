@@ -90,7 +90,6 @@ class Wallpaper(base.Wallpaper):
         for desktopFile in lst:
             #print desktopFile
             wallpaper = {}
-            print desktopFile
             try:
                 wallpaper["wallpaperTitle"] = "picture"
             except:
@@ -121,8 +120,9 @@ class Wallpaper(base.Wallpaper):
         return items
 
     def setWallpaper(self ,wallpaper):
-        CONFIG_KAPTANRC.setValue("Wallpaper/Source","/usr/share/wallpapers/Pardus_Mood/contents/%s" %desktopFile)
-        CONFIG_KAPTANRC.sync()
+        #CONFIG_KAPTANRC.setValue("Wallpaper/Source","/usr/share/wallpapers/Pardus_Mood/contents/%s" %desktopFile)
+        #CONFIG_KAPTANRC.sync()
+        pass
 class Common(base.Common):
 
     def getLanguage(self):
@@ -138,7 +138,6 @@ class Common(base.Common):
         self.procSettings.start("program name")
 
 class Style(base.Style):
-tyleName = scrStyleWidget.screenSettings["styleName"]
 
     def getDesktopNumber(self):
         CONFIG_KAPTANRC.setValue("Desktop/DesktopNumber",0)
@@ -153,6 +152,7 @@ tyleName = scrStyleWidget.screenSettings["styleName"]
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
         return CONFIG_KAPTANRC.value("Theme/Theme",iconTheme.toString())
     def setStyleSettings(self):
+        styleName = scrStyleWidget.screenSettings["styleName"]
         style="default"
         CONFIG_KAPTANRC.setValue("Style/Style",str(style))
         styleName = scrStyleWidget.screenSettings["styleName"]

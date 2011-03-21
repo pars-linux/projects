@@ -30,5 +30,4 @@ class WallpaperItemWidget(QtGui.QWidget):
         try:
             self.ui.labelStatus.setPixmap(QtGui.QPixmap(pic))
         except:
-            print "sıkıntı var" 
             pass
