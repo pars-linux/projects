@@ -19,7 +19,7 @@
         </BuildDependencies>
         <Patches>
             <Patch level="1">01_fix_infinite_loop.dpatch</Patch>
-            <Patch level="1">desktop.patch</Patch>
+            <Patch level="1">lxsession-edit-tr.patch</Patch>
         </Patches>
     </Source>
 
@@ -39,6 +39,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-21</Date>
+            <Version>0.1.1</Version>
+            <Comment>New translations Added.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2010-09-25</Date>
             <Version>0.1.1</Version>
