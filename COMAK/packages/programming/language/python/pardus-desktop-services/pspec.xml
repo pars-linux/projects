@@ -19,6 +19,7 @@
         <Patches>
             <Patch level="1">pds-fix-config-path-variable.patch</Patch>
             <Patch level="0">lxde-support.patch</Patch>
+            <Patch level="0">extend-desktop-detection.patch</Patch>
         </Patches>
     </Source>
 
@@ -34,6 +35,13 @@
     </Package>
 
     <History>
+        <Update release="10">
+            <Date>2011-03-21</Date>
+            <Version>1.2.4_20110210</Version>
+            <Comment>Patch</Comment>
+            <Name>Orçun Avşar</Name>
+            <Email>orc.avs@gmail.com</Email>
+        </Update>
         <Update release="9">
             <Date>2011-02-10</Date>
             <Version>1.2.4_20110210</Version>
