@@ -43,6 +43,7 @@
             <!--<Patch level="1">fix-flags.patch</Patch>-->
             <Patch level="1">deadbeef-0.4.4-fix-return-values.patch</Patch>
             <Patch level="1">deadbeef-0.4.4-fix-undefined-assignments.patch</Patch>
+            <Patch level="1">deadbeef-tr.patch</Patch>
         </Patches>
     </Source>
 
