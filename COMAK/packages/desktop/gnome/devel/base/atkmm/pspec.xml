@@ -3,54 +3,73 @@
 <PISI>
     <Source>
         <Name>atkmm</Name>
-        <Homepage>http://www.gtkmm.org/</Homepage>
+        <Homepage>http://www.gtkmm.org</Homepage>
         <Packager>
-            <Name>Aydan Taşdemir</Name>
-            <Email>aydantasdemir@gmail.com</Email>
+            <Name>Ozan Çağlayan</Name>
+            <Email>ozan@pardus.org.tr</Email>
         </Packager>
-        <License>GPLv2</License>
-        <IsA>app:gui</IsA>
-        <Summary>C++ binding for the ATK library</Summary>
-        <Description>Atkmm is the C++ binding for the ATK library and  part of the GNOME C++ bindings effort.</Description>
+        <License>LGPLv2+</License>
+        <IsA>library</IsA>
+        <Summary>C++ interface for the ATK library</Summary>
+        <Description>atkmm provides a C++ interface for the ATK library.</Description>
         <Archive sha1sum="071b36209f43402f9035b25b2cba10d172179e0a" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/atkmm/2.22/atkmm-2.22.2.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>glibmm-devel</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>glibmm</Dependency>
+            <Dependency>libsigc++</Dependency>
         </BuildDependencies>
-        <!--Patches>
-            <Patch level=""></Patch>
-        </Patches-->
     </Source>
 
     <Package>
         <Name>atkmm</Name>
         <RuntimeDependencies>
-            <Dependency versionFrom="1.12">atk</Dependency>
+            <Dependency>atk</Dependency>
             <Dependency>glibmm</Dependency>
             <Dependency>libsigc++</Dependency>
         </RuntimeDependencies>
+        <Conflicts>
+            <Package versionTo="2.20.3">gtkmm</Package>
+        </Conflicts>
         <Files>
-            <Path fileType="config">/etc</Path>
-            <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
-            <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="data">/usr/share</Path>
         </Files>
-        <!--AdditionalFiles>
-            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
-        </AdditionalFiles-->
+    </Package>
+
+    <Package>
+        <Name>atkmm-devel</Name>
+        <Summary>Development files for atkmm</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">atkmm</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>glibmm-devel</Dependency>
+        </RuntimeDependencies>
+        <Conflicts>
+            <Package versionTo="2.20.3">gtkmm</Package>
+        </Conflicts>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="header">/usr/lib/atkmm-1.6/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+            <Path fileType="man">/usr/share/man/man3</Path>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+        </Files>
     </Package>
 
     <History>
-        <Update release="1">
-            <Date>2011-03-17</Date>
+        <Update release="2">
+            <Date>2010-03-21</Date>
             <Version>2.22.2</Version>
-            <Comment>First release.</Comment>
+            <Comment>Version bump.</Comment>
             <Name>Aydan Taşdemir</Name>
-            <Email>aydantasdemir@gmail.com</Email>
+            <Email>aydantasdemir@comu.edu.tr</Email>
+        </Update>
+        <Update release="1">
+            <Date>2010-12-21</Date>
+            <Version>2.22.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Ozan Çağlayan</Name>
+            <Email>ozan@pardus.org.tr</Email>
         </Update>
     </History>
 </PISI>
-

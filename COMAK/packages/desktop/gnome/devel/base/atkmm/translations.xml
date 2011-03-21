@@ -2,8 +2,12 @@
 <PISI>
     <Source>
         <Name>atkmm</Name>
-        <Summary xml:lang="tr">ATK kütüphanesi için C++ bağlayıcıları</Summary>
-        <Description xml:lang="tr">ATK kütüphanesi için GNOME C++ bağlayıcılarından biri.</Description>
+        <Summary xml:lang="tr">ATK kitaplığı için C++ arayüzü</Summary>
+        <Description xml:lang="tr">atkmm, ATK kitaplığı için bir C++ arayüzü sunar.</Description>
     </Source>
-</PISI>
 
+    <Package>
+        <Name>atkmm-devel</Name>
+        <Summary xml:lang="tr">atkmm için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>

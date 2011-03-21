@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010 TUBITAK/BILGEM
+# Copyright 2009 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
 
@@ -10,13 +10,17 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def setup():
-    autotools.configure()
+    autotools.configure("--disable-static")
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
 
 def build():
     autotools.make()
 
 def install():
-    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
+    autotools.install()
 
-    pisitools.dodoc("AUTHORS", "COPYING*", "NEWS", "README")
+    pisitools.domove("/usr/share/doc/%s-1.6/*" % get.srcNAME(), "/usr/share/gtk-doc/html/atkmm")
+    pisitools.removeDir("/usr/share/doc/%s-1.6" % get.srcNAME())
+    pisitools.removeDir("/usr/share/devhelp")
 
+    pisitools.dodoc("ChangeLog", "COPYING", "NEWS", "README")
