@@ -1,0 +1,43 @@
+gconf  --  Gnome Configuration System and Daemon -- Pardus2011devel
+gnome-common  --  Common files for development of Gnome packages  -- Pardus2011devel
+gnome-desktop  --  Libraries for the gnome desktop that are not part of the UI  -- Pardus2011devel
+gnome-keyring  --  Password and keyring managing daemon  -- Pardus2011devel
+gnome-mime-data  --  MIME data for Gnome  -- Pardus2011devel
+gnome-vfs  --  Gnome Virtual Filesystem  -- Pardus2011devel
+gvfs  --  GNOME Virtual Filesystem Layer  -- Pardus2011devel
+libbonobo  --  GNOME CORBA framework  -- Pardus2011devel
+libbonoboui  --  User Interface part of libbonobo  -- Pardus2011devel
+libglade  --  Library to construct graphical interfaces at runtime  -- Pardus2011devel
+libgnome  --  Essential Gnome Libraries  -- Pardus2011devel
+libgnome-keyring  --  Compatibility library for accessing secrets  -- Pardus2011devel
+libgnomecanvas  --  The Gnome 2 Canvas library  --  Pardus2011devel
+libgnomeprint  --  Printer handling for Gnome  -- Pardus2011devel
+libgnomeprintui  -- User interface libraries for gnome print  -- Pardus2011devel
+libgnomeui  --- User Interface routines for Gnome  --  Pardus2011devel
+libgtop  --  A library that provides top functionality to applications  -- Pardus2011devel
+librsvg  --  Scalable Vector Graphics (SVG) rendering library  --  Pardus2011devel
+orbit  --  ORBit2 is a high-performance CORBA ORB  -- Pardus2011devel(as orbit2)
+
+gdm  --  GNOME Display Manager  -- brkclskni686
+gnome-applets  --  Applets for the GNOME Desktop and Panel  --  brkclskni686
+gnome-control-center  --  The gnome2 Desktop configuration tool  -- brkclskni686
+gnome-menus  --  The GNOME menu system, implementing the F.D.O cross-desktop spec  -- brkclskni686
+gnome-mount  --  Wrapper for (un)mounting and ejecting disks  -- brkclskni686
+gnome-panel  --  The GNOME panel  -- brkclskni686
+gnome-session  --  Gnome session manager  -- brkclskni686
+gnome-settings-daemon  --  Gnome Settings Daemon  -- brkclskni686
+libgnomekbd   ---  Gnome keyboard configuration library  -- brkclskni686
+nautilus  ---  A file manager for the GNOME desktop  --  brkclskni686
+
+dconf  -- Simple low-level configuration system  -- Non-Exist
+gnome-light  --  Meta package for the GNOME desktop, merge this package to install  -- Non-Exist
+gsettings-desktop-schemas  --  Collection of GSettings schemas for GNOME desktop  -- Non-Exist
+gnome  --  Meta package for the GNOME desktop  -- 
+
+
+aramayapılan depolar:
+contrip2009: http://packages.pardus.org.tr/contrib-2009/
+pardus2009: http://packages.pardus.org.tr/pardus-2009/
+playground: http://paketler.pardus.org.tr/info/playground/sources.html
+brkclskni686: http://gnome.brkclskn.org/2011/i686/
+Pardus2011devel: http://packages.pardus.org.tr/pardus/2011/devel/i686/

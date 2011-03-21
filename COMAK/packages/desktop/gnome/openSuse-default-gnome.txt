@@ -1,0 +1,104 @@
+alacarte                  NonExist
+art-sharp2                NonExist
+bug-buddy                 NonExist
+compiz-gnome              NonExist
+dasher                    NonExist
+dasher-data-recommended    NonExist
+deskbar-applet             NonExist
+evolution-tracker          NonExist
+gconf-polkit               NonExist
+gconf-sanity-check         NonExist
+gconf-sharp2               NonExist
+glade-sharp2               NonExist
+glib-sharp2                NonExist
+gnome-applets-colorblind         NonExist
+gnome-applets-gdm                NonExist
+gnome-icon-theme-extras          NonExist
+gnome-keyring-pam            NonExist
+gnome-mag                    NonExist
+gnome-main-menu              NonExist
+gnome-nettool                NonExist
+gnome-panel-sharp            NonExist
+gnome-pilot                  NonExist
+gnome-session-core           NonExist
+gnome-speech                 NonExist
+gnome-vfs-sharp2             NonExist
+gtk2-metatheme-gilouche        NonExist
+gtk2-metatheme-sonar           NonExist
+libavahi-glib1               NonExist
+libgail-gnome                NonExist
+libgcr0                      NonExist
+libgnome-bluetooth7          NonExist
+libgnome-desktop-2-17        NonExist
+libgnome-menu2               NonExist
+libgnomesu                   NonExist
+libgp11-0                    NonExist
+libgp11-modules              NonExist
+libgtksourceview-2_0-0       NonExist
+libpanel-applet-2-0          NonExist
+mousetweaks                  NonExist
+nautilus-tracker           NonExist
+NetworkManager-gnome       NonExist
+orca                       NonExist
+python-gnome-menus         NonExist
+tracker-gui                NonExist
+xdg-user-dirs-gtk          NonExist (not -gtk)
+
+
+zenity                     Playgroud(burakcaliskan)
+gconf-editor          Playgroud(burakcaliskan)
+gnome-bluetooth       Playgroud(burakcaliskan)
+gnome-control-center        Playgroud(burakcaliskan)
+gnome-python-desktop     Playgroud(burakcaliskan)
+gucharmap                Playgroud(burakcaliskan)
+
+
+cairomm         pardus2011devel
+gconf2                Pardus2011devel (as gconf)
+gconfmm               Pardus2011devel
+gnome-desktop         Pardus2011devel
+gnome-desktop-sharp2      Pardus2011devel (as gnome-desktop-sharp)
+gnome-doc-utils       Pardus2011devel
+gnome-docker          Pardus2011devel
+gnome-keyring         Pardus2011devel
+wnck-sharp                 Pardus2011devel
+rsvg2-sharp                Pardus2011devel (as rsvg-sharp)
+tango-icon-theme           Pardus2011devel (as icon-theme-tango)
+polkit-gnome              Pardus2011devel
+libgnomecups             Pardus2011devel
+libglademm               Pardus2011devel
+iso-codes                Pardus2011devel
+libart_lgpl              Pardus2011devel
+gtk-sharp2               Pardus2011devel (as gtk-sharp)
+gtk2-engines             Pardus2011devel (as gtk-engines)
+gnome-themes             Pardus2011devel
+gnome-sharp2             Pardus2011devel (as gnome-sharp)
+
+
+gnome-system-monitor         brkclskni686
+gnome-utils              brkclskni686
+gdm                   brkclskni686
+gnome-applets         brkclskni686
+gnome-media           brkclskni686
+gnome-menus           brkclskni686
+gnome-power-manager      brkclskni686
+nautilus-open-terminal          brkclskni686
+metacity                  brkclskni686
+libgnomekbd              brkclskni686
+gnome-screensaver        brkclskni686
+gnome-session            brkclskni686
+gnome-settings-deamon       brkclskni686
+
+
+gnome-icon-theme      Pardus2009
+yelp                       Pardus2009
+
+
+gnome-packegekit      Contrib2009
+
+aramayapılan depolar:
+contrip2009: http://packages.pardus.org.tr/contrib-2009/
+pardus2009: http://packages.pardus.org.tr/pardus-2009/
+playground: http://paketler.pardus.org.tr/info/playground/sources.html
+brkclskni686: http://gnome.brkclskn.org/2011/i686/
+Pardus2011devel: http://packages.pardus.org.tr/pardus/2011/devel/i686/
