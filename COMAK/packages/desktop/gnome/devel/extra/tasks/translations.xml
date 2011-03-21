@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>tasks</Name>
+        <Summary xml:lang="tr">Gnome için küçük bir yapılacaklar listesi</Summary>
+        <Description xml:lang="tr">Tasks, Gnome için libecal kitaplığını kullanan küçük bir yapılacaklar listesi uygulamasıdır.</Description>
+    </Source>
+</PISI>
+
