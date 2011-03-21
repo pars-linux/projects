@@ -103,13 +103,13 @@ class Install(install):
     def run(self):
         os.system("./setup.py build")
         if self.root:
-            kde_dir = "%s/usr" % self.root
+            base_dir = "%s/usr" % self.root
         else:
-            kde_dir = "/usr"
-        bin_dir = os.path.join(kde_dir, "bin")
-        locale_dir = os.path.join(kde_dir, "share/locale")
-        autostart_dir = os.path.join(kde_dir, "share/autostart")
-        project_dir = os.path.join(kde_dir, "share/kde4/apps", about.appName)
+            base_dir = "/usr"
+        bin_dir = os.path.join(base_dir, "bin")
+        locale_dir = os.path.join(base_dir, "share/locale")
+        autostart_dir = os.path.join(base_dir, "share/autostart")
+        project_dir = os.path.join(base_dir, "share/kde4/apps", about.appName)
 
         # Make directories
         print "Making directories..."
