@@ -12,19 +12,19 @@
         <IsA>library</IsA>
         <Summary>Library for file management</Summary>
         <Description>libfm is a LXDE library for file management.</Description>
-        <Archive sha1sum="24c1c0cdf27509eb05f89bdac8b79d6253e14837" type="tarbz2">http://comak.comu.edu.tr/source/libfm-0.1.14_20110202.tar.bz2</Archive>
+        <Archive sha1sum="24c1c0cdf27509eb05f89bdac8b79d6253e14837" type="tarbz2">http://x86-64.comu.edu.tr/lxde/libfm-0.1.14_20110202.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>lxde-menu-cache-devel</Dependency>
-            <Dependency>fontconfig-devel</Dependency>
-            <Dependency>gtk2-devel</Dependency>
-            <Dependency>cairo-devel</Dependency>
-            <Dependency>pango-devel</Dependency>
-            <Dependency>atk-devel</Dependency>
-            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>atk</Dependency>
             <Dependency>gtk-doc</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">01-lxde-conf.patch</Patch>
+            <Patch level="1">libfm-tr.patch</Patch>
         </Patches>
     </Source>
 
@@ -34,7 +34,6 @@
             <Dependency>lxde-menu-cache</Dependency>
             <Dependency>atk</Dependency>
             <Dependency>cairo</Dependency>
-            <Dependency>gdk-pixbuf</Dependency>
             <Dependency>fontconfig</Dependency>
             <Dependency>gtk2</Dependency>
             <Dependency>pango</Dependency>
@@ -63,6 +62,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-21</Date>
+            <Version>0.1.14_20110202</Version>
+            <Comment>New translations Added.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-03</Date>
             <Version>0.1.14_20110202</Version>
