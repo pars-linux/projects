@@ -419,6 +419,7 @@ class EditUserWidget(QtGui.QWidget, Ui_EditUserWidget):
     def searchListWidget(self):
         srcList=self.filtergroups.text()
         for i in range(self.listGroups.count()):
+            # for searching ListWidget item
             if self.listGroups.item(i).text().indexOf(srcList) == -1 :
                 #print self.listGroups.item(i).text()
                 self.listGroups.item(i).setHidden(True)
@@ -430,6 +431,7 @@ class EditUserWidget(QtGui.QWidget, Ui_EditUserWidget):
         for i in range(self.treeAuthorizations.topLevelItemCount()):
             for j in range(self.treeAuthorizations.topLevelItem(i).childCount()):
                #print self.treeAuthorizations.topLevelItem(i).child(j).text(0)
+               # for searching TreeListWidget root text and child text
                if (len([True for each in str(self.treeAuthorizations.topLevelItem(i).child(j).text(0)).lower().split(' ') if each.count(srcTreeList)>0])) or (len([True for each in str(self.treeAuthorizations.topLevelItem(i).text(0)).lower().split(' ') if each.count(srcTreeList)>0])):
                    self.treeAuthorizations.topLevelItem(i).setHidden(False)
                else:
