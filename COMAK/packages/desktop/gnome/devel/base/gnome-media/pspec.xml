@@ -47,6 +47,7 @@
             <Path fileType="data">/usr/share/icons</Path>
             <Path fileType="data">/usr/share/omf</Path>
             <Path fileType="data">/usr/share/sounds</Path>
+	    <Path fileType="data">/usr/share/glade3</Path>
         </Files>
     </Package>
 
