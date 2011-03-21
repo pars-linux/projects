@@ -1,3 +1,7 @@
+#ifndef ENLIGHTENMENT.PY
+#define ENLIGHTENMENT.PY
+#ifndef ENLIGHTENMENT.PY
+#define ENLIGHTENMENT.PY
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2005-2009, TUBITAK/UEKAE
@@ -27,18 +31,13 @@ HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
 #libfm configuration files
+CONFIG_KAPTANRC = QSettings("%s/.kaptanrc"%os.environ["HOME"], QSettings.IniFormat)
 
-#openbox configuration files
-
-#lxsession configuration files
-
-# shared LXDE methods
-
-def save_openboxrc(tree):
+def save_enlightenmentrc(tree):
     pass
-def save_lxsession(new):
+def save_enlightenment(new):
     pass
-def update_lxsession():
+def update_enlightenment():
     pass
 # end of shared LXDE methods
 
@@ -48,16 +47,35 @@ class Keyboard(base.Keyboard):
 class Mouse(base.Mouse):
 
     def getMouseHand(self):
-        pass
+        '''get mouse hand from conf file'''
+        return CONFIG_KAPTANRC.value("Mouse/LeftHanded")
+
     def setMouseHand(self,mouseHand):
-        pass
+        '''set mouse hand to conf file'''
+        CONFIG_KAPTANRC.setValue("Mouse/LeftHanded",QString(mouseHand))
+        CONFIG_KAPTANRC.sync()
+
     def setMouseSingleClick(self,clickBehaviour):
-        pass
+        '''set single/double click choice'''
+        new_value = (not clickBehaviour and 1) or 0
+        CONFIG_KAPTANRC.setValue("config/single_click",new_value)
+        CONFIG_KAPTANRC.sync()
+        return True
+
     def getMouseSingleClick(self):
-        pass
+        '''get if single/double click is choiced'''
+        single_click = KAPTANRC.value("config/single_click").toInt()[0]
+        return single_click and True or False
+
     def setReverseScrollPolarity(self,isChecked):
-        pass
+        '''set reverse scroll polarity'''
+        CONFIG_KAPTANRC.setValue("Mouse/ReverseScrollPolarity",QString(str(isChecked)))
+        CONFIG_KAPTANRC.sync()
+
+
 class Wallpaper(base.Wallpaper):
+    def getWallpaper(self,desktopFile):
+        return CONFIG_KAPTANRC.value("Wallpaper/Source").toString()[0]
 
     def getWallpaperSettings(self):
         dir = QDir("/usr/share/wallpapers/Pardus_Mood/contents")
@@ -98,28 +116,48 @@ class Wallpaper(base.Wallpaper):
             wallpaper["wallpaperFile"] = desktopFile
             items.append(wallpaper)
 
+        CONFIG_KAPTANRC.setValue("Wallpaper/Source","/usr/share/wallpapers/Pardus_Mood/contents/%s" %desktopFile)
+        self.getWallpaper(desktopFile)
         return items
 
     def setWallpaper(self ,wallpaper):
-        pass
+        CONFIG_KAPTANRC.setValue("Wallpaper/Source","/usr/share/wallpapers/Pardus_Mood/contents/%s" %desktopFile)
+        CONFIG_KAPTANRC.sync()
 class Common(base.Common):
 
     def getLanguage(self):
-        pass
+        locale_app = QLocale()
+        locale_os = QLocale.system()
+        info = []
+        var = QLocale.languageToString(locale_app.language())
+        return var
+
     def on_buttonSystemSettings_clicked(self):
         self.procSettings = QProcess()
         #TODO: fix program 
         self.procSettings.start("program name")
+
 class Style(base.Style):
+tyleName = scrStyleWidget.screenSettings["styleName"]
 
     def getDesktopNumber(self):
-        return 3
+        CONFIG_KAPTANRC.setValue("Desktop/DesktopNumber",0)
+        return CONFIG_KAPTANRC.value("Desktop/DesktopNumber").toInt()[0]
     def setDesktopNumber(self):
-        pass
+        dn = scrStyleWidget.screenSettings["desktopNumber"]
+        CONFIG_KAPTANRC.setValue("Desktop/DesktopNumber",dn)
+        CONFIG_KAPTANRC.sync()
     def setThemeSettings(self):
-        pass
+        theme="Oxygen"
+        CONFIG_KAPTANRC.setValue("Theme/Theme",str(theme))
+        iconTheme = scrStyleWidget.screenSettings["iconTheme"]
+        return CONFIG_KAPTANRC.value("Theme/Theme",iconTheme.toString())
     def setStyleSettings(self):
-        pass
+        style="default"
+        CONFIG_KAPTANRC.setValue("Style/Style",str(style))
+        styleName = scrStyleWidget.screenSettings["styleName"]
+        return CONFIG_KAPTANRC.value("Style/Style",styleName)
+
     def setDesktopType(self):
         pass
     def reconfigure(self):
@@ -140,3 +178,5 @@ class Menu(base.Menu):
 def test_config_files():
         pass
 
+#endif // ENLIGHTENMENT.PY
+#endif // ENLIGHTENMENT.PY
