@@ -20,7 +20,7 @@ from PyQt4 import QtGui
 from bootmanager.ui_item import Ui_ItemWidget
 
 #PDS vs KDE
-import boot.manager.context as ctx
+import bootmanager.context as ctx
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4.kdeui import KIcon
     from PyKDE4.kdecore import i18n
