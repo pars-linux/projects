@@ -88,9 +88,9 @@ class Widget(QtGui.QWidget, Screen):
             except:
                 print "Warning! Invalid syntax in ", themes
             ThemeFile = themes
-            thumbFolder = "/usr/share/kaptan/kaptan/themes/" +themes+ ".png"
+            thumbFolder = "/usr/share/kaptan/kaptan/kde-themes/" +themes+ ".png"
             print thumbFolder
-            if (os.path.exists("/usr/share/kaptan/kaptan/themes/"+themes+".png")):
+            if (os.path.exists("/usr/share/kaptan/kaptan/kde-themes/"+themes+".png")):
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
                 widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
