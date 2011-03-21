@@ -142,15 +142,18 @@ class Style(base.Style):
     def getDesktopNumber(self):
         CONFIG_KAPTANRC.setValue("Desktop/DesktopNumber",0)
         return CONFIG_KAPTANRC.value("Desktop/DesktopNumber").toInt()[0]
+
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
         CONFIG_KAPTANRC.setValue("Desktop/DesktopNumber",dn)
         CONFIG_KAPTANRC.sync()
+
     def setThemeSettings(self):
         theme="Oxygen"
         CONFIG_KAPTANRC.setValue("Theme/Theme",str(theme))
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
         return CONFIG_KAPTANRC.value("Theme/Theme",iconTheme.toString())
+
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
         style="default"
@@ -160,8 +163,10 @@ class Style(base.Style):
 
     def setDesktopType(self):
         pass
+
     def reconfigure(self):
         pass
+
 class Package(base.Package):
 
     def example(self):
