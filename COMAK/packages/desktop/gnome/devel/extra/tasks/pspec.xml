@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>tasks</Name>
+        <Homepage>http://pimlico-project.org/tasks.html</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A small, lightweight to-do list for Gnome</Summary>
+        <Description>Tasks is a simple To Do list application for GNOME, using libecal (part of evolution-data-server).</Description>
+        <Archive sha1sum="6a4ce62d59c1ba3bfdb7724bf5b63ff1b853a357" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/tasks/0.19/tasks-0.19.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>libunique-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>tasks-0.16-asneeded.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>tasks</Name>
+        <RuntimeDependencies>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>libunique</Dependency>
+            <Dependency>gtk2</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>0.19</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
