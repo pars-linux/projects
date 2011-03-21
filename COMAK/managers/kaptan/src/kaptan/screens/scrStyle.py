@@ -75,7 +75,6 @@ class Widget(QtGui.QWidget, Screen):
             dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
             lst2 = dir.entryList()
         for themes in lst2:
-            print themes
             try:
                 try:
                     StyleName = themes.split(".")[0]
@@ -89,7 +88,6 @@ class Widget(QtGui.QWidget, Screen):
                 print "Warning! Invalid syntax in ", themes
             ThemeFile = themes
             thumbFolder = "/usr/share/kaptan/kaptan/kde-themes/" +themes+ ".png"
-            print thumbFolder
             if (os.path.exists("/usr/share/kaptan/kaptan/kde-themes/"+themes+".png")):
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
