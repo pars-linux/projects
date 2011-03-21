@@ -24,6 +24,12 @@ import servicemanager.about as about
 # Qt Stuff
 from PyQt4.QtCore import SIGNAL
 
+# Enable plugin if session is Kde4
+if ctx.Pds.session == ctx.pds.Kde4:
+    def CreatePlugin(widget_parent, parent, component_data):
+        from servicemanager.kcmodule import ServiceManager
+        return ServiceManager(component_data, parent)
+
 if __name__ == '__main__':
 
     # DBUS MainLoop
@@ -33,10 +39,6 @@ if __name__ == '__main__':
 
     # Pds vs KDE
     if ctx.Pds.session == ctx.pds.Kde4:
-
-        def CreatePlugin(widget_parent, parent, component_data):
-            from servicemanager.kcmodule import ServiceManager
-            return ServiceManager(component_data, parent)
 
         # PyKDE4 Stuff
         from PyKDE4.kdeui import *
@@ -56,22 +58,14 @@ if __name__ == '__main__':
         mainWindow = ServiceManager(None, aboutData.appName)
         mainWindow.show()
 
-        # Create connection for lastWindowClosed signal to quit app
-        app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
-
-        # Run the application
-        app.exec_()
-
     else:
 
-        import gettext
-
-        __trans = gettext.translation(about.appName, fallback=True)
-        i18n = __trans.ugettext
-
+        # Application Stuff
         from servicemanager.base import MainManager
+
+        # Pds Stuff
         from pds.quniqueapp import QUniqueApplication
-        from servicemanager.context import KIcon
+        from servicemanager.context import KIcon, i18n
 
         # Create a QUniqueApllication instance
         app = QUniqueApplication(sys.argv, catalog=about.appName)
@@ -83,9 +77,8 @@ if __name__ == '__main__':
         mainWindow.setWindowTitle(i18n(about.PACKAGE))
         mainWindow.setWindowIcon(KIcon(about.icon))
 
-        # Create connection for lastWindowClosed signal to quit app
-        app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
+    # Create connection for lastWindowClosed signal to quit app
+    app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
 
-        # Run the applications
-        app.exec_()
-
+    # Run the applications
+    app.exec_()
