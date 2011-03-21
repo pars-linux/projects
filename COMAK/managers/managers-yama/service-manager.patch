@@ -1,6 +1,6 @@
-diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//setup.py service-manager-pds//setup.py
---- service-manager-3.0.0//setup.py	2010-11-29 23:17:54.000000000 +0200
-+++ service-manager-pds//setup.py	2011-03-10 14:04:59.766000026 +0200
+diff -Nuar service-manager-3.0.0.orig//setup.py service-manager-3.0.0/setup.py
+--- service-manager-3.0.0.orig//setup.py	2011-03-21 11:09:29.708000015 +0200
++++ service-manager-3.0.0/setup.py	2011-03-21 11:10:08.152000017 +0200
 @@ -26,6 +26,12 @@
  from distutils.command.install import install
  
@@ -108,9 +108,9 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//setup.py se
          for filename in glob.glob1('po', '*.po'):
              lang = filename.rsplit(".", 1)[0]
              remove(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
-diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/servicemanager/about.py service-manager-pds//src/servicemanager/about.py
---- service-manager-3.0.0//src/servicemanager/about.py	2010-12-26 17:47:21.000000000 +0200
-+++ service-manager-pds//src/servicemanager/about.py	2011-03-10 14:04:59.831000026 +0200
+diff -Nuar service-manager-3.0.0.orig//src/servicemanager/about.py service-manager-3.0.0/src/servicemanager/about.py
+--- service-manager-3.0.0.orig//src/servicemanager/about.py	2011-03-21 11:09:29.711000015 +0200
++++ service-manager-3.0.0/src/servicemanager/about.py	2011-03-21 11:10:08.152000017 +0200
 @@ -11,29 +11,35 @@
  # Please read the COPYING file.
  #
@@ -163,9 +163,9 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
 -aboutData.setProgramIconName("flag-yellow")
 +    # Use this if icon name is different than appName
 +    aboutData.setProgramIconName(icon)
-diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/servicemanager/base.py service-manager-pds//src/servicemanager/base.py
---- service-manager-3.0.0//src/servicemanager/base.py	2011-01-16 00:34:48.000000000 +0200
-+++ service-manager-pds//src/servicemanager/base.py	2011-03-10 14:04:59.831000026 +0200
+diff -Nuar service-manager-3.0.0.orig//src/servicemanager/base.py service-manager-3.0.0/src/servicemanager/base.py
+--- service-manager-3.0.0.orig//src/servicemanager/base.py	2011-03-21 11:09:29.712000015 +0200
++++ service-manager-3.0.0/src/servicemanager/base.py	2011-03-21 11:10:08.157000017 +0200
 @@ -20,16 +20,18 @@
  from PyQt4.QtGui import QMessageBox
  from PyQt4.QtCore import *
@@ -190,9 +190,9 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
  class MainManager(QtGui.QWidget):
      def __init__(self, parent, standAlone=True):
          QtGui.QWidget.__init__(self, parent)
-diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/servicemanager/context.py service-manager-pds//src/servicemanager/context.py
---- service-manager-3.0.0//src/servicemanager/context.py	1970-01-01 02:00:00.000000000 +0200
-+++ service-manager-pds//src/servicemanager/context.py	2011-03-10 14:04:59.831000026 +0200
+diff -Nuar service-manager-3.0.0.orig//src/servicemanager/context.py service-manager-3.0.0/src/servicemanager/context.py
+--- service-manager-3.0.0.orig//src/servicemanager/context.py	1970-01-01 02:00:00.000000000 +0200
++++ service-manager-3.0.0/src/servicemanager/context.py	2011-03-21 11:10:08.161000017 +0200
 @@ -0,0 +1,29 @@
 +#!/usr/bin/python
 +# -*- coding: utf-8 -*-
@@ -223,9 +223,9 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
 +    last_time = diff
 +    time_counter += 1
 +
-diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/servicemanager/widgets.py service-manager-pds//src/servicemanager/widgets.py
---- service-manager-3.0.0//src/servicemanager/widgets.py	2010-12-17 19:09:11.000000000 +0200
-+++ service-manager-pds//src/servicemanager/widgets.py	2011-03-10 14:04:59.831000026 +0200
+diff -Nuar service-manager-3.0.0.orig//src/servicemanager/widgets.py service-manager-3.0.0/src/servicemanager/widgets.py
+--- service-manager-3.0.0.orig//src/servicemanager/widgets.py	2011-03-21 11:09:29.712000015 +0200
++++ service-manager-3.0.0/src/servicemanager/widgets.py	2011-03-21 11:10:08.163000017 +0200
 @@ -15,10 +15,13 @@
  from PyQt4 import QtGui
  from PyQt4.QtCore import *
@@ -294,10 +294,10 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
  
          self._animation = 2
          self._duration = 500
-diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service-manager.py service-manager-pds//src/service-manager.py
---- service-manager-3.0.0//src/service-manager.py	2010-07-06 14:16:32.000000000 +0300
-+++ service-manager-pds//src/service-manager.py	2011-03-10 14:04:59.832000026 +0200
-@@ -13,46 +13,79 @@
+diff -Nuar service-manager-3.0.0.orig//src/service-manager.py service-manager-3.0.0/src/service-manager.py
+--- service-manager-3.0.0.orig//src/service-manager.py	2011-03-21 11:09:29.712000015 +0200
++++ service-manager-3.0.0/src/service-manager.py	2011-03-21 11:33:38.407000038 +0200
+@@ -13,46 +13,72 @@
  
  # System
  import sys
@@ -320,7 +320,12 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
 -def CreatePlugin(widget_parent, parent, component_data):
 -    from servicemanager.kcmodule import ServiceManager
 -    return ServiceManager(component_data, parent)
--
++# Enable plugin if session is Kde4
++if ctx.Pds.session == ctx.pds.Kde4:
++    def CreatePlugin(widget_parent, parent, component_data):
++        from servicemanager.kcmodule import ServiceManager
++        return ServiceManager(component_data, parent)
+ 
  if __name__ == '__main__':
  
 -    # Service Manager
@@ -346,10 +351,6 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
 +    # Pds vs KDE
 +    if ctx.Pds.session == ctx.pds.Kde4:
 +
-+        def CreatePlugin(widget_parent, parent, component_data):
-+            from servicemanager.kcmodule import ServiceManager
-+            return ServiceManager(component_data, parent)
-+
 +        # PyKDE4 Stuff
 +        from PyKDE4.kdeui import *
 +        from PyKDE4.kdecore import *
@@ -368,22 +369,14 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
 +        mainWindow = ServiceManager(None, aboutData.appName)
 +        mainWindow.show()
 +
-+        # Create connection for lastWindowClosed signal to quit app
-+        app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
-+
-+        # Run the application
-+        app.exec_()
-+
 +    else:
 +
-+        import gettext
-+
-+        __trans = gettext.translation(about.appName, fallback=True)
-+        i18n = __trans.ugettext
-+
++        # Application Stuff
 +        from servicemanager.base import MainManager
++
++        # Pds Stuff
 +        from pds.quniqueapp import QUniqueApplication
-+        from servicemanager.context import KIcon
++        from servicemanager.context import KIcon, i18n
 +
 +        # Create a QUniqueApllication instance
 +        app = QUniqueApplication(sys.argv, catalog=about.appName)
@@ -395,19 +388,16 @@ diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//src/service
 +        mainWindow.setWindowTitle(i18n(about.PACKAGE))
 +        mainWindow.setWindowIcon(KIcon(about.icon))
  
--    # Create connection for lastWindowClosed signal to quit app
--    app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
-+        # Create connection for lastWindowClosed signal to quit app
-+        app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
+     # Create connection for lastWindowClosed signal to quit app
+     app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
  
 -    # Run the application
--    app.exec_()
-+        # Run the applications
-+        app.exec_()
- 
-diff -Nuar '--exclude=.svn' '--exclude=*.pyc' service-manager-3.0.0//ui/main.ui service-manager-pds//ui/main.ui
---- service-manager-3.0.0//ui/main.ui	2010-07-06 14:16:32.000000000 +0300
-+++ service-manager-pds//ui/main.ui	2011-03-10 14:04:59.765000026 +0200
++    # Run the applications
+     app.exec_()
+-
+diff -Nuar service-manager-3.0.0.orig//ui/main.ui service-manager-3.0.0/ui/main.ui
+--- service-manager-3.0.0.orig//ui/main.ui	2011-03-21 11:09:29.703000015 +0200
++++ service-manager-3.0.0/ui/main.ui	2011-03-21 11:10:08.165000017 +0200
 @@ -17,16 +17,10 @@
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
