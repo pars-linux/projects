@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gsettings-desktop-schemas</Name>
+        <Summary xml:lang="tr">GNOME masaüstü ortamı için GSettings şemalarının koleksiyonudur</Summary>
+        <Description xml:lang="tr">Gnome masaüstünün çeşitli bileşenleri tarafından paylaşılan ayarlar için GSettings şemalarının bir koleksiyonudur.</Description>
+    </Source>
+</PISI>
