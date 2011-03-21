@@ -24,13 +24,17 @@ from bootmanager.main import MainWidget
 #Pds stuff
 from bootmanager.context import *
 
+#Enable plugin if session is Kde4
+if ctx.Pds.session == ctx.pds.Kde4:
+    def CreatePlugin(widget_parent, parent, component_data):
+        return Module(component_data, parent)
+
 class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self, parent)
         widget = MainWidget(self)
         self.resize(widget.size())
         self.setCentralWidget(widget)
-
 
 if __name__ == "__main__":
 
@@ -55,19 +59,14 @@ if __name__ == "__main__":
         window = MainWindow()
         window.show()
 
-        #Run the application
-        app.exec_()
     else:
-        #Import gettext for translations
-        import gettext
-        __trans =gettext.translation('boot-manager',fallback=True)
-        i18n = __trans.ugettext
-
         #Boot Manager Pds stuff
         from pds.quniqueapp import QUniqueApplication
+        from bootmanager.context import KIcon, i18n
 
-        #Create Main window
+        #Create a QUniqueApplication instance
         app=QUniqueApplication(sys.argv, catalog="boot-manager")
+        #Create Main Window
         window= MainWindow()
         window.show()
         window.resize(640,480)
@@ -78,9 +77,5 @@ if __name__ == "__main__":
         #Set Main Window Icon
         window.setWindowIcon(KIcon("computer"))
 
-        #Run the application
-        app.exec_()
-
-
-def CreatePlugin(widget_parent, parent, component_data):
-    return Module(component_data, parent)
+    #Run the application
+    app.exec_()
