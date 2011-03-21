@@ -13,7 +13,6 @@ fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- No
 file-browser-applet  --  Browse, open and manage files in your computer directly from the GNOME panel.  --  NonExist
 gcursor  --  GTK+ based xcursor theme selector  --  NonExist
 gdesklets-core  --  GNOME Desktop Applets: Core library for desktop applets  --  NonExist
-gget  --  A DownLoad Manager for GNOME  --  NonExist
 gnome-audio  --  Gnome Desktop Sound Effects Package  --  NonExist
 gnome-color-chooser  --  GTK+/GNOME color customization tool.  --  NonExist
 gnome-color-manager  --  Color profile manager for the GNOME desktop  --  NonExist
