@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-vfsmm</Name>
+        <Summary xml:lang="tr">gnome-vfs için C++ sarıcısı</Summary>
+        <Description xml:lang="tr">gnome-vfsmm gnome-vfs için C++ bağlayıcıları içeren bir pakettir.</Description>
+    </Source>
+    <Package>
+        <Name>gnome-vfsmm-devel</Name>
+        <Summary xml:lang="tr">gnome-vfsmm için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+
