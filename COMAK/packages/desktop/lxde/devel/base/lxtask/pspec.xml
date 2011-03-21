@@ -1,3 +1,5 @@
+#ifndef LXTASK/PSPEC.XML
+#define LXTASK/PSPEC.XML
 <?xml version="1.0" ?>
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
@@ -15,11 +17,10 @@
         <Description>Lxtask is a lightweight and desktop independent task manager.</Description>
         <Archive sha1sum="babf6306c4c3f26149019838b6ff02f14f810591" type="targz">mirrors://sourceforge/lxde/lxtask-0.1.3.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gtk2</Dependency>
         </BuildDependencies>
         <Patches>
-            <Patch>desktop.patch</Patch>
-            <Patch level="1">memoryTranlationFix.patch</Patch>
+            <Patch level="1">lxtask-tr.patch</Patch>
         </Patches>
     </Source>
 
@@ -37,6 +38,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-03-21</Date>
+            <Version>0.1.3</Version>
+            <Comment>New translations Added.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2010-09-19</Date>
             <Version>0.1.3</Version>
@@ -53,3 +61,4 @@
         </Update>
     </History>
 </PISI>
+#endif // LXTASK/PSPEC.XML
