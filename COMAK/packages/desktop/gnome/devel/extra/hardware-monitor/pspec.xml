@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>hardware-monitor</Name>
+        <Homepage>http://www.fnxweb.com/hardware-monitor-applet</Homepage>
+        <Packager>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Gnome Hardware Monitor Applet</Summary>
+        <Description>The Hardware Monitor applet is a small program for the Gnome panel. You can use it to monitor various hardware aspects. It's smoother and more flexible than the default offering in GNOME.</Description>
+        <Archive sha1sum="2556d63f136c8c8e268342d57dc2a38daea79386" type="tarbz2">http://www.fnxweb.com/software/hardware-monitor/hardware-monitor-1.4.3.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconfmm-devel</Dependency>
+            <Dependency>gtkmm-devel</Dependency>
+            <Dependency>libgnomecanvas-devel</Dependency>
+            <Dependency>libglademm-devel</Dependency>
+            <Dependency>libgtop-devel</Dependency>
+            <Dependency>lm_sensors</Dependency>
+            <Dependency>pkgconfig</Dependency>
+            <Dependency>intltool</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>hardware-monitor</Name>
+        <RuntimeDependencies>
+            <Dependency>gconfmm</Dependency>
+            <Dependency>gtkmm</Dependency>
+            <Dependency>libgnomecanvas</Dependency>
+            <Dependency>libglademm</Dependency>
+            <Dependency>libgtop</Dependency>
+            <Dependency>lm_sensors</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-22</Date>
+            <Version>1.4.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
