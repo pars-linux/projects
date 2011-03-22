@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-audio</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>public-domain</License>
+        <License>CCPL-Attribution-ShareAlike-2.0</License>
+        <License>CCPL-Attribution-3.0</License>
+        <IsA>data</IsA>
+        <Summary>Gnome Desktop Sound Effects Package</Summary>
+        <Description>gnome-audio contains a collection of sounds for use with GNOME.</Description>
+        <Archive sha1sum="88bc38387a7b556eb32232f4148fd09abd59ab6d" type="tarbz2">http://ftp.gnome.org/pub/GNOME/sources/gnome-audio/2.22/gnome-audio-2.22.2.tar.bz2</Archive>
+    </Source>
+
+    <Package>
+        <Name>gnome-audio</Name>
+        <Files>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>2.22.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
