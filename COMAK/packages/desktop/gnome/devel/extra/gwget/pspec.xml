@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gwget</Name>
+        <Homepage>http://projects.gnome.org/gwget/</Homepage>
+        <Packager>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>FIXME</Summary>
+        <Description>FIXME</Description>
+        <Archive sha1sum="7a2dc0c2238a61b27c7aa6e41f23ac0fb943cdf4" type="targz">http://ftp.gnome.org/pub/GNOME/sources/gwget/1.0/gwget-1.0.4.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>epiphany-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>libnotify-0.7.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gwget</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>epiphany</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>pkgconfig</Dependency>
+            <Dependency>intltool</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libgnome</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>1.0.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
