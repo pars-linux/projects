@@ -14,14 +14,23 @@
         <Description>GNOME Color Chooser is a program which allows you to modify the appearance of your GNOME desktop.</Description>
         <Archive sha1sum="045b5d8a99dad7dba80c5b98e8d6ea35b4e8ee21" type="targz">http://launchpad.net/gnome-color-chooser/trunk/0.2.5/+download/gnome-color-chooser-0.2.5.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency></Dependency>
+            <Dependency>libglademm-devel</Dependency>
+            <Dependency>gtkmm-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>libxml2-devel</Dependency>
+            <Dependency>pkgconfig</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>gnome-color-chooser</Name>
         <RuntimeDependencies>
-            <Dependency></Dependency>
+            <Dependency>libglademm</Dependency>
+            <Dependency>gtkmm</Dependency>
+            <Dependency>libgnome</Dependency>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>libxml2</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
