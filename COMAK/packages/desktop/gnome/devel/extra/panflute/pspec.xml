@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>panflute</Name>
+        <Homepage>https://launchpad.net/panflute</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>A GNOME applet to control various music players</Summary>
+        <Description>Panflute provides a common programmatic interface (MPRIS + extensions) to a variety of music player software, hiding the details of each player's particular IPC mechanism. It also provides a GNOME panel applet that uses the Panflute backend to control whichever music player is currently running.</Description>
+        <Archive sha1sum="b806dd5d70a5200d552429a603b576dc20358a59" type="targz">http://launchpad.net/panflute/0.7/0.7.0/+download/panflute-0.7.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-python-devel</Dependency>
+            <Dependency>python-gtk-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>panflute</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-python</Dependency>
+            <Dependency>python-gtk</Dependency>
+            <Dependency>notify-python</Dependency>
+            <Dependency>python-numpy</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>0.7.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
