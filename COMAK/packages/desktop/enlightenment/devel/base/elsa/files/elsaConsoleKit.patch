@@ -44,12 +44,12 @@ diff -Nuar elsa.orig/data/Xsession elsa/data/Xsession
 +
 +# use bash for "exec -l", howto run login shell by /bin/sh ?
 +
-+#if [ $# -eq 1 -a -n "$1" ]; then
-+#	LXSESSION=$1
-+#else
++if [ $# -eq 1 -a -n "$1" ]; then
++	SESSION=$1
++else
 +# default session
-+#	LXSESSION=/usr/bin/startlxde
-+#fi
++	SESSION=/usr/bin/enlightenment_start
++fi
 +
 +#if [ -x /etc/X11/xinit/xinitrc-common ]; then
 +# fedora
@@ -80,7 +80,7 @@ diff -Nuar elsa.orig/data/Xsession elsa/data/Xsession
 +#	elif [ -x /usr/bin/ck-launch-session ]; then
 +		CK_XINIT_SESSION="/usr/bin/ck-launch-session"
 +#	fi
-+	exec -l $SHELL -c "$CK_XINIT_SESSION \"enlightenment_start\""
++	exec -l $SHELL -c "$CK_XINIT_SESSION $SESSION"
 +#fi
 +
 diff -Nuar elsa.orig/src/daemon/elsa_config.c elsa/src/daemon/elsa_config.c
