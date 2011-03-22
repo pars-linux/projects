@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>bug-buddy</Name>
+        <Summary xml:lang="tr">Grafiksel hata raporlama aracı</Summary>
+        <Description xml:lang="tr">Bug-buddy, bir uygulama çöktüğünde hata raporlarının GNOME hata takip sistemine gönderilmesini sağlayan bir araçtır.</Description>
+    </Source>
+</PISI>
+
