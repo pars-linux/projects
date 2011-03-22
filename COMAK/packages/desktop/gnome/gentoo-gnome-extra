@@ -19,7 +19,6 @@ gnome-games  --  Collection of games for the GNOME desktop  --  NonExist
 gnome-games-extra-data  --  Optional additional graphics for gnome-games  --  NonExist
 gnome-hdaps-applet  --  Visualization of the Hard Disc Active Protection System State as Gnome applet  -- NonExist
 gnome-lirc-properties  --  GTK+ based utilty to configure LIRC remotes  -- NonExist
-gnome-swallow  --  An applet for Gnome that 'swallows' normal apps. Useful for docks that are made for other DEs or WMs  -- NonExist
 gnome-user-docs  --  GNOME end user documentation  --  NonExist
 gnome-user-share  --  Personal file sharing for the GNOME desktop  --  NonExist
 gnome-web-photo  --  a tool to generate images and thumbnails from HTML files  -- NonExist
