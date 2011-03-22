@@ -68,7 +68,7 @@
         <Name>lxpanel-devel</Name>
         <Summary>Development headers for lxpanel</Summary>
         <RuntimeDependencies>
-            <Dependency release="1">lxpanel</Dependency>
+            <Dependency release="current">lxpanel</Dependency>
             <Dependency>lxde-menu-cache-devel</Dependency>
         </RuntimeDependencies>
         <Files>
