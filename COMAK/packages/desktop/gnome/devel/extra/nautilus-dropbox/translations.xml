@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>nautilus-dropbox</Name>
+        <Summary xml:lang="tr">Nautilus için Dropbox eklentisi</Summary>
+        <Description xml:lang="tr">Nautilus-dropbox, Nautilus için Dropbox eklentisidir.</Description>
+    </Source>
+</PISI>
+
