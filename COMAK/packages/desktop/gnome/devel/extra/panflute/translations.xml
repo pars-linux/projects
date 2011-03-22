@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>panflute</Name>
+        <Summary xml:lang="tr">Değişik müzik oynatıcıları kontrol etmek için Gnome uygulaması</Summary>
+        <Description xml:lang="tr">Panflute değişik müzik oynatıcı uygulamaları için genel programlama arayüzleri içermektedir.</Description>
+    </Source>
+</PISI>
+
