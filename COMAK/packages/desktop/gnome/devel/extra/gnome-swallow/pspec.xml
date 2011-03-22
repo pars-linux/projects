@@ -16,6 +16,7 @@
         <BuildDependencies>
             <Dependency>libgnomeui-devel</Dependency>
             <Dependency>libgtop-devel</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">gnome-swallow-1.2-as-needed.patch</Patch>
