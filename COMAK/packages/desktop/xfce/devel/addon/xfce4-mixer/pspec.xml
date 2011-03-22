@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>xfce4-mixer</Name>
+        <Homepage>http://www.xfce.org/projects/xfce4-mixer</Homepage>
+        <Packager>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Volume control application for the Xfce</Summary>
+        <Description>The Mixer is a volume control application for the Xfce Desktop Environment. It provides both a volume control plugin for the Xfce Panel and a standalone mixer application.</Description>
+        <Archive sha1sum="24f3401a68f10d2c620e354a6de98e09fe808665" type="tarbz2">http://archive.xfce.org/src/apps/xfce4-mixer/4.8/xfce4-mixer-4.8.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>glib2-devel</Dependency>
+            <Dependency>gst-plugins-base-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>libxfce4util-devel</Dependency>
+            <Dependency>libxfce4ui-devel</Dependency>
+            <Dependency>xfce4-panel-devel</Dependency>
+            <Dependency>xfconf-devel</Dependency>
+            <Dependency>pkgconfig</Dependency>
+            <Dependency>intltool</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>xfce4-mixer</Name>
+        <RuntimeDependencies>
+            <Dependency>glib2</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>libxfce4util</Dependency>
+            <Dependency>libxfce4ui</Dependency>
+            <Dependency>xfce4-panel</Dependency>
+            <Dependency>xfconf</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-22</Date>
+            <Version>4.8.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
