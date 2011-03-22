@@ -1,6 +1,6 @@
 diff -Nuar elsa.orig/configure.ac elsa/configure.ac
---- elsa.orig/configure.ac	2011-03-09 12:48:08.616980179 +0200
-+++ elsa/configure.ac	2011-03-12 16:05:42.944871057 +0200
+--- elsa.orig/configure.ac	2011-03-08 12:39:56.439120000 +0200
++++ elsa/configure.ac	2011-03-22 15:42:12.240000194 +0200
 @@ -30,6 +30,19 @@
  
  
@@ -21,9 +21,83 @@ diff -Nuar elsa.orig/configure.ac elsa/configure.ac
  
  # Pam
  AC_ARG_ENABLE([pam],
+diff -Nuar elsa.orig/data/Makefile.am elsa/data/Makefile.am
+--- elsa.orig/data/Makefile.am	2010-07-13 23:50:38.031748000 +0300
++++ elsa/data/Makefile.am	2011-03-22 15:47:31.213000188 +0200
+@@ -6,7 +6,9 @@
+ pamdir = $(sysconfdir)/pam.d/
+ pam_DATA = elsa
+ 
+-confdir = $(sysconfdir)
+-conf_DATA = elsa.conf
++confdir = $(sysconfdir)/elsa
++conf_DATA = \
++	elsa.conf \
++	Xsession
+ 
+ EXTRA_DIST = elsa elsa.conf
+diff -Nuar elsa.orig/data/Xsession elsa/data/Xsession
+--- elsa.orig/data/Xsession	1970-01-01 02:00:00.000000000 +0200
++++ elsa/data/Xsession	2011-03-22 15:46:18.323000188 +0200
+@@ -0,0 +1,43 @@
++#!/bin/bash
++
++# use bash for "exec -l", howto run login shell by /bin/sh ?
++
++#if [ $# -eq 1 -a -n "$1" ]; then
++#	LXSESSION=$1
++#else
++# default session
++#	LXSESSION=/usr/bin/startlxde
++#fi
++
++#if [ -x /etc/X11/xinit/xinitrc-common ]; then
++# fedora
++#	. /etc/X11/xinit/xinitrc-common
++#	if ! [ -z "$XDG_SESSION_COOKIE" ]; then
++#		CK_XINIT_SESSION=
++#	elif [ -x /usr/bin/ck-launch-session -a -z "$CK_XINIT_SESSION" ]; then
++#		CK_XINIT_SESSION="/usr/bin/ck-launch-session"
++#	fi
++#	exec -l $SHELL -c "$CK_XINIT_SESSION \"$LXSESSION\""
++#elif [ -x /etc/X11/xinit/Xsession ]; then
++# fedora
++#	exec /etc/X11/xinit/Xsession $LXSESSION
++#elif [ -x /etc/X11/Xsession ]; then
++# mandriva, debian, ubuntu
++#	exec /etc/X11/Xsession $LXSESSION
++#elif [ -x /etc/X11/xinit/xinitrc ]; then
++#suse
++#	export WINDOWMANAGER=$LXSESSION
++#	exec -l $SHELL -c /etc/X11/xinitrc
++#else
++# unknown, user should custom /etc/lxdm/xinitrc self
++#	if [ -x /etc/lxdm/xinitrc ]; then
++#		. /etc/lxdm/xinitrc
++#	fi
++#	if ! [ -z "$XDG_SESSION_COOKIE" ]; then
++#		CK_XINIT_SESSION=
++#	elif [ -x /usr/bin/ck-launch-session ]; then
++		CK_XINIT_SESSION="/usr/bin/ck-launch-session"
++#	fi
++	exec -l $SHELL -c "$CK_XINIT_SESSION \"enlightenment_start\""
++#fi
++
+diff -Nuar elsa.orig/src/daemon/elsa_config.c elsa/src/daemon/elsa_config.c
+--- elsa.orig/src/daemon/elsa_config.c	2011-02-03 22:47:00.627925000 +0200
++++ elsa/src/daemon/elsa_config.c	2011-03-22 16:08:13.043000188 +0200
+@@ -48,7 +48,7 @@
+    if (!ef)
+      ef = eet_open("/var/cache/"PACKAGE"/"ELSA_CONFIG_FILE,
+                    EET_FILE_MODE_WRITE);
+-   f = fopen(SYSTEM_CONFIG_DIR"/elsa.conf", "rb");
++   f = fopen(SYSTEM_CONFIG_DIR"/elsa/elsa.conf", "rb");
+    if (!f)
+      {
+         fprintf(stderr, PACKAGE": Could not open "SYSTEM_CONFIG_DIR"/elsa.conf\n");
 diff -Nuar elsa.orig/src/daemon/elsa_session.c elsa/src/daemon/elsa_session.c
---- elsa.orig/src/daemon/elsa_session.c	2011-03-09 12:48:08.611977679 +0200
-+++ elsa/src/daemon/elsa_session.c	2011-03-12 16:08:50.283493556 +0200
+--- elsa.orig/src/daemon/elsa_session.c	2011-02-03 22:47:00.627925000 +0200
++++ elsa/src/daemon/elsa_session.c	2011-03-22 15:58:38.505000189 +0200
 @@ -8,6 +8,7 @@
  #include <stdlib.h>
  #include <sys/types.h>
@@ -73,3 +147,12 @@ diff -Nuar elsa.orig/src/daemon/elsa_session.c elsa/src/daemon/elsa_session.c
     pid_t pid;
     pid = fork();
     if (pid == 0)
+@@ -137,7 +166,7 @@
+         remove(buf);
+         snprintf(buf, sizeof(buf), "%s > %s/.elsa_session.log 2>&1",
+                  cmd, pwd->pw_dir);
+-        execle(pwd->pw_shell, pwd->pw_shell, "-c", buf, NULL, env);
++        execle("/etc/elsa/Xsession", "/etc/elsa/Xsession", buf, NULL, env);
+         fprintf(stderr, PACKAGE": The Xsessions are not launched :(\n");
+      }
+ #endif
