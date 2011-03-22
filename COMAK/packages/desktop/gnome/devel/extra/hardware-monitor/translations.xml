@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>hardware-monitor</Name>
+        <Summary xml:lang="">Gnome paneli için donanım monitor oğesi</Summary>
+        <Description xml:lang="">hardware-monitor Gnome için monitor öğesidir. Donanımın durumu hakkında çeşitli bilgiler verir.</Description>
+    </Source>
+</PISI>
+
