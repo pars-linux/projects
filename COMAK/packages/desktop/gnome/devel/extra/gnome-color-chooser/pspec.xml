@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-color-chooser</Name>
+        <Homepage>https://launchpad.net/gnome-color-chooser</Homepage>
+        <Packager>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Packager>
+        <License>GPLv3</License>
+        <IsA>app:gui</IsA>
+        <Summary>GNOME color customization tool</Summary>
+        <Description>GNOME Color Chooser is a program which allows you to modify the appearance of your GNOME desktop.</Description>
+        <Archive sha1sum="045b5d8a99dad7dba80c5b98e8d6ea35b4e8ee21" type="targz">http://launchpad.net/gnome-color-chooser/trunk/0.2.5/+download/gnome-color-chooser-0.2.5.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency></Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-color-chooser</Name>
+        <RuntimeDependencies>
+            <Dependency></Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-22</Date>
+            <Version>0.2.5</Version>
+            <Comment>First release.</Comment>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
