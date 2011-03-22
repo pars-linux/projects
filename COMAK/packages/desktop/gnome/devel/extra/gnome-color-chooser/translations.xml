@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-color-chooser</Name>
+        <Summary xml:lang="tr">GNOME renk ayarlama aracı</Summary>
+        <Description xml:lang="tr">GNOME Renk Ayarlayıcısı, GNOME Masaüstü görümünü ayarlamanızı sağlar.</Description>
+    </Source>
+</PISI>
+
