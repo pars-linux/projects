@@ -28,7 +28,7 @@
         <Name>lxde-menu-cache-devel</Name>
         <Summary>Development headers for lxde-menu-cache</Summary>
         <RuntimeDependencies>
-            <Dependency release="1">lxde-menu-cache</Dependency>
+            <Dependency release="current">lxde-menu-cache</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
