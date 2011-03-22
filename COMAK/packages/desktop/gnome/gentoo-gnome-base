@@ -30,7 +30,6 @@ libgnomekbd   ---  Gnome keyboard configuration library  -- brkclskni686
 nautilus  ---  A file manager for the GNOME desktop  --  brkclskni686
 
 dconf  -- Simple low-level configuration system //Vala version problem do it later -- Non-Exist
-gsettings-desktop-schemas  --  Collection of GSettings schemas for GNOME desktop
 
 
 aramayapılan depolar:
