@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-swallow</Name>
+        <Homepage>http://interreality.org/~tetron/technology/swallow/</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>An applet for Gnome</Summary>
+        <Description>Swallow any X application into the Gnome 2 panel.Especially useful for dock apps.</Description>
+        <Archive sha1sum="ac4ae83b57301ffdcd8c7870211f378878c132e3" type="targz">http://interreality.org/~tetron/technology/swallow/gnome-swallow-1.2.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>libgtop-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level="1">gnome-swallow-1.2-as-needed.patch</Patch>
+            <Patch level="1">gnome-swallow-1.2-qa-warning.patch</Patch>
+            <Patch level="1">gnome-swallow-1.2-libgnomeui-flags.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gnome-swallow</Name>
+        <RuntimeDependencies>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>libgtop</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-22</Date>
+            <Version>1.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
