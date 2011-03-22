@@ -16,7 +16,7 @@ def build():
     autotools.make()
 
 def install():
-    autotools.install("DESTDIR=%s" % get.installDIR())
+    autotools.install()
 
     pisitools.dodoc("README","NEWS","MAINTAINERS")
 

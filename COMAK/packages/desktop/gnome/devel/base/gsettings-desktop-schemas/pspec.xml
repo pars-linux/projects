@@ -1,3 +1,5 @@
+#ifndef PSPEC.XML
+#define PSPEC.XML
 <?xml version="1.0" ?>
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
@@ -25,13 +27,20 @@
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
-            <Path fileType="header">/usr/include/gsettings-desktop-schemas</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>gsettings-desktop-schemas-devel</Name>
+        <RuntimeDependencies>
+            <Dependency>gsettings-desktop-schemas</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
         </Files>
     </Package>
     <History>
@@ -44,3 +53,4 @@
         </Update>
     </History>
 </PISI>
+#endif // PSPEC.XML
