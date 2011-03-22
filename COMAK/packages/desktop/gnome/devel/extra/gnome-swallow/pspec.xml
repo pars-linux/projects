@@ -30,6 +30,7 @@
         <RuntimeDependencies>
             <Dependency>libgnomeui</Dependency>
             <Dependency>libgtop</Dependency>
+            <Dependency>gnome-panel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
