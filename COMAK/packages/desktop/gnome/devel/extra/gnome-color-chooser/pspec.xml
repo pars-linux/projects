@@ -15,7 +15,7 @@
         <Archive sha1sum="045b5d8a99dad7dba80c5b98e8d6ea35b4e8ee21" type="targz">http://launchpad.net/gnome-color-chooser/trunk/0.2.5/+download/gnome-color-chooser-0.2.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>libglademm-devel</Dependency>
-            <Dependency>gtkmm-devel</Dependency>
+            <Dependency>gtkmm</Dependency>
             <Dependency>libgnome-devel</Dependency>
             <Dependency>libgnomeui-devel</Dependency>
             <Dependency>libxml2-devel</Dependency>
