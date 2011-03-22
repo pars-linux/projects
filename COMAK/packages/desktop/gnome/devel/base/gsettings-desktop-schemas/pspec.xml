@@ -15,15 +15,9 @@
         <Summary>Collection of GSettings schemas for GNOME desktop</Summary>
         <Description>Gsettings-desktop-schemas contains a collection of GSettings schemas for settings shared by various components of a desktop.</Description>
         <Archive sha1sum="abf329b2c17926a210b736823363c838de796f27" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/gsettings-desktop-schemas/0.1/gsettings-desktop-schemas-0.1.7.tar.gz</Archive>
-        <!--BuildDependencies>
-            <Dependency></Dependency>
-        </BuildDependencies-->
     </Source>
     <Package>
         <Name>gsettings-desktop-schemas</Name>
-        <!--RuntimeDependencies>
-            <Dependency versionFrom=""></Dependency>
-        </RuntimeDependencies-->
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
