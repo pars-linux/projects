@@ -7,14 +7,16 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
-from pisi.actionsapi import get
 
 def setup():
-    pass
+    autotools.configure("--disable-dependency-tracking \
+                         --disable-link-as-needed")
 
 def build():
-    pass
+    autotools.make()
 
 def install():
-    pass
+    autotools.install()
+
+    pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING", "INSTALL", "NEWS", "README", "THANKS")
 
