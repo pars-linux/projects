@@ -29,7 +29,6 @@
     <Package>
         <Name>xfce4-mixer</Name>
         <RuntimeDependencies>
-            <Dependency>glib2</Dependency>
             <Dependency>gst-plugins-base</Dependency>
             <Dependency>gtk2</Dependency>
             <Dependency>libxfce4util</Dependency>
@@ -37,6 +36,9 @@
             <Dependency>xfce4-panel</Dependency>
             <Dependency>xfconf</Dependency>
             <Dependency>gst-plugins-base</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
