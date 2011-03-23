@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>mousetweaks</Name>
+        <Summary xml:lang="tr">Gnome için fare kullanılabilirlik ayarları</Summary>
+        <Description xml:lang="tr">MouseTweaks, Gnome için fare kullanılabilirliğini arttırmak için araçlar ve panel öğeleri içeren bir pakettir.</Description>
+    </Source>
+</PISI>
+
