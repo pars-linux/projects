@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-keyring-sharp</Name>
+        <Homepage>https://github.com/mono/gnome-keyring-sharp</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>MIT</IsA>
+        <Summary>C# implementation of gnome-keyring</Summary>
+        <Description>gnome-keyring-sharp is the C# implementation of gnome-keyring program.</Description>
+        <Archive sha1sum="36d8cc9e3a24288554132bf1d0385cd69f7d804b" type="targz">http://www.go-mono.com/archive/gnome-keyring-sharp/gnome-keyring-sharp-1.0.2.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>libgnome-keyring-devel</Dependency>
+            <Dependency>gtk-sharp-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-keyring-sharp</Name>
+        <RuntimeDependencies>
+            <Dependency>libgnome-keyring</Dependency>
+            <Dependency>gtk-sharp</Dependency>
+            <Dependency>ndesk-dbus</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gnome-keyring-sharp-devel</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="current">gnome-keyring-sharp</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>1.0.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
