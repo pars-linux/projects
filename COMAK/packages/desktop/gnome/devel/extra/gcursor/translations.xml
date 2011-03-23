@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gcursor</Name>
+        <Summary xml:lang="tr">GTK+ tabanlı imleç teması seçici</Summary>
+        <Description xml:lang="tr">gcursor Gnome için imleç teması seçici uygulamasıdır.</Description>
+    </Source>
+</PISI>
+
