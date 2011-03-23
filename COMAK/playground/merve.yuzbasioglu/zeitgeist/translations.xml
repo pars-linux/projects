@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>zeitgeist</Name>
+        <Summary xml:lang="tr">Uygulamaların günlük faliyetlerini ve o anki durumları için bir hizmettir</Summary>
+        <Description xml:lang="tr">Zeitgeist, kullanıcıların aktivitelerinin günlük durumlarıyla ilgili bir servistir.</Description>
+    </Source>
+</PISI>
+
