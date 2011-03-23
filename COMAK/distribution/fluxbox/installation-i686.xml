@@ -1,8 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011 - Comak Fluxbox i686 [Falco Peregrinus]</Title>
+    <Title>COMAK - Fluxbox i686 [Falco Peregrinus]</Title>
     <WorkDir>/root/pardusman/work/fluxbox/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/fluxbox/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="http://192.168.1.125/repo/pisi-index.xml.xz">
+    <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
