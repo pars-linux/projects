@@ -12,8 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Enlightenment Desktop Shell</Summary>
         <Description>Enlightenment is a window manager for the X Window System that is designed to be powerful, extensible, configurable and pretty darned good looking! It is one of the more graphically intense window managers.</Description>
-        <Archive sha1sum="4bd9cfdb5f360ed62b6881948af1c278388b27af" type="tarbz2">http://download.enlightenment.org/snapshots/2010-12-03/enlightenment-0.16.999.55225.tar.bz2</Archive>
-        <!--<Archive sha1sum="740a77740781a7a2fb94d3472115122769d1be4e" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/enlightenment-0.16.999_52995.tar.bz2</Archive>-->
+        <Archive sha1sum="70fbb173140675b4ab475c0440fa7957c84040a7" type="targz">./enlightenment-0.16.999.58024.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0">eet-devel</Dependency>
@@ -29,12 +28,11 @@
             <Dependency>alsa-lib-devel</Dependency>
         </BuildDependencies>
         <Patches>
-            <Patch level="1">fileman-default.patch</Patch>
             <Patch level="1">wizard.patch</Patch>
-            <Patch level="1">no-desktop-file.patch</Patch>
+            <Patch level="1">fileman-default.patch</Patch>
             <Patch level="1">e-config.patch</Patch>
             <Patch level="1">pardus-default-profile.patch</Patch>
-            <Patch level="1">autostart_xdg.patch</Patch>
+            <Patch level="1">no-desktop-file.patch</Patch>
         </Patches>
     </Source>
 
@@ -95,6 +93,13 @@
     </Package>
 
     <History>
+        <Update release="24">
+            <Date>2011-03-23</Date>
+            <Version>0.16.999_58024</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="23">
             <Date>2011-01-29</Date>
             <Version>0.16.999_55225</Version>
