@@ -1,0 +1,67 @@
+#ifndef PSPEC.XML
+#define PSPEC.XML
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-mag</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Isa>app:console</Isa>
+        <Summary>Collection of GSettings schemas for GNOME desktop</Summary>
+        <Description>Gsettings-desktop-schemas contains a collection of GSettings schemas for settings shared by various components of a desktop.</Description>
+        <Archive sha1sum="31476137a7e9b5366e39f3e8e7d2c90ecc613f9c" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/gnome-mag/0.16/gnome-mag-0.16.3.tar.gz</Archive>
+    <BuildDependencies>
+        <Dependency>libXcomposite-devel</Dependency>
+        <Dependency>libbonobo-devel</Dependency>
+        <Dependency>at-spi</Dependency>
+    </BuildDependencies>
+    </Source>
+    <Package>
+        <Name>gnome-mag</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>orbit2</Dependency>
+            <Dependency>at-spi</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libXrender</Dependency>
+            <Dependency>libXcomposite</Dependency>
+            <Dependency>libXdamage</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>gnome-mag-devel</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-mag</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-03-22</Date>
+            <Version>0.16.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+#endif // PSPEC.XML
