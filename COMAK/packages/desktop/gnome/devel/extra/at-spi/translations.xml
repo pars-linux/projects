@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>at-spi</Name>
+        <Summary xml:lang="tr">GNOME erişim araçları</Summary>
+        <Description xml:lang="tr">GNOME ortamında bulunan Assistive Teknolojileri için servis sağlayıcı arayüz ve bağlanabilen uygulamalara karşı bir kütüphanedir.</Description>
+    </Source>
+</PISI>
+

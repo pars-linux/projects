@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>at-spi</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>GNOME accessibility toolkit</Summary>
+        <Description>Service Provider Interface for the Assistive Technologies available on the GNOME platform, and a library against which applications can be linked.</Description>
+        <Archive sha1sum="9c1349e27617d7a2006e76101e5b12c721e07e1a" type="tarbz2">mirrors://gnome/at-spi/1.24/at-spi-1.24.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency releaseFrom="36">gtk2</Dependency>
+            <Dependency>popt</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>libXtst-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>fix-tab.patch</Patch>
+            <Patch>do-not-compile-pyo.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>at-spi</Name>
+        <RuntimeDependencies>
+            <Dependency releaseFrom="36">gtk2</Dependency>
+            <Dependency>popt</Dependency>
+            <Dependency>libbonobo</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/gtk-doc</Path>
+            <Path fileType="data">/usr/share/idl</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2008-10-03</Date>
+            <Version>1.24.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
