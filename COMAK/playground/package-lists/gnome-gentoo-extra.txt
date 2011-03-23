@@ -7,8 +7,6 @@ evolution-webcal  --  A GNOME URL handler for web-published ical calendar files 
 fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
 file-browser-applet  --  Browse, open and manage files in your computer directly from the GNOME panel.  --  NonExist
 gdesklets-core  --  GNOME Desktop Applets: Core library for desktop applets  --  NonExist
-gnome-do  --  GNOME Do allows you to get things done quickly  --  NonExist
-gnome-do-plugins  --  Plugins to put the Do in Gnome Do  --  NonExist
 gnome-hdaps-applet  --  Visualization of the Hard Disc Active Protection System State as Gnome applet  -- NonExist
 gnome-lirc-properties  --  GTK+ based utilty to configure LIRC remotes  -- NonExist
 gnome-user-docs  --  GNOME end user documentation  --  NonExist
