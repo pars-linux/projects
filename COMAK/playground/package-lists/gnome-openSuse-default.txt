@@ -15,7 +15,6 @@ gnome-applets-colorblind         NonExist
 gnome-applets-gdm                NonExist
 gnome-icon-theme-extras          NonExist
 gnome-keyring-pam            NonExist
-gnome-mag                    NonExist
 gnome-main-menu              NonExist
 gnome-nettool                NonExist
 gnome-panel-sharp            NonExist
