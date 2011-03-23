@@ -6,11 +6,13 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
+from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
+#shelltools.export("CFLAGS", "%s -ledataserver" % get.CFLAGS())
 
 def setup():
-    autotools.autoreconf("-fi")
+    autotools.autoreconf("-vfi")
     autotools.configure("--disable-scrollkeeper \
                         --enable-nss=yes \
                         --with-openldap=yes \
@@ -18,7 +20,7 @@ def setup():
                         --with-krb5=/usr")
 
 def build():
-    autotools.make()
+    autotools.make("-I/usr/include/evolution-data-server-2.32")
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
