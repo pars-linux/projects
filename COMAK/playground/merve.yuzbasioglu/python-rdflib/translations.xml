@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>python-rdflib</Name>
+        <Summary xml:lang="tr">RDF kitaplığı</Summary>
+        <Description xml:lang="tr">Python-rdflib, bilgi temsili için basit ama güçlü bir dil olan RDF ile çalışan Python kitaplığıdır.</Description>
+    </Source>
+</PISI>
+
