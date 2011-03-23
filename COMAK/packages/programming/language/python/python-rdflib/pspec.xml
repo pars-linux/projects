@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>python-rdflib</Name>
+        <Homepage>http://pypi.python.org/pypi/rdflib</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>BSD</License>
+        <IsA>library</IsA>
+        <Summary>RDF library</Summary>
+        <Description>RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information.</Description>
+        <Archive sha1sum="e2ee371fda48739724800064763d03449abb0f5a" type="targz">http://pypi.python.org/packages/source/r/rdflib/rdflib-3.1.0.tar.gz#md5=3b2ef246c6875290524a12888a3cf4af</Archive>
+    </Source>
+
+    <Package>
+        <Name>python-rdflib</Name>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>3.1.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
