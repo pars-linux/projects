@@ -16,6 +16,7 @@
         <BuildDependencies>
             <Dependency>libgnome-keyring-devel</Dependency>
             <Dependency>gtk-sharp-devel</Dependency>
+            <Dependency>mono-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -25,6 +26,7 @@
             <Dependency>libgnome-keyring</Dependency>
             <Dependency>gtk-sharp</Dependency>
             <Dependency>ndesk-dbus</Dependency>
+            <Dependency>mono-runtime</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
