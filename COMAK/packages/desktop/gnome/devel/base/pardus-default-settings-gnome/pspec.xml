@@ -53,6 +53,9 @@
             <Path fileType="config">/etc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
+        <Provides>
+            <COMAR script="package.py">System.Package</COMAR>
+        </Provides>
     </Package>
 
     <History>
