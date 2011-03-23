@@ -1,0 +1,15 @@
+--- Makefile.in	2008-09-22 11:55:52.000000000 +0300
++++ /var/pisi/at-spi-1.24.0-1/work/at-spi-1.24.0/Makefile.in	2011-03-23 14:53:00.960000011 +0200
+@@ -809,9 +809,9 @@
+ @INTLTOOL_SCHEMAS_RULE@
+ 
+ @GCONF_SCHEMAS_INSTALL_TRUE@install-data-local:
+-@GCONF_SCHEMAS_INSTALL_TRUE@                if test -z "$(DESTDIR)" ; then \
+-@GCONF_SCHEMAS_INSTALL_TRUE@                        for p in $(schemas_DATA) ; do \
+-@GCONF_SCHEMAS_INSTALL_TRUE@                                GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/$$p ; \
++@GCONF_SCHEMAS_INSTALL_TRUE@	if test -z "$(DESTDIR)" ; then \
++@GCONF_SCHEMAS_INSTALL_TRUE@		for p in $(schemas_DATA) ; do \
++@GCONF_SCHEMAS_INSTALL_TRUE@			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/$$p ; \
+ @GCONF_SCHEMAS_INSTALL_TRUE@                        done \
+ @GCONF_SCHEMAS_INSTALL_TRUE@                fi
+ @GCONF_SCHEMAS_INSTALL_FALSE@install-data-local:

@@ -1,0 +1,15 @@
+--- pyatspi/Makefile.in	2008-09-22 11:55:51.000000000 +0300
+@@ -328,13 +328,6 @@
+ 	    $(pyatspiPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pyatspidir)/$$f"; \
+ 	  else :; fi; \
+ 	done; \
+-	if test -n "$$dlist"; then \
+-	  if test -z "$(DESTDIR)"; then \
+-	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pyatspidir)" $$dlist; \
+-	  else \
+-	    PYTHON=$(PYTHON) $(py_compile) --destdir "$(DESTDIR)" --basedir "$(pyatspidir)" $$dlist; \
+-	  fi; \
+-	else :; fi
+ 
+ uninstall-pyatspiPYTHON:
+ 	@$(NORMAL_UNINSTALL)
