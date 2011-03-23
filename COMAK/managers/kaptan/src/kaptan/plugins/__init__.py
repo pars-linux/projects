@@ -19,6 +19,7 @@ __plugins = {
             pds.Kde4 : "kde",
             pds.LXDE : "lxde",
             pds.Enlightenment : "enlightenment",
+            pds.Fluxbox: "fluxbox",
             #pds.DefaultDe:"kde", #FIXME: temporary
             }
 
