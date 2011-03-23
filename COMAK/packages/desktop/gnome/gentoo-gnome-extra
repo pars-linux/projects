@@ -26,7 +26,6 @@ indicator-applet  --  A small applet to display information from various applica
 libgail-gnome -- Gail libraries for GNOME  -- NonExist
 libgnomedb  -- Database widget library from the GNOME-DB project  --  NonExist
 lock-keys-applet  --  An applet that shows the status of your Caps, Num and Scroll Lock keys  -- NonExist
-mousetweaks  --  Mouse accessibility enhancements for the GNOME desktop  --  NonExist
 music-applet  --  GNOME applet to control various music players  --  NonExist
 quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
 swfdec-gnome  --  Flash player and thumbnailer for GNOME  -- NonExist (swfdec-mozilla,swfdec,swftools in playground)
