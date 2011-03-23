@@ -16,12 +16,12 @@ gnome-user-share  --  Personal file sharing for the GNOME desktop  --  NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
 libgnomedb  -- Database widget library from the GNOME-DB project  --  NonExist
 lock-keys-applet  --  An applet that shows the status of your Caps, Num and Scroll Lock keys  -- NonExist
-music-applet  --  GNOME applet to control various music players  --  NonExist
 quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
 swfdec-gnome  --  Flash player and thumbnailer for GNOME  -- NonExist (swfdec-mozilla,swfdec,swftools in playground)
 synapse  --  A program launcher in the style of GNOME Do  --  NonExist
 wp_tray  --  Wallpaper Manager for the Gnome Desktop  --  NonExist
 zeitgeist-datahub  --  Provides passive plugins to insert events into zeitgeist  --  NonExist
+docky -- NonExist
 
 PACKAGES IN PLAYGROUND:
 zenity  --  Tool to display dialogs from the commandline and shell scripts  -- Playground(brkclskn)
