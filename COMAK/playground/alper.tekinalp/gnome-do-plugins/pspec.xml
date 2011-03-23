@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-do-plugins</Name>
+        <Homepage>http://do.davebsd.com/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Plugins to put the Do in Gnome Do</Summary>
+        <Description>Creating and managing the plugins that put the 'Do' in 'Do'.</Description>
+        <Archive sha1sum="2db6593f1cf72775f803f5db90d16b74444db83e" type="targz">http://launchpad.net/do-plugins/trunk/0.8.3/+download/gnome-do-plugins-0.8.3.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>flickrnet</Dependency>
+            <Dependency>mono-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-do-plugins</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-do</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>0.8.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
