@@ -230,6 +230,7 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
                 (111, "ldap", "OpenLDAP", "/dev/null", "/bin/false", "", ["ldap"], [], []),
                 (112, "clamav", "Clamav", "/dev/null", "/bin/false", "", ["clamav"], [], []),
                 (113, "ntlmaps", "NTLMaps", "/dev/null", "/bin/false", "", ["ntlmaps"], [], []),
+                (114, "gdm", "gdm", "/var/lib/gdm", "/sbin/nologin", "", ["gdm"], [], []),
                 (120, "avahi", "Avahi mDNS/DNS-SD Stack", "/var/run/avahi-daemon", "/sbin/nologin", "", ["avahi"], [], []),
                 (121, "avahi-autoipd", "Avahi IPv4LL Stack", "/var/lib/avahi-autoipd", "/sbin/nologin", "", ["avahi-autoipd"], [], []),
                 (123, "ntp", "NTP", "/dev/null", "/bin/false", "", ["ntp"], [], []),
@@ -264,7 +265,6 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
                 (200, "pnp", "PnP", "/dev/null", "/bin/false", "", ["pnp"], [], []),
                 (250, "mpd", "Music Player Daemon", "/var/lib/mpd", "/bin/false", "", ["audio", "pulse", "pulse-access", "pulse-rt"], [], []),
                 (251, "partimag", "Partimage User", "/var/lib/partimaged", "/bin/false", "", ["partimag"], [], []),
-                (252, "gdm", "gdm", "/var", "/sbin/nologin", "", ["gdm"], [], []),
             )
 
     for uid, nick, realname, homedir, shell, password, groups, grantedauths, blockedauths in users:
