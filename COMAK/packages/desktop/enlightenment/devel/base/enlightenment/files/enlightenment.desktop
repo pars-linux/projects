@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=XSession
-Exec=ck-launch-session enlightenment_start
+Exec=enlightenment_start
 TryExec=enlightenment
 Name=Enlightenment
 Name[bn]=এনলাইটেনমেন্ট
