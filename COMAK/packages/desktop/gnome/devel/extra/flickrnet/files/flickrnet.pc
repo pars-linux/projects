@@ -1,0 +1,7 @@
+prefix=/usr
+libdir=${prefix}/lib
+
+Name: flickrnet
+Description: Flickr.Net API Library
+Version: 2.2
+Libs: -r:${libdir}/mono/flickrnet-2.2/FlickrNet.dll

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>flickrnet</Name>
+        <Homepage>http://www.codeplex.com/FlickrNet</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>LGPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Flickr.Net API Library</Summary>
+        <Description>The Flickr.Net API Library is a .Net Library for accessing the Flickr API</Description>
+        <Archive sha1sum="97094110a660a2a9285877f83c63d61e87c5b5d2" type="zip" target="FlickrNet2">http://www.mirrorservice.org/sites/www.ibiblio.org/gentoo/distfiles/FlickrNet2.2.zip</Archive>
+    </Source>
+
+    <Package>
+        <Name>flickrnet</Name>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="data">usr/lib/pkgconfig</Path>
+        </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/usr/lib/pkgconfig/flickrnet.pc">flickrnet.pc</AdditionalFile>
+        </AdditionalFiles>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>2.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
