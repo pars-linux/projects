@@ -2,7 +2,6 @@ PACKAGES NONEXIST:
 avant-window-navigator  -- Fully customisable dock-like window navigator  -- NonExist
 avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExist
 connman-gnome  --  Provides a daemon for managing internet connections  -- NonExist (connman in playground)
-deskbar-applet  --  An Omnipresent Versatile Search Interface  --  NonExist
 docky  --  Elegant, powerful, clean dock  --  NonExist
 drwright  --  A GNOME2 Applet that forces you to take regular breaks to prevent RSI.  --NonExist
 evolution-exchange  --  Evolution module for connecting to Microsoft Exchange  --  NonExist
@@ -13,8 +12,6 @@ gcursor  --  GTK+ based xcursor theme selector  --  NonExist
 gdesklets-core  --  GNOME Desktop Applets: Core library for desktop applets  --  NonExist
 gnome-do  --  GNOME Do allows you to get things done quickly  --  NonExist
 gnome-do-plugins  --  Plugins to put the Do in Gnome Do  --  NonExist
-gnome-games  --  Collection of games for the GNOME desktop  --  NonExist
-gnome-games-extra-data  --  Optional additional graphics for gnome-games  --  NonExist
 gnome-hdaps-applet  --  Visualization of the Hard Disc Active Protection System State as Gnome applet  -- NonExist
 gnome-lirc-properties  --  GTK+ based utilty to configure LIRC remotes  -- NonExist
 gnome-user-docs  --  GNOME end user documentation  --  NonExist
