@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-do</Name>
+        <Homepage>https://launchpad.net/do</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv3</License>
+        <IsA>app:gui</IsA>
+        <Summary>GNOME Do allows you to get things done quickly</Summary>
+        <Description>Do is an intelligent launcher tool that makes performing common tasks on your computer simple and efficient.</Description>
+        <Archive sha1sum="65ffcb759f80cefd0aa9342b4aad7d884c51761b" type="targz">http://launchpad.net/do/trunk/0.8.4/+download/gnome-do-0.8.4.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-desktop-sharp</Dependency>
+            <Dependency>rsvg-sharp</Dependency>
+            <Dependency>notify-sharp</Dependency>
+            <Dependency>wnck-sharp</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>do-sthng.diff</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gnome-do</Name>
+        <!--RuntimeDependencies>
+            <Dependency versionFrom=""></Dependency>
+        </RuntimeDependencies-->
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>0.8.3.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
