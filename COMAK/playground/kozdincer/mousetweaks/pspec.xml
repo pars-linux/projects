@@ -14,14 +14,33 @@
         <Description>Mousetweaks contains a daemon and some panel applets to improve mouse usability on the GNOME desktop.</Description>
         <Archive sha1sum="f5097eaa2a782a566492e21703656c8f8385c726" type="tarbz2">http://ftp.acc.umu.se/pub/GNOME/sources/mousetweaks/2.32/mousetweaks-2.32.1.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency></Dependency>
+            <Dependency>gnome-common</Dependency>
+            <Dependency>intltool</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+            <Dependency>libXcursor-devel</Dependency>
+            <Dependency>libXtst-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>mousetweaks</Name>
         <RuntimeDependencies>
-            <Dependency></Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>libXtst</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libXcursor</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>gnome-panel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>

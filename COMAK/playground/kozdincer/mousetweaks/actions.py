@@ -10,11 +10,11 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def setup():
-    pass
+    autotools.configure("--disable-schemas-install \
+                         --disable-scrollkeeper")
 
 def build():
-    pass
+    autotools.make()
 
 def install():
-    pass
-
+    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
