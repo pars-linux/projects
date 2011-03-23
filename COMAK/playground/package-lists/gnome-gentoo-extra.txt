@@ -2,7 +2,6 @@ PACKAGES NONEXIST:
 avant-window-navigator  -- Fully customisable dock-like window navigator  -- NonExist
 avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExist
 connman-gnome  --  Provides a daemon for managing internet connections  -- NonExist (connman in playground)
-docky  --  Elegant, powerful, clean dock  --  NonExist
 drwright  --  A GNOME2 Applet that forces you to take regular breaks to prevent RSI.  --NonExist
 evolution-exchange  --  Evolution module for connecting to Microsoft Exchange  --  NonExist
 evolution-webcal  --  A GNOME URL handler for web-published ical calendar files  -- NonExist
