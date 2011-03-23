@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>evolution</Name>
+        <Homepage>http://www.gnome.org/projects/evolution</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>LGPLv2</License>
+        <License>BSD</License>
+        <License>DB</License>
+        <Summary>Evolution groupware backend</Summary>
+        <Description>evolution-data-server is a library backend for Evolution-related applications.</Description>
+        <Archive sha1sum="48f25fffda1ac9c209fd02162ca298df5c03b05f" type="tarbz2">http://download.gnome.org/sources/evolution/2.32/evolution-2.32.2.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>gtkhtml3</Dependency>
+            <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+            <Dependency>libpst-devel</Dependency>
+            <Dependency>libytnef-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>libcanberra-devel</Dependency>
+            <Dependency>gtkimageview-devel</Dependency>
+            <Dependency>libunique-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>evolution</Name>
+        <IsA>library</IsA>
+        <RuntimeDependencies>
+            <Dependency>libnotify</Dependency>
+            <Dependency>gtkhtml</Dependency>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>desktop-file-utils</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>gtkimageview</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>libunique</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>2.32.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
