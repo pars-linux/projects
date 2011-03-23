@@ -1,10 +1,10 @@
-diff -Naur orig/gnomeapplet/Makefile.in mod/gnomeapplet/Makefile.in
---- orig/gnomeapplet/Makefile.in	2008-03-09 21:15:55.000000000 +0200
-+++ mod/gnomeapplet/Makefile.in	2008-09-06 00:05:53.000000000 +0300
-@@ -385,13 +385,6 @@
- 	    $(pygnomePYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pygnomedir)/$$f"; \
- 	  else :; fi; \
- 	done; \
+diff -Nuar gnome-python-desktop-2.32.0.orig//gnomeapplet/Makefile.in gnome-python-desktop-2.32.0/gnomeapplet/Makefile.in
+--- gnome-python-desktop-2.32.0.orig//gnomeapplet/Makefile.in	2011-03-23 15:56:32.591052143 +0200
++++ gnome-python-desktop-2.32.0/gnomeapplet/Makefile.in	2011-03-23 15:57:43.865052143 +0200
+@@ -426,13 +426,6 @@
+ 	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pygnomedir)'"; \
+ 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pygnomedir)" || exit $$?; \
+ 	done || exit $$?; \
 -	if test -n "$$dlist"; then \
 -	  if test -z "$(DESTDIR)"; then \
 -	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pygnomedir)" $$dlist; \
@@ -15,13 +15,13 @@ diff -Naur orig/gnomeapplet/Makefile.in mod/gnomeapplet/Makefile.in
  
  uninstall-pygnomePYTHON:
  	@$(NORMAL_UNINSTALL)
-diff -Naur orig/gnomedesktop/Makefile.in mod/gnomedesktop/Makefile.in
---- orig/gnomedesktop/Makefile.in	2008-03-09 21:15:55.000000000 +0200
-+++ mod/gnomedesktop/Makefile.in	2008-09-06 00:06:39.000000000 +0300
-@@ -388,13 +388,6 @@
- 	    $(_gnomedesktopPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(_gnomedesktopdir)/$$f"; \
- 	  else :; fi; \
- 	done; \
+diff -Nuar gnome-python-desktop-2.32.0.orig//gnomedesktop/Makefile.in gnome-python-desktop-2.32.0/gnomedesktop/Makefile.in
+--- gnome-python-desktop-2.32.0.orig//gnomedesktop/Makefile.in	2011-03-23 15:56:32.588052143 +0200
++++ gnome-python-desktop-2.32.0/gnomedesktop/Makefile.in	2011-03-23 15:58:39.408052143 +0200
+@@ -429,13 +429,6 @@
+ 	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(_gnomedesktopdir)'"; \
+ 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(_gnomedesktopdir)" || exit $$?; \
+ 	done || exit $$?; \
 -	if test -n "$$dlist"; then \
 -	  if test -z "$(DESTDIR)"; then \
 -	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(_gnomedesktopdir)" $$dlist; \
@@ -32,13 +32,13 @@ diff -Naur orig/gnomedesktop/Makefile.in mod/gnomedesktop/Makefile.in
  
  uninstall-_gnomedesktopPYTHON:
  	@$(NORMAL_UNINSTALL)
-diff -Naur orig/gnomeprint/Makefile.in mod/gnomeprint/Makefile.in
---- orig/gnomeprint/Makefile.in	2008-03-09 21:15:56.000000000 +0200
-+++ mod/gnomeprint/Makefile.in	2008-09-06 00:05:36.000000000 +0300
-@@ -431,13 +431,6 @@
- 	    $(pygnomePYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pygnomedir)/$$f"; \
- 	  else :; fi; \
- 	done; \
+diff -Nuar gnome-python-desktop-2.32.0.orig//gnomeprint/Makefile.in gnome-python-desktop-2.32.0/gnomeprint/Makefile.in
+--- gnome-python-desktop-2.32.0.orig//gnomeprint/Makefile.in	2011-03-23 15:56:32.583052143 +0200
++++ gnome-python-desktop-2.32.0/gnomeprint/Makefile.in	2011-03-23 15:59:09.927052143 +0200
+@@ -472,13 +472,6 @@
+ 	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pygnomedir)'"; \
+ 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pygnomedir)" || exit $$?; \
+ 	done || exit $$?; \
 -	if test -n "$$dlist"; then \
 -	  if test -z "$(DESTDIR)"; then \
 -	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pygnomedir)" $$dlist; \
@@ -49,13 +49,13 @@ diff -Naur orig/gnomeprint/Makefile.in mod/gnomeprint/Makefile.in
  
  uninstall-pygnomePYTHON:
  	@$(NORMAL_UNINSTALL)
-diff -Naur orig/Makefile.in mod/Makefile.in
---- orig/Makefile.in	2008-03-09 21:15:57.000000000 +0200
-+++ mod/Makefile.in	2008-09-06 00:06:20.000000000 +0300
-@@ -384,13 +384,6 @@
- 	    $(pkgpyexecPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgpyexecdir)/$$f"; \
- 	  else :; fi; \
- 	done; \
+diff -Nuar gnome-python-desktop-2.32.0.orig//Makefile.in gnome-python-desktop-2.32.0/Makefile.in
+--- gnome-python-desktop-2.32.0.orig//Makefile.in	2011-03-23 15:56:32.576052143 +0200
++++ gnome-python-desktop-2.32.0/Makefile.in	2011-03-23 15:59:28.999052143 +0200
+@@ -459,13 +459,6 @@
+ 	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pkgpyexecdir)'"; \
+ 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pkgpyexecdir)" || exit $$?; \
+ 	done || exit $$?; \
 -	if test -n "$$dlist"; then \
 -	  if test -z "$(DESTDIR)"; then \
 -	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pkgpyexecdir)" $$dlist; \
@@ -66,13 +66,13 @@ diff -Naur orig/Makefile.in mod/Makefile.in
  
  uninstall-pkgpyexecPYTHON:
  	@$(NORMAL_UNINSTALL)
-diff -Naur orig/totem/Makefile.in mod/totem/Makefile.in
---- orig/totem/Makefile.in	2008-03-09 21:15:57.000000000 +0200
-+++ mod/totem/Makefile.in	2008-09-06 00:06:08.000000000 +0300
-@@ -383,13 +383,6 @@
- 	    $(pytotemPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pytotemdir)/$$f"; \
- 	  else :; fi; \
- 	done; \
+diff -Nuar gnome-python-desktop-2.32.0.orig//totem/Makefile.in gnome-python-desktop-2.32.0/totem/Makefile.in
+--- gnome-python-desktop-2.32.0.orig//totem/Makefile.in	2011-03-23 15:56:32.567052143 +0200
++++ gnome-python-desktop-2.32.0/totem/Makefile.in	2011-03-23 15:59:50.568052143 +0200
+@@ -425,13 +425,6 @@
+ 	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pytotemdir)'"; \
+ 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pytotemdir)" || exit $$?; \
+ 	done || exit $$?; \
 -	if test -n "$$dlist"; then \
 -	  if test -z "$(DESTDIR)"; then \
 -	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pytotemdir)" $$dlist; \
