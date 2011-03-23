@@ -1,8 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
     <Title>Pardus 2011-Comak Enlightenment-i686[Dolly]</Title>
-    <WorkDir>/home/alper/iso/enligtenment</WorkDir>
-    <ReleaseFiles>/home/alper/iso/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="file:///home/alper/iso/repo/pisi-index.xml.xz">
+    <WorkDir>/root/pardusman/work/enligtenment/work</WorkDir>
+    <ReleaseFiles>/root/pardusman/work/enlightenment/releaseNotes</ReleaseFiles>
+    <PackageSelection repo_uri="file:///root/pardusman/repo/pisi-index.xml.xz">
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>

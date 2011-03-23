@@ -1,8 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
     <Title>Pardus 2011-Comak Enlightenment x86-64</Title>
-    <WorkDir>/home/engin/pardusman/e17-work</WorkDir>
-    <ReleaseFiles>/home/engin/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="file:///home/engin/iso/repo/pisi-index.xml.xz">
+    <WorkDir>/root/pardusman/work/enlightenment/work</WorkDir>
+    <ReleaseFiles>/root/pardusman/work/enlightenment/releaseNotes</ReleaseFiles>
+    <PackageSelection repo_uri="file:///root/pardusman/repo/pisi-index.xml.xz">
         <SelectedComponent>desktop.enlightenment.addon</SelectedComponent>
         <SelectedComponent>desktop.enlightenment.base</SelectedComponent>
         <SelectedComponent>hardware.firmware</SelectedComponent>
