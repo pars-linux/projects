@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>deskbar-applet</Name>
+        <Homepage>http://projects.gnome.org/deskbar-applet/</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>fixme</Summary>
+        <Description>fixme</Description>
+        <Archive sha1sum="c7ba60ab6cdf6ace37200721740102f284894a26" type="targz">http://ftp.gnome.org/pub/GNOME/sources/deskbar-applet/2.32/deskbar-applet-2.32.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>python-pygobject-devel</Dependency>
+            <Dependency>libwnck-devel</Dependency>
+            <Dependency>dbus-python</Dependency>
+            <Dependency>gnome-python-devel</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>python-gtk-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>deskbar-applet</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>python-pygobject-devel</Dependency>
+            <Dependency>libwnck-devel</Dependency>
+            <Dependency>dbus-python</Dependency>
+            <Dependency>gnome-python-devel</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>python-gtk-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>2.32.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
