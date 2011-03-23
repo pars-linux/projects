@@ -15,29 +15,24 @@
         <Archive sha1sum="04609887358906112ab5eb8e5770209b724ebcd1" type="targz">http://launchpad.net/zeitgeist/0.7/0.7.1/+download/zeitgeist-0.7.1.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>raptor-devel</Dependency>
-            <Dependency>liblrdf-devel</Dependency>
             <Dependency>dbus-python</Dependency>
             <Dependency>python-pyxdg</Dependency>
             <Dependency>xapian-core-devel</Dependency>
+            <Dependency>redland-devel</Dependency>
         </BuildDependencies>
-        <Patches>
-            <Patch level="1">no-python-rdflib.patch</Patch>
-        </Patches>
     </Source>
 
     <Package>
         <Name>zeitgeist</Name>
         <RuntimeDependencies>
             <Dependency>raptor</Dependency>
-            <Dependency>liblrdf</Dependency>
             <Dependency>dbus-python</Dependency>
             <Dependency>python-pyxdg</Dependency>
             <Dependency>xapian-core</Dependency> 
+            <Dependency>redland</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
