@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>evolution-exchange</Name>
+        <Homepage>http://projects.gnome.org/evolution/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Evolution module for connecting to Microsoft Exchange</Summary>
+        <Description>Evolution module for connecting to Microsoft Exchange</Description>
+        <Archive sha1sum="b87e160b45c66e6fb951fc9589ca4056fec15267" type="tarbz2">http://download.gnome.org/sources/evolution-exchange/2.32/evolution-exchange-2.32.2.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="2.32.2">evolution-data-server-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>libunique-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>evolution-exchange</Name>
+        <RuntimeDependencies>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>libunique</Dependency>
+            <Dependency>gtkhtml3</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>2.32.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
