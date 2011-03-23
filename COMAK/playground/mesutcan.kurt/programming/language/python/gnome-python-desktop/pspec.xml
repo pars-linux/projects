@@ -24,9 +24,9 @@
             <Dependency>gnome-panel</Dependency>
             <Dependency>gnome-desktop</Dependency>
         </BuildDependencies>
-        <!--<Patches>
+        <Patches>
             <Patch level="1">do-not-compile-pyo.patch</Patch>
-        </Patches>-->
+        </Patches>
     </Source>
 
     <Package>
