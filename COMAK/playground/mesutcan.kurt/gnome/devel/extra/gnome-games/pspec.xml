@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-games</Name>
+        <Homepage>http://live.gnome.org/GnomeGames/</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Collection of games for the GNOME desktop</Summary>
+        <Description>gnome-games is a collection of sixteen small "five-minute" games in a variety of styles and genres for the GNOME desktop.</Description>
+        <Archive sha1sum="c71be0abb0afb19ef352b5c1179155f57daec9d0" type="targz">http://ftp.gnome.org/pub/GNOME/sources/gnome-games/2.32/gnome-games-2.32.1.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>python-gtk-devel</Dependency>
+            <Dependency>python-cairo-devel</Dependency>
+            <Dependency>libcanberra-gtk</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>ggz-base-libs-devel</Dependency>
+            <Dependency>python-pygobject-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-games</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>python-gtk</Dependency>
+            <Dependency>python-cairo</Dependency>
+            <Dependency>libcanberra-gtk</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>ggz-base-libs</Dependency>
+            <Dependency>python-pygobject</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>2.32.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
