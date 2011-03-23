@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>hamster-applet</Name>
+        <Homepage>http://projecthamster.wordpress.com/</Homepage>
+        <Packager>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Time tracking for the masses, in a GNOME applet</Summary>
+        <Description>Project Hamster is time tracking for individuals. It helps you to keep track on how much time you have spent during the day on activities you choose to track.</Description>
+        <Archive sha1sum="" type="">http://</Archive>
+        <BuildDependencies>
+            <Dependency></Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level=""></Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name></Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom=""></Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
+        </AdditionalFiles>
+        <Provides>
+            <COMAR script=""></COMAR>
+        </Provides>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>YYYY-MM-DD</Date>
+            <Version></Version>
+            <Comment>First release.</Comment>
+            <Name></Name>
+            <Email></Email>
+        </Update>
+    </History>
+</PISI>
+
