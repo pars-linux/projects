@@ -6,7 +6,6 @@ evolution-exchange  --  Evolution module for connecting to Microsoft Exchange  -
 evolution-webcal  --  A GNOME URL handler for web-published ical calendar files  -- NonExist
 fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
 file-browser-applet  --  Browse, open and manage files in your computer directly from the GNOME panel.  --  NonExist
-gcursor  --  GTK+ based xcursor theme selector  --  NonExist
 gdesklets-core  --  GNOME Desktop Applets: Core library for desktop applets  --  NonExist
 gnome-do  --  GNOME Do allows you to get things done quickly  --  NonExist
 gnome-do-plugins  --  Plugins to put the Do in Gnome Do  --  NonExist
