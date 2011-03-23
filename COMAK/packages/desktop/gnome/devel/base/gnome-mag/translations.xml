@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-mag</Name>
+        <Summary xml:lang="tr">GNOME için ekran büyüteci</Summary>
+        <Description xml:lang="tr">Masaüstünün bölümleri üzerinde zoom yapma imkanı sağlayan masaüstü büyüteci içerir.</Description>
+    </Source>
+</PISI>
+
