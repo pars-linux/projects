@@ -17,7 +17,6 @@ gnome-user-share  --  Personal file sharing for the GNOME desktop  --  NonExist
 gnome-web-photo  --  a tool to generate images and thumbnails from HTML files  -- NonExist
 gpointing-device-settings  -- A GTK+ based configuration utility for the synaptics driver  -- NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
-libgail-gnome -- Gail libraries for GNOME  -- NonExist
 libgnomedb  -- Database widget library from the GNOME-DB project  --  NonExist
 lock-keys-applet  --  An applet that shows the status of your Caps, Num and Scroll Lock keys  -- NonExist
 music-applet  --  GNOME applet to control various music players  --  NonExist
