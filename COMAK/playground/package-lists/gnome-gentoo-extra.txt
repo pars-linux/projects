@@ -18,7 +18,6 @@ gnome-user-docs  --  GNOME end user documentation  --  NonExist
 gnome-user-share  --  Personal file sharing for the GNOME desktop  --  NonExist
 gnome-web-photo  --  a tool to generate images and thumbnails from HTML files  -- NonExist
 gpointing-device-settings  -- A GTK+ based configuration utility for the synaptics driver  -- NonExist
-hamster-applet  --  Time tracking for the masses, in a GNOME applet  --  NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
 libgail-gnome -- Gail libraries for GNOME  -- NonExist
 libgnomedb  -- Database widget library from the GNOME-DB project  --  NonExist
