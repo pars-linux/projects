@@ -16,7 +16,7 @@
         <BuildDependencies>
             <Dependency>gconfmm-devel</Dependency>
             <Dependency>gtkmm-devel</Dependency>
-            <Dependency>libgnomecanvas-devel</Dependency>
+            <Dependency>libgnomecanvasmm-devel</Dependency>
             <Dependency>libglademm-devel</Dependency>
             <Dependency>libgtop-devel</Dependency>
             <Dependency>lm_sensors</Dependency>
