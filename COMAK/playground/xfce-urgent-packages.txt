@@ -1,5 +1,3 @@
-postler (A lean mail reader with an opinionated interface)
-
 FIXME:
 
 thunar-shares-plugin
