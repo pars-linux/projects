@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-python-desktop</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Python binding from GNOME desktop</Summary>
+        <Description>Python binding from GNOME desktop</Description>
+        <Archive sha1sum="dae15fe9fea61ecbde5af513c94de2ff1a66369c" type="tarbz2">mirrors://gnome/gnome-python-desktop/2.32/gnome-python-desktop-2.32.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>librsvg</Dependency>
+            <Dependency>libgnomeprintui</Dependency>
+            <Dependency>libwnck</Dependency>
+            <Dependency>totem-pl-parser</Dependency>
+            <Dependency>libgtop</Dependency>
+            <Dependency>metacity</Dependency>
+            <Dependency>gnome-keyring</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+        </BuildDependencies>
+        <!--<Patches>
+            <Patch level="1">do-not-compile-pyo.patch</Patch>
+        </Patches>-->
+    </Source>
+
+    <Package>
+        <Name>gnome-python-desktop</Name>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="data">/usr/share/pygtk</Path>
+            <Path fileType="data">/usr/share/gtk-doc</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2008-08-01</Date>
+            <Version>2.22.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
