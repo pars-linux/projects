@@ -1,0 +1,17 @@
+diff -Nuar zeitgeist-0.7.1.orig//configure.ac zeitgeist-0.7.1/configure.ac
+--- zeitgeist-0.7.1.orig//configure.ac	2011-03-20 17:04:01.000000000 +0200
++++ zeitgeist-0.7.1/configure.ac	2011-03-23 16:14:31.069541002 +0200
+@@ -37,13 +37,4 @@
+   AC_MSG_ERROR(You need the tool `rapper' from the `raptor-utils' package in order to compile Zeitgeist)
+ fi
+ 
+-# check for python-rdflib
+-AC_MSG_CHECKING([for python-rdflib])
+-echo "import rdflib" | python - 2>/dev/null
+-if test $? -ne 0 ; then
+-  AC_MSG_FAILURE([failed.  Please install the python-rdflib package.])
+-else
+-  AC_MSG_RESULT([yes])
+-fi
+ 
+-AC_OUTPUT
