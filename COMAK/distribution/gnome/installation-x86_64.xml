@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011 - Comak Gnome x86_64 [Gnome]</Title>
+    <Title>COMAK - GNOME x86_64 [GNOME]</Title>
     <WorkDir>/root/pardusman/work/gnome/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/gnome/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://192.168.1.71/repo/pisi-index.xml.xz">
