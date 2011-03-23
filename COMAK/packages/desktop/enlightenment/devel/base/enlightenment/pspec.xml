@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Enlightenment Desktop Shell</Summary>
         <Description>Enlightenment is a window manager for the X Window System that is designed to be powerful, extensible, configurable and pretty darned good looking! It is one of the more graphically intense window managers.</Description>
-        <Archive sha1sum="70fbb173140675b4ab475c0440fa7957c84040a7" type="targz">./enlightenment-0.16.999.58024.tar.gz</Archive>
+        <Archive sha1sum="70fbb173140675b4ab475c0440fa7957c84040a7" type="targz">http://comak.comu.edu.tr/source/enlightenment-0.16.999_58024.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0">eet-devel</Dependency>
