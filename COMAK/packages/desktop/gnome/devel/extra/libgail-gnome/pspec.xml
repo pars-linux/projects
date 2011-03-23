@@ -40,7 +40,7 @@
         <Name>libgail-gnome-devel</Name>
         <Summary>Development files for libgail-gnome</Summary>
         <RuntimeDependencies>
-            <Dependency release="current">libgailgnome</Dependency>
+            <Dependency release="current">libgail-gnome</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib/pkgconfig</Path>
