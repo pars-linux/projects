@@ -1,8 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>COMAK - GNOME x86_64 [GNOME]</Title>
+    <Title>COMAK - GNOME x86_64 [Gnome]</Title>
     <WorkDir>/root/pardusman/work/gnome/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/gnome/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="http://192.168.1.71/repo/pisi-index.xml.xz">
+    <PackageSelection repo_uri="http://comak64.comu.edu.tr/repo/pisi-index.xml.xz">
         <SelectedComponent>desktop.gnome</SelectedComponent>
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
@@ -20,17 +20,20 @@
         <SelectedPackage>apmd</SelectedPackage>
         <SelectedPackage>aria2</SelectedPackage>
         <SelectedPackage>artwork-pardus-release</SelectedPackage>
+        <SelectedPackage>assogiate</SelectedPackage>
         <SelectedPackage>atkmm</SelectedPackage>
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
         <SelectedPackage>boot-manager-pds</SelectedPackage>
         <SelectedPackage>brasero</SelectedPackage>
+        <SelectedPackage>bug-buddy</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
         <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
+        <SelectedPackage>contacts</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
         <SelectedPackage>cursor-theme-oxygen-black</SelectedPackage>
         <SelectedPackage>cursor-theme-oxygen-white</SelectedPackage>
@@ -60,10 +63,12 @@
         <SelectedPackage>firefox</SelectedPackage>
         <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
+        <SelectedPackage>flickrnet</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
         <SelectedPackage>garcon</SelectedPackage>
         <SelectedPackage>garcon-docs</SelectedPackage>
+        <SelectedPackage>gcursor</SelectedPackage>
         <SelectedPackage>gdm</SelectedPackage>
         <SelectedPackage>gecko-mediaplayer</SelectedPackage>
         <SelectedPackage>gfxboot</SelectedPackage>
@@ -73,9 +78,13 @@
         <SelectedPackage>gimp-i18n-tr</SelectedPackage>
         <SelectedPackage>glew</SelectedPackage>
         <SelectedPackage>gnome-applets</SelectedPackage>
+        <SelectedPackage>gnome-audio</SelectedPackage>
         <SelectedPackage>gnome-backgrounds</SelectedPackage>
+        <SelectedPackage>gnome-color-chooser</SelectedPackage>
         <SelectedPackage>gnome-control-center</SelectedPackage>
         <SelectedPackage>gnome-desktop-sharp</SelectedPackage>
+        <SelectedPackage>gnome-keyring-sharp</SelectedPackage>
+        <SelectedPackage>gnome-mag</SelectedPackage>
         <SelectedPackage>gnome-menus</SelectedPackage>
         <SelectedPackage>gnome-mount</SelectedPackage>
         <SelectedPackage>gnome-power-manager</SelectedPackage>
@@ -92,7 +101,9 @@
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
         <SelectedPackage>guake</SelectedPackage>
+        <SelectedPackage>gwget</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
+        <SelectedPackage>hardware-monitor</SelectedPackage>
         <SelectedPackage>hplip</SelectedPackage>
         <SelectedPackage>htop</SelectedPackage>
         <SelectedPackage>hunspell</SelectedPackage>
@@ -109,6 +120,7 @@
         <SelectedPackage>jfsutils</SelectedPackage>
         <SelectedPackage>kernel</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
+        <SelectedPackage>libgail-gnome</SelectedPackage>
         <SelectedPackage>libgnomecups</SelectedPackage>
         <SelectedPackage>libgnomekbd</SelectedPackage>
         <SelectedPackage>libgnomeprint</SelectedPackage>
@@ -146,9 +158,12 @@
         <SelectedPackage>module-ndiswrapper</SelectedPackage>
         <SelectedPackage>module-nvidia173</SelectedPackage>
         <SelectedPackage>module-nvidia96</SelectedPackage>
+        <SelectedPackage>mousetweaks</SelectedPackage>
         <SelectedPackage>mplayer</SelectedPackage>
         <SelectedPackage>nautilus</SelectedPackage>
+        <SelectedPackage>nautilus-dropbox</SelectedPackage>
         <SelectedPackage>nautilus-open-terminal</SelectedPackage>
+        <SelectedPackage>nautilus-sendto</SelectedPackage>
         <SelectedPackage>netcat</SelectedPackage>
         <SelectedPackage>netkit-ftp</SelectedPackage>
         <SelectedPackage>network-manager-applet</SelectedPackage>
@@ -160,6 +175,7 @@
         <SelectedPackage>openbox</SelectedPackage>
         <SelectedPackage>p7zip</SelectedPackage>
         <SelectedPackage>package-manager-pds</SelectedPackage>
+        <SelectedPackage>panflute</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
         <SelectedPackage>pardus-default-settings-gnome</SelectedPackage>
         <SelectedPackage>pardus-desktop-services</SelectedPackage>
@@ -233,6 +249,7 @@
         <SelectedPackage>sun-jre</SelectedPackage>
         <SelectedPackage>suspend</SelectedPackage>
         <SelectedPackage>synergy</SelectedPackage>
+        <SelectedPackage>tasks</SelectedPackage>
         <SelectedPackage>telnet-bsd</SelectedPackage>
         <SelectedPackage>thunar-sendto-clamtk</SelectedPackage>
         <SelectedPackage>thunar-thumbnailers</SelectedPackage>
@@ -270,6 +287,7 @@
         <SelectedPackage>xvattr</SelectedPackage>
         <SelectedPackage>yacpi</SelectedPackage>
         <SelectedPackage>yali</SelectedPackage>
+        <SelectedPackage>zeitgeist</SelectedPackage>
         <SelectedPackage>zemberek</SelectedPackage>
         <SelectedPackage>zemberek-office</SelectedPackage>
         <SelectedPackage>zemberek-server</SelectedPackage>
@@ -290,6 +308,7 @@
         <Package>alternatives</Package>
         <Package>apr</Package>
         <Package>apr-util</Package>
+        <Package>at-spi</Package>
         <Package>atk</Package>
         <Package>atk-devel</Package>
         <Package>atmel-firmware</Package>
@@ -376,6 +395,7 @@
         <Package>enchant</Package>
         <Package>enscript</Package>
         <Package>eog</Package>
+        <Package>epiphany</Package>
         <Package>evince</Package>
         <Package>evolution-data-server</Package>
         <Package>exempi</Package>
@@ -841,6 +861,7 @@
         <Package>nautilus</Package>
         <Package>ncompress</Package>
         <Package>ncurses</Package>
+        <Package>ndesk-dbus</Package>
         <Package>neon</Package>
         <Package>net-snmp</Package>
         <Package>net-tools</Package>
@@ -917,6 +938,7 @@
         <Package>pisi</Package>
         <Package>pixman</Package>
         <Package>pixman-devel</Package>
+        <Package>pkgconfig</Package>
         <Package>plymouth-core-libs</Package>
         <Package>plymouth-graphics-libs</Package>
         <Package>plymouth-plugin-fade-throbber</Package>
@@ -964,7 +986,9 @@
         <Package>python-pyblock</Package>
         <Package>python-pygobject</Package>
         <Package>python-pyliblzma</Package>
+        <Package>python-pyxdg</Package>
         <Package>python-qt</Package>
+        <Package>python-rdflib</Package>
         <Package>python-setuptools</Package>
         <Package>python-zope-interface</Package>
         <Package>qt</Package>
@@ -1068,6 +1092,7 @@
         <Package>wireless-tools</Package>
         <Package>wpa_supplicant</Package>
         <Package>x264</Package>
+        <Package>xapian-core</Package>
         <Package>xcb-util</Package>
         <Package>xcb-util-devel</Package>
         <Package>xdg-user-dirs</Package>
