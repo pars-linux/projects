@@ -1,10 +1,8 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>Pardus 2011-Comak Enlightenment x86-64</Title>
-    <WorkDir>/root/pardusman/work/enlightenment/work</WorkDir>
+    <Title>COMAK - Enlightenment x86_64 [Dolly]</Title>
+    <WorkDir>/root/pardusman/work/enligtenment/work</WorkDir>
     <ReleaseFiles>/root/pardusman/work/enlightenment/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="file:///root/pardusman/repo/pisi-index.xml.xz">
-        <SelectedComponent>desktop.enlightenment.addon</SelectedComponent>
-        <SelectedComponent>desktop.enlightenment.base</SelectedComponent>
+    <PackageSelection repo_uri="http://comak64.comu.edu.tr/repo/pisi-index.xml.xz">
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
@@ -39,39 +37,60 @@
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>dvd+rw-tools</SelectedPackage>
         <SelectedPackage>e-module-alarm</SelectedPackage>
+        <SelectedPackage>e-module-calendar</SelectedPackage>
         <SelectedPackage>e-module-cpu</SelectedPackage>
+        <SelectedPackage>e-module-deskshow</SelectedPackage>
+        <SelectedPackage>e-module-diskio</SelectedPackage>
         <SelectedPackage>e-module-drawer</SelectedPackage>
         <SelectedPackage>e-module-everything-pidgin</SelectedPackage>
+        <SelectedPackage>e-module-everything-places</SelectedPackage>
         <SelectedPackage>e-module-exalt-client</SelectedPackage>
+        <SelectedPackage>e-module-language</SelectedPackage>
         <SelectedPackage>e-module-mem</SelectedPackage>
         <SelectedPackage>e-module-mpdule</SelectedPackage>
         <SelectedPackage>e-module-net</SelectedPackage>
+        <SelectedPackage>e-module-notification</SelectedPackage>
+        <SelectedPackage>e-module-penguins</SelectedPackage>
         <SelectedPackage>e-module-photo</SelectedPackage>
+        <SelectedPackage>e-module-places</SelectedPackage>
+        <SelectedPackage>e-module-snow</SelectedPackage>
         <SelectedPackage>e-module-trash</SelectedPackage>
         <SelectedPackage>e-module-weather</SelectedPackage>
+        <SelectedPackage>econcentration</SelectedPackage>
         <SelectedPackage>edgar</SelectedPackage>
+        <SelectedPackage>editje</SelectedPackage>
         <SelectedPackage>edje_viewer</SelectedPackage>
         <SelectedPackage>eio</SelectedPackage>
         <SelectedPackage>eio-devel</SelectedPackage>
+        <SelectedPackage>elsa</SelectedPackage>
         <SelectedPackage>emotion</SelectedPackage>
         <SelectedPackage>emotion-devel</SelectedPackage>
         <SelectedPackage>empower</SelectedPackage>
         <SelectedPackage>emprint</SelectedPackage>
         <SelectedPackage>encfs</SelectedPackage>
         <SelectedPackage>enchant-zemberek</SelectedPackage>
+        <SelectedPackage>enjoy</SelectedPackage>
+        <SelectedPackage>enlil</SelectedPackage>
+        <SelectedPackage>enlil-devel</SelectedPackage>
         <SelectedPackage>envision</SelectedPackage>
         <SelectedPackage>epdf</SelectedPackage>
         <SelectedPackage>epdf-devel</SelectedPackage>
         <SelectedPackage>epdfview</SelectedPackage>
         <SelectedPackage>ephoto</SelectedPackage>
+        <SelectedPackage>eterm</SelectedPackage>
+        <SelectedPackage>eterm-bg</SelectedPackage>
         <SelectedPackage>ethtool</SelectedPackage>
         <SelectedPackage>exalt</SelectedPackage>
+        <SelectedPackage>exalt-devel</SelectedPackage>
         <SelectedPackage>example-content</SelectedPackage>
+        <SelectedPackage>exquisite</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
+        <SelectedPackage>eyelight</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
         <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
+        <SelectedPackage>flickcurl</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
         <SelectedPackage>gecko-mediaplayer</SelectedPackage>
@@ -87,6 +106,7 @@
         <SelectedPackage>gtk-engines</SelectedPackage>
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
+        <SelectedPackage>guake</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
         <SelectedPackage>hplip</SelectedPackage>
         <SelectedPackage>htop</SelectedPackage>
@@ -99,11 +119,14 @@
         <SelectedPackage>ipython</SelectedPackage>
         <SelectedPackage>irda-utils</SelectedPackage>
         <SelectedPackage>irqbalance</SelectedPackage>
+        <SelectedPackage>itask-ng</SelectedPackage>
         <SelectedPackage>iw</SelectedPackage>
         <SelectedPackage>jfsutils</SelectedPackage>
+        <SelectedPackage>kaptan-e17</SelectedPackage>
         <SelectedPackage>kernel</SelectedPackage>
         <SelectedPackage>leafpad</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
+        <SelectedPackage>libeweather</SelectedPackage>
         <SelectedPackage>libiptcdata</SelectedPackage>
         <SelectedPackage>libreoffice</SelectedPackage>
         <SelectedPackage>libreoffice-extension-pdfimport</SelectedPackage>
@@ -116,13 +139,12 @@
         <SelectedPackage>libreoffice-langpack-tr</SelectedPackage>
         <SelectedPackage>libreoffice-python</SelectedPackage>
         <SelectedPackage>libvisual-plugins</SelectedPackage>
-        <SelectedPackage>lightmediascanner-devel</SelectedPackage>
+        <SelectedPackage>lightmediascanner</SelectedPackage>
         <SelectedPackage>lm_sensors</SelectedPackage>
         <SelectedPackage>logrotate</SelectedPackage>
         <SelectedPackage>lsscsi</SelectedPackage>
         <SelectedPackage>lvm2</SelectedPackage>
         <SelectedPackage>lvm2-static</SelectedPackage>
-        <SelectedPackage>lxdm</SelectedPackage>
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
@@ -143,7 +165,6 @@
         <SelectedPackage>ntfsprogs</SelectedPackage>
         <SelectedPackage>ntp-client</SelectedPackage>
         <SelectedPackage>nvidia-settings</SelectedPackage>
-        <SelectedPackage>obconf</SelectedPackage>
         <SelectedPackage>p7zip</SelectedPackage>
         <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
@@ -205,6 +226,7 @@
         <SelectedPackage>service-manager-pds</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
+        <SelectedPackage>shellementary</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
         <SelectedPackage>soprano-plugin-virtuoso</SelectedPackage>
         <SelectedPackage>splix</SelectedPackage>
@@ -323,42 +345,31 @@
         <Package>dnsmasq</Package>
         <Package>dosfstools</Package>
         <Package>droid-fonts</Package>
-        <Package>e-module-calendar</Package>
-        <Package>e-module-everything-places</Package>
-        <Package>e-module-language</Package>
-        <Package>e-module-notification</Package>
-        <Package>e-module-places</Package>
         <Package>e2fsprogs</Package>
         <Package>e3</Package>
         <Package>e_dbus</Package>
-        <Package>e_dbus-devel</Package>
         <Package>ecore</Package>
         <Package>ecore-devel</Package>
-        <Package>editje</Package>
         <Package>edje</Package>
-        <Package>edje-devel</Package>
         <Package>eet</Package>
         <Package>eet-devel</Package>
         <Package>eeze</Package>
-        <Package>eeze-devel</Package>
         <Package>efreet</Package>
-        <Package>efreet-devel</Package>
         <Package>eina</Package>
         <Package>eina-devel</Package>
         <Package>eio</Package>
         <Package>eject</Package>
         <Package>elementary</Package>
-        <Package>elementary-devel</Package>
         <Package>embryo</Package>
-        <Package>embryo-devel</Package>
         <Package>emotion</Package>
         <Package>enca</Package>
         <Package>enchant</Package>
         <Package>enlightenment</Package>
+        <Package>enlil</Package>
         <Package>enscript</Package>
         <Package>epdf</Package>
+        <Package>eterm</Package>
         <Package>ethumb</Package>
-        <Package>ethumb-devel</Package>
         <Package>evas</Package>
         <Package>evas-devel</Package>
         <Package>exalt</Package>
@@ -419,6 +430,7 @@
         <Package>gmp</Package>
         <Package>gnome-keyring</Package>
         <Package>gnome-mplayer</Package>
+        <Package>gnome-python</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
         <Package>gnutls</Package>
@@ -469,7 +481,6 @@
         <Package>iptables</Package>
         <Package>iputils</Package>
         <Package>iscan-firmware</Package>
-        <Package>itask-ng</Package>
         <Package>iw</Package>
         <Package>jack-audio-connection-kit</Package>
         <Package>jasper</Package>
@@ -505,6 +516,7 @@
         <Package>libXpm</Package>
         <Package>libXrandr</Package>
         <Package>libXrender</Package>
+        <Package>libXres</Package>
         <Package>libXt</Package>
         <Package>libXtst</Package>
         <Package>libXv</Package>
@@ -516,6 +528,7 @@
         <Package>libarchive</Package>
         <Package>libart_lgpl</Package>
         <Package>libass</Package>
+        <Package>libast</Package>
         <Package>libasyncns</Package>
         <Package>libavc1394</Package>
         <Package>libbonobo</Package>
@@ -549,8 +562,6 @@
         <Package>libebml</Package>
         <Package>libechonest</Package>
         <Package>libevent</Package>
-        <Package>libeweather</Package>
-        <Package>libeweather-devel</Package>
         <Package>libexif</Package>
         <Package>libfame</Package>
         <Package>libffado</Package>
@@ -583,6 +594,7 @@
         <Package>libindicate</Package>
         <Package>libindicate-qt</Package>
         <Package>libiodbc</Package>
+        <Package>libiptcdata</Package>
         <Package>libkate</Package>
         <Package>libkms</Package>
         <Package>liblastfm</Package>
@@ -653,6 +665,7 @@
         <Package>libvorbis</Package>
         <Package>libvpx</Package>
         <Package>libwmf</Package>
+        <Package>libwnck</Package>
         <Package>libwpd</Package>
         <Package>libwpg</Package>
         <Package>libwps</Package>
@@ -670,7 +683,6 @@
         <Package>lpsolve</Package>
         <Package>lsb-release</Package>
         <Package>lua</Package>
-        <Package>lua-devel</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
         <Package>lzo</Package>
@@ -715,6 +727,8 @@
         <Package>net-snmp</Package>
         <Package>net-tools</Package>
         <Package>netcat</Package>
+        <Package>notification-daemon</Package>
+        <Package>notify-python</Package>
         <Package>nspr</Package>
         <Package>nss</Package>
         <Package>nss-mdns</Package>
@@ -722,7 +736,6 @@
         <Package>ntfsprogs</Package>
         <Package>nvidia-xconfig</Package>
         <Package>openal</Package>
-        <Package>openbox</Package>
         <Package>opencore-amr</Package>
         <Package>openexr-libs</Package>
         <Package>openjpeg</Package>
@@ -796,12 +809,15 @@
         <Package>python-gtk</Package>
         <Package>python-nose</Package>
         <Package>python-numpy</Package>
+        <Package>python-orbit</Package>
         <Package>python-pyaspects</Package>
         <Package>python-pyblock</Package>
         <Package>python-pygobject</Package>
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
         <Package>python-setuptools</Package>
+        <Package>python-simplejson</Package>
+        <Package>python-xlib</Package>
         <Package>python-zope-interface</Package>
         <Package>qt</Package>
         <Package>qt-sql-sqlite</Package>
@@ -823,6 +839,7 @@
         <Package>sane-backends</Package>
         <Package>schroedinger</Package>
         <Package>scim-libs</Package>
+        <Package>screen</Package>
         <Package>sdl-gfx</Package>
         <Package>sdl-image</Package>
         <Package>sed</Package>
@@ -835,6 +852,7 @@
         <Package>slang</Package>
         <Package>slf4j</Package>
         <Package>slv2</Package>
+        <Package>smolt</Package>
         <Package>smpeg</Package>
         <Package>soprano</Package>
         <Package>soundtouch</Package>
@@ -881,6 +899,7 @@
         <Package>virtuoso</Package>
         <Package>vixie-cron</Package>
         <Package>vlc-libs</Package>
+        <Package>vte</Package>
         <Package>wavpack</Package>
         <Package>webkit-gtk</Package>
         <Package>which</Package>
@@ -918,6 +937,7 @@
         <Package>xorg-video-chips</Package>
         <Package>xorg-video-cirrus</Package>
         <Package>xorg-video-fbdev</Package>
+        <Package>xorg-video-geode</Package>
         <Package>xorg-video-glint</Package>
         <Package>xorg-video-i128</Package>
         <Package>xorg-video-i740</Package>
@@ -1361,7 +1381,6 @@
         <Package>yali-theme-pardus</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
-        <Package>zorg</Package>
     </InstallImagePackages>
     <LanguageSelection default_language="tr_TR">
         <Language>tr_TR</Language>
