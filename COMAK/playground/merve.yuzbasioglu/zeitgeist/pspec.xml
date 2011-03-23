@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>zeitgeist</Name>
+        <Homepage>http://launchpad.net/zeitgeist</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Service to log activities and present to other apps</Summary>
+        <Description>Zeitgeist is a service which logs the users's activities and eventsand makes relevant information available to other applications.</Description>
+        <Archive sha1sum="04609887358906112ab5eb8e5770209b724ebcd1" type="targz">http://launchpad.net/zeitgeist/0.7/0.7.1/+download/zeitgeist-0.7.1.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>raptor-devel</Dependency>
+            <Dependency>liblrdf-devel</Dependency>
+            <Dependency>dbus-python</Dependency>
+            <Dependency>python-pyxdg</Dependency>
+            <Dependency>xapian-core-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level="1">no-python-rdflib.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>zeitgeist</Name>
+        <RuntimeDependencies>
+            <Dependency>raptor</Dependency>
+            <Dependency>liblrdf</Dependency>
+            <Dependency>dbus-python</Dependency>
+            <Dependency>python-pyxdg</Dependency>
+            <Dependency>xapian-core</Dependency> 
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>0.7.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
