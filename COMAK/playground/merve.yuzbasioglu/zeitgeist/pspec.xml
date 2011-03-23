@@ -19,6 +19,7 @@
             <Dependency>python-pyxdg</Dependency>
             <Dependency>xapian-core-devel</Dependency>
             <Dependency>redland-devel</Dependency>
+            <Dependency>python-rdflib</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -30,6 +31,7 @@
             <Dependency>python-pyxdg</Dependency>
             <Dependency>xapian-core</Dependency> 
             <Dependency>redland</Dependency>
+            <Dependency>python-rdflib</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
