@@ -1,0 +1,78 @@
+--- gnome-doc-utils.make	2008-05-28 02:37:40.000000000 +0300
+@@ -534,10 +534,6 @@
+ 	  echo "$(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
+ 	  $(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf; \
+ 	done
+-	@if test "x$(_ENABLE_SK)" = "xtrue"; then \
+-	  echo "scrollkeeper-update -p $(DESTDIR)$(_sklocalstatedir) -o $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)"; \
+-	  scrollkeeper-update -p "$(DESTDIR)$(_sklocalstatedir)" -o "$(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)"; \
+-	fi;
+ 
+ install-doc-dsk:
+ 	echo install-dsk
+--- help/bg/Makefile.in	2008-05-28 02:37:50.000000000 +0300
+@@ -490,7 +490,6 @@
+ 	for file in $(omffile); do \
+ 		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
+ 	done
+-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
+ 
+ uninstall-local-omf:
+ 	-for file in $(srcdir)/*.omf; do \
+--- help/ja/Makefile.in	2008-05-28 02:37:50.000000000 +0300
+@@ -490,7 +490,6 @@
+ 	for file in $(omffile); do \
+ 		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
+ 	done
+-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
+ 
+ uninstall-local-omf:
+ 	-for file in $(srcdir)/*.omf; do \
+--- help/Makefile.in	2008-05-28 02:37:49.000000000 +0300
+@@ -1017,10 +1017,6 @@
+ 	  echo "$(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf"; \
+ 	  $(INSTALL_DATA) $$omf $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)/$$omf; \
+ 	done
+-	@if test "x$(_ENABLE_SK)" = "xtrue"; then \
+-	  echo "scrollkeeper-update -p $(DESTDIR)$(_sklocalstatedir) -o $(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)"; \
+-	  scrollkeeper-update -p "$(DESTDIR)$(_sklocalstatedir)" -o "$(DESTDIR)$(OMF_DIR)/$(DOC_MODULE)"; \
+-	fi;
+ 
+ install-doc-dsk:
+ 	echo install-dsk
+--- help/zh_CN/Makefile.in	2008-05-28 02:37:50.000000000 +0300
+@@ -490,7 +490,6 @@
+ 	for file in $(omffile); do \
+ 		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
+ 	done
+-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
+ 
+ uninstall-local-omf:
+ 	-for file in $(srcdir)/*.omf; do \
+--- help/zh_HK/Makefile.in	2008-05-28 02:37:50.000000000 +0300
+@@ -490,7 +490,6 @@
+ 	for file in $(omffile); do \
+ 		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
+ 	done
+-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
+ 
+ uninstall-local-omf:
+ 	-for file in $(srcdir)/*.omf; do \
+--- help/zh_TW/Makefile.in	2008-05-28 02:37:50.000000000 +0300
+@@ -490,7 +490,6 @@
+ 	for file in $(omffile); do \
+ 		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
+ 	done
+-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
+ 
+ uninstall-local-omf:
+ 	-for file in $(srcdir)/*.omf; do \
+--- omf.make	2008-05-28 02:37:40.000000000 +0300
+@@ -45,7 +45,6 @@
+ 	for file in $(omffile); do \
+ 		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
+ 	done
+-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
+ 
+ uninstall-local-omf:
+ 	-for file in $(srcdir)/*.omf; do \
