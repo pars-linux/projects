@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gdesklets-core</Name>
+        <Summary xml:lang="tr">Masaüstü uygulamaları için temel kitaplık</Summary>
+        <Description xml:lang="tr">GDesklets-core, masaüstü uygulamaları için kullanılan temel kitaplıktır.</Description>
+    </Source>
+</PISI>
+
