@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>libgnomeuimm</Name>
+        <Homepage>http://www.gtkmm.org</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>LGPL-2.1</License>
+        <IsA>library</IsA>
+        <Summary>C++ bindings for libgnomeui</Summary>
+        <Description>libgnomeuimm provides C++ bindings for libgnomeui</Description>
+        <Archive sha1sum="1f35c63971c01bade194ab01815a0a8ae506a351" type="targz">ftp://ftp.gnome.org/pub/GNOME/sources/libgnomeuimm/2.28/libgnomeuimm-2.28.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gtkmm-devel</Dependency>
+            <Dependency>gconfmm-devel</Dependency>
+            <Dependency>glibmm-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>libgnomemm-devel</Dependency>
+            <Dependency>libgnomecanvasmm-devel</Dependency>
+            <Dependency>libglademm-devel</Dependency>
+            <Dependency>gnome-vfsmm-devel</Dependency>
+            <Dependency>libsigc++</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>libgnomeuimm</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gtkmm</Dependency>
+            <Dependency>gconfmm</Dependency>
+            <Dependency>glibmm</Dependency>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>libgnomemm</Dependency>
+            <Dependency>libgnomecanvasmm</Dependency>
+            <Dependency>libglademm</Dependency>
+            <Dependency>gnome-vfsmm</Dependency>
+            <Dependency>libsigc++</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>libgnomeuimm-devel</Name>
+        <Summary>Development files for libgnomeuimm</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">libgnomeuimm</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="header">/usr/lib/libgnomeuimm-2.6/include</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-24</Date>
+            <Version>2.28.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
