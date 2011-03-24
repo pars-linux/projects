@@ -10,10 +10,6 @@ gnome-user-docs          NonExist
 --communication
 ekiga                    Playground(fahri tugrul gurkaynak)
 
-
---education
-gcalctool                Playground(burak caliskan)
-
 --games
 aisleriot                NonExist
 gbrainy                  
