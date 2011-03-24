@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-user-docs</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>data:doc</IsA>
+        <Summary>user docs for Gnome</Summary>
+        <Description>Gnome-user-docs contain documents which will be packaged together and shipped as gnome-user-docs in the core GNOME distribution.</Description>
+        <Archive sha1sum="5b1080216bc6c6c8716732646788bcb00d41c50c" type="targz">ftp://ftp.gnome.org/pub/GNOME/sources/gnome-user-docs/2.32/gnome-user-docs-2.32.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-doc-utils</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-user-docs</Name>
+        <Files>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-24</Date>
+            <Version>2.32.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
