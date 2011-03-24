@@ -1,6 +1,5 @@
 alacarte                  NonExist
 art-sharp2                NonExist
-bug-buddy                 NonExist
 compiz-gnome              NonExist
 dasher                    NonExist
 dasher-data-recommended    NonExist
@@ -34,8 +33,6 @@ libgnomesu                   NonExist
 libgp11-0                    NonExist
 libgp11-modules              NonExist
 libgtksourceview-2_0-0       NonExist
-libpanel-applet-2-0          NonExist
-mousetweaks                  NonExist
 nautilus-tracker           NonExist
 NetworkManager-gnome       NonExist
 orca                       NonExist
