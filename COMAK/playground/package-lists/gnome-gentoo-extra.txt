@@ -12,7 +12,6 @@ lock-keys-applet  --  An applet that shows the status of your Caps, Num and Scro
 quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
 swfdec-gnome  --  Flash player and thumbnailer for GNOME  -- NonExist (swfdec-mozilla,swfdec,swftools in playground)
 synapse  --  A program launcher in the style of GNOME Do  --  NonExist
-wp_tray  --  Wallpaper Manager for the Gnome Desktop  --  NonExist
 zeitgeist-datahub  --  Provides passive plugins to insert events into zeitgeist  --  NonExist
 docky -- NonExist
 
