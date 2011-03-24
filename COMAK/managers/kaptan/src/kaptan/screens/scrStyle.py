@@ -71,10 +71,15 @@ class Widget(QtGui.QWidget, Screen):
             dir.setNameFilters(a)
             lst2 = dir.entryList()
         else:
-            dir = QtCore.QDir("/usr/share/themes")
-            dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
-            lst2 = dir.entryList()
+            if ctx.Pds.session.Name == "fluxbox":
+                dir = QDir ("/usr/share/fluxbox/styles")
+                lst2 =dir.entryList()
+            else:
+                dir = QtCore.QDir("/usr/share/themes")
+                dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
+                lst2 = dir.entryList()
         for themes in lst2:
+            print themes
             try:
                 try:
                     StyleName = themes.split(".")[0]
