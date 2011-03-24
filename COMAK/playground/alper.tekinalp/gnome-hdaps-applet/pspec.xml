@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-hdaps-applet</Name>
+        <Homepage>http://www.zen24593.zen.co.uk/hdaps/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv3</License>
+        <IsA>library</IsA>
+        <Summary>Visualization of the Hard Disc Active Protection System State as Gnome applet</Summary>
+        <Description>gnome-hdaps-applet is a visualization of the Hard Disc Active Protection System State as Gnome applet</Description>
+        <Archive sha1sum="53158981a7b70ba5d5de27f13e315abede3e8c6f" type="targz" target="gnome-hdaps-applet-20081204">http://www.zen24593.zen.co.uk/hdaps/gnome-hdaps-applet-20081204.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-panel-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-hdaps-applet</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-panel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-24</Date>
+            <Version>20081204</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
