@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-user-docs</Name>
+        <Summary xml:lang="tr">Gnome için kullanıcı dökümanları</Summary>
+        <Description xml:lang="tr">Gnome-user-docs, temel Gnome dağıtımı ile gelen kullanıcı dökümanlarını içerir.</Description>
+    </Source>
+</PISI>
+
