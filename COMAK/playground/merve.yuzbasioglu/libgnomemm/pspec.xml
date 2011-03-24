@@ -16,6 +16,8 @@
         <BuildDependencies>
             <Dependency>gtkmm-devel</Dependency>
             <Dependency>libgnome-devel</Dependency>
+            <Dependency>libsigc++</Dependency>
+            <Dependency>glibmm-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -24,6 +26,8 @@
         <RuntimeDependencies>
             <Dependency>gtkmm</Dependency>
             <Dependency>libgnome</Dependency>
+            <Dependency>libsigc++</Dependency>
+            <Dependency>glibmm</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
@@ -39,6 +43,7 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
+            <Path fileType="header">/usr/lib/libgnomemm-2.6/include</Path>
         </Files>
     </Package>
 
