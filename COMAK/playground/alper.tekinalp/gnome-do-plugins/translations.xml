@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-do-plugins</Name>
+        <Summary xml:lang="tr">Gnome Do için eklentiler</Summary>
+        <Description xml:lang="tr">Gnome Do için eklentiler yaratmaya ve düzenlemeye yaramaktadır.</Description>
+    </Source>
+</PISI>
+
