@@ -17,7 +17,6 @@ docky -- NonExist
 PACKAGES IN PLAYGROUND:
 zenity  --  Tool to display dialogs from the commandline and shell scripts  -- Playground(brkclskn)
 at-spi -- The Gnome Accessibility Toolkit  -- Playground(brkclskn)
-gcalctool  --  A calculator application for GNOME  -- Playground(brkclskn)
 gconf-editor  --  An editor to the GNOME 2 config system  --  Playground(brkclskn)
 gucharmap  --  Unicode character map viewer  --  Playground(brkclskn)
 libgda  -- Gnome Database Access Library  -- Playground(serdardalgıç)
