@@ -1,6 +1,3 @@
---admin-tools
-file-roller              brkclskni686
-
 --desktop (other)
 xdg-user-dirs            Pardus2011devel
 
