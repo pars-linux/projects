@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-vfsmm</Name>
+        <Homepage>http://www.gtkmm.org</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>LGPL-2.1</License>
+        <IsA>library</IsA>
+        <Summary>C++ bindings for gnome-vfs</Summary>
+        <Description>Gnome-vfsmm provides C++ bindings for gnome-vfs.</Description>
+        <Archive sha1sum="9348e6f98a1a84119f85507507885e57f8cf0b71" type="targz">ftp://ftp.gnome.org/pub/GNOME/sources/gnome-vfsmm/2.26/gnome-vfsmm-2.26.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-vfs-devel</Dependency>
+            <Dependency>glibmm-devel</Dependency>
+            <Dependency>doxygen</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-vfsmm</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-vfs</Dependency>
+            <Dependency>glibmm</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gnome-vfsmm-devel</Name>
+        <Summary>Development files for gnome-vfsmm-devel</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">gnome-vfsmm</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="header">/usr/lib/gnome-vfsmm-2.6/include</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-24</Date>
+            <Version>2.30.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
