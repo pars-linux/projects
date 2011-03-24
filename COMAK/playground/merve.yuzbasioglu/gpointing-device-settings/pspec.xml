@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gpointing-device-settings</Name>
+        <Homepage>http://live.gnome.org/GPointingDeviceSettings</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv3</License>
+        <IsA>app:gui</IsA>
+        <Summary>A GTK+ based configuration utility for the synaptics driver</Summary>
+        <Description>GPointingDeviceSettings is a GUI tool for setting pointing device such as TrackPoint or Touchpad.</Description>
+        <Archive sha1sum="7f7e2fa02efdcc597dd6f3713f2c52325b00c26c" type="targz">http://ftp.de.debian.org/debian/pool/main/g/gpointing-device-settings/gpointing-device-settings_1.5.1.orig.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-settings-daemon-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libXi-devel</Dependency>
+            <Dependency>libX11-devel</Dependency>
+            <Dependency>xorg-server-devel</Dependency>
+            <Dependency>intltool</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level="1">gpointing-device-settings-1.5.1-crash.patch</Patch>
+            <Patch level="1">gpointing-device-settings-1.5.1-plugin.patch</Patch>
+            <Patch level="1">gpointing-device-settings-1.5.1-reboot.patch</Patch>
+            <Patch level="1">gpointing-device-settings-1.5.1-gtk22.patch</Patch>
+            <Patch level="1">gpointing-device-settings-1.5.1-gsd-crash.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gpointing-device-settings</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-settings-daemon</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>libXi</Dependency>
+            <Dependency>libX11</Dependency>
+            <Dependency>xorg-server</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+    
+    <Package>
+        <Name>gpointing-device-settings-devel</Name>
+        <Summary>Development files for gpointing-device-settings</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">gpointing-device-settings</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include/gpointing-device-settings</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>1.5.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+

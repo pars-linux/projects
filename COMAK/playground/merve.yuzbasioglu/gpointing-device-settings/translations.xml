@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gpointing-device-settings</Name>
+        <Summary xml:lang="tr">sinaptik sürücüleri yapılandırmaya yarayan Gtk tabanlı GUI</Summary>
+        <Description xml:lang="tr">GPointingDeviceSettings, fare ayaları için kullanılan yapılandırma aracıdır.</Description>
+    </Source>
+
+    <Package>
+        <Name>gpointing-device-settings-devel</Name>
+        <Summary xml:lang="tr">gpointing-device-settings için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+
