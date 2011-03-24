@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>music-applet</Name>
+        <Homepage>http://www.kuliniewicz.org/music-applet</Homepage>
+        <Packager>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:Gui</IsA>
+        <Summary>GNOME applet to control various music players</Summary>
+        <Description>GNOME applet to control various music players</Description>
+        <Archive sha1sum="0b0ba604418da8e49e781de20472e457f11c13ec" type="targz">http://www.kuliniewicz.org/music-applet/downloads/music-applet-2.5.1.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>gnome-keyring-devel</Dependency>
+            <Dependency>python-gtk-devel</Dependency>
+            <Dependency>dbus-glib-devel</Dependency>
+            <Dependency>notify-python</Dependency>
+            <Dependency>dbus-python</Dependency>
+            <Dependency>python-mpd</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>gnome-python-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>music-applet</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>gnome-panel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>2.5.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
