@@ -2,7 +2,7 @@
     <Title>COMAK - LXDE i686 [Bonobo]</Title>
     <WorkDir>/root/pardusman/work/lxde/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/lxde/releaseNotes</ReleaseFiles>
-    <PackageSelection repo_uri="file:///root/pardusman/repo/pisi-index.xml.xz">
+    <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
