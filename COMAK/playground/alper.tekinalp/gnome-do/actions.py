@@ -10,12 +10,12 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
-#shelltools.export("GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL", "1")
-
 def setup():
     autotools.configure("--disable-schemas-install")
 
 def build():
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+
     autotools.make()
 
 def install():
