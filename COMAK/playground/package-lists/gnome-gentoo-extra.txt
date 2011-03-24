@@ -7,7 +7,6 @@ evolution-webcal  --  A GNOME URL handler for web-published ical calendar files 
 fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
 gnome-hdaps-applet  --  Visualization of the Hard Disc Active Protection System State as Gnome applet  -- NonExist
 gnome-lirc-properties  --  GTK+ based utilty to configure LIRC remotes  -- NonExist
-gnome-user-share  --  Personal file sharing for the GNOME desktop  --  NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
 lock-keys-applet  --  An applet that shows the status of your Caps, Num and Scroll Lock keys  -- NonExist
 quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
