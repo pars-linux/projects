@@ -5,7 +5,6 @@ connman-gnome  --  Provides a daemon for managing internet connections  -- NonEx
 evolution-exchange  --  Evolution module for connecting to Microsoft Exchange  --  NonExist
 evolution-webcal  --  A GNOME URL handler for web-published ical calendar files  -- NonExist
 fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
-file-browser-applet  --  Browse, open and manage files in your computer directly from the GNOME panel.  --  NonExist
 gdesklets-core  --  GNOME Desktop Applets: Core library for desktop applets  --  NonExist
 gnome-hdaps-applet  --  Visualization of the Hard Disc Active Protection System State as Gnome applet  -- NonExist
 gnome-lirc-properties  --  GTK+ based utilty to configure LIRC remotes  -- NonExist
