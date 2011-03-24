@@ -9,7 +9,7 @@
             <Email>merveyuzbasioglu89@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
-        <IsA>app:gui</IsA>
+        <IsA>service</IsA>
         <Summary>Service to log activities and present to other apps</Summary>
         <Description>Zeitgeist is a service which logs the users's activities and eventsand makes relevant information available to other applications.</Description>
         <Archive sha1sum="04609887358906112ab5eb8e5770209b724ebcd1" type="targz">http://launchpad.net/zeitgeist/0.7/0.7.1/+download/zeitgeist-0.7.1.tar.gz</Archive>
