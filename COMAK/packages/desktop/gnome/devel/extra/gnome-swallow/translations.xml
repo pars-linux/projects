@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-swallow</Name>
+        <Summary xml:lang="tr">Gnome için kullanılan uygulama parçacığı</Summary>
+        <Description xml:lang="tr">Gnome-swallow, Gnome 2 paneli için kullanılan küçük bir uygulamadırkullanılan küçük bir uygulamadır.</Description>
+    </Source>
+</PISI>
+
