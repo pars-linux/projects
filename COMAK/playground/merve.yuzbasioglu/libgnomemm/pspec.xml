@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>libgnomemm</Name>
+        <Homepage>http://www.gtkmm.org</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>LGPL-2.1</License>
+        <IsA>library</IsA>
+        <Summary>C++ bindings for libgnome</Summary>
+        <Description>libgnomemm provides C++ wrappers for libgnome, for use with gtkmm.</Description>
+        <Archive sha1sum="184c715b63675dcd8c36e57c92189f973882b389" type="targz">ftp://ftp.gnome.org/pub/GNOME/sources/libgnomemm/2.30/libgnomemm-2.30.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gtkmm-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>libgnomemm</Name>
+        <RuntimeDependencies>
+            <Dependency>gtkmm</Dependency>
+            <Dependency>libgnome</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>libgnomemm-devel</Name>
+        <Summary>Development files for libgnomemm</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">libgnomemm</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-24</Date>
+            <Version>2.30.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
