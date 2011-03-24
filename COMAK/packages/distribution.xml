@@ -1,0 +1,11 @@
+<PISI>
+	<SourceName>COMAK</SourceName>
+<!--<Version>2011</Version>-->
+    <Description xml:lang="tr">COMAK Deposu</Description>
+    <Description xml:lang="en">COMAK Repository</Description>
+	<Type>Core</Type>
+	<BinaryName>COMAK</BinaryName>
+	<Obsoletes>
+		<!-- Add packages which you don't want to build by farm -->
+	</Obsoletes>
+</PISI>
