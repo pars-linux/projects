@@ -18,6 +18,7 @@
             <Dependency>rsvg-sharp</Dependency>
             <Dependency>notify-sharp</Dependency>
             <Dependency>wnck-sharp</Dependency>
+            <Dependency>gtk2-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>do-sthng.diff</Patch>
@@ -26,9 +27,13 @@
 
     <Package>
         <Name>gnome-do</Name>
-        <!--RuntimeDependencies>
-            <Dependency versionFrom=""></Dependency>
-        </RuntimeDependencies-->
+        <RuntimeDependencies>
+            <Dependency>rsvg-sharp</Dependency>
+            <Dependency>notify-sharp</Dependency>
+            <Dependency>wnck-sharp</Dependency>
+            <Dependency>gnome-desktop-sharp</Dependency>
+            <Dependency>gtk2</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
@@ -40,6 +45,17 @@
             <Path fileType="data">/usr/share</Path>
         </Files>
     </Package>
+
+    <Package>
+        <Name>gnome-do-devel</Name>
+        <RuntimeDependencies>
+            <Dependency release="current">gnome-do</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
 
     <History>
         <Update release="1">

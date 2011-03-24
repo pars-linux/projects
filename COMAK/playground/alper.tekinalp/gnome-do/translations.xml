@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-do</Name>
+        <Summary xml:lang="tr">GNOME Do işleri kolay yapmayı sağlar</Summary>
+        <Description xml:lang="tr">Do bilgisayarınızdaki genel işleri hızlı ve etkili bir şekilde yerine getirmenizi sağlayan zeki bir başlatıcıdır.</Description>
+    </Source>
+</PISI>
+
