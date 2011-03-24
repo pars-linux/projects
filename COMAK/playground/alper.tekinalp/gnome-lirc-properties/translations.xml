@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-lirc-properties</Name>
+        <Summary xml:lang="tr">LIRC uzak zihazlarını düzenlemek için özellikler</Summary>
+        <Description xml:lang="tr">gnome-lirc-properties LIRC uzak zihazlarını düzenlemek için özellikler içeren GTK+ tabanlı bir uygulamadır.</Description>
+    </Source>
+</PISI>
+
