@@ -18,7 +18,7 @@
     <BuildDependencies>
         <Dependency>libXcomposite-devel</Dependency>
         <Dependency>libbonobo-devel</Dependency>
-        <Dependency>at-spi</Dependency>
+        <Dependency>at-spi-devel</Dependency>
     </BuildDependencies>
     </Source>
     <Package>
