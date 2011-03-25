@@ -2,11 +2,11 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>service-manager</Name>
+        <Name>service-manager-comak</Name>
         <Homepage>http://www.pardus.org.tr/</Homepage>
         <Packager>
-            <Name>Gökmen Göksel</Name>
-            <Email>gokmen@pardus.org.tr</Email>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
