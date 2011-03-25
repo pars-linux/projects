@@ -19,6 +19,7 @@
             <Dependency>libbonoboui-devel</Dependency>
             <Dependency>libgnomeui-devel</Dependency>
             <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>at-spi-devel</Dependency>
         </BuildDependencies>
     </Source>
     <Package>
