@@ -15,21 +15,25 @@ shelltools.export("JOBS", "1")
 shelltools.export("CFLAGS", get.CFLAGS())
 shelltools.export("CXXFLAGS", get.CXXFLAGS())
 shelltools.export("LINKFLAGS", get.LDFLAGS())
+shelltools.export("LDFLAGS", get.LDFLAGS())
 
 def setup():
-    #autotools.configure("--disable-static\
-    #                     --enable-metacity\
-    #                     --disable-evolution\
-    #                     --disable-evolution-ecal")
+#    autotools.autoreconf("-vfi")
+#    autotools.configure("--disable-static \
+#                         --enable-metacity \
+#                         --disable-gtksourceview")
 
     shelltools.system("./waf configure \
                        --prefix=/usr")
 
 def build():
     shelltools.system("./waf build")
+#    autotools.make()
 
 def install():
     shelltools.system("./waf install --destdir=%s" % get.installDIR())
+
+#    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     pythonmodules.fixCompiledPy()
 
     pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING*", "NEWS", "README")

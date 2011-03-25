@@ -44,6 +44,8 @@
             <Dependency>bug-buddy</Dependency>
             <Dependency>python-cairo-devel</Dependency>
             <Dependency>gnome-media-devel</Dependency>
+            <Dependency>docbook-utils</Dependency>
+            <Dependency>gconf-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-compile-pyo.patch</Patch>
@@ -84,6 +86,7 @@
             <Dependency>bug-buddy</Dependency>
             <Dependency>python-cairo</Dependency>
             <Dependency>gnome-media</Dependency>
+            <Dependency>gconf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
