@@ -30,6 +30,8 @@
         </BuildDependencies>
         <Patches>
             <Patch level="1">brasero-2.32.0-build-plugins-against-local-library.patch</Patch>
+            <Patch level="1">11_nautilus_menu_no_display.patch</Patch>
+            <Patch level="1">31_link_libice.patch</Patch>
         </Patches>
     </Source>
 
