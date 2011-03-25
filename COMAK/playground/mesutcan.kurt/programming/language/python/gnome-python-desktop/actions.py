@@ -8,19 +8,29 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 from pisi.actionsapi import pythonmodules
+from pisi.actionsapi import shelltools
+
+shelltools.export("JOBS", "1")
+
+shelltools.export("CFLAGS", get.CFLAGS())
+shelltools.export("CXXFLAGS", get.CXXFLAGS())
+shelltools.export("LINKFLAGS", get.LDFLAGS())
 
 def setup():
-    autotools.configure("--disable-static\
-                         --enable-metacity\
-                         --disable-evolution\
-                         --disable-evolution-ecal")
+    #autotools.configure("--disable-static\
+    #                     --enable-metacity\
+    #                     --disable-evolution\
+    #                     --disable-evolution-ecal")
+
+    shelltools.system("./waf configure \
+                       --prefix=/usr")
 
 def build():
-    autotools.make()
+    shelltools.system("./waf build")
 
 def install():
-    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
+    shelltools.system("./waf install --destdir=%s" % get.installDIR())
     pythonmodules.fixCompiledPy()
-    
+
     pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING*", "NEWS", "README")
 

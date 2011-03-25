@@ -14,15 +14,29 @@
         <Description>Python binding from GNOME desktop</Description>
         <Archive sha1sum="dae15fe9fea61ecbde5af513c94de2ff1a66369c" type="tarbz2">mirrors://gnome/gnome-python-desktop/2.32/gnome-python-desktop-2.32.0.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency>librsvg</Dependency>
-            <Dependency>libgnomeprintui</Dependency>
-            <Dependency>libwnck</Dependency>
-            <Dependency>totem-pl-parser</Dependency>
-            <Dependency>libgtop</Dependency>
-            <Dependency>metacity</Dependency>
-            <Dependency>gnome-keyring</Dependency>
-            <Dependency>gnome-panel</Dependency>
-            <Dependency>gnome-desktop</Dependency>
+            <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>libgnomeprintui-devel</Dependency>
+            <Dependency>libwnck-devel</Dependency>
+            <Dependency>totem-pl-parser-devel</Dependency>
+            <Dependency>libgtop-devel</Dependency>
+            <Dependency>metacity-devel</Dependency>
+            <Dependency>gnome-keyring-devel</Dependency>
+            <Dependency>libgnome-keyring-devel</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>python-pygobject-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+            <Dependency>libical-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>libbonobo-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libart_lgpl-devel</Dependency>
+            <Dependency>libbonoboui-devel</Dependency>
+            <Dependency>libgnomeprint-devel</Dependency>
+            <Dependency>libgnomeprintui-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-compile-pyo.patch</Patch>
@@ -31,6 +45,32 @@
 
     <Package>
         <Name>gnome-python-desktop</Name>
+        <RuntimeDependencies>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>libgnomeprintui</Dependency>
+            <Dependency>libwnck</Dependency>
+            <Dependency>totem-pl-parser</Dependency>
+            <Dependency>libgtop</Dependency>
+            <Dependency>metacity</Dependency>
+            <Dependency>libgnome-keyring</Dependency>
+            <Dependency>gnome-keyring</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>python-pygobject</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>evince</Dependency>
+            <Dependency>libgnome</Dependency>
+            <Dependency>libical</Dependency>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libart_lgpl</Dependency>
+            <Dependency>libbonoboui</Dependency>
+            <Dependency>libgnomeprint</Dependency>
+            <Dependency>libgnomeprintui</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="data">/usr/share/pygtk</Path>
