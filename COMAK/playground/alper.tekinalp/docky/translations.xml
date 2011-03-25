@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>docky</Name>
+        <Summary xml:lang="tr">Zarif, güçlü ve temiz panel(dock)</Summary>
+        <Description xml:lang="tr">Docky genel uygulamaları açmak ve pencereleri yönetmek için kullanılan tam teşekküllü bir uygulama panelidir.</Description>
+    </Source>
+</PISI>
+
