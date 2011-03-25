@@ -43,6 +43,7 @@
             <Dependency>librsvg-devel</Dependency>
             <Dependency>bug-buddy</Dependency>
             <Dependency>python-cairo-devel</Dependency>
+            <Dependency>gnome-media-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-compile-pyo.patch</Patch>
@@ -82,6 +83,7 @@
             <Dependency>librsvg</Dependency>
             <Dependency>bug-buddy</Dependency>
             <Dependency>python-cairo</Dependency>
+            <Dependency>gnome-media</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
@@ -92,6 +94,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-25</Date>
+            <Version>2.32.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcankn@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2008-08-01</Date>
             <Version>2.22.0</Version>
