@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gio-sharp</Name>
+        <Homepage>http://github.com/mono/gio-sharp</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>a branch of the official gtk-sharp/gio to get gio-sharp building on gtk-sharp 2.12</Summary>
+        <Description>a branch of the official gtk-sharp/gio to get gio-sharp building on gtk-sharp 2.12</Description>
+        <Archive sha1sum="29ba03aafd10e3799de401818e5e8603af6a08d1" type="zip">https://github.com/mono/gio-sharp/zipball/99cdb9c</Archive>
+        <BuildDependencies>
+            <Dependency>gtk-sharp-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gio-sharp</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk-sharp</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-21</Date>
+            <Version>0.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
