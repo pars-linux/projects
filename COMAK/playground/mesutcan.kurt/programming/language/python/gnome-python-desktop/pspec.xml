@@ -25,7 +25,9 @@
             <Dependency>libgnome-keyring-devel</Dependency>
             <Dependency>gnome-panel-devel</Dependency>
             <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>gnome-python-devel</Dependency>
             <Dependency>python-pygobject-devel</Dependency>
+            <Dependency>python-gtk-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>pango-devel</Dependency>
             <Dependency>libgnome-devel</Dependency>
@@ -37,6 +39,10 @@
             <Dependency>libbonoboui-devel</Dependency>
             <Dependency>libgnomeprint-devel</Dependency>
             <Dependency>libgnomeprintui-devel</Dependency>
+            <Dependency>gtksourceview-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>bug-buddy</Dependency>
+            <Dependency>python-cairo-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-compile-pyo.patch</Patch>
@@ -57,7 +63,9 @@
             <Dependency>gnome-keyring</Dependency>
             <Dependency>gnome-panel</Dependency>
             <Dependency>gnome-desktop</Dependency>
+            <Dependency>gnome-python</Dependency>
             <Dependency>python-pygobject</Dependency>
+            <Dependency>python-gtk</Dependency>
             <Dependency>gtk2</Dependency>
             <Dependency>pango</Dependency>
             <Dependency>evince</Dependency>
@@ -70,6 +78,10 @@
             <Dependency>libbonoboui</Dependency>
             <Dependency>libgnomeprint</Dependency>
             <Dependency>libgnomeprintui</Dependency>
+            <Dependency>gtksourceview</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>bug-buddy</Dependency>
+            <Dependency>python-cairo</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
