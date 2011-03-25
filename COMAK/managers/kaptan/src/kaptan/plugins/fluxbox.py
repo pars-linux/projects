@@ -19,25 +19,11 @@ from . import base
 from kaptan.tools.desktop_parser import DesktopParser
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
-#CONFIG_KEYBOARD = QSettings("lxsession/LXDE","desktop")
-#CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
-#CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
-
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
 #libfm configuration files
 CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"], QSettings.IniFormat)
-
-
-
-def save_openboxrc(tree):
-    pass
-def save_lxsession(new):
-    pass
-def update_lxsession():
-    pass
-# end of shared LXDE methods
 
 class Keyboard(base.Keyboard):
     pass
@@ -118,7 +104,6 @@ class Wallpaper(base.Wallpaper):
             os.popen("fbsetbg %s" %wallpaper)
         #if color :
         #    os.popen("pcmanfm --wallpaper-mode %s" % color)
-            print wallpaper
 class Common(base.Common):
 
     def getLanguage(self):
@@ -130,24 +115,22 @@ class Common(base.Common):
 class Style(base.Style):
 
     def getDesktopNumber(self):
+        #TODO ~/fluxbox/init:38 
         return 3
 
     def setDesktopNumber(self):
         pass
+   
     def setThemeSettings(self):
         pass
     def setStyleSettings(self):
+        #TODO ~/fluxbox/init:70
         pass
     def setDesktopType(self):
         pass
 
     def reconfigure(self):
-       # commands = ["pcmanfm --desktop-off",
-       #             "pcmanfm -d --desktop",
-       #             "lxsession -r",
-       #             "openbox --restart"]
-       # command = ";".join(commands)
-       # os.system(command)
+       #TODO :window manager restart
         pass
 class Package(base.Package):
 
@@ -161,39 +144,4 @@ class Menu(base.Menu):
 
     def setMenuSettings(self):
         pass
-
-def test_config_files():
-    print ">libfm options..."
-    print " reading mouse single_click"
-    single_click = CONFIG_LIBFM.value("config/single_click").toInt()[0]
-    print " single_click=",single_click
-    print " reversing option..."
-    new_value = (not single_click and 1) or 0
-    CONFIG_LIBFM.setValue("config/single_click",new_value)
-    print " new value=",CONFIG_LIBFM.value("config/single_click").toString()
-    CONFIG_LIBFM.sync()
-    print " sync worked..."
-
-    print ">openbox options..."
-    print " reading theme/name option"
-    #theme_name = CONFIG_OPENBOX.getTag("theme").getTag("name").firstChild().data()
-    print " theme/name=%s"%theme_name
-    print " setting value to 'onyx'"
-   # CONFIG_OPENBOX.getTag("theme").getTag("name").setData("onyx")
-    #save_openboxrc(CONFIG_OPENBOX)
-    print " file saved..."
-
-    print " reading desktops/number"
-    #desktop_number = CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data()
-    print " desktop number=%s"%desktop_number
-    print " setting desktop number to 3"
-    #CONFIG_OPENBOX.getTag("desktops").getTag("number").setData("3")
-    #save_openboxrc(CONFIG_OPENBOX)
-    print " file saved..."
-
-
-
-if __name__ == "__main__":
-    if "--test" in sys.argv:
-        test_config_files()
 

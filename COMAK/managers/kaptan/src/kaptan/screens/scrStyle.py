@@ -79,7 +79,6 @@ class Widget(QtGui.QWidget, Screen):
                 dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
                 lst2 = dir.entryList()
         for themes in lst2:
-            print themes
             try:
                 try:
                     StyleName = themes.split(".")[0]
@@ -93,9 +92,7 @@ class Widget(QtGui.QWidget, Screen):
                 print "Warning! Invalid syntax in ", themes
             ThemeFile = themes
             thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/themes/" +themes+ ".png"
-            print thumbFolder
             if (os.path.exists("/usr/share/kde4/apps/kaptan/kaptan/themes/"+themes+".png")):
-                print "ok",thumbFolder
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
                 widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
@@ -106,6 +103,10 @@ class Widget(QtGui.QWidget, Screen):
                         "description":StyleDesc
                         }
         self.ui.listStyles.connect(self.ui.listStyles, SIGNAL("itemSelectionChanged()"), self.setStyle)
+        if ctx.Pds.session.Name =="fluxbox":
+            self.ui.listIcon.setVisible(False)
+            self.ui.iconContainer.hide()
+            self.ui.label_3.hide()
         self.ui.listIcon.connect(self.ui.listIcon, SIGNAL("itemClicked(QListWidgetItem *)"), self.setIcon)
         self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
         self.ui.spinBoxDesktopNumbers.connect(self.ui.spinBoxDesktopNumbers, SIGNAL("valueChanged(const QString &)"), self.addDesktop)
