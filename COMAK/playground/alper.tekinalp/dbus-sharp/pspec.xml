@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>dbus-sharp</Name>
+        <Homepage>http://github.com/mono/dbus-sharp/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>C# implementation of D-Bus</Summary>
+        <Description>C# implementation of D-Bus</Description>
+        <Archive sha1sum="7e7b05aadb6a289cd862dc630a36d9b87b5b84cb" type="targz">https://github.com/downloads/mono/dbus-sharp/dbus-sharp-0.7.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>mono-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>dbus-sharp</Name>
+        <RuntimeDependencies>
+            <Dependency>mono-runtime</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>0.7.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
