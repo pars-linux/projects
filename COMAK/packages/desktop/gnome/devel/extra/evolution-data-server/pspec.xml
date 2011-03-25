@@ -30,6 +30,7 @@
             <Dependency>fontconfig-devel</Dependency>
             <Dependency>atk-devel</Dependency>
             <Dependency>nspr-devel</Dependency>
+            <Dependency>libgdata-devel</Dependency>
             <Dependency>nss-devel</Dependency>
             <Dependency>mit-kerberos</Dependency>
             <Dependency versionFrom="1.9.2">xulrunner-devel</Dependency>
@@ -52,6 +53,7 @@
             <Dependency>libical</Dependency>
             <Dependency>libgnome-keyring</Dependency>
             <Dependency>openldap-client</Dependency>
+            <Dependency>libgdata</Dependency>
             <Dependency versionFrom="1.9.2">xulrunner</Dependency>
         </RuntimeDependencies>
         <Files>
