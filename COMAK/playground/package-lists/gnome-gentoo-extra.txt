@@ -10,7 +10,6 @@ quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
 swfdec-gnome  --  Flash player and thumbnailer for GNOME  -- NonExist (swfdec-mozilla,swfdec,swftools in playground)
 synapse  --  A program launcher in the style of GNOME Do  --  NonExist
 zeitgeist-datahub  --  Provides passive plugins to insert events into zeitgeist  --  NonExist
-docky -- NonExist
 
 PACKAGES IN PLAYGROUND:
 zenity  --  Tool to display dialogs from the commandline and shell scripts  -- Playground(brkclskn)
