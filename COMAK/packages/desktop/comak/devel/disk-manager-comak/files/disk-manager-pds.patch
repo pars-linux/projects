@@ -637,7 +637,7 @@ diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/pagedialog.py disk-manager-3
 +            self.edit=self.page_widget
 diff -Nuar disk-manager-3.0.0.orig//src/disk-manager.py disk-manager-3.0.0/src/disk-manager.py
 --- disk-manager-3.0.0.orig//src/disk-manager.py	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager-3.0.0/src/disk-manager.py	2011-03-26 12:53:28.565000008 +0200
++++ disk-manager-3.0.0/src/disk-manager.py	2011-03-26 17:04:04.637000010 +0200
 @@ -11,54 +11,69 @@
  # Please read the COPYING file.
  #
@@ -717,14 +717,14 @@ diff -Nuar disk-manager-3.0.0.orig//src/disk-manager.py disk-manager-3.0.0/src/d
  
 -        MainWidget(self, embed=True)
 +        #Create Main Window
-+        app = QUniqueApplication(sys.argv, catalog=about.appName)
++        app = QUniqueApplication(sys.argv, catalog=appName)
 +        window = MainWindow()
 +        window.show()
 +        window.resize(640,480)
  
 +        #Set Main Window Title and Icon
-+        window.setWindowTitle(i18n(about.PACKAGE))
-+        window.setWindowIcon(KIcon(about.icon))
++        window.setWindowTitle(i18n(PACKAGE))
++        window.setWindowIcon(KIcon(icon))
  
 -def CreatePlugin(widget_parent, parent, component_data):
 -    return Module(component_data, parent)
