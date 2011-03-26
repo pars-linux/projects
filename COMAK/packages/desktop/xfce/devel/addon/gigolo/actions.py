@@ -9,8 +9,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 
 def setup():
-    shelltools.system("./autogen.sh")
-    autotools.configure()
+    shelltools.system("./autogen.sh prefix=/usr")
 
 def build():
     autotools.make()
