@@ -141,7 +141,7 @@ class Style(base.Style):
 
     def setThemeSettings(self):
         pass
-    def setStyleSettings(self,theme):
+    def setStyleSettings(self):
         file_= open(self.file_directory + "init",'r')
         file_temp =open(self.file_directory + "init~",'w')
         lines = file_.readlines()
@@ -149,7 +149,7 @@ class Style(base.Style):
             if n.startswith('session.styleFile'):
                 for themes in scrStyleWidget.list_themes:
                     if n.find(themes):
-                        n = n.replace(themes,theme)
+                        n = n.replace(themes,scrStyleWidget.screenSettings["styleName"])
                 file_temp.write(n)
             else:
                 file_temp.write(n)
@@ -161,7 +161,8 @@ class Style(base.Style):
         pass
 
     def reconfigure(self):
-        TODO#("fluxbox-remote "Reconfigure"")
+        #TODO#("fluxbox-remote "Reconfigure"")
+        pass
 class Package(base.Package):
 
     def example(self):
