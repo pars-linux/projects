@@ -17,5 +17,5 @@ def build():
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     pisitools.dosed("%s/usr/bin/eatmonkey" % get.installDIR(), "/usr/local/", "/usr/")
+    pisitools.dosed("%s/usr/share/eatmonkey/eatmanager.rb" % get.installDIR(), "/usr/local/", "/usr/")
     pisitools.dodoc("README", "COPYING", "ChangeLog", "AUTHORS")
-
