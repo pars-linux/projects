@@ -123,9 +123,24 @@ class Style(base.Style):
    
     def setThemeSettings(self):
         pass
-    def setStyleSettings(self):
-        #TODO ~/fluxbox/init:70
-        pass
+    def setStyleSettings(self,theme):
+        file_directory = os.environ["HOME"]+"/.fluxbox/"
+        file_= open(file_directory + "init",'r')
+        file_temp =open(file_directory + "init~",'w')
+        lines = file_.readlines()
+        for n in lines:
+            if n.startswith('session.styleFile'):
+                for themes in scrStyleWidget.list_themes:
+                    if n.find(themes):
+                        n = n.replace(themes,theme)
+                        print n
+                file_temp.write(n)
+            else:
+                file_temp.write(n)
+        file_temp.close()
+        file_.close()
+        os.remove(file_directory + "init")
+        os.rename(file_directory + "init~",file_directory + "init")
     def setDesktopType(self):
         pass
 
