@@ -133,7 +133,6 @@ class Style(base.Style):
                 for themes in scrStyleWidget.list_themes:
                     if n.find(themes):
                         n = n.replace(themes,theme)
-                        print n
                 file_temp.write(n)
             else:
                 file_temp.write(n)
