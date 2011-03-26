@@ -31,6 +31,7 @@ from kaptan.tools.desktop_parser import DesktopParser
 from ConfigParser import ConfigParser
 
 class Widget(QtGui.QWidget, Screen):
+    list_themes = []
     screenSettings = {}
     screenSettings["hasChanged"] = False
     screenSettings["iconChanged"] = False
@@ -93,6 +94,7 @@ class Widget(QtGui.QWidget, Screen):
             ThemeFile = themes
             thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/themes/" +themes+ ".png"
             if (os.path.exists("/usr/share/kde4/apps/kaptan/kaptan/themes/"+themes+".png")):
+                self.list_themes.append(themes)
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
                 widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
