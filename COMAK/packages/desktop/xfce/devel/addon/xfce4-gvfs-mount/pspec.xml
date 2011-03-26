@@ -22,9 +22,6 @@
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>xfce4-panel-devel</Dependency>
         </BuildDependencies>
-        <!--<Patches>
-            <Patch level=""></Patch>
-        </Patches>-->
     </Source>
 
     <Package>
