@@ -66,14 +66,14 @@ if __name__ == "__main__":
         from pds.quniqueapp import QUniqueApplication
 
         #Create Main Window
-        app = QUniqueApplication(sys.argv, catalog=about.appName)
+        app = QUniqueApplication(sys.argv, catalog=appName)
         window = MainWindow()
         window.show()
         window.resize(640,480)
 
         #Set Main Window Title and Icon
-        window.setWindowTitle(i18n(about.PACKAGE))
-        window.setWindowIcon(KIcon(about.icon))
+        window.setWindowTitle(i18n(PACKAGE))
+        window.setWindowIcon(KIcon(icon))
 
     #Run the application
     app.exec_()
