@@ -113,20 +113,37 @@ class Common(base.Common):
         var = QLocale.languageToString(locale_app.language())
         return var
 class Style(base.Style):
-
+    file_directory = os.environ["HOME"]+"/.fluxbox/"
+    desktop_number_temp = 0
     def getDesktopNumber(self):
-        #TODO ~/fluxbox/init:38 
-        return 3
-
+        file_=open(self.file_directory+"init","r")
+        lines = file_.readlines()
+        for n in lines :
+            if n.startswith('session.screen0.workspaces'):
+                desktop_num = n.split(":")[1]
+                self.desktop_number = desktop_num
+                return int(desktop_num)
+        file_.close()
     def setDesktopNumber(self):
-        pass
-   
+        file_ = open(self.file_directory + "init" , 'r')
+        file_temp = open(self.file_directory + "init~", 'w')
+        lines = file_.readlines()
+        for n in lines:
+            if n.startswith('session.screen0.workspaces'):
+                n = n.replace(self.desktop_number,scrStyleWidget.screenSettings["desktopNumber"])
+                file_temp.write(n+ "\n")
+            else:
+                file_temp.write(n)
+        file_temp.close()
+        file_.close()
+        os.remove(self.file_directory + "init")
+        os.rename(self.file_directory + "init~",self.file_directory + "init")
+
     def setThemeSettings(self):
         pass
     def setStyleSettings(self,theme):
-        file_directory = os.environ["HOME"]+"/.fluxbox/"
-        file_= open(file_directory + "init",'r')
-        file_temp =open(file_directory + "init~",'w')
+        file_= open(self.file_directory + "init",'r')
+        file_temp =open(self.file_directory + "init~",'w')
         lines = file_.readlines()
         for n in lines:
             if n.startswith('session.styleFile'):
@@ -138,14 +155,13 @@ class Style(base.Style):
                 file_temp.write(n)
         file_temp.close()
         file_.close()
-        os.remove(file_directory + "init")
-        os.rename(file_directory + "init~",file_directory + "init")
+        os.remove(self.file_directory + "init")
+        os.rename(self.file_directory + "init~",self.file_directory + "init")
     def setDesktopType(self):
         pass
 
     def reconfigure(self):
-       #TODO :window manager restart
-        pass
+        TODO#("fluxbox-remote "Reconfigure"")
 class Package(base.Package):
 
     def example(self):
