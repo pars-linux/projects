@@ -2,26 +2,29 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>disk-manager-pds</Name>
-        <Homepage>http://developer.pardus.org.tr/projects/disk-manager</Homepage>
+        <Name>disk-manager-comak</Name>
+        <Homepage>http://www.pardus.org.tr/</Homepage>
         <Packager>
-            <Name>Gökmen Göksel</Name>
-            <Email>gokmen@pardus.org.tr</Email>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>Disk management interface</Summary>
         <Description>Disk Manager is an application used to administer disks on Pardus.</Description>
-        <Archive sha1sum="f1f3b5910ad2ac0d477880d96b045ea8fff6db82" type="tar">http://x86-64.comu.edu.tr/lxde/source/disk-manager-3.0.0.tar</Archive>
+        <Archive sha1sum="3d098330c62cb2fb42a1caa880182d42a037d8dd" type="targz">http://cekirdek.pardus.org.tr/~gokmen/files/disk-manager-3.0.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>pardus-desktop-services</Dependency>
             <Dependency>docutils</Dependency>
             <Dependency>python-qt-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">disk-manager-pds.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
-        <Name>disk-manager-pds</Name>
+        <Name>disk-manager</Name>
         <RuntimeDependencies>
             <Dependency versionFrom='0.4.8'>pardus-python</Dependency>
             <Dependency releaseFrom='122'>mudur</Dependency>
@@ -39,7 +42,7 @@
         <Update release="37">
             <Date>2011-02-04</Date>
             <Version>3.0.0</Version>
-            <Comment>Removed KDE dependencies and made code KDE independent.</Comment>
+            <Comment>Add Pds patch</Comment>
             <Name>Merve Yüzbaşıoğlu</Name>
             <Email>merveyuzbasioglu89@gmail.com</Email>
         </Update>
