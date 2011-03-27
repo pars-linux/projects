@@ -20,7 +20,6 @@ def setup():
                        --enable-nls \
                        --update-po \
                        --enable-docs \
-                       --enable-userdocs \
                        --enable-apidocs  \
                        --enable-unique \
                        --enable-libidn \
