@@ -11,7 +11,9 @@ from pisi.actionsapi import get
 from pisi.actionsapi import shelltools
 
 def setup():
-    shelltools.system("./autogen.sh --disable-dependency-tracking --enable-debug")
+    autotools.configure("--disable-dependency-tracking")
+
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
 
 def build():
     autotools.make()

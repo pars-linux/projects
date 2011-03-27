@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Thunarx Python bindings</Summary>
         <Description>thunarx-python is Python binding for Thunar</Description>
-        <Archive sha1sum="fecdfa78f82fa743ed11684421cfe1a8b1e964b7" type="tarbz2">http://git.xfce.org/bindings/thunarx-python/snapshot/thunarx-python-0.2.3.tar.bz2</Archive>
+        <Archive sha1sum="aaf22be806f46bf0b4a9e2aa88593eac1ea9a02e" type="tarbz2">http://archive.xfce.org/src/bindings/thunarx-python/0.3/thunarx-python-0.3.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.4.0">Thunar-devel</Dependency>
             <Dependency versionFrom="2.12.0">gnome-python-devel</Dependency>
@@ -33,6 +33,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-14</Date>
+            <Version>0.3.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-14</Date>
             <Version>0.2.3</Version>
