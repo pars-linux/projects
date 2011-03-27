@@ -26,6 +26,8 @@
         <Name>econcentration</Name>
         <RuntimeDependencies>
             <Dependency>elementary</Dependency>
+            <Dependency>evas</Dependency>
+            <Dependency>ecore</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
