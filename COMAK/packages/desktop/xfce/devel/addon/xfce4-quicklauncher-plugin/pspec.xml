@@ -16,17 +16,16 @@
         <BuildDependencies>
             <Dependency>xfce4-panel-devel</Dependency>
         </BuildDependencies>
-        <!--
-        <Patches>
-            <Patch level="1"></Patch>
-        </Patches>
-        -->
     </Source>
 
     <Package>
         <Name>xfce4-quicklauncher-plugin</Name>
         <RuntimeDependencies>
             <Dependency>xfce4-panel</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libxfcegui4</Dependency>
+            <Dependency>libxfce4util</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
