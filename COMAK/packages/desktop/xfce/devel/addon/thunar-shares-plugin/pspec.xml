@@ -24,6 +24,7 @@
         <RuntimeDependencies>
             <Dependency>Thunar</Dependency>
             <Dependency>thunar-vfs</Dependency>
+            <Dependency>gtk2</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
