@@ -9,9 +9,9 @@ from pisi.actionsapi import get
 from pisi.actionsapi import pisitools
 
 def setup():
-    pisitools.dosed("configure", "thunarx-1", "thunarx-2")
-
-    autotools.configure()
+    autotools.configure("--enable-dependency-tracking \
+                        --enable-git \
+                        --enable-subversion")
 
 def build():
     autotools.make()
