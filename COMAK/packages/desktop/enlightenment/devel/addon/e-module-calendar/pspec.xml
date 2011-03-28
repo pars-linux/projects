@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Calendar module for Enlightenment</Summary>
         <Description>e-module-calendar is a simple calendar module for Enlightenment.</Description>
-        <Archive sha1sum="a389df84f35280689793fc5e28080603242681e7" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/e-module-calendar-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="a222764ce085b961fd8a411b548eeb1af2b2659e" type="targz">http://comak.comu.edu.tr/source/e-module-calendar-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
@@ -42,6 +43,16 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="5">
             <Date>2010-12-09</Date>
             <Version>0.0.1_55225</Version>
