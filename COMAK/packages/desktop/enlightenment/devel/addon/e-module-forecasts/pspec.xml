@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>e-module-forecast</Name>
+        <Name>e-module-forecasts</Name>
         <Homepage>http://www.enlightenment.org</Homepage>
         <Packager>
             <Name>Alper Tekinalp</Name>
@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Forecast module for Enlightenment</Summary>
         <Description>e-module-forecast, is a module to display the current weather conditions plus a few days forecast.</Description>
-        <Archive sha1sum="99e5cd2a6746431d4b54e3fef128f84d590378e2" type="tarbz2">http://comak.comu.edu.tr/source/e-module-forecast-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="fc4371def528bd45ea810a839b4f963ec22395c4" type="targz">http://comak.comu.edu.tr/source/e-module-forecasts-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -23,7 +23,7 @@
     </Source>
 
     <Package>
-        <Name>e-module-forecast</Name>
+        <Name>e-module-forecasts</Name>
         <RuntimeDependencies>
             <Dependency>eet</Dependency>
             <Dependency>edje</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
