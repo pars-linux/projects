@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>Trash module for Enlightenment17 desktop shell</Summary>
         <Description>This package is a FreeDesktop.org compliant trash module for Enlightenment17 desktop shell.</Description>
-        <Archive sha1sum="6b0c1a2e49c07d84125754fb513d524a2179cdb9" type="tarbz2">http://comak.comu.edu.tr/source/e-module-trash-0.0.4.tar.bz2</Archive>
+        <Archive sha1sum="ae8c38114b45084b8ef68d8dbdfed99e9709f528" type="targz">http://comak.comu.edu.tr/source/e-module-trash-0.0.4_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.16.999">enlightenment-devel</Dependency>
             <Dependency>eina-devel</Dependency>

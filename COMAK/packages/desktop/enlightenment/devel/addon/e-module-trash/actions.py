@@ -8,8 +8,6 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
-WorkDir = "e-module-trash"
-
 def setup():
     autotools.autoreconf("-fi")
     autotools.configure("--disable-static")
