@@ -43,6 +43,7 @@
             <!--<Patch level="1">fix-flags.patch</Patch>-->
             <Patch level="1">deadbeef-0.4.4-fix-return-values.patch</Patch>
             <Patch level="1">deadbeef-0.4.4-fix-undefined-assignments.patch</Patch>
+            <Patch level="1">deadbeef-tr.patch</Patch>
         </Patches>
     </Source>
 
@@ -85,6 +86,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-28</Date>
+            <Version>0.4.4</Version>
+            <Comment>added translations.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-01-17</Date>
                 <Version>0.4.4</Version>

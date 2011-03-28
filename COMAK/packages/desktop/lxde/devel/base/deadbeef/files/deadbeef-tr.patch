@@ -1,17 +1,6 @@
-diff -Nuar deadbeef-0.4.4.orig/po/LINGUAS deadbeef-0.4.4/po/LINGUAS
---- deadbeef-0.4.4.orig/po/LINGUAS	2011-03-21 20:14:48.479000079 +0200
-+++ deadbeef-0.4.4/po/LINGUAS	2011-03-21 20:15:39.166000100 +0200
-@@ -27,6 +27,7 @@
- sr
- sr@latin
- sv
-+tr
- uk
- vi
- zh_CN
 diff -Nuar deadbeef-0.4.4.orig/po/tr.po deadbeef-0.4.4/po/tr.po
 --- deadbeef-0.4.4.orig/po/tr.po	1970-01-01 02:00:00.000000000 +0200
-+++ deadbeef-0.4.4/po/tr.po	2011-03-21 20:15:14.863000076 +0200
++++ deadbeef-0.4.4/po/tr.po	2011-03-28 07:11:21.920000011 +0300
 @@ -0,0 +1,1203 @@
 +# SOME DESCRIPTIVE TITLE.
 +# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
