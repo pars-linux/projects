@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Weather module for Enlightenment</Summary>
         <Description>e-module-weather is a simple weather module that fetches estimated weather condition, for Enlightenment.</Description>
-        <Archive sha1sum="b4feaeebc023fec4376e6b3f0f7a935e558a8b9a" type="tarbz2">http://comak.comu.edu.tr/source/e-module-weather-0.2.0.tar.bz2</Archive>
+        <Archive sha1sum="03716a9f790520ad50614c78e94ebbb024439306" type="targz">http://comak.comu.edu.tr/source/e-module-weather-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.9.9.49539">eina-devel</Dependency>
             <Dependency versionFrom="1.3.0">eet-devel</Dependency>
@@ -43,6 +43,16 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-03-27</Date>
+            <Version>0.2.0_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2011-02-18</Date>
             <Version>0.2.0</Version>
