@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Language module for Enlightenment</Summary>
         <Description>e-module-language is a simple keyboard layout switcher module for Enlightenment.</Description>
-        <Archive sha1sum="6ab9aeee62b700b7cb7d5b7cc4fa32456f868342" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/e-module-language-0.1.0_55225.tar.bz2</Archive>
+        <Archive sha1sum="8b6947faeb1dca5697e3c0f0b550a176772c6771" type="targz">http://comak.comu.edu.tr/source/e-module-language-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
@@ -47,6 +48,16 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-03-27</Date>
+            <Version>0.1.0_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="5">
             <Date>2010-12-09</Date>
             <Version>0.1.0_55225</Version>
