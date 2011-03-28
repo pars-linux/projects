@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Enlightenment Alarm Module</Summary>
         <Description>A module to set Alarms in Enlightenment 17</Description>
-        <Archive sha1sum="0b0c5fdda040df80ca705a422238b46574e8ad53" type="tarbz2">http://comak.comu.edu.tr/source/e-module-alarm-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="2477921c830da58dcfc5c981fc060b4ef2d330ae" type="targz">http://comak.comu.edu.tr/source/e-module-alarm-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency>eina-devel</Dependency>
             <Dependency>eet-devel</Dependency>
             <Dependency>evas-devel</Dependency>
@@ -45,6 +46,16 @@
         </Files>
     </Package>
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-01-07</Date>
             <Version>0.0.1_55225</Version>
