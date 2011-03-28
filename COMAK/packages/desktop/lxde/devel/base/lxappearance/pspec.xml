@@ -42,7 +42,7 @@
         <Name>lxappearance-devel</Name>
         <Summary>Development files for lxappearance</Summary>
         <RuntimeDependencies>
-            <Dependency release="2">lxappearance</Dependency>
+            <Dependency release="current">lxappearance</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
@@ -54,7 +54,7 @@
         <Update release="3">
             <Date>2011-03-28</Date>
             <Version>0.5.0</Version>
-            <Comment>added translations.</Comment>
+            <Comment>Add Turkish translations</Comment>
             <Name>Engin Manap</Name>
             <Email>engin@comu.edu.tr</Email>
         </Update>
