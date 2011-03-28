@@ -1,6 +1,6 @@
 diff -Nuar lxsession-0.4.5.orig/po/tr.po lxsession-0.4.5/po/tr.po
---- lxsession-0.4.5.orig/po/tr.po	2011-03-20 22:11:30.848000004 +0200
-+++ lxsession-0.4.5/po/tr.po	2011-03-20 22:38:43.575000012 +0200
+--- lxsession-0.4.5.orig/po/tr.po	2011-03-28 06:57:25.454000010 +0300
++++ lxsession-0.4.5/po/tr.po	2011-03-28 07:11:22.256000011 +0300
 @@ -8,15 +8,15 @@
  "Project-Id-Version: PACKAGE VERSION\n"
  "Report-Msgid-Bugs-To: \n"

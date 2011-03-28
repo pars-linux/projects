@@ -15,7 +15,8 @@
         <Description>The default X11 session manager of LXDE.</Description>
         <Archive sha1sum="e66fd5d1f239f4cea6195218fbfab7bce19cd884" type="targz">mirrors://sourceforge/lxde/lxsession-0.4.5.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>gtk2</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">02_gdm3.patch</Patch>
@@ -28,6 +29,7 @@
         <Name>lxsession</Name>
         <RuntimeDependencies>
             <Dependency>gtk2</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
@@ -40,9 +42,9 @@
 
     <History>
         <Update release="3">
-            <Date>2011-03-21</Date>
+            <Date>2011-03-28</Date>
             <Version>0.4.5</Version>
-            <Comment>New translations Added.</Comment>
+            <Comment>added translations.</Comment>
             <Name>Engin Manap</Name>
             <Email>engin@comu.edu.tr</Email>
         </Update>
