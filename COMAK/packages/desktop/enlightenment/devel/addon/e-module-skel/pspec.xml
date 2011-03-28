@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>a module for Enlightenment</Summary>
         <Description>e-module-skel, a module not for users. Basis for building new ones.</Description>
-        <Archive sha1sum="f260e0417ab20a78d6198120cf05a190f741e067" type="tarbz2">http://comak.comu.edu.tr/source/e-module-skel-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="e8117308eca5ac426d1292bbee2fc18b5e65a264" type="targz">http://comak.comu.edu.tr/source/e-module-skel-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
