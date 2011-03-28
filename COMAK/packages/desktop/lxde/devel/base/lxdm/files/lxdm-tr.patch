@@ -1,6 +1,6 @@
 diff -Nuar lxdm-0.3.0.orig/po/tr.po lxdm-0.3.0/po/tr.po
---- lxdm-0.3.0.orig/po/tr.po	2011-03-20 22:09:51.138000008 +0200
-+++ lxdm-0.3.0/po/tr.po	2011-03-20 22:19:46.983000006 +0200
+--- lxdm-0.3.0.orig/po/tr.po	2011-03-28 06:57:25.390000010 +0300
++++ lxdm-0.3.0/po/tr.po	2011-03-28 07:11:22.144000011 +0300
 @@ -2,36 +2,36 @@
  # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
  # This file is distributed under the same license as the PACKAGE package.
