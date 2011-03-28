@@ -17,6 +17,7 @@
             <Dependency>evas-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>elementary-devel</Dependency>
+            <Dependency>libXrandr-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">host-alias-fix.patch</Patch>
