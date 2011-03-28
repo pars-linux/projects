@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Rain module for Enlightenment</Summary>
         <Description>Rain is a module that rains on the desktop.</Description>
-        <Archive sha1sum="2f5c1f6785b62242704e47498697f1fb0a4db39d" type="tarbz2">http://comak.comu.edu.tr/source/e-module-rain-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="9102b227e946ff18e9b4761ede33b5354be5a11c" type="targz">http://comak.comu.edu.tr/source/e-module-rain-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
@@ -34,6 +34,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-08</Date>
             <Version>0.0.1_55225</Version>
