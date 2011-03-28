@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Wallpaper setting module</Summary>
         <Description>E17 module to set wallpaper.</Description>
-        <Archive sha1sum="c1bfe8ded4b3a075d102705c73ff2824c2ab65cb" type="tarbz2">http://comak.comu.edu.tr/source/e-module-everything-wallpaper-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="6759258b2c6c41b65068ac36ffc3dbcf4a1c9bfd" type="targz">http://comak.comu.edu.tr/source/e-module-everything-wallpaper-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency>evas-devel</Dependency>
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
@@ -40,6 +41,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-09</Date>
             <Version>0.0.1_55225</Version>
