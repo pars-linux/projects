@@ -17,6 +17,8 @@
         <Archive sha1sum="31476137a7e9b5366e39f3e8e7d2c90ecc613f9c" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/gnome-mag/0.16/gnome-mag-0.16.3.tar.gz</Archive>
     <BuildDependencies>
         <Dependency>libXcomposite-devel</Dependency>
+        <Dependency>libXfixes-devel</Dependency>
+        <Dependency>libXdamage-devel</Dependency>
         <Dependency>libbonobo-devel</Dependency>
         <Dependency>at-spi-devel</Dependency>
     </BuildDependencies>
