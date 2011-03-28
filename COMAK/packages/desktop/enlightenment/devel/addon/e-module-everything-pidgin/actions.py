@@ -9,10 +9,10 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
-WorkDir = "everything-pidgin-%s" % get.srcVERSION()
+WorkDir = "everything-pidgin"
 
 def setup():
-    shelltools.export("AUTOPOINT", "/bin/true")
+    #shelltools.export("AUTOPOINT", "/bin/true")
 
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static \
