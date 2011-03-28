@@ -95,14 +95,14 @@ class Wallpaper(base.Wallpaper):
             for thumb in thumbFolder:
                 if thumb.startswith('scre'):
                     wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
-            wallpaper["wallpaperFile"] = os.path.split(str(desktopFiles))[0]
+            wallpaper["wallpaperFile"] = os.path.split(str(desktopFiles))[0]+"/contents/images/1920x1200.*"
             items.append(wallpaper)
-
         return items
 
-
     def setWallpaper(self ,wallpaper):
-        pass
+        print wallpaper
+        if wallpaper:
+            os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename " +str(wallpaper))
 class Common(base.Common):
 
     def getLanguage(self):
