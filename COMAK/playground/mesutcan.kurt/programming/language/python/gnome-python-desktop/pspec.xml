@@ -46,6 +46,9 @@
             <Dependency>gnome-media-devel</Dependency>
             <Dependency>docbook-utils</Dependency>
             <Dependency>gconf-devel</Dependency>
+            <Dependency>nautilus-devel</Dependency>
+            <Dependency>brasero-devel</Dependency>
+            <Dependency>nautilus-cd-burner-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-compile-pyo.patch</Patch>
@@ -87,6 +90,9 @@
             <Dependency>python-cairo</Dependency>
             <Dependency>gnome-media</Dependency>
             <Dependency>gconf</Dependency>
+            <Dependency>nautilus</Dependency>
+            <Dependency>brasero</Dependency>
+            <Dependency>nautilus-cd-burner</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
