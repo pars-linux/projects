@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>News module for Enlightenment</Summary>
         <Description>e-module-news, is a module to monitor RSS feeds.</Description>
-        <Archive sha1sum="2fffea300085a9ba109b7b6d66d879d833f10668" type="tarbz2">http://comak.comu.edu.tr/source/e-module-news-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="2f770bb8808b87eba06390ef92e720399638182c" type="targz">http://comak.comu.edu.tr/source/e-module-news-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -20,9 +20,9 @@
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
         </BuildDependencies>
-        <Patches>
+        <!--<Patches>
             <Patch level="1">fix-unused-variable.patch</Patch>
-        </Patches>
+        </Patches>-->
     </Source>
 
     <Package>
@@ -41,6 +41,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
