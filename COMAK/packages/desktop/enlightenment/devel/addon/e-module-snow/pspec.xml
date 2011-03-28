@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Snow module for the Enlightenment</Summary>
         <Description>Snow is a module that snows on your desktop. </Description>
-        <Archive sha1sum="612de1e92e97863e5e7cdb6fd62a52ef15733987" type="tarbz2">http://comak.comu.edu.tr/source/e-module-snow-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="309dc5beb360e45994803b528be01b837eb69e0c" type="targz">http://comak.comu.edu.tr/source/e-module-snow-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
@@ -34,6 +34,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-08</Date>
             <Version>0.0.1_55225</Version>
