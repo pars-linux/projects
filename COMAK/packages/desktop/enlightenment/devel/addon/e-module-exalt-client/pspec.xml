@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Exalt-client module for Enlightenment</Summary>
         <Description>Exalt-client is a module for using exalt network manager.</Description>
-        <Archive sha1sum="908cce6c0e66e6d026a828a363597f2cc28bd73f" type="tarbz2">http://comak.comu.edu.tr/source/e-module-exalt-client-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="1a7912879582eb856a05a95af559688d3854f8fe" type="targz">http://comak.comu.edu.tr/source/e-module-exalt-client-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
@@ -44,6 +44,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
