@@ -1,7 +1,6 @@
 PACKAGES NONEXIST:
 avant-window-navigator  -- Fully customisable dock-like window navigator  -- NonExist
 avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExist
-evolution-exchange  --  Evolution module for connecting to Microsoft Exchange  --  NonExist
 evolution-webcal  --  A GNOME URL handler for web-published ical calendar files  -- NonExist
 fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
