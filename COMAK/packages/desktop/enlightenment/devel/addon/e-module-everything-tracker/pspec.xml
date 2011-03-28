@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Tracker search for Everything</Summary>
         <Description>Search files with tracker (0.8), it also features a music browser</Description>
-        <Archive sha1sum="5b1621fcee74a5a57c7d3a5e028b00c2b6aa0341" type="tarbz2">http://comak.comu.edu.tr/source/e-module-everything-tracker-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="43e1901d8f57fc63a83e7787cc510f6366c64910" type="targz">http://comak.comu.edu.tr/source/e-module-everything-tracker-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency>enlightenment-devel</Dependency>
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
@@ -35,6 +36,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
