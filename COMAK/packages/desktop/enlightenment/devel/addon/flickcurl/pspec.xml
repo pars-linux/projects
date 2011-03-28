@@ -22,19 +22,20 @@
         <Name>flickcurl</Name>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib/</Path>
             <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="data">/usr/share</Path>
+            <Path fileType="man">/usr/share/man</Path>
         </Files>
     </Package>
     <Package>
         <Name>flickcurl-devel</Name>
         <RuntimeDependencies>
-            <Dependency>flickcurl</Dependency>
+            <Dependency release="current">flickcurl</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
-            <Path fileType="library">/usr/lib/pkgconfig</Path>
-            <Path fileType="library">/usr/lib/</Path>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
     <History>
