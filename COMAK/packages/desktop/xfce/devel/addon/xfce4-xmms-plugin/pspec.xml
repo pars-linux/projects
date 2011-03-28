@@ -22,6 +22,12 @@
         <Name>xfce4-xmms-plugin</Name>
         <RuntimeDependencies>
             <Dependency>xfce4-panel</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libxfcegui4</Dependency>
+            <Dependency>libxfce4util</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/libexec</Path>
