@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Everything Places module for Enlightenment</Summary>
         <Description>e-module-everything-places is a plugin for Enlightenment that eases to browse mounted disks on your system.</Description>
-        <Archive sha1sum="ad7f5be5f9b7eca413a5fd3dc9d0dff094b3f8de" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/e-module-everything-places-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="a4f3e321577fd840c0ebf47076cb620fddea368a" type="targz">http://comak.comu.edu.tr/source/e-module-everything-places-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">ecore-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">efreet-devel</Dependency>
@@ -40,6 +41,16 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="5">
             <Date>2010-12-09</Date>
             <Version>0.0.1_55225</Version>
