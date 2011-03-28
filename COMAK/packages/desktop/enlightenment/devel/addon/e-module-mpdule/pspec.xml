@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>Music Player Daemon (MPD) module for Enlightenment17 desktop shell</Summary>
         <Description>e-module-mpdule is a Music Player Daemon controller and status shower module for Enlightenment17 desktop shell.</Description>
-        <Archive sha1sum="43c460c7ec7474ba92b01f8a9bed715b03763518" type="tarbz2">http://comak.comu.edu.tr/source/e-module-mpdule-0.0.1.tar.bz2</Archive>
+        <Archive sha1sum="1f00044bb550c963caaf764a4d0b24994acf66ce" type="targz">http://comak.comu.edu.tr/source/e-module-mpdule-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>enlightenment-devel</Dependency>
             <Dependency>libmpd-devel</Dependency>
@@ -42,6 +42,16 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2011-02-17</Date>
             <Version>0.0.1</Version>
