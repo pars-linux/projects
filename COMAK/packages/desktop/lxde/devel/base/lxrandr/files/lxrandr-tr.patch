@@ -1,6 +1,6 @@
 diff -Nuar lxrandr-0.1.1.orig/po/tr.po lxrandr-0.1.1/po/tr.po
---- lxrandr-0.1.1.orig/po/tr.po	2011-03-20 22:11:18.667000011 +0200
-+++ lxrandr-0.1.1/po/tr.po	2011-03-20 22:29:13.734000014 +0200
+--- lxrandr-0.1.1.orig/po/tr.po	2011-03-28 06:57:25.445000010 +0300
++++ lxrandr-0.1.1/po/tr.po	2011-03-28 07:11:22.231000011 +0300
 @@ -2,111 +2,123 @@
  # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
  # This file is distributed under the same license as the PACKAGE package.
