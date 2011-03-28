@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>openoffice preloader module for Enlightenment</Summary>
         <Description>e-module-eooorg, preloads the openoffice process to save stsrt time with the costs of some memory.</Description>
-        <Archive sha1sum="68c431f777477ed1628fe65a8f597dc1c6f9b3d8" type="tarbz2">http://comak.comu.edu.tr/source/e-module-eooorg-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="e9df1382a1c52dc47e60aa01ea9c9373c6276383" type="targz">http://comak.comu.edu.tr/source/e-module-eooorg-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
