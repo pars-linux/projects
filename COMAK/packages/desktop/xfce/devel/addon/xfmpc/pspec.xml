@@ -16,10 +16,10 @@
         <Archive sha1sum="d64c74a4862a61c73f7b68f96d7c4eecfb2ec193" type="tarbz2">http://archive.xfce.org/src/apps/xfmpc/0.2/xfmpc-0.2.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libxfcegui4-devel</Dependency>
-            <Dependency>gtk2</Dependency>
-            <Dependency>pango</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
             <Dependency>libxfce4util-devel</Dependency>
-            <Dependency>libmpd</Dependency>
+            <Dependency>libmpd-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>desktop.patch</Patch>
@@ -34,6 +34,8 @@
             <Dependency>pango</Dependency>
             <Dependency>libxfce4util</Dependency>
             <Dependency>libmpd</Dependency>
+            <Dependency>libxfce4ui</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
