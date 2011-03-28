@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>liferea</Name>
+        <Homepage>http://liferea.sourceforge.net/</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A RSS reader</Summary>
+        <Description>Liferea (Linux Feed Reader) is an aggregator for online news feeds.</Description>
+        <Archive sha1sum="2607aad81b2ada9a932eccd326ad8bbcf1c16986" type="targz">http://sourceforge.net/projects/liferea/files/Liferea%20Unstable/1.7.4/liferea-1.7.4.tar.gz/download</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>glib2-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libunique-devel</Dependency>
+            <Dependency>libxml2-devel</Dependency>
+            <Dependency>libxslt-devel</Dependency>
+            <Dependency>sqlite-devel</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>webkit-gtk-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>dbus-glib-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>liferea-1.7.4-libnotify-0.7.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>liferea</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>libunique</Dependency>
+            <Dependency>libxslt</Dependency>
+            <Dependency>libsoup</Dependency>
+            <Dependency>webkit-gtk</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-28</Date>
+            <Version>1.7.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
