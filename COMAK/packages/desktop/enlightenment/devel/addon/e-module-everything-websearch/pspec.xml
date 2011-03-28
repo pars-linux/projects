@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Websearch Module for E17</Summary>
         <Description>Provides actions to search with Google or show Wikipedia page. Currently it also includes image upload action and Youtube browser which will become separate modules in future.</Description>
-        <Archive sha1sum="0a81a4a7dc64a6528c7cce9974c56db0cc28ff66" type="tarbz2">http://comak.comu.edu.tr/source/e-module-everything-websearch-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="14a2b13f9bc10b10a7042e4eb78a484c1fc48a63" type="targz">http://comak.comu.edu.tr/source/e-module-everything-websearch-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
             <Dependency>evas-devel</Dependency>
@@ -42,6 +43,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
