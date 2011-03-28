@@ -1,6 +1,6 @@
 diff -Nuar lxsession-edit-0.1.1.orig/po/tr.po lxsession-edit-0.1.1/po/tr.po
---- lxsession-edit-0.1.1.orig/po/tr.po	2011-03-20 22:11:46.614000011 +0200
-+++ lxsession-edit-0.1.1/po/tr.po	2011-03-20 22:31:52.993000012 +0200
+--- lxsession-edit-0.1.1.orig/po/tr.po	2011-03-28 06:57:25.461000010 +0300
++++ lxsession-edit-0.1.1/po/tr.po	2011-03-28 07:11:22.243000011 +0300
 @@ -2,62 +2,72 @@
  # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
  # This file is distributed under the same license as the PACKAGE package.
