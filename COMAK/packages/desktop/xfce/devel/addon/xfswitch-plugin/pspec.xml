@@ -16,17 +16,17 @@
         <BuildDependencies>
             <Dependency>xfce4-panel-devel</Dependency>
         </BuildDependencies>
-        <!--
-        <Patches>
-            <Patch level="1"></Patch>
-        </Patches>
-        -->
     </Source>
 
     <Package>
         <Name>xfswitch-plugin</Name>
         <RuntimeDependencies>
             <Dependency>xfce4-panel</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libxfcegui4</Dependency>
+            <Dependency>libxfce4util</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
