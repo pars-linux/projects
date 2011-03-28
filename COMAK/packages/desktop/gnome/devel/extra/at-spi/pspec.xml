@@ -16,8 +16,9 @@
         <BuildDependencies>
             <Dependency releaseFrom="36">gtk2</Dependency>
             <Dependency>popt</Dependency>
-            <Dependency>libbonobo</Dependency>
+            <Dependency>libbonobo-devel</Dependency>
             <Dependency>libXtst-devel</Dependency>
+            <Dependency>orbit2-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>fix-tab.patch</Patch>
@@ -43,7 +44,6 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="executable">/usr/libexec</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
