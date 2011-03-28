@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Notification module for Enlightenment</Summary>
         <Description>e-module-notification is a notification module for Enlightenment.</Description>
-        <Archive sha1sum="c8155b43a1a9f7816f6f560dafe669848932756c" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/e-module-notification-0.2.0_55225.tar.bz2</Archive>
+        <Archive sha1sum="1ff3de4384b10bd840ae2769ef9a23d21e8b6b37" type="targz">http://comak.comu.edu.tr/source/e-module-notification-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
@@ -46,6 +47,16 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-03-27</Date>
+            <Version>0.2.0_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="5">
             <Date>2010-12-09</Date>
             <Version>0.2.0_55225</Version>
