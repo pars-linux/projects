@@ -1,6 +1,6 @@
 diff -Nuar lxlauncher-0.2.1.orig/po/tr.po lxlauncher-0.2.1/po/tr.po
---- lxlauncher-0.2.1.orig/po/tr.po	2011-03-20 22:59:28.831000026 +0200
-+++ lxlauncher-0.2.1/po/tr.po	2011-03-20 22:20:08.898000003 +0200
+--- lxlauncher-0.2.1.orig/po/tr.po	2011-03-28 06:57:25.403000010 +0300
++++ lxlauncher-0.2.1/po/tr.po	2011-03-28 07:11:22.169000011 +0300
 @@ -3,66 +3,71 @@
  # This file is distributed under the same license as the PACKAGE package.
  # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
