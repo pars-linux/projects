@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Places module for Enlightenment</Summary>
         <Description>e-module-places is a module that shows mounted and unmounted devices, for Enlightenment.</Description>
-        <Archive sha1sum="40a5ef8172b927dee01b7edc821c9a5eaee61ab7" type="tarbz2">http://cekirdek.pardus.org.tr/~ibrahim/dist/efl/e-module-places-0.1.0_55225.tar.bz2</Archive>
+        <Archive sha1sum="d62b4e79665f628d47446510e73d2d3f1ac61acf" type="targz">http://comak.comu.edu.tr/source/e-module-places-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
@@ -49,6 +50,16 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-03-27</Date>
+            <Version>0.1.0_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="5">
             <Date>2010-12-09</Date>
             <Version>0.1.0_55225</Version>
