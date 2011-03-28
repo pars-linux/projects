@@ -7,11 +7,13 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
+from pisi.actionsapi import shelltools
 
 
 WorkDir="cpu" 
 
 def setup():
+    shelltools.export("AUTOPOINT", "/bin/true")
     autotools.autoreconf("-fiv")
     autotools.configure("--disable-static")
 

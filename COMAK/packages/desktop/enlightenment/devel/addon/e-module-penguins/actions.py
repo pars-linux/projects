@@ -8,10 +8,11 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
-
+from pisi.actionsapi import shelltools
 WorkDir="penguins" 
 
 def setup():
+    shelltools.export("AUTOPOINT", "/bin/true")
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static")
 
