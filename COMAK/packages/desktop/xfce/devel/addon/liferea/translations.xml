@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>liferea</Name>
+        <Summary xml:lang="tr">Bir RSS okuyucusu</Summary>
+        <Description xml:lang="tr">Liferea (Linux Feed Reader) beslemeleri okumak için gerekli bir RSS okuyucusudur.</Description>
+    </Source>
+</PISI>
+
