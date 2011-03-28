@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Uptime module for Enlightenment</Summary>
         <Description>e-module-uptime is a gadget to display the current uptime of the system.</Description>
-        <Archive sha1sum="3fbba329611d25a25c2234900489ad436b018c00" type="tarbz2">http://comak.comu.edu.tr/source/e-module-uptime-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="0a1a31aba85b8ea22b76584628199d8033c912ea" type="targz">http://comak.comu.edu.tr/source/e-module-uptime-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
