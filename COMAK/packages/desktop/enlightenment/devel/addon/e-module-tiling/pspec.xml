@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Tiling module for Enlightenment</Summary>
         <Description>New tiling module by Michael Stapelberg.</Description>
-        <Archive sha1sum="50033f40c59c0881d38eb949139b065a0a05ced3" type="tarbz2">http://comak.comu.edu.tr/source/e-module-tiling-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="c36cbd6290c23c8866fe9a7c0a3e692d343ae3fa" type="targz">http://comak.comu.edu.tr/source/e-module-tiling-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
             <Dependency versionFrom="1.0.0_beta3">evas-devel</Dependency>
@@ -41,6 +42,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-11</Date>
             <Version>0.0.1_55225</Version>
