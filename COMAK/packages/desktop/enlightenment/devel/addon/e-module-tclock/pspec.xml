@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Clock module for Enlightenment</Summary>
         <Description>e-module-tclock, is a module to display a digital clock.</Description>
-        <Archive sha1sum="df668e7808dad2f3e27c67910fa498fd6d3b7c78" type="tarbz2">http://comak.comu.edu.tr/source/e-module-tclock-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="42c5f6cfefe2a373e6d4e93615ee3a7917a1ce5a" type="targz">http://comak.comu.edu.tr/source/e-module-tclock-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
