@@ -1,0 +1,43 @@
+XMONAD
+-----------------------------------------------------------------------------------
+Çoğu işletim sisteminin dağıtımında XMonad için gerekli olan bağımlılıkların
+çoğu zaten bulunmaktadır.XMonad daha çok konsol tabanlı bir arayüz sunmaktadır
+kullancılara Haskell dili ile programlanmıştır.XMonad'ı derlemek için GHC
+Haskell Compiler'ı kurmamız gerekecektir.Çoğu işletim sistemi kendi paket
+sisteminde GHC binary'lerini sağlamaktadır.Örneğin Debian'da apt-get install
+ghc6 ile kurabiliriz.
+
+haskell -> programming language  
+
+GHC ->  Glasgow Haskell Compiler
+
+X11 libraries -> X uygulamalarını derlemek için C x11 library başlıklarına
+ihtiyaç duyacağız.
+
+Cabal-install - > Recent versions of Cabal provide a tool, cabal-install,
+which automates the building of Haskell libraries, including gathering all
+dependencies.
+
+Genel olarak 4 ana başlık altında toplanabilir XMonad 
+
+Plugin packages
+-------------------------------------------------------------------------------------
+dmenu, a program launcher
+dzen, an extensible status bar
+xmobar, an extensible status bar
+rxvt-unicode, a better terminal
+vimperator, vim ui for firefox
+
+Pardus Depoları
+----------------------------------------------------------------------------------------
+hugs98 - Hugs98 Haskell yorumlayıcısı denen bir paket var belki ileride bu
+paketi yapmama gerek kalmaz.
+X11 kütüphaneleri mevcut zaten.
+GHC yok
+Haskell yok
+Cabal yok
+
+
+http://xmonad.org
+
+
