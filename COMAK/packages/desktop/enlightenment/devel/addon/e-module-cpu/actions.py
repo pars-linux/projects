@@ -9,6 +9,8 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 
 
+WorkDir="cpu" 
+
 def setup():
     autotools.autoreconf("-fiv")
     autotools.configure("--disable-static")
