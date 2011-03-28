@@ -98,15 +98,16 @@ class Wallpaper(base.Wallpaper):
 
             for thumb in thumbFolder:
                 if thumb.startswith('scre'):
-                    wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
+                    wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/%s" % thumb)
             wallpaper["wallpaperFile"] = os.path.split(str(desktopFiles))[0]+"/contents/images/1920x1200.*"
+            print wallpaper["wallpaperFile"] 
             items.append(wallpaper)
         return items
 
     def setWallpaper(self ,wallpaper):
         print wallpaper
         if wallpaper:
-            os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename " +str(wallpaper))
+            os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename %s" %str(wallpaper))
 class Common(base.Common):
 
     def getLanguage(self):
@@ -127,26 +128,21 @@ class Style(base.Style):
         save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
-        update_lxsession()
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
-        new_text = re.sub(r"sNet/IconThemeName[ ]?=[ ]?([a-zA-Z_1-9-]{0,100})","sNet/IconThemeName="+iconTheme, CONFIG_LXSESSION)
-        save_lxsession(new_text)
-
+        print iconTheme
+        os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme %s" %iconTheme)
+    
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
-        CONFIG_OPENBOX.getTag("theme").getTag("name").setData(styleName)
-        save_openboxrc(CONFIG_OPENBOX)
+        print styleName
+        os.popen("gconftool-2 --type string --set /apps/metacity/general/theme %s" %styleName)
+
 
     def setDesktopType(self):
         pass
 
     def reconfigure(self):
-        commands = ["pcmanfm --desktop-off",
-                    "pcmanfm -d --desktop",
-                    "lxsession -r",
-                    "openbox --restart"]
-        command = ";".join(commands)
-        os.system(command)
+        pass
 
 class Package(base.Package):
 
@@ -160,39 +156,4 @@ class Menu(base.Menu):
 
     def setMenuSettings(self):
         pass
-
-def test_config_files():
-    print ">libfm options..."
-    print " reading mouse single_click"
-    single_click = CONFIG_LIBFM.value("config/single_click").toInt()[0]
-    print " single_click=",single_click
-    print " reversing option..."
-    new_value = (not single_click and 1) or 0
-    CONFIG_LIBFM.setValue("config/single_click",new_value)
-    print " new value=",CONFIG_LIBFM.value("config/single_click").toString()
-    CONFIG_LIBFM.sync()
-    print " sync worked..."
-
-    print ">openbox options..."
-    print " reading theme/name option"
-    theme_name = CONFIG_OPENBOX.getTag("theme").getTag("name").firstChild().data()
-    print " theme/name=%s"%theme_name
-    print " setting value to 'onyx'"
-    CONFIG_OPENBOX.getTag("theme").getTag("name").setData("onyx")
-    save_openboxrc(CONFIG_OPENBOX)
-    print " file saved..."
-
-    print " reading desktops/number"
-    desktop_number = CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data()
-    print " desktop number=%s"%desktop_number
-    print " setting desktop number to 3"
-    CONFIG_OPENBOX.getTag("desktops").getTag("number").setData("3")
-    save_openboxrc(CONFIG_OPENBOX)
-    print " file saved..."
-
-
-
-if __name__ == "__main__":
-    if "--test" in sys.argv:
-        test_config_files()
 
