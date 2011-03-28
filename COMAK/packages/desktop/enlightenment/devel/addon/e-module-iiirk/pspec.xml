@@ -12,8 +12,9 @@
         <IsA>library</IsA>
         <Summary>Iiirk Taskbar Module</Summary>
         <Description>This module act like a taskbar for selected applications only.</Description>
-        <Archive sha1sum="7dc74fa3fb1f99e72e553dc926ff3498b5870613" type="tarbz2">http://comak.comu.edu.tr/source/e-module-iiirk-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="60527a7484c226a388377ad959e031b5b9d79385" type="targz">http://comak.comu.edu.tr/source/e-module-iiirk-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>git</Dependency><!--autopoint is not working-->
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
             <Dependency>evas-devel</Dependency>
@@ -46,6 +47,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-09</Date>
             <Version>0.0.1_55225</Version>

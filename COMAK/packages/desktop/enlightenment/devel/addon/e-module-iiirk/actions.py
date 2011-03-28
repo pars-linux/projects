@@ -10,8 +10,10 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 from pisi.actionsapi import shelltools
 
+WorkDir="iiirk" 
+
 def setup():
-    shelltools.export("AUTOPOINT", "/bin/true")
+    #shelltools.export("AUTOPOINT", "/bin/true")
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static")
 
