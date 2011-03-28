@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Execwatch module for Enlightenment</Summary>
         <Description>e-module-execwatch, is a module shows the last state of a periodic executed cmd. Useful as an update checker or for checking if a remote host is available.</Description>
-        <Archive sha1sum="fc4cbe483454aa212203f697fde01ebb9bd65d07" type="tarbz2">http://comak.comu.edu.tr/source/e-module-execwatch-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="c4b9ae2fdb6fc5c1ef274f8d852f8f33a7314286" type="targz">http://comak.comu.edu.tr/source/e-module-execwatch-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
