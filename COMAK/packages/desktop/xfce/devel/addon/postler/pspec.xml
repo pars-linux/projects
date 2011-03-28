@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>A super sexy, ultra simple desktop mail client built in vala</Summary>
         <Description>Postler aims to be easy, simple, clean, beautiful, and automagic. It handles IMAP beautifully, and provides the user with smart, sensible defaults.</Description>
-        <Archive sha1sum="a8c7fdff740c3d4e46b842d6b70fcea56b4b766a" type="tarbz2">http://git.xfce.org/apps/postler/snapshot/postler-0.1.0.tar.bz2</Archive>
+        <Archive sha1sum="f5c73c0219844d4092860eb4d8aa36223027b298" type="tarbz2">http://archive.xfce.org/src/apps/postler/0.1/postler-0.1.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency version="0.10.0">vala</Dependency>
             <Dependency>glib2-devel</Dependency>
@@ -53,6 +53,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.1.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-12</Date>
             <Version>0.1.0</Version>
