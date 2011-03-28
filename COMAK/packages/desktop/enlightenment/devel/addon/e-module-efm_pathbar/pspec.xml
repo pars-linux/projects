@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>EFM path bar module</Summary>
         <Description>e-module-efm_path, is a module that shows path bar for E17 file manager.</Description>
-        <Archive sha1sum="d8f38071b93534fc23e23f4312b6a798c2daa8b3" type="tarbz2">http://comak.comu.edu.tr/source/e-module-efm_pathbar-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="36e0d2cf0cf44188dbf760221e75c16f0e9d990f" type="targz">http://comak.comu.edu.tr/source/e-module-efm_pathbar-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
