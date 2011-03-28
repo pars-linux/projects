@@ -36,6 +36,10 @@ def update_lxsession():
     global CONFIG_LXSESSION
     CONFIG_LXSESSION = open(FILE_LXSESSION).read()
 
+#openbox configuration files
+FILE_OPENBOXRC = "%s/.config/openbox/rc.xml"%os.environ["HOME"]
+CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
+
 # end of shared LXDE methods
 
 class Keyboard(base.Keyboard):
@@ -114,7 +118,8 @@ class Common(base.Common):
 class Style(base.Style):
 
     def getDesktopNumber(self):
-        return 3
+        desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
+        return desktop_number
 
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
