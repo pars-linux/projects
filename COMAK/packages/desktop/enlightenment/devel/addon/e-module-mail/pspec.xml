@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Mail module for Enlightenment</Summary>
         <Description>e-module-mail, is a mail notification module. Checks POP3, IMAP, maildir and mbox mailboxes.</Description>
-        <Archive sha1sum="6e81ebd046baeba3c6a28c8ad73a11c6da99ac80" type="tarbz2">http://comak.comu.edu.tr/source/e-module-mail-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="8ef3bd2f576825b4056f6184478aeabc8df91729" type="targz">http://comak.comu.edu.tr/source/e-module-mail-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
