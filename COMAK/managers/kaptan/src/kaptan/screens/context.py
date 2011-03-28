@@ -9,8 +9,8 @@ from pds.qiconloader import QIconLoader
 Pds = pds.Pds('kaptan', debug = True)
 # Force to use Default Session for testing
 
-Pds.session = pds.Fluxbox
-#print Pds.session
+#Pds.session = pds.Fluxbox
+print Pds.session
 
 i18n = Pds.i18n
 KIconLoader = QIconLoader(Pds)
