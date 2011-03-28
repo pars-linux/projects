@@ -21,6 +21,7 @@
         </BuildDependencies>
             <Patches>
                 <Patch level="1">background_alpha.patch</Patch>
+                <Patch level="1">lxterminal-tr.patch</Patch>
             </Patches>
     </Source>
 
@@ -43,6 +44,13 @@
     </Package>
 
     <History>
+        <Update release="5">
+            <Date>2011-03-28</Date>
+            <Version>0.1.9</Version>
+            <Comment>added translations.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="4">
             <Date>2010-11-23</Date>
             <Version>0.1.9</Version>
