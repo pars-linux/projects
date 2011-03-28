@@ -1,13 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010 TUBITAK/BILGEM
-# Licensed under the GNU General Public License, version 2.
-# See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+# Licensed under the GNU General Public License, version 2
+# See the file http://www.gnu.org/copyleft/gpl.txt
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
-from pisi.actionsapi import get
 
 def setup():
     autotools.configure("--enable-sm \
@@ -20,6 +18,9 @@ def build():
     autotools.make()
 
 def install():
-    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
+    autotools.install()
 
+    pisitools.remove("/usr/share/icons/hicolor/icon-theme.cache")
+
+    # Empty files: NEWS
     pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING", "README")
