@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>screen capture module for Enlightenment</Summary>
         <Description>screenshot is a module for taking screenshots of the entire screen, a specific window.</Description>
-        <Archive sha1sum="378a8e8a823557fa32fcfe6d8cd4ea92c29d05f8" type="tarbz2">http://comak.comu.edu.tr/source/e-module-screenshot-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="77310a08f0f87f2f9e2bfbc65d52856c322b3651" type="targz">http://comak.comu.edu.tr/source/e-module-screenshot-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0_beta3">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0_beta3">eet-devel</Dependency>
@@ -34,6 +34,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-09</Date>
             <Version>0.0.1_55225</Version>
