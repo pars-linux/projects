@@ -33,6 +33,7 @@
             <Patch level="1" compressionType="bz2">icons.patch.tar.bz2</Patch>
             <Patch level="1">autostart-some-apps.patch</Patch>
             <Patch level="1">default-style.patch</Patch>
+            <Patch level="1">turkish.patch</Patch>
         </Patches>
     </Source>
 
