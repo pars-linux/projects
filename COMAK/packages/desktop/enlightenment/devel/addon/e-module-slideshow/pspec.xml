@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Slideshow module for Enlightenment</Summary>
         <Description>e-module-slideshow, turns your desktop background into a slideshow.</Description>
-        <Archive sha1sum="df5ece0bf90153ff0b656d936c8b5576e43454ee" type="tarbz2">http://comak.comu.edu.tr/source/e-module-slideshow-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="fe0281f07366fc0eb508c116a22480f39e090db0" type="targz">http://comak.comu.edu.tr/source/e-module-slideshow-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
