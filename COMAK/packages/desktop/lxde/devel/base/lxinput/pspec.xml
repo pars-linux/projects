@@ -14,7 +14,7 @@
         <Description>lxinput is tool for LXDE keyboard and mouse configuration.</Description>
         <Archive sha1sum="cddf140ba8e09fbc370d4ae590996737f6156026" type="targz">mirrors://sourceforge/lxde/lxinput-0.1.1.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>gtk2</Dependency>
+            <Dependency>gtk2-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">config_file_path.patch</Patch>
@@ -38,9 +38,9 @@
 
     <History>
         <Update release="2">
-            <Date>2011-03-21</Date>
+            <Date>2011-03-28</Date>
             <Version>0.1.1</Version>
-            <Comment>New translations Added.</Comment>
+            <Comment>added translations.</Comment>
             <Name>Engin Manap</Name>
             <Email>engin@comu.edu.tr</Email>
         </Update>
