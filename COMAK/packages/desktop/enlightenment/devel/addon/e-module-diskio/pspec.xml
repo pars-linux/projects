@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>I/O Disk monitoring module</Summary>
         <Description>E-module-diskio to monitor I/O disk for Enlightenment</Description>
-        <Archive sha1sum="c815c9073dbc6f7653fc1077e6144de17a492aef" type="tarbz2">http://comak.comu.edu.tr/source/e-module-diskio-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="c086f29455b28dcd67a5fc85635645a0efcdc36f" type="targz">http://comak.comu.edu.tr/source/e-module-diskio-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -41,6 +41,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-07</Date>
             <Version>0.0.1_55225</Version>
