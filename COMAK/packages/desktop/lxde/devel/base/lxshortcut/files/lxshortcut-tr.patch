@@ -1,6 +1,6 @@
 diff -Nuar lxshortcut-0.1.1.orig/po/tr.po lxshortcut-0.1.1/po/tr.po
---- lxshortcut-0.1.1.orig/po/tr.po	2011-03-20 22:11:59.822000011 +0200
-+++ lxshortcut-0.1.1/po/tr.po	2011-03-20 22:32:14.130000018 +0200
+--- lxshortcut-0.1.1.orig/po/tr.po	2011-03-28 06:57:25.469000010 +0300
++++ lxshortcut-0.1.1/po/tr.po	2011-03-28 07:11:22.268000011 +0300
 @@ -2,92 +2,94 @@
  # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
  # This file is distributed under the same license as the PACKAGE package.

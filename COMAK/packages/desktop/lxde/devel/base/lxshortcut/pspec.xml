@@ -14,7 +14,7 @@
         <Description>lxshortcut is a LXDE tool to edit desktop entry files.</Description>
         <Archive sha1sum="d7193240c2da725c08c21fb55bdd638013fc5b09" type="targz">mirrors://sourceforge/lxde/lxshortcut-0.1.1.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>gtk2</Dependency>
+            <Dependency>gtk2-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">lxshortcut-0.1.1-intltool.patch</Patch>
@@ -26,6 +26,7 @@
         <Name>lxshortcut</Name>
         <RuntimeDependencies>
             <Dependency>gtk2</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
@@ -37,13 +38,12 @@
 
     <History>
         <Update release="2">
-            <Date>2011-03-21</Date>
+            <Date>2011-03-28</Date>
             <Version>0.1.1</Version>
-            <Comment>New translations Added.</Comment>
+            <Comment>added translations.</Comment>
             <Name>Engin Manap</Name>
             <Email>engin@comu.edu.tr</Email>
         </Update>
-
         <Update release="1">
             <Date>2010-09-19</Date>
             <Version>0.1.1</Version>
