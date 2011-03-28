@@ -10,7 +10,7 @@ from pisi.actionsapi import get
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 
-WorkDir = "wlan-0.0.1_55225"
+WorkDir = "wlan"
 
 def setup():
     autotools.autoreconf("-vfi")
