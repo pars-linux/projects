@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Network interface monitor module for Enlightenment</Summary>
         <Description>e-module-net is a network interface monitor module for Enlightenment.</Description>
-        <Archive sha1sum="2b56d956c7dba80fe5fb47e3b538a698d8f43ebe" type="tarbz2">http://comak.comu.edu.tr/source/e_modules-net-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="1123c386c363ed6288c13b2cd9d7f9ea533b1f44" type="targz">http://comak.comu.edu.tr/source/e-module-net-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>git</Dependency>
             <Dependency>eet-devel</Dependency>
@@ -45,6 +45,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-11</Date>
             <Version>0.0.1_55225</Version>
