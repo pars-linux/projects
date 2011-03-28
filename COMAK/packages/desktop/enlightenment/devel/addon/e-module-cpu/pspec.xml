@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>CPU monitor module</Summary>
         <Description>E-module-cpu is a E17 module for monitor cpu.</Description>
-        <Archive sha1sum="979c02a84928857701c14800270dea76572baf61" type="tarbz2">http://comak.comu.edu.tr/source/e-module-cpu-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="e449dd633530c7a4a78fe1c63587f3866a3bea8d" type="targz">http://comak.comu.edu.tr/source/e-module-cpu-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet</Dependency>
             <Dependency>edje</Dependency>
@@ -42,6 +42,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-14</Date>
             <Version>0.0.1_55225</Version>
