@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>nautilus-cd-burner</Name>
+        <Summary xml:lang="tr">CD yakmak için kullanılan nautilus eklentisi</Summary>
+        <Description xml:lang="tr">Nautilus-cd-burner, CD yakamk için kullanılan bir Nautilus eklentisidir.</Description>
+    </Source>
+
+    <Package>
+        <Name>nautilus-cd-burner-devel</Name>
+        <Summary xml:lang="tr">nautilus-cd-burner için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+
