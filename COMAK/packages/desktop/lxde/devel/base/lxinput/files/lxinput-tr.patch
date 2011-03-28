@@ -1,6 +1,6 @@
 diff -Nuar lxinput-0.1.1.orig/po/tr.po lxinput-0.1.1/po/tr.po
---- lxinput-0.1.1.orig/po/tr.po	2011-03-20 22:10:05.324000007 +0200
-+++ lxinput-0.1.1/po/tr.po	2011-03-20 22:19:58.063000012 +0200
+--- lxinput-0.1.1.orig/po/tr.po	2011-03-28 06:57:25.396000010 +0300
++++ lxinput-0.1.1/po/tr.po	2011-03-28 07:11:22.157000011 +0300
 @@ -3,99 +3,113 @@
  # This file is distributed under the same license as the PACKAGE package.
  # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
