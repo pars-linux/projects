@@ -14,6 +14,8 @@ def setup():
                         --enable-libnotify \
                         --enable-taglib")
 
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+
 def build():
     autotools.make()
 
