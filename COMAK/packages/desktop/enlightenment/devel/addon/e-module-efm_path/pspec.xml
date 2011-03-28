@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>EFM Path module</Summary>
         <Description>e-module-efm_path, is a module that include path for E17 file manager.</Description>
-        <Archive sha1sum="3085a427267a409a73f27c06da76738ef5b50b7b" type="tarbz2">http://comak.comu.edu.tr/source/e-module-efm_path-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="f3d991883c0522ca70e15c2949c68a6d06308521" type="targz">http://comak.comu.edu.tr/source/e-module-efm_path-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -38,6 +38,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-10</Date>
             <Version>0.0.1_55225</Version>
