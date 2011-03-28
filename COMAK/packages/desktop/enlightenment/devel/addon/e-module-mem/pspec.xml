@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Memory monitor module for Enlightenment</Summary>
         <Description>e-module-mem is a memory utilization monitoring module for Enlightenment.</Description>
-        <Archive sha1sum="f45b1f05e7f8d5a943bd2bb61187024e10f31485" type="tarbz2">http://comak.comu.edu.tr/source/e-module-mem-0.0.1_55225.tar.bz2</Archive>
+        <Archive sha1sum="2b7040c364b89b53419d718370a14193fde03e6a" type="targz">http://comak.comu.edu.tr/source/e-module-mem-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>eet-devel</Dependency>
             <Dependency>edje-devel</Dependency>
@@ -43,6 +43,16 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-27</Date>
+            <Version>0.0.1_58042</Version>
+            <Comment>
+                * Version Bump.
+                * added translations.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-17</Date>
             <Version>0.0.1_55225</Version>
