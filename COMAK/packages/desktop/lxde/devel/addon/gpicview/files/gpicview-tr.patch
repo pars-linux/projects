@@ -1,6 +1,6 @@
 diff -Nuar gpicview-0.2.1.orig/po/tr.po gpicview-0.2.1/po/tr.po
---- gpicview-0.2.1.orig/po/tr.po	2011-03-21 11:22:13.663000008 +0200
-+++ gpicview-0.2.1/po/tr.po	2011-03-21 11:23:51.282000027 +0200
+--- gpicview-0.2.1.orig/po/tr.po	2011-03-28 06:57:25.245000010 +0300
++++ gpicview-0.2.1/po/tr.po	2011-03-28 07:11:21.934000011 +0300
 @@ -3,214 +3,280 @@
  # This file is distributed under the same license as the PACKAGE package.
  # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
