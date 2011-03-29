@@ -24,9 +24,9 @@
             <Dependency versionFrom="1.0.0_beta3">e_dbus-devel</Dependency>
             <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
         </BuildDependencies>
-        <Patches>
+        <!--<Patches>
             <Patch level="1">tr.diff</Patch>
-        </Patches>
+        </Patches>-->
     </Source>
 
     <Package>
