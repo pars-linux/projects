@@ -24,7 +24,7 @@
     </Source>
 
     <Package>
-        <Name>disk-manager</Name>
+        <Name>disk-manager-comak</Name>
         <RuntimeDependencies>
             <Dependency versionFrom='0.4.8'>pardus-python</Dependency>
             <Dependency releaseFrom='122'>mudur</Dependency>
