@@ -27,7 +27,6 @@
         <Name>firewall-manager-comak</Name>
         <RuntimeDependencies>
             <Dependency>python-qt</Dependency>
-            <Dependency>comar</Dependency>
             <Dependency>iptables</Dependency>
             <Dependency>dhcp</Dependency>
             <Dependency>pardus-desktop-services</Dependency>
