@@ -20,7 +20,7 @@ __plugins = {
             pds.LXDE : "lxde",
             pds.Enlightenment : "enlightenment",
             pds.Fluxbox: "fluxbox",
-            pds.Gnome: "gnome",
+            pds.Xfce: "xfce",
             #pds.DefaultDe:"kde", #FIXME: temporary
             }
 
