@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>firewall-manager-pds</Name>
+        <Name>firewall-manager-comak</Name>
         <Homepage>http://www.pardus.org.tr/</Homepage>
         <Packager>
             <Name>Gökmen Göksel</Name>
@@ -12,16 +12,19 @@
         <IsA>app:gui</IsA>
         <Summary>Easy-to-use firewall configuration application</Summary>
         <Description>Firewall-Config is a very easy to use firewall configuration application for Pardus Linux.</Description>
-        <Archive sha1sum="e1abf2e71ae07f3133324a0b2505e8f214f290ca" type="tarbz2">http://x86-64.comu.edu.tr/lxde/firewall-manager.tar.bz2</Archive>
+        <Archive sha1sum="a8aed2c794b7f6f506346a7e092ecdc3f6bdfdb1" type="targz">http://cekirdek.pardus.org.tr/~gokmen/files/firewall-manager-3.0.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>docutils</Dependency>
             <Dependency>python-qt-devel</Dependency>
             <Dependency>pardus-desktop-services</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">firewall-manager.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
-        <Name>firewall-manager-pds</Name>
+        <Name>firewall-manager-comak</Name>
         <RuntimeDependencies>
             <Dependency>python-qt</Dependency>
             <Dependency>comar</Dependency>
