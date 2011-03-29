@@ -135,7 +135,9 @@ class Style(base.Style):
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
         print styleName
-        os.popen("gconftool-2 --type string --set /apps/metacity/general/theme %s" %styleName)
+        os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme %s" %styleName)
+        os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Crux")
+        
 
 
     def setDesktopType(self):
