@@ -356,7 +356,7 @@ border-top-right-radius: 4px;</string>
           </property>
           <item>
            <property name="text">
-            <string>Oxygen - The official icon set of KDE</string>
+            <string>Oxygen</string>
            </property>
            <property name="toolTip">
             <string>oxygen</string>
@@ -371,7 +371,7 @@ border-top-right-radius: 4px;</string>
           </item>
           <item>
            <property name="text">
-            <string>Oxygen - The official icon set of LXDE</string>
+            <string>Oxygen</string>
            </property>
            <property name="icon">
             <iconset resource="../data/kaptan.qrc">
@@ -380,7 +380,7 @@ border-top-right-radius: 4px;</string>
           </item>
           <item>
            <property name="text">
-            <string>Milky - The official icon set of Pardus</string>
+            <string>Milky</string>
            </property>
            <property name="toolTip">
             <string>milky</string>
