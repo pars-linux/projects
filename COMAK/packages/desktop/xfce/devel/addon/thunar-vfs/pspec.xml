@@ -16,6 +16,9 @@
         <BuildDependencies>
             <Dependency versionFrom="1.2.0">Thunar-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">tr-po.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
