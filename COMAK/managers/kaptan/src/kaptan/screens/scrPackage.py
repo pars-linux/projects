@@ -39,25 +39,29 @@ class Widget(QtGui.QWidget, Screen):
         self.ui.setupUi(self)
         self.ui.checkBox.setChecked(False)
         self.flagRepo = 0
-        self.repoName = "lxde-repo"
-        self.repoAddress ="http://x86-64.comu.edu.tr/lxde/%s/pisi-index.xml.xz" % platform.machine()
+        self.repoName = "comak-repo"
+        if platform.machine() == "x86_64":
+            platform_machine = "64"
+        if platform.machine() == "i686":
+            platform_machine ="32"
+        self.repoAddress ="http://comak%s.comu.edu.tr/comak/pisi-index.xml.xz" % platform_machine
         self.ui.information_label.setText("")
         # create a db object
         self.repodb = pisi.db.repodb.RepoDB()
         n = 1 # temporary index variable for repo names
         self.connect(self.ui.checkBox,SIGNAL("stateChanged(int)"),self.slotEnlightenmentRepo)
-        self.ui.add_repo.setText("Add "+str(ctx.Pds.session.Name)+" Repository")
+        self.ui.add_repo.setText("Add COMAK Repository")
         # control if we already have lxden repo
         if self.repodb.has_repo(self.repoName):
             #self.pushDelete.setEnabled(0)
             self.ui.checkBox.setEnabled(0)
-            errorMessage= i18n("lxde-repo is already available on your system.")
+            errorMessage= i18n("comak-repo is already available on your system.")
             self.ui.information_label.setText(errorMessage)
     
     def controlRepo(self):
         if self.repodb.has_repo_url(self.repoAddress):
             self.ui.checkBox.setCheckState(False)
-            errorMessage= i18n("lxde-repo is already available on your system.")
+            errorMessage= i18n("comak-repo is already available on your system.")
             self.ui.information_label.setText(errorMessage)
             return False
         else:
@@ -92,7 +96,7 @@ class Widget(QtGui.QWidget, Screen):
                 link = comar.Link()
                 link.setLocale()
                 link.System.Manager["pisi"].addRepository(r_name, r_address)
-                self.ui.information_label.setText("lxde-repo added to your repo list.")
+                self.ui.information_label.setText("comak-repo added to your repo list.")
                 return True
             except:
                 return False
@@ -103,7 +107,7 @@ class Widget(QtGui.QWidget, Screen):
                 link = comar.Link()
                 link.setLocale()
                 link.System.Manager["pisi"].removeRepository(r_name)
-                self.ui.information_label.setText("lxde-repo deleted from your repo list.")
+                self.ui.information_label.setText("comak-repo deleted from your repo list.")
                 return True
             except:
                 return False
