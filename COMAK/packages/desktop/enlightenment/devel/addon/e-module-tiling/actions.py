@@ -12,8 +12,6 @@ from pisi.actionsapi import get
 WorkDir="tiling"
 
 def setup():
-    #shelltools.export("AUTOPOINT", "/bin/true")
-    
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static")
 
