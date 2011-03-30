@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<PISI>
-    <Source>
-        <Name>pardus-default-settings-gnome</Name>
-        <Summary xml:lang="tr">GNOME masaüstü için Pardus öntanımlı ayarları</Summary>
-        <Description xml:lang="tr">Bu paket, GNOME masaüstü için Pardus öntanımlı ayarlarını içerir.</Description>
-    </Source>
-</PISI>
-
