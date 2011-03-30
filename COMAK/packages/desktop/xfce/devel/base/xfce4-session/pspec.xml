@@ -80,6 +80,8 @@
         <Summary>Xfce4 Session development files</Summary>
         <RuntimeDependencies>
             <Dependency releaseFrom="15">xfce4-session</Dependency>
+            <Dependency>xfconf-devel</Dependency>
+            <Dependency>libxfce4ui-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
