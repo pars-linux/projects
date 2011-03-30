@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>yali-branding-comak</Name>
+        <Homepage>http://comakp.blogspot.com</Homepage>
+        <Packager>
+            <Name>Comak TEAM</Name>
+            <Email>comak@comu.edu.tr</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>data</IsA>
+        <Summary>COMAK Branding files for YALI</Summary>
+        <Description>yali-branding includes COMAK branding files for YALI(Yet Another Linux Installer).</Description>
+        <Archive sha1sum="b9348c16adcc52a3aacaecdc57f6ab60703e0c7b" type="targz">http://comak.comu.edu.tr/source/yali-branding-comak.tar.gz</Archive>
+    </Source>
+
+    <Package>
+        <Name>yali-branding-comak</Name>
+        <Files>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/yali/branding</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-30</Date>
+            <Version>1.0</Version>
+            <Comment>First release.</Comment>
+            <Name>COMAK Team</Name>
+            <Email>comak@comu.edu.tr</Email>
+        </Update>
+    </History>
+</PISI>
+
