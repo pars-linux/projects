@@ -37,11 +37,11 @@
         <SelectedPackage>djvu-plugin</SelectedPackage>
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>dvd+rw-tools</SelectedPackage>
-        <SelectedPackage>e-module-trash</SelectedPackage>
-        <SelectedPackage>econcentration</SelectedPackage>
         <SelectedPackage>edgar</SelectedPackage>
+        <SelectedPackage>editje</SelectedPackage>
         <SelectedPackage>encfs</SelectedPackage>
         <SelectedPackage>enchant-zemberek</SelectedPackage>
+        <SelectedPackage>epdfview</SelectedPackage>
         <SelectedPackage>ethtool</SelectedPackage>
         <SelectedPackage>example-content</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
@@ -119,6 +119,7 @@
         <SelectedPackage>ntp-client</SelectedPackage>
         <SelectedPackage>nvidia-settings</SelectedPackage>
         <SelectedPackage>p7zip</SelectedPackage>
+        <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
         <SelectedPackage>pardus-desktop-services</SelectedPackage>
         <SelectedPackage>pavucontrol</SelectedPackage>
@@ -173,6 +174,7 @@
         <SelectedPackage>sdl-sound</SelectedPackage>
         <SelectedPackage>sdl-ttf</SelectedPackage>
         <SelectedPackage>sdparm</SelectedPackage>
+        <SelectedPackage>service-manager-comak</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
@@ -191,6 +193,7 @@
         <SelectedPackage>unarj</SelectedPackage>
         <SelectedPackage>unrar</SelectedPackage>
         <SelectedPackage>usb-modeswitch</SelectedPackage>
+        <SelectedPackage>user-manager-pds</SelectedPackage>
         <SelectedPackage>vim</SelectedPackage>
         <SelectedPackage>vim-colorschemes</SelectedPackage>
         <SelectedPackage>virtualbox-guest-utils</SelectedPackage>
@@ -219,17 +222,14 @@
         <Package>NetworkManager</Package>
         <Package>a52dec</Package>
         <Package>aalib</Package>
-        <Package>accessrunner-firmware</Package>
         <Package>acl</Package>
         <Package>agg</Package>
-        <Package>aic94xx-firmware</Package>
         <Package>alsa-firmware</Package>
         <Package>alsa-lib</Package>
         <Package>alsa-utils</Package>
         <Package>alternatives</Package>
         <Package>apr</Package>
         <Package>apr-util</Package>
-        <Package>ar9170-firmware</Package>
         <Package>atk</Package>
         <Package>atmel-firmware</Package>
         <Package>attr</Package>
@@ -261,6 +261,8 @@
         <Package>cdparanoia</Package>
         <Package>cdrtools</Package>
         <Package>check</Package>
+        <Package>chipmunk</Package>
+        <Package>chipmunk-devel</Package>
         <Package>clucene</Package>
         <Package>comar</Package>
         <Package>comar-api</Package>
@@ -349,7 +351,6 @@
         <Package>e_dbus</Package>
         <Package>e_dbus-devel</Package>
         <Package>e_phys</Package>
-        <Package>eagle-firmware</Package>
         <Package>econcentration</Package>
         <Package>ecore</Package>
         <Package>ecore-devel</Package>
@@ -390,6 +391,7 @@
         <Package>enlil-devel</Package>
         <Package>enscript</Package>
         <Package>ephoto</Package>
+        <Package>eskiss</Package>
         <Package>eterm</Package>
         <Package>eterm-bg</Package>
         <Package>ethumb</Package>
@@ -514,8 +516,6 @@
         <Package>iproute2</Package>
         <Package>iptables</Package>
         <Package>iputils</Package>
-        <Package>ipw2100-firmware</Package>
-        <Package>ipw2200-firmware</Package>
         <Package>iscan-firmware</Package>
         <Package>itask-ng</Package>
         <Package>iw</Package>
@@ -727,7 +727,6 @@
         <Package>lua-devel</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
-        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
@@ -867,15 +866,12 @@
         <Package>python-simplejson</Package>
         <Package>python-xlib</Package>
         <Package>python-zope-interface</Package>
-        <Package>ql2x00-firmware</Package>
         <Package>qt</Package>
         <Package>qt-sql-sqlite</Package>
         <Package>qt-webkit</Package>
         <Package>qtermwidget</Package>
         <Package>qtiocompressor</Package>
-        <Package>radeon-rlc-firmware</Package>
         <Package>rage</Package>
-        <Package>ralink-firmware</Package>
         <Package>raptor</Package>
         <Package>rasqal</Package>
         <Package>readline</Package>
@@ -943,8 +939,6 @@
         <Package>user-manager-pds</Package>
         <Package>utempter</Package>
         <Package>util-linux</Package>
-        <Package>v4l-conexant-firmware</Package>
-        <Package>v4l-dvb-firmware</Package>
         <Package>v86d</Package>
         <Package>vbetool</Package>
         <Package>vcdimager</Package>
@@ -1005,6 +999,7 @@
         <Package>xorg-video-dummy</Package>
         <Package>xorg-video-fbdev</Package>
         <Package>xorg-video-fglrx</Package>
+        <Package>xorg-video-geode</Package>
         <Package>xorg-video-glint</Package>
         <Package>xorg-video-i128</Package>
         <Package>xorg-video-i740</Package>
@@ -1116,13 +1111,10 @@
         <Package>ConsoleKit</Package>
         <Package>ModemManager</Package>
         <Package>NetworkManager</Package>
-        <Package>accessrunner-firmware</Package>
         <Package>acl</Package>
-        <Package>aic94xx-firmware</Package>
         <Package>alsa-firmware</Package>
         <Package>alsa-lib</Package>
         <Package>alternatives</Package>
-        <Package>ar9170-firmware</Package>
         <Package>atmel-firmware</Package>
         <Package>attr</Package>
         <Package>audit</Package>
@@ -1165,7 +1157,6 @@
         <Package>droid-fonts</Package>
         <Package>e2fsprogs</Package>
         <Package>e3</Package>
-        <Package>eagle-firmware</Package>
         <Package>eject</Package>
         <Package>expat</Package>
         <Package>file</Package>
@@ -1203,8 +1194,6 @@
         <Package>iproute2</Package>
         <Package>iptables</Package>
         <Package>iputils</Package>
-        <Package>ipw2100-firmware</Package>
-        <Package>ipw2200-firmware</Package>
         <Package>iscan-firmware</Package>
         <Package>jbigkit</Package>
         <Package>jpeg</Package>
@@ -1287,7 +1276,6 @@
         <Package>linux-firmware</Package>
         <Package>lsb-release</Package>
         <Package>lvm2</Package>
-        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
@@ -1358,11 +1346,8 @@
         <Package>python-pyblock</Package>
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
-        <Package>ql2x00-firmware</Package>
         <Package>qt</Package>
         <Package>qtermwidget</Package>
-        <Package>radeon-rlc-firmware</Package>
-        <Package>ralink-firmware</Package>
         <Package>readline</Package>
         <Package>reiserfsprogs</Package>
         <Package>rsyslog</Package>
@@ -1389,8 +1374,6 @@
         <Package>urlgrabber</Package>
         <Package>usbutils</Package>
         <Package>util-linux</Package>
-        <Package>v4l-conexant-firmware</Package>
-        <Package>v4l-dvb-firmware</Package>
         <Package>v86d</Package>
         <Package>virtualbox-guest-utils</Package>
         <Package>vixie-cron</Package>
