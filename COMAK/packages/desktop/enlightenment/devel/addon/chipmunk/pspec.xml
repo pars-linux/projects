@@ -13,10 +13,16 @@
         <Summary>physics library in C</Summary>
         <Description>Chipmunk is a simple, lightweight, fast and portable 2D rigid body physics library written in C.</Description>
         <Archive sha1sum="2a49b482fe3cee0815095832527d44be9f715aab" type="tarbz2">http://comak.comu.edu.tr/source/Chipmunk-5.3.4.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>mesa-devel</Dependency>
+        </BuildDependencies>
     </Source>
 
     <Package>
         <Name>chipmunk</Name>
+        <RuntimeDependencies>
+            <Dependency>mesa</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="doc">/usr/share/doc</Path>
