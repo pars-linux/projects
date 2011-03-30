@@ -51,6 +51,9 @@
             <Dependency>libglade</Dependency>
             <Dependency>exo</Dependency>
             <Dependency>xfce4-panel</Dependency>
+            <Dependency>garcon</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>libxfce4ui</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
