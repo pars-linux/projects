@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>swfdec-gnome</Name>
+        <Homepage>http://swfdec.freedesktop.org/wiki/</Homepage>
+        <Packager>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Flash player and thumbnailer for GNOME</Summary>
+        <Description>Flash player and thumbnailer for GNOME</Description>
+        <Archive sha1sum="cf95930ccd0b66146c97d6e111b1e27ec0d802dc" type="targz">http://swfdec.freedesktop.org/download/swfdec/0.8/swfdec-0.8.4.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>liboil-devel</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>freetype-devel</Dependency>
+            <Dependency>alsa-lib-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+            <Dependency>gst-plugins-base-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>swfdec-gnome</Name>
+        <RuntimeDependencies>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>liboil</Dependency>
+            <Dependency>libsoup</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>alsa-lib</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>swfdec-gnome-devel</Name>
+        <RuntimeDependencies>
+            <Dependency release="current">swfdec-gnome</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-17</Date>
+            <Version>2.32.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmial.com</Email>
+        </Update>
+    </History>
+</PISI>
