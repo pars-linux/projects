@@ -18,6 +18,8 @@ def setup():
                          --enable-notifications \
                          --enable-python")
 
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+
 def build():
     autotools.make()
 
