@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">GNOME Do işleri kolay yapmayı sağlar</Summary>
         <Description xml:lang="tr">Do bilgisayarınızdaki genel işleri hızlı ve etkili bir şekilde yerine getirmenizi sağlayan zeki bir başlatıcıdır.</Description>
     </Source>
+
+    <Package>
+        <Name>gnome-do-devel</Name>
+        <Summary xml:lang="tr">gnome-do için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
