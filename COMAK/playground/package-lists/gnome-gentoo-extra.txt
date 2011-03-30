@@ -4,7 +4,6 @@ avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExi
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
 quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
 
-synapse  --  A program launcher in the style of GNOME Do  -- Vala sürümü yüzünden synapse paketinden sorun yaşanmaktadır.
 
 PACKAGES IN PLAYGROUND:
 zenity  --  Tool to display dialogs from the commandline and shell scripts  -- Playground(brkclskn)
@@ -16,8 +15,9 @@ libgda  -- Gnome Database Access Library  -- Playground(serdardalgıç)
 PACKAGES IN BURAK CALISKAN'S REPO:
 nautilus-open-terminal  --  Nautilus Plugin for Opening Terminals  --  brkclskni686
 
-PACKAGES IN PARDUS2009:
+OTHERS
 yelp  --  Help browser for GNOME  --  pardus2009
+synapse  --  A program launcher in the style of GNOME Do  -- Vala sürümü yüzünden synapse paketinden sorun yaşanmaktadır.
 
 aramayapılan depolar:
 contrip2009: http://packages.pardus.org.tr/contrib-2009/
