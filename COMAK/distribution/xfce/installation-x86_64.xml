@@ -28,6 +28,7 @@
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
+        <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
         <SelectedPackage>cursor-theme-oxygen-black</SelectedPackage>
@@ -560,7 +561,6 @@
         <Package>libgcc</Package>
         <Package>libgcrypt</Package>
         <Package>libgfortran</Package>
-        <Package>libgksu</Package>
         <Package>libglade</Package>
         <Package>libglademm</Package>
         <Package>libgnome</Package>
@@ -575,7 +575,6 @@
         <Package>libgsasl</Package>
         <Package>libgsf</Package>
         <Package>libgssglue</Package>
-        <Package>libgtop</Package>
         <Package>libgudev1</Package>
         <Package>libgweather</Package>
         <Package>libical</Package>
@@ -694,7 +693,6 @@
         <Package>luatex</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
-        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
@@ -944,6 +942,8 @@
         <Package>timidity-shompatches</Package>
         <Package>tomcat-servlet-api</Package>
         <Package>totem-pl-parser</Package>
+        <Package>tumbler</Package>
+        <Package>tumbler-devel</Package>
         <Package>twolame</Package>
         <Package>udev</Package>
         <Package>unarj</Package>
@@ -1332,7 +1332,6 @@
         <Package>linux-firmware</Package>
         <Package>lsb-release</Package>
         <Package>lvm2</Package>
-        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
