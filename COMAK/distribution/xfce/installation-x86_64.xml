@@ -3,15 +3,16 @@
     <WorkDir>/root/pardusman/work/xfce/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/xfce/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak64.comu.edu.tr/repo/pisi-index.xml.xz">
+        <SelectedComponent>desktop.comak</SelectedComponent>
+        <SelectedComponent>desktop.xfce.addon</SelectedComponent>
+        <SelectedComponent>desktop.xfce.admin</SelectedComponent>
+        <SelectedComponent>desktop.xfce.base</SelectedComponent>
         <SelectedComponent>desktop.xfce.library</SelectedComponent>
+        <SelectedComponent>desktop.xfce.lookandfeel</SelectedComponent>
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
         <SelectedComponent>x11.server</SelectedComponent>
-        <SelectedPackage>Terminal</SelectedPackage>
-        <SelectedPackage>Thunar</SelectedPackage>
-        <SelectedPackage>Thunar-devel</SelectedPackage>
-        <SelectedPackage>Thunar-docs</SelectedPackage>
         <SelectedPackage>acpi</SelectedPackage>
         <SelectedPackage>acpid</SelectedPackage>
         <SelectedPackage>alsa-lib</SelectedPackage>
@@ -23,12 +24,10 @@
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
-        <SelectedPackage>boot-manager-pds</SelectedPackage>
         <SelectedPackage>brasero</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
-        <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
         <SelectedPackage>cursor-theme-oxygen-black</SelectedPackage>
@@ -39,7 +38,6 @@
         <SelectedPackage>dejavu-fonts</SelectedPackage>
         <SelectedPackage>device-mapper</SelectedPackage>
         <SelectedPackage>device-mapper-static</SelectedPackage>
-        <SelectedPackage>disk-manager-pds</SelectedPackage>
         <SelectedPackage>djvu-plugin</SelectedPackage>
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>dvd+rw-tools</SelectedPackage>
@@ -48,23 +46,16 @@
         <SelectedPackage>epdfview</SelectedPackage>
         <SelectedPackage>ethtool</SelectedPackage>
         <SelectedPackage>example-content</SelectedPackage>
-        <SelectedPackage>exo</SelectedPackage>
-        <SelectedPackage>exo-devel</SelectedPackage>
-        <SelectedPackage>exo-docs</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
-        <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
-        <SelectedPackage>garcon</SelectedPackage>
-        <SelectedPackage>garcon-docs</SelectedPackage>
         <SelectedPackage>gdm</SelectedPackage>
         <SelectedPackage>gecko-mediaplayer</SelectedPackage>
         <SelectedPackage>gfxboot</SelectedPackage>
         <SelectedPackage>gfxtheme-pardus-boot</SelectedPackage>
-        <SelectedPackage>gigolo</SelectedPackage>
         <SelectedPackage>gimp</SelectedPackage>
         <SelectedPackage>gimp-i18n-tr</SelectedPackage>
         <SelectedPackage>glade-xfce</SelectedPackage>
@@ -74,8 +65,6 @@
         <SelectedPackage>gnome-session</SelectedPackage>
         <SelectedPackage>gst-ffmpeg</SelectedPackage>
         <SelectedPackage>gtk-engines</SelectedPackage>
-        <SelectedPackage>gtk-style-xfce</SelectedPackage>
-        <SelectedPackage>gtk-xfce-engine</SelectedPackage>
         <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
@@ -87,7 +76,6 @@
         <SelectedPackage>icon-theme-hicolor</SelectedPackage>
         <SelectedPackage>icon-theme-milky-png</SelectedPackage>
         <SelectedPackage>icon-theme-oxygen-png</SelectedPackage>
-        <SelectedPackage>icon-theme-xfce4</SelectedPackage>
         <SelectedPackage>iptraf</SelectedPackage>
         <SelectedPackage>ipython</SelectedPackage>
         <SelectedPackage>irda-utils</SelectedPackage>
@@ -109,12 +97,6 @@
         <SelectedPackage>libvisual-plugins</SelectedPackage>
         <SelectedPackage>libxfce4mcs</SelectedPackage>
         <SelectedPackage>libxfce4mcs-devel</SelectedPackage>
-        <SelectedPackage>libxfce4ui</SelectedPackage>
-        <SelectedPackage>libxfce4ui-devel</SelectedPackage>
-        <SelectedPackage>libxfce4util</SelectedPackage>
-        <SelectedPackage>libxfce4util-devel</SelectedPackage>
-        <SelectedPackage>libxfcegui4</SelectedPackage>
-        <SelectedPackage>libxfcegui4-devel</SelectedPackage>
         <SelectedPackage>lm_sensors</SelectedPackage>
         <SelectedPackage>logrotate</SelectedPackage>
         <SelectedPackage>lsscsi</SelectedPackage>
@@ -123,11 +105,9 @@
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
-        <SelectedPackage>medit</SelectedPackage>
         <SelectedPackage>mercurial</SelectedPackage>
         <SelectedPackage>mesa-utils</SelectedPackage>
         <SelectedPackage>microcode-ctl</SelectedPackage>
-        <SelectedPackage>midori</SelectedPackage>
         <SelectedPackage>min12xxw</SelectedPackage>
         <SelectedPackage>module-alsa-driver</SelectedPackage>
         <SelectedPackage>module-broadcom-wl</SelectedPackage>
@@ -147,9 +127,7 @@
         <SelectedPackage>p7zip</SelectedPackage>
         <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
-        <SelectedPackage>pardus-default-settings-xfce</SelectedPackage>
         <SelectedPackage>pardus-desktop-services</SelectedPackage>
-        <SelectedPackage>parole</SelectedPackage>
         <SelectedPackage>pavucontrol</SelectedPackage>
         <SelectedPackage>phonon-backend-gstreamer</SelectedPackage>
         <SelectedPackage>phonon-backend-vlc</SelectedPackage>
@@ -191,7 +169,6 @@
         <SelectedPackage>redland-virtuoso</SelectedPackage>
         <SelectedPackage>reiserfsprogs</SelectedPackage>
         <SelectedPackage>rfkill</SelectedPackage>
-        <SelectedPackage>ristretto</SelectedPackage>
         <SelectedPackage>rp-pppoe</SelectedPackage>
         <SelectedPackage>rpm2targz</SelectedPackage>
         <SelectedPackage>rsync</SelectedPackage>
@@ -203,7 +180,7 @@
         <SelectedPackage>sdl-sound</SelectedPackage>
         <SelectedPackage>sdl-ttf</SelectedPackage>
         <SelectedPackage>sdparm</SelectedPackage>
-        <SelectedPackage>service-manager-pds</SelectedPackage>
+        <SelectedPackage>service-manager-comak</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
@@ -217,10 +194,6 @@
         <SelectedPackage>suspend</SelectedPackage>
         <SelectedPackage>synergy</SelectedPackage>
         <SelectedPackage>telnet-bsd</SelectedPackage>
-        <SelectedPackage>thunar-sendto-clamtk</SelectedPackage>
-        <SelectedPackage>thunar-thumbnailers</SelectedPackage>
-        <SelectedPackage>thunar-vfs</SelectedPackage>
-        <SelectedPackage>thunarx-python</SelectedPackage>
         <SelectedPackage>traceroute</SelectedPackage>
         <SelectedPackage>tree</SelectedPackage>
         <SelectedPackage>unarj</SelectedPackage>
@@ -238,35 +211,6 @@
         <SelectedPackage>xdg-user-dirs</SelectedPackage>
         <SelectedPackage>xdg-utils</SelectedPackage>
         <SelectedPackage>xdm</SelectedPackage>
-        <SelectedPackage>xfce-utils</SelectedPackage>
-        <SelectedPackage>xfce4-appfinder</SelectedPackage>
-        <SelectedPackage>xfce4-battery-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-cddrive-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-cpufreq-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-dev-tools</SelectedPackage>
-        <SelectedPackage>xfce4-dict</SelectedPackage>
-        <SelectedPackage>xfce4-dict-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-gvfs-mount</SelectedPackage>
-        <SelectedPackage>xfce4-modemlights-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-mount-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-panel</SelectedPackage>
-        <SelectedPackage>xfce4-panel-devel</SelectedPackage>
-        <SelectedPackage>xfce4-quicklauncher-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-session</SelectedPackage>
-        <SelectedPackage>xfce4-session-devel</SelectedPackage>
-        <SelectedPackage>xfce4-settings</SelectedPackage>
-        <SelectedPackage>xfce4-smartbookmark-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-smartpm-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-time-out-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-vala</SelectedPackage>
-        <SelectedPackage>xfce4-wavelan-plugin</SelectedPackage>
-        <SelectedPackage>xfce4-xmms-plugin</SelectedPackage>
-        <SelectedPackage>xfconf</SelectedPackage>
-        <SelectedPackage>xfconf-devel</SelectedPackage>
-        <SelectedPackage>xfdesktop</SelectedPackage>
-        <SelectedPackage>xfmpc</SelectedPackage>
-        <SelectedPackage>xfswitch-plugin</SelectedPackage>
-        <SelectedPackage>xfwm4</SelectedPackage>
         <SelectedPackage>xscreensaver</SelectedPackage>
         <SelectedPackage>xterm</SelectedPackage>
         <SelectedPackage>xvattr</SelectedPackage>
@@ -281,8 +225,10 @@
         <Package>DirectFB</Package>
         <Package>ModemManager</Package>
         <Package>NetworkManager</Package>
+        <Package>Terminal</Package>
         <Package>Thunar</Package>
         <Package>Thunar-devel</Package>
+        <Package>Thunar-docs</Package>
         <Package>a52dec</Package>
         <Package>aalib</Package>
         <Package>acl</Package>
@@ -316,6 +262,7 @@
         <Package>bluez-firmware</Package>
         <Package>bluez-libs</Package>
         <Package>boost</Package>
+        <Package>boot-manager-comak</Package>
         <Package>busybox</Package>
         <Package>bzip2</Package>
         <Package>c-ares</Package>
@@ -327,6 +274,7 @@
         <Package>check</Package>
         <Package>clamav</Package>
         <Package>clamtk</Package>
+        <Package>clisp</Package>
         <Package>clucene</Package>
         <Package>comar</Package>
         <Package>comar-api</Package>
@@ -342,6 +290,8 @@
         <Package>cyrus-sasl</Package>
         <Package>db4</Package>
         <Package>db4-java</Package>
+        <Package>dbh</Package>
+        <Package>dbh-devel</Package>
         <Package>dbus</Package>
         <Package>dbus-c++</Package>
         <Package>dbus-glib</Package>
@@ -356,6 +306,7 @@
         <Package>dhcpcd</Package>
         <Package>dialog</Package>
         <Package>diffutils</Package>
+        <Package>disk-manager-comak</Package>
         <Package>disktype</Package>
         <Package>djbfft</Package>
         <Package>djview4</Package>
@@ -368,6 +319,7 @@
         <Package>droid-fonts</Package>
         <Package>e2fsprogs</Package>
         <Package>e3</Package>
+        <Package>eatmonkey</Package>
         <Package>eject</Package>
         <Package>enca</Package>
         <Package>enchant</Package>
@@ -376,15 +328,19 @@
         <Package>exempi</Package>
         <Package>exo</Package>
         <Package>exo-devel</Package>
+        <Package>exo-docs</Package>
         <Package>expat</Package>
         <Package>faac</Package>
         <Package>faad2</Package>
         <Package>farsight2</Package>
+        <Package>fcgi</Package>
+        <Package>ffcall</Package>
         <Package>ffmpeg</Package>
         <Package>ffmpegthumbnailer</Package>
         <Package>fftw3</Package>
         <Package>file</Package>
         <Package>findutils</Package>
+        <Package>firewall-manager-comak</Package>
         <Package>flac</Package>
         <Package>flite</Package>
         <Package>fluidsynth</Package>
@@ -402,6 +358,8 @@
         <Package>fxload</Package>
         <Package>gamin</Package>
         <Package>garcon</Package>
+        <Package>garcon-devel</Package>
+        <Package>garcon-docs</Package>
         <Package>gawk</Package>
         <Package>gconf</Package>
         <Package>gconfmm</Package>
@@ -415,7 +373,9 @@
         <Package>gfxtheme-pardus-install</Package>
         <Package>ghostscript</Package>
         <Package>giflib</Package>
+        <Package>gigolo</Package>
         <Package>gimp</Package>
+        <Package>git</Package>
         <Package>glade</Package>
         <Package>glew</Package>
         <Package>glib2</Package>
@@ -434,6 +394,7 @@
         <Package>glibmm</Package>
         <Package>glitz</Package>
         <Package>glitz-devel</Package>
+        <Package>gmime</Package>
         <Package>gmp</Package>
         <Package>gnome-common</Package>
         <Package>gnome-desktop</Package>
@@ -445,10 +406,12 @@
         <Package>gnome-settings-daemon</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
+        <Package>gnupg</Package>
         <Package>gnutls</Package>
         <Package>gobject-introspection</Package>
         <Package>gpac</Package>
         <Package>gperf</Package>
+        <Package>gpgme</Package>
         <Package>gpm</Package>
         <Package>graphviz</Package>
         <Package>grep</Package>
@@ -464,6 +427,7 @@
         <Package>gst-plugins-ugly</Package>
         <Package>gstreamer</Package>
         <Package>gtk-style-oxygen</Package>
+        <Package>gtk-style-xfce</Package>
         <Package>gtk2</Package>
         <Package>gtk2-devel</Package>
         <Package>gtkmm</Package>
@@ -491,6 +455,7 @@
         <Package>icon-theme-milky-png</Package>
         <Package>icon-theme-oxygen-index</Package>
         <Package>icon-theme-oxygen-png</Package>
+        <Package>icon-theme-xfce4</Package>
         <Package>icu4c</Package>
         <Package>ilmbase</Package>
         <Package>imagemagick</Package>
@@ -506,6 +471,7 @@
         <Package>jasper</Package>
         <Package>jbigkit</Package>
         <Package>jpeg</Package>
+        <Package>kaptan-e17</Package>
         <Package>kbd</Package>
         <Package>kernel</Package>
         <Package>keyutils</Package>
@@ -549,10 +515,12 @@
         <Package>libarchive</Package>
         <Package>libart_lgpl</Package>
         <Package>libass</Package>
+        <Package>libassuan</Package>
         <Package>libasyncns</Package>
         <Package>libavc1394</Package>
         <Package>libbonobo</Package>
         <Package>libbonoboui</Package>
+        <Package>libburn</Package>
         <Package>libcaca</Package>
         <Package>libcanberra</Package>
         <Package>libcanberra-gtk</Package>
@@ -604,6 +572,7 @@
         <Package>libgpg-error</Package>
         <Package>libgphoto2</Package>
         <Package>libgpod</Package>
+        <Package>libgsasl</Package>
         <Package>libgsf</Package>
         <Package>libgssglue</Package>
         <Package>libgtop</Package>
@@ -618,8 +587,10 @@
         <Package>libindicate</Package>
         <Package>libindicate-qt</Package>
         <Package>libiodbc</Package>
+        <Package>libisofs</Package>
         <Package>libkate</Package>
         <Package>libkms</Package>
+        <Package>libksba</Package>
         <Package>liblastfm</Package>
         <Package>liblqr</Package>
         <Package>liblrdf</Package>
@@ -666,6 +637,7 @@
         <Package>libsdl</Package>
         <Package>libshout</Package>
         <Package>libsigc++</Package>
+        <Package>libsigsegv</Package>
         <Package>libsndfile</Package>
         <Package>libsoup</Package>
         <Package>libsoup-gnome</Package>
@@ -699,7 +671,9 @@
         <Package>libx86</Package>
         <Package>libxcb</Package>
         <Package>libxfce4mcs</Package>
+        <Package>libxfce4mcs-devel</Package>
         <Package>libxfce4ui</Package>
+        <Package>libxfce4ui-devel</Package>
         <Package>libxfce4util</Package>
         <Package>libxfce4util-devel</Package>
         <Package>libxfcegui4</Package>
@@ -709,6 +683,7 @@
         <Package>libxml2</Package>
         <Package>libxmlpp</Package>
         <Package>libxslt</Package>
+        <Package>liferea</Package>
         <Package>linux-atm</Package>
         <Package>linux-firmware</Package>
         <Package>lirc</Package>
@@ -719,13 +694,16 @@
         <Package>luatex</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
+        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
         <Package>mcpp</Package>
         <Package>mdadm</Package>
         <Package>mdbtools</Package>
+        <Package>medit</Package>
         <Package>mesa</Package>
+        <Package>midori</Package>
         <Package>mina-core</Package>
         <Package>mingetty</Package>
         <Package>minizip</Package>
@@ -782,19 +760,26 @@
         <Package>openssl</Package>
         <Package>orbit2</Package>
         <Package>p7zip</Package>
+        <Package>package-manager-pds</Package>
         <Package>pam</Package>
         <Package>pam_python</Package>
         <Package>panda</Package>
         <Package>pango</Package>
         <Package>pango-devel</Package>
         <Package>pangomm</Package>
+        <Package>pardus-default-settings-xfce</Package>
         <Package>pardus-desktop-services</Package>
         <Package>pardus-python</Package>
+        <Package>pari</Package>
+        <Package>parole</Package>
+        <Package>parole-devel</Package>
         <Package>parted</Package>
         <Package>pciutils</Package>
         <Package>pcmciautils</Package>
+        <Package>pcre++</Package>
         <Package>pcsc-lite</Package>
         <Package>perl</Package>
+        <Package>perl-Authen-SASL</Package>
         <Package>perl-Bit-Vector</Package>
         <Package>perl-Cairo</Package>
         <Package>perl-Carp-Clan</Package>
@@ -802,18 +787,25 @@
         <Package>perl-Date-Calc</Package>
         <Package>perl-Digest-HMAC</Package>
         <Package>perl-Digest-SHA1</Package>
+        <Package>perl-Error</Package>
         <Package>perl-File-Find-Rule</Package>
+        <Package>perl-GSSAPI</Package>
+        <Package>perl-Git</Package>
         <Package>perl-Glib</Package>
         <Package>perl-Gtk2</Package>
         <Package>perl-HTML-Parser</Package>
         <Package>perl-HTML-Tagset</Package>
         <Package>perl-IO-Socket-INET6</Package>
+        <Package>perl-IO-Socket-SSL</Package>
         <Package>perl-Locale-gettext</Package>
         <Package>perl-Net-DNS</Package>
         <Package>perl-Net-IP</Package>
+        <Package>perl-Net-SMTP-SSL</Package>
+        <Package>perl-Net-SSLeay</Package>
         <Package>perl-Number-Compare</Package>
         <Package>perl-Pango</Package>
         <Package>perl-Socket6</Package>
+        <Package>perl-String-ShellQuote</Package>
         <Package>perl-Sub-Uplevel</Package>
         <Package>perl-Test-Exception</Package>
         <Package>perl-Text-Glob</Package>
@@ -843,9 +835,12 @@
         <Package>poppler-utils</Package>
         <Package>popt</Package>
         <Package>postgresql-lib</Package>
+        <Package>postler</Package>
         <Package>ppp</Package>
         <Package>procps</Package>
         <Package>psmisc</Package>
+        <Package>psutils</Package>
+        <Package>pth</Package>
         <Package>pulseaudio</Package>
         <Package>pulseaudio-gconf</Package>
         <Package>pulseaudio-libs</Package>
@@ -869,6 +864,8 @@
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
         <Package>python-setuptools</Package>
+        <Package>python-simplejson</Package>
+        <Package>python-xlib</Package>
         <Package>python-zope-interface</Package>
         <Package>qt</Package>
         <Package>qt-sql-sqlite</Package>
@@ -881,11 +878,14 @@
         <Package>recode</Package>
         <Package>redland</Package>
         <Package>reiserfsprogs</Package>
+        <Package>ristretto</Package>
         <Package>rlog</Package>
         <Package>rpcbind</Package>
+        <Package>rsync</Package>
         <Package>rsyslog</Package>
         <Package>rtkit</Package>
         <Package>ruby</Package>
+        <Package>ruby-gtk2</Package>
         <Package>samba</Package>
         <Package>sane-backends</Package>
         <Package>schroedinger</Package>
@@ -902,6 +902,7 @@
         <Package>slang</Package>
         <Package>slf4j</Package>
         <Package>slv2</Package>
+        <Package>smolt</Package>
         <Package>smpeg</Package>
         <Package>soprano</Package>
         <Package>soundtouch</Package>
@@ -910,28 +911,39 @@
         <Package>spidermonkey</Package>
         <Package>sqlite</Package>
         <Package>startup-notification</Package>
+        <Package>subversion</Package>
         <Package>sun-jre</Package>
         <Package>sysfsutils</Package>
         <Package>syslinux</Package>
         <Package>sysvinit</Package>
         <Package>sysvinit-tools</Package>
+        <Package>t1lib</Package>
+        <Package>t1utils</Package>
         <Package>taglib</Package>
         <Package>tar</Package>
         <Package>tcl</Package>
         <Package>tcltk</Package>
         <Package>tcp-wrappers</Package>
-        <Package>teckit</Package>
         <Package>texinfo</Package>
         <Package>texlive-basic</Package>
+        <Package>texlive-bin</Package>
         <Package>texlive-core</Package>
         <Package>texlive-latex</Package>
+        <Package>thunar-archive-plugin</Package>
+        <Package>thunar-sendto-clamtk</Package>
+        <Package>thunar-shares-plugin</Package>
+        <Package>thunar-thumbnailers</Package>
+        <Package>thunar-vcs-plugin</Package>
         <Package>thunar-vfs</Package>
+        <Package>thunar-vfs-devel</Package>
+        <Package>thunarx-python</Package>
         <Package>tiff</Package>
         <Package>time</Package>
         <Package>timezone</Package>
         <Package>timidity</Package>
         <Package>timidity-shompatches</Package>
         <Package>tomcat-servlet-api</Package>
+        <Package>totem-pl-parser</Package>
         <Package>twolame</Package>
         <Package>udev</Package>
         <Package>unarj</Package>
@@ -942,6 +954,7 @@
         <Package>urlgrabber</Package>
         <Package>usbmuxd</Package>
         <Package>usbutils</Package>
+        <Package>user-manager-pds</Package>
         <Package>utempter</Package>
         <Package>util-linux</Package>
         <Package>v86d</Package>
@@ -968,13 +981,41 @@
         <Package>xdg-user-dirs</Package>
         <Package>xdg-utils</Package>
         <Package>xdm</Package>
+        <Package>xfburn</Package>
+        <Package>xfce-utils</Package>
+        <Package>xfce4-appfinder</Package>
+        <Package>xfce4-battery-plugin</Package>
+        <Package>xfce4-cddrive-plugin</Package>
+        <Package>xfce4-cpufreq-plugin</Package>
+        <Package>xfce4-datetime-plugin</Package>
+        <Package>xfce4-dev-tools</Package>
+        <Package>xfce4-dict</Package>
+        <Package>xfce4-gvfs-mount</Package>
+        <Package>xfce4-mixer</Package>
+        <Package>xfce4-modemlights-plugin</Package>
+        <Package>xfce4-mount-plugin</Package>
+        <Package>xfce4-notes-plugin</Package>
+        <Package>xfce4-notifyd</Package>
         <Package>xfce4-panel</Package>
         <Package>xfce4-panel-devel</Package>
+        <Package>xfce4-quicklauncher-plugin</Package>
+        <Package>xfce4-screenshooter</Package>
         <Package>xfce4-session</Package>
         <Package>xfce4-session-devel</Package>
+        <Package>xfce4-settings</Package>
+        <Package>xfce4-smartbookmark-plugin</Package>
+        <Package>xfce4-smartpm-plugin</Package>
+        <Package>xfce4-time-out-plugin</Package>
+        <Package>xfce4-wavelan-plugin</Package>
+        <Package>xfce4-xfapplet-plugin</Package>
+        <Package>xfce4-xmms-plugin</Package>
         <Package>xfconf</Package>
         <Package>xfconf-devel</Package>
+        <Package>xfdesktop</Package>
+        <Package>xfmpc</Package>
         <Package>xfsprogs</Package>
+        <Package>xfswitch-plugin</Package>
+        <Package>xfwm4</Package>
         <Package>xine-lib</Package>
         <Package>xinit</Package>
         <Package>xkeyboard-config</Package>
@@ -1291,6 +1332,7 @@
         <Package>linux-firmware</Package>
         <Package>lsb-release</Package>
         <Package>lvm2</Package>
+        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
