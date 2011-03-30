@@ -1,7 +1,7 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
     <Title>COMAK - Enlightenment x86_64 [Dolly]</Title>
-    <WorkDir>/home/ozge/pardusman/work/enligtenment/work</WorkDir>
-    <ReleaseFiles>/home/ozge/pardusman/work/enlightenment/releaseNotes</ReleaseFiles>
+    <WorkDir>/root/pardusman/work/enligtenment/work</WorkDir>
+    <ReleaseFiles>/root/pardusman/work/enlightenment/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak64.comu.edu.tr/repo/pisi-index.xml.xz">
         <SelectedComponent>desktop.comak</SelectedComponent>
         <SelectedComponent>desktop.enlightenment.addon</SelectedComponent>
