@@ -1,7 +1,6 @@
 PACKAGES NONEXIST:
 avant-window-navigator  -- Fully customisable dock-like window navigator  -- NonExist
 avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExist
-fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
 quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
 
@@ -15,20 +14,7 @@ gucharmap  --  Unicode character map viewer  --  Playground(brkclskn)
 libgda  -- Gnome Database Access Library  -- Playground(serdardalgıç)
 
 PACKAGES IN BURAK CALISKAN'S REPO:
-gnome-media  --  Multimedia related programs for the GNOME desktop  -- brkclskni686
-sensors-applet  --  GNOME panel applet to display readings from hardware sensors  -- brkclskni686
-gnome-power-manager  --  Gnome Power Manager  --  brkclskni686
-gnome-screensaver  --  Replaces xscreensaver, integrating with the desktop.  -- brkclskni686
-gnome-system-monitor  --  The Gnome System Monitor  --  brkclskni686
-gnome-utils  --  Utilities for the Gnome2 desktop  --  brkclskni686
 nautilus-open-terminal  --  Nautilus Plugin for Opening Terminals  --  brkclskni686
-
-PACKAGES IN PARDUS2011:
-polkit-gnome  --  PolicyKit policies and configurations for the GNOME desktop  --  Pardus2011devel
-evolution-data-server    -- Evolution groupware backend  --  Pardus2011devel
-libgsf  --  The GNOME Structured File Library  --  Pardus2011devel
-nm-applet  --  Gnome applet for NetworkManager.  --  Pardus2011devel(as network-manager-applet)
-gtkhtml  --  a Gtk+ based HTML rendering library  -- Pardus2011devel(gtkhtml3)
 
 PACKAGES IN PARDUS2009:
 yelp  --  Help browser for GNOME  --  pardus2009
