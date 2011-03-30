@@ -20,7 +20,7 @@ def setup():
             --enable-nautilus")
 
 def build():
-    autotools.make("-j1")
+    autotools.make()
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
