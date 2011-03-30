@@ -9,7 +9,7 @@
 #
 # Please read the COPYING file.
 
-import os,sys
+import os,sys,string
 import time
 import re
 import piksemel
@@ -40,7 +40,6 @@ def update_lxsession():
 FILE_OPENBOXRC = "%s/.config/openbox/rc.xml"%os.environ["HOME"]
 CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
 
-# end of shared LXDE methods
 
 class Keyboard(base.Keyboard):
     pass
@@ -63,27 +62,24 @@ class Wallpaper(base.Wallpaper):
         import fnmatch
 
         matches = []
-        for root, dirnames, filenames in os.walk('/usr/share/wallpapers'):
-            for filename in fnmatch.filter(filenames, '*.desktop'):
+        for root, dirnames, filenames in os.walk('/usr/share/pixmaps/backgrounds/gnome'):
+            for filename in fnmatch.filter(filenames,"*.*"):
                 matches.append(os.path.join(root, filename))
         items = []
         for desktopFiles in matches:
             wallpaper = {}
-            parser = DesktopParser()
-            parser.read(str(desktopFiles))
-
             try:
-                wallpaper["wallpaperTitle"] = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
+                wallpaper["wallpaperTitle"] = desktopFiles.split('/') [-1]
             except:
-                wallpaper["wallpaperTitle"] = parser.get_locale('Desktop Entry', 'Name', '')
+                wallpaper["wallpaperTitle"] = "Unknown"
 
             try:
-                wallpaper["wallpaperDesc"] = parser.get_locale('Desktop Entry', 'X-KDE-PluginInfo-Author', '')
+                wallpaper["wallpaperDesc"] = desktopFiles.split('/') [-1]
             except:
                 wallpaper["wallpaperDesc"] = "Unknown"
     
                 # Get all files in the wallpaper's directory
-            thumbFolder = os.listdir(os.path.join(os.path.split(str(desktopFiles))[0], "contents"))
+            thumbFolder = desktopFiles
     
             #    """
             #    Appearantly the thumbnail names doesn't have a standart.
@@ -93,21 +89,28 @@ class Wallpaper(base.Wallpaper):
             #    File names I've seen so far;
             #    screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
             #    """
-
-            wallpaper["wallpaperThumb"] = ""
-
-            for thumb in thumbFolder:
-                if thumb.startswith('scre'):
-                    wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/%s" % thumb)
-            wallpaper["wallpaperFile"] = os.path.split(str(desktopFiles))[0]+"/contents/images/1920x1200.*"
-            print wallpaper["wallpaperFile"] 
-            items.append(wallpaper)
+            if string.find(desktopFiles, "background-default")<0:
+                if string.find(desktopFiles, "jpg") > -1 :
+                    desktopFiles=desktopFiles.replace("jpg","png")
+                    wallpaper["wallpaperThumb"] ="/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/nature/%s"%desktopFiles.split("/")[-1]
+                else :
+                    wallpaper["wallpaperThumb"] ="/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/abstract/%s"%desktopFiles.split("/")[-1]
+                wallpaper["wallpaperFile"] = desktopFiles
+                items.append(wallpaper)
         return items
 
     def setWallpaper(self ,wallpaper):
-        print wallpaper
-        if wallpaper:
-            os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename %s" %str(wallpaper))
+        wallpaper = str(wallpaper)
+        last = wallpaper.split("/")[-1]
+        if string.find(wallpaper,"/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/abstract")>-1:
+            os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/abstract/%s" %last)
+        else:
+            if string.find(wallpaper,"/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/") > -1:
+                last=last.replace("png","jpg")
+                os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/nature/%s" %last)
+            else:
+                os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename %s" %wallpaper)
+
 class Common(base.Common):
 
     def getLanguage(self):
@@ -129,16 +132,12 @@ class Style(base.Style):
 
     def setThemeSettings(self):
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
-        print iconTheme
         os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme %s" %iconTheme)
     
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
-        print styleName
+        os.popen("gconftool-2 --type=string -s /apps/metacity/general/theme %s" %styleName)
         os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme %s" %styleName)
-        os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Crux")
-        
-
 
     def setDesktopType(self):
         pass
