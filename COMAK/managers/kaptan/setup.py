@@ -17,7 +17,6 @@ import shutil
 import sys
 import fnmatch
 sys.path.append(os.path.join(os.path.split(__file__)[0],"src","kaptan","screens"))
-
 from distutils.core import setup
 from distutils.cmd import Command
 from distutils.command.build import build
@@ -83,9 +82,13 @@ class Build(build):
         print "Copying PYs..."
         os.system("cp -R src build/")
 
-        # Copy kde-themes
+        # Copy themes
         print "Copying themes..."
         os.system("cp -R data/themes build/kaptan/")
+        
+        print "Copying previews"
+        os.system("cp -R data/gnome_previews build/kaptan/")
+
 
         #update_messages()
 
@@ -133,7 +136,7 @@ class Install(install):
         os.system("cp -R build/* %s/" % project_dir)
 
         print "Installing custom themes..."
-        os.system("cp -R data/custom-themes/* /usr/share/themes")
+        os.system("cp -R data/themes/* /usr/share/themes")
 
         # Install locales
         print "Installing locales..."
