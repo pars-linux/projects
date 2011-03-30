@@ -3,6 +3,8 @@
     <WorkDir>/root/pardusman/work/fluxbox/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/fluxbox/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">
+        <SelectedComponent>desktop.comak</SelectedComponent>
+        <SelectedComponent>desktop.fluxbox.base</SelectedComponent>
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
@@ -16,7 +18,6 @@
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
-        <SelectedPackage>boot-manager-pds</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
@@ -28,7 +29,6 @@
         <SelectedPackage>dejavu-fonts</SelectedPackage>
         <SelectedPackage>device-mapper</SelectedPackage>
         <SelectedPackage>device-mapper-static</SelectedPackage>
-        <SelectedPackage>disk-manager-pds</SelectedPackage>
         <SelectedPackage>djvu-plugin</SelectedPackage>
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>encfs</SelectedPackage>
@@ -37,12 +37,9 @@
         <SelectedPackage>eterm</SelectedPackage>
         <SelectedPackage>ethtool</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
-        <SelectedPackage>fbdesk</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
-        <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
-        <SelectedPackage>fluxbox</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
         <SelectedPackage>gecko-mediaplayer</SelectedPackage>
@@ -99,7 +96,6 @@
         <SelectedPackage>p7zip</SelectedPackage>
         <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
-        <SelectedPackage>pardus-default-settings-fluxbox</SelectedPackage>
         <SelectedPackage>pardus-desktop-services</SelectedPackage>
         <SelectedPackage>pavucontrol</SelectedPackage>
         <SelectedPackage>pcmanfm</SelectedPackage>
@@ -156,10 +152,9 @@
         <SelectedPackage>sdl-sound</SelectedPackage>
         <SelectedPackage>sdl-ttf</SelectedPackage>
         <SelectedPackage>sdparm</SelectedPackage>
-        <SelectedPackage>service-manager-pds</SelectedPackage>
+        <SelectedPackage>service-manager-comak</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
-        <SelectedPackage>slim</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
         <SelectedPackage>soprano-plugin-virtuoso</SelectedPackage>
         <SelectedPackage>splix</SelectedPackage>
@@ -225,6 +220,7 @@
         <Package>bluez-firmware</Package>
         <Package>bluez-libs</Package>
         <Package>boost</Package>
+        <Package>boot-manager-comak</Package>
         <Package>busybox</Package>
         <Package>bzip2</Package>
         <Package>cairo</Package>
@@ -257,6 +253,7 @@
         <Package>dhcpcd</Package>
         <Package>dialog</Package>
         <Package>diffutils</Package>
+        <Package>disk-manager-comak</Package>
         <Package>disktype</Package>
         <Package>djbfft</Package>
         <Package>djview4</Package>
@@ -277,9 +274,11 @@
         <Package>faac</Package>
         <Package>faad2</Package>
         <Package>farsight2</Package>
+        <Package>fbdesk</Package>
         <Package>ffmpeg</Package>
         <Package>file</Package>
         <Package>findutils</Package>
+        <Package>firewall-manager-comak</Package>
         <Package>flac</Package>
         <Package>fluidsynth</Package>
         <Package>fluxbox</Package>
@@ -378,6 +377,7 @@
         <Package>jasper</Package>
         <Package>jbigkit</Package>
         <Package>jpeg</Package>
+        <Package>kaptan-e17</Package>
         <Package>kbd</Package>
         <Package>kernel</Package>
         <Package>keyutils</Package>
@@ -608,11 +608,13 @@
         <Package>openssl</Package>
         <Package>orbit2</Package>
         <Package>p7zip</Package>
+        <Package>package-manager-pds</Package>
         <Package>pam</Package>
         <Package>pam_python</Package>
         <Package>panda</Package>
         <Package>pango</Package>
         <Package>pangomm</Package>
+        <Package>pardus-default-settings-fluxbox</Package>
         <Package>pardus-desktop-services</Package>
         <Package>pardus-python</Package>
         <Package>parted</Package>
@@ -672,7 +674,9 @@
         <Package>python-pygobject</Package>
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
+        <Package>python-simplejson</Package>
         <Package>python-tk</Package>
+        <Package>python-xlib</Package>
         <Package>qt</Package>
         <Package>qt-webkit</Package>
         <Package>qtermwidget</Package>
@@ -686,6 +690,7 @@
         <Package>rpcbind</Package>
         <Package>rsyslog</Package>
         <Package>rtkit</Package>
+        <Package>ruby</Package>
         <Package>samba</Package>
         <Package>sane-backends</Package>
         <Package>schroedinger</Package>
@@ -701,6 +706,8 @@
         <Package>skey</Package>
         <Package>slang</Package>
         <Package>slf4j</Package>
+        <Package>slim</Package>
+        <Package>smolt</Package>
         <Package>smpeg</Package>
         <Package>soprano</Package>
         <Package>speedtouch-firmware</Package>
@@ -733,6 +740,7 @@
         <Package>urlgrabber</Package>
         <Package>usbmuxd</Package>
         <Package>usbutils</Package>
+        <Package>user-manager-pds</Package>
         <Package>utempter</Package>
         <Package>util-linux</Package>
         <Package>v86d</Package>
