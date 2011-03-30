@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>eskiss</Name>
+        <Summary xml:lang="tr">Fizik oyunu</Summary>
+        <Description xml:lang="tr">Eskiss, fizik bilgisi kullanarak ekranda nesneler çizilip oynanan bir fizik oyunudur.</Description>
+    </Source>
+</PISI>
+
