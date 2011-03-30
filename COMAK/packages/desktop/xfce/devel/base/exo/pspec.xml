@@ -37,14 +37,9 @@
             <Dependency>atk</Dependency>
             <Dependency>cairo</Dependency>
             <Dependency>pango</Dependency>
-            <Dependency>perl-URI</Dependency>
-            <Dependency>icon-theme-hicolor</Dependency>
             <Dependency>libxfce4util</Dependency>
             <Dependency>gtk2</Dependency>
-            <Dependency>libnotify</Dependency>
-            <Dependency>python-gtk</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
-            <Dependency>hal</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
