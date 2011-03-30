@@ -13,7 +13,6 @@ from pisi.actionsapi import shelltools
 WorkDir="eooorg" 
 
 def setup():
-    shelltools.export("AUTOPOINT", "/bin/true")
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static")
 
