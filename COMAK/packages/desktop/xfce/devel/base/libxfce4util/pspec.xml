@@ -17,9 +17,6 @@
 
     <Package>
         <Name>libxfce4util</Name>
-        <RuntimeDependencies>
-            <Dependency>xdg-user-dirs</Dependency>
-        </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/sbin</Path>
             <Path fileType="library">/usr/lib</Path>
