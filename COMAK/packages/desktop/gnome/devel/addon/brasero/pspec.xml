@@ -13,8 +13,8 @@
         <Summary>Brasero (aka Bonfire) is yet another application to burn CD/DVD for the gnome desktop.</Summary>
         <Description>Brasero (aka Bonfire) is yet another application to burn CD/DVD for the gnome desktop.</Description>
         <Archive sha1sum="56141108561f2b8d45998662b86cf6e20f0ff4f2" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/brasero/2.32/brasero-2.32.1.tar.bz2</Archive>
-            <Dependency versionFrom="2.0.0">gconf-devel</Dependency>
         <BuildDependencies>
+            <Dependency versionFrom="2.0.0">gconf-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency versionFrom="0.10.0">gstreamer-devel</Dependency>
             <Dependency versionFrom="0.10.0">gst-plugins-base-devel</Dependency>
