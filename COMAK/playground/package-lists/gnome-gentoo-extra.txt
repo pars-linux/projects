@@ -12,9 +12,6 @@ gconf-editor  --  An editor to the GNOME 2 config system  --  Playground(brkclsk
 gucharmap  --  Unicode character map viewer  --  Playground(brkclskn)
 libgda  -- Gnome Database Access Library  -- Playground(serdardalgıç)
 
-PACKAGES IN BURAK CALISKAN'S REPO:
-nautilus-open-terminal  --  Nautilus Plugin for Opening Terminals  --  brkclskni686
-
 OTHERS
 yelp  --  Help browser for GNOME  --  pardus2009
 synapse  --  A program launcher in the style of GNOME Do  -- Vala sürümü yüzünden synapse paketinden sorun yaşanmaktadır.
