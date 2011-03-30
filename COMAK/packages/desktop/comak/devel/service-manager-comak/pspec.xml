@@ -28,7 +28,6 @@
         <RuntimeDependencies>
             <Dependency>pardus-desktop-services</Dependency>
             <Dependency>python-qt</Dependency>
-            <Dependency versionFrom="1.2.1">pardus-desktop-services</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
