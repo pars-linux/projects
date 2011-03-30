@@ -36,6 +36,9 @@
             <Dependency>gamin-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">tr-po.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
