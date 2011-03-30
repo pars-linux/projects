@@ -31,23 +31,38 @@
     <Package>
         <Name>tumbler</Name>
         <RuntimeDependencies>
-            <Dependency>dbus-glib</Dependency>
-            <Dependency>glib2</Dependency>
             <Dependency>freetype</Dependency>
-            <Dependency>libpng</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>ffmpegthumbnailer</Dependency>
             <Dependency>jpeg</Dependency>
             <Dependency>poppler</Dependency>
             <Dependency>Thunar</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>poppler-glib</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="library">/usr/lib</Path>
             <Path fileType="data">/usr/share/</Path>
         </Files>
     </Package>
+
+        <Package>
+        <Name>tumbler-devel</Name>
+        <Summary>Development files for tumbler</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">tumbler</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
 
     <History>
         <Update release="1">
