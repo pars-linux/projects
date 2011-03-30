@@ -11,7 +11,7 @@
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>A simple web browser</Summary>
-        <Description>fixme</Description>
+        <Description>Epiphany is a simple web browser for Gnome.</Description>
         <Archive sha1sum="a4bde975f9b2b97d6aad14b4b8a715b40d19a155" type="tarbz2">mirrors://gnome/epiphany/2.30/epiphany-2.30.6.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gnome-desktop-devel</Dependency>
