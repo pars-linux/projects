@@ -1,0 +1,1113 @@
+diff -Naur xfce-utils-4.8.0.orig//doc/manual/po/tr.po xfce-utils-4.8.0//doc/manual/po/tr.po
+--- xfce-utils-4.8.0.orig//doc/manual/po/tr.po	1970-01-01 02:00:00.000000000 +0200
++++ xfce-utils-4.8.0//doc/manual/po/tr.po	2011-03-30 16:31:56.041000009 +0300
+@@ -0,0 +1,735 @@
++# 
++msgid ""
++msgstr ""
++"Project-Id-Version: 4.8\n"
++"POT-Creation-Date: 2010-08-28 16:12+0200\n"
++"PO-Revision-Date: 2011-03-30 04:11+0300\n"
++"Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
++"Language-Team: tr <turkce@pardus.org.tr>\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++#. When image changes, this message will be marked fuzzy or untranslated for
++#. you.
++#. It doesn't matter what you translate it to: it's not used at all.
++#: ./xfce-utils.xml221(None)
++msgid "@@image: 'images/default-session.png'; md5=44695a28b431354c5e7ae9d172451007"
++msgstr "@@image: 'images/default-session.png'; md5=44695a28b431354c5e7ae9d172451007"
++
++#. When image changes, this message will be marked fuzzy or untranslated for
++#. you.
++#. It doesn't matter what you translate it to: it's not used at all.
++#: ./xfce-utils.xml820(None)
++msgid "@@image: 'images/run-dialog.png'; md5=f2c3c1e622304bbd44f951f8e5ac7eee"
++msgstr "@@image: 'images/run-dialog.png'; md5=f2c3c1e622304bbd44f951f8e5ac7eee"
++
++#. When image changes, this message will be marked fuzzy or untranslated for
++#. you.
++#. It doesn't matter what you translate it to: it's not used at all.
++#: ./xfce-utils.xml847(None)
++msgid "@@image: 'images/about-dialog.png'; md5=01d189f346aec15d60b9e13632799847"
++msgstr "@@image: 'images/about-dialog.png'; md5=01d189f346aec15d60b9e13632799847"
++
++#: ./xfce-utils.xml14(title)
++msgid "The Xfce Desktop Environment"
++msgstr "Xfce Masaüstü Ortamı"
++
++#: ./xfce-utils.xml21(title)
++msgid "Xfce Documentation"
++msgstr "Xfce Belgeleri"
++
++#: ./xfce-utils.xml23(para)
++msgid "The documentation for Xfce is installed with the different components that make up the desktop environment. As a consequence, some of the documents listed here may not be available on your system."
++msgstr "Xfce belgeleri masaüstü ortamını oluşturan farklı bileşenlerle birlikte yüklendiğinden burada belirtilen bazı belgeler sisteminizde bulunmayabilir."
++
++#: ./xfce-utils.xml29(title)
++msgid "Guides"
++msgstr "Rehberler"
++
++#: ./xfce-utils.xml32(link) ./xfce-utils.xml93(title)
++msgid "Xfce User Guide"
++msgstr "Xfce Kullanıcı Kılavuzu"
++
++#: ./xfce-utils.xml37(title)
++msgid "Manuals"
++msgstr "El kitapları"
++
++#: ./xfce-utils.xml38(para)
++msgid "As a limitation to HTML only the English versions of the manuals are linked below."
++msgstr "HTML'nin bir kısıtlaması olarak aşağıda sadece İngilizce klavuzların linkleri bulunuyor."
++
++#: ./xfce-utils.xml40(ulink) ./xfce-utils.xml238(term)
++msgid "Panel"
++msgstr "Panel"
++
++#: ./xfce-utils.xml41(ulink) ./xfce-utils.xml290(term)
++msgid "Window Manager"
++msgstr "Pencere Yöneticisi"
++
++#: ./xfce-utils.xml42(ulink)
++msgid "Session Manager"
++msgstr "Oturum Yöneticisi"
++
++#: ./xfce-utils.xml43(ulink) ./xfce-utils.xml267(term)
++msgid "Desktop Manager"
++msgstr "Masaüstü Yöneticisi"
++
++#: ./xfce-utils.xml44(link)
++msgid "Utilities and Scripts"
++msgstr "Araçlar ve Betikler"
++
++#: ./xfce-utils.xml45(ulink)
++msgid "Preferred Applications"
++msgstr "Tercih Edilen Uygulamalar"
++
++#: ./xfce-utils.xml46(ulink)
++msgid "File Manager"
++msgstr "Dosya Yöneticisi"
++
++#: ./xfce-utils.xml54(year) ./xfce-utils.xml763(year)
++msgid "2006"
++msgstr "2006"
++
++#: ./xfce-utils.xml55(holder) ./xfce-utils.xml763(holder)
++msgid "Jasper Huijsmans"
++msgstr "Jasper Huijsmans"
++
++#: ./xfce-utils.xml59(para) ./xfce-utils.xml771(para)
++msgid "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts. The complete license text is available from the <ulink type=\"http\" url=\"http://www.gnu.org/\">Free Software Foundation</ulink>."
++msgstr "Bu dokümanı  Özgür Yazılım Vakfı tarafından yayınlanan GNU Özgür Belgeleme Lisansı 1.1 ve sonraki sürümleri çerçevesinde kopyalama, dağıtma ve/veya değiştirme izniniz vardır. Lisansın esas metnine <ulink type=\"http\" url=\"http://www.gnu.org/\">Özgür Yazılım Vakfı</ulink> sitesinden ulaşabilirsiniz."
++
++#: ./xfce-utils.xml71(firstname) ./xfce-utils.xml784(firstname)
++msgid "Jasper"
++msgstr "Jasper"
++
++#: ./xfce-utils.xml72(surname) ./xfce-utils.xml784(surname)
++msgid "Huijsmans"
++msgstr "Huijsmans"
++
++#: ./xfce-utils.xml75(email) ./xfce-utils.xml786(email)
++msgid "jasper@xfce.org"
++msgstr "jasper@xfce.org"
++
++#: ./xfce-utils.xml80(firstname) ./xfce-utils.xml791(firstname)
++msgid "Benedikt"
++msgstr "Benedikt"
++
++#: ./xfce-utils.xml81(surname) ./xfce-utils.xml791(surname)
++msgid "Meurer"
++msgstr "Meurer"
++
++#: ./xfce-utils.xml84(email)
++msgid "benny@xfce.org"
++msgstr "benny@xfce.org"
++
++#: ./xfce-utils.xml89(releaseinfo)
++msgid "This manual describes version @PACKAGE_VERSION@ of Xfce."
++msgstr "Bu el kitabı Xfce'nin @PACKAGE_VERSION@ sürümünü anlatır."
++
++#: ./xfce-utils.xml96(emphasis)
++msgid "... and mice fly ..."
++msgstr "... ve fare uçuyor ..."
++
++#: ./xfce-utils.xml101(title)
++msgid "Preface"
++msgstr "Önsöz"
++
++#: ./xfce-utils.xml103(para)
++msgid "This document gives an overview of the Xfce Desktop Environment and explains how to perform several common tasks. It is meant to be a starting point for anyone who wants to use Xfce and it includes pointers to other sources of information."
++msgstr "Bu belge Xfce Masaüstü Ortamını tanıtmak ve çeşitli işleri nasıl gerçekleştirebileceğinizi anlatmak için hazırlanmıştır. Xfce kullanmaya başlamak isteyenler için bir başlangıç noktası olduğu gibi diğer bilgi kaynaklarına da yönlendirmeler içerir."
++
++#: ./xfce-utils.xml113(title) ./xfce-utils.xml802(title)
++msgid "Introduction"
++msgstr "Giriş"
++
++#: ./xfce-utils.xml115(para)
++msgid "Xfce is a lightweight desktop environment for unix-like operating systems. It aims to be fast and light on system resources, while still being visually appealing and easy to use."
++msgstr "Xfce Unix benzeri işletim sistemleri için hafif bir masaüstü ortamıdır. Görsel olarak çekici ve kullanımı kolay olurken, hızlı olmayı ve sistem kaynakları üzerinde fazla yüklenmemeyi hedefler."
++
++#: ./xfce-utils.xml120(para)
++msgid "Xfce embodies the traditional UNIX philosophy of modularity and re-usability. All of Xfce's core components can be build and installed separately. Xfce 4 is based on the <ulink url=\"http://www.gtk.org\" type=\"html\">GTK+ toolkit</ulink> version 2."
++msgstr "Xfce geleneksel UNIX felsefesine uygun olarak modüler ve yeniden kullanılabilir olarak tasarlanmıştır. Tüm Xfce bileşenleri bağımsız olarak derlenip kurulabilir. Xfce 4 <ulink url=\"http://www.gtk.org\" type=\"html\">GTK+ toolkit</ulink>  sürüm 2'yi temel almaktadır."
++
++#: ./xfce-utils.xml127(para)
++msgid "Adhereance to standards is one of the main design goals of Xfce 4, specifically those defined at <ulink url=\"http://www.freedesktop.org\" type=\"html\">Freedesktop.org</ulink>. This allows Xfce 4 to seamlessly interoperate with programs written for other desktop environments that follow these specifications."
++msgstr "Xfce 4'ün ana tasarım hedeflerinden bir tanesi <ulink url=\"http://www.freedesktop.org\" type=\"html\">Freedesktop.org</ulink> adresinde tanımlanmış olan standartlara bağlı kalmaktır. Bu, bahsi geçen standartlara uygun olarak, diğer masaüstü ortamları için yazılmış yazılımların Xfce 4 te sorunsuz bir şekilde çalışmasını sağlar."
++
++#: ./xfce-utils.xml135(para)
++msgid "Xfce is all free software. The separate components are released under either the BSD license, the GNU LGPL or the GNU GPL (see <xref linkend=\"xfce4-copyright\"/> for details)."
++msgstr "Xfce bir özgür yazılımdır. Farklı bileşenleri BSD Lisansı, GNU LGPL veya GNU GPL lisanslarıyla lisanslanmıştır. Ayrıntılar için: <xref linkend=\"xfce4-copyright\"/>"
++
++#: ./xfce-utils.xml142(title)
++msgid "Resources"
++msgstr "Kaynaklar"
++
++#: ./xfce-utils.xml144(para)
++msgid "If you are looking for specific information about Xfce 4, chances are you can obtain it from one of the resources in this list:"
++msgstr "Xfce 4 hakkında belirli bir bilgi arıyorsanız, bu listedeki kaynakların birinden elde etme şansınız var:"
++
++#: ./xfce-utils.xml151(ulink)
++msgid "Xfce website"
++msgstr "Xfce internet sitesi"
++
++#: ./xfce-utils.xml154(ulink)
++msgid "User mailing list"
++msgstr "Kullanıcı e-posta listesi"
++
++#: ./xfce-utils.xml157(ulink)
++msgid "Development mailing list"
++msgstr "Geliştirme e-posta listesi"
++
++#: ./xfce-utils.xml160(ulink)
++msgid "Xfce Forum"
++msgstr "Xfce Forumu"
++
++#: ./xfce-utils.xml163(ulink)
++msgid "Bug tracker"
++msgstr "Hata takip sistemi"
++
++#: ./xfce-utils.xml171(title)
++msgid "Using Xfce4"
++msgstr "Xfce'yi kullanmak"
++
++#: ./xfce-utils.xml174(title)
++msgid "Getting started"
++msgstr "Başlarken"
++
++#: ./xfce-utils.xml176(para)
++msgid "Use <application>startxfce4</application> to start an Xfce session, which includes the session manager, the panel, the window manager and the desktop manager."
++msgstr "Xfce oturumu başlatmak için, oturum yöneticisi, panel, pencere yöneticisi ve masaüstü yöneticisini içeren <application>startxfce4</application>'yi kullanın."
++
++#: ./xfce-utils.xml182(para)
++msgid "By default the Xfce session manager manages the startup of applications. It allows you to save your session when you quit Xfce, so that the next time you log in, the same applications will be started for you automatically."
++msgstr "Öntanımlı olarak Xfce oturum yöneticisi uygulamaların başlamalarını yönetir. Xfce'den çıkarken oturumunuzu kaydetmenize olanak verir, bu sayede yeniden oturum açtığınızda aynı uygulamalar otomatik olarak başlatılabilir."
++
++#: ./xfce-utils.xml189(para)
++msgid "To customize the behaviour of <application>startxfce4</application>, copy the file <filename>${sysconfdir}/xdg/xfce4/xinitrc</filename> to your personal <filename role=\"directory\">~/.config/xfce4/</filename> directory and edit that file. Depending on your installation method the location of the system <filename>xinitrc</filename> file may be different. If you install from source, <filename role=\"directory\">${sysconfdir}</filename> defaults to <filename role=\"directory\">/usr/local/etc/</filename>. For binary packages it is often set to <filename role=\"directory\">/etc/</filename>, <filename role=\"directory\">/etc/X11</filename>, <filename role=\"directory\">/usr/pkg/etc</filename> or <filename role=\"directory\">/usr/X11R6/etc</filename>; you can use your package manager to find out."
++msgstr "<application>startxfce4</application>'ün davranışını özelleştirmek için <filename>${sysconfdir}/xdg/xfce4/xinitrc</filename> dosyasını kendi <filename role=\"directory\">~/.config/xfce4/</filename> dizininize kopyalayarak düzenleyin. Kurulum yönteminize bağlı olarak <filename>xinitrc</filename> dosyasının yeri farklılık gösterebilir. Eğer kaynak koddan kurulum yaptıysanız <filename role=\"directory\">${sysconfdir}</filename>  dizini <filename role=\"directory\">/usr/local/etc/</filename> olacaktır. İkilik dosyalar genellikle <filename role=\"directory\">/etc/</filename>, <filename role=\"directory\">/etc/X11</filename>, <filename role=\"directory\">/usr/pkg/etc</filename> veya <filename role=\"directory\">/usr/X11R6/etc</filename> dizininde bulunur; paket yöneticinizi kullanıp yerlerini bulabilirsiniz."
++
++#: ./xfce-utils.xml208(title)
++msgid "The Default Desktop"
++msgstr "Varsayılan Masaüstü"
++
++#: ./xfce-utils.xml210(para)
++msgid "The Xfce Desktop Environment is not a single entity that provides all funtionality, but rather it tries to adhere to the old UNIX tradition of small tools that do one job and do it well. A default Xfce desktop with no applications running is shown in <xref linkend=\"default-session-fig\"/>."
++msgstr "Xfce Masaüstü Ortamı tüm işlevleri yerine getiren bir tek program değildir; eski UNIX geleneğinde olduğu gibi küçük bir işi iyi yapan programlardan oluşur. Hiçbir uygulamanın çalışmadığı öntanımlı bir Xfce masaüstü <xref linkend=\"default-session-fig\"/>'de görülebilir."
++
++#: ./xfce-utils.xml217(title)
++msgid "Default Xfce 4 session"
++msgstr "Varsayılan Xfce 4 oturumu"
++
++#: ./xfce-utils.xml224(phrase)
++msgid "Default Xfce session, with desktop manager and panel."
++msgstr "Masaüstü yöneticisi ve paneli içeren öntanımlı Xfce oturumu."
++
++#: ./xfce-utils.xml231(para)
++msgid "When you run <application>startxfce4</application> for the first time, several applications are started by the Xfce session manager:"
++msgstr "<application>startxfce4</application>'u ilk defa başlattığınızda, birkaç uygulama Xfce oturum yöneticisi tarafından başlatılır:"
++
++#: ./xfce-utils.xml240(para)
++msgid "In a default session there is a full width panel at the top of the screen and a smaller one at the bottom. The <application>xfce4-panel</application> application manages all panels on the screen."
++msgstr "Öntanımlı bir oturumda bir tane ekranın üstünde tam genişlikte ve bir tane altta daha küçük iki panel vardır. <application>xfce4-panel</application> uygulaması ekrandaki tüm panelleri yönetir."
++
++#: ./xfce-utils.xml246(para)
++msgid "The top panel shows a graphical pager with a miniature view of all workspaces, a task list showing all applications running on the current workspace and a system tray to show status icons that are used for example by some media players or instant messaging applications."
++msgstr "Üst paneldeki sayfalayıcı tüm çalışma alanlarının minyatür halini grafiksel olarak, görev listesi o an çalışılan masaüstü alanında çalışan programları, sistem tepsisi ise anlık mesajlaşma, ortam yürütücü gibi programların durum simgesini gösterir.  "
++
++#: ./xfce-utils.xml253(para)
++msgid "The bottom panel contains several application launchers and a clock. You can right-click on any panel item to get a menu that allows you to change its properties, add or remove new items or to change the properties of the panel itself."
++msgstr "Alt panelde bir kaç uygulama çalıştırıcısı ve bir saat mevcut. Panel öğelerinden herhangi birine sağ tıkladığınızda açılan menüden, öğenin özelliklerini değiştirebilir, panele yeni öğeler ekleyip çıkarabilir ya da panelin özelliklerini değiştirebilirsiniz."
++
++#: ./xfce-utils.xml259(para)
++msgid "For more information, have a look at the <ulink url=\"xfce4-panel.html\" type=\"html\">panel manual</ulink>."
++msgstr "Daha fazla bilgi için <ulink url=\"xfce4-panel.html\" type=\"html\">panel klavuzu</ulink>na bakabilirsiniz."
++
++#: ./xfce-utils.xml269(para)
++msgid "The desktop manager provides the desktop background image and two menus when you click on the desktop background. Optionally, it can show icons on the desktop, either for minimized applications or for files in the <filename>~/Desktop</filename> folder."
++msgstr "Masaüstü yöneticisi, arkaplana tıkladığınızda size masaüstü arkaplan resmi ve iki menü sunar. Seçimlik olarak masaüstünde simgeler de gösterebilir. Bunlar küçültülmüş uygulamalar olabileceği gibi <filename>~/Desktop</filename>  dizinindeki dosyalar da olabilirler."
++
++#: ./xfce-utils.xml275(para)
++msgid "The right mouse button opens a menu that allows you to start applications. Look at the <ulink url=\"xfdesktop.html\" type=\"html\">manual</ulink> to find out how to change the menu contents."
++msgstr "Farenin sağ tuşu uygulama çalıştırabileceğiniz bir menü açar. Bu menünün içeçriğini nasıl değiştirebileceğinizi öğrenmek için <ulink url=\"xfdesktop.html\" type=\"html\">klavuz</ulink>a bakabilirsiniz."
++
++#: ./xfce-utils.xml282(para)
++msgid "The middle mouse button (or Shift + left click) opens a list of all applications that are currently running. You can activate an application by clicking on its menu entry."
++msgstr "Farenin orta tuşu (veya Shift + sol tıklama) halen çalışan bütün uygulamaların gösterildiği bir liste açar. Menü girdisine tıklayarak bir uygulamayı etkinleştirebilirsiniz."
++
++#: ./xfce-utils.xml292(para)
++msgid "The window manager is responsible for placing the windows on the screen and provides the window borders and decorations. It allows you to move windows around by draggin the titlebar and provides title bar buttons, for example to close, minimize or maximize a window. Look at the <ulink url=\"xfwm4.html\" type=\"html\">manual</ulink> for a full explanation of the window manager settings."
++msgstr "Pencere yöneticisi pencerelerin ekranda yeralmasından, pencere sınırlarından ve yerleşimlerinden sorumludur. Onun sayesinde pencereleri başlık çubuğundan tutarak kaydırabilirsiniz. Pencereleri kapatmak, aşağı küçültmek ve büyütmek işlemlerini yapmak için üç düğmeyi de pencere yöneticisi sağlar. Ayrıntılı bilgiyi <ulink url=\"xfwm4.html\" type=\"html\">kılavuz</ulink> dosyasında bulabilirsiniz."
++
++#: ./xfce-utils.xml304(term)
++msgid "Settings Manager"
++msgstr "Ayarlar Yöneticisi"
++
++#: ./xfce-utils.xml306(para)
++msgid "The settings manager runs in the background and makes sure that all Xfce applications update their settings when the user changes something in the settings manager dialog (see following section) and it takes care of reading the configuration from disk at startup. Have a look at the <ulink url=\"xfce-mcs-manager.html\" type=\"html\">Settings Manager</ulink> and <ulink url=\"xfce-mcs-plugins.html\" type=\"html\">Settings Plugins</ulink> manuals for a full explanation of the settings manager."
++msgstr "Arkaplandaki ayarlar yöneticisi bütün Xfce uygulamalarının, kullanıcı ayarlar yöneticisi penceresinde (bir sonraki bölüme göz atın) değişiklik yaptığı zaman ayarların güncellendiğinden emin olmak için çalışır ve başlangıçtaki diskten yapılandırmayı okumaya dikkat eder. Ayarlar yöneticisi hakkında daha geniş bilgi için <ulink url=\"xfce-mcs-manager.html\" type=\"html\">Ayarlar Yöneticisi</ulink> ve <ulink url=\"xfce-mcs-plugins.html\" type=\"html\">Eklentiler Yöneticisi</ulink> kılavuzlarına göz atın."
++
++#: ./xfce-utils.xml322(title)
++msgid "Common Tasks"
++msgstr "Ortak Görevler"
++
++#: ./xfce-utils.xml324(para)
++msgid "This section will explain how to perform several common tasks to quickly get you started working with Xfce 4. Because that is what Xfce 4 is designed for, to allow you to get work done."
++msgstr "Bu bölüm Xfce 4 ile çalışmaya başladığınızda bazı işlemleri nasıl yapacağınızı anlatır. Xfce 4 sizin işinizi yapabilmeniz için tasarlanmıştır."
++
++#: ./xfce-utils.xml330(title)
++msgid "Running programs"
++msgstr "Program çalıştırmak"
++
++#: ./xfce-utils.xml334(term)
++msgid "Xfce Panel"
++msgstr "Xfce Paneli"
++
++#: ./xfce-utils.xml336(para)
++msgid "The panel is designed to allow quick access to the most frequently used applications by putting them on the main panel. Less often used applications can be put in a launcher menu."
++msgstr "Panel, sık kullanılan uygulamalara -ana panele ekleyerek- hızlı erişim için tasarlandı. Daha az kullanılan uygulamalar çalıştırıcı menüsüne eklenebilir."
++
++#: ./xfce-utils.xml344(term)
++msgid "Desktop Menu"
++msgstr "Masaüstü Menüsü"
++
++#: ./xfce-utils.xml346(para)
++msgid "Another method for starting applications is from the desktop mouse menu. Read the <ulink url=\"xfdesktop.html\" type=\"html\">Desktop Manager manual</ulink> for information on how to change the menu contents."
++msgstr "Uygulamaları başlatmanın bir diğer yolu da masaüstü fare menüsüdür. Menü içeriğini nasıl değiştirebileceğinizi öğrenmek için <ulink url=\"xfdesktop.html\" type=\"html\">Masaüstü Yönetimi Kılavuzunu</ulink> okuyabilirsiniz."
++
++#: ./xfce-utils.xml355(term) ./xfce-utils.xml813(title)
++msgid "Run Dialog"
++msgstr "Çalıştır Penceresi"
++
++#: ./xfce-utils.xml357(para)
++msgid "If you know the name of a program and it is not on the panel or in the desktop menu you can use the run dialog. To open the dialog type <keycap>Alt+F2</keycap> or choose the <guilabel>Run program...</guilabel> option from the desktop menu."
++msgstr "Panelde veya masaüstü menüsünde bulunmayan bir programın adını biliyorsanız çalıştırma kutusunu kullanabilirsiniz. Bunu yapmak için <keycap>Alt+F2</keycap> tuş kombinasyonunu veya masaüstü menüsünden <guilabel>Program çalıştır...</guilabel> seçeneğini kullanabilirsiniz."
++
++#: ./xfce-utils.xml363(para)
++msgid "The dialog will remeber the 10 last commands that were executed successfully."
++msgstr "İletişim penceresi başarıyla uygulanmış son 10 komutu hatırlayacak."
++
++#: ./xfce-utils.xml375(title)
++msgid "Managing windows and workspaces"
++msgstr "Pencereleri ve çalışma alanlarını yönetmek"
++
++#: ./xfce-utils.xml380(term)
++msgid "Basic window operations"
++msgstr "Temel pencere işlemleri"
++
++#: ./xfce-utils.xml382(para)
++msgid "You can move windows around the screen by dragging their title bar. A window can be closed, hidden, maximized, shaded and made sticky &mdash; this means it will show up on all workspaces &mdash; by using the title bar buttons."
++msgstr "Pencereleri ekranın içerisinde başlık çubuklarından sürükleyerek hareket ettirebilirsiniz. Bir pencere başlık çubuğundaki düğmeler kullanılarak kapatılabilir, gizlenebilir, genişletilebilir, gölgelendirilebilir and yapışkan yapılabili &mdash; bu bütün çalışma alanlarında görüneceği anlamına gelir."
++
++#: ./xfce-utils.xml387(para)
++msgid "Right clicking on the title bar will open a menu that gives access to all window operations."
++msgstr "Başlık çubuğuna sağ tıklamak, bütün pencere işlemlerine ulaşılmasını sağlayan bir menü açacaktır."
++
++#: ./xfce-utils.xml389(para)
++msgid "Shading a window, which means collapsing it to only show the title bar, can also be accomplished by using the mouse wheel over the title bar. Mouse wheel up is shade, mouse wheel down is unshade."
++msgstr "Bir pencereyi gölgelemek, o pencereyi sadece başlık çubuğu gözükecek şekilde küçültmek anlamına gelir. Bu işlem fare tekerleğini başlık çubuğu üzerinde döndürerek de gerçekleştirilebilir. Pencereyi gölgelemek için fare tekerleğini yukarıya doğru, gölgelemeden önceki haline geri getirmek için aşağıya doğru döndürün."
++
++#: ./xfce-utils.xml394(para)
++msgid "If you want maximized windows to not cover the entire screen you can set workspace margins from the settings manager dialog (see below)."
++msgstr "Eğer pencerenizi tüm ekranı kaplamayacak şekilde en büyük genişlikte kullanmak isterseniz çalışma alanı sınırlarınızı yapılandırma yöneticisinden ayarlayabilirsiniz (aşağıda anlatılmaktadır)."
++
++#: ./xfce-utils.xml402(term)
++msgid "Application management"
++msgstr "Uygulama yönetimi"
++
++#: ./xfce-utils.xml404(para)
++msgid "To find out what applications are currently running you can look at the task list on the top panel. Clicking on a button in the task list will focus the associated application. Clicking again will hide it."
++msgstr "Hangi süreçlerin çalıştığını üst paneldeki görev listesinde görebilirsiniz. Görev listesinde bir düğme üzerine tıklamak ona odaklanmanızı sağlayacaktır. Yeniden tıkladığjnızda ise uygulamayı gizlemiş olursunuz."
++
++#: ./xfce-utils.xml409(para)
++msgid "When you click with the middle mouse button on the desktop background a list of windows is shown, ordered by workspace. You can activate the application or change workspaces by choosing the appropriate menu entry."
++msgstr "Masaüstü arkaplanında farenin orta tuşuna tıklamak çalışma alanına göre sıralanmış pencerelerin gösterilmesini sağlayacaktır. Bir uygulamayı aktif etmek ya da çalışma alanını değiştirmek için uygun menü girdisini seçebilirsiniz."
++
++#: ./xfce-utils.xml418(term)
++msgid "Workspaces"
++msgstr "Çalışma alanları"
++
++#: ./xfce-utils.xml420(para)
++msgid "You can change workspaces by clicking on them in the graphical pager, either on the taskbar or on the panel. Pressing <keycap>Ctrl+Alt+LeftArrow</keycap> or <keycap>Ctrl+Alt+RightArrow</keycap> will cycle through the workspaces. Using the mousewheel over the pager or the desktop background has the same effect."
++msgstr "Çalışma alanını grafik sayfalayıcıya tıklayarak, görev çubuğundan veya panelden değiştirebilirsiniz. <keycap>Ctrl+Alt+SolTuş</keycap> or <keycap>Ctrl+Alt+SağTuş</keycap> kısa yolları çalışma alanları arasıda gezinmenize imkan verir. Sayfalayıcı üzerinde veya masaüstü arkaplanında farenin tekerleğini kullanmakda aynı etkiyi yapacaktır."
++
++#: ./xfce-utils.xml427(para)
++msgid "To add or remove workspaces you can use the middle click desktop menu or the settings dialog (see below)."
++msgstr "Çalışma alanı eklemek veya çıkarmak için masaüstü menüsünde orta tuşa tıklamak ya da yapılandırma penceresini kullanmak mümkündür (aşağıda anlatılmaktadır)."
++
++#: ./xfce-utils.xml437(title)
++msgid "Using the settings manager dialog"
++msgstr "Ayar yöneticisini kullan"
++
++#: ./xfce-utils.xml439(para)
++msgid "The settings manager dialog provides access to the global preferences of many Xfce applications. You can run it by pressing its launcher on the panel, from the desktop mouse menu or by running <application>xfce-setting-show</application>."
++msgstr "Yapılandırma yöneticisi bir çok Xfce uygulamasının genel ayarlarına erişim sunar. Paneldeki yerinden veya masaüstünde farenin orta tuşuna tıklayarak çalıştırabileceğiniz gibi <application>xfce-setting-show</application> uygulaması ile de çalıştırabilirsiniz."
++
++#: ./xfce-utils.xml445(para)
++msgid "Dialogs to change many aspects of the Xfce Desktop Environment are available. See the separate manuals of the Xfce components for more information. It may be interesting to have a quick look at all the dialogs to find out what options are available that allow you to create the best possible working environment."
++msgstr "Xfce Masaüstü Ortamının bir çok yönünü değiştirmek için bazı pencereler mevcut. Daha fazla bilgi için Xfce bileşenlerin kılavuzlarını ayrı ayrı inceleyin. Kendiniz için en uygun masaüstü ortamını oluşturmada bu pencerelerdeki hangi seçeneklerin uygun olduğuna hızlıca göz atabilirsiniz."
++
++#: ./xfce-utils.xml455(title)
++msgid "Further Reading"
++msgstr "Daha Fazla Kaynak"
++
++#: ./xfce-utils.xml457(para)
++msgid "This user guide has only given a very general overview of the Xfce Desktop Environment. More information is available in the <ulink url=\"index.html\" type=\"html\">manuals</ulink> of the separate components of Xfce."
++msgstr "Bu kullanıcı kılavuzu Xfce Masaüstü Ortamıyla ilgili çok genel bilgi içermektedir. Daha fazla bilgi için Xfce'nin farklı bileşenlerinin <ulink url=\"index.html\" type=\"html\">kılavuz</ulink>larına bakabilirsiniz."
++
++#: ./xfce-utils.xml467(title)
++msgid "Components of Xfce"
++msgstr "Xfce'nin bileşenleri"
++
++#: ./xfce-utils.xml469(para)
++msgid "The Xfce components are packaged separately. This section contains a list of the available modules with a short description."
++msgstr "Xfce bileşenleri ayrı ayrı paketlenmişlerdir. Bu bölüm ulaşılabilir modüllerin kısa açıklamalarıyla birlikte birlistesini sunmaktadır."
++
++#: ./xfce-utils.xml476(term)
++msgid "libxfce4util"
++msgstr "libxfce4util"
++
++#: ./xfce-utils.xml478(para)
++msgid "Library with non-graphical helper functions."
++msgstr "Grafiksel olmayan yardım fonksiyonları kütüphanesi."
++
++#: ./xfce-utils.xml483(term)
++msgid "libxfcegui4"
++msgstr "libxfcegui4"
++
++#: ./xfce-utils.xml485(para)
++msgid "Widget library and X Window System interaction."
++msgstr "Widget kitaplığı ve X Pencere Sistemi etkileşimi."
++
++#: ./xfce-utils.xml490(term)
++msgid "libexo"
++msgstr "libexo"
++
++#: ./xfce-utils.xml492(para)
++msgid "A library created for the Thunar file manager, containing many useful functions for applications designed for Xfce."
++msgstr "Xfce için tasarlanmış uygulamalar için yararlı pek çok fonksiyon içeren, Thunar dosya yöneticisi için oluşturulmuş bir kitaplık."
++
++#: ./xfce-utils.xml499(term)
++msgid "libxfce4mcs"
++msgstr "libxfce4mcs"
++
++#: ./xfce-utils.xml501(para)
++msgid "Settings management library used by many Xfce components."
++msgstr "Bir çok Xfce bileşeni tarafından kullanılan ayar yönetim kütüphanesi."
++
++#: ./xfce-utils.xml507(term)
++msgid "xfce-mcs-manager"
++msgstr "xfce-mcs-manager"
++
++#: ./xfce-utils.xml509(para)
++msgid "Settings manager. Runs in the background and provides global settings information to other Xfce components. There is a main control panel to access the configuration dialogs of Xfce components."
++msgstr "Yapılandırma yöneticisi. Arkaplanda çalışır ve diğer Xfce bileşenleri için yapılandırma bilgisi sağlar. Xfce bileşenlerinin yapılandırma öğelerine erişim için bir temel kontrol paneli mevcuttur."
++
++#: ./xfce-utils.xml518(term)
++msgid "xfce-mcs-plugins"
++msgstr "xfce-mcs-plugins"
++
++#: ./xfce-utils.xml520(para)
++msgid "Settings manager plugins. These plugins provide settings dialogs for general items that are not part of a package, e.g. user interface settings (Gtk+ theme, icon theme, font settings), mouse settings, keyboard settings and display settings."
++msgstr "Ayarlar yöneticisi eklentileri. Bu eklentiler, bir paketin parçası olmayan genel öğelerin ayarlarını tanımlamanızı sağlar. ör. kullanıcı ayarları arayüzü (Gtk+ teması, simge teması, yazı tipi ayarları), fare, klavye ve görüntü ayarları."
++
++#: ./xfce-utils.xml529(term)
++msgid "xfce4-session"
++msgstr "xfce4-session"
++
++#: ./xfce-utils.xml531(para)
++msgid "Session manager. The session manager controls the startup and shutdown of the Xfce Desktop Environment. On logout it can save the state of running applications (if the application supports it) and restore them properly again the next time you log in."
++msgstr "Oturum yöneticisi. Oturum yöneticisi Xfce Masaüstü Ortamının başlama ve kapanmasını kontrol eder. Çıkışta çalışan programların durumunu kaydedip (eğer destekliyorsa) bir sonraki girişte eski haline getirebilir."
++
++#: ./xfce-utils.xml540(term)
++msgid "xfwm4"
++msgstr "xfwm4"
++
++#: ./xfce-utils.xml542(para)
++msgid "The Xfce window mananger. Manages the placement of application windows on the screen, provides window decorations and manages workspaces."
++msgstr "Xfce pencere yöneticisi. Uygulama pencerelerinin ekrandaki konumunu düzenler, pencere süslemeleri barındırır ve çalışma alanlarını yönetir."
++
++#: ./xfce-utils.xml550(term)
++msgid "xfce4-panel"
++msgstr "xfce4-panel"
++
++#: ./xfce-utils.xml552(para)
++msgid "The Xfce panel. Provides program lauchers, a workspace switcher, a clock, menus and more."
++msgstr "Program başlatıcı, çalışma alanı değiştirici, saat, menu ve daha fazlasını sağlayan Xfce paneli."
++
++#: ./xfce-utils.xml559(term)
++msgid "xfdesktop"
++msgstr "xfdesktop"
++
++#: ./xfce-utils.xml561(para)
++msgid "Desktop background manager. This program sets the background image and/or color, and provides a root window menu, a menu panel plugin and a menu editor. Optionally, it can show icons on the desktop as well."
++msgstr "Masaüstü arkaplan yöneticisi. Bu program arkaplan resmini ve/veya rengini ayarlar, bir kök pencere menüsü, bir panel eklentisi ve bir menü düzenleyici sunar. İsterseniz masaüstünde simgeler de gösterebilir."
++
++#: ./xfce-utils.xml570(term)
++msgid "xfce-utils"
++msgstr "xfce-utils"
++
++#: ./xfce-utils.xml572(para)
++msgid "Essential utilities and scripts. Provides the Xfce about dialog, a run dialog, the startxfce4 script and several other important scripts. Also contains this user guide."
++msgstr "Temel yardımcı araçlar ve betikler. Xfce 'hakkında penceresi', çalıştırma penceresi, startxfce4 betiği ve bazı önemli betikleri sağlar. Ek olarak bu kullanıcı kılavuzunu da içerir."
++
++#: ./xfce-utils.xml580(term)
++msgid "Thunar"
++msgstr "Thunar"
++
++#: ./xfce-utils.xml582(para)
++msgid "A fast and efficient file manager."
++msgstr "Hızlı ve etkili bir dosya yöneticisi."
++
++#: ./xfce-utils.xml587(term)
++msgid "xfprint"
++msgstr "xfprint"
++
++#: ./xfce-utils.xml589(para)
++msgid "Printing support. Provides a graphical frontend for printing. Includes <application>xfprint4</application> and <application>xfprint-manager</application>."
++msgstr "Yazdırma desteği. Yazıcılar için bir grafik arabirim sunar. <application>xfprint4</application> ve <application>xfprint-manager</application> uygulamalarını içerir."
++
++#: ./xfce-utils.xml597(term)
++msgid "xfce4-appfinder"
++msgstr "xfce4-appfinder"
++
++#: ./xfce-utils.xml599(para)
++msgid "An application finder that allows you to search, launch and find information about applications installed on your system."
++msgstr "Sisteminize kurduğunuz programlar arasından arama yapabileceğiniz, onları çalıştırabileceğiniz ve haklarında bilgi alabileceğiniz bir uygulama."
++
++#: ./xfce-utils.xml606(term)
++msgid "orage"
++msgstr "boran"
++
++#: ./xfce-utils.xml608(para)
++msgid "Simple calendar application with reminders."
++msgstr "Hatırlatıcıları olan basit bir takvim uygulaması"
++
++#: ./xfce-utils.xml613(term)
++msgid "gtk-xfce-engine-2"
++msgstr "gtk-xfce-engine-2"
++
++#: ./xfce-utils.xml615(para)
++msgid "Theme engine for GTK2. Not required for the desktop, but it's a nice theme engine so you might just as well give it a try."
++msgstr "GTK2 için bir tema motoru. Masaüstü için bir zorunluluk olmamasına rağmen çok iyi bir tema motoru olduğundan denemek isteyebilirsiniz."
++
++#: ./xfce-utils.xml622(term)
++msgid "xfce4-icon-theme"
++msgstr "xfce4-icon-theme"
++
++#: ./xfce-utils.xml624(para)
++msgid "Default icon theme for Xfce, called <emphasis>Rodent</emphasis>."
++msgstr "Xfce için öntanımlı ikon teması <emphasis>Rodent</emphasis>tir."
++
++#: ./xfce-utils.xml632(title)
++msgid "Installing Xfce4"
++msgstr "Xfce Kuruluyor"
++
++#: ./xfce-utils.xml635(title)
++msgid "Binary packages"
++msgstr "İkili paketler"
++
++#: ./xfce-utils.xml637(para)
++msgid "The Xfce project officially only releases source code for the desktop environment. However, binary packages may have been contributed by other people for your OS or distribution."
++msgstr "Xfce resmi olarak sadece masaüstü ortamı için kaynak kodları yayınlar. Kullanıdığınız işletim sistemine ve sürüme bağlı olarak ikilik paketletler de dağıtılıypr olabilir."
++
++#: ./xfce-utils.xml642(para)
++msgid "Look at the Xfce site for <ulink url=\"http://xfce.org/index.php?page=download\" type=\"html\">download locations</ulink> and additional information about available binary packages. If you could not find binary packages for your OS, they may be available from your OS vendor or distributor, or you can install Xfce from source."
++msgstr "Mevcut ikilik paketler hakkında daha fazla bilgiyi <ulink url=\"http://xfce.org/index.php?page=download\" type=\"html\">indirme adresleri</ulink>nden edinebilirsiniz. İşletim sisteminiz için ikilik paketleri bulamıyorsanız ya ayrıca dağıtılıyorlardır ya da kaynak koddan kurmanız gerekiyordur."
++
++#: ./xfce-utils.xml652(title)
++msgid "Graphical installers"
++msgstr "Grafik yükleyiciler"
++
++#: ./xfce-utils.xml654(para)
++msgid "The easiest way to install Xfce from source is by using the <ulink url=\"http://www.xfce.org/archive/xfce-4.4.0/installers/\" type=\"html\">graphical installers</ulink>. Documentation and instructions are available."
++msgstr "Xfce'nin kaynak koddan kurulumu için en kolay yöntem <ulink url=\"http://www.xfce.org/archive/xfce-4.4.0/installers/\" type=\"html\">grafik yükleyicileri</ulink> kullanmaktır. Belgelendirme ve yönergeler bulunmaktadır."
++
++#: ./xfce-utils.xml662(title)
++msgid "Building from source"
++msgstr "Kaynak koddan kurulum"
++
++#: ./xfce-utils.xml664(para)
++msgid "To compile Xfce manually, look at the Xfce site for <ulink url=\"http://xfce.org/index.php?page=download\" type=\"html\">download locations</ulink>."
++msgstr "Xfce'yi kendiniz derlemek için <ulink url=\"http://xfce.org/index.php?page=download\" type=\"html\">indirme adresleri</ulink> bağlantısını takip edebilirsiniz."
++
++#: ./xfce-utils.xml672(programlisting)
++#, no-wrap
++msgid "./configure &amp;&amp; make &amp;&amp; make install"
++msgstr "./configure &amp;&amp; make &amp;&amp; make install"
++
++#: ./xfce-utils.xml669(para)
++msgid "Building the packages should be a simple matter of unpacking the tarballs and, from the top source directory, typing: <placeholder-1/> Some package will have extra configure options available. You can find them by typing <command>./configure <option>--help</option></command>."
++msgstr "Paketleri derlemek basitçe sıkıştırılmış dosyaları açarak  <placeholder-1/> yazmaktan ibarettir. Bazı paketlerin ilave yapılandırma parametrelerine de ihtiyaçları olabilir. Bunu <command>./configure <option>--help</option></command> komutunu çalıştırarak öğrenebilrisiniz."
++
++#: ./xfce-utils.xml678(para)
++msgid "Xfce @PACKAGE_VERSION@ depends on pkg-config and GTK+ &gt;= 2.6. If you installed these from a binary package, make sure you have the corresponding <filename>-dev</filename> packages installed as well."
++msgstr "Xfce @PACKAGE_VERSION@ pkg-config ve GTK+ &gt;= 2.6 sürümlerine ihtiyaç duyar. Eğer bunların ikilik paketlerini yüklemişseniz <filename>-dev</filename>  paketlerini de kurduğunuzdan emin olun."
++
++#: ./xfce-utils.xml683(para)
++msgid "Optionally you can install librsvg &gt;= 2.2, for SVG icon support, libstartup-notification, to have a busy cursor when loading applications that support this standard and dbus for enhanced functionality, mainly in Thunar and xfdesktop."
++msgstr "SVG simge desteği için librsvg &gt;= 2.2, ilgili standardı destekleyen uygulamaların açıldığı esnada ekranda meşgul imlecinin görünmesi için libstartup-notification paketini ve; genellikle Thunar ve xfdesktop da bulunan gelişmiş işlevsellik için de dbus paketini yükleyebilirsiniz."
++
++#: ./xfce-utils.xml689(para)
++msgid "If you install into a different prefix from pkg-config, you have to set the PKG_CONFIG_PATH variable to include the path to the *.pc files installed by the Xfce 4 libraries, which is ${prefix}/lib/pkgconfig. For example:"
++msgstr "Eğer pkg-config kullanarak farklı bir ön ek ile yükleme yapacaksanız: PKG_CONFIG_PATH değişkenini, Xfce 4 kitaplıkları tarafından yüklenen *.pc dosyalarının yolunu içerecek şekilde ayarlamalısınız, bu yol ${ön ek}/lib/pkgconfig biçiminde olmalıdır. Örneğin:"
++
++#: ./xfce-utils.xml695(programlisting)
++#, no-wrap
++msgid "export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig"
++msgstr "export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig"
++
++#: ./xfce-utils.xml700(title)
++msgid "Using SVN"
++msgstr "SVN'yi kullanmak"
++
++#: ./xfce-utils.xml702(para)
++msgid "The latest development sources for Xfce 4 are available from subversion (SVN)."
++msgstr "Xfce 'ün son geliştirme sürümlerine subversion (SVN) ile ulaşabilirsiniz."
++
++#: ./xfce-utils.xml706(para)
++msgid "Look <ulink url=\"http://xfce.org/index.php?page=documentation&amp;lang=en#install\" type=\"html\">here</ulink> for information on how to obtain the latest development updates from SVN. You can also browse the SVN tree through a web interface."
++msgstr "SVN'den son geliştirme güncellemelerini nasıl edineceğinizi öğrenmek için <ulink url=\"http://xfce.org/index.php?page=documentation&amp;lang=en#install\" type=\"html\">bu adrese</ulink> başvurabilirsiniz. SVN ağacını web arayüzünden de gezebilirsiniz."
++
++#: ./xfce-utils.xml716(title)
++msgid "Additional software"
++msgstr "İlave yazılımlar"
++
++#: ./xfce-utils.xml718(para)
++msgid "The <ulink url=\"http://goodies.xfce.org\" type=\"html\">Xfce Goodies</ulink> project collects third-party contributions for Xfce. There are some excellent panel plugins available that greatly enhance the functionality of Xfce."
++msgstr "<ulink url=\"http://goodies.xfce.org\" type=\"html\">Xfce Goodies</ulink> projesi Xfce için üçüncü parti katkıları bir araya getirir. Xfce'nin fonksiyonelliğini arttıran bazı harika panel eklentilerini burada bulabilirsiniz."
++
++#: ./xfce-utils.xml724(para)
++msgid "<ulink url=\"http://spuriousinterrupt.org/projects/xfmedia/\" type=\"html\">Xfmedia</ulink> is a lightweight media player for Xfce, based on the xine engine."
++msgstr "<ulink url=\"http://spuriousinterrupt.org/projects/xfmedia/\" type=\"html\">Xfmedia</ulink>, xine motoru kullanan Xfce için hazırlanmış bir medya oynatıcısıdır."
++
++#: ./xfce-utils.xml730(para)
++msgid "<ulink url=\"http://terminal.os-cillation.com/\" type=\"html\">Terminal</ulink> is an easy to use terminal emulator for the Xfce Desktop Environment. It contains all feature you would expect from a modern terminal emulator."
++msgstr "<ulink url=\"http://terminal.os-cillation.com/\" type=\"html\">Terminal</ulink>, Xfce masaüstü ortamı için kullanımı kolay bir teminal öykünücüsüdür."
++
++#: ./xfce-utils.xml741(title)
++msgid "Copyright and Licences"
++msgstr "Telif Hakları ve Lisanslar"
++
++#: ./xfce-utils.xml743(para)
++msgid "Xfce 4 is copyright &copy; Olivier Fourdan (<email>fourdan@xfce.org</email>). The different components are copyrighted by their respective authors."
++msgstr "Xfce 4'ün telif hakları Olivier Fourdan (<email>fourdan@xfce.org</email>)'a aittir. Farklı bileşenlerin hakları kendi yazarlarına aittir."
++
++#: ./xfce-utils.xml748(para)
++msgid "Three different licenses are used in the Xfce 4 project: <link linkend=\"BSD\">BSD</link>, <link linkend=\"LGPL\">LGPL</link> and <link linkend=\"GPL\">GPL</link>."
++msgstr "Xfce projesi için 3 farklı lisans kullanılmaktadır: <link linkend=\"BSD\">BSD</link>, <link linkend=\"LGPL\">LGPL</link> ve <link linkend=\"GPL\">GPL</link>."
++
++#: ./xfce-utils.xml752(para)
++msgid "Please, refer to the COPYING files included in the packages for the licensing terms of the separate Xfce 4 components."
++msgstr "Her Xfce 4 bileşeninin lisans bilgilerini paketindeki COPYING dosyasında bulabilirsiniz."
++
++#: ./xfce-utils.xml767(year)
++msgid "2004"
++msgstr "2004"
++
++#: ./xfce-utils.xml767(holder)
++msgid "Benedikt Meurer"
++msgstr "Benedikt Meurer"
++
++#: ./xfce-utils.xml793(email)
++msgid "benedikt.meurer@unix-ag.uni-siegen.de"
++msgstr "benedikt.meurer@unix-ag.uni-siegen.de"
++
++#: ./xfce-utils.xml798(releaseinfo)
++msgid "This manual describes the @PACKAGE_NAME@ package, version @PACKAGE_VERSION@."
++msgstr "Bu kılavuz dosyası @PACKAGE_NAME@ paketinin @PACKAGE_VERSION@ sürümü hakkındadır."
++
++#: ./xfce-utils.xml800(title)
++msgid "Xfce Utilities and Scripts"
++msgstr "Xfce araçları ve betikleri"
++
++#: ./xfce-utils.xml804(para)
++msgid "The <application>@PACKAGE_NAME@</application> package provides the general 'About Xfce 4' dialog, a run dialog and several useful scripts that are also used by other Xfce components such as the panel and the desktop menu."
++msgstr "<application>@PACKAGE_NAME@</application> paketi, 'Xfce4 Hakkında' penceresi, çalıştırma penceresi ve diğer Xfce bileşenleri tarafından kullanılan, panel, masaüstü menüsü gibi birkaç yararlı betiği sağlar."
++
++#: ./xfce-utils.xml816(title)
++msgid "Run dialog"
++msgstr "Çalıştır penceresi"
++
++#: ./xfce-utils.xml824(phrase)
++msgid "Shows the run dialog."
++msgstr "Çalıştır penceresini göster"
++
++#: ./xfce-utils.xml830(para)
++msgid "The run dialog allows the user to launch applications. Applications can be run in a Terminal emulator (Terminal by default, see xfterm4 script below). In a default Xfce environment, the Alt+F2 key combination will open the run dialog."
++msgstr "Çalıştırma kutusu kullanıcıların uygulama başlatmalarına olanak sağlar. Uygulamalar Terminal öykünücüsünden başlatılabilirler. Öntanımlı Xfce ortamında Alt+F2 tuş kombinasyonu çalıştırma kutusunu çalıştırır."
++
++#: ./xfce-utils.xml840(title)
++msgid "About Dialog"
++msgstr "Hakkında Penceresi"
++
++#: ./xfce-utils.xml843(title)
++msgid "About dialog"
++msgstr "Hakkında penceresi"
++
++#: ./xfce-utils.xml850(phrase)
++msgid "Shows the About Dialog displaying the credits page."
++msgstr "Hazırlayanlar sayfasını için hakkında penceresini göster"
++
++#: ./xfce-utils.xml857(para)
++msgid "The About Dialog is used to display information about Xfce 4, including a list of components, a credits page for all people who helped to create Xfce 4 and license information."
++msgstr "Hakkında penceresi Xfce 4 ve bileşenlerinin geliştiricileri ve lisans bilgileri hakkında bilgi vermek için kullanılır. "
++
++#: ./xfce-utils.xml866(title)
++msgid "Scripts"
++msgstr "Betikler"
++
++#: ./xfce-utils.xml870(term)
++msgid "startxfce4"
++msgstr "startxfce4"
++
++#: ./xfce-utils.xml872(para)
++msgid "The <application>startxfce4</application> is a convenient script to start an Xfce 4 session from the console. It will give you a session with two panels and with the desktop manager and window manager running."
++msgstr "<application>startxfce4</application> Xfce 4 oturumunu konsoldan başlatmak için uygun bir betiktir. Size iki paneli olan, masaüstü yöneticisi ve pancere yöneticisi çalışan bir oturum sunar."
++
++#: ./xfce-utils.xml879(para)
++msgid "To customize the behaviour of <application>startxfce4</application>, copy the file <filename>${sysconfdir}/xdg/xfce4/xinitrc</filename> to your personal <filename>~/.config/xfce4/</filename> directory and edit that file. If you install from source, <filename>${sysconfdir}</filename> defaults to <filename>/usr/local/etc</filename>; for binary packages it is usually set to <filename>/etc</filename>."
++msgstr "<application>startxfce4</application>'ün davranışını özelleştirmek için <filename>${sysconfdir}/xdg/xfce4/xinitrc</filename> dosyasını <filename>~/.config/xfce4/</filename> dizinine kopyalayın ve isteğinize göre düzenleyin. Eğer kurulumu kaynak koddan yapmışsanız <filename>${sysconfdir}</filename> değişkeni <filename>/usr/local/etc</filename> dizinini, ikilik paketten kurulum yapmışsanız <filename>/etc</filename> dizinini gösterecektir."
++
++#: ./xfce-utils.xml889(para)
++msgid "With the inclusion of a session manager in Xfce 4.2, the preferred way to change startup behaviour is by using the \"Save session\" option in the logout dialog."
++msgstr "Xfce 4.2'ye dahil edilen oturum yöneticisi ile, başlangıç davranışını, çıkış penceresindeki \"Oturumu Kaydet\" seçeneği ile değiştirebilirsiniz."
++
++#: ./xfce-utils.xml898(term)
++msgid "xfhelp4"
++msgstr "xfhelp4"
++
++#: ./xfce-utils.xml900(para)
++msgid "This script is used to open the local Xfce 4 documentation in a browser. By default it will try to use <application>exo-open</application> from the libexo library. You can change the preferred browser from the Xfce Settings Manager dialog. If <application>exo-open</application> is not available, the script will try a number of well-known browsers, like firefox, galeon or konqueror, but you can change that by setting the $BROWSER environment variable."
++msgstr "Bu betik yerel bir Xfce 4 belgelendirmesini tarayıcınızla açmanıza imkan verir. Öntanımlı olarak <application>exo-open</application> kullanmayı deneyecektir. Tercih ettiğiniz başka bir tarayıcı varsa bunu Xfce Yapılandırma Yöneticisinden değiştirebilirsiniz. Betik eğer <application>exo-open</application>'u bulamazsa çok bilinen  firefox, galeon veya konqueror gibi tarayıcıları deneyecektir. Hangicisi kullanmasını istiyorsanız onu $BROWSER çevre değişkenine atayabilirsiniz."
++
++#: ./xfce-utils.xml911(para)
++msgid "If there is documentation installed in the language of your current locale, xfhelp4 will open that instead of the default English documentation."
++msgstr "Eğer sistem yerelinize uygun bir belgelendirme yüklemişseniz, xfhelp4 öntanımlı İngilizce belgelendirme yerine onu açacaktır."
++
++#: ./xfce-utils.xml920(term)
++msgid "xflock4"
++msgstr "xflock4"
++
++#: ./xfce-utils.xml922(para)
++msgid "This script is used by the panel to lock the screen using xscreensaver if available and falling back to xlock."
++msgstr "Panel tarafından kullanılan bu betik, ekranı -eğer mevcutsa xscreensaver kullanarak- kilitlemek ve xlocka geri dönmek için kullanılır."
++
++#: ./xfce-utils.xml933(title)
++msgid "About xfce-utils"
++msgstr "xfce-utils hakkında"
++
++#: ./xfce-utils.xml935(para)
++msgid "<application>@PACKAGE_NAME@</application> was written by Jasper Huijsmans (<email>jasper@xfce.org</email>), Olivier Fourdan (<email>fourdan@xfce.org</email>) and Benedikt Meurer (<email>benny@xfce.org</email>). To find more information, visit the <ulink url=\"http://www.xfce.org\" type=\"http\">Xfce web site</ulink>."
++msgstr "<application>@PACKAGE_NAME@</application> uygulaması Jasper Huijsmans (<email>jasper@xfce.org</email>), Olivier Fourdan (<email>fourdan@xfce.org</email>) ve Benedikt Meurer (<email>benny@xfce.org</email>) tarafından yazılmıştır. Daha fazla bilgi <ulink url=\"http://www.xfce.org\" type=\"http\">Xfce internet adresinde</ulink> bulunabilir."
++
++#: ./xfce-utils.xml944(para)
++msgid "To report a bug or make a suggestion regarding this application or this manual, please use the bug tracking system at <ulink url=\"http://bugzilla.xfce.org/\" type=\"http\">http://bugzilla.xfce.org/</ulink>."
++msgstr "Bu uygulama veya belgelendirme için bir hata raporlamak ya da öneride bulunmak için lütfen <ulink url=\"http://bugzilla.xfce.org/\" type=\"http\">http://bugzilla.xfce.org/</ulink> adresindeki hata takip sistemini kullanın."
++
++#: ./xfce-utils.xml951(para)
++msgid "If you have questions about the use or installation of this package, ask on the <ulink url=\"http://lunar-linux.org/mailman/listinfo/xfce\" type=\"http\">xfce</ulink> mailing list. Development discussion takes place on the <ulink url=\"http://lunar-linux.org/mailman/listinfo/xfce4-dev\" type=\"http\">xfce4-dev</ulink> mailing list."
++msgstr "Bu paketin kurulumu veya kullanımı hakkında sorularınız olursa <ulink url=\"http://lunar-linux.org/mailman/listinfo/xfce\" type=\"http\">xfce</ulink>  listesine yazabilirsiniz. Geliştirme hakkındaki tartışmalar <ulink url=\"http://lunar-linux.org/mailman/listinfo/xfce4-dev\" type=\"http\">xfce4-dev</ulink> listesi üzerinden sürdürülmektedir."
++
++#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
++#: ./xfce-utils.xml0(None)
++msgid "translator-credits"
++msgstr "Gökmen Görgen <gkmngrgn@gmail.com>, 2011"
+diff -Naur xfce-utils-4.8.0.orig//po/tr.po xfce-utils-4.8.0//po/tr.po
+--- xfce-utils-4.8.0.orig//po/tr.po	2011-01-16 18:12:45.000000000 +0200
++++ xfce-utils-4.8.0//po/tr.po	2011-03-30 16:31:32.300000010 +0300
+@@ -2,216 +2,178 @@
+ # Copyright (C) 2002-2007 The Xfce development team.
+ # This file is distributed under the same license as the xfce-utils package.
+ # Erçin EKER <ercin.eker@linux.org.tr>, 2004.
+-# Eren Türkay <turkay.eren@gmail.com> 2007
+-#
++# Eren Türkay <turkay.eren@gmail.com>, 2007.
++# Gökmen Görgen <gkmngrgn@gmail.com>, 2011.
++# 
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: xfce-utils 4.4.0\n"
++"Project-Id-Version: xfce-utils 4.8\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2011-01-16 17:12+0100\n"
+-"PO-Revision-Date: 2009-01-30 18:09+0200\n"
++"POT-Creation-Date: 2011-03-24 05:30+0000\n"
++"PO-Revision-Date: 2011-03-17 22:26+0200\n"
+ "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
+ "Language-Team: Turkish <turkce@pardus.org.tr>\n"
+-"Language: tr\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: tr\n"
+ 
+ #: ../xfce4-about/main.c:52
+ msgid "Version information"
+-msgstr ""
++msgstr "Sürüm bilgisi"
+ 
+ #: ../xfce4-about/main.c:70
+ msgid "Window Manager"
+-msgstr ""
++msgstr "Pencere Yöneticisi"
+ 
+ #: ../xfce4-about/main.c:71
+ msgid "Handles the placement of windows on the screen."
+-msgstr ""
++msgstr "Pencerelerin ekran üzerinde yerleştirilmesyle ilgilenir"
+ 
+ #: ../xfce4-about/main.c:74
+ msgid "Panel"
+-msgstr ""
++msgstr "Panel"
+ 
+ #: ../xfce4-about/main.c:75
+-msgid ""
+-"Program launchers, window buttons, applications menu, workspace switcher and "
+-"more."
+-msgstr ""
++msgid "Program launchers, window buttons, applications menu, workspace switcher and more."
++msgstr "Program başlatıcıları, pencere düğmeleri, uygulama menüleri, çalışma alanı değiştirici ve daha fazlası."
+ 
+ #: ../xfce4-about/main.c:79
+ msgid "Desktop Manager"
+-msgstr ""
++msgstr "Masaüstü Yöneticisi"
+ 
+ #: ../xfce4-about/main.c:80
+-msgid ""
+-"Sets the background color or image with optional application menu or icons "
+-"for minimized applications or launchers, devices and folders."
+-msgstr ""
++msgid "Sets the background color or image with optional application menu or icons for minimized applications or launchers, devices and folders."
++msgstr "Arkaplan rengi ya da duvar kağıdını, bir uygulama menüsü ile değiştirir ya da küçültülmüş uygulamalar veya başlatıcılar, aygıtlar ve dizinler için ikonları değiştirir."
+ 
+ #: ../xfce4-about/main.c:84
+ msgid "File Manager "
+-msgstr ""
++msgstr "Dosya Yöneticisi"
+ 
+ #: ../xfce4-about/main.c:85
+-msgid ""
+-"A modern file manager for the Unix/Linux desktop, aiming to be easy-to-use "
+-"and fast."
+-msgstr ""
++msgid "A modern file manager for the Unix/Linux desktop, aiming to be easy-to-use and fast."
++msgstr "Linux/Unix masaüstü için, kullanımının basit ve hızlı olmasını amaç edinmiş, çağdaş bir dosya yöneticisi."
+ 
+ #: ../xfce4-about/main.c:89
+ msgid "Session Manager"
+-msgstr ""
++msgstr "Oturum Yöneticisi"
+ 
+ #: ../xfce4-about/main.c:90
+-msgid ""
+-"Restores your session on startup and allows you to shutdown the computer "
+-"from Xfce."
+-msgstr ""
++msgid "Restores your session on startup and allows you to shutdown the computer from Xfce."
++msgstr "Başlangıçta oturumunuzu geri getirir ve Xfce içerisinden bilgisayarınızı kapatma imkanı sağlar."
+ 
+ #: ../xfce4-about/main.c:94
+ msgid "Setting System"
+-msgstr ""
++msgstr "Sistemi Ayarlıyor"
+ 
+ #: ../xfce4-about/main.c:95
+-msgid ""
+-"Configuration system to control various aspects of the desktop like "
+-"appearance, display, keyboard and mouse settings."
+-msgstr ""
++msgid "Configuration system to control various aspects of the desktop like appearance, display, keyboard and mouse settings."
++msgstr "Masaüstü ortamının görünüş, sunum, tuş takımını ve fare ayarları gibi yönlerini kontrol etmek için yapılandırma sistemi."
+ 
+ #: ../xfce4-about/main.c:99
+ msgid "Application Finder"
+-msgstr ""
++msgstr "Uygulama Bulucu"
+ 
+ #: ../xfce4-about/main.c:100
+-msgid ""
+-"Shows the applications installed on your system in categories, so you can "
+-"quickly find and launch them."
+-msgstr ""
++msgid "Shows the applications installed on your system in categories, so you can quickly find and launch them."
++msgstr "Sisteminizde kurulu uygulamaları kategoriler biçiminde gösterir, böylece onları hızlıca bulabilir ve başlatabilirsiniz."
+ 
+ #: ../xfce4-about/main.c:104
+ msgid "Utilities and Scripts"
+-msgstr ""
++msgstr "Araçlar ve Betikler"
+ 
+ #: ../xfce4-about/main.c:105
+ msgid "Startup scripts, run dialog and about dialog."
+-msgstr ""
++msgstr "Başlangıç betikleri, çalıştırma iletişim kutusu ve hakkında iletişim kutusu."
+ 
+ #: ../xfce4-about/main.c:108
+ msgid "Settings Daemon"
+-msgstr ""
++msgstr "Ayarlar Sunucusu"
+ 
+ #: ../xfce4-about/main.c:109
+ msgid "D-Bus-based configuration storage system."
+-msgstr ""
++msgstr "D-Bus-temelli yapılandırma saklama sistemi."
+ 
+ #: ../xfce4-about/main.c:116
+-msgid ""
+-"Xfce is a collection of programs that together provide a full-featured "
+-"desktop environment. The following programs are part of the Xfce core:"
+-msgstr ""
++msgid "Xfce is a collection of programs that together provide a full-featured desktop environment. The following programs are part of the Xfce core:"
++msgstr "Xfce birlikte kapsamlı bir masaüstü ortamı sağlayan bir programlar derlemesidir. Aşağıdaki programlar Xfce çekirdeğinin parçasıdır:"
+ 
+ #: ../xfce4-about/main.c:140
+-msgid ""
+-"Xfce is also a development platform providing several libraries, that help "
+-"programmers create applications that fit in well with the desktop "
+-"environment."
+-msgstr ""
++msgid "Xfce is also a development platform providing several libraries, that help programmers create applications that fit in well with the desktop environment."
++msgstr "Xfce aynı zamanda, programcılara masaüstü ortamına güzelce uyan uygulamalar yaratmasına imkan veren kütüphaneler sunan bir geliştirme altyapısıdır."
+ 
+ #: ../xfce4-about/main.c:146
+-msgid ""
+-"Xfce components are licensed under free or open source licences; GPL or BSDL "
+-"for applications and LGPL or BSDL for libraries. Look at the documentation, "
+-"the source code or the Xfce website (http://www.xfce.org) for more "
+-"information."
+-msgstr ""
++msgid "Xfce components are licensed under free or open source licences; GPL or BSDL for applications and LGPL or BSDL for libraries. Look at the documentation, the source code or the Xfce website (http://www.xfce.org) for more information."
++msgstr "Xfce bileşenleri özgür veya açık kaynak lisanslarıyla tescillenmiştir; uygulamalar için GPL or BSDL and kütüphaneler için LGPL or BSDL lisansları kullanılır. Daha fazla bilgi için yardım belgelerine, kaynak koda veya Xfce internet sitesine (http://www.xfce.org) göz atın."
+ 
+ #: ../xfce4-about/main.c:153
+ msgid "Thank you for your interest in Xfce."
+-msgstr ""
++msgstr "Xfce'ye olan ilginizden dolayı size teşekkür ederiz."
+ 
+ #: ../xfce4-about/main.c:157
+ msgid "The Xfce Development Team"
+-msgstr ""
++msgstr "Xfce Geliştirme Takımı"
+ 
+ #: ../xfce4-about/main.c:266
+-#, fuzzy
+-msgid ""
+-"If you know of anyone missing from this list; don't hesitate and file a bug "
+-"on <http://bugzilla.xfce.org> ."
+-msgstr ""
+-"Bu listede birilerinin eksik olduğunu düşünüyorsanız lütfen bizi "
+-"bilgilendirin <"
++msgid "If you know of anyone missing from this list; don't hesitate and file a bug on <http://bugzilla.xfce.org> ."
++msgstr "Bu listede birilerinin eksik olduğunu düşünüyorsanız lütfen <http://bugzilla.xfce.org> adresini kullanarak bizi bilgilendirmekten çekinmeyin."
+ 
+ #: ../xfce4-about/main.c:270
+-#, fuzzy
+ msgid "Thanks to all who helped making this software available!"
+-msgstr "Bu yazılıma yardım eden ve emeği geçen herkese teşekkürler."
++msgstr "Bu yazılıma yardım eden ve emeği geçen herkese teşekkürler!"
+ 
+ #: ../xfce4-about/main.c:287
+-msgid ""
+-"Xfce 4 is copyright Olivier Fourdan (fourdan@xfce.org). The different "
+-"components are copyrighted by their respective authors."
+-msgstr ""
++msgid "Xfce 4 is copyright Olivier Fourdan (fourdan@xfce.org). The different components are copyrighted by their respective authors."
++msgstr "Xfce 4'ün kopyalama hakları Olivier Fourdan'a (fourdan@xfce.org) aittir. Farklı bileşenlerin kopyalama hakları ilgili yazarlara aittir."
+ 
+ #: ../xfce4-about/main.c:292
+-msgid ""
+-"The libxfce4ui, libxfcegui4, libxfce4util, thunar-vfs and exo packages are "
+-"distributed under the terms of the GNU Library General Public License as "
+-"published by the Free Software Foundation; either version 2 of the License, "
+-"or (at your option) any later version."
+-msgstr ""
++msgid "The libxfce4ui, libxfcegui4, libxfce4util, thunar-vfs and exo packages are distributed under the terms of the GNU Library General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
++msgstr "libxfce4ui, libxfcegui4, libxfce4util, thunar-vfs ve exo paketleri Özgür Yazılım Vakfı tarafından yayımlanan GNU Kütüphane Genel Kamu Lisansı hükümleri altında dağıtılmaktadır; ya bu lisansın 2. versiyonu veya (sizin kararınıza göre) daha sonraki bir versiyonu geçerlidir."
+ 
+ #: ../xfce4-about/main.c:299
+-msgid ""
+-"The packages thunar, xfce4-appfinder, xfce4-panel, xfce4-session, xfce4-"
+-"settings, xfce-utils, xfconf, xfdesktop and xfwm4 are distributed under the "
+-"terms of the GNU General Public License as published by the Free Software "
+-"Foundation; either version 2 of the License, or (at your option) any later "
+-"version."
+-msgstr ""
++msgid "The packages thunar, xfce4-appfinder, xfce4-panel, xfce4-session, xfce4-settings, xfce-utils, xfconf, xfdesktop and xfwm4 are distributed under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
++msgstr "thunar, xfce4-appfinder, xfce4-panel, xfce4-session, xfce4-settings, xfce-utils, xfconf, xfdesktop ve xfwm4 paketleri Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı hükümleri altında dağıtılmaktadır; ya bu lisansın 2. versiyonu veya (sizin kararınıza göre) daha sonraki bir versiyonu geçerlidir."
+ 
+ #: ../xfce4-about/main.c:446
+ #, c-format
+ msgid "Type '%s --help' for usage information."
+-msgstr ""
++msgstr "Kullanımı hakkında bilgi almak için '%s --help' yazın."
+ 
+ #: ../xfce4-about/main.c:452
+ msgid "Unable to initialize GTK+."
+-msgstr ""
++msgstr "GTK+ başlatılamıyor."
+ 
+ #: ../xfce4-about/main.c:461
+ msgid "The Xfce development team. All rights reserved."
+-msgstr ""
++msgstr "Xfce geliştirme takımı. Bütün hakları saklıdır."
+ 
+ #: ../xfce4-about/main.c:462
+ #, c-format
+ msgid "Please report bugs to <%s>."
+-msgstr ""
++msgstr "Lütfen hataları <%s> adresine bildirin."
+ 
+ #. I18N: date/time the translators list was updated
+ #: ../xfce4-about/main.c:465
+-#, fuzzy, c-format
++#, c-format
+ msgid "Translators list from %s."
+-msgstr "Çevirmenler"
++msgstr "%sden çevirmenler listesi."
+ 
+ #: ../xfce4-about/main.c:475
+-#, fuzzy
+ msgid "Failed to load interface"
+-msgstr "Yüklenemiyor"
++msgstr "Arayüzün yüklenmesi başarısız oldu"
+ 
+ #. I18N: first %s will be replaced by the version, second by
+ #. * the name of the distribution (--with-vendor-info=NAME)
+ #: ../xfce4-about/main.c:489
+ #, c-format
+ msgid "Version %s, distributed by %s"
+-msgstr ""
++msgstr "Sürüm %s, %s tarafından dağıtılıyor."
+ 
+ #. I18N: %s will be replaced by the Xfce version number
+ #: ../xfce4-about/main.c:493
+ #, c-format
+ msgid "Version %s"
+-msgstr ""
++msgstr "Sürüm %s"
+ 
+ #. { N_("Project Lead"),
+ #. xfce_contributors_lead
+@@ -225,9 +187,8 @@
+ msgstr "Aktif katkıcılar"
+ 
+ #: ../xfce4-about/contributors.h:133
+-#, fuzzy
+ msgid "Servers maintained by"
+-msgstr "Sunucu hizmetini sağlayan"
++msgstr "Sunucuların bakımını yapanlar"
+ 
+ #: ../xfce4-about/contributors.h:136
+ msgid "Goodies supervision"
+@@ -246,28 +207,24 @@
+ msgstr "Önceki katkıcılar"
+ 
+ #: ../xfce4-about/xfce4-about.desktop.in.h:1
+-#, fuzzy
+ msgid "About Xfce"
+-msgstr "Xfce 4 Hakkında"
++msgstr "Xfce Hakkında"
+ 
+ #: ../xfce4-about/xfce4-about.desktop.in.h:2
+-#, fuzzy
+ msgid "Information about the Xfce Desktop Environment"
+-msgstr "Xfce Masaüstü Ortamı"
++msgstr "Xfce Masaüstü Ortamı hakkında bilgi"
+ 
+ #: ../xfce4-about/xfce4-about-dialog.glade.h:1
+ msgid "About"
+-msgstr ""
++msgstr "Hakkında"
+ 
+ #: ../xfce4-about/xfce4-about-dialog.glade.h:2
+-#, fuzzy
+ msgid "About the Xfce Desktop Environment"
+-msgstr "Xfce Masaüstü Ortamı"
++msgstr "Xfce Masaüstü Ortamı Hakkında"
+ 
+ #: ../xfce4-about/xfce4-about-dialog.glade.h:3
+-#, fuzzy
+ msgid "BSD"
+-msgstr "BSDL"
++msgstr "BSD"
+ 
+ #: ../xfce4-about/xfce4-about-dialog.glade.h:4
+ msgid "Copyright"
+@@ -287,7 +244,7 @@
+ 
+ #: ../xfce4-about/xfce4-about-dialog.glade.h:8
+ msgid "License"
+-msgstr ""
++msgstr "Lisans"
+ 
+ #. we don't support daemon mode
+ #: ../xfrun/xfrun.c:48
+@@ -300,9 +257,7 @@
+ 
+ #: ../xfrun/xfrun.c:51
+ msgid "Xfrun must be compiled with D-BUS support to enable daemon mode."
+-msgstr ""
+-"Arkaplan kipinin etkin olabilmesi için Xfrun uygulamasının D-BUS ile "
+-"birlikte derlenmesi gerekir."
++msgstr "Arkaplan kipinin etkin olabilmesi için Xfrun uygulamasının D-BUS ile birlikte derlenmesi gerekir."
+ 
+ #: ../xfrun/xfrun-dbus.c:156
+ #, c-format
+@@ -346,14 +301,12 @@
+ msgstr "Bilinmeyen Hata"
+ 
+ #: ../xfrun/xfrun4.desktop.in.h:1
+-#, fuzzy
+ msgid "Run Program..."
+-msgstr "Uygulama çalıştır"
++msgstr "Uygulamayı çalıştır..."
+ 
+ #: ../xfrun/xfrun4.desktop.in.h:2
+-#, fuzzy
+ msgid "Run a program"
+-msgstr "Uygulama çalıştır"
++msgstr "Bir uygulama çalıştır"
+ 
+ #: ../xfce.desktop.in.h:1
+ msgid "Use this session to run Xfce as your desktop environment"
+@@ -365,11 +318,11 @@
+ 
+ #: ../scripts/xfhelp4.desktop.in.h:1
+ msgid "Help"
+-msgstr ""
++msgstr "Yardım"
+ 
+ #: ../scripts/xfhelp4.desktop.in.h:2
+ msgid "Help using Xfce"
+-msgstr ""
++msgstr "Xfce kullanmama yardım et"
+ 
+ #~ msgid "Project Lead"
+ #~ msgstr "Proje Lideri"
