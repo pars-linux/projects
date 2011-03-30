@@ -37,6 +37,9 @@
     <Package>
         <Name>xfce4-panel</Name>
         <RuntimeDependencies>
+            <Dependency>atk</Dependency>
+            <Dependency>xfconf</Dependency>
+            <Dependency>libXext</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>gtk2</Dependency>
             <Dependency>libxfce4util</Dependency>
@@ -70,6 +73,8 @@
             <Dependency releaseFrom="current">xfce4-panel</Dependency>
             <Dependency>libxfcegui4-devel</Dependency>
             <Dependency>exo-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>libxfce4util-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
