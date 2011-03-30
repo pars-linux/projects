@@ -17,7 +17,6 @@
             <Dependency>libart_lgpl-devel</Dependency>
             <Dependency>gnome-desktop-devel</Dependency>
             <Dependency>icon-theme-gnome</Dependency>
-            <!--<Dependency>libexif-devel</Dependency>-->
             <Dependency>lcms-devel</Dependency>
             <Dependency>libexif-devel</Dependency>
             <Dependency>jpeg-devel</Dependency>
@@ -33,11 +32,15 @@
             <Dependency>libart_lgpl</Dependency>
             <Dependency>gnome-desktop</Dependency>
             <Dependency>icon-theme-gnome</Dependency>
-            <!--<Dependency>libexif</Dependency>-->
             <Dependency>lcms</Dependency>
             <Dependency>libexif</Dependency>
             <Dependency>python-gtk</Dependency>
             <Dependency>jpeg</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
