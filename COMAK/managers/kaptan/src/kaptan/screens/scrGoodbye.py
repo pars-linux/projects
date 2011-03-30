@@ -60,7 +60,11 @@ class Widget(QtGui.QWidget, Screen):
     def on_buttonSystemSettings_clicked(self):
         self.procSettings = QProcess()
         self.procSettings.start("pcmanfm menu://applications/System")
-
+        if ctx.Pds.session == ctx.pds.Gnome:
+            import subprocess
+            a=subprocess.Popen("gnome-control-center")
+            time.sleep(1)
+            a.wait()
     def on_buttonHelpPages_clicked(self):
 	#self.procSettings = QProcess()
         #command = "openURL (" + self.helpPageUrl+")"
