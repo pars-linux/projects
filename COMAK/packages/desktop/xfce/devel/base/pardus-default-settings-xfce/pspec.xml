@@ -21,7 +21,6 @@
             <Dependency>dejavu-fonts</Dependency>
             <Dependency>cursor-theme-oxygen-white</Dependency>
             <Dependency versionFrom="1.0.0">gtk-style-oxygen</Dependency>
-            <Dependency>icon-theme-milky-png</Dependency>
             <Dependency>icon-theme-oxygen-png</Dependency>
             <Dependency>xdg-user-dirs</Dependency>
         </RuntimeDependencies>
