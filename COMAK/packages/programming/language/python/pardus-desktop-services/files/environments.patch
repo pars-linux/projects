@@ -1,0 +1,70 @@
+Index: pds/__init__.py
+===================================================================
+--- pds/__init__.py	(revision 36496)
++++ pds/__init__.py	(working copy)
+@@ -30,7 +30,8 @@
+ 
+ class Pds:
+ 
+-    SupportedDesktops = (DefaultDe, Kde4, Kde3, Xfce, Enlightenment)
++    SupportedDesktops = (DefaultDe, Kde4, Kde3, Xfce, Enlightenment, LXDE, 
++                        Fluxbox, Gnome)
+ 
+     def __init__(self, catalogName='', debug=False):
+         self._session           = None
+@@ -146,7 +147,7 @@
+     def session(self):
+         if not self._session:
+             env = getenv('DESKTOP_SESSION')
+-            if env == 'default':
++            if env == 'default' or not env:
+                 session = readfile('/etc/default/desktop', DefaultDe.Name)
+                 env     = session.split('=')[1].strip()
+             for de in Pds.SupportedDesktops:
+Index: pds/qiconloader.py
+===================================================================
+--- pds/qiconloader.py	(revision 36496)
++++ pds/qiconloader.py	(working copy)
+@@ -61,7 +61,7 @@
+             dataDirs = QString('/usr/local/share/:/usr/share/')
+ 
+         dataDirs.prepend(QDir.homePath() + ":")
+-        dataDirs.prepend(self.pds.config_path + 'share:')
++        dataDirs.prepend(str(self.pds.config_path) + 'share:')
+ 
+         if self.pds.session.ExtraDirs:
+             dirs = QFile.decodeName(
+Index: pds/environments.py
+===================================================================
+--- pds/environments.py	(revision 36496)
++++ pds/environments.py	(working copy)
+@@ -74,3 +74,29 @@
+     DefaultIconTheme     = 'hicolor'
+     IconKey              = 'E_ICON_THEME'
+ 
++class LXDE(DefaultDe):
++    Name                 = 'LXDE'
++    Version              = '0.5'
++    ConfigPath           = '$HOME/.config'
++    ConfigFile           = ''
++    ConfigType           = None
++    DefaultIconTheme     = 'oxygen'
++    IconKey              = 'theme/name'
++    DefaultIconFile      = '/usr/share/icons/lxde_pardus2011_menu.png'
++
++class Fluxbox(DefaultDe):
++    Name                 = 'fluxbox'
++    Version              = '1.3.1'
++    ConfigPath           = '$HOME/.config'
++    ConfigFile           = ''
++    ConfigType           = None
++    DefaultIconTheme     = 'oxygen'
++
++class Gnome(DefaultDe):
++    Name                 = 'gnome'
++    Version              = '2.32'
++    ConfigPath           = '$HOME/.gnome2'
++    ConfigFile           = ''
++    ConfigType           = None
++    DefaultIconTheme     = 'oxygen'
++
