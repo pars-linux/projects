@@ -32,6 +32,9 @@
             <Dependency>libwnck-devel</Dependency>
             <Dependency>libXdamage-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">tr-po.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
@@ -69,6 +72,13 @@
     </Package>
 
     <History>
+        <Update release="15">
+            <Date>2011-03-30</Date>
+            <Version>4.8.0</Version>
+            <Comment>Add patch to update tr po files.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="14">
             <Date>2011-01-23</Date>
             <Version>4.8.0</Version>
