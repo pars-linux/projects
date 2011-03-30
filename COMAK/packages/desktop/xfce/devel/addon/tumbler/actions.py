@@ -15,6 +15,8 @@ def setup():
                         --enable-ffmpeg-thumbnailer \
                         --enable-poppler-thumbnailer")
 
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+
 def build():
     autotools.make()
 
