@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <PISI>
     <Source>
-        <Name>yali-branding-comak</Name>
+        <Name>yali-branding-pardus</Name>
         <Summary xml:lang="tr">Yali için COMAK markalaşma dosyaları</Summary>
         <Description xml:lang="tr">yalı-branding YALI projesi COMAK markalaşma dosyaları içerir.</Description>
     </Source>
