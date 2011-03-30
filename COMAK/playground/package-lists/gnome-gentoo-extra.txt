@@ -4,7 +4,6 @@ avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExi
 fast-user-switch-applet  --  Fast User Switching Applet for Gnome Desktop  -- NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
 quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
-swfdec-gnome  --  Flash player and thumbnailer for GNOME  -- NonExist (swfdec-mozilla,swfdec,swftools in playground)
 
 synapse  --  A program launcher in the style of GNOME Do  -- Vala sürümü yüzünden synapse paketinden sorun yaşanmaktadır.
 
