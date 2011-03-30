@@ -29,6 +29,9 @@
             <Dependency>garcon-devel</Dependency>
             <Dependency>xfce4-dev-tools</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">tr-po.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
@@ -77,6 +80,13 @@
     </Package>
 
     <History>
+        <Update release="21">
+            <Date>2011-03-30</Date>
+            <Version>4.8.2</Version>
+            <Comment>Upadate po file.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="20">
             <Date>2011-03-18</Date>
             <Version>4.8.2</Version>
