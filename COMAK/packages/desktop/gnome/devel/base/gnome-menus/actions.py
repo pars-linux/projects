@@ -11,6 +11,7 @@ from pisi.actionsapi import get
 def setup():
     autotools.configure()
     autotools.autoreconf()
+
 def build():
     autotools.make()
 
