@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">GNOME için ekran büyüteci</Summary>
         <Description xml:lang="tr">Masaüstünün bölümleri üzerinde zoom yapma imkanı sağlayan masaüstü büyüteci içerir.</Description>
     </Source>
+
+    <Package>
+        <Name>gnome-mag-devel</Name>
+        <Summary xml:lang="tr">gnome-mag için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
