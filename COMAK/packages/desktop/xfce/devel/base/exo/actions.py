@@ -18,12 +18,9 @@ def setup():
                          --enable-notifications \
                          --enable-python")
 
-    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
 
 def build():
     autotools.make()
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-
-    pisitools.dodoc("AUTHORS", "COPYING", "ChangeLog", "NEWS", "README", "THANKS", "TODO")
