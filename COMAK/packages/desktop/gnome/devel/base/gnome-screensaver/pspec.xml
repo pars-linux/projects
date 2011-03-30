@@ -55,7 +55,6 @@
             <Path fileType="data">/usr/share/gnome-screensaver</Path>
             <Path fileType="data">/usr/share/pixmaps</Path>
             <Path fileType="data">/usr/share/backgrounds</Path>
-            <Path fileType="data">/usr/share/backgrounds</Path>
             <Path fileType="data">/usr/share/dbus-1</Path>
             <Path fileType="data">/usr/share/gnome-background-properties</Path>
         </Files>
