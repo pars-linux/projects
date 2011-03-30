@@ -1,7 +1,7 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
     <Title>COMAK - XFCE i686 [Nusrat]</Title>
-    <WorkDir>/home/aydan</WorkDir>
-    <ReleaseFiles>/home/aydan</ReleaseFiles>
+    <WorkDir>/root/pardusman/work/fluxbox/workDir</WorkDir>
+    <ReleaseFiles>/root/pardusman/work/fluxbox/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">
         <SelectedComponent>desktop.comak</SelectedComponent>
         <SelectedComponent>desktop.xfce.addon</SelectedComponent>
@@ -24,12 +24,10 @@
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
-        <SelectedPackage>boot-manager-pds</SelectedPackage>
         <SelectedPackage>brasero</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
-        <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
         <SelectedPackage>cursor-theme-oxygen-black</SelectedPackage>
@@ -40,7 +38,6 @@
         <SelectedPackage>dejavu-fonts</SelectedPackage>
         <SelectedPackage>device-mapper</SelectedPackage>
         <SelectedPackage>device-mapper-static</SelectedPackage>
-        <SelectedPackage>disk-manager-pds</SelectedPackage>
         <SelectedPackage>djvu-plugin</SelectedPackage>
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>dvd+rw-tools</SelectedPackage>
@@ -52,7 +49,6 @@
         <SelectedPackage>extundelete</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
-        <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
@@ -184,7 +180,7 @@
         <SelectedPackage>sdl-sound</SelectedPackage>
         <SelectedPackage>sdl-ttf</SelectedPackage>
         <SelectedPackage>sdparm</SelectedPackage>
-        <SelectedPackage>service-manager-pds</SelectedPackage>
+        <SelectedPackage>service-manager-comak</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
@@ -266,7 +262,7 @@
         <Package>bluez-firmware</Package>
         <Package>bluez-libs</Package>
         <Package>boost</Package>
-        <Package>boot-manager-pds</Package>
+        <Package>boot-manager-comak</Package>
         <Package>busybox</Package>
         <Package>bzip2</Package>
         <Package>c-ares</Package>
@@ -310,9 +306,7 @@
         <Package>dhcpcd</Package>
         <Package>dialog</Package>
         <Package>diffutils</Package>
-        <Package>disk-manager</Package>
         <Package>disk-manager-comak</Package>
-        <Package>disk-manager-pds</Package>
         <Package>disktype</Package>
         <Package>djbfft</Package>
         <Package>djview4</Package>
@@ -346,7 +340,7 @@
         <Package>fftw3</Package>
         <Package>file</Package>
         <Package>findutils</Package>
-        <Package>firewall-manager-pds</Package>
+        <Package>firewall-manager-comak</Package>
         <Package>flac</Package>
         <Package>flite</Package>
         <Package>fluidsynth</Package>
@@ -700,6 +694,7 @@
         <Package>luatex</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
+        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
@@ -1337,6 +1332,7 @@
         <Package>linux-firmware</Package>
         <Package>lsb-release</Package>
         <Package>lvm2</Package>
+        <Package>lzma</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
