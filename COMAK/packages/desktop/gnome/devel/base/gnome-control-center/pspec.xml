@@ -62,7 +62,6 @@
             <Path fileType="data">/usr/share/gnome-control-center</Path>
             <Path fileType="data">/usr/share/gnome</Path>
             <Path fileType="data">/usr/share/icons</Path>
-            <Path fileType="data">/usr/share/locale</Path>
             <Path fileType="data">/usr/share/mime</Path>
             <Path fileType="data">/usr/share/omf</Path>
             <Path fileType="data">/usr/share/pixmaps</Path>
