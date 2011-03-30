@@ -52,6 +52,7 @@
             <Path fileType="data">/usr/share/idl</Path>
         </Files>
     </Package>
+
     <Package>
         <Name>at-spi-devel</Name>
         <Summary>Development files for at-spi</Summary>
@@ -66,7 +67,6 @@
         </Files>
     </Package>
 
-
     <History>
         <Update release="3">
             <Date>2011-03-23</Date>
@@ -75,7 +75,7 @@
             <Name>Aydan Taşdemir</Name>
             <Email>aydantasdemir@gmail.com</Email>
         </Update>
-    <Update release="2">
+        <Update release="2">
             <Date>2011-03-23</Date>
             <Version>1.24.0</Version>
             <Comment>Add patch to fix Makefile bug.</Comment>
