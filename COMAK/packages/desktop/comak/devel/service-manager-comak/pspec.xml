@@ -16,6 +16,7 @@
         <Archive sha1sum="4a9d6b011ced13422d99cc44498a1ec9e39041ea" type="targz">http://cekirdek.pardus.org.tr/~gokmen/files/service-manager-3.0.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>docutils</Dependency>
+            <Dependency>pardus-desktop-services</Dependency>
             <Dependency>python-qt-devel</Dependency>
         </BuildDependencies>
         <Patches>
