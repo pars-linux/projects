@@ -3,6 +3,9 @@
     <WorkDir>/root/pardusman/work/lxde/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/lxde/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">
+        <SelectedComponent>desktop.comak</SelectedComponent>
+        <SelectedComponent>desktop.lxde.addon</SelectedComponent>
+        <SelectedComponent>desktop.lxde.base</SelectedComponent>
         <SelectedComponent>hardware.firmware</SelectedComponent>
         <SelectedComponent>system.base</SelectedComponent>
         <SelectedComponent>x11.driver</SelectedComponent>
@@ -18,7 +21,6 @@
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
-        <SelectedPackage>boot-manager-pds</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
@@ -32,7 +34,6 @@
         <SelectedPackage>dejavu-fonts</SelectedPackage>
         <SelectedPackage>device-mapper</SelectedPackage>
         <SelectedPackage>device-mapper-static</SelectedPackage>
-        <SelectedPackage>disk-manager-pds</SelectedPackage>
         <SelectedPackage>djvu-plugin</SelectedPackage>
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>dvd+rw-tools</SelectedPackage>
@@ -44,7 +45,6 @@
         <SelectedPackage>extundelete</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
         <SelectedPackage>firefox</SelectedPackage>
-        <SelectedPackage>firewall-manager-pds</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
@@ -56,10 +56,8 @@
         <SelectedPackage>glew</SelectedPackage>
         <SelectedPackage>gnome-menus</SelectedPackage>
         <SelectedPackage>gnome-mount</SelectedPackage>
-        <SelectedPackage>gpicview</SelectedPackage>
         <SelectedPackage>gst-ffmpeg</SelectedPackage>
         <SelectedPackage>gtk-engines</SelectedPackage>
-        <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
         <SelectedPackage>hplip</SelectedPackage>
@@ -76,7 +74,6 @@
         <SelectedPackage>iw</SelectedPackage>
         <SelectedPackage>jfsutils</SelectedPackage>
         <SelectedPackage>kernel</SelectedPackage>
-        <SelectedPackage>leafpad</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
         <SelectedPackage>libreoffice</SelectedPackage>
         <SelectedPackage>libreoffice-extension-pdfimport</SelectedPackage>
@@ -94,21 +91,6 @@
         <SelectedPackage>lsscsi</SelectedPackage>
         <SelectedPackage>lvm2</SelectedPackage>
         <SelectedPackage>lvm2-static</SelectedPackage>
-        <SelectedPackage>lxappearance</SelectedPackage>
-        <SelectedPackage>lxde-common</SelectedPackage>
-        <SelectedPackage>lxde-icon-theme</SelectedPackage>
-        <SelectedPackage>lxde-menu-cache</SelectedPackage>
-        <SelectedPackage>lxdm</SelectedPackage>
-        <SelectedPackage>lxinput</SelectedPackage>
-        <SelectedPackage>lxlauncher</SelectedPackage>
-        <SelectedPackage>lxmenu-data</SelectedPackage>
-        <SelectedPackage>lxpanel</SelectedPackage>
-        <SelectedPackage>lxrandr</SelectedPackage>
-        <SelectedPackage>lxsession</SelectedPackage>
-        <SelectedPackage>lxsession-edit</SelectedPackage>
-        <SelectedPackage>lxshortcut</SelectedPackage>
-        <SelectedPackage>lxtask</SelectedPackage>
-        <SelectedPackage>lxterminal</SelectedPackage>
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
@@ -132,12 +114,9 @@
         <SelectedPackage>obconf</SelectedPackage>
         <SelectedPackage>openbox</SelectedPackage>
         <SelectedPackage>p7zip</SelectedPackage>
-        <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
-        <SelectedPackage>pardus-default-settings-lxde</SelectedPackage>
         <SelectedPackage>pardus-desktop-services</SelectedPackage>
         <SelectedPackage>pavucontrol</SelectedPackage>
-        <SelectedPackage>pcmanfm</SelectedPackage>
         <SelectedPackage>phonon-backend-gstreamer</SelectedPackage>
         <SelectedPackage>phonon-backend-vlc</SelectedPackage>
         <SelectedPackage>phonon-backend-xine</SelectedPackage>
@@ -188,7 +167,6 @@
         <SelectedPackage>sdl-sound</SelectedPackage>
         <SelectedPackage>sdl-ttf</SelectedPackage>
         <SelectedPackage>sdparm</SelectedPackage>
-        <SelectedPackage>service-manager-pds</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
@@ -207,7 +185,6 @@
         <SelectedPackage>unarj</SelectedPackage>
         <SelectedPackage>unrar</SelectedPackage>
         <SelectedPackage>usb-modeswitch</SelectedPackage>
-        <SelectedPackage>user-manager-pds</SelectedPackage>
         <SelectedPackage>vim</SelectedPackage>
         <SelectedPackage>vim-colorschemes</SelectedPackage>
         <SelectedPackage>virtualbox-guest-utils</SelectedPackage>
@@ -244,6 +221,7 @@
         <Package>apr</Package>
         <Package>apr-util</Package>
         <Package>atk</Package>
+        <Package>atk-devel</Package>
         <Package>atmel-firmware</Package>
         <Package>attr</Package>
         <Package>audiofile</Package>
@@ -265,16 +243,17 @@
         <Package>bluez-firmware</Package>
         <Package>bluez-libs</Package>
         <Package>boost</Package>
+        <Package>boot-manager-comak</Package>
         <Package>busybox</Package>
         <Package>bzip2</Package>
         <Package>c-ares</Package>
         <Package>cairo</Package>
+        <Package>cairo-devel</Package>
         <Package>cairomm</Package>
         <Package>cdparanoia</Package>
         <Package>cdrtools</Package>
         <Package>check</Package>
         <Package>clucene</Package>
-        <Package>cnazar</Package>
         <Package>comar</Package>
         <Package>comar-api</Package>
         <Package>coreutils</Package>
@@ -290,9 +269,11 @@
         <Package>db4</Package>
         <Package>db4-java</Package>
         <Package>dbus</Package>
+        <Package>dbus-c++</Package>
         <Package>dbus-glib</Package>
         <Package>dbus-java</Package>
         <Package>dbus-python</Package>
+        <Package>deadbeef</Package>
         <Package>dejavu-fonts</Package>
         <Package>device-mapper</Package>
         <Package>device-mapper-event</Package>
@@ -300,6 +281,7 @@
         <Package>dhcpcd</Package>
         <Package>dialog</Package>
         <Package>diffutils</Package>
+        <Package>disk-manager-comak</Package>
         <Package>disktype</Package>
         <Package>djbfft</Package>
         <Package>djview4</Package>
@@ -316,6 +298,7 @@
         <Package>enca</Package>
         <Package>enchant</Package>
         <Package>enscript</Package>
+        <Package>epdfview</Package>
         <Package>exempi</Package>
         <Package>expat</Package>
         <Package>faac</Package>
@@ -325,15 +308,18 @@
         <Package>fftw3</Package>
         <Package>file</Package>
         <Package>findutils</Package>
+        <Package>firewall-manager-comak</Package>
         <Package>flac</Package>
         <Package>flite</Package>
         <Package>fluidsynth</Package>
         <Package>fontconfig</Package>
+        <Package>fontconfig-devel</Package>
         <Package>foomatic-db</Package>
         <Package>foomatic-db-engine</Package>
         <Package>foomatic-filters</Package>
         <Package>freeglut</Package>
         <Package>freetype</Package>
+        <Package>freetype-devel</Package>
         <Package>fribidi</Package>
         <Package>ftgl</Package>
         <Package>fuse</Package>
@@ -344,6 +330,7 @@
         <Package>gd</Package>
         <Package>gdbm</Package>
         <Package>gdk-pixbuf</Package>
+        <Package>gdk-pixbuf-devel</Package>
         <Package>gegl</Package>
         <Package>gettext</Package>
         <Package>gfxtheme-base</Package>
@@ -367,6 +354,7 @@
         <Package>glibc-locales-sv</Package>
         <Package>glibmm</Package>
         <Package>glitz</Package>
+        <Package>glitz-devel</Package>
         <Package>gmp</Package>
         <Package>gnome-keyring</Package>
         <Package>gnome-menus</Package>
@@ -377,6 +365,7 @@
         <Package>gobject-introspection</Package>
         <Package>gpac</Package>
         <Package>gperf</Package>
+        <Package>gpicview</Package>
         <Package>gpm</Package>
         <Package>graphviz</Package>
         <Package>grep</Package>
@@ -393,7 +382,9 @@
         <Package>gstreamer</Package>
         <Package>gtk-style-oxygen</Package>
         <Package>gtk2</Package>
+        <Package>gtk2-devel</Package>
         <Package>gtkmm</Package>
+        <Package>gtknetcat</Package>
         <Package>gtkspell</Package>
         <Package>gupnp</Package>
         <Package>gupnp-igd</Package>
@@ -420,6 +411,7 @@
         <Package>icu4c</Package>
         <Package>ilmbase</Package>
         <Package>imlib2</Package>
+        <Package>iniparser</Package>
         <Package>iproute2</Package>
         <Package>iptables</Package>
         <Package>iputils</Package>
@@ -429,6 +421,7 @@
         <Package>jasper</Package>
         <Package>jbigkit</Package>
         <Package>jpeg</Package>
+        <Package>kaptan-e17</Package>
         <Package>kbd</Package>
         <Package>kernel</Package>
         <Package>keyutils</Package>
@@ -436,6 +429,7 @@
         <Package>lame</Package>
         <Package>lapack</Package>
         <Package>lcms</Package>
+        <Package>leafpad</Package>
         <Package>less</Package>
         <Package>libFS</Package>
         <Package>libICE</Package>
@@ -459,6 +453,7 @@
         <Package>libXpm</Package>
         <Package>libXrandr</Package>
         <Package>libXrender</Package>
+        <Package>libXrender-devel</Package>
         <Package>libXt</Package>
         <Package>libXtst</Package>
         <Package>libXv</Package>
@@ -508,13 +503,13 @@
         <Package>libffado</Package>
         <Package>libffi</Package>
         <Package>libfm</Package>
+        <Package>libfm-devel</Package>
         <Package>libfontenc</Package>
         <Package>libfreebob</Package>
         <Package>libftdi</Package>
         <Package>libgcc</Package>
         <Package>libgcrypt</Package>
         <Package>libgfortran</Package>
-        <Package>libgksu</Package>
         <Package>libglade</Package>
         <Package>libglademm</Package>
         <Package>libgnome</Package>
@@ -526,7 +521,6 @@
         <Package>libgpod</Package>
         <Package>libgsf</Package>
         <Package>libgssglue</Package>
-        <Package>libgtop</Package>
         <Package>libgudev1</Package>
         <Package>libid3tag</Package>
         <Package>libidn</Package>
@@ -564,9 +558,11 @@
         <Package>libpaper</Package>
         <Package>libpcap</Package>
         <Package>libpciaccess</Package>
+        <Package>libpciaccess-devel</Package>
         <Package>libpcre</Package>
         <Package>libplist</Package>
         <Package>libpng</Package>
+        <Package>libpng-devel</Package>
         <Package>libprojectM</Package>
         <Package>libproxy</Package>
         <Package>libpurple</Package>
@@ -623,11 +619,24 @@
         <Package>lua</Package>
         <Package>lv2core</Package>
         <Package>lvm2</Package>
+        <Package>lxappearance</Package>
+        <Package>lxappearance-devel</Package>
         <Package>lxde-common</Package>
+        <Package>lxde-icon-theme</Package>
         <Package>lxde-menu-cache</Package>
+        <Package>lxde-menu-cache-devel</Package>
+        <Package>lxdm</Package>
+        <Package>lxinput</Package>
+        <Package>lxlauncher</Package>
         <Package>lxmenu-data</Package>
         <Package>lxpanel</Package>
+        <Package>lxpanel-devel</Package>
+        <Package>lxrandr</Package>
         <Package>lxsession</Package>
+        <Package>lxsession-edit</Package>
+        <Package>lxshortcut</Package>
+        <Package>lxtask</Package>
+        <Package>lxterminal</Package>
         <Package>lzo</Package>
         <Package>man</Package>
         <Package>man-pages</Package>
@@ -645,6 +654,8 @@
         <Package>mobile-broadband-provider-info</Package>
         <Package>module-alsa-driver-userspace</Package>
         <Package>module-broadcom-wl-userspace</Package>
+        <Package>module-fglrx</Package>
+        <Package>module-fglrx-userspace</Package>
         <Package>module-init-tools</Package>
         <Package>module-ndiswrapper-userspace</Package>
         <Package>module-nvidia-current</Package>
@@ -687,11 +698,14 @@
         <Package>openssl</Package>
         <Package>orbit2</Package>
         <Package>p7zip</Package>
+        <Package>package-manager-pds</Package>
         <Package>pam</Package>
         <Package>pam_python</Package>
         <Package>panda</Package>
         <Package>pango</Package>
+        <Package>pango-devel</Package>
         <Package>pangomm</Package>
+        <Package>pardus-default-settings-lxde</Package>
         <Package>pardus-desktop-services</Package>
         <Package>pardus-python</Package>
         <Package>parted</Package>
@@ -710,6 +724,7 @@
         <Package>pinentry</Package>
         <Package>pisi</Package>
         <Package>pixman</Package>
+        <Package>pixman-devel</Package>
         <Package>plymouth-core-libs</Package>
         <Package>plymouth-graphics-libs</Package>
         <Package>plymouth-plugin-fade-throbber</Package>
@@ -753,6 +768,8 @@
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
         <Package>python-setuptools</Package>
+        <Package>python-simplejson</Package>
+        <Package>python-xlib</Package>
         <Package>python-zope-interface</Package>
         <Package>qt</Package>
         <Package>qt-sql-sqlite</Package>
@@ -774,6 +791,7 @@
         <Package>sane-backends</Package>
         <Package>schroedinger</Package>
         <Package>scim-libs</Package>
+        <Package>screengrab</Package>
         <Package>sdl-gfx</Package>
         <Package>sdl-image</Package>
         <Package>sed</Package>
@@ -786,6 +804,7 @@
         <Package>slang</Package>
         <Package>slf4j</Package>
         <Package>slv2</Package>
+        <Package>smolt</Package>
         <Package>smpeg</Package>
         <Package>soprano</Package>
         <Package>soundtouch</Package>
@@ -820,6 +839,7 @@
         <Package>urlgrabber</Package>
         <Package>usbmuxd</Package>
         <Package>usbutils</Package>
+        <Package>user-manager-pds</Package>
         <Package>utempter</Package>
         <Package>util-linux</Package>
         <Package>v86d</Package>
@@ -841,6 +861,7 @@
         <Package>wpa_supplicant</Package>
         <Package>x264</Package>
         <Package>xcb-util</Package>
+        <Package>xcb-util-devel</Package>
         <Package>xdg-user-dirs</Package>
         <Package>xdg-utils</Package>
         <Package>xdm</Package>
@@ -853,24 +874,36 @@
         <Package>xorg-input-aiptek</Package>
         <Package>xorg-input-elographics</Package>
         <Package>xorg-input-evdev</Package>
+        <Package>xorg-input-evdev-devel</Package>
         <Package>xorg-input-fpit</Package>
         <Package>xorg-input-hyperpen</Package>
         <Package>xorg-input-joystick</Package>
+        <Package>xorg-input-joystick-devel</Package>
         <Package>xorg-input-kbd</Package>
         <Package>xorg-input-mouse</Package>
         <Package>xorg-input-mutouch</Package>
         <Package>xorg-input-penmount</Package>
         <Package>xorg-input-synaptics</Package>
+        <Package>xorg-input-synaptics-devel</Package>
         <Package>xorg-input-vmmouse</Package>
+        <Package>xorg-input-void</Package>
         <Package>xorg-input-wacom</Package>
+        <Package>xorg-input-wacom-devel</Package>
         <Package>xorg-server</Package>
         <Package>xorg-server-common</Package>
+        <Package>xorg-server-devel</Package>
+        <Package>xorg-server-xdmx</Package>
+        <Package>xorg-server-xephyr</Package>
+        <Package>xorg-server-xvfb</Package>
+        <Package>xorg-server-xvnc</Package>
         <Package>xorg-video-apm</Package>
         <Package>xorg-video-ark</Package>
         <Package>xorg-video-ast</Package>
         <Package>xorg-video-chips</Package>
         <Package>xorg-video-cirrus</Package>
+        <Package>xorg-video-dummy</Package>
         <Package>xorg-video-fbdev</Package>
+        <Package>xorg-video-fglrx</Package>
         <Package>xorg-video-geode</Package>
         <Package>xorg-video-glint</Package>
         <Package>xorg-video-i128</Package>
@@ -905,6 +938,7 @@
         <Package>xorg-video-vmware</Package>
         <Package>xorg-video-voodoo</Package>
         <Package>xulrunner</Package>
+        <Package>xvba-video</Package>
         <Package>xvid</Package>
         <Package>xz</Package>
         <Package>yali-branding-pardus</Package>
@@ -913,7 +947,6 @@
         <Package>zemberek-server</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
-        <Package>zorg</Package>
         <Package>zvbi</Package>
     </PackageSelection>
     <InstallImagePackages>
@@ -1316,7 +1349,6 @@
         <Package>yali-theme-pardus</Package>
         <Package>zip</Package>
         <Package>zlib</Package>
-        <Package>zorg</Package>
     </InstallImagePackages>
     <LanguageSelection default_language="tr_TR">
         <Language>tr_TR</Language>
