@@ -56,6 +56,11 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.listIcon.item(0).setHidden(1)
         elif ctx.Pds.session.Name == "KDE":
             self.ui.listIcon.item(1).setHidden(1)
+        if ctx.Pds.session.Name == "gnome":
+            os.popen("gconftool-2 --type=string --set /apps/metacity/general/theme Orta" )
+            os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Orta")
+            os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme Faenza-Dark")
+
         self.ui.label.setText(str(ctx.Pds.session.Name)+" Themes")
         self.styleDetails = {}
         self.catLang = Desktop.common.getLanguage()
