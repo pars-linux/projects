@@ -48,6 +48,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-30</Date>
+            <Version>1.2.0</Version>
+            <Comment>Update po file.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-01-23</Date>
             <Version>1.2.0</Version>
