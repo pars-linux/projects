@@ -54,6 +54,8 @@
             <Dependency>gconf</Dependency>
             <Dependency>libgnome-keyring</Dependency>
             <Dependency>libglade</Dependency>
+            <Dependency>libxfce4ui</Dependency>
+            <Dependency>xfce4-panel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
