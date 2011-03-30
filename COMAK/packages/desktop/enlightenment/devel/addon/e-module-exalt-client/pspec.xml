@@ -37,7 +37,6 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib/enlightenment/modules/exalt/</Path>
-            <Path fileType="data">/usr/lib/enlightenment/modules/exalt</Path>
             <Path fileType="localedata">/usr/lib/enlightenment/modules/exalt/locale/</Path>
             <Path fileType="doc">/usr/share/doc</Path>
         </Files>
