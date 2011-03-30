@@ -11,7 +11,7 @@
         <License>GPLv2</License>
         <IsA>library</IsA>
         <Summary>GNOME keybord configration library</Summary>
-        <Description>This package contains a GNOME library that manages keyboard layout settings and its panel applet</Description>
+        <Description>libgnomekbd contains a GNOME library that manages keyboard layout settings and its panel applet.</Description>
         <Archive sha1sum="8401db5d7888185fb3a5855f316771aa09865403" type="tarbz2">mirrors://gnome/libgnomekbd/2.32/libgnomekbd-2.32.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
