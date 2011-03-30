@@ -133,6 +133,8 @@ class Style(base.Style):
                 n = n.replace(self.desktop_number,scrStyleWidget.screenSettings["desktopNumber"])
                 file_temp.write(n+ "\n")
             else:
+                if n.startswith('session.screen0.allowRemoteActions'):
+                    n= n.replace("false","true")
                 file_temp.write(n)
         file_temp.close()
         file_.close()
@@ -152,6 +154,8 @@ class Style(base.Style):
                         n = n.replace(themes,scrStyleWidget.screenSettings["styleName"])
                 file_temp.write(n)
             else:
+                if n.startswith('session.screen0.allowRemoteActions'):
+                    n=n.replace("false","true")
                 file_temp.write(n)
         file_temp.close()
         file_.close()
@@ -161,8 +165,7 @@ class Style(base.Style):
         pass
 
     def reconfigure(self):
-        #TODO#("fluxbox-remote "Reconfigure"")
-        pass
+        os.popen('fluxbox-remote "Reconfigure"')
 class Package(base.Package):
 
     def example(self):
