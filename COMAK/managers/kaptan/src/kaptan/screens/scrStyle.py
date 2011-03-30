@@ -80,6 +80,8 @@ class Widget(QtGui.QWidget, Screen):
             if ctx.Pds.session.Name == "fluxbox":
                 dir = QDir ("/usr/share/fluxbox/styles")
                 lst2 =dir.entryList()
+            elif ctx.Pds.session.Name == "gnome":
+                lst2=["Crux","Glider"]
             else:
                 dir = QtCore.QDir("/usr/share/themes")
                 dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
