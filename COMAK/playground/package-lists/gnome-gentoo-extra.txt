@@ -2,7 +2,6 @@ PACKAGES NONEXIST:
 avant-window-navigator  -- Fully customisable dock-like window navigator  -- NonExist
 avant-window-navigator-extras  --  Applets for Avant Window Navigator  -- NonExist
 indicator-applet  --  A small applet to display information from various applications consistently in the panel  --  NonExist
-quick-lounge-applet   --  Application launcher applet for GNOME  -- NonExist
 
 
 PACKAGES IN PLAYGROUND:
