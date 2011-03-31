@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>COMAK - LXDE i686 [Bonobo]</Title>
+    <Title>COMAK - LXDE i686 [Nisan 1]</Title>
     <WorkDir>/root/pardusman/work/lxde/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/lxde/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">

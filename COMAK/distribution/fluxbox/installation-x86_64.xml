@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>COMAK - Fluxbox x86_64 [Falco Peregrinus]</Title>
+    <Title>COMAK - Fluxbox x86_64 [Nisan 1]</Title>
     <WorkDir>/root/pardusman/work/fluxbox/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/fluxbox/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak64.comu.edu.tr/repo/pisi-index.xml.xz">
