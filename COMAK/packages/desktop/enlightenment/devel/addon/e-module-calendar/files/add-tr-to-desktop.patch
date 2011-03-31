@@ -1,0 +1,16 @@
+diff -Nuar calendar.orig//module.desktop.in calendar/module.desktop.in
+--- calendar.orig//module.desktop.in	2011-02-16 22:39:52.000000000 +0200
++++ calendar/module.desktop.in	2011-03-31 15:04:59.640012996 +0300
+@@ -10,6 +10,7 @@
+ Name[zh_CN]=Calendar 日历
+ Name[el]=Ημερολόγιο
+ Name[pt]=Calendário
++Name[tr]=Takvim
+ Icon=e-module-calendar
+ X-Enlightenment-ModuleType=utils
+ Comment=Calendar sheet showing the current day.
+@@ -23,3 +24,4 @@
+ Comment[fr]=Une feuille de calendrier montrant le jour du mois.
+ Comment[el]=Ένα ημερολόγιο που δείχνει την τρέχουσα ημέρα.
+ Comment[pt]=Um calendário que mostra o dia atual
++Comment[tr]=O anki günü gösteren takvim yaprağı.
