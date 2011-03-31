@@ -33,7 +33,7 @@
             <Patch level="1">e-config.patch</Patch>
             <Patch level="1">pardus-default-profile.patch</Patch>
             <Patch level="1">no-desktop-file.patch</Patch>
-            <Patch level="0">systray.patch</Patch>
+            <Patch level="1">systray.patch</Patch>
         </Patches>
     </Source>
 
