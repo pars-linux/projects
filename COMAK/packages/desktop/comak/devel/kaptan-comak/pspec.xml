@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>kaptan-e17</Name>
+        <Name>kaptan-comak</Name>
         <Homepage>http://www.pardus.org.tr</Homepage>
         <Packager>
             <Name>Özge Barbaros</Name>
@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Kaptan, Pardus workspace configuration wizard</Summary>
         <Description>Kaptan lets you configure your workspace on first login.</Description>
-        <Archive sha1sum="6a293c2777d39c44c452355520cd64ed69347669" type="tarbz2">http://x86-64.comu.edu.tr/lxde/source/kaptan-e17.tar.bz2</Archive>
+        <Archive sha1sum="9f021cc0129ad4307702d6cf8952d00ae0b2f770" type="targz">http://comak.comu.edu.tr/source/kaptan-5.0.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>python-qt-devel</Dependency>
             <Dependency>pardus-desktop-services</Dependency>
@@ -20,7 +20,7 @@
     </Source>
 
     <Package>
-        <Name>kaptan-e17</Name>
+        <Name>kaptan-comak</Name>
         <RuntimeDependencies>
             <Dependency>smolt</Dependency>
             <Dependency>python-qt</Dependency>

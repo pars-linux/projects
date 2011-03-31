@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <PISI>
     <Source>
-        <Name>kaptan</Name>
+        <Name>kaptan-comak</Name>
         <Summary xml:lang="tr">Pardus Kaptan</Summary>
         <Description xml:lang="tr">Kaptan, bilgisayarınız ilk defa açıldığında çalışma ortamınızı kişiselleştirmenize yardımcı olur.</Description>
     </Source>
