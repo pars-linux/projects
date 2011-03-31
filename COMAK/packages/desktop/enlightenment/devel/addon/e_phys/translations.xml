@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">Enlightenment için grafiksel bir fizik motoru</Summary>
         <Description xml:lang="tr">e_phys Akamaru ve Advanced Character Physics'den esinlenmiş verlet integration kullanan bir fizik motorudur. </Description>
     </Source>
+
+    <Package>
+        <Name>e_phys-devel</Name>
+        <Summary xml:lang="tr">e_phys için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
