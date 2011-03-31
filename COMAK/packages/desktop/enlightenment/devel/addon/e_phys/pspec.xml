@@ -16,6 +16,7 @@
         <BuildDependencies>
             <Dependency>evas-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
+            <Dependency>eina-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -24,11 +25,23 @@
         <RuntimeDependencies>
             <Dependency>evas</Dependency>
             <Dependency>ecore</Dependency>
+            <Dependency>eina</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include/e_phys</Path>
             <Path fileType="library">/usr/lib</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>e_phys-devel</Name>
+        <Summary>Development files for e_phys</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">e_phys</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include/e_phys</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
 
