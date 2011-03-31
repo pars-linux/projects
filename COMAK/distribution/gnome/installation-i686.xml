@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>COMAK - GNOME i686 [Gnome]</Title>
+    <Title>COMAK - GNOME i686 [Nisan 1]</Title>
     <WorkDir>/root/pardusman/work/gnome/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/gnome/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">

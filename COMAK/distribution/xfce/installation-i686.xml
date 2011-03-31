@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>COMAK - XFCE i686 [Nusrat]</Title>
+    <Title>COMAK - XFCE i686 [Nisan 1]</Title>
     <WorkDir>/root/pardusman/work/xfce/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/xfce/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">
