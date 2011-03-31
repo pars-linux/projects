@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>e-module-efm_path</Name>
-        <Summary xml:lang="tr">EFM yol modülü</Summary>
+        <Summary xml:lang="tr">EFM adres çubuğu modülü</Summary>
         <Description xml:lang="tr">e-module-efm_path, E17 dosya yöneticisine yol etklemektedir.</Description>
     </Source>
 </PISI>
