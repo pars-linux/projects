@@ -1,0 +1,19 @@
+diff -Nuar efm_path.orig//module.desktop.in efm_path/module.desktop.in
+--- efm_path.orig//module.desktop.in	2011-02-16 22:39:52.000000000 +0200
++++ efm_path/module.desktop.in	2011-03-31 16:06:26.542013001 +0300
+@@ -15,6 +15,7 @@
+ Name[zh_CN]=EFM 路径
+ Name[zh_TW]=
+ Name[el]=Διαδρομή EFM
++Name[tr]=EFM Adres Çubuğu
+ Exec=enlightenment
+ StartupNotify=false
+ Icon=e-module-efm_path
+@@ -33,6 +34,7 @@
+ Comment[zh_CN]=一个允许用户向文件浏览器输入地址的模块。
+ Comment[zh_TW]=
+ Comment[el]=Ένα άρθρωμα που επιτρέπει την πληκτρολόγηση μιας τοποθεσίας στον διαχειριστή αρχείων.
++Comment[tr]=Kullanıcıya dosya yöneticisinde bir adresi yazmaya olanak verir.
+ X-Enlightenment-WaitExit=false
+ X-Enlightenment-IconClass=efm_path,gadget
+ X-Enlightenment-ModuleType=files
