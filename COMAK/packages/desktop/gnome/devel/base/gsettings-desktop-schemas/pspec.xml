@@ -18,11 +18,7 @@
     <Package>
         <Name>gsettings-desktop-schemas</Name>
         <Files>
-            <Path fileType="config">/etc</Path>
-            <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
@@ -35,6 +31,7 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/share/pkgconfig/</Path>
         </Files>
     </Package>
 
