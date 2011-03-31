@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">Bir önizleme servisi</Summary>
         <Description xml:lang="tr">Tumbler Xfce masaüstü ortamının dosya yöneticisi için bir önizleme servisidir.</Description>
     </Source>
+
+    <Package>
+        <Name>tumbler-devel</Name>
+        <Summary xml:lang="tr">tumbler için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
