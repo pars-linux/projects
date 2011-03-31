@@ -10,7 +10,7 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>EFM Navigator</Summary>
+        <Summary>Allows a user to navigate the filemanager module</Summary>
         <Description>E17 module that include back-next-up button for E17 file manager.</Description>
         <Archive sha1sum="133685f2ba5863039547f2341a9b53a9b3bb9c3d" type="targz">http://comak.comu.edu.tr/source/e-module-efm_nav-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
