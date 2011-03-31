@@ -107,7 +107,10 @@ class Widget(QtGui.QWidget, Screen):
             except:
                 print "Warning! Invalid syntax in ", themes
             ThemeFile = themes
-            thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/themes/" +themes+ ".png"
+            if ctx.Pds.session.Name == "gnome":
+                thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/" +themes+ ".png"
+            else:
+                thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/themes/" +themes+ ".png"
             if ctx.Pds.session.Name == "gnome":
                  thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/" +themes+ ".png"
 
