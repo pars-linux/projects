@@ -87,6 +87,9 @@ class Widget(QtGui.QWidget, Screen):
             if ctx.Pds.session.Name == "fluxbox":
                 dir = QDir ("/usr/share/fluxbox/styles")
                 lst2 =dir.entryList()
+            if ctx.Pds.session.Name == "gnome":
+                lst2=["Crux","Glider"]
+
             else:
                 dir = QtCore.QDir("/usr/share/themes")
                 dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
@@ -105,6 +108,9 @@ class Widget(QtGui.QWidget, Screen):
                 print "Warning! Invalid syntax in ", themes
             ThemeFile = themes
             thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/themes/" +themes+ ".png"
+            if ctx.Pds.session.Name == "gnome":
+                 thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/" +themes+ ".png"
+
             if (os.path.exists("/usr/share/kde4/apps/kaptan/kaptan/themes/"+themes+".png")):
                 self.list_themes.append(themes)
                 styleThumb = thumbFolder
@@ -116,6 +122,18 @@ class Widget(QtGui.QWidget, Screen):
                 self.styleDetails[StyleName] = {
                         "description":StyleDesc
                         }
+            elif (os.path.exists("/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/"+themes+".png")):
+                self.list_themes.append(themes)
+                styleThumb = thumbFolder
+                item = QtGui.QListWidgetItem(self.ui.listStyles)
+                widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
+                item.setSizeHint(QSize(120,170))
+                self.ui.listStyles.setItemWidget(item,widget)
+                item.setStatusTip(ThemeFile)
+                self.styleDetails[StyleName] = {
+                        "description":StyleDesc
+                        }
+
         self.ui.listStyles.connect(self.ui.listStyles, SIGNAL("itemSelectionChanged()"), self.setStyle)
         if ctx.Pds.session.Name =="fluxbox":
             self.ui.listIcon.setVisible(False)

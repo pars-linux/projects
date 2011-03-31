@@ -85,7 +85,8 @@ class Build(build):
         # Copy themes
         print "Copying themes..."
         os.system("cp -R data/themes build/kaptan/")
-        
+        os.system("cp -R data/gnome_themes build/kaptan/")
+
         print "Copying previews"
         os.system("cp -R data/gnome_previews build/kaptan/")
 
@@ -137,6 +138,7 @@ class Install(install):
 
         print "Installing custom themes..."
         os.system("cp -R data/themes/* /usr/share/themes")
+        os.system("cp -R data/gnome_themes build/kaptan/")
 
         # Install locales
         print "Installing locales..."
