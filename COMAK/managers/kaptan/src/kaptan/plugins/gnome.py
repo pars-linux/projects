@@ -92,9 +92,9 @@ class Wallpaper(base.Wallpaper):
             if string.find(desktopFiles, "background-default")<0:
                 if string.find(desktopFiles, "jpg") > -1 :
                     desktopFiles=desktopFiles.replace("jpg","png")
-                    wallpaper["wallpaperThumb"] ="/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/%s"%desktopFiles.split("/")[-1]
+                    wallpaper["wallpaperThumb"] ="/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/nature/%s"%desktopFiles.split("/")[-1]
                 else :
-                    wallpaper["wallpaperThumb"] ="/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/%s"%desktopFiles.split("/")[-1]
+                    wallpaper["wallpaperThumb"] ="/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/abstract/%s"%desktopFiles.split("/")[-1]
                 wallpaper["wallpaperFile"] = desktopFiles
                 items.append(wallpaper)
         return items
@@ -102,6 +102,7 @@ class Wallpaper(base.Wallpaper):
     def setWallpaper(self ,wallpaper):
         wallpaper = str(wallpaper)
         last = wallpaper.split("/")[-1]
+        
         if string.find(wallpaper,"/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/abstract")>-1:
             os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/abstract/%s" %last)
         else:
