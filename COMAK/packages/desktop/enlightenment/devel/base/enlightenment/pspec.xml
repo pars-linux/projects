@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Enlightenment Desktop Shell</Summary>
         <Description>Enlightenment is a window manager for the X Window System that is designed to be powerful, extensible, configurable and pretty darned good looking! It is one of the more graphically intense window managers.</Description>
-        <Archive sha1sum="70fbb173140675b4ab475c0440fa7957c84040a7" type="targz">http://comak.comu.edu.tr/source/enlightenment-0.16.999_58024.tar.gz</Archive>
+        <Archive sha1sum="f32554c7b9ae119b9162a5abce3c96ef6bb435c8" type="targz">http://comak.comu.edu.tr/source/enlightenment-0.16.999_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency versionFrom="1.0.0">eina-devel</Dependency>
             <Dependency versionFrom="1.4.0">eet-devel</Dependency>
@@ -33,6 +33,7 @@
             <Patch level="1">e-config.patch</Patch>
             <Patch level="1">pardus-default-profile.patch</Patch>
             <Patch level="1">no-desktop-file.patch</Patch>
+            <Patch level="1">autostart_xdg.patch</Patch>
         </Patches>
     </Source>
 
@@ -93,6 +94,13 @@
     </Package>
 
     <History>
+        <Update release="25">
+            <Date>2011-03-31</Date>
+            <Version>0.16.999_58042</Version>
+            <Comment>added patch to start just kaptan.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="24">
             <Date>2011-03-23</Date>
             <Version>0.16.999_58024</Version>
