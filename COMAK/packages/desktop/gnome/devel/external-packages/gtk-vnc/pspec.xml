@@ -45,7 +45,7 @@
         <Name>gtk-vnc-devel</Name>
         <Summary>Development files for gtk-vnc</Summary>
         <RuntimeDependencies>
-            <Dependency release="3">gtk-vnc</Dependency>
+            <Dependency release="current">gtk-vnc</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
