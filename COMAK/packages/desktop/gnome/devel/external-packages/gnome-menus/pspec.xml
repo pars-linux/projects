@@ -43,7 +43,7 @@
         <Name>gnome-menus-devel</Name>
         <Summary>Development files for gnome-menus</Summary>
         <RuntimeDependencies>
-            <Dependency release="3">gnome-menus</Dependency>
+            <Dependency release="current">gnome-menus</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
