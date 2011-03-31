@@ -22,6 +22,9 @@
             <Dependency versionFrom="0.16.999">enlightenment-devel</Dependency>
             <Dependency>libeweather-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">desktop.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
