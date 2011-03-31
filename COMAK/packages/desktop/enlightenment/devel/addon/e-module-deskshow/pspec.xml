@@ -11,7 +11,7 @@
         <License>GPLv2</License>
         <IsA>library</IsA>
         <Summary>Show Desktop Module</Summary>
-        <Description>Gadget to allow you to quickly uncover your desktop</Description>
+        <Description>e-module-deskshow is a gadget to allow you to quickly uncover your desktop.</Description>
         <Archive sha1sum="a39a0bff4df425cca4dd911290795f7c0453ee12" type="targz">http://comak.comu.edu.tr/source/e-module-deskshow-0.0.1_58042.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>edje-devel</Dependency>
@@ -19,9 +19,6 @@
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
         </BuildDependencies>
-        <!--<Patches>
-            <Patch level=""></Patch>
-        </Patches>-->
     </Source>
 
     <Package>

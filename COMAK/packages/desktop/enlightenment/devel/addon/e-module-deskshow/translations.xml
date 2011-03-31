@@ -2,8 +2,8 @@
 <PISI>
     <Source>
         <Name>e-module-deskshow</Name>
-        <Summary xml:lang="tr">Masaüstünü Göster Modulü</Summary>
-        <Description xml:lang="tr">Masaüstünü hızlıca göstermeye yarayan modul.</Description>
+        <Summary xml:lang="tr">Masaüstünü Göster Modülü</Summary>
+        <Description xml:lang="tr">e-module-deskshow masaüstünü hızlıca göstermeye yarayan bir moduldür.</Description>
     </Source>
 </PISI>
 
