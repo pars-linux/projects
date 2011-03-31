@@ -16,6 +16,9 @@
         <BuildDependencies>
             <Dependency versionFrom="0.16.999_55225">enlightenment-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Path level="1">add-tr-to-desktop.patch</Path>
+        </Patches>
     </Source>
 
     <Package>
