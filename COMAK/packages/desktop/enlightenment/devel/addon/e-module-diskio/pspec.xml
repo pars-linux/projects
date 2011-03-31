@@ -20,9 +20,6 @@
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
         </BuildDependencies>
-        <!--<Patches>
-            <Patch level=""></Patch>
-        </Patches>-->
     </Source>
 
     <Package>
