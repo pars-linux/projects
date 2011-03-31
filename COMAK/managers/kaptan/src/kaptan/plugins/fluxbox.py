@@ -124,6 +124,8 @@ class Style(base.Style):
                 self.desktop_number = desktop_num
                 return int(desktop_num)
         file_.close()
+        return 4
+
     def setDesktopNumber(self):
         file_ = open(self.file_directory + "init" , 'r')
         file_temp = open(self.file_directory + "init~", 'w')
