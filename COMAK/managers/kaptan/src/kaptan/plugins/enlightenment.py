@@ -51,11 +51,6 @@ def encrypt_conf(fl, data):
     f.close()
     os.system("eet -e %s config %s 1"%(fl, TEMP_FILE))
 
-def test_file(data):
-    fl = open("/home/pardus2011/sil","w")
-    fl.write(data)
-    fl.close()
-
 class Keyboard(base.Keyboard):
     pass
 
@@ -217,7 +212,6 @@ class Style(base.Style):
         data = re.sub(desks_pat, 'value "zone_desks_x_count" int: %s;'%str(dn),data)
         data = re.sub(desks_pat, 'value "zone_desks_y_count" int: 1;',data)
         
-        test_file(data)
         encrypt_conf("e.cfg", data)
         CONFIG_KAPTANRC.setValue("Desktop/DesktopNumber",dn)
         CONFIG_KAPTANRC.sync()
