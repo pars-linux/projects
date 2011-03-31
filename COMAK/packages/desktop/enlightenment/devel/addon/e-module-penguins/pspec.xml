@@ -29,7 +29,7 @@
             <Path fileType="library">/usr/lib/enlightenment/modules/penguins/*.so</Path>
             <Path fileType="localedata">/usr/lib/enlightenment/modules/penguins/locale/</Path>
             <Path fileType="data">/usr/lib/enlightenment/modules/penguins/</Path>
-             <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
         </Files>
     </Package>
 
