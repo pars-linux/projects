@@ -30,13 +30,14 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
         </Files>
     </Package>
 
     <Package>
         <Name>gnome-keyring-sharp-devel</Name>
         <RuntimeDependencies>
-            <Dependency versionFrom="current">gnome-keyring-sharp</Dependency>
+            <Dependency release="current">gnome-keyring-sharp</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
