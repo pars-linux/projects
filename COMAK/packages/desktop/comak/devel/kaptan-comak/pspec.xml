@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Kaptan, Pardus workspace configuration wizard</Summary>
         <Description>Kaptan lets you configure your workspace on first login.</Description>
-        <Archive sha1sum="ef9ee19beade4dd746f90f15d610663f2734a573" type="targz">http://comak.comu.edu.tr/source/kaptan-5.0.5.tar.gz</Archive>
+        <Archive sha1sum="a07de27e0f38beb83cc7798e48258de3899fe276" type="targz">http://comak.comu.edu.tr/source/kaptan-5.0.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>python-qt-devel</Dependency>
             <Dependency>pardus-desktop-services</Dependency>
