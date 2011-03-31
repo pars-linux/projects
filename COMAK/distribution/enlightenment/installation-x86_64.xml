@@ -78,7 +78,6 @@
         <SelectedPackage>irqbalance</SelectedPackage>
         <SelectedPackage>iw</SelectedPackage>
         <SelectedPackage>jfsutils</SelectedPackage>
-        <SelectedPackage>kaptan-e17</SelectedPackage>
         <SelectedPackage>kernel</SelectedPackage>
         <SelectedPackage>leafpad</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
@@ -98,6 +97,7 @@
         <SelectedPackage>lsscsi</SelectedPackage>
         <SelectedPackage>lvm2</SelectedPackage>
         <SelectedPackage>lvm2-static</SelectedPackage>
+        <SelectedPackage>lxdm</SelectedPackage>
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
@@ -351,6 +351,7 @@
         <Package>e_dbus</Package>
         <Package>e_dbus-devel</Package>
         <Package>e_phys</Package>
+        <Package>e_phys-devel</Package>
         <Package>econcentration</Package>
         <Package>ecore</Package>
         <Package>ecore-devel</Package>
@@ -523,7 +524,7 @@
         <Package>jasper</Package>
         <Package>jbigkit</Package>
         <Package>jpeg</Package>
-        <Package>kaptan-e17</Package>
+        <Package>kaptan-comak</Package>
         <Package>kbd</Package>
         <Package>kernel</Package>
         <Package>keyutils</Package>
@@ -873,6 +874,7 @@
         <Package>qtiocompressor</Package>
         <Package>rage</Package>
         <Package>raptor</Package>
+        <Package>raptor-devel</Package>
         <Package>rasqal</Package>
         <Package>readline</Package>
         <Package>recode</Package>
@@ -999,7 +1001,6 @@
         <Package>xorg-video-dummy</Package>
         <Package>xorg-video-fbdev</Package>
         <Package>xorg-video-fglrx</Package>
-        <Package>xorg-video-geode</Package>
         <Package>xorg-video-glint</Package>
         <Package>xorg-video-i128</Package>
         <Package>xorg-video-i740</Package>
