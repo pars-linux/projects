@@ -14,21 +14,36 @@
         <IsA>app:gui</IsA>
         <Summary>Kem Gözlerden Korur</Summary>
         <Description>CNazar Pardus'u kem gözlerden korur.</Description>
-        <Archive sha1sum="13e349a6da335eff7d4186944cb174a026756fd0" type="tarbz2">http://x86-64.comu.edu.tr/lxde/cnazar.tar.bz2</Archive>
+        <Archive sha1sum="8c9819ec99a764bead61c807945387cd58ffe337" type="targz">http://comak.comu.edu.tr/source/cnazar-0.0.2.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>python-qt-devel</Dependency>
+            <Dependency>pardus-desktop-services</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>cnazar</Name>
+        <RuntimeDependencies>
+            <Dependency>pardus-desktop-services</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="all">/</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
         </Files>
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-03-31</Date>
+            <Version>0.0.2</Version>
+            <Comment>
+                *Version bump.
+                *Add uniqueness.
+            </Comment>
+            <Name>Alper Tekinapl</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-01-26</Date>
             <Version>0.0.1</Version>
