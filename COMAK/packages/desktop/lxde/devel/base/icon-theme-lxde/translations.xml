@@ -2,8 +2,8 @@
 <PISI>
     <Source>
         <Name>lxde-icon-theme</Name>
-        <Summary xml:lang="">nuoveXT2 simge seti</Summary>
-        <Description xml:lang="">lxde-icon-theme LXDE için nuoveXT2 simge setini içerir.</Description>
+        <Summary xml:lang="tr">nuoveXT2 simge seti</Summary>
+        <Description xml:lang="tr">lxde-icon-theme LXDE için nuoveXT2 simge setini içerir.</Description>
     </Source>
 </PISI>
 
