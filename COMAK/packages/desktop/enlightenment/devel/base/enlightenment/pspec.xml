@@ -22,7 +22,7 @@
             <Dependency versionFrom="1.0.0">embryo-devel</Dependency>
             <Dependency versionFrom="1.0.0">efreet-devel</Dependency>
             <Dependency versionFrom="1.0.0">e_dbus-devel</Dependency>
-            <Dependency versionFrom="1.0.0">eeze-devel</Dependency>
+            <Dependency>git</Dependency>
             <Dependency>libXext-devel</Dependency>
             <!--mixer module's dependency-->
             <Dependency>alsa-lib-devel</Dependency>
