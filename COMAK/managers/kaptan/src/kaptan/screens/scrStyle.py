@@ -86,16 +86,19 @@ class Widget(QtGui.QWidget, Screen):
             lst2 = dir.entryList()
         else:
             if ctx.Pds.session.Name == "fluxbox":
-                dir = QDir ("/usr/share/fluxbox/styles")
+                dir = QDir("/usr/share/fluxbox/styles")
+                print "aas"
                 lst2 =dir.entryList()
-            if ctx.Pds.session.Name == "gnome":
-                lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
-
             else:
-                dir = QtCore.QDir("/usr/share/themes")
-                dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
-                lst2 = dir.entryList()
+                if ctx.Pds.session.Name == "gnome":
+                    lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
+
+                else:
+                    dir = QtCore.QDir("/usr/share/themes")
+                    dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
+                    lst2 = dir.entryList()
         for themes in lst2:
+            print themes
             try:
                 try:
                     StyleName = themes.split(".")[0]
