@@ -123,12 +123,12 @@ class Common(base.Common):
 class Style(base.Style):
 
     def getDesktopNumber(self):
-        desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
-        return desktop_number
+        #desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
+        return 4
 
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
-        CONFIG_OPENBOX.getTag("desktops").getTag("number").setData(dn)
+        #CONFIG_OPENBOX.getTag("desktops").getTag("number").setData(dn)
         #save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
