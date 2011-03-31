@@ -138,7 +138,8 @@ class Install(install):
 
         print "Installing custom themes..."
         os.system("cp -R data/themes/* /usr/share/themes")
-        os.system("cp -R data/gnome_themes build/kaptan/")
+        os.system("cp -R data/gnome_themes/* /usr/share/themes")
+
 
         # Install locales
         print "Installing locales..."
