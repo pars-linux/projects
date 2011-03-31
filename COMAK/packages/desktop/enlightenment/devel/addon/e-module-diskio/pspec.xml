@@ -20,6 +20,9 @@
             <Dependency>eina-devel</Dependency>
             <Dependency>ecore-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Path level="1">add-tr-to-desktop.patch</Path>
+        </Patches>
     </Source>
 
     <Package>
