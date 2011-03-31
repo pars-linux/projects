@@ -25,6 +25,8 @@
             <Dependency>smolt</Dependency>
             <Dependency>python-qt</Dependency>
             <Dependency>python-xlib</Dependency>
+            <Dependency>python-imaging</Dependency>
+            <Dependency>python-v4l2capture</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
