@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">Fizik kitaplığı</Summary>
         <Description xml:lang="tr">Chipmunk, C ile yazılmış hızlı, hafif, taşınabilir fizik kitaplığıdır.</Description>
     </Source>
+
+    <Package>
+        <Name>chipmunk-devel</Name>
+        <Summary xml:lang="tr">chipmunk için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
