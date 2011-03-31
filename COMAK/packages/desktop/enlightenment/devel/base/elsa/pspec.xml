@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Login manager of enlightenment desktop environment</Summary>
         <Description>Elsa is the login manager for Enlightenment desktop environment that replaces entrance. It uses pam, and can be configured with /etc/elsa.conf.</Description>
-        <Archive sha1sum="8d48e522b59cb88ce0313ea6b815a16599d2b6c7" type="targz">http://comak.comu.edu.tr/source/elsa-0.0.1_20110224.tar.gz</Archive>
+        <Archive sha1sum="03c06ea98189e7d8aba23a25a5be929b86633d41" type="tarbz2">http://comak.comu.edu.tr/source/elsa-0.0.1_20110224.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>efreet-devel</Dependency>
             <Dependency>eina-devel</Dependency>
@@ -23,7 +23,7 @@
         <Patches>
             <Patch level="1">startElsaAtBoot.patch</Patch>
             <Patch level="1">turkish.patch</Patch>
-            <!--<Patch level="1">elsaConsoleKit.patch</Patch>-->
+            <Patch level="1">elsaConsoleKit.patch</Patch>
         </Patches>
     </Source>
 
@@ -39,7 +39,9 @@
             <Dependency>elementary</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
+            <Path fileType="config">/etc/pam.d/</Path>
+            <Path fileType="config">/etc/elsa/elsa.conf</Path>
+            <Path fileType="executable">/etc/elsa/Xsession</Path>
             <Path fileType="executable">/usr/sbin</Path>
             <Path fileType="executable">/usr/bin</Path>
             <Path fileType="data">/usr/share</Path>
@@ -47,11 +49,18 @@
         <AdditionalFiles>
             <AdditionalFile owner="root" permission="0644" target="/usr/share/display-managers/elsa.desktop">elsa.desktop</AdditionalFile>
         </AdditionalFiles>
-        <!--<Provides>
+        <Provides>
             <COMAR script="package.py">System.Package</COMAR>
-        </Provides>-->
+        </Provides>
     </Package>
     <History>
+        <Update release="3">
+            <Date>2011-03-31</Date>
+            <Version>0.0.1_20110224</Version>
+            <Comment>fix not executable problem.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2011-03-12</Date>
             <Version>0.0.1_20110224</Version>
