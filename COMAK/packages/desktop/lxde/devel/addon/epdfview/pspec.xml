@@ -19,6 +19,7 @@
         </BuildDependencies>
         <Patches>
             <Patch level="1">fix-desktop-file.patch</Patch>
+            <Patch level="1">fix-poppler.patch</Patch>
         </Patches>
     </Source>
 
