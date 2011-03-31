@@ -1,0 +1,13 @@
+diff -Naur epdfview-0.1.7.orig/src/PDFDocument.cxx epdfview-0.1.7/src/PDFDocument.cxx
+--- epdfview-0.1.7.orig/src/PDFDocument.cxx	2009-02-28 23:00:35.000000000 +0200
++++ epdfview-0.1.7/src/PDFDocument.cxx	2011-03-31 20:11:24.535000037 +0300
+@@ -686,8 +686,7 @@
+     repairEmpty(textRect);
+ 
+ #if defined (HAVE_POPPLER_0_6_0)
+-    gchar *text = poppler_page_get_text(page, POPPLER_SELECTION_GLYPH,
+-            &textRect);
++    gchar *text = poppler_page_get_text(page);
+ #else // !HAVE_POPPLER_0_6_0
+     gchar *text = poppler_page_get_text(page, &textRect);
+ #endif // HAVE_POPPLER_0_6_0
