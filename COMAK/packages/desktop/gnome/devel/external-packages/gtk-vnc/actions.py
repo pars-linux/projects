@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 TUBITAK/UEKAE
 # Licensed under the GNU General Public License, version 2.
 # See the file http://www.gnu.org/copyleft/gpl.txt.
 
@@ -20,6 +19,6 @@ def build():
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     #remove the empty bin directory
-    pisitools.removeDir("/usr/bin")     
+    pisitools.removeDir("/usr/bin")
 
     pisitools.dodoc("AUTHORS", "ChangeLog", "README*", "NEWS")
