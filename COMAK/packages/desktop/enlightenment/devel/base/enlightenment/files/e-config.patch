@@ -15,6 +15,21 @@ Index: enlightenment-0.16.999.49539/config/standard/e.src
    value "edge_flip_dragging" int: 1;
    value "evas_engine_default" int: 1;
    value "evas_engine_container" int: 0;
+@@ -458,6 +458,14 @@ group "E_Config" struct {
+   }
+   group "modules" list {
+     group "E_Config_Module" struct {
++      value "name" string: "systray";
++      value "enabled" uchar: 1;
++      value "delayed" uchar: 1;
++      value "priority" int: 0;
++    }
++  }
++  group "modules" list {
++    group "E_Config_Module" struct {
+       value "name" string: "everything";
+       value "enabled" uchar: 1;
+       value "delayed" uchar: 0;
 @@ -1635,7 +1643,7 @@ group "E_Config" struct {
    value "focus_revert_on_hide_or_close" int: 1;
    value "pointer_slide" int: 1;
