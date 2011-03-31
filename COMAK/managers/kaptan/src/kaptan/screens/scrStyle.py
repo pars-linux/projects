@@ -145,6 +145,9 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.label_3.hide()
         self.ui.listIcon.connect(self.ui.listIcon, SIGNAL("itemClicked(QListWidgetItem *)"), self.setIcon)
         self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
+        if ctx.Pds.session.Name =="gnome":
+            self.ui.spinBoxDesktopNumbers.hide()
+            self.ui.labelDesktopNumbers.hide()
         self.ui.spinBoxDesktopNumbers.connect(self.ui.spinBoxDesktopNumbers, SIGNAL("valueChanged(const QString &)"), self.addDesktop)
         #self.ui.previewButton.connect(self.ui.previewButton, SIGNAL("clicked()"), self.previewStyle)
 
