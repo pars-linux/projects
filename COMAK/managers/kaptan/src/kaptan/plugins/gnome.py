@@ -38,7 +38,7 @@ def update_lxsession():
 
 #openbox configuration files
 FILE_OPENBOXRC = "%s/.config/openbox/rc.xml"%os.environ["HOME"]
-CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
+#CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
 
 
 class Keyboard(base.Keyboard):
@@ -129,7 +129,7 @@ class Style(base.Style):
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
         CONFIG_OPENBOX.getTag("desktops").getTag("number").setData(dn)
-        save_openboxrc(CONFIG_OPENBOX)
+        #save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
