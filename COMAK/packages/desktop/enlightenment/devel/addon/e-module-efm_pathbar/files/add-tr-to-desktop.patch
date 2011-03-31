@@ -1,0 +1,19 @@
+diff -Nuar efm_pathbar.orig//module.desktop.in efm_pathbar/module.desktop.in
+--- efm_pathbar.orig//module.desktop.in	2011-02-16 22:39:52.000000000 +0200
++++ efm_pathbar/module.desktop.in	2011-03-31 16:28:24.319013003 +0300
+@@ -7,6 +7,7 @@
+ Name[it]=Barra percorso EFM
+ Name[el]=Μπάρα EFM
+ Name[pt]=Barra de localização EFM
++Name[tr]=EFM Adres Çubuğu
+ Exec=enlightenment
+ StartupNotify=false
+ Icon=e-module-efm_pathbar
+@@ -17,6 +18,7 @@
+ Comment[it]=Un modulo che fornisce una barra di bottoni per la navigazione col modulo filemanager.
+ Comment[el]=Ένα άρθωμα που παρέχει μια μπάρα για πλοήγηση στο άρθρωμα του διαχειριστή αρχείων.
+ Comment[pt]=Um módulo que disponibiliza uma barra de localização para navegar no gestor de ficheiros.
++Comment[tr]=Dosya yöneticisi modulünde gezinmek için bir adres çubuğu sunan modül.
+ X-Enlightenment-WaitExit=false
+ X-Enlightenment-IconClass=efm_pathbar,gadget
+ X-Enlightenment-ModuleType=files
