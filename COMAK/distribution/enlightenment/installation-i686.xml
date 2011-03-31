@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>COMAK - Enlightenment i686 [Dolly]</Title>
+    <Title>COMAK - Enlightenment i686 [Nisan 1]</Title>
     <WorkDir>/root/pardusman/work/enlightenment/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/enlightenment/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://comak32.comu.edu.tr/repo/pisi-index.xml.xz">
