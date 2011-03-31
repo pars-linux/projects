@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">Enlightenment için kitaplık</Summary>
         <Description xml:lang="tr">Enlightenment için kitaplık</Description>
     </Source>
+
+    <Package>
+        <Name>exhange-devel</Name>
+        <Summary xml:lang="tr">exchange için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
