@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">Envision için gerekli kitaplıklar</Summary>
         <Description xml:lang="tr">epdf, envision pdf gösterici için gerekli kitaplıkları içerir.</Description>
     </Source>
+
+    <Package>
+        <Name>epdf-devel</Name>
+        <Summary xml:lang="tr">epdf için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
