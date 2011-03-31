@@ -3,7 +3,12 @@
     <Source>
         <Name>emote</Name>
         <Summary xml:lang="tr">Enlightenment için IRC uygulaması</Summary>
-        <Description xml:lang="tr">Enlightenment için IRC uygulaması</Description>
+        <Description xml:lang="tr">emote Enlightenment için bir IRC uygulamasıdır.</Description>
     </Source>
+
+    <Package>
+        <Name>emote-devel</Name>
+        <Summary xml:lang="tr">emote için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
