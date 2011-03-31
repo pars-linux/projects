@@ -15,11 +15,11 @@
         <Archive sha1sum="24c1c0cdf27509eb05f89bdac8b79d6253e14837" type="tarbz2">http://x86-64.comu.edu.tr/lxde/libfm-0.1.14_20110202.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>lxde-menu-cache-devel</Dependency>
-            <Dependency>fontconfig</Dependency>
-            <Dependency>gtk2</Dependency>
-            <Dependency>cairo</Dependency>
-            <Dependency>pango</Dependency>
-            <Dependency>atk</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
             <Dependency>gtk-doc</Dependency>
         </BuildDependencies>
         <Patches>
