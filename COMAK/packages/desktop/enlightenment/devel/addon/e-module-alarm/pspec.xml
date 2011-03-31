@@ -24,6 +24,9 @@
             <Dependency>e_dbus-devel</Dependency>
             <Dependency>enlightenment-devel</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">add-tr-desktop.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
