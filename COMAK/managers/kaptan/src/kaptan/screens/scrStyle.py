@@ -1,3 +1,5 @@
+#ifndef SCRSTYLE.PY
+#define SCRSTYLE.PY
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2005-2009, TUBITAK/UEKAE
@@ -63,7 +65,6 @@ class Widget(QtGui.QWidget, Screen):
             kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
             start = kaptanConfig.value("General/RunOnStart").toString()
             if start != "False":
-                print "girdi"
                 os.popen("gconftool-2 --type=string --set /apps/metacity/general/theme Orta" )
                 os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Orta")
                 os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme Faenza-Dark")
@@ -88,7 +89,7 @@ class Widget(QtGui.QWidget, Screen):
                 dir = QDir ("/usr/share/fluxbox/styles")
                 lst2 =dir.entryList()
             if ctx.Pds.session.Name == "gnome":
-                lst2=["Crux","Glider"]
+                lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
 
             else:
                 dir = QtCore.QDir("/usr/share/themes")
@@ -205,3 +206,4 @@ class Widget(QtGui.QWidget, Screen):
         return True
 
 
+#endif // SCRSTYLE.PY
