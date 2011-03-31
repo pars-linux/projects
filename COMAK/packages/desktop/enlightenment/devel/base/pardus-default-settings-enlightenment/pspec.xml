@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>Pardus default settings for Enlightenment</Summary>
         <Description>This package contains the Enlightenment default settings for Pardus.</Description>
-        <Archive sha1sum="023749b43a0a2feb6afd17af62cde0c10eabf4a3" type="targz">http://comak.comu.edu.tr/source/pardus-default-settings-enlightenment-0.0.1.tar.gz</Archive>
+        <Archive sha1sum="c3b4d38f125a345993f349520e58be88bbf5ede4" type="targz">http://comak.comu.edu.tr/source/pardus-default-settings-enlightenment-0.0.2.tar.gz</Archive>
     </Source>
 
     <Package>
