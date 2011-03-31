@@ -44,19 +44,6 @@ class Widget(QtGui.QWidget, Screen):
         self.catLang = Desktop.common.getLanguage()
         # Get screen resolution
         self.rect =  QtGui.QDesktopWidget().screenGeometry()
-        #Remove kaptan  from the autostart list
-        if ctx.Pds.session.Name == "fluxbox":
-            file_ = open(self.file_directory + "startup", 'r')
-            file_temp = open(self.file_directory + "startup~",'w')
-            lines = file_.readlines()
-            for n in lines:
-                if n.startswith('kaptan'):
-                    n= n.replace('kaptan', '#kaptan')
-                file_temp.write(n)
-            file_temp.close()
-            file_.close()
-            os.remove(self.file_directory + "startup")
-            os.rename(self.file_directory + "startup~", self.file_directory + "startup")
 
         # Get metadata.desktop files from shared wallpaper directory
         
