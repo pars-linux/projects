@@ -7,5 +7,6 @@
 
 from pisi.actionsapi import pythonmodules
 
+WorkDir="kaptan"
 def install():
     pythonmodules.install()
