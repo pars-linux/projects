@@ -24,7 +24,6 @@
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
-        <SelectedPackage>brasero</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
@@ -54,19 +53,18 @@
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
         <SelectedPackage>gdm</SelectedPackage>
-        <SelectedPackage>gecko-mediaplayer</SelectedPackage>
         <SelectedPackage>gfxboot</SelectedPackage>
         <SelectedPackage>gfxtheme-pardus-boot</SelectedPackage>
         <SelectedPackage>gimp</SelectedPackage>
         <SelectedPackage>gimp-i18n-tr</SelectedPackage>
         <SelectedPackage>glade-xfce</SelectedPackage>
         <SelectedPackage>glew</SelectedPackage>
+        <SelectedPackage>gmime</SelectedPackage>
         <SelectedPackage>gnome-menus</SelectedPackage>
         <SelectedPackage>gnome-mount</SelectedPackage>
         <SelectedPackage>gnome-session</SelectedPackage>
         <SelectedPackage>gst-ffmpeg</SelectedPackage>
         <SelectedPackage>gtk-engines</SelectedPackage>
-        <SelectedPackage>gtknetcat</SelectedPackage>
         <SelectedPackage>gtkspell</SelectedPackage>
         <SelectedPackage>hal</SelectedPackage>
         <SelectedPackage>hplip</SelectedPackage>
@@ -116,7 +114,6 @@
         <SelectedPackage>module-nvidia173</SelectedPackage>
         <SelectedPackage>module-nvidia96</SelectedPackage>
         <SelectedPackage>mplayer</SelectedPackage>
-        <SelectedPackage>netcat</SelectedPackage>
         <SelectedPackage>netkit-ftp</SelectedPackage>
         <SelectedPackage>network-manager-applet</SelectedPackage>
         <SelectedPackage>nfs-utils</SelectedPackage>
@@ -213,7 +210,6 @@
         <SelectedPackage>xdg-utils</SelectedPackage>
         <SelectedPackage>xdm</SelectedPackage>
         <SelectedPackage>xscreensaver</SelectedPackage>
-        <SelectedPackage>xterm</SelectedPackage>
         <SelectedPackage>xvattr</SelectedPackage>
         <SelectedPackage>yacpi</SelectedPackage>
         <SelectedPackage>yali</SelectedPackage>
@@ -395,13 +391,11 @@
         <Package>glibmm</Package>
         <Package>glitz</Package>
         <Package>glitz-devel</Package>
-        <Package>gmime</Package>
         <Package>gmp</Package>
         <Package>gnome-common</Package>
         <Package>gnome-desktop</Package>
         <Package>gnome-keyring</Package>
         <Package>gnome-menus</Package>
-        <Package>gnome-mplayer</Package>
         <Package>gnome-panel</Package>
         <Package>gnome-session</Package>
         <Package>gnome-settings-daemon</Package>
@@ -537,7 +531,6 @@
         <Package>libdbusmenu-glib</Package>
         <Package>libdc1394</Package>
         <Package>libdca</Package>
-        <Package>libdiscid</Package>
         <Package>libdmx</Package>
         <Package>libdrm</Package>
         <Package>libdrm-intel</Package>
@@ -731,7 +724,6 @@
         <Package>mtools</Package>
         <Package>mudur</Package>
         <Package>musicbrainz</Package>
-        <Package>musicbrainz3</Package>
         <Package>mysql-lib</Package>
         <Package>nano</Package>
         <Package>ncompress</Package>
@@ -739,7 +731,6 @@
         <Package>neon</Package>
         <Package>net-snmp</Package>
         <Package>net-tools</Package>
-        <Package>netcat</Package>
         <Package>nspr</Package>
         <Package>nss</Package>
         <Package>nss-mdns</Package>
@@ -941,7 +932,6 @@
         <Package>timidity</Package>
         <Package>timidity-shompatches</Package>
         <Package>tomcat-servlet-api</Package>
-        <Package>totem-pl-parser</Package>
         <Package>tumbler</Package>
         <Package>tumbler-devel</Package>
         <Package>twolame</Package>
@@ -955,7 +945,6 @@
         <Package>usbmuxd</Package>
         <Package>usbutils</Package>
         <Package>user-manager-pds</Package>
-        <Package>utempter</Package>
         <Package>util-linux</Package>
         <Package>v86d</Package>
         <Package>vala</Package>
