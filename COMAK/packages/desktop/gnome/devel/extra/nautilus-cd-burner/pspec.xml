@@ -10,7 +10,7 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
-        <Summary>A nautilus extension for burning cd.</Summary>
+        <Summary>A nautilus extension for burning cd</Summary>
         <Description>Nautilus-cd-burner is a Nautilus context menu for burning cd.</Description>
         <Archive sha1sum="11aa200220da9e746294c3bcf44cfdc26a2aeb78" type="targz">mirrors://gnome/nautilus-cd-burner/2.25/nautilus-cd-burner-2.25.3.tar.gz</Archive>
         <BuildDependencies>
