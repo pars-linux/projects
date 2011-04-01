@@ -247,6 +247,17 @@ if __name__ == "__main__":
         start = kaptanConfig.value("General/RunOnStart").toString()
 
         if start != "False":
+            if ctx.Pds.session.Name == "gnome":
+                kd= os.getenv("HOME")
+                #kaptanrc
+                QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
+                kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
+                start = kaptanConfig.value("General/RunOnStart").toString()
+            if start != "False":
+                os.popen("gconftool-2 --type=string --set /apps/metacity/general/theme Orta" )
+                os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Orta")
+                os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme Faenza-Dark")
+
             kaptanConfig.setValue("General/RunOnStart","False")
         elif start == "False" and not "-t" in sys.argv:
              exit();
