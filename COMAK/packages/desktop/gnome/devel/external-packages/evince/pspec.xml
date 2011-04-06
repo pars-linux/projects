@@ -28,7 +28,7 @@
             <Dependency>tiff-devel</Dependency>
             <Dependency>libSM-devel</Dependency>
             <Dependency>nautilus-devel</Dependency>
-            <Dependency>texlive-core-devel</Dependency>
+            <Dependency>texlive-core</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">evince-desktop.patch</Patch>
