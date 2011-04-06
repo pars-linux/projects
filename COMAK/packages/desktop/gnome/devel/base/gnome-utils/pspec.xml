@@ -35,7 +35,19 @@
             <Dependency>gnome-panel</Dependency>
             <Dependency>libgtop</Dependency>
             <Dependency>hal</Dependency>
-            <Dependency>e2fsprogs</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>libbonoboui</Dependency>
+            <Dependency>libcanberra-gtk</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
