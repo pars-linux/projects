@@ -26,6 +26,9 @@
             <Dependency>gconf</Dependency>
             <Dependency>gtk2</Dependency>
             <Dependency>libxklavier</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
