@@ -8,20 +8,24 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
+from pisi.actionsapi import shelltools
+
+shelltools.export("HOME", get.workDIR())
 
 def setup():
-    autotools.configure("--disable-scrollkeeper \
-            --disable-caches \
-            --disable-dependency-tracking \
-            --with-gtk=2.0 \
-            --disable-search \
-            --enable-cdrtools \
-            --enable-cdrkit \
-            --enable-nautilus")
+    autotools.autoreconf("-fiv")
+    autotools.configure("--disable-caches \
+                         --disable-dependency-tracking \
+                         --with-gtk=2.0 \
+                         --disable-search \
+                         --enable-cdrtools \
+                         --enable-cdrkit \
+                         --enable-nautilus")
 
 def build():
     autotools.make()
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
+
     pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING*", "README")

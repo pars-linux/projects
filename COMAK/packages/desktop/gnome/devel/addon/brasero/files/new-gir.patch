@@ -1,0 +1,24 @@
+diff -ur brasero-2.32.1.orig//libbrasero-burn/Makefile.am brasero-2.32.1/libbrasero-burn/Makefile.am
+--- brasero-2.32.1.orig//libbrasero-burn/Makefile.am	2010-11-08 22:04:39.000000000 +0200
++++ brasero-2.32.1/libbrasero-burn/Makefile.am	2011-04-07 14:37:10.138000002 +0300
+@@ -221,7 +221,7 @@
+ 	    --libtool="$(LIBTOOL)" \
+             --output $@ \
+             --pkg=gtk+-@GTK_API_VERSION@  \
+-	    --strip-prefix=Brasero	\
++	    --identifier-prefix=Brasero --symbol-prefix=brasero	\
+             $(top_srcdir)/libbrasero-burn/brasero-tags.h						\
+             $(top_srcdir)/libbrasero-burn/brasero-enums.h						\
+             $(top_srcdir)/libbrasero-burn/brasero-error.h						\
+diff -ur brasero-2.32.1.orig//libbrasero-media/Makefile.am brasero-2.32.1/libbrasero-media/Makefile.am
+--- brasero-2.32.1.orig//libbrasero-media/Makefile.am	2010-10-19 22:38:45.000000000 +0300
++++ brasero-2.32.1/libbrasero-media/Makefile.am	2011-04-07 14:32:16.462000001 +0300
+@@ -165,7 +165,7 @@
+ 	    --libtool="$(LIBTOOL)" \
+             --output $@ \
+             --pkg=gtk+-@GTK_API_VERSION@  \
+-	    --strip-prefix=Brasero	\
++	    --identifier-prefix=Brasero --symbol-prefix=brasero	\
+             $(top_srcdir)/libbrasero-media/brasero-drive.h			\
+ 	    $(top_srcdir)/libbrasero-media/brasero-medium-monitor.h		\
+ 	    $(top_builddir)/libbrasero-media/brasero-media.h			\
