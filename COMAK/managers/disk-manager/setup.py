@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2010 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -54,10 +54,10 @@ def update_messages():
     # Collect UI files
     filelist = []
     for filename in glob.glob1("ui", "*.ui"):
-    #Kde4 UI files
+    # Kde4 UI files
         if FOR_KDE_4:
-            os.system("pykde4uic -o ui/ui_%s.py ui/%s -g &s" % (filename.split(".")[0], filename, PROJECT))
-    #pure-qt UI files
+            os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+    # Qt UI files
         else:
             os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
 
@@ -115,11 +115,11 @@ class Build(build):
             os.system("intltool-merge -d po %s %s" % (filename, filename[:-3]))
 
         print "Generating UIs..."
-        #Kde4 UI Files
+        # Kde4 UI Files
         if FOR_KDE_4:
             for filename in glob.glob1("ui", "*.ui"):
-                os.system("pykde4uic -o build/diskmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
-        #pure-qt UI Files
+                os.system("pykde4uic -o build/diskmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+        # Qt UI Files
         else:
             for filename in glob.glob1("ui", "*.ui"):
                 os.system("pyuic4 -o build/diskmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))

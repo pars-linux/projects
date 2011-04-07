@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2009 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -11,20 +11,20 @@
 # Please read the COPYING file.
 #
 
-#System
+# System
 import sys
 import dbus
 
-#Qt Stuff
+# Qt Stuff
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
-#Application Stuff
-from diskmanager.about import *
+# Application Stuff
+from diskmanager import about
 from diskmanager.main import MainWidget
 
-#Pds stuff
-from diskmanager.context import *
+# Pds stuff
+import diskmanager.context as ctx
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
@@ -40,40 +40,42 @@ if ctx.Pds.session == ctx.pds.Kde4:
 
 if __name__ == "__main__":
 
-    #DBUS MainLoop
+    print "sonradan silinecek--heyooo"
+    # DBUS MainLoop
     if not dbus.get_default_main_loop():
         from dbus.mainloop.qt import DBusQtMainLoop
         DBusQtMainLoop(set_as_default=True)
 
     if ctx.Pds.session == ctx.pds.Kde4:
-        #PyKDE4 Stuff
-        from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
-        from PyKDE4.kdecore import KCmdLineArgs, KGlobal
+        # PyKDE4 Stuff
+        from PyKDE4.kdeui import KApplication
+        from PyKDE4.kdecore import KCmdLineArgs
 
-        #Set Command Line arguments
-        KCmdLineArgs.init(sys.argv, aboutData)
+        # Set Command Line arguments
+        KCmdLineArgs.init(sys.argv, about.aboutData)
 
-        #Create a KApplication instance
+        # Create a KApplication instance
         app = KApplication()
 
-        #Create Main Window
+        # Create Main Window
         window = MainWindow()
         window.show()
 
     else:
 
-        #Pds Stuff
+        # Pds Stuff
         from pds.quniqueapp import QUniqueApplication
+        from diskmanager.context import KIcon, i18n
 
-        #Create Main Window
-        app = QUniqueApplication(sys.argv, catalog=appName)
+        # Create Main Window
+        app = QUniqueApplication(sys.argv, catalog=about.appName)
         window = MainWindow()
         window.show()
         window.resize(640,480)
 
-        #Set Main Window Title and Icon
-        window.setWindowTitle(i18n(PACKAGE))
-        window.setWindowIcon(KIcon(icon))
+        # Set Main Window Title and Icon
+        window.setWindowTitle(i18n(about.PACKAGE))
+        window.setWindowIcon(KIcon(about.icon))
 
-    #Run the application
+    # Run the application
     app.exec_()
