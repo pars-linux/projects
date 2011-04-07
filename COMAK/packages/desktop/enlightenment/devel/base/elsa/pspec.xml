@@ -21,7 +21,7 @@
             <Dependency>elementary-devel</Dependency>
         </BuildDependencies>
         <Patches>
-            <Patch level="1">startElsaAtBoot.patch</Patch>
+            <!--<Patch level="1">startElsaAtBoot.patch</Patch>-->
             <Patch level="1">turkish.patch</Patch>
             <Patch level="1">elsaConsoleKit.patch</Patch>
         </Patches>
