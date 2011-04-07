@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2010 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -11,7 +11,7 @@
 # Please read the COPYING file.
 #
 
-#Pds Stuff
+# Pds Stuff
 import context as ctx
 
 # Application Data
@@ -37,6 +37,7 @@ if ctx.Pds.session == ctx.pds.Kde4:
     aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
 
     # Author(s)
+    aboutData.addAuthor(ki18n("Merve Yüzbaşıoğlu"),ki18n("Add Pds Patch"))
     aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
     aboutData.addAuthor(ki18n("Bahadır Kandemir"), ki18n("First Developer"))
     aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))

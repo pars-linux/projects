@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2009 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -15,12 +15,13 @@
 from PyQt4 import QtCore
 from PyQt4 import QtGui
 
-# Pds ve Kde Stuff
+# Pds vs Kde Stuff
 import context as ctx
+
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4.kdeui import KIcon
 else:
-    from diskmanager.context import *
+    from diskmanager.context import KIcon
 
 # UI
 from diskmanager.ui_item import Ui_ItemWidget

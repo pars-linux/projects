@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2009 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -33,12 +33,14 @@ from diskmanager.item import ItemListWidgetItem, ItemWidget
 # Edit widget
 from diskmanager.pagedialog import PageDialog
 
-#Pds ve Kde4 Stuff
-from diskmanager.context import *
+# Pds vs Kde4 Stuff
 import diskmanager.context as ctx
+
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4.kdeui import KIcon
     from PyKDE4.kdecore import i18n
+else:
+    from diskmanager.context import KIcon, i18n, KIconLoader
 
 class MainWidget(QtGui.QWidget, Ui_MainWidget):
     def __init__(self, parent, embed=False):
@@ -66,7 +68,11 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
     def checkBackend(self):
         """ Check if there are packages that provide required backend. """
         if not len(self.iface.getPackages()):
-            QtGui.QMessageBox.critical(self, i18n("Error"), i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
+            QtGui.QMessageBox.critical(self, i18n("Error"), \
+                                             i18n("There are no packages that provide \
+                                                  backend for this application.\n \
+                                                  Please make sure that packages \
+                                                  are installed and configured correctly."))
             return False
         return True
 
@@ -92,7 +98,11 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
     def addItem(self, id_, name="", description="", mounted=False):
         """ Adds an item to list. """
         if mounted:
-            icon = QtGui.QIcon(KIconLoader.loadOverlayed('drive-harddisk', ["emblem-mounted"], 32))
+            if ctx.Pds.session == ctx.pds.Kde4:
+                icon = KIcon("drive-harddisk", None, ["emblem-mounted"])
+            else:
+                icon = QtGui.QIcon(KIconLoader.loadOverlayed('drive-harddisk', ["emblem-mounted"], 32))
+
         else:
             icon = KIcon("drive-harddisk")
 

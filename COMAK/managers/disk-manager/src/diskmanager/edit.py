@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2009 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -21,7 +21,8 @@ from diskmanager.ui_edit import Ui_EditWidget
 # FS Options
 from diskmanager.config import FS_TYPES, FS_OPTIONS
 
-from context import *
+# Pds Stuff
+import context as ctx
 
 class EditWidget(QtGui.QWidget, Ui_EditWidget):
     def __init__(self, parent):
