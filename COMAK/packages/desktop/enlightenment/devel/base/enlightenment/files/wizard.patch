@@ -84,17 +84,6 @@ diff -Nuar enlightenment.orig/src/modules/wizard/page_010.c enlightenment/src/mo
       { NULL, NULL, NULL }
  };
  
-diff -Nuar enlightenment.orig/src/modules/wizard/page_030.c enlightenment/src/modules/wizard/page_030.c
---- enlightenment.orig/src/modules/wizard/page_030.c	2011-03-23 15:11:14.427000063 +0200
-+++ enlightenment/src/modules/wizard/page_030.c	2011-03-23 15:43:07.003000067 +0200
-@@ -40,6 +40,7 @@
-           "/opt/etc/xdg",
-           "/opt/xdg",
- 	  // FIXME: add more "known locations"
-+      "/usr/kde/4/etc/xdg",
- 	  NULL
-      };
-    int i, newdir;
 diff -Nuar enlightenment.orig/src/modules/wizard/page_200.c enlightenment/src/modules/wizard/page_200.c
 --- enlightenment.orig/src/modules/wizard/page_200.c	2011-03-23 15:11:14.429000063 +0200
 +++ enlightenment/src/modules/wizard/page_200.c	2011-03-23 15:45:07.910000068 +0200

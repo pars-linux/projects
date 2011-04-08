@@ -31,7 +31,6 @@
             <Patch level="1">wizard.patch</Patch>
             <Patch level="1">fileman-default.patch</Patch>
             <Patch level="1">e-config.patch</Patch>
-            <Patch level="1">pardus-default-profile.patch</Patch>
             <Patch level="1">no-desktop-file.patch</Patch>
             <Patch level="1">autostart_xdg.patch</Patch>
         </Patches>
@@ -94,6 +93,13 @@
     </Package>
 
     <History>
+        <Update release="26">
+            <Date>2011-04-08</Date>
+            <Version>0.16.999_58042</Version>
+            <Comment>Disable not-used kde desktop path, enable systray by default and use it on panel by default.</Comment>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>ibrahim@pardus.org.tr</Email>
+        </Update>
         <Update release="25">
             <Date>2011-03-31</Date>
             <Version>0.16.999_58042</Version>
