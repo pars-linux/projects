@@ -17,13 +17,12 @@ from PyQt4 import QtGui
 
 # Settings item widget
 from firewallmanager.settingsitem import SettingsItemWidget
-#Context
-from context import *
+
+# Context
 import context as ctx
 
 # Config
 from firewallmanager.config import ANIM_SHOW, ANIM_HIDE, ANIM_TARGET, ANIM_DEFAULT, ANIM_TIME
-
 
 if ctx.Pds.session == ctx.pds.Kde4:
 
@@ -32,12 +31,12 @@ if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4 import kdecore
 
     class PageDialog(kdeui.KPageDialog):
+
         def __init__(self, parent, parameters, savedParameters):
             kdeui.KPageDialog.__init__(self, parent)
 
             self.setFaceType(kdeui.KPageDialog.Tabbed)
             self.setCaption(kdecore.i18n("Settings"))
-
 
             self.page_widget = PageWidget(self, parameters, savedParameters)
             self.page_item = kdeui.KPageWidgetItem(self.page_widget, kdecore.i18n("Settings"))
@@ -50,6 +49,7 @@ if ctx.Pds.session == ctx.pds.Kde4:
 else :
 
     class PageDialog(QtGui.QDialog):
+
         def __init__(self, parent, parameters, savedParameters):
             self.animationLast = ANIM_HIDE
             QtGui.QDialog.__init__(self,parent)

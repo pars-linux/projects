@@ -17,46 +17,73 @@ import sys
 import dbus
 
 import firewallmanager.context as ctx
-from firewallmanager.context import *
 
 #Qt
-
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4.QtCore import *
-class MainWindow(QtGui.QMainWindow):
-    def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
-        widget = MainWidget(self)
-        self.resize(widget.size())
-        self.setCentralWidget(widget)
-        self.qtrans=QtCore.QTranslator()
-if __name__ == "__main__":
 
+if ctx.Pds.session == ctx.pds.Kde4:
+
+    from PyKDE4.kdeui import KMainWindow
+    from firewallmanager.main import MainWidget
+
+    class MainWindow(KMainWindow):
+        def __init__(self, parent=None):
+            KMainWindow.__init__(self, parent)
+            widget = MainWidget(self)
+            self.resize(widget.size())
+            self.setCentralWidget(widget)
+else :
+    class MainWindow(QtGui.QMainWindow):
+        def __init__(self, parent=None):
+            QtGui.QMainWindow.__init__(self, parent)
+            widget = MainWidget(self)
+            self.resize(widget.size())
+            self.setCentralWidget(widget)
+            self.qtrans=QtCore.QTranslator()
+
+
+if __name__ == "__main__":
 
     if not dbus.get_default_main_loop():
         from dbus.mainloop.qt import DBusQtMainLoop
         DBusQtMainLoop(set_as_default=True)
 
     if ctx.Pds.session == ctx.pds.Kde4:
-        
-        #PyKde4
-        from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
-        from PyKDE4.kdecore import KCmdLineArgs, KGlobal
+
+        # PyKde4
+        from PyKDE4.kdeui import KApplication, KCModule, KIcon
+        from PyKDE4.kdecore import  KGlobal,KCmdLineArgs
         from firewallmanager.about import aboutData, catalog
-        from firewallmanager.standalone import FirewallManager
-        #Set Commandline arguments
+
+        # Set Commandline arguments
         KCmdLineArgs.init(sys.argv, aboutData)
-        #Create a Kapplication instance
+
+        # Create a Kapplication instance
         app = KApplication()
-        window = FirewallManager()
+        window = MainWindow()
         window.show()
-
         app.exec_()
-    else:
 
+        class Module(KCModule):
+
+            def __init__(self, component_data, parent):
+                KCModule.__init__(self, component_data, parent)
+                KGlobal.locale().insertCatalog(catalog)
+
+            if not dbus.get_default_main_loop():
+                from dbus.mainloop.qt import DBusQtMainLoop
+                DBusQtMainLoop(set_as_default=True)
+
+                MainWidget(self, embed=True)
+
+        def CreatePlugin(widget_parent, parent, component_data):
+            return Module(component_data, parent)
+
+    else:
         import gettext
-        
+
         __trans = gettext.translation('firewall-manager', fallback=True)
         i18n = __trans.ugettext
 
@@ -69,9 +96,6 @@ if __name__ == "__main__":
         mainWindow.show()
         mainWindow.resize(640, 480)
         mainWindow.setWindowTitle(i18n("Firewall Manager"))
-        mainWindow.setWindowIcon(KIcon("security-high"))
+        mainWindow.setWindowIcon(ctx.KIcon("security-high"))
         app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
         app.exec_()
-
-def CreatePlugin(widget_parent, parent, component_data):
-    return Module(component_data, parent)
