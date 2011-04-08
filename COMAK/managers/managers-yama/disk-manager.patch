@@ -1,6 +1,6 @@
-diff -Nuar disk-manager-3.0.0/po/az.po disk-manager/po/az.po
---- disk-manager-3.0.0/po/az.po	2010-08-09 09:37:31.000000000 +0300
-+++ disk-manager/po/az.po	2011-03-10 14:16:40.062999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/az.po disk-manager-3.0.0/po/az.po
+--- disk-manager-3.0.0.orig//po/az.po	2010-08-09 09:37:31.000000000 +0300
++++ disk-manager-3.0.0/po/az.po	2011-04-08 14:49:01.392000000 +0300
 @@ -46,6 +46,10 @@
  msgid "Your emails"
  msgstr "barish.kutsal@gmail.com"
@@ -12,9 +12,9 @@ diff -Nuar disk-manager-3.0.0/po/az.po disk-manager/po/az.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/da.po disk-manager/po/da.po
---- disk-manager-3.0.0/po/da.po	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/po/da.po	2011-03-10 14:16:39.706999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/da.po disk-manager-3.0.0/po/da.po
+--- disk-manager-3.0.0.orig//po/da.po	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/po/da.po	2011-04-08 14:49:01.392000000 +0300
 @@ -49,6 +49,10 @@
  msgid "Your names"
  msgstr ""
@@ -26,9 +26,9 @@ diff -Nuar disk-manager-3.0.0/po/da.po disk-manager/po/da.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/de.po disk-manager/po/de.po
---- disk-manager-3.0.0/po/de.po	2011-01-04 22:52:32.000000000 +0200
-+++ disk-manager/po/de.po	2011-03-10 14:16:35.360999995 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/de.po disk-manager-3.0.0/po/de.po
+--- disk-manager-3.0.0.orig//po/de.po	2011-01-04 22:52:32.000000000 +0200
++++ disk-manager-3.0.0/po/de.po	2011-04-08 14:49:01.391000000 +0300
 @@ -46,6 +46,10 @@
  msgid "Your emails"
  msgstr "sw@pardususer.de"
@@ -40,9 +40,9 @@ diff -Nuar disk-manager-3.0.0/po/de.po disk-manager/po/de.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/es.po disk-manager/po/es.po
---- disk-manager-3.0.0/po/es.po	2010-12-20 21:01:31.000000000 +0200
-+++ disk-manager/po/es.po	2011-03-10 14:16:37.954999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/es.po disk-manager-3.0.0/po/es.po
+--- disk-manager-3.0.0.orig//po/es.po	2010-12-20 21:01:31.000000000 +0200
++++ disk-manager-3.0.0/po/es.po	2011-04-08 14:49:01.391000000 +0300
 @@ -52,6 +52,10 @@
  msgid "Your emails"
  msgstr "click3d (at) linuxmail.org"
@@ -54,9 +54,9 @@ diff -Nuar disk-manager-3.0.0/po/es.po disk-manager/po/es.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/fr.po disk-manager/po/fr.po
---- disk-manager-3.0.0/po/fr.po	2010-08-09 09:37:31.000000000 +0300
-+++ disk-manager/po/fr.po	2011-03-10 14:16:39.000999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/fr.po disk-manager-3.0.0/po/fr.po
+--- disk-manager-3.0.0.orig//po/fr.po	2010-08-09 09:37:31.000000000 +0300
++++ disk-manager-3.0.0/po/fr.po	2011-04-08 14:49:01.391000000 +0300
 @@ -47,6 +47,10 @@
  msgid "Your emails"
  msgstr "Votre courriel"
@@ -68,9 +68,9 @@ diff -Nuar disk-manager-3.0.0/po/fr.po disk-manager/po/fr.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/hu.po disk-manager/po/hu.po
---- disk-manager-3.0.0/po/hu.po	2010-11-29 23:17:53.000000000 +0200
-+++ disk-manager/po/hu.po	2011-03-10 14:16:39.326999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/hu.po disk-manager-3.0.0/po/hu.po
+--- disk-manager-3.0.0.orig//po/hu.po	2010-11-29 23:17:53.000000000 +0200
++++ disk-manager-3.0.0/po/hu.po	2011-04-08 14:49:01.391000000 +0300
 @@ -47,6 +47,10 @@
  msgid "Your emails"
  msgstr "bicskas9323@gmail.com,fmihailov@gmail.com, sipiatti@gmail.com"
@@ -82,9 +82,9 @@ diff -Nuar disk-manager-3.0.0/po/hu.po disk-manager/po/hu.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/it.po disk-manager/po/it.po
---- disk-manager-3.0.0/po/it.po	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/po/it.po	2011-03-10 14:16:35.995999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/it.po disk-manager-3.0.0/po/it.po
+--- disk-manager-3.0.0.orig//po/it.po	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/po/it.po	2011-04-08 14:49:01.391000000 +0300
 @@ -49,6 +49,10 @@
  msgid "Your emails"
  msgstr "edivad95@gmail.com"
@@ -96,9 +96,9 @@ diff -Nuar disk-manager-3.0.0/po/it.po disk-manager/po/it.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/nl.po disk-manager/po/nl.po
---- disk-manager-3.0.0/po/nl.po	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/po/nl.po	2011-03-10 14:16:36.384999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/nl.po disk-manager-3.0.0/po/nl.po
+--- disk-manager-3.0.0.orig//po/nl.po	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/po/nl.po	2011-04-08 14:49:01.391000000 +0300
 @@ -48,6 +48,10 @@
  msgid "Your emails"
  msgstr "atolboo@gmail.com"
@@ -110,9 +110,9 @@ diff -Nuar disk-manager-3.0.0/po/nl.po disk-manager/po/nl.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/pt_BR.po disk-manager/po/pt_BR.po
---- disk-manager-3.0.0/po/pt_BR.po	2010-12-26 17:47:21.000000000 +0200
-+++ disk-manager/po/pt_BR.po	2011-03-10 14:16:34.309999995 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/pt_BR.po disk-manager-3.0.0/po/pt_BR.po
+--- disk-manager-3.0.0.orig//po/pt_BR.po	2010-12-26 17:47:21.000000000 +0200
++++ disk-manager-3.0.0/po/pt_BR.po	2011-04-08 14:49:01.390000000 +0300
 @@ -46,6 +46,10 @@
  msgid "Your emails"
  msgstr "Seus emails"
@@ -124,9 +124,9 @@ diff -Nuar disk-manager-3.0.0/po/pt_BR.po disk-manager/po/pt_BR.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/ru.po disk-manager/po/ru.po
---- disk-manager-3.0.0/po/ru.po	2010-11-29 23:17:53.000000000 +0200
-+++ disk-manager/po/ru.po	2011-03-10 14:16:38.521999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/ru.po disk-manager-3.0.0/po/ru.po
+--- disk-manager-3.0.0.orig//po/ru.po	2010-11-29 23:17:53.000000000 +0200
++++ disk-manager-3.0.0/po/ru.po	2011-04-08 14:49:01.391000000 +0300
 @@ -46,6 +46,10 @@
  msgid "Your emails"
  msgstr "zag@vspu.ru, tribunal2000@gmail.com, neocrust@gmail.com"
@@ -138,9 +138,9 @@ diff -Nuar disk-manager-3.0.0/po/ru.po disk-manager/po/ru.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/sr.po disk-manager/po/sr.po
---- disk-manager-3.0.0/po/sr.po	2010-07-20 16:16:24.000000000 +0300
-+++ disk-manager/po/sr.po	2011-03-10 14:16:37.439999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/sr.po disk-manager-3.0.0/po/sr.po
+--- disk-manager-3.0.0.orig//po/sr.po	2010-07-20 16:16:24.000000000 +0300
++++ disk-manager-3.0.0/po/sr.po	2011-04-08 14:49:01.391000000 +0300
 @@ -48,6 +48,10 @@
  msgid "Your emails"
  msgstr "Kurucity@aim.com"
@@ -152,9 +152,9 @@ diff -Nuar disk-manager-3.0.0/po/sr.po disk-manager/po/sr.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/sv.po disk-manager/po/sv.po
---- disk-manager-3.0.0/po/sv.po	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/po/sv.po	2011-03-10 14:16:40.399999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/sv.po disk-manager-3.0.0/po/sv.po
+--- disk-manager-3.0.0.orig//po/sv.po	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/po/sv.po	2011-04-08 14:49:01.392000000 +0300
 @@ -47,6 +47,10 @@
  msgid "Your emails"
  msgstr "patrik@trixon.se"
@@ -166,9 +166,9 @@ diff -Nuar disk-manager-3.0.0/po/sv.po disk-manager/po/sv.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/po/tr.po disk-manager/po/tr.po
---- disk-manager-3.0.0/po/tr.po	2010-08-09 09:37:31.000000000 +0300
-+++ disk-manager/po/tr.po	2011-03-10 14:16:35.694999995 +0200
+diff -Nuar disk-manager-3.0.0.orig//po/tr.po disk-manager-3.0.0/po/tr.po
+--- disk-manager-3.0.0.orig//po/tr.po	2010-08-09 09:37:31.000000000 +0300
++++ disk-manager-3.0.0/po/tr.po	2011-04-08 14:49:01.391000000 +0300
 @@ -50,6 +50,10 @@
  msgid "Your emails"
  msgstr "bahadir@pardus.org.tr, necmettin.begiter@gmail.com"
@@ -180,9 +180,18 @@ diff -Nuar disk-manager-3.0.0/po/tr.po disk-manager/po/tr.po
  #: src/diskmanager/main.py:86
  msgid ""
  "There are no packages that provide backend for this application.\n"
-diff -Nuar disk-manager-3.0.0/setup.py disk-manager/setup.py
---- disk-manager-3.0.0/setup.py	2010-12-17 14:07:20.000000000 +0200
-+++ disk-manager/setup.py	2011-03-10 14:16:42.414999994 +0200
+diff -Nuar disk-manager-3.0.0.orig//setup.py disk-manager-3.0.0/setup.py
+--- disk-manager-3.0.0.orig//setup.py	2010-12-17 14:07:20.000000000 +0200
++++ disk-manager-3.0.0/setup.py	2011-04-08 14:49:01.396000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2010 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
 @@ -26,6 +26,12 @@
  from distutils.command.install import install
  
@@ -201,10 +210,10 @@ diff -Nuar disk-manager-3.0.0/setup.py disk-manager/setup.py
      filelist = []
      for filename in glob.glob1("ui", "*.ui"):
 -        os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
-+    #Kde4 UI files
++    # Kde4 UI files
 +        if FOR_KDE_4:
-+            os.system("pykde4uic -o ui/ui_%s.py ui/%s -g &s" % (filename.split(".")[0], filename, PROJECT))
-+    #pure-qt UI files
++            os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
++    # Qt UI files
 +        else:
 +            os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
  
@@ -217,11 +226,11 @@ diff -Nuar disk-manager-3.0.0/setup.py disk-manager/setup.py
 -        for filename in glob.glob1("ui", "*.ui"):
 -            os.system("pykde4uic -o build/diskmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
 -
-+        #Kde4 UI Files
++        # Kde4 UI Files
 +        if FOR_KDE_4:
 +            for filename in glob.glob1("ui", "*.ui"):
-+                os.system("pykde4uic -o build/diskmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
-+        #pure-qt UI Files
++                os.system("pykde4uic -o build/diskmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
++        # Qt UI Files
 +        else:
 +            for filename in glob.glob1("ui", "*.ui"):
 +                os.system("pyuic4 -o build/diskmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
@@ -263,7 +272,18 @@ diff -Nuar disk-manager-3.0.0/setup.py disk-manager/setup.py
          shutil.rmtree('build/data')
  
          # Install codes
-@@ -192,14 +213,19 @@
+@@ -164,10 +185,6 @@
+             print "Installing help files..."
+             os.system("cp -R help %s/" % project_dir)
+ 
+-        # Rename
+-        # print "Renaming application.py..."
+-        # shutil.move(os.path.join(project_dir, "main.py"), os.path.join(project_dir, "%s.py" % PROJECT))
+-
+         # Modes
+         print "Changing file modes..."
+         os.chmod(os.path.join(project_dir, "%s.py" % PROJECT), 0755)
+@@ -192,14 +209,21 @@
          bin_dir = "/usr/bin"
  
          locale_dir = os.path.join(root_dir, "locale")
@@ -282,15 +302,26 @@ diff -Nuar disk-manager-3.0.0/setup.py disk-manager/setup.py
          remove(project_dir)
          remove(apps_dir +"/%s.desktop" % PROJECT)
 -        remove(services_dir +"/kcm_%s.desktop" % PROJECT)
++        os.unlink(os.path.join(bin_dir, PROJECT))
++
 +        if FOR_KDE_4:
 +            remove(services_dir +"/kcm_%s.desktop" % PROJECT)
          for filename in glob.glob1('po', '*.po'):
              lang = filename.rsplit(".", 1)[0]
              remove(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
-diff -Nuar disk-manager-3.0.0/src/diskmanager/about.py disk-manager/src/diskmanager/about.py
---- disk-manager-3.0.0/src/diskmanager/about.py	2010-12-26 17:47:21.000000000 +0200
-+++ disk-manager/src/diskmanager/about.py	2011-03-10 14:16:50.712999994 +0200
-@@ -11,29 +11,35 @@
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/about.py disk-manager-3.0.0/src/diskmanager/about.py
+--- disk-manager-3.0.0.orig//src/diskmanager/about.py	2010-12-26 17:47:21.000000000 +0200
++++ disk-manager-3.0.0/src/diskmanager/about.py	2011-04-08 14:49:01.399000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2010 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -11,29 +11,36 @@
  # Please read the COPYING file.
  #
  
@@ -298,7 +329,7 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/about.py disk-manager/src/diskmana
 -
 -# PyKDE
 -from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
-+#Pds Stuff
++# Pds Stuff
 +import context as ctx
  
  # Application Data
@@ -324,7 +355,7 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/about.py disk-manager/src/diskmana
 +modName  = "diskmanager"
 +version  = "3.0.0"
 +bugEmail = "bugs@pardus.org.tr"
-+homePage = "http://www.pardus.org.tr/eng/projects"
++homePage = "http://developer.pardus.org.tr/projects/disk-manager"
 +icon     = "drive-harddisk"
 +catalog  = appName
 +
@@ -336,11 +367,12 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/about.py disk-manager/src/diskmana
 +    programName = ki18n(PACKAGE)
 +    description = ki18n(PACKAGE)
 +    license     = KAboutData.License_GPL
-+    copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
++    copyright   = ki18n("(c) 2006-2011 TUBITAK/UEKAE")
 +    text        = ki18n(None)
 +    aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
 +
 +    # Author(s)
++    aboutData.addAuthor(ki18n("Merve Yüzbaşıoğlu"),ki18n("Add Pds Patch"))
 +    aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
 +    aboutData.addAuthor(ki18n("Bahadır Kandemir"), ki18n("First Developer"))
 +    aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))
@@ -348,56 +380,97 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/about.py disk-manager/src/diskmana
 -# Use this if icon name is different than appName
 -aboutData.setProgramIconName("drive-harddisk")
 +    # Use this if icon name is different than appName
-+    aboutData.setProgramIconName("drive-harddisk")
-diff -Nuar disk-manager-3.0.0/src/diskmanager/config.py disk-manager/src/diskmanager/config.py
---- disk-manager-3.0.0/src/diskmanager/config.py	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/src/diskmanager/config.py	2011-03-10 14:16:44.776999994 +0200
-@@ -11,7 +11,7 @@
++    aboutData.setProgramIconName(icon)
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/backend.py disk-manager-3.0.0/src/diskmanager/backend.py
+--- disk-manager-3.0.0.orig//src/diskmanager/backend.py	2010-12-26 17:47:21.000000000 +0200
++++ disk-manager-3.0.0/src/diskmanager/backend.py	2011-04-08 14:49:01.399000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -15,6 +15,7 @@
+ import comar
+ 
+ class Interface:
++
+     def __init__(self):
+         self.link = comar.Link()
+         self.link.setLocale()
+@@ -97,3 +98,4 @@
+ 
+     def umount(self, device):
+         self.link.Disk.Manager[self.package].umount(device)
++
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/config.py disk-manager-3.0.0/src/diskmanager/config.py
+--- disk-manager-3.0.0.orig//src/diskmanager/config.py	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/src/diskmanager/config.py	2011-04-08 14:49:01.397000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -11,8 +11,6 @@
  # Please read the COPYING file.
  #
  
 -from PyKDE4.kdecore import i18n
-+
- 
+-
  # FS types and options
  FS_TYPES = {
-diff -Nuar disk-manager-3.0.0/src/diskmanager/context.py disk-manager/src/diskmanager/context.py
---- disk-manager-3.0.0/src/diskmanager/context.py	1970-01-01 02:00:00.000000000 +0200
-+++ disk-manager/src/diskmanager/context.py	2011-03-10 14:16:46.178999994 +0200
-@@ -0,0 +1,29 @@
+     "ext2": "Extended 2",
+@@ -39,3 +37,4 @@
+ ANIM_TIME = 200
+ ANIM_TARGET = 0
+ ANIM_DEFAULT = 16777215
++
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/context.py disk-manager-3.0.0/src/diskmanager/context.py
+--- disk-manager-3.0.0.orig//src/diskmanager/context.py	1970-01-01 02:00:00.000000000 +0200
++++ disk-manager-3.0.0/src/diskmanager/context.py	2011-04-08 14:49:01.398000000 +0300
+@@ -0,0 +1,22 @@
 +#!/usr/bin/python
 +# -*- coding: utf-8 -*-
++#
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
++#
++# This program is free software; you can redistribute it and/or modify it under
++# the terms of the GNU General Public License as published by the Free
++# Software Foundation; either version 2 of the License, or (at your option)
++# any later version.
++#
++# Please read the COPYING file.
++#
 +
 +import pds
-+import traceback
-+from time import time
 +from pds.qiconloader import QIconLoader
 +
 +Pds = pds.Pds('disk-manager', debug = False)
-+#Force to use Default Session for testing
-+#Pds.session = pds.DefaultDe
-+#print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 +
 +i18n = Pds.i18n
 +KIconLoader = QIconLoader(Pds, forceCache=True)
 +KIcon = KIconLoader.icon
 +
-+time_counter = 0
-+start_time = time()
-+last_time = time()
-+
-+def _time():
-+    global last_time, time_counter
-+    trace = list(traceback.extract_stack())
-+    diff = time() - start_time
-+    print ('%s ::: %s:%s' % (time_counter, trace[-2][0].split('/')[-1], trace[-2][1])), diff, diff - last_time
-+    last_time = diff
-+    time_counter += 1
-+
-diff -Nuar disk-manager-3.0.0/src/diskmanager/edit.py disk-manager/src/diskmanager/edit.py
---- disk-manager-3.0.0/src/diskmanager/edit.py	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/src/diskmanager/edit.py	2011-03-10 14:16:49.556999994 +0200
-@@ -15,16 +15,14 @@
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/edit.py disk-manager-3.0.0/src/diskmanager/edit.py
+--- disk-manager-3.0.0.orig//src/diskmanager/edit.py	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/src/diskmanager/edit.py	2011-04-08 14:49:01.399000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -15,17 +15,17 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
  
@@ -411,60 +484,143 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/edit.py disk-manager/src/diskmanag
  # FS Options
  from diskmanager.config import FS_TYPES, FS_OPTIONS
  
-+from context import *
++# Pds Stuff
++import context as ctx
 +
  class EditWidget(QtGui.QWidget, Ui_EditWidget):
++
      def __init__(self, parent):
          QtGui.QWidget.__init__(self, parent)
-diff -Nuar disk-manager-3.0.0/src/diskmanager/item.py disk-manager/src/diskmanager/item.py
---- disk-manager-3.0.0/src/diskmanager/item.py	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/src/diskmanager/item.py	2011-03-10 14:16:48.061999994 +0200
-@@ -15,8 +15,12 @@
+         self.setupUi(self)
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/item.py disk-manager-3.0.0/src/diskmanager/item.py
+--- disk-manager-3.0.0.orig//src/diskmanager/item.py	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/src/diskmanager/item.py	2011-04-08 14:49:01.399000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -15,14 +15,19 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
  
 -# PyKDE
 -from PyKDE4.kdeui import KIcon
-+# Pds ve Kde Stuff
++# Pds vs Kde Stuff
 +import context as ctx
++
 +if ctx.Pds.session == ctx.pds.Kde4:
 +    from PyKDE4.kdeui import KIcon
 +else:
-+    from diskmanager.context import *
++    from diskmanager.context import KIcon
  
  # UI
  from diskmanager.ui_item import Ui_ItemWidget
-diff -Nuar disk-manager-3.0.0/src/diskmanager/kcmodule.py disk-manager/src/diskmanager/kcmodule.py
---- disk-manager-3.0.0/src/diskmanager/kcmodule.py	1970-01-01 02:00:00.000000000 +0200
-+++ disk-manager/src/diskmanager/kcmodule.py	2011-03-10 14:16:46.776999994 +0200
-@@ -0,0 +1,24 @@
+ 
+-
+ class ItemListWidgetItem(QtGui.QListWidgetItem):
++
+     def __init__(self, parent, widget):
+         QtGui.QListWidgetItem.__init__(self, parent)
+         self.widget = widget
+@@ -34,8 +39,8 @@
+     def getType(self):
+         return self.widget.getType()
+ 
+-
+ class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
++
+     def __init__(self, parent, id_, title="", description="", type_=None, icon=None, state=None):
+         QtGui.QWidget.__init__(self, parent)
+         self.setupUi(self)
+@@ -50,10 +55,8 @@
+             self.setIcon(icon)
+         else:
+             self.labelIcon.hide()
+-        if state != None:
+-            self.setState(state)
+-        else:
+-            self.checkState.hide()
++
++        self.setState(state)
+ 
+         # Buttons
+         self.pushEdit.setIcon(KIcon("preferences-other"))
+@@ -92,14 +95,12 @@
+         return self.checkState.checkState()
+ 
+     def setState(self, state):
+-        if state == True:
+-            state = QtCore.Qt.Checked
+-        elif state == False:
+-            state = QtCore.Qt.Unchecked
+-        return self.checkState.setCheckState(state)
++        
++        return self.checkState.setCheckState(QtCore.Qt.Checked if state else QtCore.Qt.Unchecked)
+ 
+     def hideEdit(self):
+         self.pushEdit.hide()
+ 
+     def hideDelete(self):
+         self.pushDelete.hide()
++
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/kcmodule.py disk-manager-3.0.0/src/diskmanager/kcmodule.py
+--- disk-manager-3.0.0.orig//src/diskmanager/kcmodule.py	1970-01-01 02:00:00.000000000 +0200
++++ disk-manager-3.0.0/src/diskmanager/kcmodule.py	2011-04-08 14:49:01.398000000 +0300
+@@ -0,0 +1,37 @@
 +#!/usr/bin/python
 +# -*- coding: utf-8 -*-
++#
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
++#
++# This program is free software; you can redistribute it and/or modify it under
++# the terms of the GNU General Public License as published by the Free
++# Software Foundation; either version 2 of the License, or (at your option)
++# any later version.
++#
++# Please read the COPYING file.
++#
 +
 +# PyKDE4 Stuff
-+from PyKDE4.kdeui import *
-+from PyKDE4.kdecore import *
++from PyKDE4.kdeui import KCModule
++from PyKDE4.kdecore import KGlobal
 +
 +# DBUS
 +import dbus
 +
++# Application Stuff
 +from diskmanager.main import MainWidget
-+from diskmanager.about import *
++from diskmanager import about
 +
 +class Module(KCModule):
++
 +    def __init__(self, component_data, parent):
 +        KCModule.__init__(self, component_data, parent)
 +
-+        KGlobal.locale().insertCatalog(catalog)
++        KGlobal.locale().insertCatalog(about.catalog)
 +
 +        if not dbus.get_default_main_loop():
 +            from dbus.mainloop.qt import DBusQtMainLoop
 +            DBusQtMainLoop(set_as_default=True)
 +
 +        MainWidget(self, embed=True)
-diff -Nuar disk-manager-3.0.0/src/diskmanager/main.py disk-manager/src/diskmanager/main.py
---- disk-manager-3.0.0/src/diskmanager/main.py	2010-12-26 17:47:21.000000000 +0200
-+++ disk-manager/src/diskmanager/main.py	2011-03-10 14:16:49.133999994 +0200
++
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/main.py disk-manager-3.0.0/src/diskmanager/main.py
+--- disk-manager-3.0.0.orig//src/diskmanager/main.py	2010-12-26 17:47:21.000000000 +0200
++++ disk-manager-3.0.0/src/diskmanager/main.py	2011-04-08 14:49:01.399000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
 @@ -15,10 +15,6 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
@@ -476,21 +632,23 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/main.py disk-manager/src/diskmanag
  # UI
  from diskmanager.ui_main import Ui_MainWidget
  
-@@ -37,6 +33,13 @@
+@@ -37,6 +33,15 @@
  # Edit widget
  from diskmanager.pagedialog import PageDialog
  
-+#Pds ve Kde4 Stuff
-+from diskmanager.context import *
++# Pds vs Kde4 Stuff
 +import diskmanager.context as ctx
++
 +if ctx.Pds.session == ctx.pds.Kde4:
 +    from PyKDE4.kdeui import KIcon
 +    from PyKDE4.kdecore import i18n
++else:
++    from diskmanager.context import KIcon, i18n, KIconLoader
 +
  class MainWidget(QtGui.QWidget, Ui_MainWidget):
      def __init__(self, parent, embed=False):
          QtGui.QWidget.__init__(self, parent)
-@@ -63,11 +66,7 @@
+@@ -63,11 +68,11 @@
      def checkBackend(self):
          """ Check if there are packages that provide required backend. """
          if not len(self.iface.getPackages()):
@@ -499,23 +657,30 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/main.py disk-manager/src/diskmanag
 -                                 "backend for this application.\n" \
 -                                 "Please make sure that packages " \
 -                                 "are installed and configured correctly."))
-+            QtGui.QMessageBox.critical(self, i18n("Error"), i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
++            QtGui.QMessageBox.critical(self, i18n("Error"), \
++                                             i18n("There are no packages that provide \
++                                                  backend for this application.\n \
++                                                  Please make sure that packages \
++                                                  are installed and configured correctly."))
              return False
          return True
  
-@@ -93,9 +92,9 @@
+@@ -93,9 +98,12 @@
      def addItem(self, id_, name="", description="", mounted=False):
          """ Adds an item to list. """
          if mounted:
 -            icon = kdeui.KIcon("drive-harddisk", None, ["emblem-mounted"])
-+            icon = QtGui.QIcon(KIconLoader.loadOverlayed('drive-harddisk', ["emblem-mounted"], 32))
++            if ctx.Pds.session == ctx.pds.Kde4:
++                icon = KIcon("drive-harddisk", None, ["emblem-mounted"])
++            else:
++                icon = QtGui.QIcon(KIconLoader.loadOverlayed('drive-harddisk', ["emblem-mounted"], 32))
          else:
 -            icon = kdeui.KIcon("drive-harddisk")
 +            icon = KIcon("drive-harddisk")
  
          type_ = "disk"
  
-@@ -135,8 +134,7 @@
+@@ -135,8 +143,7 @@
                      parts.sort()
                      for part in parts:
                          if part in self.mounted_devices:
@@ -525,7 +690,7 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/main.py disk-manager/src/diskmanag
                              self.addItem(part, part, description, True)
                          else:
                              self.addItem(part, part, "")
-@@ -156,10 +154,9 @@
+@@ -156,10 +163,9 @@
                  self.iface.mount(widget.getId(), path)
              except Exception, e:
                  if "Comar.PolicyKit" in e._dbus_error_name:
@@ -538,7 +703,7 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/main.py disk-manager/src/diskmanag
                  widget.setState(False)
                  return
          elif state == QtCore.Qt.Unchecked:
-@@ -167,10 +164,9 @@
+@@ -167,10 +173,9 @@
                  self.iface.umount(widget.getId())
              except Exception, e:
                  if "Comar.PolicyKit" in e._dbus_error_name:
@@ -551,7 +716,7 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/main.py disk-manager/src/diskmanag
                  widget.setState(True)
                  return
          self.buildItemList()
-@@ -207,9 +203,9 @@
+@@ -207,9 +212,9 @@
                      self.iface.removeEntry(device)
              except Exception, e:
                  if "Comar.PolicyKit" in e._dbus_error_name:
@@ -563,24 +728,38 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/main.py disk-manager/src/diskmanag
  
      def slotItemDelete(self):
          """ Delete button clicked. """
-diff -Nuar disk-manager-3.0.0/src/diskmanager/pagedialog.py disk-manager/src/diskmanager/pagedialog.py
---- disk-manager-3.0.0/src/diskmanager/pagedialog.py	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/src/diskmanager/pagedialog.py	2011-03-10 14:16:47.392999994 +0200
-@@ -15,24 +15,51 @@
+@@ -223,3 +228,4 @@
+ 
+     def signalHandler(self, package, signal, args):
+         self.buildItemList()
++
+diff -Nuar disk-manager-3.0.0.orig//src/diskmanager/pagedialog.py disk-manager-3.0.0/src/diskmanager/pagedialog.py
+--- disk-manager-3.0.0.orig//src/diskmanager/pagedialog.py	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/src/diskmanager/pagedialog.py	2011-04-08 14:49:01.399000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -15,24 +15,55 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
  
 -# PyKDE
 -from PyKDE4 import kdeui
 -from PyKDE4 import kdecore
-+#Pds Stuff
-+from context import *
++# Pds Stuff
 +import context as ctx
  
  # Edit widget
  from diskmanager.edit import EditWidget
  
--
++if ctx.Pds.session == ctx.pds.Kde4:
+ 
 -class PageDialog(kdeui.KPageDialog):
 -    def __init__(self, parent):
 -        kdeui.KPageDialog.__init__(self, parent)
@@ -594,10 +773,9 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/pagedialog.py disk-manager/src/dis
 -        self.addPage(self.page_item)
 -
 -        self.edit = self.page_widget
-+if ctx.Pds.session == ctx.pds.Kde4:
-+    #PyKDE
++    # PyKDE
 +    from PyKDE4 import kdeui
-+    from PyKDE4 import kdecore
++    from PyKDE4.kdecore import i18n
 +
 +    class PageDialog(kdeui.KPageDialog):
 +        def __init__(self, parent):
@@ -612,6 +790,10 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/pagedialog.py disk-manager/src/dis
 +            self.addPage(self.page_item)
 +            self.edit = self.page_widget
 +else:
++
++    # Pds Stuff
++    from context import i18n
++
 +    class PageDialog(QtGui.QDialog):
 +        def __init__(self,parent):
 +            QtGui.QDialog.__init__(self,parent)
@@ -621,7 +803,7 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/pagedialog.py disk-manager/src/dis
 +            self.tab=QtGui.QTabWidget(self)
 +            self.tab.addTab(self.page_widget,i18n("Settings"))
 +
-+            #Buttons
++            # Buttons
 +            self.buttonBox = QtGui.QDialogButtonBox(self)
 +            self.buttonBox.setGeometry(QtCore.QRect(4, 152, 540, 25))
 +            self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
@@ -630,15 +812,32 @@ diff -Nuar disk-manager-3.0.0/src/diskmanager/pagedialog.py disk-manager/src/dis
 +            self.layout.addWidget(self.buttonBox)
 +            self.buttonBox.setObjectName(i18n("buttonBox"))
 +
-+            #SIGNAL
++            # SIGNAL
 +            QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(i18n("accepted()")), self.accept)
 +            QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(i18n("rejected()")), self.reject)
 +            QtCore.QMetaObject.connectSlotsByName(self)
 +            self.edit=self.page_widget
-diff -Nuar disk-manager-3.0.0/src/disk-manager.py disk-manager/src/disk-manager.py
---- disk-manager-3.0.0/src/disk-manager.py	2010-07-06 14:16:28.000000000 +0300
-+++ disk-manager/src/disk-manager.py	2011-03-10 14:16:44.318999994 +0200
-@@ -17,16 +17,14 @@
+diff -Nuar disk-manager-3.0.0.orig//src/disk-manager.py disk-manager-3.0.0/src/disk-manager.py
+--- disk-manager-3.0.0.orig//src/disk-manager.py	2010-07-06 14:16:28.000000000 +0300
++++ disk-manager-3.0.0/src/disk-manager.py	2011-04-08 14:49:01.397000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -11,54 +11,70 @@
+ # Please read the COPYING file.
+ #
+ 
++# System
+ import sys
+ import dbus
+ 
++# Qt Stuff
  from PyQt4 import QtGui
  from PyQt4 import QtCore
  
@@ -646,10 +845,12 @@ diff -Nuar disk-manager-3.0.0/src/disk-manager.py disk-manager/src/disk-manager.
 -from PyKDE4.kdecore import KCmdLineArgs, KGlobal
 -
 -from diskmanager.about import aboutData, catalog
-+from diskmanager.about import *
++# Application Stuff
++from diskmanager import about
  from diskmanager.main import MainWidget
  
-+from diskmanager.context import *
++# Pds stuff
++import diskmanager.context as ctx
  
 -class MainWindow(KMainWindow):
 +class MainWindow(QtGui.QMainWindow):
@@ -659,22 +860,57 @@ diff -Nuar disk-manager-3.0.0/src/disk-manager.py disk-manager/src/disk-manager.
          widget = MainWidget(self)
          self.resize(widget.size())
          self.setCentralWidget(widget)
-@@ -34,31 +32,50 @@
+ 
++if ctx.Pds.session == ctx.pds.Kde4:
++    def CreatePlugin(widget_parent, parent, component_data):
++        from diskmanager.kcmodule import Module
++        return Module(component_data, parent)
  
  if __name__ == "__main__":
  
 -    KCmdLineArgs.init(sys.argv, aboutData)
 -    app = KApplication()
 -
-+    #DBUS MainLoop
++    # DBUS MainLoop
      if not dbus.get_default_main_loop():
          from dbus.mainloop.qt import DBusQtMainLoop
          DBusQtMainLoop(set_as_default=True)
  
 -    window = MainWindow()
 -    window.show()
--
--    app.exec_()
++    if ctx.Pds.session == ctx.pds.Kde4:
++        # PyKDE4 Stuff
++        from PyKDE4.kdeui import KApplication
++        from PyKDE4.kdecore import KCmdLineArgs
++
++        # Set Command Line arguments
++        KCmdLineArgs.init(sys.argv, about.aboutData)
++
++        # Create a KApplication instance
++        app = KApplication()
++
++        # Create Main Window
++        window = MainWindow()
++        window.show()
++
++    else:
++
++        # Pds Stuff
++        from pds.quniqueapp import QUniqueApplication
++        from diskmanager.context import KIcon, i18n
++
++        # Create Main Window
++        app = QUniqueApplication(sys.argv, catalog=about.appName)
++        window = MainWindow()
++        window.show()
++        window.resize(640,480)
++
++        # Set Main Window Title and Icon
++        window.setWindowTitle(i18n(about.PACKAGE))
++        window.setWindowIcon(KIcon(about.icon))
+ 
++    # Run the application
+     app.exec_()
 -
 -
 -class Module(KCModule):
@@ -689,47 +925,6 @@ diff -Nuar disk-manager-3.0.0/src/disk-manager.py disk-manager/src/disk-manager.
 -
 -        MainWidget(self, embed=True)
 -
-+    if ctx.Pds.session == ctx.pds.Kde4:
-+        #PyKDE4 Stuff
-+        from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
-+        from PyKDE4.kdecore import KCmdLineArgs, KGlobal
-+
-+        #Set Command Line arguments
-+        KCmdLineArgs.init(sys.argv, aboutData)
-+
-+        #Create a KApplication instance
-+        app = KApplication()
-+
-+        #Create Main Window
-+        window = MainWindow()
-+        window.show()
-+
-+        #Run the application
-+        app.exec_()
-+
-+        def CreatePlugin(widget_parent, parent, component_data):
-+            from diskmanager.kcmodule import Module
-+            return Module(component_data, parent)
-+    else:
-+        #Translation Stuff
-+        import gettext
-+        __trans =gettext.translation('disk-manager',fallback=True)
-+        i18n = __trans.ugettext
-+
-+        #Pds Stuff
-+        from pds.quniqueapp import QUniqueApplication
-+
-+        #Create Main Window
-+        app = QUniqueApplication(sys.argv, catalog="disk-manager")
-+        window = MainWindow()
-+        window.show()
-+        window.resize(640,480)
-+
-+        #Set Main Window Title and Icon
-+        window.setWindowTitle(i18n("Disk Manager"))
-+        window.setWindowIcon(KIcon("drive-harddisk"))
- 
+-
 -def CreatePlugin(widget_parent, parent, component_data):
 -    return Module(component_data, parent)
-+        #Run the application
-+        app.exec_()
