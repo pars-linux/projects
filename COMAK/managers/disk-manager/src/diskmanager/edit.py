@@ -25,6 +25,7 @@ from diskmanager.config import FS_TYPES, FS_OPTIONS
 import context as ctx
 
 class EditWidget(QtGui.QWidget, Ui_EditWidget):
+
     def __init__(self, parent):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)

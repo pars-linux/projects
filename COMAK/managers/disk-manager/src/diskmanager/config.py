@@ -11,8 +11,6 @@
 # Please read the COPYING file.
 #
 
-
-
 # FS types and options
 FS_TYPES = {
     "ext2": "Extended 2",
@@ -39,3 +37,4 @@ ANIM_SHOW, ANIM_HIDE = range(2)
 ANIM_TIME = 200
 ANIM_TARGET = 0
 ANIM_DEFAULT = 16777215
+

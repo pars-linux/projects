@@ -229,3 +229,4 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
 
     def signalHandler(self, package, signal, args):
         self.buildItemList()
+
