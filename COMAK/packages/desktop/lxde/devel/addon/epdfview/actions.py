@@ -7,8 +7,11 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
+from pisi.actionsapi import shelltools
 
 def setup():
+    shelltools.touch("ChangeLog")
+    autotools.autoreconf("-vfi")
     autotools.configure()
 
 def build():
