@@ -33,8 +33,13 @@ from firewallmanager.service import ServiceWidget
 # Page Dialog
 from firewallmanager.pagedialog import PageDialog
 
-# Context 
+# Context
 import context as ctx
+
+if ctx.Pds.session == ctx.pds.Kde4:
+    from PyKDE4.kdeui import KIcon
+else:
+    from diskmanager.context import KIcon
 
 class MainWidget(QtGui.QWidget, Ui_MainWidget):
     def __init__(self, parent, embed=False):
@@ -147,7 +152,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
         type_ = ""
 
         # Build widget and widget item
-        widget = self.makeItemWidget(id_, name, description, type_,ctx.KIcon(icon), state)
+        widget = self.makeItemWidget(id_, name, description, type_, KIcon(icon), state)
         widgetItem = ItemListWidgetItem(self.listItems, widget)
 
         # Rules are static

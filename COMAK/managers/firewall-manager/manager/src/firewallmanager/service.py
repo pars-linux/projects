@@ -14,12 +14,13 @@
 # PyQt
 from PyQt4 import QtCore
 from PyQt4 import QtGui
-from context import * 
+from context import *
+
 # UI
 from firewallmanager.ui_service import Ui_ServiceWidget
 
-
 class ServiceWidget(QtGui.QWidget, Ui_ServiceWidget):
+
     def __init__(self, parent):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
@@ -46,3 +47,4 @@ class ServiceWidget(QtGui.QWidget, Ui_ServiceWidget):
 
     def setEnabled(self, enabled):
         self.pushToggle.setEnabled(enabled)
+

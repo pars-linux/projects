@@ -11,14 +11,14 @@
 # Please read the COPYING file.
 #
 
-#SyStem
+# System
 
 import sys
 import dbus
 
 import firewallmanager.context as ctx
 
-#Qt
+# Qt
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4.QtCore import *
@@ -29,20 +29,23 @@ if ctx.Pds.session == ctx.pds.Kde4:
     from firewallmanager.main import MainWidget
 
     class MainWindow(KMainWindow):
+
         def __init__(self, parent=None):
             KMainWindow.__init__(self, parent)
             widget = MainWidget(self)
             self.resize(widget.size())
             self.setCentralWidget(widget)
-else :
+
+else:
+
     class MainWindow(QtGui.QMainWindow):
+
         def __init__(self, parent=None):
             QtGui.QMainWindow.__init__(self, parent)
             widget = MainWidget(self)
             self.resize(widget.size())
             self.setCentralWidget(widget)
             self.qtrans=QtCore.QTranslator()
-
 
 if __name__ == "__main__":
 
@@ -82,11 +85,8 @@ if __name__ == "__main__":
             return Module(component_data, parent)
 
     else:
-        import gettext
 
-        __trans = gettext.translation('firewall-manager', fallback=True)
-        i18n = __trans.ugettext
-
+        from firewallmanager.context import KIcon
         from firewallmanager.main import MainWidget
         from pds.quniqueapp import QUniqueApplication
 
@@ -96,6 +96,6 @@ if __name__ == "__main__":
         mainWindow.show()
         mainWindow.resize(640, 480)
         mainWindow.setWindowTitle(i18n("Firewall Manager"))
-        mainWindow.setWindowIcon(ctx.KIcon("security-high"))
+        mainWindow.setWindowIcon(KIcon("security-high"))
         app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
         app.exec_()
