@@ -40,6 +40,7 @@ from pardus.diskutils import getPartitions
 
 # Pds vs KDE
 import bootmanager.context as ctx
+
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4.kdeui import KIcon
     from PyKDE4.kdecore import i18n
@@ -94,7 +95,6 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
         self.buildFilter()
 
         # Signals
-        #self.connect(self.toolButton, QtCore.SIGNAL("clicked()"),self.slotFileDialog)
         self.connect(self.comboFilter, QtCore.SIGNAL("currentIndexChanged(int)"), self.slotFilterChanged)
         self.connect(self.pushNew, QtCore.SIGNAL("triggered(QAction*)"), self.slotOpenEdit)
         self.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.slotSaveEdit)
@@ -346,7 +346,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
         """
         widget = self.sender()
 
-        #QMessageBox usage for MessageBox
+        # QMessageBox usage for MessageBox
         answer=QtGui.QMessageBox.question(self,i18n("Remove items"),i18n("Do you want to delete '%1'?",widget.getTitle()), QtGui.QMessageBox.Yes,QtGui.QMessageBox.No,)
 
         if answer == QtGui.QMessageBox.Yes:
