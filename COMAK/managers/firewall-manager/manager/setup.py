@@ -206,15 +206,19 @@ class Uninstall(Command):
 
         locale_dir = os.path.join(root_dir, "locale")
         apps_dir = os.path.join(root_dir, "applications")
-        
+
         if FOR_KDE_4:
             services_dir = os.path.join(root_dir, "kde4/services")
-        
+
         project_dir = os.path.join(root_dir, PROJECT)
 
         print 'Uninstalling ...'
         remove(project_dir)
         remove(apps_dir +"/%s.desktop" % PROJECT)
+
+        if os.path.exists(os.path.join(bin_dir, PROJECT)):
+            os.unlink(os.path.join(bin_dir, PROJECT))
+
         if FOR_KDE_4:
             remove(services_dir +"/kcm_%s.desktop" % PROJECT)
         for filename in glob.glob1('po', '*.po'):
