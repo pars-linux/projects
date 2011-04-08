@@ -10,7 +10,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def build():
-    autotools.make("USE_PAM=1")
+    autotools.make('CC=%s CXX=%s OPTFLAGS="%s" USE_PAM=1' % (get.CC(), get.CXX(), get.CFLAGS()))
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())

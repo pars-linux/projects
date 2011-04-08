@@ -1,0 +1,17 @@
+Index: slim-1.3.2/Makefile
+===================================================================
+--- slim-1.3.2.orig/Makefile
++++ slim-1.3.2/Makefile
+@@ -5,9 +5,10 @@
+ #######################################################
+ CXX=/usr/bin/g++
+ CC=/usr/bin/gcc
+-CFLAGS=-Wall -I. -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/libpng12 -I/usr/include
++OPTFLAGS=-O2 -g -Wall
++CFLAGS=$(OPTFLAGS) -I. -I/usr/include/freetype2 -I/usr/include/freetype2/config -I/usr/include/libpng14 -I/usr/include
+ CXXFLAGS=$(CFLAGS)
+-LDFLAGS=-lXft -lX11 -lfreetype -lXrender -lfontconfig -lpng12 -lz -lm -lcrypt -lXmu -lpng -ljpeg -lrt
++LDFLAGS=-lXft -lX11 -lfreetype -lXrender -lfontconfig -lpng14 -lz -lm -lcrypt -lXmu -lpng -ljpeg -lrt
+ CUSTOM=-DHAVE_SHADOW
+ ifdef USE_PAM
+ LDFLAGS+= -lpam
