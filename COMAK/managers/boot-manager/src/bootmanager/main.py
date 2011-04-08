@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2009 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -380,7 +380,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
                 self.iface.setEntry(widget.getTitle(), widget.getType(), widget.getDisk(), widget.getKernel(), widget.getRamdisk(), widget.getOptions(), "no", widget.getId())
         except Exception, e:
             if "Comar.PolicyKit" in e._dbus_error_name:
-                message = i18n('Access denied.')
+                message = i18n('Access denied')
             elif unicode(e).startswith('tr.org.pardus.comar.Exception:'):
                 message = unicode(e).lstrip('tr.org.pardus.comar.Exception: ')
             else:
