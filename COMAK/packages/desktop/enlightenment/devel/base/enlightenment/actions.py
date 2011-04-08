@@ -10,6 +10,7 @@ from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
 WorkDir = "e"
+
 def setup():
     #shelltools.export("AUTOPOINT", "/bin/true")
 
