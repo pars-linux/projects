@@ -13,6 +13,8 @@
         <Summary>Pardus default settings for Fluxbox</Summary>
         <Description>This package contains the Fluxbox default settings for Pardus.</Description>
         <Archive sha1sum="8d68ade7931afbfd941666180d3be0dc34b7ab75" type="tarbz2">http://comak.comu.edu.tr/source/pardus-default-settings-fluxbox-0.0.1.tar.bz2</Archive>
+        <Archive sha1sum="2d07eea7c7d8542c400774fb44067007bb0a456e" type="tarbz2" target="pardus-default-settings-fluxbox-0.0.1/">http://comak.comu.edu.tr/source/pardus-slim-theme.tar.bz2</Archive>
+
     </Source>
 
     <Package>
@@ -31,6 +33,7 @@
         </Conflicts>
         <Files>
             <Path fileType="config">/etc</Path>
+            <Path fileType="data">/usr/share/slim/themes</Path>
         </Files>
         <Provides>
             <COMAR script="package.py">System.Package</COMAR>
