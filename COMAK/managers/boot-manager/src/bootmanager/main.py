@@ -117,7 +117,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             Check if there are packages that provide required backend.
         """
         if not len(self.iface.getPackages()):
-            QtGui.QMessageBox.warning(self,i18n("Error"), i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
+            QtGui.QMessageBox.critical(self,i18n("Error"), i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
             return False
         return True
 
@@ -202,8 +202,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
                         self.addItem(entry["index"], entry["title"], root, entry["os_type"], default)
 
                     if self.listItems.count() == 1:
-                        #self.listItems.itemWidget(self.listItems.item(0)).pushDelete.hide()
-                        pass
+                        self.listIatems.itemWidget(self.listItems.item(0)).pushDelete.hide()
 
             self.iface.getEntries(func=handleList)
 
@@ -243,7 +242,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
         # Actions
         for name, (label, mandatory, optional) in self.systems.iteritems():
             action_user = QtGui.QAction(label, self)
-            action_user.setData(QtCore.QVariant(i18n(name)))
+            action_user.setData(QtCore.QVariant(unicode(name)))
             menu.addAction(action_user)
 
     def showEditBox(self, id_, type_=None):
@@ -346,9 +345,11 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             Delete button clicked.
         """
         widget = self.sender()
+
         #QMessageBox usage for MessageBox
-        answer=QtGui.QMessageBox.warning(self,i18n("Remove items"),i18n("Do you want to delete '%1'?",widget.getTitle()),i18n("Yes"),i18n("No"))
-        if answer == 0:
+        answer=QtGui.QMessageBox.question(self,i18n("Remove items"),i18n("Do you want to delete '%1'?",widget.getTitle()), QtGui.QMessageBox.Yes,QtGui.QMessageBox.No,)
+
+        if answer == QtGui.QMessageBox.Yes:
             def handler(package, exception, args):
                 pass
             self.iface.removeEntry(widget.getId(), widget.getTitle(), False, func=handler)
@@ -384,7 +385,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
                 message = unicode(e).lstrip('tr.org.pardus.comar.Exception: ')
             else:
                 message = unicode(e)
-            QtGui.QMessageBox.warning(self,i18n("Access denied"), message)
+            QtGui.QMessageBox.critical(self,i18n("Access denied"), message)
 
             return
         # Hide edit box
