@@ -40,7 +40,6 @@ if ctx.Pds.session == ctx.pds.Kde4:
 
 if __name__ == "__main__":
 
-    print "sonradan silinecek--heyooo"
     # DBUS MainLoop
     if not dbus.get_default_main_loop():
         from dbus.mainloop.qt import DBusQtMainLoop

@@ -102,7 +102,6 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
                 icon = KIcon("drive-harddisk", None, ["emblem-mounted"])
             else:
                 icon = QtGui.QIcon(KIconLoader.loadOverlayed('drive-harddisk', ["emblem-mounted"], 32))
-
         else:
             icon = KIcon("drive-harddisk")
 
