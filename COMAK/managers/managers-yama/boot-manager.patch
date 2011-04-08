@@ -3291,18 +3291,6 @@ diff -Nuar boot-manager-3.0.0/src/bootmanager/about.py boot-manager/src/bootmana
 -aboutData.setProgramIconName("computer")
 +    # Use this if icon name is different than appName
 +    aboutData.setProgramIconName("computer")
-diff -Nuar boot-manager-3.0.0/src/bootmanager/about.pyc boot-manager/src/bootmanager/about.pyc
---- boot-manager-3.0.0/src/bootmanager/about.pyc	1970-01-01 02:00:00.000000000 +0200
-+++ boot-manager/src/bootmanager/about.pyc	2011-04-08 15:56:59.959000049 +0300
-@@ -0,0 +1,7 @@
-+Û
-+¢ùMc           @   sN  d  d l  Z d Z d Z d Z d Z d Z e j j e j	 j
-+ k rJd  d l m Z m Z m Z e e É Z e e É Z e j Z e d É Z e d É Z e Z e e e e e e e e e e e É
-+ Z e j e d	 É e d
-+ É É e j e d É e d É É e j e d É e d É É e j e d d É e d d É É e j d É n  d S(   iˇˇˇˇNs   Boot Managers   boot-managers   3.0.0s4   http://developer.pardus.org.tr/projects/boot-managers   bugs@pardus.org.tr(   t
-+   KAboutDatat   ki18nt   ki18ncs   (c) 2006-2011 TUBITAK/UEKAEs   G√∂kmen G√∂ksels   Current Maintainers   Bahadƒ±r Kandemirs   First Developers   Aydan Ta≈üdemirs   Pure Qt Supports   NAME OF TRANSLATORSs
-+   Your namess   EMAIL OF TRANSLATORSs   Your emailst   computer(   t   contextt   ctxt   PACKAGEt   appNamet   versiont   homePaget   bugEmailt   Pdst   sessiont   pdst   Kde4t   PyKDE4.kdecoreR    R   R   t   programNamet   descriptiont   License_GPLt   licenset	   copyrightt   Nonet   textt   catalogt	   aboutDatat	   addAuthort   setTranslatort   setProgramIconName(    (    (    s@   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/about.pyt   <module>   s&   	'"
-\ Dosya sonunda yenisatƒ±r yok.
 diff -Nuar boot-manager-3.0.0/src/bootmanager/config.py boot-manager/src/bootmanager/config.py
 --- boot-manager-3.0.0/src/bootmanager/config.py	2010-07-06 14:16:33.000000000 +0300
 +++ boot-manager/src/bootmanager/config.py	2011-04-08 15:56:59.959000049 +0300
@@ -3358,17 +3346,6 @@ diff -Nuar boot-manager-3.0.0/src/bootmanager/context.py boot-manager/src/bootma
 +    time_counter += 1
 +
 +
-diff -Nuar boot-manager-3.0.0/src/bootmanager/context.pyc boot-manager/src/bootmanager/context.pyc
---- boot-manager-3.0.0/src/bootmanager/context.pyc	1970-01-01 02:00:00.000000000 +0200
-+++ boot-manager/src/bootmanager/context.pyc	2011-04-08 15:56:59.959000049 +0300
-@@ -0,0 +1,6 @@
-+Û
-+œ®ùMc           @   sñ   d  d l  Z  d  d l Z d  d l m Z d  d l m Z e  j d d e ÉZ e j Z e e d e ÉZ	 e	 j
-+ Z d a e É  Z e É  a d Ñ  Z d S(	   iˇˇˇˇN(   t   time(   t   QIconLoaders   boot-managert   debugt
-+   forceCachei    c          C   sn   t  t j É  É }  t É  t } d t |  d d j d É d |  d d f G| G| t GH| a t d 7a d  S(   Ns   %s ::: %s:%si˛ˇˇˇi    t   /iˇˇˇˇi   (   t   listt	   tracebackt   extract_stackR    t
-+   start_timet   time_countert   splitt	   last_time(   t   tracet   diff(    (    sB   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/context.pyt   _time    s
-+    ;(   t   pdsR   R    t   pds.qiconloaderR   t   Pdst   Falset   i18nt   Truet   KIconLoadert   icont   KIconR	   R   R   R   (    (    (    sB   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/context.pyt   <module>   s   				
-\ Dosya sonunda yenisatƒ±r yok.
 diff -Nuar boot-manager-3.0.0/src/bootmanager/edit.py boot-manager/src/bootmanager/edit.py
 --- boot-manager-3.0.0/src/bootmanager/edit.py	2010-12-26 17:47:22.000000000 +0200
 +++ boot-manager/src/bootmanager/edit.py	2011-04-08 15:56:59.959000049 +0300
@@ -3473,13 +3450,6 @@ diff -Nuar boot-manager-3.0.0/src/bootmanager/edit.py boot-manager/src/bootmanag
 +    def setRam(self,ramname):
 +        EditWidget.setRamdisk(self,ramname)
 +
-diff -Nuar boot-manager-3.0.0/src/bootmanager/__init__.pyc boot-manager/src/bootmanager/__init__.pyc
---- boot-manager-3.0.0/src/bootmanager/__init__.pyc	1970-01-01 02:00:00.000000000 +0200
-+++ boot-manager/src/bootmanager/__init__.pyc	2011-04-08 15:56:59.959000049 +0300
-@@ -0,0 +1,2 @@
-+Û
-+â≥oMc           @   s   d  S(   N(    (    (    (    sC   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/__init__.pyt   <module>   s    
-\ Dosya sonunda yenisatƒ±r yok.
 diff -Nuar boot-manager-3.0.0/src/bootmanager/item.py boot-manager/src/bootmanager/item.py
 --- boot-manager-3.0.0/src/bootmanager/item.py	2010-12-02 12:35:21.000000000 +0200
 +++ boot-manager/src/bootmanager/item.py	2011-04-08 15:56:59.959000049 +0300
@@ -3753,13 +3723,6 @@ diff -Nuar boot-manager-3.0.0/src/boot-manager.py boot-manager/src/boot-manager.
 +
 +    # Run the application
 +    app.exec_()
-diff -Nuar boot-manager-3.0.0/src/__init__.pyc boot-manager/src/__init__.pyc
---- boot-manager-3.0.0/src/__init__.pyc	1970-01-01 02:00:00.000000000 +0200
-+++ boot-manager/src/__init__.pyc	2011-04-08 15:56:59.960000049 +0300
-@@ -0,0 +1,2 @@
-+Û
-+â≥oMc           @   s   d  S(   N(    (    (    (    s7   /home/aydan/COMAK/managers/boot-manager/src/__init__.pyt   <module>   s    
-\ Dosya sonunda yenisatƒ±r yok.
 diff -Nuar boot-manager-3.0.0/ui/edit.ui boot-manager/ui/edit.ui
 --- boot-manager-3.0.0/ui/edit.ui	2010-12-14 16:32:22.000000000 +0200
 +++ boot-manager/ui/edit.ui	2011-04-08 15:56:59.953000049 +0300
