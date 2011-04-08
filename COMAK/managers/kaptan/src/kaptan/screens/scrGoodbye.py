@@ -65,6 +65,13 @@ class Widget(QtGui.QWidget, Screen):
             a=subprocess.Popen("gnome-control-center")
             time.sleep(1)
             a.wait()
+        if ctx.Pds.session == ctx.pds.Xfce:
+            import subprocess
+            cmd_code=subprocess.Popen("xfce4-settings-manager")
+            time.sleep(1)
+            cmd_code.wait()
+            #import os 
+            #os.system("xfce4-settings-manager")
     def on_buttonHelpPages_clicked(self):
 	#self.procSettings = QProcess()
         #command = "openURL (" + self.helpPageUrl+")"
