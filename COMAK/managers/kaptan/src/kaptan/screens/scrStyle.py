@@ -67,7 +67,7 @@ class Widget(QtGui.QWidget, Screen):
         self.__class__.screenSettings["desktopNumber"]= defaultDesktopNumber
         self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
         if ctx.Pds.session.Name =="enlightenment":
-            dir = QDir("/usr/share/themes")
+            dir = QDir("/usr/share/enlightenment/data/themes")
             dir.setFilter( QDir.NoSymLinks | QDir.Files )
             a = QStringList()
             a.append("*.edj")
