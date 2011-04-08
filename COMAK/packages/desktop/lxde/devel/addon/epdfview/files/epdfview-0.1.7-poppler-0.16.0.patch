@@ -1,0 +1,27 @@
+--- configure.ac.poppler    2010-12-30 06:33:02.000000000 +0100
++++ configure.ac    2010-12-30 06:34:59.000000000 +0100
+@@ -52,6 +52,10 @@
+ if test "x$have_poppler_080" = "xyes"; then
+     AC_DEFINE([HAVE_POPPLER_0_8_0], [1], [Define to 1 if you have Poppler version 0.8.0 or higher.])
+ fi
++PKG_CHECK_EXISTS([poppler-glib >= 0.16], [have_poppler_0160=yes])
++if test "x$have_poppler_0160" = "xyes"; then
++    AC_DEFINE([HAVE_POPPLER_0_16_0], [1], [Define to 1 if you have Poppler version 0.16.0 or higher.])
++fi
+ 
+ EPDFVIEW_PATH_CUPS([CUPS], [have_cups=yes])
+ AM_CONDITIONAL(cups_printing, test "x$have_cups" = "xyes")
+--- src/PDFDocument.cxx.poppler 2010-12-30 06:31:53.000000000 +0100
++++ src/PDFDocument.cxx 2010-12-30 06:37:52.000000000 +0100
+@@ -685,7 +685,10 @@
+                                   (pageHeight - rect->getY1() / getZoom())};
+     repairEmpty(textRect);
+ 
+-#if defined (HAVE_POPPLER_0_6_0)
++#if defined (HAVE_POPPLER_0_16_0)
++    gchar *text = poppler_page_get_selected_text(page,
++            POPPLER_SELECTION_GLYPH, &textRect);
++#elif defined (HAVE_POPPLER_0_6_0)
+     gchar *text = poppler_page_get_text(page, POPPLER_SELECTION_GLYPH,
+             &textRect);
+ #else // !HAVE_POPPLER_0_6_0
