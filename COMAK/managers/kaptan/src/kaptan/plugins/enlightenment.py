@@ -232,7 +232,7 @@ class Style(base.Style):
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
         data = decrypt_conf("e.cfg")
-        styleDir = "/usr/share/themes/%s"%styleName
+        styleDir = "/usr/share/enlightenment/data/themes/%s"%styleName
         theme_pattern = r'(group "themes" list [{][^}]*[}][^}]*[}])'
         replace ='''group "themes" list {
             group "E_Config_Theme" struct {
