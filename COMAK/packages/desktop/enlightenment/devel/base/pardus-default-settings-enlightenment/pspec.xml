@@ -12,14 +12,14 @@
         <IsA>data</IsA>
         <Summary>Pardus default settings for Enlightenment</Summary>
         <Description>This package contains the Enlightenment default settings for Pardus.</Description>
-        <Archive sha1sum="c3b4d38f125a345993f349520e58be88bbf5ede4" type="targz">http://comak.comu.edu.tr/source/pardus-default-settings-enlightenment-0.0.2.tar.gz</Archive>
+        <Archive sha1sum="cc076999f825f39b2a7a39293135745b302c812b" type="targz">http://comak.comu.edu.tr/source/pardus-default-settings-enlightenment-0.0.2.tar.gz</Archive>
     </Source>
 
     <Package>
         <Name>pardus-default-settings-enlightenment</Name>
         <RuntimeDependencies>
-            <!--Dependency>elsa</Dependency-->
             <Dependency>enlightenment</Dependency>
+            <Dependency>slim</Dependency>
         </RuntimeDependencies>
         <Conflicts>
             <Package>pardus-default-settings</Package>
@@ -35,6 +35,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-04-08</Date>
+            <Version>0.0.2</Version>
+            <Comment>Use slim instead of elsa.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-17</Date>
             <Version>0.0.1</Version>
