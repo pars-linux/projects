@@ -26,8 +26,8 @@ else:
 # UI
 from diskmanager.ui_item import Ui_ItemWidget
 
-
 class ItemListWidgetItem(QtGui.QListWidgetItem):
+
     def __init__(self, parent, widget):
         QtGui.QListWidgetItem.__init__(self, parent)
         self.widget = widget
@@ -39,8 +39,8 @@ class ItemListWidgetItem(QtGui.QListWidgetItem):
     def getType(self):
         return self.widget.getType()
 
-
 class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
+
     def __init__(self, parent, id_, title="", description="", type_=None, icon=None, state=None):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
@@ -55,7 +55,8 @@ class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
             self.setIcon(icon)
         else:
             self.labelIcon.hide()
-        if state != None:
+
+        if not state:
             self.setState(state)
         else:
             self.checkState.hide()
@@ -97,14 +98,11 @@ class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
         return self.checkState.checkState()
 
     def setState(self, state):
-        if state == True:
-            state = QtCore.Qt.Checked
-        elif state == False:
-            state = QtCore.Qt.Unchecked
-        return self.checkState.setCheckState(state)
+        return self.checkState.setCheckState(QtCore.Qt.Checked if state == True else QtCore.Qt.Unchecked)
 
     def hideEdit(self):
         self.pushEdit.hide()
 
     def hideDelete(self):
         self.pushDelete.hide()
+

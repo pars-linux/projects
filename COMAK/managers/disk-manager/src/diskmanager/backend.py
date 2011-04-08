@@ -15,6 +15,7 @@
 import comar
 
 class Interface:
+
     def __init__(self):
         self.link = comar.Link()
         self.link.setLocale()
@@ -97,3 +98,4 @@ class Interface:
 
     def umount(self, device):
         self.link.Disk.Manager[self.package].umount(device)
+
