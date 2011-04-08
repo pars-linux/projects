@@ -1,6 +1,6 @@
 diff -Nuar e.orig/src/bin/e_startup.c e/src/bin/e_startup.c
---- e.orig/src/bin/e_startup.c	2011-03-31 18:13:33.742000089 +0300
-+++ e/src/bin/e_startup.c	2011-03-31 18:28:47.641000089 +0300
+--- e.orig/src/bin/e_startup.c	2011-04-08 12:09:00.140300001 +0300
++++ e/src/bin/e_startup.c	2011-04-08 12:52:51.269077477 +0300
 @@ -7,6 +7,7 @@
  
  /* local subsystem functions */
@@ -9,32 +9,24 @@ diff -Nuar e.orig/src/bin/e_startup.c e/src/bin/e_startup.c
  static void _e_startup_next_cb(void *data);
  static Eina_Bool _e_startup_event_cb(void *data, int ev_type, void *ev);
  
-@@ -20,9 +21,11 @@
+@@ -20,7 +21,7 @@
  e_startup(E_Startup_Mode mode)
  {
     char buf[PATH_MAX];
 -
 +   char xdg_path[PATH_MAX] = "/etc/xdg/autostart";
-+   int startup = -1;
     if (mode == E_STARTUP_START)
       {
-+    startup = 1;
  	e_user_dir_concat_static(buf, "applications/startup/.order");
- 	if (!ecore_file_exists(buf))
- 	  e_prefix_data_concat_static(buf, "data/applications/startup/.order");
-@@ -38,6 +41,11 @@
+@@ -38,6 +39,7 @@
                                _e_startup_event_cb,
                                strdup(buf));
     e_init_undone();
-+   if (startup == 1)
-+   {
-+      _e_autostart_xdg(xdg_path);
-+   }
-+
++   _e_autostart_xdg(xdg_path);
  }
  
  /* local subsystem functions */
-@@ -69,6 +77,67 @@
+@@ -69,6 +71,69 @@
  }
  
  static void
@@ -50,16 +42,15 @@ diff -Nuar e.orig/src/bin/e_startup.c e/src/bin/e_startup.c
 +
 +    http://standards.freedesktop.org/menu-spec/latest/apb.html
 +    */
-+    const char *startup_application1 = "Kaptan";
-+    const char *gnome = "GNOME";
++    const char *desktop_environment = "KDE";
 +
 +    files = ecore_file_ls(dir);
 +    if(!files) return;
 +
 +    EINA_LIST_FREE(files, file)
 +    {
-+        //unsigned int app_found = 0;
-+        //unsigned int de_count = 0;
++        unsigned int kde_found = 0;
++        unsigned int de_count = 0;
 +        char file_path[PATH_MAX];
 +
 +        snprintf(file_path, sizeof(file_path), "%s/%s", dir, file);
@@ -73,30 +64,33 @@ diff -Nuar e.orig/src/bin/e_startup.c e/src/bin/e_startup.c
 +
 +        /* skip if the desktop file is not valid */
 +        if (desktop == NULL) continue;
-+        //de_count = eina_list_count(desktop->only_show_in);
-+        //if ((!desktop->only_show_in ) && (!desktop->not_show_in))
-+        //{
-+        //    e_exec(NULL, desktop, NULL, NULL, NULL);
-+        //}
++
++        de_count = eina_list_count(desktop->only_show_in);
++
++        if ((!desktop->only_show_in ) && (!desktop->not_show_in))
++        {
++            e_exec(NULL, desktop, NULL, NULL, NULL);
++        }
 +
 +        /*
 +        Ignore NotShowIn entry, handle OnlyShowIn entries only. We dont
 +        want KDE for now, other DE's are just fine with us :)
 +        */
-+        //EINA_LIST_FREE(desktop->only_show_in, only_show_in_val)
-+        //{
-+        if (strcmp(desktop->name, startup_application1)==0)
++        EINA_LIST_FREE(desktop->only_show_in, only_show_in_val)
++        {
++            if (!strcmp(only_show_in_val, desktop_environment))
++            {
++                kde_found = 1;
++            }
++        }
++        /* check the length of the list to prevent multiple execution of the same desktop file */
++        if ((de_count > 0) && (kde_found == 0))
 +        {
 +            e_exec(NULL, desktop, NULL, NULL, NULL);
 +        }
-+        //}
-+        /* check the length of the list to prevent multiple execution of the same desktop file */
-+        //if ((de_count > 0) && (app_found == 1))
-+        //{
-+        //    e_exec(NULL, desktop, NULL, NULL, NULL);
-+        //}
 +    }
 +}
++
 +
 +static void
  _e_startup_next_cb(void *data __UNUSED__)
