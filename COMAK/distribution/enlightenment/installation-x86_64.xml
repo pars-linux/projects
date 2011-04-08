@@ -97,7 +97,6 @@
         <SelectedPackage>lsscsi</SelectedPackage>
         <SelectedPackage>lvm2</SelectedPackage>
         <SelectedPackage>lvm2-static</SelectedPackage>
-        <SelectedPackage>lxdm</SelectedPackage>
         <SelectedPackage>mc</SelectedPackage>
         <SelectedPackage>mdadm</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
@@ -855,6 +854,7 @@
         <Package>python-evas</Package>
         <Package>python-foolscap</Package>
         <Package>python-gtk</Package>
+        <Package>python-imaging</Package>
         <Package>python-nose</Package>
         <Package>python-numpy</Package>
         <Package>python-orbit</Package>
@@ -865,6 +865,8 @@
         <Package>python-qt</Package>
         <Package>python-setuptools</Package>
         <Package>python-simplejson</Package>
+        <Package>python-tk</Package>
+        <Package>python-v4l2capture</Package>
         <Package>python-xlib</Package>
         <Package>python-zope-interface</Package>
         <Package>qt</Package>
@@ -902,6 +904,7 @@
         <Package>skey</Package>
         <Package>slang</Package>
         <Package>slf4j</Package>
+        <Package>slim</Package>
         <Package>slv2</Package>
         <Package>smolt</Package>
         <Package>smpeg</Package>
