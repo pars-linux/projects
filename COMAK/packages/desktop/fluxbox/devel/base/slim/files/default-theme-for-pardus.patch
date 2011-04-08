@@ -10,16 +10,3 @@ diff -Nuar slim-1.3.2.orig//slim.conf slim-1.3.2/slim.conf
  
  # Lock file, /etc/init.d/xdm expects slim.pid
  lockfile            /var/run/slim.pid
-diff -Nuar slim-1.3.2.orig//Makefile slim-1.3.2/Makefile
---- slim-1.3.2.orig//Makefile	2011-03-01 23:23:23.876000019 +0200
-+++ slim-1.3.2/Makefile	2011-03-01 23:24:01.607000020 +0200
-@@ -67,3 +67,9 @@
- 		 $(DESTDIR)$(PREFIX)/share/slim/themes/default/panel.png
- 	install -D -m 644 themes/default/background.jpg \
- 		 $(DESTDIR)$(PREFIX)/share/slim/themes/default/background.jpg
-+	install -D -m 644 themes/pardus/slim.theme \
-+		 $(DESTDIR)$(PREFIX)/share/slim/themes/pardus/slim.theme
-+	install -D -m 644 themes/pardus/panel.png \
-+		 $(DESTDIR)$(PREFIX)/share/slim/themes/pardus/panel.png
-+	install -D -m 644 themes/pardus/background.jpg \
-+		 $(DESTDIR)$(PREFIX)/share/slim/themes/pardus/background.jpg
