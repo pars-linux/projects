@@ -185,10 +185,6 @@ class Install(install):
             print "Installing help files..."
             os.system("cp -R help %s/" % project_dir)
 
-        # Rename
-        # print "Renaming application.py..."
-        # shutil.move(os.path.join(project_dir, "main.py"), os.path.join(project_dir, "%s.py" % PROJECT))
-
         # Modes
         print "Changing file modes..."
         os.chmod(os.path.join(project_dir, "%s.py" % PROJECT), 0755)
@@ -224,6 +220,8 @@ class Uninstall(Command):
         print 'Uninstalling ...'
         remove(project_dir)
         remove(apps_dir +"/%s.desktop" % PROJECT)
+        os.unlink(os.path.join(bin_dir, PROJECT))
+
         if FOR_KDE_4:
             remove(services_dir +"/kcm_%s.desktop" % PROJECT)
         for filename in glob.glob1('po', '*.po'):
