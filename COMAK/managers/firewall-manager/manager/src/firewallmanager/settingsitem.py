@@ -1,9 +1,7 @@
-#ifndef SETTINGSITEM.PY
-#define SETTINGSITEM.PY
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2009 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -23,6 +21,7 @@ from firewallmanager.ui_settingsitem import Ui_SettingsItemWidget
 
 
 class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
+
     def __init__(self, parent, name, type_):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
@@ -114,7 +113,6 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
             self.pushUp.setEnabled(0)
             self.pushDown.setEnabled(0)
 
-    #TODO Create backend file for listWidget 
     def funcpushDown(self):
         self.listWidget.setCurrentRow(self.listWidget.currentRow()+1)
         degisken = self.listWidget.currentItem().text()
@@ -172,4 +170,3 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
             return " ".join(items)
         elif self.type == "text":
             return unicode(self.lineItem.text())
-#endif // SETTINGSITEM.PY

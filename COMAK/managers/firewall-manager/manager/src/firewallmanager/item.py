@@ -21,8 +21,8 @@ from context import *
 # UI
 from firewallmanager.ui_item import Ui_ItemWidget
 
-
 class ItemListWidgetItem(QtGui.QListWidgetItem):
+
     def __init__(self, parent, widget):
         QtGui.QListWidgetItem.__init__(self, parent)
         self.widget = widget
@@ -36,6 +36,7 @@ class ItemListWidgetItem(QtGui.QListWidgetItem):
 
 
 class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
+
     def __init__(self, parent, id_, title="", description="", type_=None, icon=None, state=None):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)

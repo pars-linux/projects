@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2009 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -14,9 +14,7 @@
 # PyQt
 from PyQt4 import QtCore
 from PyQt4 import QtGui
-
-#Context
-from context import *
+from context import * 
 # UI
 from firewallmanager.ui_service import Ui_ServiceWidget
 

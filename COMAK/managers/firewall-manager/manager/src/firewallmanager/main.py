@@ -14,6 +14,7 @@
 # PyQt
 from PyQt4 import QtCore
 from PyQt4 import QtGui
+
 # UI
 from firewallmanager.ui_main import Ui_MainWidget
 
@@ -32,9 +33,8 @@ from firewallmanager.service import ServiceWidget
 # Page Dialog
 from firewallmanager.pagedialog import PageDialog
 
-#Context 
+# Context 
 import context as ctx
-from context import *
 
 class MainWidget(QtGui.QWidget, Ui_MainWidget):
     def __init__(self, parent, embed=False):
@@ -91,7 +91,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             Check if there are packages that provide required backend.
         """
         if not len(self.iface.getPackages()):
-            createMessage(self,"Error","There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly.")
+            ctx.createMessage(self,"Error","There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly.")
             return False
         return True
 
@@ -147,7 +147,7 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
         type_ = ""
 
         # Build widget and widget item
-        widget = self.makeItemWidget(id_, name, description, type_,KIcon(icon), state)
+        widget = self.makeItemWidget(id_, name, description, type_,ctx.KIcon(icon), state)
         widgetItem = ItemListWidgetItem(self.listItems, widget)
 
         # Rules are static
@@ -252,9 +252,9 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             self.iface.setModuleState(widget.getId(), state == QtCore.Qt.Checked)
         except Exception, e:
             if "Comar.PolicyKit" in e._dbus_error_name:
-                createMessage(self,"Error","Access denied.")
+                ctx.createMessage(self,"Error","Access denied.")
             else:
-                createMessage(self,"Error", unicode(e))
+                ctx.createMessage(self,"Error", unicode(e))
             self.buildItemList()
 
     def slotItemEdit(self):
@@ -275,9 +275,9 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
                 self.iface.setModuleParameters(widget.getId(), dialog.getValues())
             except Exception, e:
                 if "Comar.PolicyKit" in e._dbus_error_name:
-                    createMessage(self,"Error","Access denied.")
+                    ctx.createMessage(self,"Error","Access denied.")
                 else:
-                    createMessage(self,"Error", unicode(e))
+                    ctx.createMessage(self,"Error", unicode(e))
 
     def slotItemDelete(self):
         """
@@ -312,9 +312,9 @@ class MainWidget(QtGui.QWidget, Ui_MainWidget):
             self.iface.setState(state)
         except Exception, e:
             if "Comar.PolicyKit" in e._dbus_error_name:
-                createMessage(self,"Error", "Access denied.")
+                ctx.createMessage(self,"Error", "Access denied.")
             else:
-                createMessage(self,"Error", unicode(e))
+                ctx.createMessage(self,"Error", unicode(e))
         self.widgetService.setEnabled(True)
 
     def slotAnimate(self, frame):

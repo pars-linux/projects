@@ -14,8 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.6.1\n"
 
 #: data/firewall-manager.desktop.in.h:1
@@ -32,12 +31,12 @@ msgid "(c) 2006-2010 TUBITAK/UEKAE"
 msgstr "© 2006–2010 TUBITAK/UEKAE"
 
 #: src/firewallmanager/about.py:34
-msgid "Gökmen Göksel"
-msgstr "Gökmen Göksel"
-
-#: src/firewallmanager/about.py:34
 msgid "Current Maintainer"
 msgstr "Теперішній супровідник"
+
+#: src/firewallmanager/about.py:34
+msgid "Gökmen Göksel"
+msgstr "Gökmen Göksel"
 
 #: src/firewallmanager/about.py:35
 msgid "Bahadır Kandemir"
@@ -48,14 +47,18 @@ msgid "First Developer"
 msgstr "Засновник"
 
 #: src/firewallmanager/about.py:36
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "ted.korostiled@gmail.com"
+
+#: src/firewallmanager/about.py:36
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Daniel Korostil"
 
-#: src/firewallmanager/about.py:36
-msgctxt "EMAIL OF TRANSLATORS"
-msgid "Your emails"
-msgstr "ted.korostiled@gmail.com"
+#: src/firewallmanager/main.py:94
+msgid "Error"
+msgstr "Помилка"
 
 #: src/firewallmanager/main.py:96
 msgid ""
@@ -78,13 +81,17 @@ msgstr "Дія"
 msgid "Access denied."
 msgstr "Доступ заборонено."
 
-#: src/firewallmanager/main.py:94
-msgid "Error"
-msgstr "Помилка"
-
 #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
 msgid "Settings"
 msgstr "Налаштування"
+
+#: src/firewallmanager/pagedialog.py:67
+msgid "Ok"
+msgstr "добре"
+
+#: src/firewallmanager/pagedialog.py:71
+msgid "Cancel"
+msgstr "Скасувати"
 
 #: src/firewallmanager/service.py:38
 msgid "Firewall is activated."
@@ -118,27 +125,18 @@ msgstr "Вилучити"
 msgid "Add New"
 msgstr "Додати новий"
 
-#: ui/ui_settingsitem:78
+#: ui/ui_settingsitem.py:78
 msgid "Add"
 msgstr "Додати"
 
-#: ui/ui_settingsitem:79
-msgid "Remove"
-msgstr "Видалити"
-
-#: ui/ui_settingsitem:80
-msgid "Move Up"
-msgstr "Вгору"
-
-#: ui/ui_settingsitem:81
+#: ui/ui_settingsitem.py:78
 msgid "Move Down"
 msgstr "Вниз"
 
-#: src/firewallmanager/pagedialog.py:67
-msgid "Ok"
-msgstr "добре"
+#: ui/ui_settingsitem.py:78
+msgid "Move Up"
+msgstr "Вгору"
 
-#: src/firewallmanager/pagedialog.py:71
-msgid "Cancel"
-msgstr "Скасувати"
-
+#: ui/ui_settingsitem.py:78
+msgid "Remove"
+msgstr "Видалити"
