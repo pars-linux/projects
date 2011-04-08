@@ -13,6 +13,7 @@
         <Summary>Pardus default settings for Enlightenment</Summary>
         <Description>This package contains the Enlightenment default settings for Pardus.</Description>
         <Archive sha1sum="cc076999f825f39b2a7a39293135745b302c812b" type="targz">http://comak.comu.edu.tr/source/pardus-default-settings-enlightenment-0.0.2.tar.gz</Archive>
+        <Archive sha1sum="c91f905f4d919d6439e19e7909fdc97e29a329e9" type="targz" target="pardus-default-settings-enlightenment-0.0.2/">http://comak.comu.edu.tr/source/pardus-enlightenment-slim-theme.tar.gz</Archive>
     </Source>
 
     <Package>
@@ -28,6 +29,7 @@
         </Conflicts>
         <Files>
             <Path fileType="config">/etc</Path>
+            <Path fileType="data">/usr/share/slim/themes</Path>
         </Files>
         <Provides>
             <COMAR script="package.py">System.Package</COMAR>
