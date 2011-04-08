@@ -1,600 +1,3135 @@
-diff -Naur '--exclude=help' boot-manager-orig//po/da.po boot-manager-comak//po/da.po
---- boot-manager-orig//po/da.po	2010-11-29 23:17:54.000000000 +0200
-+++ boot-manager-comak//po/da.po	2011-03-03 14:42:33.526000023 +0200
-@@ -65,6 +65,10 @@
+diff -Nuar boot-manager-3.0.0/po/az.po boot-manager/po/az.po
+--- boot-manager-3.0.0/po/az.po	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/az.po	2011-04-08 15:56:59.954000049 +0300
+@@ -7,7 +7,7 @@
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:19+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: LANGUAGE <LL@li.org>\n"
+@@ -16,115 +16,130 @@
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr ""
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++#, fuzzy
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Gökmen Göksel"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
++
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:39
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr ""
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++msgid "All Files"
++msgstr ""
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
+ msgid "All Items"
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
+ msgid "Do you want to delete '%1'?"
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:337
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
++msgid "Remove items"
++msgstr ""
++
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++msgid "Access denied"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
+ msgid "Title"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr ""
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr ""
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
+ msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr ""
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr ""
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr ""
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr ""
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr ""
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr ""
+ 
+diff -Nuar boot-manager-3.0.0/po/boot-manager.pot boot-manager/po/boot-manager.pot
+--- boot-manager-3.0.0/po/boot-manager.pot	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/boot-manager.pot	2011-04-08 15:56:59.956000049 +0300
+@@ -8,7 +8,7 @@
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: LANGUAGE <LL@li.org>\n"
+@@ -17,116 +17,129 @@
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr ""
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Gökmen Göksel"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
++
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr ""
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++msgid "All Files"
++msgstr ""
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
+ msgid "All Items"
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
++msgid "Remove items"
++msgstr ""
++
++#: src/bootmanager/main.py:350
+ msgid "Do you want to delete '%1'?"
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:337
+-msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++msgid "Access denied"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
+ msgid "Title"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr ""
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr ""
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
+ msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:146
+-msgid ""
+-"File that contains a micro operating system for preloading kernel modules."
+-msgstr ""
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr ""
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr ""
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr ""
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr ""
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr ""
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr ""
+ 
+diff -Nuar boot-manager-3.0.0/po/da.po boot-manager/po/da.po
+--- boot-manager-3.0.0/po/da.po	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/da.po	2011-04-08 15:56:59.956000049 +0300
+@@ -7,7 +7,7 @@
+ msgstr ""
+ "Project-Id-Version: boot-manager\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:19+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2009-08-18 22:32+0200\n"
+ "Last-Translator: Peter Lyberth <peterjensen84@gmail.com>\n"
+ "Language-Team: Danish <  pardus-translators@pardus.org.tr>\n"
+@@ -18,46 +18,65 @@
+ "X-Generator: Lokalize 0.3\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr ""
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Opstartsindlæser"
+ 
+-#: src/bootmanager/about.py:26
++#: src/bootmanager/about.py:30
+ #, fuzzy
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-2009 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Nuværende vedligeholder"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Gökmen Göksel"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
++
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:39
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr ""
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Fil System"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Alle elementer"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -65,71 +84,68 @@
  "Der er ikke nogen pakker der kan agere backend for dette program.\n"
  "Kontroller venligst at de nødvendige pakker er installeret og konfigureret korrekt."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Paket Hatası"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Alle elementer"
-@@ -73,10 +77,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Vil du slette '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Fjerne elementer"
 +
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Adgang nægtet."
  
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Ja"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "Ingen"
-+
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Fil System"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Titel"
-diff -Naur '--exclude=help' boot-manager-orig//po/de.po boot-manager-comak//po/de.po
---- boot-manager-orig//po/de.po	2011-01-04 22:52:32.000000000 +0200
-+++ boot-manager-comak//po/de.po	2011-03-03 14:42:33.529000022 +0200
-@@ -67,6 +67,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Navne på det opstartspunkt der vises i opstartsmenuen."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Enhed"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Enhed der indeholder et operativsystem."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Kerne"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Operativsystemets kerne."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ramdisk fil"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Fil som indeholder et minimalt operativsystem til indlæsning af kernemoduler."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Opstarts muligheder"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Opstarts muligheder for operativsystemet."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Aktiver eller deaktivér punktet som værende standard opstartspunkt"
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Rediger"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Slet"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Tilføj ny"
+ 
+@@ -137,5 +153,26 @@
+ msgid "Boot menu display time:"
+ msgstr "Visningstid for opstartsmenuen:"
+ 
++#~ msgid "Package Error"
++#~ msgstr "Paket Hatası"
++
++#~ msgid "Yes"
++#~ msgstr "Ja"
++
++#~ msgid "No"
++#~ msgstr "Ingen"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Enhed der indeholder et operativsystem."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Operativsystemets kerne."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Fil som indeholder et minimalt operativsystem til indlæsning af kernemoduler."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Adgang nægtet."
+diff -Nuar boot-manager-3.0.0/po/de.po boot-manager/po/de.po
+--- boot-manager-3.0.0/po/de.po	2011-01-04 22:52:32.000000000 +0200
++++ boot-manager/po/de.po	2011-04-08 15:56:59.957000049 +0300
+@@ -1,65 +1,84 @@
+ # translation to de (german)
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-# 
++#
+ # Stefan Wilhelm <sw1976de at googlemail dot com>, 2009.
+ # Klemens Häckel <click3d at linuxmail (dot) org>, 2010.
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: de\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2010-01-11 22:24-0300\n"
+ "Last-Translator: Klemens Häckel <click3d at linuxmail (dot) org>\n"
+ "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
++"Language: es\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: es\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ "X-Poedit-Language: German\n"
+ "X-Poedit-Country: GERMANY\n"
+ "X-Generator: Lokalize 0.3\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Verwaltung der Menüeinträge beim Systemstart (GRUB)."
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Boot-Menü"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
+-msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+-
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
++#: src/bootmanager/about.py:30
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
++msgstr "(c) 2006-2011 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Aktueller Betreuer"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Hauptentwickler"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Stefan Wilhelm"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr "Aydan Taşdemir"
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "sw@pardususer.de"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Stefan Wilhelm"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Datei system"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Alle Elemente"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -67,73 +86,70 @@
  "Für das Backend dieser Applikation sind keine Pakete vorhanden.\n"
  "Bitte stellen Sie sicher, dass die erforderlichen Pakete installiert und korrekt konfiguriert sind."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Package Error"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Alle Elemente"
-@@ -75,10 +79,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Wollen Sie '%1' löschen?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Elemente entfernen"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Ja"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "Keine"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Zugriff verweigert."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Datei system"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Titel"
-diff -Naur '--exclude=help' boot-manager-orig//po/es.po boot-manager-comak//po/es.po
---- boot-manager-orig//po/es.po	2010-12-20 21:01:31.000000000 +0200
-+++ boot-manager-comak//po/es.po	2011-03-03 14:42:33.505000022 +0200
-@@ -65,6 +65,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Boot-Eintrag, wie er im Boot-Menü dargestellt wird."
+ 
+ # Partition, Festplatte oder Platte?
+ # In Pardus 2008 vermutlich "Wurzel" genannt
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Partition"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Partition mit dem Betriebssystem."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Kernel"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Kernel des Betriebssystems."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ramdisk Datei"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Datei enthält ein Micro-Betriebssystem um Kernelmodule vorab zu laden."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Boot-Optionen"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Boot-Optionen für das Betriebssystem."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Als Standard Booteintrag setzen."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Bearbeiten"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Löschen"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Neu hinzufügen"
+ 
+@@ -141,5 +157,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Zeit, die das Bootmenü angezeigt wird:"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Verwaltung der Menüeinträge beim Systemstart (GRUB)."
++
++#~ msgid "Package Error"
++#~ msgstr "Package Error"
++
++#~ msgid "Yes"
++#~ msgstr "Ja"
++
++#~ msgid "No"
++#~ msgstr "Keine"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Partition mit dem Betriebssystem."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Kernel des Betriebssystems."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Datei enthält ein Micro-Betriebssystem um Kernelmodule vorab zu laden."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Zugriff verweigert."
+diff -Nuar boot-manager-3.0.0/po/es.po boot-manager/po/es.po
+--- boot-manager-3.0.0/po/es.po	2010-12-20 21:01:31.000000000 +0200
++++ boot-manager/po/es.po	2011-04-08 15:56:59.954000049 +0300
+@@ -2,62 +2,81 @@
+ # Boot Manager.
+ # Copyright (C) 2006-2009, TÜBİTAK/UEKAE
+ # This file is distributed under the same license as the Boot Manager package.
+-# 
++#
+ # Bahadır Kandemir <bahadir@pardus.org.tr>, 2009.
+ # Klemens Häckel <click3d at linuxmail dot org>, 2009.
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: es\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2009-06-30 21:13-0400\n"
+ "Last-Translator: Klemens Häckel <click3d at linuxmail dot org>\n"
+ "Language-Team: Spanish <es@li.org>\n"
++"Language: es\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: es\n"
+ "X-Generator: KBabel 1.11.4\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Un programa para configurar el cargador de arranque"
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Administrador de Arranque"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
+-msgstr ""
+-
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
++#: src/bootmanager/about.py:30
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Mantenedor actual"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr ""
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Desarrollador inicial"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Klemens Häckel"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "click3d (at) linuxmail.org"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Klemens Häckel"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Del sistema de archivos"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Todos"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -65,72 +84,69 @@
  "No hay aplicativo que respalda las funciones de esta pantalla.\n"
  "Por favor asegúrese que los paquetes respectivos estén instalados y configurados de manera correcta."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Paquete de error"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Todos"
-@@ -73,10 +77,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Desea eliminar '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Eliminar elementos"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Si"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "No"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Acceso denegado."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Del sistema de archivos"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Titulo"
-diff -Naur '--exclude=help' boot-manager-orig//po/fr.po boot-manager-comak//po/fr.po
---- boot-manager-orig//po/fr.po	2010-11-29 23:17:54.000000000 +0200
-+++ boot-manager-comak//po/fr.po	2011-03-03 14:42:33.526000023 +0200
-@@ -63,6 +63,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Nombre del ítem para mostrar en el menú de arranque."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Disco"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Disco que alberga el sistema operativo."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Núcleo (kernel)"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Kernel del sistema operativo."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Archivo Ramdisk"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Archivo con un sistema operativo mínimo, para cargar los módulos del kernel."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Opciones de Arranque"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Opciones de arranque para el sistema operativo."
+ 
+ # favor revisar - o sencillamente "arranque por omision" ?
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Marcar como arranque por omisión."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Modificar "
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Eliminar"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Agregar Nuevo"
+ 
+@@ -138,5 +154,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Duración de presentación del menú:"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Un programa para configurar el cargador de arranque"
++
++#~ msgid "Package Error"
++#~ msgstr "Paquete de error"
++
++#~ msgid "Yes"
++#~ msgstr "Si"
++
++#~ msgid "No"
++#~ msgstr "No"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Disco que alberga el sistema operativo."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Kernel del sistema operativo."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Archivo con un sistema operativo mínimo, para cargar los módulos del kernel."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Acceso denegado."
+diff -Nuar boot-manager-3.0.0/po/fr.po boot-manager/po/fr.po
+--- boot-manager-3.0.0/po/fr.po	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/fr.po	2011-04-08 15:56:59.956000049 +0300
+@@ -1,61 +1,81 @@
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-# 
++#
+ # Philippe Svetoslavsky <philsvet@gmail.com>, 2009.
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: boot-manager\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2009-08-19 02:04+0200\n"
+ "Last-Translator: Philippe Svetoslavsky <philsvet@gmail.com>\n"
+ "Language-Team: French <kde-i18n-doc@kde.org>\n"
++"Language: fr\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: fr\n"
+ "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+ "X-Generator: Lokalize 0.3\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Une application de gestion du chargeur de démarrage."
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Démarrage du système"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++#, fuzzy
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
+-
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Mainteneur actuel"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Premier développeur"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Votre nom"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "Votre courriel"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Votre nom"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Système de fichiers"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Tous les items"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -63,71 +83,68 @@
  "Cette application n'existe pas en version utilisable dans une console.\n"
  "Merci de vous assurer que les paquets sont correctement installés et configurés."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Erreur Package"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Tous les items"
-@@ -71,10 +75,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Voulez-vous supprimer '%1' ?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Supprimer des éléments"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Oui"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "Pas"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Accès refusé."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Système de fichiers"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Titre"
-diff -Naur '--exclude=help' boot-manager-orig//po/hu.po boot-manager-comak//po/hu.po
---- boot-manager-orig//po/hu.po	2010-12-01 15:48:08.000000000 +0200
-+++ boot-manager-comak//po/hu.po	2011-03-03 14:42:33.528000022 +0200
-@@ -64,6 +64,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Nom de l'entrée à afficher dans le menu de démarrage."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Disque"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Disque contenant le système d'exploitation."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Noyau"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Noyau du système d'exploitation."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Fichier RAM-disque"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Fichier contenant un micro système d'exploitation pour précharger les modules du noyau."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Options de démarrage du PC"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Options de démarrage du système d'exploitation."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Marquer comme entrée de démarrage par défaut."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Modifier"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Supprimer"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Ajouter un nouveau"
+ 
+@@ -135,5 +152,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Durée d'affichage du menu de démarrage :"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Une application de gestion du chargeur de démarrage."
++
++#~ msgid "Package Error"
++#~ msgstr "Erreur Package"
++
++#~ msgid "Yes"
++#~ msgstr "Oui"
++
++#~ msgid "No"
++#~ msgstr "Pas"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Disque contenant le système d'exploitation."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Noyau du système d'exploitation."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Fichier contenant un micro système d'exploitation pour précharger les modules du noyau."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Accès refusé."
+diff -Nuar boot-manager-3.0.0/po/hu.po boot-manager/po/hu.po
+--- boot-manager-3.0.0/po/hu.po	2010-12-01 15:48:08.000000000 +0200
++++ boot-manager/po/hu.po	2011-04-08 15:56:59.956000049 +0300
+@@ -2,61 +2,81 @@
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+ # Daniel Kovács <bicskas9323@gmail.com>, 2010.
+-# 
++#
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: boot-manager Pardus 2009\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2010-11-26 13:02+0100\n"
+ "Last-Translator: Attila Siposs <sipiatti@gmail.com>\n"
+ "Language-Team: HUNGARIAN\n"
++"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: \n"
+ "X-Poedit-Language: Hungarian\n"
+ "X-Poedit-Country: HUNGARY\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Alkalmazás a rendszertöltő kezeléséhez"
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Rendszerindítás kezelő"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++#, fuzzy
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
+-
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Aktuális karbantartó"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Vezető fejlesztő"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Daniel Kovács, Attila Siposs"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "bicskas9323@gmail.com, sipiatti@gmail.com"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Daniel Kovács, Attila Siposs"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Fájl Rendszer"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Minden elem"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -64,71 +84,68 @@
  "Nincs csomag, amely hátteret biztosítana ennek az alkalmazásnak. \n"
  "Kérlek telepítsd fel a szükséges csomagot és állítsd be helyesen."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Csomag Hiba"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Minden elem"
-@@ -72,10 +76,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Biztosan törölni akarja ezt: '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Elemek eltávolítása"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Igen"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "Nincs"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Hozzáférés megtagadva."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Fájl Rendszer"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Cím"
-diff -Naur '--exclude=help' boot-manager-orig//po/it.po boot-manager-comak//po/it.po
---- boot-manager-orig//po/it.po	2010-12-14 16:11:23.000000000 +0200
-+++ boot-manager-comak//po/it.po	2011-03-03 14:42:33.528000022 +0200
-@@ -69,6 +69,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Bejegyzés neve az indító menüben."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Lemez"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Operációs rendszert tartalmazó lemez."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Kernel"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Operációs rendszer kernel."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ramdisk fájl"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "A fájl, amely egy mikro operációs rendszert tartalmaz a kernel-modulok előtöltéséhez."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Indítási opciók"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Az operációs rendszer indítási opciói"
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Bejegyzés alapértelmezettként történő beállítása."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Szerkesztés"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Törlés"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Új hozzáadása"
+ 
+@@ -136,5 +153,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Boot menü várakozási ideje:"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Alkalmazás a rendszertöltő kezeléséhez"
++
++#~ msgid "Package Error"
++#~ msgstr "Csomag Hiba"
++
++#~ msgid "Yes"
++#~ msgstr "Igen"
++
++#~ msgid "No"
++#~ msgstr "Nincs"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Operációs rendszert tartalmazó lemez."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Operációs rendszer kernel."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "A fájl, amely egy mikro operációs rendszert tartalmaz a kernel-modulok előtöltéséhez."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Hozzáférés megtagadva."
+diff -Nuar boot-manager-3.0.0/po/it.po boot-manager/po/it.po
+--- boot-manager-3.0.0/po/it.po	2010-12-14 16:11:23.000000000 +0200
++++ boot-manager/po/it.po	2011-04-08 15:56:59.956000049 +0300
+@@ -1,67 +1,81 @@
+ # translation of it.po to Italian
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-# 
++#
+ # Siciliano Davide <edivad95@gmail.com>, 2009.
+ # Davide Siciliano <edivad95@gmail.com>, 2010.
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: it\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2010-04-03 13:01+0200\n"
+ "Last-Translator: Davide Siciliano <edivad95@gmail.com>\n"
+ "Language-Team: Italian <>\n"
++"Language: it\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: it\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ "X-Generator: Lokalize 1.0\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Un'applicazione per gestire il bootloader."
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Gestore Boot"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
+-msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+-
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr ""
+-"\r\n"
+-"Gökmen Göksel"
++#: src/bootmanager/about.py:30
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
++msgstr "(c) 2006-2011 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Manutentore corrente"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
++msgstr "Il primo Sviluppatore"
++
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr "Aydan Taşdemir"
++
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
+ msgstr ""
+-"\r\n"
+-"Il primo Sviluppatore"
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:39
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "edivad95@gmail.com"
++
++#: src/bootmanager/about.py:39
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Davide Siciliano"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "edivad95@gmail.com"
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "File System"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++msgid "All Files"
++msgstr "Tutti"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -69,71 +83,67 @@
  "Non ci sono pacchetti che forniscano un backend per questa applicazione.\n"
  "Per favore, assicurati che i pacchetti siano installati e configurati correttamente."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Pacchetto di Errore"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Tutti"
-@@ -77,14 +81,30 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Sei sicuro di voler eliminare '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
- msgstr "Accesso negato."
- 
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Rimuovere gli elementi"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Si"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "No"
-+
- #: ui/ui_edit.py:139
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++msgid "Access denied"
+ msgstr "Accesso negato."
+ 
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Titolo"
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "File System"
-+
- #: ui/ui_edit.py:140
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
  msgid "Name of the boot entry to be shown at the boot menu."
  msgstr "Nome della voce che verrà mostrata nel menu di boot."
-diff -Naur '--exclude=help' boot-manager-orig//po/nl.po boot-manager-comak//po/nl.po
---- boot-manager-orig//po/nl.po	2010-11-29 23:17:54.000000000 +0200
-+++ boot-manager-comak//po/nl.po	2011-03-03 14:42:33.506000022 +0200
-@@ -64,6 +64,10 @@
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Disco rigido"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Il disco rigido che contiene il sistema operativo."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Kernel"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Kernel del sistema operativo."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "File del ramdisk"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "File che contiene un micro sistema operativo che carica i moduli del kernel."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Opzioni di boot"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Opzioni di boot per il sistema operativo selezionato."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Decidi quale voce debba essere predefinita."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Modifica"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Elimina"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Nuova voce"
+ 
+@@ -141,5 +151,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Secondi prima del boot:"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Un'applicazione per gestire il bootloader."
++
++#~ msgid "Package Error"
++#~ msgstr "Pacchetto di Errore"
++
++#~ msgid "Yes"
++#~ msgstr "Si"
++
++#~ msgid "No"
++#~ msgstr "No"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Il disco rigido che contiene il sistema operativo."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Kernel del sistema operativo."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "File che contiene un micro sistema operativo che carica i moduli del kernel."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Accesso negato."
+diff -Nuar boot-manager-3.0.0/po/nl.po boot-manager/po/nl.po
+--- boot-manager-3.0.0/po/nl.po	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/nl.po	2011-04-08 15:56:59.954000049 +0300
+@@ -7,56 +7,76 @@
+ msgstr ""
+ "Project-Id-Version: nl\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2010-09-15 21:03+0200\n"
+ "Last-Translator: Antoon Tolboom <atolboo@gmail.com>\n"
+ "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
++"Language: nl\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: nl\n"
+ "X-Generator: Lokalize 1.0\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Een toepassing voor het beheren van de opstartlader."
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Opstartbeheer"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++#, fuzzy
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-20010 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
+-
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Huidige onderhouder"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Eerste ontwikkelaar"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Antoon Tolboom"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "atolboo@gmail.com"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Antoon Tolboom"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Bestand systeem"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Alle items"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -64,74 +84,68 @@
  "Er zijn geen pakketten die backend voor deze toepassing geven.\n"
  "Installeer de pakketten en stel ze correct in."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Pakket Fout"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Alle items"
-@@ -72,10 +76,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Wilt u '%1' verwijderen?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Items Verwijderen"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Ja"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "Geen"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Toegang geweigerd."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Bestand systeem"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Titel"
-diff -Naur '--exclude=help' boot-manager-orig//po/pt_BR.po boot-manager-comak//po/pt_BR.po
---- boot-manager-orig//po/pt_BR.po	2010-12-17 17:06:03.000000000 +0200
-+++ boot-manager-comak//po/pt_BR.po	2011-03-03 14:42:33.506000022 +0200
-@@ -62,6 +62,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Naam van het bootitem dat in het bootmenu getoond wordt."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Schijf"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Schijf met het besturingssysteem."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Kernel"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Kernel van besturingssysteem."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ramdisk-bestand"
+ 
+-#: ui/ui_edit.py:146
+-msgid ""
+-"File that contains a micro operating system for preloading kernel modules."
+-msgstr ""
+-"Bestand dat een micro besturingssysteem bevat voor het voorladen van "
+-"kernelmodules."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Bootopties"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Bootopties voor het besturingssysteem."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Invoer als standaard bootinvoer aan-/uitzetten."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Bewerken"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Verwijderen"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Nieuwe toevoegen"
+ 
+@@ -139,5 +153,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Weergavetijd bootmenu:"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Een toepassing voor het beheren van de opstartlader."
++
++#~ msgid "Package Error"
++#~ msgstr "Pakket Fout"
++
++#~ msgid "Yes"
++#~ msgstr "Ja"
++
++#~ msgid "No"
++#~ msgstr "Geen"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Schijf met het besturingssysteem."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Kernel van besturingssysteem."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Bestand dat een micro besturingssysteem bevat voor het voorladen van kernelmodules."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Toegang geweigerd."
+diff -Nuar boot-manager-3.0.0/po/pt_BR.po boot-manager/po/pt_BR.po
+--- boot-manager-3.0.0/po/pt_BR.po	2010-12-17 17:06:03.000000000 +0200
++++ boot-manager/po/pt_BR.po	2011-04-08 15:56:59.954000049 +0300
+@@ -1,60 +1,80 @@
+ # Translation of pt_BR.po to Brazilian Portuguese
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-# 
++#
+ # Diogo Lima <diogo.urb@gmail.com>, 2010.
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: pt_BR\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2010-05-15 19:36-0300\n"
+ "Last-Translator: Diogo Lima <diogo.urb@gmail.com>\n"
+ "Language-Team: Brazilian Portuguese <http://liste.uludag.org.tr/mailman/listinfo/pardus-translation-ptbr>\n"
++"Language: pt_BR\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: pt_BR\n"
+-
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Um aplicativo para gerenciar o carregador de boot."
+ 
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Gerenciador de Inicialização"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++#, fuzzy
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-2009 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
+-
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Mantenedor Atual"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Primeiro Desenvolvedor"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Seus nomes"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "Seus emails"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Seus nomes"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Sistema de arquivos"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Todos os Itens"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -62,71 +82,68 @@
  "Não existem pacotes que forneçam suporte para esta aplicação.\n"
  "Por favor tenha certeza de que todos os pacotes estão instalados e configurados corretamente."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Erro de pacote"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Todos os Itens"
-@@ -70,10 +74,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Você quer deletar '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Remover itens"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Sim"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "não"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Acesso negado."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Sistema de arquivos"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Título"
-diff -Naur '--exclude=help' boot-manager-orig//po/ru.po boot-manager-comak//po/ru.po
---- boot-manager-orig//po/ru.po	2011-01-04 22:52:32.000000000 +0200
-+++ boot-manager-comak//po/ru.po	2011-03-03 14:42:33.505000022 +0200
-@@ -62,6 +62,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Nome da entrada que será exibida no menu de inicialização"
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Disco"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Disco que contém o sistema operacional."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Kernel"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Kernel do sistema operacional."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Arquivo do disco de ram"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Arquivo que contém um micro sistema operacional para pré-carregar os módulos do kernel."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Opções de Inicialização"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Opções de inicialização para o sistema operacional."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Configurar ou não como entrada padrão de inicialização."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Editar"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Deletar"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Adicionar Novo"
+ 
+@@ -134,5 +151,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Tempo de exibição do menu de inicialização:"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Um aplicativo para gerenciar o carregador de boot."
++
++#~ msgid "Package Error"
++#~ msgstr "Erro de pacote"
++
++#~ msgid "Yes"
++#~ msgstr "Sim"
++
++#~ msgid "No"
++#~ msgstr "não"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Disco que contém o sistema operacional."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Kernel do sistema operacional."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Arquivo que contém um micro sistema operacional para pré-carregar os módulos do kernel."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Acesso negado."
+diff -Nuar boot-manager-3.0.0/po/ru.po boot-manager/po/ru.po
+--- boot-manager-3.0.0/po/ru.po	2011-01-04 22:52:32.000000000 +0200
++++ boot-manager/po/ru.po	2011-04-08 15:56:59.953000049 +0300
+@@ -2,59 +2,78 @@
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+-# 
++#
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: LANGUAGE <LL@li.org>\n"
++"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: \n"
+-
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Приложение для управления загрузкой."
+ 
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Менеджер загрузки"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
+-msgstr "(C) 2006-2010 TUBITAK / UEKAE"
+-
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
++#: src/bootmanager/about.py:30
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
++msgstr "(C) 2006-2011 TUBITAK / UEKAE"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Текущий сопровождающий"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Первый разработчик"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Ясыров Василий (zaG), Семенов Николай (Tribunal), Щербаков Александр (neocrust), Алексей Иванов (krab)"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr "Aydan Taşdemir"
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "zag@vspu.ru, tribunal2000@gmail.com, neocrust@gmail.com, alexey.ivanes@gmail.com"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Ясыров Василий (zaG), Семенов Николай (Tribunal), Щербаков Александр (neocrust), Алексей Иванов (krab)"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "файловой системы"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Все элементы"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -62,74 +81,95 @@
  "Нет пакетов, которые являются базовой частью для этого приложения.\n"
  "Пожалуйста, убедитесь, что пакеты были установлены и настроены правильно."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Пакет ошибке"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Все элементы"
-@@ -70,10 +74,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Вы хотите удалить '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "удалять элементы"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "да"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "нет"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Отказано в доступе."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "файловой системы"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Название"
-diff -Naur '--exclude=help' boot-manager-orig//po/sr.po boot-manager-comak//po/sr.po
---- boot-manager-orig//po/sr.po	2010-11-29 23:17:54.000000000 +0200
-+++ boot-manager-comak//po/sr.po	2011-03-03 14:42:33.525000023 +0200
-@@ -63,6 +63,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Название загрузочной записи, которая будет показана в меню загрузки."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Диск"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Диск, который содержит операционную систему."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Ядро"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Ядро операционной системы."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ramdisk файл"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Файл, который содержит основу операционной системы для предварительной загрузки модулей ядра."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Параметры загрузки"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Параметры загрузки для операционной системы."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Включение или отключение учетной записи по умолчанию."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Изменить"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Удалить"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Добавить"
+ 
+ #: ui/ui_options.py:42
+ msgid "Boot menu display time:"
+ msgstr "Время отображения меню загрузки:"
++
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Приложение для управления загрузкой."
++
++#~ msgid "Package Error"
++#~ msgstr "Пакет ошибке"
++
++#~ msgid "Yes"
++#~ msgstr "да"
++
++#~ msgid "No"
++#~ msgstr "нет"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Диск, который содержит операционную систему."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Ядро операционной системы."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Файл, который содержит основу операционной системы для предварительной загрузки модулей ядра."
++
++#~ msgid "Access denied."
++#~ msgstr "Отказано в доступе."
+diff -Nuar boot-manager-3.0.0/po/sr.po boot-manager/po/sr.po
+--- boot-manager-3.0.0/po/sr.po	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/sr.po	2011-04-08 15:56:59.955000049 +0300
+@@ -6,7 +6,7 @@
+ msgstr ""
+ "Project-Id-Version: \n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:19+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2010-07-08 23:57+0400\n"
+ "Last-Translator: Jozsef <Kurucity@aim.com>\n"
+ "Language-Team: American English <pardus-translators@pardus.org.tr>\n"
+@@ -17,45 +17,65 @@
+ "X-Generator: Lokalize 1.0\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Апликација за управљање boot loaderom."
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Boot Менаџер"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++#, fuzzy
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-2010 ТУБИТАК/УЕКАЕ"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Тренутни одржавалац"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Gökmen Göksel"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Бахадир Кандемир"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
++
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "Kurucity@aim.com"
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:39
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Јожеф Куруцић"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "систем датотека"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Све ставке"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -63,74 +83,95 @@
  "Нема пакета који обезбеђују позадину за ову апликацију.\n"
  "Молим Вас проверите да ли су пакети инсталирани и конфигурисани како треба."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "пакет грешка"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Све ставке"
-@@ -71,10 +75,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Да ли желите да избришете '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Уклањање ставки"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Да"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "нема"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Приступ забрањен."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "систем датотека"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Наслов"
-diff -Naur '--exclude=help' boot-manager-orig//po/sv.po boot-manager-comak//po/sv.po
---- boot-manager-orig//po/sv.po	2010-11-29 23:17:54.000000000 +0200
-+++ boot-manager-comak//po/sv.po	2011-03-03 14:42:33.506000022 +0200
-@@ -63,6 +63,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Назив boot уноса који ће бити приказан у boot листи."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Диск"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Диск који садржи оперативни систем."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Језгро"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Језгро оперативног ситема."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ram диск фајл"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Фајл који садржи микро оперативни систем за пред учитавање модула језгра."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Boot опције"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Boot опције за оперативни систем."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Постави или уклони унос као подразумевани boot унос."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Измени"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Избриши"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Додај нови"
+ 
+ #: ui/ui_options.py:42
+ msgid "Boot menu display time:"
+ msgstr "Време приказа boot листе:"
++
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Апликација за управљање boot loaderom."
++
++#~ msgid "Package Error"
++#~ msgstr "пакет грешка"
++
++#~ msgid "Yes"
++#~ msgstr "Да"
++
++#~ msgid "No"
++#~ msgstr "нема"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Диск који садржи оперативни систем."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Језгро оперативног ситема."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Фајл који садржи микро оперативни систем за пред учитавање модула језгра."
++
++#~ msgid "Access denied."
++#~ msgstr "Приступ забрањен."
+diff -Nuar boot-manager-3.0.0/po/sv.po boot-manager/po/sv.po
+--- boot-manager-3.0.0/po/sv.po	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/sv.po	2011-04-08 15:56:59.954000049 +0300
+@@ -1,61 +1,81 @@
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-# 
++#
+ # Patrik Karlsson <patrik@pardus.nu>, 2009.
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: boot-manager\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:31+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2009-07-12 11:16+0200\n"
+ "Last-Translator: Patrik Karlsson <patrik@pardus.nu>\n"
+ "Language-Team: Swedish <pardus-translators@pardus.org.tr>\n"
++"Language: sv\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"Language: sv\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ "X-Generator: Lokalize 0.3\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Ett program för hantering av startladdaren."
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Starthanteraren"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++#, fuzzy
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
+-
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Nuvarande utvecklare"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:36
++msgid "Gökmen Göksel"
++msgstr "Gökmen Göksel"
++
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "Förste utvecklare"
+ 
+-#: src/bootmanager/about.py:36
+-msgctxt "NAME OF TRANSLATORS"
+-msgid "Your names"
+-msgstr "Patrik Karlsson"
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr ""
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr ""
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "patrik@trixon.se"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/about.py:39
++msgctxt "NAME OF TRANSLATORS"
++msgid "Your names"
++msgstr "Patrik Karlsson"
++
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Fil System"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++#, fuzzy
++msgid "All Files"
++msgstr "Alla poster"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -63,71 +83,68 @@
  "Det finns inte något paket som tillhandahåller bakände för det här programmet.\n"
  "Vänligen se till att paketen är rätt installerade och inställda."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Paketet Fel"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Alla poster"
-@@ -71,10 +75,26 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "Vill du ta bort '%1'?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Ta bort objekt"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Ja"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "Ingen"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++#, fuzzy
++msgid "Access denied"
  msgstr "Åtkomst nekad."
  
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Fil System"
-+
- #: ui/ui_edit.py:139
+-#: ui/ui_edit.py:139
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Titel"
-diff -Naur '--exclude=help' boot-manager-orig//po/tr.po boot-manager-comak//po/tr.po
---- boot-manager-orig//po/tr.po	2010-11-29 23:17:54.000000000 +0200
-+++ boot-manager-comak//po/tr.po	2011-03-03 14:42:33.527000022 +0200
-@@ -67,6 +67,10 @@
+ 
+-#: ui/ui_edit.py:140
++#: ui/ui_edit.py:149
+ msgid "Name of the boot entry to be shown at the boot menu."
+ msgstr "Namn på startalternativ som visas i startmenyn."
+ 
+-#: ui/ui_edit.py:141
++#: ui/ui_edit.py:150
+ msgid "Disk"
+ msgstr "Enhet"
+ 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "Enhet som innehåller ett operativsystem."
+-
+-#: ui/ui_edit.py:143
++#: ui/ui_edit.py:151
+ msgid "Kernel"
+ msgstr "Kärna"
+ 
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "Operativsystemets kärna."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
+ 
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ramdiskfil"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Fil som innehåller ett minimalt operativsystem för förladdning av kärnmoduler."
+-
+-#: ui/ui_edit.py:147
++#: ui/ui_edit.py:155
+ msgid "Boot Options"
+ msgstr "Startalternativ"
+ 
+-#: ui/ui_edit.py:148
++#: ui/ui_edit.py:156
+ msgid "Boot options for operating system."
+ msgstr "Startalternativ för operativsystemet."
+ 
+-#: ui/ui_item.py:74
++#: ui/ui_item.py:78
+ msgid "Set or unset entry as default boot entry."
+ msgstr "Aktivera eller avaktivera post som förvalt startalternativ."
+ 
+-#: ui/ui_item.py:75
++#: ui/ui_item.py:79
+ msgid "Edit"
+ msgstr "Redigera"
+ 
+-#: ui/ui_item.py:76
++#: ui/ui_item.py:80
+ msgid "Delete"
+ msgstr "Ta bort"
+ 
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
+ msgid "Add New"
+ msgstr "Lägg till ny"
+ 
+@@ -135,5 +152,29 @@
+ msgid "Boot menu display time:"
+ msgstr "Visningstid för startmeny:"
+ 
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Ett program för hantering av startladdaren."
++
++#~ msgid "Package Error"
++#~ msgstr "Paketet Fel"
++
++#~ msgid "Yes"
++#~ msgstr "Ja"
++
++#~ msgid "No"
++#~ msgstr "Ingen"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "Enhet som innehåller ett operativsystem."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "Operativsystemets kärna."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Fil som innehåller ett minimalt operativsystem för förladdning av kärnmoduler."
++
+ #~ msgid " "
+ #~ msgstr " "
++
++#~ msgid "Access denied."
++#~ msgstr "Åtkomst nekad."
+diff -Nuar boot-manager-3.0.0/po/tr.po boot-manager/po/tr.po
+--- boot-manager-3.0.0/po/tr.po	2010-11-29 23:17:54.000000000 +0200
++++ boot-manager/po/tr.po	2011-04-08 15:56:59.956000049 +0300
+@@ -10,9 +10,9 @@
+ msgstr ""
+ "Project-Id-Version: tr\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2010-09-15 16:19+0300\n"
++"POT-Creation-Date: 2011-04-08 15:05+0300\n"
+ "PO-Revision-Date: 2009-06-24 13:32+0300\n"
+-"Last-Translator: Gökmen Göksel <gokmen@pardus.org.tr>\n" 
++"Last-Translator: Gökmen Göksel <gokmen@pardus.org.tr>\n"
+ "Language-Team: Turkish <yerellestirme@kde.org.tr>\n"
+ "Language: tr\n"
+ "MIME-Version: 1.0\n"
+@@ -21,45 +21,63 @@
+ "X-Generator: KBabel 1.11.4\n"
+ "Plural-Forms: nplurals=1;plural=0;\n"
+ 
+-#: data/boot-manager.desktop.in.h:1
+-msgid "An application for managing boot loader."
+-msgstr "Önyükleyici yapılandırması için bir uygulama."
+-
+-#: data/boot-manager.desktop.in.h:2 data/kcm_boot-manager.desktop.in.h:1
++#: src/boot-manager.py:95
+ msgid "Boot Manager"
+ msgstr "Açılış Yöneticisi"
+ 
+-#: src/bootmanager/about.py:26
+-msgid "(c) 2006-2010 TUBITAK/UEKAE"
+-msgstr "(c) 2006-2010 TUBITAK/UEKAE"
++#: src/bootmanager/about.py:30
++msgid "(c) 2006-2011 TUBITAK/UEKAE"
++msgstr "(c) 2006-2011 TUBITAK/UEKAE"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Current Maintainer"
+ msgstr "Güncel Bakıcı"
+ 
+-#: src/bootmanager/about.py:34
++#: src/bootmanager/about.py:36
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+ 
+-#: src/bootmanager/about.py:35
++#: src/bootmanager/about.py:37
+ msgid "First Developer"
+ msgstr "İlk Geliştirici"
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:38
++msgid "Aydan Taşdemir"
++msgstr "Aydan Taşdemir"
++
++#: src/bootmanager/about.py:38
++msgid "Pure Qt Support"
++msgstr "Qt Destekçisi"
++
++#: src/bootmanager/about.py:39
+ msgctxt "EMAIL OF TRANSLATORS"
+ msgid "Your emails"
+ msgstr "bahadir@pardus.org.tr, necmettin.begiter@gmail.com, gokmen@pardus.org.tr"
+ 
+-#: src/bootmanager/about.py:36
++#: src/bootmanager/about.py:39
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Bahadır Kandemir, Necmettin Begiter, Gökmen Göksel"
+ 
+-#: src/bootmanager/main.py:99
++#: src/bootmanager/edit.py:151 src/bootmanager/edit.py:153
++#: src/bootmanager/edit.py:172 src/bootmanager/edit.py:174
++msgid "File System"
++msgstr "Dosya Sistemi"
++
++#: src/bootmanager/edit.py:153 src/bootmanager/edit.py:172
++#: src/bootmanager/edit.py:174
++msgid "All Files"
++msgstr "Tüm Dosyalar"
++
++#: src/bootmanager/main.py:120
++msgid "Error"
++msgstr ""
++
++#: src/bootmanager/main.py:120
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+ "Please make sure that packages are installed and configured correctly."
+@@ -67,71 +85,67 @@
  "Bu uygulamanın ihtiyaç duyduğu altyapıyı sunan herhangi bir paket yok.\n"
  "Lütfen paketlerin kurulum ve yapılandırmasının düzgün olup olmadığını kontrol edin."
  
-+#: src/bootmanager/main.py:117
-+msgid "Package Error"
-+msgstr "Paket Hatası"
-+
- #: src/bootmanager/main.py:198
+-#: src/bootmanager/main.py:198
++#: src/bootmanager/main.py:229
  msgid "All Items"
  msgstr "Tüm Öğeler"
-@@ -75,19 +79,47 @@
+ 
+-#: src/bootmanager/main.py:306
++#: src/bootmanager/main.py:350
  msgid "Do you want to delete '%1'?"
  msgstr "'%1' silinsin mi?"
  
 -#: src/bootmanager/main.py:337
-+#: src/bootmanager/main.py:346
+-msgid "Access denied."
+-msgstr "Erişim reddedildi."
++#: src/bootmanager/main.py:350
 +msgid "Remove items"
 +msgstr "Öğeleri kaldır"
 +
-+#: src/bootmanager/main.py:346
-+msgid "Yes"
-+msgstr "Evet"
-+
-+#: src/bootmanager/main.py:346
-+msgid "No"
-+msgstr "Hayır"
-+
-+#: src/bootmanager/main.py:337 src/bootmanager/main.py:385
- msgid "Access denied."
- msgstr "Erişim reddedildi."
++#: src/bootmanager/main.py:383 src/bootmanager/main.py:388
++msgid "Access denied"
++msgstr "Erişim reddedildi"
  
 -#: ui/ui_edit.py:139
-+#: src/bootmanager/edit.py:126
-+msgid "File System"
-+msgstr "Dosya Sistemi"
-+
-+#: src/bootmanager/edit.py:126
-+msgid "All Files"
-+msgstr "Tüm Dosyalar"
-+
-+#: src/bootmanager/edit.py:91
-+msgid "title"
-+msgstr "Başlık"
-+
-+#: src/bootmanager/edit.py:108
-+msgid "kernel"
-+msgstr "Çekirdek"
-+
-+#: ui/ui_edit.py:144
++#: ui/ui_edit.py:148
  msgid "Title"
  msgstr "Başlık"
  
 -#: ui/ui_edit.py:140
-+#: ui/ui_edit.py:145
++#: ui/ui_edit.py:149
  msgid "Name of the boot entry to be shown at the boot menu."
  msgstr "Açılış menüsünde gösterilecek metin."
  
 -#: ui/ui_edit.py:141
-+#: ui/ui_edit.py:146
++#: ui/ui_edit.py:150
  msgid "Disk"
  msgstr "Disk"
  
-@@ -95,7 +127,7 @@
- msgid "Disk that contains operating system."
- msgstr "İşletim sisteminin bulunduğu disk."
- 
+-#: ui/ui_edit.py:142
+-msgid "Disk that contains operating system."
+-msgstr "İşletim sisteminin bulunduğu disk."
+-
 -#: ui/ui_edit.py:143
-+#: ui/ui_edit.py:147
++#: ui/ui_edit.py:151
  msgid "Kernel"
  msgstr "Çekirdek"
  
-@@ -111,23 +143,23 @@
- msgid "File that contains a micro operating system for preloading kernel modules."
- msgstr "Çekirdek bileşenlerini önyükleyecek bir mikro işletim sistemi içeren dosya."
+-#: ui/ui_edit.py:144
+-msgid "Operating system kernel."
+-msgstr "İşletim sistemi çekirdeği."
++#: ui/ui_edit.py:152 ui/ui_edit.py:154
++msgid "..."
++msgstr ""
  
+-#: ui/ui_edit.py:145
++#: ui/ui_edit.py:153
+ msgid "Ramdisk File"
+ msgstr "Ramdisk Dosyası"
+ 
+-#: ui/ui_edit.py:146
+-msgid "File that contains a micro operating system for preloading kernel modules."
+-msgstr "Çekirdek bileşenlerini önyükleyecek bir mikro işletim sistemi içeren dosya."
+-
 -#: ui/ui_edit.py:147
-+#: ui/ui_edit.py:151
++#: ui/ui_edit.py:155
  msgid "Boot Options"
  msgstr "Açılış Seçenekleri"
  
 -#: ui/ui_edit.py:148
-+#: ui/ui_edit.py:152
++#: ui/ui_edit.py:156
  msgid "Boot options for operating system."
  msgstr "İşletim sisteminin açılış seçenekleri."
  
 -#: ui/ui_item.py:74
-+#: ui/ui_item.py:75
++#: ui/ui_item.py:78
  msgid "Set or unset entry as default boot entry."
  msgstr "Öntanımlı açılış öğesi olarak ayarlama."
  
 -#: ui/ui_item.py:75
-+#: ui/ui_item.py:76
++#: ui/ui_item.py:79
  msgid "Edit"
  msgstr "Düzenle"
  
 -#: ui/ui_item.py:76
-+#: ui/ui_item.py:77
++#: ui/ui_item.py:80
  msgid "Delete"
  msgstr "Sil"
  
-@@ -135,7 +167,7 @@
+-#: ui/ui_main.py:82
++#: ui/ui_main.py:85
  msgid "Add New"
  msgstr "Yeni Ekle"
  
--#: ui/ui_options.py:42
-+#: ui/ui_options.py:39
+@@ -139,3 +153,32 @@
  msgid "Boot menu display time:"
  msgstr "Açılış menüsünün görüntüleneceği süre:"
  
-diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setup.py
---- boot-manager-orig//setup.py	2010-12-17 19:11:26.000000000 +0200
-+++ boot-manager-comak//setup.py	2011-03-10 15:40:08.136000030 +0200
-@@ -18,7 +18,6 @@
- import tempfile
- 
- from src.bootmanager import about
--
- from distutils.core import setup
- from distutils.cmd import Command
- from distutils.command.build import build
-@@ -26,6 +25,13 @@
++#~ msgid "An application for managing boot loader."
++#~ msgstr "Önyükleyici yapılandırması için bir uygulama."
++
++#~ msgid "Package Error"
++#~ msgstr "Paket Hatası"
++
++#~ msgid "Yes"
++#~ msgstr "Evet"
++
++#~ msgid "No"
++#~ msgstr "Hayır"
++
++#~ msgid "title"
++#~ msgstr "Başlık"
++
++#~ msgid "kernel"
++#~ msgstr "Çekirdek"
++
++#~ msgid "Disk that contains operating system."
++#~ msgstr "İşletim sisteminin bulunduğu disk."
++
++#~ msgid "Operating system kernel."
++#~ msgstr "İşletim sistemi çekirdeği."
++
++#~ msgid "File that contains a micro operating system for preloading kernel modules."
++#~ msgstr "Çekirdek bileşenlerini önyükleyecek bir mikro işletim sistemi içeren dosya."
++
++#~ msgid "Access denied."
++#~ msgstr "Erişim reddedildi."
+diff -Nuar boot-manager-3.0.0/setup.py boot-manager/setup.py
+--- boot-manager-3.0.0/setup.py	2010-12-17 19:11:26.000000000 +0200
++++ boot-manager/setup.py	2011-04-08 15:56:59.952000049 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2010 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -26,6 +26,13 @@
  from distutils.command.install import install
  
  PROJECT = about.appName
 +FOR_KDE_4= False
 +
-+#Environment control
++# Environment control
 +if 'kde4' in sys.argv:
 +    sys.argv.remove('kde4')
 +    FOR_KDE_4 = True
@@ -602,60 +3137,53 @@ diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setu
  
  def makeDirs(directory):
      if not os.path.exists(directory):
-@@ -44,12 +50,15 @@
- 
- def update_messages():
-     files = tempfile.mkstemp()[1]
--
+@@ -48,8 +55,12 @@
      # Collect UI files
      filelist = []
      for filename in glob.glob1("ui", "*.ui"):
 -        os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
 -
-+        #If environments is Kde , ui files will be created by pykde4uic
++        # If environments is Kde , ui files will be created by pykde4uic
 +        if FOR_KDE_4:
-+            os.system("pykde4uic -o ui/ui_%s.py ui/%s -g &s" % (filename.split(".")[0], filename, PROJECT))
-+        #Else ui files created by pyuic4
++            os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
++        # Else ui files created by pyuic4
 +        else:
 +            os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
      # Collect headers for desktop files
      for filename in glob.glob("data/*.desktop.in"):
          os.system("intltool-extract --type=gettext/ini %s" % filename)
-@@ -105,8 +114,11 @@
+@@ -105,8 +116,11 @@
  
          print "Generating UIs..."
          for filename in glob.glob1("ui", "*.ui"):
 -            os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
 -
-+            #Environment control for ui files.
++            # Environment control for ui files.
 +            if FOR_KDE_4:
-+                os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
++                os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
 +            else:
 +                os.system("pyuic4 -o build/bootmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
          print "Generating RCs..."
          for filename in glob.glob1("data", "*.qrc"):
              os.system("pyrcc4 data/%s -o build/%s_rc.py" % (filename, filename.split(".")[0]))
-@@ -128,9 +140,16 @@
+@@ -128,9 +142,13 @@
              bin_dir = "/usr/bin"
  
          locale_dir = os.path.join(root_dir, "locale")
 -        apps_dir = os.path.join(root_dir, "applications/kde4")
 -        services_dir = os.path.join(root_dir, "kde4/services")
 -        project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
-+        #For Kde4 making services_dir
-+        if FOR_KDE_4:
-+            apps_dir = os.path.join(root_dir, "applications/kde4")
-+            services_dir = os.path.join(root_dir, "kde4/services")
-+            project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
-+            makeDirs(services_dir)
-+        else:
-+            apps_dir = os.path.join(root_dir, "applications")
-+            project_dir = os.path.join(root_dir, PROJECT)
++        apps_dir = os.path.join(root_dir, "applications")
++        project_dir = os.path.join(root_dir, PROJECT)
 +
++        # For Kde4 making services_dir
++        if FOR_KDE_4:
++            services_dir = os.path.join(root_dir, "kde4/services")
++            makeDirs(services_dir)
  
          # Make directories
          print "Making directories..."
-@@ -138,13 +157,15 @@
+@@ -138,13 +156,15 @@
          makeDirs(locale_dir)
          makeDirs(apps_dir)
          makeDirs(project_dir)
@@ -663,7 +3191,7 @@ diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setu
  
          # Install desktop files
          print "Installing desktop files..."
-+        #Environment control for desktop files
++        # Environment control for desktop files
 +        if FOR_KDE_4:
 +            shutil.copy("data/kcm_%s.desktop" % PROJECT, services_dir)
 +        else:
@@ -674,106 +3202,110 @@ diff -Naur '--exclude=help' boot-manager-orig//setup.py boot-manager-comak//setu
          shutil.rmtree('build/data')
  
          # Install codes
-@@ -192,14 +213,20 @@
+@@ -192,14 +212,18 @@
          bin_dir = "/usr/bin"
  
          locale_dir = os.path.join(root_dir, "locale")
 -        apps_dir = os.path.join(root_dir, "applications/kde4")
 -        services_dir = os.path.join(root_dir, "kde4/services")
 -        project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
++        apps_dir = os.path.join(root_dir, "applications")
++        project_dir = os.path.join(root_dir, PROJECT)
 +        if FOR_KDE_4:
-+            apps_dir = os.path.join(root_dir, "applications/kde4")
 +            services_dir = os.path.join(root_dir, "kde4/services")
-+            project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
-+        else:
-+            apps_dir = os.path.join(root_dir, "applications")
-+            project_dir = os.path.join(root_dir, PROJECT)
-+
  
          print 'Uninstalling ...'
          remove(project_dir)
          remove(apps_dir +"/%s.desktop" % PROJECT)
 -        remove(services_dir +"/kcm_%s.desktop" % PROJECT)
++        os.unlink(os.path.join(bin_dir, PROJECT))
++
 +        if FOR_KDE_4:
 +            remove(services_dir +"/kcm_%s.desktop" % PROJECT)
          for filename in glob.glob1('po', '*.po'):
              lang = filename.rsplit(".", 1)[0]
              remove(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
-@@ -225,8 +252,8 @@
-       description       = unicode(about.PACKAGE),
-       license           = unicode('GPL'),
-       author            = "Pardus Developers",
--      author_email      = about.bugEmail,
--      url               = about.homePage,
-+      author_email      = "bugs@pardus.org.tr",
-+      url               = "http://www.pardus.org.tr/eng/projects",
-       packages          = [''],
-       package_dir       = {'': ''},
-       data_files        = [],
-diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/about.py boot-manager-comak//src/bootmanager/about.py
---- boot-manager-orig//src/bootmanager/about.py	2010-12-17 17:04:31.000000000 +0200
-+++ boot-manager-comak//src/bootmanager/about.py	2011-03-03 14:42:33.538000022 +0200
-@@ -11,29 +11,35 @@
+diff -Nuar boot-manager-3.0.0/src/bootmanager/about.py boot-manager/src/bootmanager/about.py
+--- boot-manager-3.0.0/src/bootmanager/about.py	2010-12-17 17:04:31.000000000 +0200
++++ boot-manager/src/bootmanager/about.py	2011-04-08 15:56:59.959000049 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2010 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -11,29 +11,33 @@
  # Please read the COPYING file.
  #
  
-+import context as ctx
- PACKAGE = "Boot Manager"
-+appName="boot-manager"
-+version="3.0.0"
- 
+-PACKAGE = "Boot Manager"
+-
 -# PyKDE
 -from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
-+if ctx.Pds.session == ctx.pds.Kde4:
- 
+-
 -# Application Data
--appName     = "boot-manager"
++import context as ctx
++PACKAGE     = "Boot Manager"
+ appName     = "boot-manager"
 -modName     = "bootmanager"
 -programName = ki18n(PACKAGE)
--version     = "3.0.0"
+ version     = "3.0.0"
 -description = ki18n(PACKAGE)
 -license     = KAboutData.License_GPL
 -copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
 -text        = ki18n(None)
--homePage    = "http://developer.pardus.org.tr/projects/boot-manager"
--bugEmail    = "bugs@pardus.org.tr"
+ homePage    = "http://developer.pardus.org.tr/projects/boot-manager"
+ bugEmail    = "bugs@pardus.org.tr"
 -catalog     = appName
 -aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
--
+ 
 -# Author(s)
 -aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
 -aboutData.addAuthor(ki18n("Bahadır Kandemir"), ki18n("First Developer"))
 -aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))
++if ctx.Pds.session == ctx.pds.Kde4:
++
 +    # PyKDE
 +    from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
- 
--# Use this if icon name is different than appName
--aboutData.setProgramIconName("computer")
++
 +    # Application Data
-+    PACKAGE = "Boot Manager"
-+    appName     = "boot-manager"
-+    modName     = "bootmanager"
 +    programName = ki18n(PACKAGE)
-+    version     = "3.0.0"
 +    description = ki18n(PACKAGE)
 +    license     = KAboutData.License_GPL
-+    copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
++    copyright   = ki18n("(c) 2006-2011 TUBITAK/UEKAE")
 +    text        = ki18n(None)
-+    homePage    = "http://developer.pardus.org.tr/projects/boot-manager"
-+    bugEmail    = "bugs@pardus.org.tr"
 +    catalog     = appName
 +    aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
 +
 +    # Author(s)
 +    aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
 +    aboutData.addAuthor(ki18n("Bahadır Kandemir"), ki18n("First Developer"))
++    aboutData.addAuthor(ki18n("Aydan Taşdemir"), ki18n("Pure Qt Support"))
 +    aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))
 +
+ 
+-# Use this if icon name is different than appName
+-aboutData.setProgramIconName("computer")
 +    # Use this if icon name is different than appName
 +    aboutData.setProgramIconName("computer")
-diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/config.py boot-manager-comak//src/bootmanager/config.py
---- boot-manager-orig//src/bootmanager/config.py	2010-07-06 14:16:33.000000000 +0300
-+++ boot-manager-comak//src/bootmanager/config.py	2011-03-03 14:42:33.537000022 +0200
+diff -Nuar boot-manager-3.0.0/src/bootmanager/about.pyc boot-manager/src/bootmanager/about.pyc
+--- boot-manager-3.0.0/src/bootmanager/about.pyc	1970-01-01 02:00:00.000000000 +0200
++++ boot-manager/src/bootmanager/about.pyc	2011-04-08 15:56:59.959000049 +0300
+@@ -0,0 +1,7 @@
++�
++��Mc           @   sN  d  d l  Z d Z d Z d Z d Z d Z e j j e j	 j
++ k rJd  d l m Z m Z m Z e e � Z e e � Z e j Z e d � Z e d � Z e Z e e e e e e e e e e e �
++ Z e j e d	 � e d
++ � � e j e d � e d � � e j e d � e d � � e j e d d � e d d � � e j d � n  d S(   i����Ns   Boot Managers   boot-managers   3.0.0s4   http://developer.pardus.org.tr/projects/boot-managers   bugs@pardus.org.tr(   t
++   KAboutDatat   ki18nt   ki18ncs   (c) 2006-2011 TUBITAK/UEKAEs   Gökmen Göksels   Current Maintainers   Bahadır Kandemirs   First Developers   Aydan Taşdemirs   Pure Qt Supports   NAME OF TRANSLATORSs
++   Your namess   EMAIL OF TRANSLATORSs   Your emailst   computer(   t   contextt   ctxt   PACKAGEt   appNamet   versiont   homePaget   bugEmailt   Pdst   sessiont   pdst   Kde4t   PyKDE4.kdecoreR    R   R   t   programNamet   descriptiont   License_GPLt   licenset	   copyrightt   Nonet   textt   catalogt	   aboutDatat	   addAuthort   setTranslatort   setProgramIconName(    (    (    s@   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/about.pyt   <module>   s&   	'"
+\ Dosya sonunda yenisatır yok.
+diff -Nuar boot-manager-3.0.0/src/bootmanager/config.py boot-manager/src/bootmanager/config.py
+--- boot-manager-3.0.0/src/bootmanager/config.py	2010-07-06 14:16:33.000000000 +0300
++++ boot-manager/src/bootmanager/config.py	2011-04-08 15:56:59.959000049 +0300
 @@ -11,7 +11,6 @@
  # Please read the COPYING file.
  #
@@ -782,12 +3314,22 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/config.py boot-ma
  
  # Animation
  ANIM_SHOW, ANIM_HIDE = range(2)
-diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/context.py boot-manager-comak//src/bootmanager/context.py
---- boot-manager-orig//src/bootmanager/context.py	1970-01-01 02:00:00.000000000 +0200
-+++ boot-manager-comak//src/bootmanager/context.py	2011-03-10 14:58:41.060000030 +0200
-@@ -0,0 +1,30 @@
+diff -Nuar boot-manager-3.0.0/src/bootmanager/context.py boot-manager/src/bootmanager/context.py
+--- boot-manager-3.0.0/src/bootmanager/context.py	1970-01-01 02:00:00.000000000 +0200
++++ boot-manager/src/bootmanager/context.py	2011-04-08 15:56:59.959000049 +0300
+@@ -0,0 +1,40 @@
 +#!/usr/bin/python
 +# -*- coding: utf-8 -*-
++#
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
++#
++# This program is free software; you can redistribute it and/or modify it under
++# the terms of the GNU General Public License as published by the Free
++# Software Foundation; either version 2 of the License, or (at your option)
++# any later version.
++#
++# Please read the COPYING file.
++#
 +
 +import pds
 +import traceback
@@ -797,7 +3339,7 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/context.py boot-m
 +Pds = pds.Pds('boot-manager', debug = False)
 +# Force to use Default Session for testing
 +#Pds.session = pds.DefaultDe
-+
++#print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 +
 +i18n = Pds.i18n
 +KIconLoader = QIconLoader(Pds, forceCache=True)
@@ -816,98 +3358,171 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/context.py boot-m
 +    time_counter += 1
 +
 +
-diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/edit.py boot-manager-comak//src/bootmanager/edit.py
---- boot-manager-orig//src/bootmanager/edit.py	2010-12-26 17:47:22.000000000 +0200
-+++ boot-manager-comak//src/bootmanager/edit.py	2011-03-10 13:16:19.560000029 +0200
-@@ -15,20 +15,28 @@
+diff -Nuar boot-manager-3.0.0/src/bootmanager/context.pyc boot-manager/src/bootmanager/context.pyc
+--- boot-manager-3.0.0/src/bootmanager/context.pyc	1970-01-01 02:00:00.000000000 +0200
++++ boot-manager/src/bootmanager/context.pyc	2011-04-08 15:56:59.959000049 +0300
+@@ -0,0 +1,6 @@
++�
++Ϩ�Mc           @   s�   d  d l  Z  d  d l Z d  d l m Z d  d l m Z e  j d d e �Z e j Z e e d e �Z	 e	 j
++ Z d a e �  Z e �  a d �  Z d S(	   i����N(   t   time(   t   QIconLoaders   boot-managert   debugt
++   forceCachei    c          C   sn   t  t j �  � }  t �  t } d t |  d d j d � d |  d d f G| G| t GH| a t d 7a d  S(   Ns   %s ::: %s:%si����i    t   /i����i   (   t   listt	   tracebackt   extract_stackR    t
++   start_timet   time_countert   splitt	   last_time(   t   tracet   diff(    (    sB   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/context.pyt   _time    s
++    ;(   t   pdsR   R    t   pds.qiconloaderR   t   Pdst   Falset   i18nt   Truet   KIconLoadert   icont   KIconR	   R   R   R   (    (    (    sB   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/context.pyt   <module>   s   				
+\ Dosya sonunda yenisatır yok.
+diff -Nuar boot-manager-3.0.0/src/bootmanager/edit.py boot-manager/src/bootmanager/edit.py
+--- boot-manager-3.0.0/src/bootmanager/edit.py	2010-12-26 17:47:22.000000000 +0200
++++ boot-manager/src/bootmanager/edit.py	2011-04-08 15:56:59.959000049 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -11,24 +11,38 @@
+ # Please read the COPYING file.
+ #
+ 
+-# PyQt
++# PyQt stuff
  from PyQt4 import QtCore
  from PyQt4 import QtGui
  
 -# PyKDE
 -from PyKDE4 import kdeui
 -from PyKDE4 import kdecore
-+# Pds vs KDE
+-
+ # UI
+ from bootmanager.ui_edit import Ui_EditWidget
+ 
++# PDS stuff
 +import bootmanager.context as ctx
++
 +if ctx.Pds.session == ctx.pds.Kde4:
 +    from PyKDE4.kdeui import KIcon
 +    from PyKDE4.kdecore import i18n
 +else:
 +    from bootmanager.context import KIcon, i18n
- 
- # UI
- from bootmanager.ui_edit import Ui_EditWidget
- 
 +
  class EditWidget(QtGui.QWidget, Ui_EditWidget):
++
      def __init__(self, parent):
          QtGui.QWidget.__init__(self, parent)
          self.setupUi(self)
          self.id = None
          self.type = None
--
-+        #Kernel button signal connect
-+        self.connect(self.toolButton, QtCore.SIGNAL("clicked()"),self.slotFileDialog)
-+        #Ramdisk button signal connect
-+        self.connect(self.toolButton_2, QtCore.SIGNAL("clicked()"),self.slotRamDialog)
+ 
++        # Kernel button signal connect
++        self.kernelButton.clicked.connect(self.slotFileDialog)
++        self.kernelButton.setIcon(KIcon("folder"))
++
++        # Ramdisk button signal connect
++        self.ramdiskButton.clicked.connect(self.slotRamDialog)
++        self.ramdiskButton.setIcon(KIcon("folder"))
++
      def isNew(self):
          return self.id == None
  
-@@ -122,3 +130,21 @@
+@@ -122,3 +136,47 @@
  
      def getOptions(self):
          return unicode(self.lineOptions.text()).replace('\n', ' ')
 +
-+    #Get file name from file dialog
++    # Get file name from file dialog
 +    def slotFileDialog(self):
-+        filename=str(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"",i18n("All Files")))
++        """
++            Get file name from file dialog
++        """
++
++        if ctx.Pds.session == ctx.pds.Kde4:
++            from PyKDE4.kio import KFileDialog
++            from PyKDE4.kdecore import KUrl
++            url=KUrl.fromPath("/boot/")
++            filename=unicode(KFileDialog.getOpenFileName(url, "", self, i18n("File System")))
++        else:
++            filename=unicode(QtGui.QFileDialog.getOpenFileName(self, i18n("File System"), "/boot/"))
++
 +        if filename:
-+            #Set file name
 +            self.setFile(filename)
++
 +    def setFile(self,filename):
++        """
++            Set file name
++        """
 +        EditWidget.setKernel(self,filename)
-+    #Get file name from RamFile dialog
++
 +    def slotRamDialog(self):
-+        #set Ram Name
-+        ramname=str(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"",i18n("All Files")))
++        """
++            Get file name from RamFile dialog
++        """
++
++        # Set ram name
++        if ctx.Pds.session == ctx.pds.Kde4:
++            from PyKDE4.kio import KFileDialog
++            from PyKDE4.kdecore import KUrl
++            url=KUrl.fromPath("/boot/")
++            ramname=unicode(KFileDialog.getOpenFileName(url, "", self, i18n("File System")))
++        else:
++            ramname=unicode(QtGui.QFileDialog.getOpenFileName(self, i18n("File System"), "/boot/"))
++
 +        if ramname:
 +            self.setRam(ramname)
++
 +    def setRam(self,ramname):
 +        EditWidget.setRamdisk(self,ramname)
 +
-diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/item.py boot-manager-comak//src/bootmanager/item.py
---- boot-manager-orig//src/bootmanager/item.py	2010-12-02 12:35:21.000000000 +0200
-+++ boot-manager-comak//src/bootmanager/item.py	2011-03-10 13:21:35.434000028 +0200
+diff -Nuar boot-manager-3.0.0/src/bootmanager/__init__.pyc boot-manager/src/bootmanager/__init__.pyc
+--- boot-manager-3.0.0/src/bootmanager/__init__.pyc	1970-01-01 02:00:00.000000000 +0200
++++ boot-manager/src/bootmanager/__init__.pyc	2011-04-08 15:56:59.959000049 +0300
+@@ -0,0 +1,2 @@
++�
++��oMc           @   s   d  S(   N(    (    (    (    sC   /home/aydan/COMAK/managers/boot-manager/src/bootmanager/__init__.pyt   <module>   s    
+\ Dosya sonunda yenisatır yok.
+diff -Nuar boot-manager-3.0.0/src/bootmanager/item.py boot-manager/src/bootmanager/item.py
+--- boot-manager-3.0.0/src/bootmanager/item.py	2010-12-02 12:35:21.000000000 +0200
++++ boot-manager/src/bootmanager/item.py	2011-04-08 15:56:59.959000049 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
 @@ -15,12 +15,16 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
  
 -# PyKDE
 -from PyKDE4.kdeui import KIcon
--
+ 
  # UI
  from bootmanager.ui_item import Ui_ItemWidget
  
-+# Pds vs KDE
++#PDS vs KDE
 +import bootmanager.context as ctx
 +if ctx.Pds.session == ctx.pds.Kde4:
 +    from PyKDE4.kdeui import KIcon
-+    from PyKDE4.kdecore import i18n
 +else:
-+    from bootmanager.context import KIcon, i18n
++    from bootmanager.context import KIcon
  
  class ItemListWidgetItem(QtGui.QListWidgetItem):
      def __init__(self, parent, widget):
-@@ -34,7 +38,6 @@
-     def getType(self):
-         return self.widget.getType()
- 
--
- class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
-     def __init__(self, parent, id_, title="", description="", type_=None, icon=None, state=None):
-         QtGui.QWidget.__init__(self, parent)
-diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/main.py boot-manager-comak//src/bootmanager/main.py
---- boot-manager-orig//src/bootmanager/main.py	2010-12-14 17:31:41.000000000 +0200
-+++ boot-manager-comak//src/bootmanager/main.py	2011-03-10 13:24:02.920000025 +0200
+diff -Nuar boot-manager-3.0.0/src/bootmanager/main.py boot-manager/src/bootmanager/main.py
+--- boot-manager-3.0.0/src/bootmanager/main.py	2010-12-14 17:31:41.000000000 +0200
++++ boot-manager/src/bootmanager/main.py	2011-04-08 15:56:59.960000049 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
 @@ -15,10 +15,6 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
@@ -925,12 +3540,12 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/main.py boot-mana
  
 +# Pds vs KDE
 +import bootmanager.context as ctx
++
 +if ctx.Pds.session == ctx.pds.Kde4:
 +    from PyKDE4.kdeui import KIcon
 +    from PyKDE4.kdecore import i18n
 +else:
 +    from bootmanager.context import KIcon, i18n
-+
 +
  PARTITIONS = getPartitions()
  
@@ -940,7 +3555,7 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/main.py boot-mana
          """
          if not len(self.iface.getPackages()):
 -            kdeui.KMessageBox.error(self, kdecore.i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
-+            QtGui.QMessageBox.warning(self,i18n("Error"), i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
++            QtGui.QMessageBox.critical(self,i18n("Error"), i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
              return False
          return True
  
@@ -953,17 +3568,16 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/main.py boot-mana
          type_ = os_type
  
          # Build widget and widget item
-@@ -197,7 +202,8 @@
+@@ -197,7 +202,7 @@
                          self.addItem(entry["index"], entry["title"], root, entry["os_type"], default)
  
                      if self.listItems.count() == 1:
 -                        self.listItems.itemWidget(self.listItems.item(0)).pushDelete.hide()
-+                        #self.listItems.itemWidget(self.listItems.item(0)).pushDelete.hide()
-+                        pass
++                        self.listIatems.itemWidget(self.listItems.item(0)).pushDelete.hide()
  
              self.iface.getEntries(func=handleList)
  
-@@ -221,7 +227,7 @@
+@@ -221,7 +226,7 @@
              Builds item filter.
          """
          self.comboFilter.clear()
@@ -972,66 +3586,64 @@ diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/main.py boot-mana
  
          for name, (label, mandatory, optional) in self.systems.iteritems():
              self.comboFilter.addItem(label, QtCore.QVariant(name))
-@@ -237,7 +243,7 @@
-         # Actions
-         for name, (label, mandatory, optional) in self.systems.iteritems():
-             action_user = QtGui.QAction(label, self)
--            action_user.setData(QtCore.QVariant(unicode(name)))
-+            action_user.setData(QtCore.QVariant(i18n(name)))
-             menu.addAction(action_user)
- 
-     def showEditBox(self, id_, type_=None):
-@@ -340,7 +346,9 @@
+@@ -340,7 +345,11 @@
              Delete button clicked.
          """
          widget = self.sender()
 -        if kdeui.KMessageBox.questionYesNo(self, kdecore.i18n("Do you want to delete '%1'?", widget.getTitle())) == kdeui.KMessageBox.Yes:
-+        #QMessageBox usage for MessageBox
-+        answer=QtGui.QMessageBox.warning(self,i18n("Remove items"),i18n("Do you want to delete '%1'?",widget.getTitle()),i18n("Yes"),i18n("No"))
-+        if answer == 0:
++
++        # QMessageBox usage for MessageBox
++        answer=QtGui.QMessageBox.question(self,i18n("Remove items"),i18n("Do you want to delete '%1'?",widget.getTitle()), QtGui.QMessageBox.Yes,QtGui.QMessageBox.No,)
++
++        if answer == QtGui.QMessageBox.Yes:
              def handler(package, exception, args):
                  pass
              self.iface.removeEntry(widget.getId(), widget.getTitle(), False, func=handler)
-@@ -371,12 +379,12 @@
+@@ -371,12 +380,12 @@
                  self.iface.setEntry(widget.getTitle(), widget.getType(), widget.getDisk(), widget.getKernel(), widget.getRamdisk(), widget.getOptions(), "no", widget.getId())
          except Exception, e:
              if "Comar.PolicyKit" in e._dbus_error_name:
 -                message = kdecore.i18n('Access denied.')
-+                message = i18n('Access denied.')
++                message = i18n('Access denied')
              elif unicode(e).startswith('tr.org.pardus.comar.Exception:'):
                  message = unicode(e).lstrip('tr.org.pardus.comar.Exception: ')
              else:
                  message = unicode(e)
 -            kdeui.KMessageBox.error(self, message)
-+            QtGui.QMessageBox.warning(self,i18n("Access denied"), message)
++            QtGui.QMessageBox.critical(self,i18n("Access denied"), message)
  
              return
          # Hide edit box
-diff -Naur '--exclude=help' boot-manager-orig//src/bootmanager/options.py boot-manager-comak//src/bootmanager/options.py
---- boot-manager-orig//src/bootmanager/options.py	2010-12-14 16:11:23.000000000 +0200
-+++ boot-manager-comak//src/bootmanager/options.py	2011-03-10 13:46:01.660000029 +0200
-@@ -15,10 +15,6 @@
+diff -Nuar boot-manager-3.0.0/src/bootmanager/options.py boot-manager/src/bootmanager/options.py
+--- boot-manager-3.0.0/src/bootmanager/options.py	2010-12-14 16:11:23.000000000 +0200
++++ boot-manager/src/bootmanager/options.py	2011-04-08 15:56:59.959000049 +0300
+@@ -15,9 +15,6 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
  
 -# PyKDE
 -from PyKDE4 import kdeui
 -from PyKDE4 import kdecore
--
+ 
  # UI
  from bootmanager.ui_options import Ui_OptionsWidget
- 
-diff -Naur '--exclude=help' boot-manager-orig//src/boot-manager.py boot-manager-comak//src/boot-manager.py
---- boot-manager-orig//src/boot-manager.py	2010-07-06 14:16:33.000000000 +0300
-+++ boot-manager-comak//src/boot-manager.py	2011-03-10 15:50:17.171000030 +0200
-@@ -11,54 +11,76 @@
- # Please read the COPYING file.
+diff -Nuar boot-manager-3.0.0/src/boot-manager.py boot-manager/src/boot-manager.py
+--- boot-manager-3.0.0/src/boot-manager.py	2010-07-06 14:16:33.000000000 +0300
++++ boot-manager/src/boot-manager.py	2011-04-08 15:56:59.960000049 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
  #
- 
-+#System
+-# Copyright (C) 2006-2009 TUBITAK/UEKAE
++# Copyright (C) 2006-2011 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -14,51 +14,90 @@
  import sys
  import dbus
  
++# Qt Stuff
  from PyQt4 import QtGui
  from PyQt4 import QtCore
  
@@ -1042,8 +3654,32 @@ diff -Naur '--exclude=help' boot-manager-orig//src/boot-manager.py boot-manager-
 +from bootmanager.about import *
  from bootmanager.main import MainWidget
  
-+#Pds stuff
++# Pds stuff
 +from bootmanager.context import *
++
++if ctx.Pds.session == ctx.pds.Kde4:
++
++    # PyKDE4 Stuff
++    from PyKDE4.kdecore import KGlobal
++    from PyKDE4.kdeui import KCModule
++
++    import dbus
++
++    class Module(KCModule):
++        def __init__(self, component_data, parent):
++            KCModule.__init__(self, component_data, parent)
++
++            if not dbus.get_default_main_loop():
++                from dbus.mainloop.qt import DBusQtMainLoop
++                DBusQtMainLoop(set_as_default=True)
++
++            MainWidget(self, embed=True)
++
++    def CreatePlugin(widget_parent, parent, component_data):
++        """
++            Enable plugin if session is Kde
++        """
++        return Module(component_data, parent)
  
 -class MainWindow(KMainWindow):
 +class MainWindow(QtGui.QMainWindow):
@@ -1060,75 +3696,74 @@ diff -Naur '--exclude=help' boot-manager-orig//src/boot-manager.py boot-manager-
 -    KCmdLineArgs.init(sys.argv, aboutData)
 -    app = KApplication()
 -
-+    #DBUS MainLoop
++    # DBUS MainLoop
      if not dbus.get_default_main_loop():
          from dbus.mainloop.qt import DBusQtMainLoop
          DBusQtMainLoop(set_as_default=True)
  
 -    window = MainWindow()
 -    window.show()
--
--    app.exec_()
  
+-    app.exec_()
 +    if ctx.Pds.session == ctx.pds.Kde4:
++
++        # Boot Manager PyKDE4 Stuff
++        from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
++        from PyKDE4.kdecore import KCmdLineArgs, KGlobal
+ 
++        # Set Command Line arguments
++        KCmdLineArgs.init(sys.argv, aboutData)
  
 -class Module(KCModule):
 -    def __init__(self, component_data, parent):
 -        KCModule.__init__(self, component_data, parent)
-+        def CreatePlugin(widget_parent, parent, component_data):
-+                return Module(component_data, parent)
++        # Create a Kapplication instance
++        app = KApplication()
  
 -        KGlobal.locale().insertCatalog(catalog)
-+        #Boot Manager PyKDE4 Stuff
-+        from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
-+        from PyKDE4.kdecore import KCmdLineArgs, KGlobal
-+
-+        #Set Command Line arguments
-+        KCmdLineArgs.init(sys.argv, aboutData)
-+
-+        #Create a Kapplication instance
-+        app = KApplication()
-+
-+        #Create Main Window
++        # Create Main Window
 +        window = MainWindow()
 +        window.show()
-+
-+        #Run the application
-+        app.exec_()
-+    else:
-+        #Import gettext for translations
-+        import gettext
-+        __trans =gettext.translation('boot-manager',fallback=True)
-+        i18n = __trans.ugettext
-+
-+        #Boot Manager Pds stuff
-+        from pds.quniqueapp import QUniqueApplication
-+
-+        #Create Main window
-+        app=QUniqueApplication(sys.argv, catalog="boot-manager")
-+        window= MainWindow()
-+        window.show()
-+        window.resize(640,480)
  
 -        if not dbus.get_default_main_loop():
 -            from dbus.mainloop.qt import DBusQtMainLoop
 -            DBusQtMainLoop(set_as_default=True)
-+        #Set Main  Window Title
-+        window.setWindowTitle(i18n("Boot Manager"))
++    else:
++        # Boot Manager Pds stuff
++        from pds.quniqueapp import QUniqueApplication
++        from bootmanager.context import KIcon, i18n
  
 -        MainWidget(self, embed=True)
-+        #Set Main Window Icon
-+        window.setWindowIcon(KIcon("computer"))
++        # Create a QUniqueApplication instance
++        app=QUniqueApplication(sys.argv, catalog="boot-manager")
  
-+        #Run the application
-+        app.exec_()
++        # Create Main Window
++        window= MainWindow()
  
 -def CreatePlugin(widget_parent, parent, component_data):
 -    return Module(component_data, parent)
-diff -Naur '--exclude=help' boot-manager-orig//ui/edit.ui boot-manager-comak//ui/edit.ui
---- boot-manager-orig//ui/edit.ui	2010-12-14 16:32:22.000000000 +0200
-+++ boot-manager-comak//ui/edit.ui	2011-03-03 14:42:33.505000022 +0200
-@@ -131,9 +131,16 @@
++        window.show()
++        window.resize(640,480)
++
++        # Set Main  Window Title
++        window.setWindowTitle(i18n("Boot Manager"))
++
++        # Set Main Window Icon
++        window.setWindowIcon(KIcon("computer"))
++
++    # Run the application
++    app.exec_()
+diff -Nuar boot-manager-3.0.0/src/__init__.pyc boot-manager/src/__init__.pyc
+--- boot-manager-3.0.0/src/__init__.pyc	1970-01-01 02:00:00.000000000 +0200
++++ boot-manager/src/__init__.pyc	2011-04-08 15:56:59.960000049 +0300
+@@ -0,0 +1,2 @@
++�
++��oMc           @   s   d  S(   N(    (    (    (    s7   /home/aydan/COMAK/managers/boot-manager/src/__init__.pyt   <module>   s    
+\ Dosya sonunda yenisatır yok.
+diff -Nuar boot-manager-3.0.0/ui/edit.ui boot-manager/ui/edit.ui
+--- boot-manager-3.0.0/ui/edit.ui	2010-12-14 16:32:22.000000000 +0200
++++ boot-manager/ui/edit.ui	2011-04-08 15:56:59.953000049 +0300
+@@ -131,9 +131,12 @@
         </widget>
        </item>
        <item row="0" column="1">
@@ -1138,17 +3773,13 @@ diff -Naur '--exclude=help' boot-manager-orig//ui/edit.ui boot-manager-comak//ui
 +       <widget class="QLineEdit" name="lineKernel"/>
 +      </item>
 +      <item row="0" column="2">
-+       <widget class="QToolButton" name="toolButton">
++       <widget class="QToolButton" name="kernelButton">
 +        <property name="text">
 +         <string>...</string>
-+        </property>
-+        <property name="icon">
-+         <iconset>
-+          <normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</iconset>
          </property>
         </widget>
        </item>
-@@ -169,9 +176,16 @@
+@@ -169,9 +172,12 @@
         </widget>
        </item>
        <item row="0" column="1">
@@ -1158,17 +3789,13 @@ diff -Naur '--exclude=help' boot-manager-orig//ui/edit.ui boot-manager-comak//ui
 +       <widget class="QLineEdit" name="lineRamdisk"/>
 +      </item>
 +      <item row="0" column="2">
-+       <widget class="QToolButton" name="toolButton_2">
++       <widget class="QToolButton" name="ramdiskButton">
 +        <property name="text">
 +         <string>...</string>
-+        </property>
-+        <property name="icon">
-+         <iconset>
-+          <normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</iconset>
          </property>
         </widget>
        </item>
-@@ -231,13 +245,6 @@
+@@ -231,13 +237,6 @@
     </item>
    </layout>
   </widget>
@@ -1182,9 +3809,9 @@ diff -Naur '--exclude=help' boot-manager-orig//ui/edit.ui boot-manager-comak//ui
   <tabstops>
    <tabstop>lineTitle</tabstop>
    <tabstop>lineDisk</tabstop>
-diff -Naur '--exclude=help' boot-manager-orig//ui/main.ui boot-manager-comak//ui/main.ui
---- boot-manager-orig//ui/main.ui	2010-12-14 16:11:23.000000000 +0200
-+++ boot-manager-comak//ui/main.ui	2011-03-03 14:42:33.502000022 +0200
+diff -Nuar boot-manager-3.0.0/ui/main.ui boot-manager/ui/main.ui
+--- boot-manager-3.0.0/ui/main.ui	2010-12-14 16:11:23.000000000 +0200
++++ boot-manager/ui/main.ui	2011-04-08 15:56:59.952000049 +0300
 @@ -55,7 +55,7 @@
           </spacer>
          </item>
