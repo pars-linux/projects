@@ -55,7 +55,7 @@ defaultDesktopSession=`sed -e '/^SESSION/!d' -e 's/\(.*\)=\(.*\)/\2/' /etc/defau
 
 sessionscript=""
 for x in /usr/share/xsessions/* ; do
-	if [ "$defaultDesktopSession" = `basename $x .desktop` ]; then
+	if [ "$defaultDesktopSession" == `basename $x .desktop` ]; then
 		sessionscript=`sed -e '/^Exec/!d' -e 's/\(.*\)=\(.*\)/\2/' $x`
     	break
     fi
