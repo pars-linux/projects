@@ -25,8 +25,8 @@ FOR_LXDE = ctx.Pds.session == ctx.pds.LXDE
 FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
 FOR_FLUXBOX = ctx.Pds.session == ctx.pds.Fluxbox
 FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
-
-SHOW_MOUSE_SPEED = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME
+FOR_XFCE=ctx.Pds.session == ctx.pds.Xfce
+SHOW_MOUSE_SPEED = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE
 if SHOW_MOUSE_SPEED:
     from kaptan.screens.ui_scrMouse_lxde import Ui_mouseWidget
 else:
