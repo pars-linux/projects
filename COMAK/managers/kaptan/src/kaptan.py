@@ -262,29 +262,6 @@ if __name__ == "__main__":
         elif start == "False" and not "-t" in sys.argv:
              exit();
  
-        FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
-        if FOR_ENLIGHTENMENT:
-            applications = ["nm-applet.desktop",
-                        "pulseaudio.desktop",
-                        "polkit-gnome-authentication-agent-1.desktop"]
-            applications = "\n".join(["/etc/xdg/autostart/"+i for i in applications])
-            fl = "%s/.e/e/applications/restart/.order"%os.environ["HOME"]
-            f = open(fl,"w")
-            f.write(applications)
-            f.close()
-
-            os.system("enlightenment_remote -restart")
-
-            fl = "%s/.e/e/applications/restart/.order"%os.environ["HOME"]
-            f = open(fl,"w")
-            f.write("")
-            f.close()
-
-            fl = "%s/.e/e/applications/startup/.order"%os.environ["HOME"]
-            f = open(fl,"w")
-            f.write(applications)
-            f.close()
-
      # attach dbus to main loop
     tools.DBus()
     if ctx.Pds.session == ctx.pds.Kde4:
