@@ -68,6 +68,7 @@
             <AdditionalFile owner="root" permission="0644" target="/usr/share/enlightenment/data/images/lang-tr_TR.png">lang-tr_TR.png</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/etc/enlightenment/sysactions.conf">sysactions.conf</AdditionalFile>
             <AdditionalFile owner="root" permission="0644" target="/usr/share/enlightenment/data/backgrounds/pardus-2011_background.edj">pardus-2011_background.edj</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/enlightenment/data/themes/efenniht.edj">efenniht.edj</AdditionalFile>
         </AdditionalFiles>
     </Package>
 
