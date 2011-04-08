@@ -56,10 +56,7 @@ class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
         else:
             self.labelIcon.hide()
 
-        if not state:
-            self.setState(state)
-        else:
-            self.checkState.hide()
+        self.setState(state)
 
         # Buttons
         self.pushEdit.setIcon(KIcon("preferences-other"))
@@ -98,7 +95,8 @@ class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
         return self.checkState.checkState()
 
     def setState(self, state):
-        return self.checkState.setCheckState(QtCore.Qt.Checked if state == True else QtCore.Qt.Unchecked)
+        
+        return self.checkState.setCheckState(QtCore.Qt.Checked if state else QtCore.Qt.Unchecked)
 
     def hideEdit(self):
         self.pushEdit.hide()
