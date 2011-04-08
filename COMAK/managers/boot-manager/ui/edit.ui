@@ -134,13 +134,9 @@
        <widget class="QLineEdit" name="lineKernel"/>
       </item>
       <item row="0" column="2">
-       <widget class="QToolButton" name="toolButton">
+       <widget class="QToolButton" name="kernelButton">
         <property name="text">
          <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</iconset>
         </property>
        </widget>
       </item>
@@ -179,13 +175,9 @@
        <widget class="QLineEdit" name="lineRamdisk"/>
       </item>
       <item row="0" column="2">
-       <widget class="QToolButton" name="toolButton_2">
+       <widget class="QToolButton" name="ramdiskButton">
         <property name="text">
          <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</normaloff>../../../../../usr/share/icons/oxygen/32x32/places/folder-cyan.png</iconset>
         </property>
        </widget>
       </item>

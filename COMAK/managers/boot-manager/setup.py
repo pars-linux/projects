@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2010 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -57,7 +57,7 @@ def update_messages():
     for filename in glob.glob1("ui", "*.ui"):
         #If environments is Kde , ui files will be created by pykde4uic
         if FOR_KDE_4:
-            os.system("pykde4uic -o ui/ui_%s.py ui/%s -g &s" % (filename.split(".")[0], filename, PROJECT))
+            os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
         #Else ui files created by pyuic4
         else:
             os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
@@ -118,7 +118,7 @@ class Build(build):
         for filename in glob.glob1("ui", "*.ui"):
             #Environment control for ui files.
             if FOR_KDE_4:
-                os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
+                os.system("pykde4uic -o build/bootmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
             else:
                 os.system("pyuic4 -o build/bootmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
         print "Generating RCs..."
@@ -212,8 +212,9 @@ class Uninstall(Command):
 
         locale_dir = os.path.join(root_dir, "locale")
         apps_dir = os.path.join(root_dir, "applications")
-        #services_dir = os.path.join(root_dir, "kde4/services")
         project_dir = os.path.join(root_dir, PROJECT)
+        if FOR_KDE_4:
+            services_dir = os.path.join(root_dir, "kde4/services")
 
         print 'Uninstalling ...'
         remove(project_dir)
@@ -245,8 +246,8 @@ setup(
       description       = unicode(about.PACKAGE),
       license           = unicode('GPL'),
       author            = "Pardus Developers",
-      author_email      = "bugs@pardus.org.tr",
-      url               = "http://www.pardus.org.tr/eng/projects",
+      author_email      = about.bugEmail,
+      url               = about.homePage,
       packages          = [''],
       package_dir       = {'': ''},
       data_files        = [],
