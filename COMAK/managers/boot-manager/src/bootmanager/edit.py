@@ -18,7 +18,7 @@ from PyQt4 import QtGui
 # UI
 from bootmanager.ui_edit import Ui_EditWidget
 
-#PDS stuff
+# PDS stuff
 import bootmanager.context as ctx
 
 if ctx.Pds.session == ctx.pds.Kde4:
@@ -28,20 +28,19 @@ else:
     from bootmanager.context import KIcon, i18n
 
 class EditWidget(QtGui.QWidget, Ui_EditWidget):
+
     def __init__(self, parent):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.id = None
         self.type = None
 
-        #Kernel button signal connect
+        # Kernel button signal connect
         self.kernelButton.clicked.connect(self.slotFileDialog)
-
         self.kernelButton.setIcon(KIcon("folder"))
 
-        #Ramdisk button signal connect
+        # Ramdisk button signal connect
         self.ramdiskButton.clicked.connect(self.slotRamDialog)
-
         self.ramdiskButton.setIcon(KIcon("folder"))
 
     def isNew(self):
@@ -138,21 +137,23 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
     def getOptions(self):
         return unicode(self.lineOptions.text()).replace('\n', ' ')
 
-    #Get file name from file dialog
+    # Get file name from file dialog
     def slotFileDialog(self):
-        """ 
-            Get file name from file dialog 
+        """
+            Get file name from file dialog
         """
 
         if ctx.Pds.session == ctx.pds.Kde4:
             from PyKDE4.kio import KFileDialog
             from PyKDE4.kdecore import KUrl
             url=KUrl.fromPath("/boot/")
-            filename=unicode(KFileDialog.getOpenFileName(url,"All Files",self,i18n("File System")))
+            filename=unicode(KFileDialog.getOpenFileName(url, "", self, i18n("File System")))
         else:
-            filename=unicode(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"/boot/",i18n("All Files")))
+            filename=unicode(QtGui.QFileDialog.getOpenFileName(self, i18n("File System"), "/boot/"))
+
         if filename:
             self.setFile(filename)
+
     def setFile(self,filename):
         """
             Set file name
@@ -161,19 +162,21 @@ class EditWidget(QtGui.QWidget, Ui_EditWidget):
 
     def slotRamDialog(self):
         """
-            Get file name from RamFile dialog 
+            Get file name from RamFile dialog
         """
 
-        #Set ram name
+        # Set ram name
         if ctx.Pds.session == ctx.pds.Kde4:
             from PyKDE4.kio import KFileDialog
             from PyKDE4.kdecore import KUrl
             url=KUrl.fromPath("/boot/")
-            ramname=unicode(KFileDialog.getOpenFileName(url,i18n("All Files"),self,i18n("File System")))
+            ramname=unicode(KFileDialog.getOpenFileName(url, "", self, i18n("File System")))
         else:
-            ramname=unicode(QtGui.QFileDialog.getOpenFileName(self,i18n("File System"),"/boot/",i18n("All Files")))
+            ramname=unicode(QtGui.QFileDialog.getOpenFileName(self, i18n("File System"), "/boot/"))
+
         if ramname:
             self.setRam(ramname)
+
     def setRam(self,ramname):
         EditWidget.setRamdisk(self,ramname)
 
