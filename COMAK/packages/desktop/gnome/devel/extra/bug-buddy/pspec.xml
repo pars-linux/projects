@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A graphical bug reporting tool</Summary>
         <Description>Bug-buddy can extract debugging information from a crashed application and create either a stacktrace or a minidump file to send to the GNOME bug tracker.</Description>
-        <Archive sha1sum="ae93b7b8f06454106e42a555bfa0bfe607644db9" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/bug-buddy/2.32/bug-buddy-2.32.0.tar.bz2</Archive>
+        <Archive sha1sum="ae93b7b8f06454106e42a555bfa0bfe607644db9" type="tarbz2">mirrors://gnome/bug-buddy/2.32/bug-buddy-2.32.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libbonobo-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
