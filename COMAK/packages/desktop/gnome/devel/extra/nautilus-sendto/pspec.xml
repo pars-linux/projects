@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A nautilus extension for sending files to locations</Summary>
         <Description>Nautilus-sendto is a Nautilus context menu for sending files.</Description>
-        <Archive sha1sum="d02d13896bbb6ea4ee358401359b1c51eaa5c898" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/nautilus-sendto/2.32/nautilus-sendto-2.32.0.tar.bz2</Archive>
+        <Archive sha1sum="d02d13896bbb6ea4ee358401359b1c51eaa5c898" type="tarbz2">mirrors://gnome/nautilus-sendto/2.32/nautilus-sendto-2.32.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>nautilus-devel</Dependency>
             <Dependency>evolution-data-server-devel</Dependency>
