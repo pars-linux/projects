@@ -68,8 +68,8 @@
                 * Merge png14 fix and makefile.patch
                 * Temporarily disable session parsing
             </Comment>
-            <Name>Mesutcan Kurt</Name>
-            <Email>mesutcank@gmail.com</Email>
+            <Name>H. İbrahim Güngör</Name>
+            <Email>ibrahim@pardus.org.tr</Email>
         </Update>
         <Update release="1">
             <Date>2010-11-09</Date>
