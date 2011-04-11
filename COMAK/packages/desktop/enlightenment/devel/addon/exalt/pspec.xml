@@ -9,7 +9,7 @@
             <Email>alper.tekinalp@gmail.com</Email>
         </Packager>
         <License>GPL2</License>
-        <IsA>library</IsA>
+        <IsA>app:gui</IsA>
         <Summary>Netwok manager for Enlightenment</Summary>
         <Description>Exalt is a netwok manager front end based on EFL for Enlightenment.</Description>
         <Archive sha1sum="dfcc8dfb3d02135c126a98b5f850752349de483d" type="targz">http://comak.comu.edu.tr/source/exalt-0.9.tar.gz</Archive>
@@ -51,7 +51,7 @@
             <Path fileType="header">/usr/include/</Path>
         </Files>
     </Package>
-    
+
     <History>
         <Update release="1">
             <Date>2011-02-15</Date>
