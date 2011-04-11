@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Mouse accessibility enhancements for the GNOME desktop</Summary>
         <Description>Mousetweaks contains a daemon and some panel applets to improve mouse usability on the GNOME desktop.</Description>
-        <Archive sha1sum="f5097eaa2a782a566492e21703656c8f8385c726" type="tarbz2">http://ftp.acc.umu.se/pub/GNOME/sources/mousetweaks/2.32/mousetweaks-2.32.1.tar.bz2</Archive>
+        <Archive sha1sum="f5097eaa2a782a566492e21703656c8f8385c726" type="tarbz2">mirrors://gnome/mousetweaks/2.32/mousetweaks-2.32.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gnome-common</Dependency>
             <Dependency>intltool</Dependency>
