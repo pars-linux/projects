@@ -12,7 +12,7 @@
         <Isa>app:console</Isa>
         <Summary>Collection of GSettings schemas for GNOME desktop</Summary>
         <Description>Gsettings-desktop-schemas contains a collection of GSettings schemas for settings shared by various components of a desktop.</Description>
-        <Archive sha1sum="31476137a7e9b5366e39f3e8e7d2c90ecc613f9c" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/gnome-mag/0.16/gnome-mag-0.16.3.tar.gz</Archive>
+        <Archive sha1sum="31476137a7e9b5366e39f3e8e7d2c90ecc613f9c" type="targz">mirrors://gnome/gnome-mag/0.16/gnome-mag-0.16.3.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>libXcomposite-devel</Dependency>
             <Dependency>libXfixes-devel</Dependency>
