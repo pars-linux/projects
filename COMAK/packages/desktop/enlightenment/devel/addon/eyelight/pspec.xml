@@ -11,7 +11,7 @@
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>A presentation maker program</Summary>
-        <Description>With Eyelight we can create a presentation from a simple ASCII file and get a beautiful presentation.</Description>
+        <Description>With Eyelight one can create a presentation from a simple ASCII file and get a beautiful presentation.</Description>
         <Archive sha1sum="134a2f58b30269e2a1e9df951717f096eeda8d74" type="tarbz2">http://comak.comu.edu.tr/source/eyelight-0.5_55225.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>eina-devel</Dependency>
@@ -43,6 +43,7 @@
         <Name>eyelight-devel</Name>
         <Summary>Development files for eyelight</Summary>
         <RuntimeDependencies>
+            <Dependency version="current">eyelight</Dependency>
             <Dependency>eina</Dependency>
             <Dependency>edje</Dependency>
             <Dependency>ecore</Dependency>

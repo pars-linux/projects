@@ -3,7 +3,7 @@
     <Source>
         <Name>eyelight</Name>
         <Summary xml:lang="tr">Bir sunum hazırlama programı</Summary>
-        <Description xml:lang="tr">Eyelight ile basit ASCII dosyalarından güzel sunumlar hazırlayabiliriz.</Description>
+        <Description xml:lang="tr">Eyelight ile basit ASCII dosyalarından güzel sunumlar hazırlanabilir.</Description>
     </Source>
 
     <Package>
