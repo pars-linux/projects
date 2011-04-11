@@ -11,8 +11,8 @@
         <License>LGPLv2</License>
         <IsA>libary</IsA>
         <Summary>A C++ wrapper for gnome-vfs</Summary>
-        <Description>gnome-vfsmm is a contains C++ bindings for gnome-vfs.</Description>
-        <Archive sha1sum="9348e6f98a1a84119f85507507885e57f8cf0b71" type="targz">http://ftp.gnome.org/pub/gnome/sources/gnome-vfsmm/2.26/gnome-vfsmm-2.26.0.tar.gz</Archive>
+        <Description>gnome-vfsmm contains C++ bindings for gnome-vfs.</Description>
+        <Archive sha1sum="9348e6f98a1a84119f85507507885e57f8cf0b71" type="targz">mirrors://gnome/gnome-vfsmm/2.26/gnome-vfsmm-2.26.0.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>glibmm-devel</Dependency>
             <Dependency>gnome-vfs-devel</Dependency>
@@ -39,7 +39,8 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
-            <Path fileType="library">/usr/lib/pkgconfig</Path>
+            <Path fileType="header">/usr/lib/gnome-vfsmm-2.6/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
 
