@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Download manager for the Gnome</Summary>
         <Description>GWget is a free graphical frontend for of Wget. GWget supports all of the main features that Wget does, as well as parallel downloads.</Description>
-        <Archive sha1sum="7a2dc0c2238a61b27c7aa6e41f23ac0fb943cdf4" type="targz">http://ftp.gnome.org/pub/GNOME/sources/gwget/1.0/gwget-1.0.4.tar.gz</Archive>
+        <Archive sha1sum="7a2dc0c2238a61b27c7aa6e41f23ac0fb943cdf4" type="targz">mirrors://gnome/gwget/1.0/gwget-1.0.4.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
@@ -43,6 +43,7 @@
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
     </Package>
