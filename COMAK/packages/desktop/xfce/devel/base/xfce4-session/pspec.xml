@@ -79,7 +79,7 @@
         <PartOf>desktop.xfce.library</PartOf>
         <Summary>Xfce4 Session development files</Summary>
         <RuntimeDependencies>
-            <Dependency releaseFrom="15">xfce4-session</Dependency>
+            <Dependency release="current">xfce4-session</Dependency>
             <Dependency>xfconf-devel</Dependency>
             <Dependency>libxfce4ui-devel</Dependency>
         </RuntimeDependencies>
