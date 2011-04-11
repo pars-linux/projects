@@ -61,6 +61,7 @@
 
     <Package>
         <Name>nautilus-docs</Name>
+        <Summary>Reference documents for nautilus</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
         </Files>
