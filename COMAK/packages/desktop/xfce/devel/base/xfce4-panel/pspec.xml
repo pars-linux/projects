@@ -70,7 +70,7 @@
         <PartOf>desktop.xfce.library</PartOf>
         <Summary>Development files for Xfce4 Panel</Summary>
         <RuntimeDependencies>
-            <Dependency releaseFrom="current">xfce4-panel</Dependency>
+            <Dependency release="current">xfce4-panel</Dependency>
             <Dependency>libxfcegui4-devel</Dependency>
             <Dependency>exo-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
