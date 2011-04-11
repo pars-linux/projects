@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Murrine GTK+2 Cairo Engine</Summary>
         <Description>gtk2-engines-murrine is a Gtk2 engine that will make your desktop look like a beautiful Murrina.</Description>
-        <Archive sha1sum="811bc9d878e123fba8b426d9419e1520d6c26c40" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/murrine/0.98/murrine-0.98.1.tar.gz</Archive>
+        <Archive sha1sum="811bc9d878e123fba8b426d9419e1520d6c26c40" type="targz">mirrors://gnome/murrine/0.98/murrine-0.98.1.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
