@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A GNOME URL handler for web-published ical calendar files</Summary>
         <Description>A GNOME URL handler for web-published ical calendar files</Description>
-        <Archive sha1sum="331a5decba0f0b2ac47887982c2d79e62a19cdb9" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/sources/evolution-webcal/2.32/evolution-webcal-2.32.0.tar.bz2</Archive>
+        <Archive sha1sum="331a5decba0f0b2ac47887982c2d79e62a19cdb9" type="tarbz2">mirrors://gnome/evolution-webcal/2.32/evolution-webcal-2.32.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>libsoup-devel</Dependency>
