@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Gail libraries for GNOME</Summary>
         <Description>GNOME Accessibility Implementation library additions which implement ATK interfaces for libbonoboui and libgnomeui widgets.</Description>
-        <Archive sha1sum="47390fe9482972b4f0e478a460a99e0b47c14b59" type="targz">http://ftp.acc.umu.se/pub/gnome/sources/libgail-gnome/1.20/libgail-gnome-1.20.4.tar.gz</Archive>
+        <Archive sha1sum="47390fe9482972b4f0e478a460a99e0b47c14b59" type="targz">mirrors://gnome/libgail-gnome/1.20/libgail-gnome-1.20.4.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
             <Dependency>orbit2-devel</Dependency>
