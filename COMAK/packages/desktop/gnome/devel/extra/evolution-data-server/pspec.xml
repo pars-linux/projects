@@ -13,7 +13,7 @@
         <License>DB</License>
         <Summary>Evolution groupware backend</Summary>
         <Description>evolution-data-server is a library backend for Evolution-related applications.</Description>
-        <Archive sha1sum="a8d1820d7b89fabed8dc44ad51eb90fc5a61e9da" type="tarbz2">http://download.gnome.org/sources/evolution-data-server/2.32/evolution-data-server-2.32.2.tar.bz2</Archive>
+        <Archive sha1sum="a8d1820d7b89fabed8dc44ad51eb90fc5a61e9da" type="tarbz2">mirrors://gnome/evolution-data-server/2.32/evolution-data-server-2.32.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gnome-common</Dependency>
             <Dependency>cairo-devel</Dependency>
