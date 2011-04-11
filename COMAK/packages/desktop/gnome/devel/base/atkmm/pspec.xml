@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>C++ interface for the ATK library</Summary>
         <Description>atkmm provides a C++ interface for the ATK library.</Description>
-        <Archive sha1sum="071b36209f43402f9035b25b2cba10d172179e0a" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/atkmm/2.22/atkmm-2.22.2.tar.gz</Archive>
+        <Archive sha1sum="071b36209f43402f9035b25b2cba10d172179e0a" type="targz">mirrors://gnome/atkmm/2.22/atkmm-2.22.2.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>atk</Dependency>
             <Dependency>glibmm</Dependency>
