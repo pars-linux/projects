@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>dconf</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:console</IsA>
+        <Summary>dconf</Summary>
+        <Description>a conf daemon</Description>
+        <Archive sha1sum="b0d0298b7829caf198f512ffe34759348f5cb81e" type="tarbz2">mirrors://gnome/dconf/0.7/dconf-0.7.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>dconf</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk3</Dependency>
+            <Dependency>pango</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="library">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>dconf-devel</Name>
+        <Summary>Development files for dconf</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">dconf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+            <Path fileType="header">/usr/include</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>dconf-docs</Name>
+        <Summary>Reference files for dconf</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">dconf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="data">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-08</Date>
+            <Version>0.7.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+

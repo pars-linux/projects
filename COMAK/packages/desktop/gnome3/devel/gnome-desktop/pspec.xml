@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-desktop3</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Basic GNOME libraries and dialogs</Summary>
+        <Description>This package contains basic GNOME libraries and information applications.</Description>
+        <Archive sha1sum="aec7a70b20a221a557212b9f12d59bc25c86c793" type="tarbz2">mirrors://gnome/gnome-desktop/3.0/gnome-desktop-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-desktop</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk3</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>startup-notification</Dependency>
+            <Dependency>libXrandr</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gnome-about</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/pixmaps</Path>
+            <Path fileType="data">/usr/share/libgnome-desktop-3.0</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gnome-desktop-docs</Name>
+        <Files>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gnome-desktop-devel</Name>
+        <Summary>Development files for gnome-desktop</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">gnome-desktop</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>gsettings-desktop-schemas-devel</Dependency>
+            <Dependency>startup-notification-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-08</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
