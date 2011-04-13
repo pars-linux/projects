@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-utils</Name>
+        <Homepage>http://live.gnome.org/GnomeUtils</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Common utilises for GNOME desktop</Summary>
+        <Description>This package contains baobab, gnome-system-log, gnome-search-tool, gnome-dictionary, gfloppy, gnome-screenshot applications.</Description>
+        <Archive sha1sum="29ff73ee5afae5aa6f46862e76111127112e0e49" type="tarbz2">mirrors://gnome/gnome-utils/3.0/gnome-utils-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>libgtop-devel</Dependency>
+            <Dependency>hal-devel</Dependency>
+            <Dependency>kernel-headers</Dependency>
+            <Dependency>e2fsprogs-devel</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>libcanberra-gtk3-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>pardus-menus-logview.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gnome-utils</Name>
+        <RuntimeDependencies>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>libgtop</Dependency>
+            <Dependency>hal</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>libbonoboui</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/baobab</Path>
+            <Path fileType="data">/usr/share/gdict-1.0</Path>
+            <Path fileType="data">/usr/share/gnome-2.0</Path>
+            <Path fileType="data">/usr/share/gnome-dictionary</Path>
+            <Path fileType="data">/usr/share/gnome-screenshot</Path>
+            <Path fileType="data">/usr/share/gnome-utils</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/glib-2.0</Path>
+            <Path fileType="data">/usr/share/GConf</Path>
+            <Path fileType="data">/usr/share/thumbnailers</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/pixmaps</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gnome-utils-docs</Name>
+        <IsA>data:doc</IsA>
+        <Summary>gnome-utils reference documents</Summary>
+        <Files>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-13</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
