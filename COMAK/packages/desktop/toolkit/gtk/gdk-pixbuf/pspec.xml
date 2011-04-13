@@ -32,7 +32,6 @@
         <RuntimeDependencies>
             <Dependency>tiff</Dependency>
             <Dependency>jpeg</Dependency>
-            <Dependency>libpng</Dependency>
             <Dependency>jasper</Dependency>
         </RuntimeDependencies>
         <Conflicts>
