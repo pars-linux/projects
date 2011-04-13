@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-utils</Name>
+        <Summary xml:lang="tr">GNOME masaüstü için temel araçlar</Summary>
+        <Description xml:lang="tr">Bu paket, boabab, gnome-system-log, gnome-search-tool, gnome-directory, gfloopy ve gnome-sceenshot uygulamalarını içerir.</Description>
+    </Source>
+</PISI>
+

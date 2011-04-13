@@ -1,0 +1,11 @@
+--- logview/data/gnome-system-log.desktop.in.in.orig	2009-02-11 17:20:48.000000000 +0200
++++ logview/data/gnome-system-log.desktop.in.in	2009-02-11 17:21:03.000000000 +0200
+@@ -6,7 +6,7 @@
+ Terminal=false
+ Type=Application
+ StartupNotify=true
+-Categories=GTK;GNOME;System;Monitor;
++Categories=GTK;GNOME;System;Settings;
+ NotShowIn=KDE;
+ X-GNOME-DocPath=gnome-system-log/gnome-system-log.xml
+ X-GNOME-Bugzilla-Bugzilla=GNOME
