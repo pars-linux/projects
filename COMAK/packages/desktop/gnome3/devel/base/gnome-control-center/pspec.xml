@@ -14,13 +14,13 @@
         <Description>gnome-control-center is GNOME's main interface for configuration of various aspects of your GNOME desktop.</Description>
         <Archive sha1sum="8b8d8ffd1143fb28f2821b9e41af995d3c7b491c" type="tarbz2">mirrors://gnome/gnome-control-center/3.0/gnome-control-center-3.0.0.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency>libcanberra-devel</Dependency>
+            <Dependency versionFrom="0.28">libcanberra-devel</Dependency>
             <Dependency>gnome-desktop-devel</Dependency>
             <Dependency>hal</Dependency>
             <Dependency>desktop-file-utils</Dependency>
             <Dependency>gnome-settings-daemon</Dependency>
             <Dependency>metacity-devel</Dependency>
-            <Dependency>gnome-panel</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-panel</Dependency>
             <Dependency>libglade</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>desktop-file-utils</Dependency>
@@ -29,19 +29,22 @@
             <Dependency>libXScrnSaver-devel</Dependency>
             <Dependency>libXft-devel</Dependency>
             <Dependency>cups-devel</Dependency>
+            <Dependency>libgtop-devel</Dependency>
+            <Dependency versionFrom="3.0.0">gsettings-desktop-schemas-devel</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-settings-daemon-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>gnome-control-center</Name>
         <RuntimeDependencies>
-            <Dependency>libcanberra</Dependency>
+            <Dependency versionFrom="0.28">libcanberra</Dependency>
             <Dependency>gnome-desktop</Dependency>
             <Dependency>hal</Dependency>
             <Dependency>desktop-file-utils</Dependency>
             <Dependency>gnome-settings-daemon</Dependency>
             <Dependency>metacity</Dependency>
-            <Dependency>gnome-panel</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-panel</Dependency>
             <Dependency>libglade</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>desktop-file-utils</Dependency>
@@ -49,6 +52,9 @@
             <Dependency>libunique</Dependency>
             <Dependency>libXft</Dependency>
             <Dependency>cups</Dependency>
+            <Dependency>libgtop</Dependency>
+            <Dependency versionFrom="3.0.0">gsettings-desktop-schemas</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-settings-daemon</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
