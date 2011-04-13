@@ -14,7 +14,8 @@ WorkDir = "gtk+-%s" % get.srcVERSION()
 
 def setup():
     autotools.autoreconf("-fiv")
-    autotools.configure("--enable-xinerama \
+    autotools.configure("--enable-gir \
+                         --enable-xinerama \
                          --enable-xkb \
                          --disable-introspection \
                          --enable-silent-rules")
