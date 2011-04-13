@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>gnome-desktop3</Name>
+        <Name>gnome-desktop</Name>
         <Homepage>http://www.gnome.org</Homepage>
         <Packager>
             <Name>Burak Çalışkan</Name>
@@ -16,7 +16,7 @@
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
-            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency versionFrom="2.23">gdk-pixbuf-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>docbook-xml4_1_2</Dependency>
@@ -28,7 +28,7 @@
         <RuntimeDependencies>
             <Dependency>gtk3</Dependency>
             <Dependency>cairo</Dependency>
-            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency versionFrom="2.23">gdk-pixbuf</Dependency>
             <Dependency>gconf</Dependency>
             <Dependency>startup-notification</Dependency>
             <Dependency>libXrandr</Dependency>
@@ -51,6 +51,7 @@
 
     <Package>
         <Name>gnome-desktop-docs</Name>
+        <Summary>Documentary files for gnome-desktop</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
         </Files>
