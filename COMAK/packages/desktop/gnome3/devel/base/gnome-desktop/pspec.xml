@@ -16,7 +16,7 @@
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
-            <Dependency versionFrom="2.23">gdk-pixbuf-devel</Dependency>
+            <Dependency versionFrom="2.23.3">gdk-pixbuf-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>docbook-xml4_1_2</Dependency>
@@ -28,7 +28,7 @@
         <RuntimeDependencies>
             <Dependency>gtk3</Dependency>
             <Dependency>cairo</Dependency>
-            <Dependency versionFrom="2.23">gdk-pixbuf</Dependency>
+            <Dependency versionFrom="2.23.3">gdk-pixbuf</Dependency>
             <Dependency>gconf</Dependency>
             <Dependency>startup-notification</Dependency>
             <Dependency>libXrandr</Dependency>
