@@ -13,7 +13,7 @@
         <IsA>app:console</IsA>
         <Summary>GTK+ API documentation generator</Summary>
         <Description>Gtk-Doc is typically used to document the public API of GTK+ and GNOME libraries, but it can also be used to document application code.</Description>
-        <Archive sha1sum="fc1c593e8107cbe33451e3e938ca14b59104e999" type="tarbz2">mirrors://gnome/gtk-doc/1.15/gtk-doc-1.15.tar.bz2</Archive>
+        <Archive sha1sum="15be7bf929c62d4ad7c335436617295bb5f4d735" type="tarbz2">mirrors://gnome/gtk-doc/1.17/gtk-doc-1.17.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>openjade</Dependency>
             <Dependency>rarian</Dependency>
@@ -23,9 +23,6 @@
             <Dependency>docbook-xsl</Dependency>
             <!-- <Dependency>dblatex</Dependency> -->
         </BuildDependencies>
-        <Patches>
-            <Patch level="1">fix_gtkdoc-fixxref.patch</Patch>
-        </Patches>
     </Source>
 
     <Package>
@@ -47,6 +44,13 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-04-13</Date>
+            <Version>1.17</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="5">
             <Date>2010-12-31</Date>
             <Version>1.15</Version>
