@@ -21,10 +21,10 @@
             <Dependency>cairo-devel</Dependency>
             <Dependency>libXi-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
-            <Dependency>libnotify-devel</Dependency>
+            <Dependency versionFrom="0.7.2">libnotify-devel</Dependency>
             <Dependency>fontconfig-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
-            <Dependency>libxklavier-devel</Dependency>
+            <Dependency versionFrom="3.0.0">libxklavier-devel</Dependency>
             <Dependency>libgnomekbd-devel</Dependency>
             <Dependency>gnome-desktop-devel</Dependency>
             <Dependency>gnome-common</Dependency>
@@ -41,10 +41,10 @@
             <Dependency>cairo</Dependency>
             <Dependency>libXi</Dependency>
             <Dependency>gconf</Dependency>
-            <Dependency>libnotify</Dependency>
+            <Dependency versionFrom="0.7.2">libnotify</Dependency>
             <Dependency>fontconfig</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
-            <Dependency>libxklavier</Dependency>
+            <Dependency versionFrom="3.0.0">libxklavier</Dependency>
             <Dependency>libgnomekbd</Dependency>
             <Dependency>gnome-desktop</Dependency>
         </RuntimeDependencies>
