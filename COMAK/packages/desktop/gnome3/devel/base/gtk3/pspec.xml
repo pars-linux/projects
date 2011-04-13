@@ -11,36 +11,35 @@
         <License>LGPLv2.1</License>
         <Summary>The GIMP Toolkit version 3</Summary>
         <Description>GTK+ is a multi-platform toolkit for creating graphical user interfaces. Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off projects to complete application suites.</Description>
-        <Archive sha1sum="d225db489379e8bbbd5539e3b81b6ba052835c83" type="tarbz2">mirrors://gnome/gtk+/2.90/gtk+-2.90.0.tar.bz2</Archive>
+        <Archive sha1sum="763827465edfa8ffa5b4e445b1e59a01b305cdd0" type="tarbz2">mirrors://gnome/gtk+/3.0/gtk+-3.0.8.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency versionFrom="1.29.2">atk</Dependency>
-            <Dependency versionFrom="2.23.6">glib2</Dependency>
-            <Dependency>cups</Dependency>
-            <Dependency>pango</Dependency>
-            <Dependency>cairo</Dependency>
-            <Dependency>jasper</Dependency>
-            <Dependency>libXext</Dependency>
-            <Dependency>libXrandr</Dependency>
-            <Dependency>libXfixes</Dependency>
-            <Dependency>libXrender</Dependency>
-            <Dependency>libXdamage</Dependency>
-            <Dependency>libXcursor</Dependency>
-            <Dependency>fontconfig</Dependency>
-            <Dependency>libXinerama</Dependency>
-            <Dependency>libXcomposite</Dependency>
-            <Dependency>libXi</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>glib2-devel</Dependency>
+            <Dependency>cups-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>libXext-devel</Dependency>
+            <Dependency>libXrandr-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>libXrender-devel</Dependency>
+            <Dependency>libXdamage-devel</Dependency>
+            <Dependency>libXcursor-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+            <Dependency>libXinerama-devel</Dependency>
+            <Dependency>libXcomposite-devel</Dependency>
+            <Dependency>libXi-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>gtk3</Name>
         <RuntimeDependencies>
-            <Dependency versionFrom="1.29.2">atk</Dependency>
-            <Dependency versionFrom="2.23.6">glib2</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>glib2</Dependency>
             <Dependency>cups</Dependency>
             <Dependency>pango</Dependency>
             <Dependency>cairo</Dependency>
-            <Dependency>jasper</Dependency>
             <Dependency>libXext</Dependency>
             <Dependency>libXrandr</Dependency>
             <Dependency>libXfixes</Dependency>
@@ -51,22 +50,40 @@
             <Dependency>libXinerama</Dependency>
             <Dependency>libXcomposite</Dependency>
             <Dependency>libXi</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
-            <Path fileType="data">/usr/share/aclocal</Path>
             <Path fileType="data">/usr/share/themes</Path>
             <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share/glib-2.0</Path>
         </Files>
         <Provides>
             <COMAR script="package.py">System.Package</COMAR>
             <COMAR script="pakhandler.py">System.PackageHandler</COMAR>
         </Provides>
+    </Package>
+
+    <Package>
+        <Name>gtk3-devel</Name>
+        <Summary>Development files for gtk3</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">gtk3</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+            <Path fileType="data">/usr/share/aclocal</Path>
+            <Path fileType="data">/usr/share/gir-1.0</Path>
+        </Files>
     </Package>
 
     <Package>
@@ -93,8 +110,8 @@
 
     <History>
         <Update release="1">
-            <Date>2010-05-16</Date>
-            <Version>2.90.0</Version>
+            <Date>2011-04-08</Date>
+            <Version>3.0.8</Version>
             <Comment>First release.</Comment>
             <Name>Burak Çalışkan</Name>
             <Email>burakclskn@gmail.com</Email>

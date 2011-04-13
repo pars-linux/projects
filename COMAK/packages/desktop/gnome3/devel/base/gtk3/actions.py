@@ -13,28 +13,18 @@ from pisi.actionsapi import shelltools
 WorkDir = "gtk+-%s" % get.srcVERSION()
 
 def setup():
-    autotools.configure("--with-libjpeg \
-                         --with-libtiff \
-                         --with-libjasper\
-                         --with-libpng \
-                         --with-gdktarget=x11 \
-                         --enable-xinerama \
-                         --with-xinput=yes \
+    autotools.autoreconf("-fiv")
+    autotools.configure("--enable-xinerama \
                          --enable-xkb \
-                         --enable-shm \
-                         --with-included-loaders=png \
-                         --enable-silent-rules \
-                         --disable-introspection")
-    pisitools.dosed("libtool"," -shared ", " -Wl,--as-needed -shared ")
+                         --disable-introspection \
+                         --enable-silent-rules")
 
 def build():
     autotools.make()
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-    
-    pisitools.removeDir("/usr/share/aclocal")
 
-    # remove empty dir
-    #pisitools.removeDir("/usr/share/man")
+    pisitools.remove("/usr/bin/gtk-update-icon-cache")
+
     pisitools.dodoc("AUTHORS", "README*", "HACKING", "ChangeLog*", "NEWS*")
