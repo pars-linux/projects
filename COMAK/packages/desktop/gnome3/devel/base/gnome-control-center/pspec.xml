@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-control-center</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Mesutcan kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>GNOME configuration tools</Summary>
+        <Description>gnome-control-center is GNOME's main interface for configuration of various aspects of your GNOME desktop.</Description>
+        <Archive sha1sum="8b8d8ffd1143fb28f2821b9e41af995d3c7b491c" type="tarbz2">mirrors://gnome/gnome-control-center/3.0/gnome-control-center-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>libcanberra-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>hal</Dependency>
+            <Dependency>desktop-file-utils</Dependency>
+            <Dependency>gnome-settings-daemon</Dependency>
+            <Dependency>metacity-devel</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>libglade</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>desktop-file-utils</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>libunique</Dependency>
+            <Dependency>libXScrnSaver-devel</Dependency>
+            <Dependency>libXft-devel</Dependency>
+            <Dependency>cups-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-control-center</Name>
+        <RuntimeDependencies>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>hal</Dependency>
+            <Dependency>desktop-file-utils</Dependency>
+            <Dependency>gnome-settings-daemon</Dependency>
+            <Dependency>metacity</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>libglade</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>desktop-file-utils</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>libunique</Dependency>
+            <Dependency>libXft</Dependency>
+            <Dependency>cups</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="executable">/usr/sbin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/desktop-directories</Path>
+            <Path fileType="data">/usr/share/gnome-control-center</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/mime</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/pixmaps</Path>
+            <Path fileType="data">/usr/share/polkit-1</Path>
+            <Path fileType="data">/usr/share/sounds</Path>
+        </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/applications/package-manager.desktop">package-manager.desktop</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/applications/service-manager.desktop">service-manager.desktop</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/pixmaps/package-manager.png">package-manager.png</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/applications/user-manager.desktop">user-manager.desktop</AdditionalFile>
+            <!--<AdditionalFile owner="root" permission="0644" target="/usr/share/applications/display-manager.desktop">display-manager.desktop</AdditionalFile>-->
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/applications/history-manager.desktop">history-manager.desktop</AdditionalFile>
+        </AdditionalFiles>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-13</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
