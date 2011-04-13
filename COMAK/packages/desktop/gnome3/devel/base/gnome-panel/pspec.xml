@@ -23,14 +23,14 @@
             <Dependency>libSM-devel</Dependency>
             <Dependency>libICE-devel</Dependency>
             <Dependency>librsvg-devel</Dependency>
-            <Dependency>libwnck-devel</Dependency>
+            <Dependency versionFrom="3.0.0">libwnck-devel</Dependency>
             <Dependency>libXrandr-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
-            <Dependency>gnome-menus-devel</Dependency>
-            <Dependency>libgweather-devel</Dependency>
-            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-menus-devel</Dependency>
+            <Dependency versionFrom="3.0.0">libgweather-devel</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-desktop-devel</Dependency>
             <Dependency>docbook-xml4_1_2</Dependency>
-            <Dependency>gnome-common</Dependency>
+            <Dependency versionFrom="2.34">gnome-common</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -49,9 +49,9 @@
             <Dependency>libwnck</Dependency>
             <Dependency>libXrandr</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
-            <Dependency>gnome-menus</Dependency>
-            <Dependency>libgweather</Dependency>
-            <Dependency>gnome-desktop</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-menus</Dependency>
+            <Dependency versionFrom="3.0.0">libgweather</Dependency>
+            <Dependency versionFrom="3.0.0">gnome-desktop</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
