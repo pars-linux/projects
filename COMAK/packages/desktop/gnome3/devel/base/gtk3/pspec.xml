@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gtk3</Name>
+        <Homepage>http://www.gtk.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>LGPLv2.1</License>
+        <Summary>The GIMP Toolkit version 3</Summary>
+        <Description>GTK+ is a multi-platform toolkit for creating graphical user interfaces. Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off projects to complete application suites.</Description>
+        <Archive sha1sum="d225db489379e8bbbd5539e3b81b6ba052835c83" type="tarbz2">mirrors://gnome/gtk+/2.90/gtk+-2.90.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="1.29.2">atk</Dependency>
+            <Dependency versionFrom="2.23.6">glib2</Dependency>
+            <Dependency>cups</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>jasper</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>libXrandr</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libXrender</Dependency>
+            <Dependency>libXdamage</Dependency>
+            <Dependency>libXcursor</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>libXinerama</Dependency>
+            <Dependency>libXcomposite</Dependency>
+            <Dependency>libXi</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gtk3</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="1.29.2">atk</Dependency>
+            <Dependency versionFrom="2.23.6">glib2</Dependency>
+            <Dependency>cups</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>jasper</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>libXrandr</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libXrender</Dependency>
+            <Dependency>libXdamage</Dependency>
+            <Dependency>libXcursor</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>libXinerama</Dependency>
+            <Dependency>libXcomposite</Dependency>
+            <Dependency>libXi</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/share/aclocal</Path>
+            <Path fileType="data">/usr/share/themes</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+        </Files>
+        <Provides>
+            <COMAR script="package.py">System.Package</COMAR>
+            <COMAR script="pakhandler.py">System.PackageHandler</COMAR>
+        </Provides>
+    </Package>
+
+    <Package>
+        <Name>gtk3-demo</Name>
+        <IsA>app:gui</IsA>
+        <Summary>GTK demo application</Summary>
+        <RuntimeDependencies>
+            <Dependency>gtk3</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin/gtk3-demo</Path>
+            <Path fileType="data">/usr/share/gtk-3.0/demo</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gtk3-docs</Name>
+        <IsA>data:doc</IsA>
+        <Summary>GTK reference documents</Summary>
+        <Files>
+            <Path fileType="data">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2010-05-16</Date>
+            <Version>2.90.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
