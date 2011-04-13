@@ -3,15 +3,15 @@
 <PISI>
     <Source>
         <Name>dconf</Name>
-        <Homepage>http://www.gnome.org</Homepage>
+        <Homepage>http://live.gnome.org/dconf</Homepage>
         <Packager>
             <Name>Burak Çalışkan</Name>
             <Email>burakclskn@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <IsA>app:console</IsA>
-        <Summary>dconf</Summary>
-        <Description>a conf daemon</Description>
+        <Summary>Simple low-level configuration system</Summary>
+        <Description>dconf is a low-level configuration system. Its main purpose is to provide a backend to GSettings on platforms that don't already have configuration storage systems.</Description>
         <Archive sha1sum="b0d0298b7829caf198f512ffe34759348f5cb81e" type="tarbz2">mirrors://gnome/dconf/0.7/dconf-0.7.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
@@ -30,8 +30,6 @@
             <Path fileType="executable">/usr/bin</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="library">/usr/libexec</Path>
-            <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
