@@ -22,7 +22,7 @@
             <Dependency>e2fsprogs-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>docbook-xml4_1_2</Dependency>
-            <Dependency>libcanberra-gtk3-devel</Dependency>
+            <Dependency>libcanberra-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>pardus-menus-logview.patch</Patch>
@@ -38,6 +38,8 @@
             <Dependency>hal</Dependency>
             <Dependency>atk</Dependency>
             <Dependency>gtk2</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>freetype</Dependency>
             <Dependency>cairo</Dependency>
             <Dependency>libSM</Dependency>
             <Dependency>gconf</Dependency>
