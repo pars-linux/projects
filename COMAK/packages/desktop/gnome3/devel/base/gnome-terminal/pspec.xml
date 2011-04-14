@@ -21,6 +21,10 @@
             <Dependency>startup-notification-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>gnome-common</Dependency>
         </BuildDependencies>
         <Patches>
@@ -36,6 +40,11 @@
             <Dependency>gconf</Dependency>
             <Dependency>libglade</Dependency>
             <Dependency>startup-notification</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
