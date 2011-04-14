@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>evince</Name>
+        <Summary xml:lang="tr">Gnome için basit bir döküman görüntüleyicisi</Summary>
+    </Source>
+
+    <Package>
+        <Name>evince-devel</Name>
+        <Summary xml:lang="tr">evince için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
