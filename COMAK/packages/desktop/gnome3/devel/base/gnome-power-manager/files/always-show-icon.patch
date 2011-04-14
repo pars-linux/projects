@@ -1,0 +1,10 @@
+--- data/gnome-power-manager.schemas.in	2008-03-10 23:50:01.000000000 +0200
+@@ -957,7 +957,7 @@
+       <applyto>/apps/gnome-power-manager/ui/icon_policy</applyto>
+       <owner>gnome-power-manager</owner>
+       <type>string</type>
+-      <default>present</default>
++      <default>always</default>
+       <locale name="C">
+         <short>When to show the notification icon</short>
+         <long>Display options for the notification icon. Valid options are "never", "critical", "charge", "present" and "always".</long>
