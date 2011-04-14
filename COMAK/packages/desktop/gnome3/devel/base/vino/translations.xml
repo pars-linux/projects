@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>vino</Name>
+        <Summary xml:lang="tr">GNOME için uzak masaüstü sistemi</Summary>
+        <Description xml:lang="tr">Vino; kullanıcıların, çalışan GNOME oturumuna uzaktan bağlanmasını sağlayan bir VNC sunucusudur.</Description>
+    </Source>
+</PISI>
+
