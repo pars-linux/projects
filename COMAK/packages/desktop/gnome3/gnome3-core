@@ -8,7 +8,6 @@ clutter-gtk-1.0.0.tar.bz2
 empathy-3.0.0.tar.bz2       
 eog-3.0.0.tar.bz2       
 epiphany-3.0.0.tar.bz2  
-evince-3.0.0.tar.bz2    
 evolution-data-server-3.0.0.tar.bz2 
 gcalctool-6.0.0.tar.bz2       
 gjs-0.7.14.tar.bz2     
@@ -23,7 +22,6 @@ gnome-icon-theme-extras-3.0.0.tar.bz2
 gnome-icon-theme-symbolic-3.0.0.tar.bz2 
 gnome-keyring-3.0.0.tar.bz2        
 gnome-packagekit-3.0.0.tar.bz2     
-gnome-power-manager-3.0.0.tar.bz2  
 gnome-screensaver-3.0.0.tar.bz2    
 gnome-shell-3.0.0.1.tar.bz2        
 gnome-system-monitor-3.0.0.tar.bz2 
@@ -79,3 +77,5 @@ vino-3.0.0.tar.bz2
 totem-pl-parser-2.32.4.tar.bz2
 gnome-doc-utils-0.20.5.tar.bz2   
 gobject-introspection-0.10.7.tar.bz2
+evince-3.0.0.tar.bz2    
+gnome-power-manager-3.0.0.tar.bz2  
