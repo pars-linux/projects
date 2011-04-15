@@ -42,6 +42,7 @@
         <Files>
             <Path fileType="header">/usr/include</Path>
             <Path fileType="data">/usr/lib/pkgconfig</Path>
+            <Path fileType="data">/usr/share/gir-1.0</Path>
         </Files>
     </Package>
 
@@ -49,7 +50,7 @@
         <Update release="7">
             <Date>2011-04-14</Date>
             <Version>2.32.4</Version>
-            <Comment>Version bump.</Comment>
+            <Comment>Version bump, enable gir.</Comment>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
         </Update>
