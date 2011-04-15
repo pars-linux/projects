@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>libpeas</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>A gobject-based plugins engine</Summary>
+        <Description>libpeas is a gobject-based plugins engine, and is targetted at giving every application the chance to assume its own extensibility.</Description>
+        <Archive sha1sum="f15caf0b7c4621979eff5bca06f567d2d4828443" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/core/3.0/3.0.0/sources/libpeas-1.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency versionFrom="0.10.1">gobject-introspection-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>libpeas</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="0.10.1">gobject-introspection</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>fontconfig</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>libpeas-devel</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="current">libpeas</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-15</Date>
+            <Version>1.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
