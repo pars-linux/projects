@@ -15,7 +15,6 @@ from pisi.actionsapi import get
 
 def setup():
     shelltools.export("AUTOPOINT", "true")
-    # autotools.configure("--enable-introspection")
     autotools.autoreconf("-fi")
     autotools.configure()
 

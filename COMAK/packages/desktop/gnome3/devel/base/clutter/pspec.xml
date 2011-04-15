@@ -18,6 +18,7 @@
             <Dependency>cairo-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>mesa-devel</Dependency>
+            <Dependency>zenity</Dependency>
             <Dependency>libXext-devel</Dependency>
             <Dependency>libXrender-devel</Dependency>
             <Dependency>libXfixes-devel</Dependency>
@@ -26,9 +27,7 @@
             <Dependency>glitz-devel</Dependency>
             <Dependency>xcb-util-devel</Dependency>
             <Dependency>json-glib-devel</Dependency>
-            <!-- gir is slowly merging in, lets see what will happen and if it is necessary
             <Dependency>gobject-introspection</Dependency>
-            -->
         </BuildDependencies>
      </Source>
 
@@ -40,6 +39,7 @@
             <Dependency>gtk2</Dependency>
             <Dependency>mesa</Dependency>
             <Dependency>libXext</Dependency>
+            <Dependency>zenity</Dependency>
             <Dependency>libXrender</Dependency>
             <Dependency>libXfixes</Dependency>
             <Dependency>libXdamage</Dependency>
