@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-screensaver</Name>
+        <Summary xml:lang="tr">GNOME için ekran koruyucu</Summary>
+        <Description xml:lang="tr">gnome-screensaver GNOME'un resmi ekran koruyucusudur.</Description>
+    </Source>
+</PISI>
+
