@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gjs</Name>
+        <Homepage>http://live.gnome.org/Gjs</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>MIT</License>
+        <IsA>library</IsA>
+        <Summary>JavaScript bindings based on gobject-introspection and Mozilla</Summary>
+        <Description>This module contains JavaScript bindings based on gobject-introspection and the Mozilla SpiderMonkey JavaScript engine.</Description>
+        <Archive sha1sum="780bc1f72ac4435d356e622cff66e2f554117269" type="targz">mirrors://gnome/gjs/0.7/gjs-0.7.14.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>xulrunner-devel</Dependency>
+            <Dependency>gobject-introspection-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gjs</Name>
+        <!--RuntimeDependencies>
+            <Dependency versionFrom=""></Dependency>
+        </RuntimeDependencies-->
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gjs-devel</Name>
+        <Summary>Development files for gjs</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">gjs</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+            <Path fileType="header">/usr/include</Path>
+        </Files>
+    </Package>
+
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-15</Date>
+            <Version>0.7.14</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
