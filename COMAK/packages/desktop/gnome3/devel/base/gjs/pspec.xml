@@ -21,9 +21,12 @@
 
     <Package>
         <Name>gjs</Name>
-        <!--RuntimeDependencies>
-            <Dependency versionFrom=""></Dependency>
-        </RuntimeDependencies-->
+        <RuntimeDependencies>
+            <Dependency>nspr</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>xulrunner</Dependency>
+            <Dependency>gobject-introspection</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
             <Path fileType="library">/usr/lib</Path>
