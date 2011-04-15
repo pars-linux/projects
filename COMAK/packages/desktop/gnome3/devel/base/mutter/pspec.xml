@@ -23,6 +23,7 @@
             <Dependency>pango-devel</Dependency>
             <Dependency>libICE-devel</Dependency>
             <Dependency>clutter</Dependency>
+            <Dependency>zenity</Dependency>
             <Dependency>libXext-devel</Dependency>
             <Dependency>libXrandr-devel</Dependency>
             <Dependency>libXfixes-devel</Dependency>
@@ -50,6 +51,7 @@
             <Dependency>pango</Dependency>
             <Dependency>libICE</Dependency>
             <Dependency>clutter</Dependency>
+            <Dependency>zenity</Dependency>
             <Dependency>libXext</Dependency>
             <Dependency>libXrandr</Dependency>
             <Dependency>libXfixes</Dependency>
