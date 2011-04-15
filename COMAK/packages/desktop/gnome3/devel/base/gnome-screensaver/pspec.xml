@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-screensaver</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>GNOME screensaver</Summary>
+        <Description>GNOME offical screensaver application.</Description>
+        <Archive sha1sum="8070e916d66a381334be2ca11b4b8e4c378c0a08" type="tarbz2">mirrors://gnome/gnome-screensaver/3.0/gnome-screensaver-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>gnome-menus-devel</Dependency>
+            <Dependency>libgnomekbd-devel</Dependency>
+            <Dependency>libXrandr-devel</Dependency>
+            <Dependency>libXScrnSaver-devel</Dependency>
+            <Dependency>libXxf86dga-devel</Dependency>
+            <Dependency>libXxf86vm-devel</Dependency>
+            <Dependency>xscreensaver</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-screensaver</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>libglade</Dependency>
+            <Dependency>gnome-menus</Dependency>
+            <Dependency>libgnomekbd</Dependency>
+            <Dependency>libXrandr</Dependency>
+            <Dependency>libXScrnSaver</Dependency>
+            <Dependency>libXxf86dga</Dependency>
+            <Dependency>libXxf86vm</Dependency>
+            <Dependency>xscreensaver</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libxklavier</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/desktop-directories</Path>
+            <Path fileType="data">/usr/share/gnome-screensaver</Path>
+            <Path fileType="data">/usr/share/pixmaps</Path>
+            <Path fileType="data">/usr/share/backgrounds</Path>
+            <Path fileType="data">/usr/share/dbus-1</Path>
+            <Path fileType="data">/usr/share/gnome-background-properties</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="5">
+            <Date>2011-04-15</Date>
+            <Version>3.0.0</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2010-10-03</Date>
+            <Version>2.30.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2009-06-08</Date>
+            <Version>2.26.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-11-02</Date>
+            <Version>2.24.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-05-21</Date>
+            <Version>2.22.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
