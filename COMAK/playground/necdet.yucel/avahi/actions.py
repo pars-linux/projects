@@ -19,7 +19,6 @@ def setup():
                          --disable-qt3 \
                          --disable-doxygen-doc \
                          --disable-gtk3 \
-                         --disable-introspection \
                          --enable-mono \
                          --enable-compat-howl \
                          --enable-compat-libdns_sd \
