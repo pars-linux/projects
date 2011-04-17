@@ -102,6 +102,7 @@
             <Path fileType="header">/usr/include/libudev.h</Path>
             <Path fileType="data">/usr/lib/pkgconfig/libudev.pc</Path>
             <Path fileType="data">/usr/share/gtk-doc/html/libudev</Path>
+            <Path fileType="data">/usr/share/gir-1.0</Path>
         </Files>
     </Package>
 
@@ -138,6 +139,13 @@
     </Package>
 
     <History>
+        <Update release="77">
+            <Date>2011-04-16</Date>
+            <Version>166</Version>
+            <Comment>Enable introspection</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="76">
             <Date>2011-04-11</Date>
             <Version>166</Version>

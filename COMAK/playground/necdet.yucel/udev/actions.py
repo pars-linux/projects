@@ -18,7 +18,6 @@ def setup():
                --with-systemdsystemunitdir=/lib/systemd/system \
                --libdir=/usr/lib \
                --libexecdir=/lib/udev \
-               --disable-introspection \
                --enable-logging"
 
     if get.buildTYPE() == "emul32":
