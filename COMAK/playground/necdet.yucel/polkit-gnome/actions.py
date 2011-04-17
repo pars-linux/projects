@@ -11,7 +11,7 @@ from pisi.actionsapi import get
 
 def setup():
     autotools.autoreconf("-fi")
-    autotools.configure("--disable-static --disable-introspection")
+    autotools.configure("--disable-static")
 
 def build():
     autotools.make()
