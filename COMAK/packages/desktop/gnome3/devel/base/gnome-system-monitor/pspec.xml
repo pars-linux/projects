@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-system-monitor</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Icon>gnome-system-monitor</Icon>
+        <IsA>app:gui</IsA>
+        <Summary>GNOME system monitor</Summary>
+        <Description>gnome-system-monitor is a process viewer and system monitor for the GNOME desktop.</Description>
+        <Archive sha1sum="60f492eea26dc25c6891dbe7bcb63757341188e3" type="tarbz2">mirrors://gnome/gnome-system-monitor/3.0/gnome-system-monitor-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>icon-theme-gnome</Dependency>
+            <Dependency versionFrom="3.0.0">gtkmm-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>libgtop-devel</Dependency>
+            <Dependency>libwnck-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libsigc++-devel</Dependency>
+            <Dependency>glibmm-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level="1">pardus-default-settings.patch</Patch>
+            <Patch>pardus-menus.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gnome-system-monitor</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>libwnck</Dependency>
+            <Dependency>icon-theme-gnome</Dependency>
+            <Dependency versionFrom="3.0.0">gtkmm</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>libgtop</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libsigc++</Dependency>
+            <Dependency>glibmm</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gtk3</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/pixmaps</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/glib-2.0</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="9">
+            <Date>2011-04-20</Date>
+            <Version>3.0.0</Version>
+            <Comment>Version bump, renew patch, fix dependencies.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="8">
+            <Date>2010-12-09</Date>
+            <Version>2.28.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="7">
+            <Date>2010-08-31</Date>
+            <Version>2.28.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="6">
+            <Date>2009-06-28</Date>
+            <Version>2.26.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="5">
+            <Date>2009-03-03</Date>
+            <Version>2.26.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2008-07-11</Date>
+            <Version>2.22.3</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2008-06-03</Date>
+            <Version>2.22.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-05-12</Date>
+            <Version>2.22.0</Version>
+            <Comment>fix dependency</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-05-08</Date>
+            <Version>2.22.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

@@ -1,0 +1,116 @@
+diff -Nuar gnome-system-monitor-3.0.0.orig/src/org.gnome.gnome-system-monitor.gschema.xml.in gnome-system-monitor-3.0.0/src/org.gnome.gnome-system-monitor.gschema.xml.in
+--- gnome-system-monitor-3.0.0.orig/src/org.gnome.gnome-system-monitor.gschema.xml.in	2011-04-19 23:50:23.973000072 +0300
++++ gnome-system-monitor-3.0.0/src/org.gnome.gnome-system-monitor.gschema.xml.in	2011-04-19 23:59:38.009000068 +0300
+@@ -46,14 +46,14 @@
+ 	</key>
+ 
+ 	<key name="update-interval" type="i">
+-	  <default>3000
++	  <default>2000
+ 	  </default>
+ 	  <_summary>Time in milliseconds between updates of the process view
+ 	  </_summary>
+ 	</key>
+ 
+ 	<key name="graph-update-interval" type="i">
+-	  <default>1000
++	  <default>5000
+ 	  </default>
+ 	  <_summary>Time in milliseconds between updates of the graphs
+ 	  </_summary>
+@@ -69,7 +69,7 @@
+ 	</key>
+ 
+ 	<key name="disks-interval" type="i">
+-	  <default>5000
++	  <default>10000
+ 	  </default>
+ 	  <_summary>Time in milliseconds between updates of the devices list
+ 	  </_summary>
+@@ -120,28 +120,28 @@
+ 	</key>
+ 
+ 	<key name="mem-color" type="s">
+-	  <default>'#AB1852'
++	  <default>'#8A2545'
+ 	  </default>
+ 	  <_summary>Default graph mem color
+ 	  </_summary>
+ 	</key>
+ 
+ 	<key name="swap-color" type="s">
+-	  <default>'#49A835'
++	  <default>'#569455'
+ 	  </default>
+ 	  <_summary>Default graph swap color
+ 	  </_summary>
+ 	</key>
+ 
+ 	<key name="net-in-color" type="s">
+-	  <default>'#2D7DB3'
++	  <default>'#42789E'
+ 	  </default>
+ 	  <_summary>Default graph incoming network traffic color
+ 	  </_summary>
+ 	</key>
+ 
+ 	<key name="net-out-color" type="s">
+-	  <default>'#844798'
++	  <default>'#785782'
+ 	  </default>
+ 	  <_summary>Default graph outgoing network traffic color
+ 	  </_summary>
+@@ -218,7 +218,7 @@
+ 	</key>
+ 
+ 	<key name="col-2-visible" type="b">
+-	  <default>true
++	  <default>false
+ 	  </default>
+ 	  <_summary>Show process 'status' column on startup
+ 	  </_summary>
+@@ -316,7 +316,7 @@
+ 	</key>
+ 
+ 	<key name="col-9-visible" type="b">
+-	  <default>false
++	  <default>true
+ 	  </default>
+ 	  <_summary>Show process 'CPU time' column on startup
+ 	  </_summary>
+@@ -330,7 +330,7 @@
+ 	</key>
+ 
+ 	<key name="col-10-visible" type="b">
+-	  <default>false
++	  <default>true
+ 	  </default>
+ 	  <_summary>Show process 'start time' column on startup
+ 	  </_summary>
+@@ -358,7 +358,7 @@
+ 	</key>
+ 
+ 	<key name="col-12-visible" type="b">
+-	  <default>true
++	  <default>false
+ 	  </default>
+ 	  <_summary>Show process 'PID' column on startup
+ 	  </_summary>
+@@ -372,7 +372,7 @@
+ 	</key>
+ 
+ 	<key name="col-13-visible" type="b">
+-	  <default>false
++	  <default>true
+ 	  </default>
+ 	  <_summary>Show process 'SELinux security context' column on startup
+ 	  </_summary>
+@@ -386,7 +386,7 @@
+ 	</key>
+ 
+ 	<key name="col-14-visible" type="b">
+-	  <default>false
++	  <default>true
+ 	  </default>
+ 	  <_summary>Show process 'arguments' column on startup
+ 	  </_summary>
