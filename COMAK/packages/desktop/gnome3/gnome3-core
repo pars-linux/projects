@@ -6,7 +6,6 @@ cantarell-fonts-0.0.6.tar.bz2
 clutter-1.6.14.tar.bz2      
 clutter-gtk-1.0.0.tar.bz2       
 empathy-3.0.0.tar.bz2       
-eog-3.0.0.tar.bz2       
 epiphany-3.0.0.tar.bz2  
 evolution-data-server-3.0.0.tar.bz2 
 gcalctool-6.0.0.tar.bz2       
@@ -47,7 +46,6 @@ totem-3.0.0.tar.bz2
 vte-0.28.0.tar.bz2     
 yelp-3.0.0.tar.bz2     
 yelp-xsl-3.0.0.tar.bz2 
-zenity-3.0.0.tar.bz2   
 
 -------------------------------------------------
 
@@ -79,3 +77,5 @@ gnome-icon-theme-3.0.0.tar.bz2
 gnome-screensaver-3.0.0.tar.bz2    
 libpeas-1.0.0.tar.bz2      
 gjs-0.7.14.tar.bz2     
+zenity-3.0.0.tar.bz2   
+eog-3.0.0.tar.bz2       
