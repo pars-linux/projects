@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gcalctool</Name>
+        <Homepage>http://live.gnome.org/Gcalctool</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Scientific calculator for GNOME desktop.</Summary>
+        <Description>A single graphics driver for GTK included with this package. It incorporates a multiple precision arithmetic packages based on the work of Professor Richard Brent.</Description>
+        <Archive sha1sum="ccbff2a9c0e08a65fca5a4117a5f2f8a9ef7fd0e" type="tarbz2">mirrors://gnome/gcalctool/6.0/gcalctool-6.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libglade-devel</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+        </BuildDependencies>
+     </Source>
+
+    <Package>
+        <Name>gcalctool</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>libglade</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>pango</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gcalctool</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+        </Files>
+     </Package>
+
+    <History>
+        <Update release="3">
+            <Date>2011-04-20</Date>
+            <Version>6.0.0</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-07-10</Date>
+            <Version>5.22.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-06-21</Date>
+            <Version>5.22.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
