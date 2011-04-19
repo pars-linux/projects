@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-backgrounds</Name>
+        <Summary xml:lang="tr">GNOME masaüstü için öntanımlı duvar kağıtları</Summary>
+        <Description xml:lang="tr">gnome-backgrounds, GNOME masaüstü için öntanımlı duvar kağıtlarını içerir.</Description>
+    </Source>
+</PISI>
+
