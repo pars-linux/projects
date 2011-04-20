@@ -128,6 +128,7 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib/libavahi-ui.so*</Path>
+            <Path fileType="library">/usr/lib/libavahi-ui-gtk3.so*</Path>
         </Files>
     </Package>
 
@@ -336,6 +337,7 @@
         <Files>
             <Path fileType="data">/usr/lib/pkgconfig/avahi-core.pc</Path>
             <Path fileType="data">/usr/lib/pkgconfig/avahi-client.pc</Path>
+            <Path fileType="data">/usr/lib/pkgconfig/avahi-ui-gtk3.pc</Path>
             <Path fileType="header">/usr/include/avahi-client</Path>
             <Path fileType="header">/usr/include/avahi-common</Path>
             <Path fileType="header">/usr/include/avahi-core</Path>
@@ -348,7 +350,7 @@
         <Update release="27">
             <Date>2011-03-16</Date>
             <Version>0.6.29</Version>
-            <Comment>Enable introspection</Comment>
+            <Comment>Enable introspection and gtk3</Comment>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
         </Update>

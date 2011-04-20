@@ -18,7 +18,6 @@ def setup():
                          --disable-xmltoman \
                          --disable-qt3 \
                          --disable-doxygen-doc \
-                         --disable-gtk3 \
                          --enable-mono \
                          --enable-compat-howl \
                          --enable-compat-libdns_sd \
