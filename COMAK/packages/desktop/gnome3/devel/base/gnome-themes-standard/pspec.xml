@@ -9,7 +9,7 @@
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>LGPLv2.1</License>
-        <IsA>app:gui</IsA>
+        <IsA>library</IsA>
         <Summary>GNOME Standart Themes</Summary>
         <Description>gnome-themes-standard provides GNOME Standart Themes.</Description>
         <Archive sha1sum="537fa0e92b690e9048f062cb00a4899320e1faa9" type="tarbz2">mirrors://gnome/gnome-themes-standard/3.0/gnome-themes-standard-3.0.0.tar.bz2</Archive>
