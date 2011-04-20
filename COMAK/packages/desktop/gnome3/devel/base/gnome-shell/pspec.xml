@@ -40,6 +40,18 @@
             <Dependency>libXrandr</Dependency>
             <Dependency>telepathy-glib</Dependency>
             <Dependency>telepathy-logger</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>clutter</Dependency>
+            <Dependency>libcroco</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>xulrunner</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>gnome-menus</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>pulseaudio-libs</Dependency>
+            <Dependency>gobject-introspection</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
