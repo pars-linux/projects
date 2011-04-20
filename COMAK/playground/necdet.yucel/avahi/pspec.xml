@@ -85,6 +85,7 @@
         <Summary>Development files for avahi-ui-sharp</Summary>
         <RuntimeDependencies>
             <Dependency release="current">avahi-ui-sharp</Dependency>
+            <Dependency>gtk-sharp-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="data">/usr/lib/pkgconfig/avahi-ui-sharp.pc</Path>
@@ -123,6 +124,7 @@
         <Summary>Gtk user interface library for Avahi</Summary>
         <RuntimeDependencies>
             <Dependency>gtk2</Dependency>
+            <Dependency>gtk3</Dependency>
             <Dependency release="current">avahi-libs</Dependency>
             <Dependency release="current">avahi-glib</Dependency>
         </RuntimeDependencies>
@@ -151,7 +153,7 @@
         <Name>avahi-ui-tools</Name>
         <Summary>UI tools for mDNS browsing</Summary>
         <RuntimeDependencies>
-            <Dependency>gtk2</Dependency>
+            <Dependency>gtk3</Dependency>
             <Dependency>python-gtk</Dependency>
             <Dependency release="current">avahi</Dependency>
             <Dependency release="current">avahi-ui</Dependency>
@@ -333,6 +335,7 @@
         <Summary>Development files for avahi</Summary>
         <RuntimeDependencies>
             <Dependency release="current">avahi-libs</Dependency>
+            <Dependency>gtk3-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="data">/usr/lib/pkgconfig/avahi-core.pc</Path>
