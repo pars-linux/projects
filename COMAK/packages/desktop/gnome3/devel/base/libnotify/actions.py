@@ -8,13 +8,11 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
-from pisi.actionsapi import shelltools
-
-shelltools.export("HOME", get.installDIR())
 
 def setup():
     autotools.autoreconf("-fi")
-    autotools.configure("--disable-static")
+    autotools.configure("--disable-static \
+                         --enable-introspection=yes")
 
 def build():
     autotools.make()
