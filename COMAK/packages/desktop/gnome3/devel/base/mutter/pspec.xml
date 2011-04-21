@@ -10,8 +10,8 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
-        <Summary>mutter</Summary>
-        <Description>mutter.</Description>
+        <Summary>A window manager which is replacing Metacity</Summary>
+        <Description>Mutter is the window manager for which GNOME Shell is a plugin in GNOME 3, replacing Metacity.</Description>
         <Archive sha1sum="60f425c7cae4f54927aec18436b18f3fe7a91948" type="tarbz2">mirrors://gnome/mutter/3.0/mutter-3.0.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
@@ -65,6 +65,9 @@
             <Dependency>libXcomposite</Dependency>
             <Dependency>startup-notification</Dependency>
             <Dependency>gobject-introspection</Dependency>
+            <Dependency>clutter-devel</Dependency>
+            <Dependency>libX11-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/xdg/menus</Path>
