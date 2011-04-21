@@ -12,9 +12,17 @@
         <IsA>library</IsA>
         <Summary>A gobject-based plugins engine</Summary>
         <Description>libpeas is a gobject-based plugins engine, and is targetted at giving every application the chance to assume its own extensibility.</Description>
-        <Archive sha1sum="f15caf0b7c4621979eff5bca06f567d2d4828443" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/core/3.0/3.0.0/sources/libpeas-1.0.0.tar.bz2</Archive>
+        <Archive sha1sum="f15caf0b7c4621979eff5bca06f567d2d4828443" type="tarbz2">mirrors://gnome/libpeas/1.0/libpeas-1.0.0.tar.bz2</Archive>
         <BuildDependencies>
+            <Dependency>python-pygobject-devel</Dependency>
             <Dependency versionFrom="0.10.1">gobject-introspection-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>freetype-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -44,10 +52,14 @@
         <Name>libpeas-devel</Name>
         <RuntimeDependencies>
             <Dependency versionFrom="current">libpeas</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>gobject-introspection-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+            <Path fileType="data">/usr/share/gir-1.0</Path>
         </Files>
     </Package>
 

@@ -7,8 +7,11 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 
+
 def setup():
-    autotools.configure("--disable-static")
+    autotools.configure("--disable-static \
+                         --enable-python \
+                         --enable-gtk")
 
 def build():
     autotools.make()
