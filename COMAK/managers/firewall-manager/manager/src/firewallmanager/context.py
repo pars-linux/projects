@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2011 TUBITAK/UEKAE
+# Copyright (C) 2006-2011 TUBITAK/UEKAE
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
@@ -16,9 +16,6 @@ from pds.qiconloader import QIconLoader
 from PyQt4.QtGui import QMessageBox
 
 Pds = pds.Pds('firewall-manager', debug = True)
-# Force to use Default Session for testing
-#Pds.session = pds.DefaultDe
-#print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 
 i18n = Pds.i18n
 KIconLoader = QIconLoader(Pds)

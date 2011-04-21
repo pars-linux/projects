@@ -11,10 +11,10 @@
 # Please read the COPYING file.
 #
 
-# PyQt
+# PyQt Stuff
 from PyQt4 import QtCore
 from PyQt4 import QtGui
-from context import *
+from context import i18n, KIcon
 
 # UI
 from firewallmanager.ui_service import Ui_ServiceWidget
