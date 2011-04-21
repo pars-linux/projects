@@ -7,16 +7,13 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
-from pisi.actionsapi import shelltools
-
-shelltools.export("HOME", get.workDIR())
 
 def setup():
     autotools.autoreconf("-fiv")
     autotools.configure("--disable-static\
                          --disable-packagekit\
                          --disable-update-mimedb\
-                         --disable-introspection \
+                         --enable-introspection \
                          --disable-more-warnings")
 
 def build():
@@ -25,5 +22,4 @@ def build():
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
 
-    #pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING", "NEWS", "README")
     pisitools.dodoc("AUTHORS", "COPYING", "NEWS", "README")
