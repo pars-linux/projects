@@ -49,6 +49,9 @@
             <Dependency>libwnck</Dependency>
             <Dependency>libXrandr</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libical</Dependency>
+            <Dependency>telepathy-glib</Dependency>
+            <Dependency>evolution-data-server</Dependency>
             <Dependency versionFrom="3.0.0">gnome-menus</Dependency>
             <Dependency versionFrom="3.0.0">libgweather</Dependency>
             <Dependency versionFrom="3.0.0">gnome-desktop</Dependency>
@@ -102,6 +105,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-04-21</Date>
+            <Version>3.0.0</Version>
+            <Comment>Enable introspection</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-04-08</Date>
             <Version>3.0.0</Version>
