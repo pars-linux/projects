@@ -22,8 +22,13 @@ from distutils.cmd import Command
 from distutils.command.build import build
 from distutils.command.install import install
 
+# Pds Stuff
+import context as ctx
+
 import about
 PROJECT = about.appName
+
+FOR_KDE_4 = ctx.Pds.session == ctx.pds.Kde4
 
 def update_messages():
     # Create empty directory
@@ -75,6 +80,7 @@ def makeDirs(dir):
         pass
 
 class Build(build):
+
     def run(self):
         # Clear all
         os.system("rm -rf build")
@@ -82,21 +88,35 @@ class Build(build):
         print "Copying PYs..."
         os.system("cp -R src build/")
 
-        # Copy themes
+        # Copy theme files
         print "Copying themes..."
-        os.system("cp -R data/themes build/kaptan/")
-        os.system("cp -R data/gnome_themes build/kaptan/")
-        os.system("cp -R data/xfce_themes build/kaptan/" )
-        print "Copying previews"
-        os.system("cp -R data/gnome_previews build/kaptan/")
 
+        # Gnome Themes
+        if ctx.Pds.session.Name =="gnome":
+            os.system("cp -R data/gnome_themes build/kaptan/")
+            os.system("cp -R data/gnome_previews build/kaptan/")
 
-        #update_messages()
+        # Xfce Themes
+        else:
+            if ctx.Pds.session.Name == "xfce":
+                os.system("cp -R data/xfce_themes build/kaptan/" )
+            else :
+                # Other Themes
+                os.system("cp -R data/themes build/kaptan/")
+
+        # update_messages()
 
         # Copy compiled UIs and RCs
         print "Generating UIs..."
-        for filename in glob.glob1("ui", "*.ui"):
-            os.system("pyuic4 -o build/kaptan/screens/%s.py ui/%s -g %s" % (filename.split(".")[0], filename,PROJECT))
+
+        # Kde4 UI Files
+        if FOR_KDE_4:
+            for filename in glob.glob1("ui", "*.ui"):
+                os.system("pykde4uic -o build/kaptan/screens/%s.py ui/%s" % (filename.split(".")[0], filename))
+        else:
+            for filename in glob.glob1("ui", "*.ui"):
+                os.system("pyuic4 -o build/kaptan/screens/%s.py ui/%s -g %s" % (filename.split(".")[0], filename , PROJECT))
+
         print "Generating RCs..."
         for filename in glob.glob1("data", "*.qrc"):
             os.system("pyrcc4 data/%s -o build/kaptan/%s_rc.py" % (filename, filename.split(".")[0]))
@@ -106,20 +126,28 @@ class Build(build):
 class Install(install):
     def run(self):
         os.system("./setup.py build")
+
         if self.root:
-            base_dir = "%s/usr" % self.root
+            root_dir = "%s/usr/share" % self.root
+            bin_dir = os.path.join(self.root, "usr/bin")
         else:
-            base_dir = "/usr"
-        bin_dir = os.path.join(base_dir, "bin")
-        locale_dir = os.path.join(base_dir, "share/locale")
-        autostart_dir = os.path.join(base_dir, "share/autostart")
-        project_dir = os.path.join(base_dir, "share/kde4/apps", about.appName)
+            root_dir = "/usr/share"
+            bin_dir = "/usr/bin"
+        autostart_dir = os.path.join(bin_dir,"autostart")
+        locale_dir = os.path.join(root_dir, "locale")
+
+        if FOR_KDE_4:
+            #Project directory for kde
+            project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
+        else:
+            #Project directory for others
+            project_dir = os.path.join(root_dir, PROJECT)
 
         # Make directories
         print "Making directories..."
         makeDirs(bin_dir)
 
-        #makeDirs(locale_dir)
+        # makeDirs(locale_dir)
         makeDirs(autostart_dir)
         makeDirs(project_dir)
 
@@ -136,10 +164,9 @@ class Install(install):
         print "Installing codes..."
         os.system("cp -R build/* %s/" % project_dir)
 
-        print "Installing custom themes..."
-        os.system("cp -R data/themes/* /usr/share/themes")
-        os.system("cp -R data/gnome_themes/* /usr/share/themes")
-
+        #print "Installing custom themes..."
+        #os.system("cp -R data/themes/* /usr/share/themes")
+        #os.system("cp -R data/gnome_themes/* /usr/share/themes")
 
         # Install locales
         print "Installing locales..."
@@ -153,7 +180,7 @@ class Install(install):
             shutil.copy("po/%s.mo" % lang, os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % about.catalog))
         # Rename
         print "Renaming application.py..."
-        #shutil.move(os.path.join(project_dir, "application.py"), os.path.join(project_dir, "%s.py" % about.appName))
+        # shutil.move(os.path.join(project_dir, "application.py"), os.path.join(project_dir, "%s.py" % about.appName))
         # Modes
         print "Changing file modes..."
         os.chmod(os.path.join(project_dir, "%s.py" % about.appName), 0755)
@@ -178,11 +205,11 @@ if "update_messages" in sys.argv:
 setup(
       name              = about.appName,
       version           = about.version,
-     #description       = unicode(about.description),
-     #license           = unicode(about.license),
+     # description       = unicode(about.description),
+     # license           = unicode(about.license),
       author            = "",
-     #author_email      = about.bugEmail,
-     #url               = about.homePage,
+     # author_email      = about.bugEmail,
+     # url               = about.homePage,
       packages          = [''],
       package_dir       = {'': ''},
       data_files        = [],
