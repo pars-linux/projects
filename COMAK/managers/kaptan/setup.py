@@ -86,7 +86,7 @@ class Build(build):
         print "Copying themes..."
         os.system("cp -R data/themes build/kaptan/")
         os.system("cp -R data/gnome_themes build/kaptan/")
-
+        os.system("cp -R data/xfce_themes build/kaptan/" )
         print "Copying previews"
         os.system("cp -R data/gnome_previews build/kaptan/")
 
