@@ -89,6 +89,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-04-21</Date>
+            <Version>3.0.0</Version>
+            <Comment>Enable introspection</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-04-08</Date>
             <Version>3.0.0</Version>
