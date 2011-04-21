@@ -39,7 +39,7 @@ import context as ctx
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4.kdeui import KIcon
 else:
-    from diskmanager.context import KIcon
+    from firewallmanager.context import KIcon
 
 class MainWidget(QtGui.QWidget, Ui_MainWidget):
     def __init__(self, parent, embed=False):

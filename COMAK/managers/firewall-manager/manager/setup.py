@@ -26,11 +26,11 @@ from distutils.command.clean import clean
 from distutils.command.install import install
 
 PROJECT = about.appName
-FOR_KDE_4=False
+FOR_KDE_4= False
 
 if 'kde4' in sys.argv:
     sys.argv.remove('kde4')
-    FOR_KDE_4=True
+    FOR_KDE_4= True
     print 'UI files will be created for KDE 4.. '
 
 def makeDirs(directory):
@@ -54,8 +54,10 @@ def update_messages():
     # Collect UI files
     filelist = []
     for filename in glob.glob1("ui", "*.ui"):
+    # Kde4 UI files
         if FOR_KDE_4:
             os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+    # Qt UI files
         else:
             os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
 
@@ -109,9 +111,13 @@ class Build(build):
 
         print "Generating UIs..."
         for filename in glob.glob1("ui", "*.ui"):
+
             if FOR_KDE_4:
+            # Kde4 UI Files
                 os.system("pykde4uic -o build/firewallmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+
             else:
+            # Qt UI Files
                 os.system("pyuic4 -o build/firewallmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
 
         print "Generating RCs..."
@@ -119,8 +125,10 @@ class Build(build):
             os.system("pyrcc4 data/%s -o build/%s_rc.py" % (filename, filename.split(".")[0]))
 
 class Install(install):
+
     def run(self):
         install.run(self)
+
         def rst2doc(lang):
             if os.path.exists(os.path.join('help', lang)):
                 for doc in ('main_help', 'preferences_help'):
@@ -153,9 +161,11 @@ class Install(install):
             makeDirs(services_dir) 
 
         # Install desktop files
+
         print "Installing desktop files..."
         if FOR_KDE_4:
             shutil.copy("data/kcm_%s.desktop" % PROJECT, apps_dir)
+
         else:
             shutil.copy("data/%s.desktop" % PROJECT, apps_dir)
         shutil.rmtree('build/data')
@@ -173,13 +183,10 @@ class Install(install):
             makeDirs(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang))
             shutil.copy("po/%s.mo" % lang, os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
         rst2doc('en')
+
         if os.path.exists("help"):
             print "Installing help files..."
             os.system("cp -R help %s/" % project_dir)
-
-        # Rename
-        # print "Renaming application.py..."
-        # shutil.move(os.path.join(project_dir, "main.py"), os.path.join(project_dir, "%s.py" % PROJECT))
 
         # Modes
         print "Changing file modes..."
@@ -205,12 +212,14 @@ class Uninstall(Command):
         bin_dir = "/usr/bin"
 
         locale_dir = os.path.join(root_dir, "locale")
-        apps_dir = os.path.join(root_dir, "applications")
 
         if FOR_KDE_4:
+            apps_dir = os.path.join(root_dir, "applications/kde4")
             services_dir = os.path.join(root_dir, "kde4/services")
-
-        project_dir = os.path.join(root_dir, PROJECT)
+            project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
+        else:
+            apps_dir = os.path.join(root_dir, "applications")
+            project_dir = os.path.join(root_dir, PROJECT)
 
         print 'Uninstalling ...'
         remove(project_dir)
@@ -246,8 +255,8 @@ setup(
       description       = unicode(about.PACKAGE),
       license           = unicode('GPL'),
       author            = "Pardus Developers",
-      author_email      = "bugs@pardus.org.tr",
-      url               = "http://www.pardus.org.tr/eng/projects",
+      author_email      = about.bugEmail,
+      url               = about.homePage,
       packages          = [''],
       package_dir       = {'': ''},
       data_files        = [],
