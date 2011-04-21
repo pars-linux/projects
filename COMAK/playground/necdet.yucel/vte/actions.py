@@ -13,6 +13,7 @@ def setup():
     autotools.autoreconf("-vif")
     autotools.configure("--disable-static \
                          --with-gtk=3.0 \
+                         --enable-introspection=yes \
                          --enable-python")
 
 def build():
