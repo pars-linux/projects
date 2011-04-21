@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>empathy</Name>
+        <Summary xml:lang="tr">Gelişmiş bir anlık mesajlaşma istemcisi</Summary>
+        <Description xml:lang="tr">Empathy, Jabber, GTalk, MSN, IRC, Salut gibi farklı protokolleri destekleyen güçlü bir anlık mesajlaşma istemcisidir. Telepathy çatısını kullanmaktadır.</Description>
+    </Source>
+
+    <Package>
+        <Name>empathy-docs</Name>
+        <Summary xml:lang="tr">Empathy anlık mesajlaşma istemcisine ait yardım dosyaları</Summary>
+    </Package>
+</PISI>
+
