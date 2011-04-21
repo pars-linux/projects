@@ -69,7 +69,6 @@ class Widget(QtGui.QWidget, Screen):
             import subprocess
             cmd_code=subprocess.Popen("xfce4-settings-manager")
             time.sleep(1)
-            cmd_code.wait()
             #import os 
             #os.system("xfce4-settings-manager")
     def on_buttonHelpPages_clicked(self):

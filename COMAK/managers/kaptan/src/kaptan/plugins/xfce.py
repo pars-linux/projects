@@ -53,27 +53,23 @@ class Wallpaper(base.Wallpaper):
     def getWallpaperSettings(self):
         import fnmatch
         matches = []
-        for root, dirnames, filenames in os.walk('/usr/share/wallpapers'):
-            for filename in fnmatch.filter(filenames, '*.desktop'):
+        for root, dirnames, filenames in os.walk('/usr/share/xfce4/backdrops'):
+            for filename in fnmatch.filter(filenames, '*.png'):
                 matches.append(os.path.join(root, filename))
         items = []
         for desktopFiles in matches:
             wallpaper = {}
-            parser = DesktopParser()
-            parser.read(str(desktopFiles))
-
             try:
-                wallpaper["wallpaperTitle"] = parser.get_locale('Desktop Entry', 'Name[%s]'%self.catLang, '')
+                wallpaper["wallpaperTitle"] =desktopFiles.split("/")[-1]
             except:
-                wallpaper["wallpaperTitle"] = parser.get_locale('Desktop Entry', 'Name', '')
-
+                wallpaper["wallpaperTitle"] = "unknown"
             try:
-                wallpaper["wallpaperDesc"] = parser.get_locale('Desktop Entry', 'X-KDE-PluginInfo-Author', '')
+                wallpaper["wallpaperDesc"] =desktopFiles.split("/")[-1]
             except:
-                wallpaper["wallpaperDesc"] = "Unknown"
+                 wallpaper["wallpaperDesc"] = "unknown"
 
             # Get all files in the wallpaper's directory
-            thumbFolder = os.listdir(os.path.join(os.path.split(str(desktopFiles))[0], "contents"))
+            thumbFolder =desktopFiles
 
             #    """
             #    Appearantly the thumbnail names doesn't have a standart.
@@ -86,19 +82,22 @@ class Wallpaper(base.Wallpaper):
 
             wallpaper["wallpaperThumb"] = ""
 
-            for thumb in thumbFolder:
-                if thumb.startswith('scre'):
-                    wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/%s" % thumb)
-            wallpaper["wallpaperFile"] = os.path.split(str(desktopFiles))[0]+"/contents/images/1920x1200.*"
-            print wallpaper["wallpaperFile"] 
+            #for thumb in thumbFolder:
+                #if thumb.startswith('scre'):
+                    #wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/%s" % thumb)
+            wallpaper["wallpaperFile"] =desktopFiles
+            #wallpaper["wallpaperThumb"] =wallpaper["wallpaperFile"].split("images")[0]+"screenshot.png"
+            wallpaper["wallpaperThumb"] = desktopFiles
+            print wallpaper["wallpaperThumb"]
             items.append(wallpaper)
         return items
 
 
     def setWallpaper(self ,wallpaper):
         if wallpaper:
-            os.popen("xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/ -s %s" %wallpaper)
+            print "a"
             print wallpaper
+            os.popen("xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -s %s" %wallpaper)
         #if color :
         #    os.popen("pcmanfm --wallpaper-mode %s" % color)
 

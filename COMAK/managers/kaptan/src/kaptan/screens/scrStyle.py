@@ -73,18 +73,19 @@ class Widget(QtGui.QWidget, Screen):
             a.append("*.edj")
             dir.setNameFilters(a)
             lst2 = dir.entryList()
+        elif ctx.Pds.session.Name == "fluxbox":
+            dir = QDir("/usr/share/fluxbox/styles")
+            lst2 =dir.entryList()
+        elif ctx.Pds.session.Name == "gnome":
+            lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
+        elif ctx.Pds.session.Name == "xfce":
+            dir =QDir("/usr/share/themes")
+            lst2= dir.entryList()
+            print "girdi"
         else:
-            if ctx.Pds.session.Name == "fluxbox":
-                dir = QDir("/usr/share/fluxbox/styles")
-                lst2 =dir.entryList()
-            else:
-                if ctx.Pds.session.Name == "gnome":
-                    lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
-
-                else:
-                    dir = QtCore.QDir("/usr/share/themes")
-                    dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
-                    lst2 = dir.entryList()
+            dir = QtCore.QDir("/usr/share/themes")
+            dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
+            lst2 = dir.entryList()
         for themes in lst2:
             try:
                 try:
@@ -98,14 +99,17 @@ class Widget(QtGui.QWidget, Screen):
             except:
                 print "Warning! Invalid syntax in ", themes
             ThemeFile = themes
-            if ctx.Pds.session.Name == "gnome":
-                thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/" +themes+ ".png"
+            if ctx.Pds.session.Name == "xfce":
+                a ="/usr/share/kde4/apps/kaptan/kaptan/xfce_themes/"
+                thumbFolder = a + themes + ".png"
+            elif ctx.Pds.session.Name == "gnome":
+                a ="/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/"
+                thumbFolder = a +themes+ ".png"
             else:
-                thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/themes/" +themes+ ".png"
-            if ctx.Pds.session.Name == "gnome":
-                 thumbFolder = "/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/" +themes+ ".png"
+                a = "/usr/share/kde4/apps/kaptan/kaptan/themes/"
+                thumbFolder =a +themes+ ".png"
 
-            if (os.path.exists("/usr/share/kde4/apps/kaptan/kaptan/themes/"+themes+".png")):
+            if (os.path.exists(a+themes+".png")):
                 self.list_themes.append(themes)
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
