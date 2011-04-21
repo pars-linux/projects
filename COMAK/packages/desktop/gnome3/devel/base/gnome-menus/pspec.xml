@@ -35,6 +35,9 @@
             <Path fileType="data">/usr/share/desktop-directories</Path>-->
             <Path fileType="data">/usr/share/</Path>
         </Files>
+        <RuntimeDependencies>
+            <Dependency>glib2-devel</Dependency>
+        </RuntimeDependencies>
     </Package>
 
     <Package>
