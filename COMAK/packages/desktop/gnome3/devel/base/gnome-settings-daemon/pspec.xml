@@ -47,6 +47,8 @@
             <Dependency versionFrom="3.0.0">libxklavier</Dependency>
             <Dependency>libgnomekbd</Dependency>
             <Dependency>gnome-desktop</Dependency>
+            <Dependency>pulseaudio-libs</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
         </RuntimeDependencies>
         <Conflicts>
             <Package>gtk-qt-engine</Package>
