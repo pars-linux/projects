@@ -12,8 +12,9 @@ from pisi.actionsapi import shelltools
 def setup():
     autotools.autoreconf("-vfi")
 
-    autotools.configure("--disable-static\
-                         --disable-scrollkeeper\
+    autotools.configure("--disable-static \
+                         --with-gtk=3.0 \
+                         --disable-scrollkeeper \
                          --disable-schemas-install")
 
 def build():
