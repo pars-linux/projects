@@ -1,0 +1,56 @@
+diff -ur totem-2.32.0.orig//configure.in totem-2.32.0/configure.in
+--- totem-2.32.0.orig//configure.in	2010-09-27 15:41:55.000000000 +0300
++++ totem-2.32.0/configure.in	2010-10-29 14:45:47.811999900 +0300
+@@ -117,36 +117,6 @@
+ 	])
+ fi
+ 
+-dnl Check for elements from gst-plugins-base
+-for base_element in playbin2 ffmpegcolorspace videoscale
+-do
+-	AC_MSG_CHECKING([GStreamer 0.10 $base_element plugin])
+-	if $gst010_inspect $base_element >/dev/null 2>/dev/null; then
+-		AC_MSG_RESULT([yes])
+-	else
+-		AC_MSG_RESULT([no])
+-		AC_MSG_ERROR([
+-			Cannot find required GStreamer-0.10 plugin '$base_element'.
+-			It should be part of gst-plugins-base. Please install it.
+-		])
+-	fi
+-done
+-
+-dnl Check for elements from gst-plugins-good
+-for good_element in gconfaudiosink gconfvideosink goom
+-do
+-	AC_MSG_CHECKING([GStreamer 0.10 $good_element plugin])
+-	if $gst010_inspect $good_element >/dev/null 2>/dev/null; then
+-		AC_MSG_RESULT([yes])
+-	else
+-		AC_MSG_RESULT([no])
+-		AC_MSG_ERROR([
+-			Cannot find required GStreamer-0.10 plugin '$good_element'.
+-			It should be part of gst-plugins-good. Please install it.
+-		])
+-	fi
+-done
+-
+ dnl Check the smclient backend
+ GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
+ 
+@@ -560,15 +530,6 @@
+ 				add_plugin="0"
+ 			fi
+ 
+-			dnl We need the souphttpsrc element for the YouTube plugin
+-			AC_MSG_CHECKING([GStreamer 0.10 souphttpsrc plugin])
+-			if $gst010_inspect souphttpsrc >/dev/null 2>/dev/null; then
+-				AC_MSG_RESULT([yes])
+-			else
+-				AC_MSG_RESULT([no])
+-				plugin_error_or_ignore "you need souphttpsrc from gst-plugins-good installed for the YouTube plugin"
+-				add_plugin="0"
+-			fi
+ 		;;
+ 		chapters)
+ 			PKG_CHECK_MODULES(CHAPTERS, libxml-2.0 >= 2.6.0 gtk+-2.0 glib-2.0 >= 2.15.0,
