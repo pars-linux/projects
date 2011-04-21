@@ -45,7 +45,7 @@
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>fontconfig</Dependency>
             <Dependency>libcanberra</Dependency>
-            <Dependency>libcanberra-gtk</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
             <Dependency>gst-plugins-base</Dependency>
             <Dependency>totem-pl-parser</Dependency>
             <Dependency>gmime</Dependency>
