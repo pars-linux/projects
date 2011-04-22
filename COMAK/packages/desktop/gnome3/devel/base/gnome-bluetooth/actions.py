@@ -14,13 +14,14 @@ def setup():
     shelltools.system("intltoolize --force --copy --automake")
 
     autotools.configure("--enable-introspection=yes \
-                        --enable-nautilus \
                         --disable-moblin \
                         --disable-desktop-update \
                         --disable-icon-update \
-                        --disable-schemas-compile")
+                        --disable-schemas-compile \
+                        --disable-rpath")
 
-    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+    pisitools.dosed("libtool", "^hardcode_libdir_flag_spec=.*", "hardcode_libdir_flag_spec=\"\"")
+    pisitools.dosed("libtool", "^runpath_var=LD_RUN_PATH", "runpath_var=DIE_RPATH_DIE")
 
 def build():
     autotools.make()
