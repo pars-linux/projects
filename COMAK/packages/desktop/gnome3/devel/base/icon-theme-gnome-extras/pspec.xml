@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>icon-theme-gnome-extras</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>data</IsA>
+        <Summary>GNOME 3 icon theme extras</Summary>
+        <Description>icon-theme-gnome-extras contains icon theme extras for Gnome 3.</Description>
+        <Archive sha1sum="40dafb78cda7214a0589331c15047bce73e1fb16" type="tarbz2">mirrors://gnome/gnome-icon-theme-extras/3.0/gnome-icon-theme-extras-3.0.0.tar.bz2</Archive>
+    </Source>
+
+    <Package>
+        <Name>icon-theme-gnome-extras</Name>
+        <Files>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-22</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
