@@ -47,6 +47,7 @@
         <Summary>Development files for gnome-bluetooth</Summary>
         <RuntimeDependencies>
             <Dependency release="current">gnome-bluetooth</Dependency>
+            <Dependency>gtk3-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
