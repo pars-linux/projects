@@ -35,6 +35,7 @@
             <Path fileType="data">/usr/share/omf</Path>
             <Path fileType="data">/usr/share/gnome-bluetooth</Path>
             <Path fileType="data">/etc/xdg/autostart</Path>
+            <Path fileType="data">/usr/share/glib-2.0/schemas</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
