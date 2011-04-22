@@ -16,10 +16,9 @@ def setup():
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static \
                          --disable-schemas-install \
-                         --with-gnome-distributor=Pardus \
                          --enable-introspection=yes \
                          --enable-compile-warnings=no")
-#    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
 
 def build():
     autotools.make()
