@@ -11,11 +11,8 @@ gst-plugins-base-0.10.32.tar.bz2
 gst-plugins-good-0.10.28.tar.bz2    
 gstreamer-0.10.32.tar.bz2       
 metacity-2.34.0.tar.bz2    
-mm-common-0.9.5.tar.bz2    
-network-manager-applet-0.8.998.tar.bz2
 notification-daemon-0.7.1.tar.bz2     
 yelp-3.0.0.tar.bz2     
-yelp-xsl-3.0.0.tar.bz2 
 
 -------------------------------------------------
 
@@ -79,3 +76,6 @@ gucharmap-3.0.0.tar.bz2
 empathy-3.0.0.tar.bz2       
 mutter-3.0.0.tar.bz2       
 totem-3.0.0.tar.bz2        
+yelp-xsl-3.0.0.tar.bz2 
+mm-common-0.9.5.tar.bz2    
+network-manager-applet-0.8.998.tar.bz2
