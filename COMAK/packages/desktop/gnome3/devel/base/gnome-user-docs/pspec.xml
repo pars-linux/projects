@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-user-docs</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>CCPL-Attribution-ShareAlike-3.0</License>
+        <IsA>data</IsA>
+        <Summary>Gnome User Documents</Summary>
+        <Description>gnome-user-docs contains user documents for Gnome3 desktop.</Description>
+        <Archive sha1sum="f714cd13a763cfa4b02cfde9472cb4af5ac319da" type="tarbz2">mirrors://gnome/gnome-user-docs/3.0/gnome-user-docs-3.0.0.tar.bz2</Archive>
+    </Source>
+
+    <Package>
+        <Name>gnome-user-docs</Name>
+        <Files>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="doc">/usr/share/gnome/help/gnome-help</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-22</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+

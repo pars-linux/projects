@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-user-docs</Name>
+        <Summary xml:lang="tr">Gnome Kullanıcı Belgeleri</Summary>
+        <Description xml:lang="tr">gnome-user-docs, Gnome 3 için kullanıcı belgelerini barındırır.</Description>
+    </Source>
+</PISI>
+
