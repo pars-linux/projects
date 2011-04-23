@@ -26,6 +26,13 @@
             <Dependency>libgnome-keyring-devel</Dependency>
             <Dependency>libXft-devel</Dependency>
             <Dependency>avahi-glib-devel</Dependency>
+            <Dependency>telepathy-glib-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>jpeg-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -44,6 +51,14 @@
             <Dependency>libgnome-keyring</Dependency>
             <Dependency>libXft</Dependency>
             <Dependency>avahi-glib</Dependency>
+            <Dependency>telepathy-glib</Dependency>
+            <Dependency>avahi-libs</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>jpeg</Dependency>
        </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
