@@ -11,7 +11,7 @@
         <License>MIT</License>
         <IsA>library</IsA>
         <Summary>JavaScript bindings based on gobject-introspection and Mozilla</Summary>
-        <Description>This module contains JavaScript bindings based on gobject-introspection and the Mozilla SpiderMonkey JavaScript engine.</Description>
+        <Description>Gjs contains JavaScript bindings based on gobject-introspection and the Mozilla SpiderMonkey JavaScript engine.</Description>
         <Archive sha1sum="780bc1f72ac4435d356e622cff66e2f554117269" type="targz">mirrors://gnome/gjs/0.7/gjs-0.7.14.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>xulrunner-devel</Dependency>
@@ -39,6 +39,8 @@
         <Summary>Development files for gjs</Summary>
         <RuntimeDependencies>
             <Dependency release="current">gjs</Dependency>
+            <Dependency>gobject-introspection-devel</Dependency>
+            <Dependency>xulrunner-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib/pkgconfig</Path>
