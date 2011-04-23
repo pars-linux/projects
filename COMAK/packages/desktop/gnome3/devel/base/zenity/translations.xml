@@ -1,14 +1,9 @@
 <?xml version="1.0" ?>
 <PISI>
     <Source>
-        <Name>gnome-menus</Name>
-        <Summary xml:lang="tr">Gnome menüleri</Summary>
-        <Description xml:lang="tr">gnome-menus, Gnome masaüstü dizinlerini, kitaplıklarını ve python bağlayıcılarını içerir.</Description>
+        <Name>zenity</Name>
+        <Summary xml:lang="tr">Gdialog'un yeniden yazılmış hali</Summary>
+        <Description xml:lang="tr">Zenity, komut satırından ve betiklerle iletişim kutuları oluşturmanıza imkan verir. Dialog'un Gnome 3 için yeniden yazılmış halidir.</Description>
     </Source>
-
-    <Package>
-        <Name>gnome-menus-devel</Name>
-        <Summary xml:lang="tr">gnome-menus için geliştirme dosyaları</Summary>
-    </Package>
 </PISI>
 
