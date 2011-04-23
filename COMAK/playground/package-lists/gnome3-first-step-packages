@@ -1,19 +1,19 @@
-eog
-file-roller
-gdm
+eog 3.0.0
+file-roller 3.0.0
+gdm 3.0.0
 gnome-applets
-gnome-control-center
+gnome-control-center 3.0.0
 gnome-media
-gnome-menus
-gnome-panel
-gnome-power-manager
-gnome-screensaver
-gnome-session
-gnome-settings-daemon
-gnome-system-monitor
-gnome-terminal
-gnome-utils
+gnome-menus 3.0.0
+gnome-panel 3.0.0
+gnome-power-manager 3.0.0
+gnome-screensaver 3.0.0
+gnome-session 3.0.8
+gnome-settings-daemon 3.0.0
+gnome-system-monitor 3.0.0
+gnome-terminal 3.0.0
+gnome-utils 3.0.0
 metacity
-nautilus
+nautilus 3.0.0
 pardus-default-settings-gnome
-seahorse
+seahorse 3.0.0
