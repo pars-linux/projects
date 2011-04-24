@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>Gnome Database Access Library</Summary>
         <Description>GNU data access is an attempt to provide uniform access to different kinds of data sources (databases, information serverse, mail spools, etc). It is a complete architecture that provides all you need to access your data. Libgda was part of the GNOME-DB project, but has been separated from it to allow non-GNOME applications to be developed based on it.</Description>
-        <Archive sha1sum="a5ae0a4b7b7969ff24acd485607da02f70815095" type="tarbz2">mirrors://gnome/libgda/4.99/libgda-4.99.0.tar.bz2</Archive>
+        <Archive sha1sum="37ed6221f7cf162ac6df574d111f248e66d3aa4a" type="tarbz2">mirrors://gnome/libgda/4.2/libgda-4.2.6.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>mysql-lib</Dependency>
             <Dependency>gtk3-devel</Dependency>
@@ -25,9 +25,6 @@
             <Dependency>iso-codes</Dependency>
             <Dependency>gobject-introspection</Dependency>
             <Dependency>gtk-doc</Dependency>
-            <Dependency versionFrom="2.0">goocanvas-devel</Dependency>
-            <Dependency>gtksourceview-devel</Dependency>
-            <Dependency>goocanvas-devel</Dependency>
             <Dependency>graphviz-devel</Dependency>
             <Dependency>gamin</Dependency>
             <Dependency>openldap-client</Dependency>
@@ -51,11 +48,9 @@
             <Dependency>cairo</Dependency>
             <Dependency>pango</Dependency>
             <Dependency>graphviz</Dependency>
-            <Dependency>goocanvas</Dependency>
             <Dependency>libunique</Dependency>
             <Dependency>libgcrypt</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
-            <Dependency>gtksourceview</Dependency>
             <Dependency>libgnome-keyring</Dependency>
         </RuntimeDependencies>
         <Files>
@@ -94,7 +89,7 @@
     <History>
         <Update release="2">
             <Date>2011-04-24</Date>
-            <Version>4.99.0</Version>
+            <Version>4.2.6</Version>
             <Comment>Version bump, split headers and docs</Comment>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
