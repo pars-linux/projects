@@ -31,8 +31,6 @@ def setup():
                          --without-bdb \
                          --with-java \
                          --with-ui \
-                         --with-gtksourceview \
-                         --with-goocanvas \
                          --with-graphviz \
                          --with-gnome-keyring \
                          --enable-binreloc \
