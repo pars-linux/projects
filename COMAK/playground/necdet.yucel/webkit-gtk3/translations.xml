@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>webkit-gtk3</Name>
+        <Summary xml:lang="tr">GTK3 uygulamaları için açık kaynak internet tarayıcısı motoru</Summary>
+        <Description xml:lang="tr">WebKit'in GTK3 sürümü, Linux benzeri sistemlerde GTK3 grafik araç kiti kullanıcılarının başlıca tarayıcı bileşenleri ihtiyaçlarını karşılayacak biçimde tasarlanmış bir internet tarayıcısı motorudur.</Description>
+    </Source>
+
+    <Package>
+        <Name>webkit-gtk3-devel</Name>
+        <Summary xml:lang="tr">WebKit'in GTK3 sürümü için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
