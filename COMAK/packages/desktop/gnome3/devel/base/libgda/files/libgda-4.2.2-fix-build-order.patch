@@ -1,0 +1,22 @@
+Index: libgda-4.2.3/libgda/sqlite/Makefile.am
+===================================================================
+--- libgda-4.2.3.orig/libgda/sqlite/Makefile.am
++++ libgda-4.2.3/libgda/sqlite/Makefile.am
+@@ -59,9 +59,9 @@ sqlitesources = \
+ 	gda-sqlite.h \
+ 	keywords_hash.h \
+ 	gda-symbols-util.h \
+-	gda-symbols-util.c
+-
+-BUILT_SOURCES = xml_embedded.h keywords_hash.c
++	gda-symbols-util.c \
++	xml_embedded.h \
++	keywords_hash.c
+ 
+ libgda_sqlite_la_SOURCES = $(sqlitesources)
+ libgda_sqlite_la_CFLAGS = -DPNAME=\""SQLite"\" -DCLASS_PREFIX=\""GdaSqlite"\" -DSEARCH_LIB_PATH=\""$(SQLITE_PATH)"\"
+@@ -87,3 +87,4 @@ gdainclude_HEADERS=$(sqliteheaders)
+ EXTRA_DIST = gen_emb_string.c mkkeywordhash.c keywords.list
+ 
+ CLEANFILES = gen_emb_string$(EXEEXT_FOR_BUILD) mkkeywordhash$(EXEEXT_FOR_BUILD) $(BUILT_SOURCES)
++BUILT_SOURCES = xml_embedded.h keywords_hash.c
