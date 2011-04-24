@@ -64,6 +64,8 @@
         <Summary>Development files for vte</Summary>
         <RuntimeDependencies>
             <Dependency release="current">vte</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
