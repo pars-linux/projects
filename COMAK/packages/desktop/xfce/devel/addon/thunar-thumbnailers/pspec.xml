@@ -18,7 +18,7 @@
             <Dependency>Thunar-devel</Dependency>
             <Dependency>imagemagick-devel</Dependency>
             <Dependency>dcraw</Dependency>
-            <Dependency>texlive-latex</Dependency>
+            <Dependency>texlive-core</Dependency>
             <Dependency>ffmpegthumbnailer-devel</Dependency>
         </BuildDependencies>
     </Source>
@@ -29,7 +29,7 @@
             <Dependency>Thunar</Dependency>
             <Dependency>imagemagick</Dependency>
             <Dependency>dcraw</Dependency>
-            <Dependency>texlive-latex</Dependency>
+            <Dependency>texlive-core</Dependency>
             <Dependency>ffmpegthumbnailer</Dependency>
         </RuntimeDependencies>
         <Files>
