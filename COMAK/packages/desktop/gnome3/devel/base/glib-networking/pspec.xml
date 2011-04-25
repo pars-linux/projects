@@ -10,9 +10,9 @@
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
-        <Summary>glib-networking</Summary>
-        <Description>glib-networking</Description>
-        <Archive sha1sum="b1477eed8596dca9e21b670bdddabac491391cef" type="tarbz2">ftp://ftp.gnome.org/pub/GNOME/core/3.0/3.0.0/sources/glib-networking-2.28.5.tar.bz2</Archive>
+        <Summary>Network-related giomodules for glib</Summary>
+        <Description>glib-networking provides network-related giomodules for glib.</Description>
+        <Archive sha1sum="a429aa17bcb3aaf45707315144e92299efc1aeaf" type="tarbz2">mirrors://gnome/glib-networking/2.28/glib-networking-2.28.6.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk3</Dependency>
         </BuildDependencies>
@@ -36,8 +36,8 @@
 
     <History>
         <Update release="1">
-            <Date>2011-04-20</Date>
-            <Version>2.28.5</Version>
+            <Date>2011-04-26</Date>
+            <Version>2.28.6</Version>
             <Comment>First release.</Comment>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
