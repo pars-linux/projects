@@ -77,11 +77,12 @@ class Widget(QtGui.QWidget, Screen):
             dir = QDir("/usr/share/fluxbox/styles")
             lst2 =dir.entryList()
         elif ctx.Pds.session.Name == "gnome":
-            lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
+            #lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
+            dir = QDir("/usr/share/themes")
+            lst2 =dir.entryList()
         elif ctx.Pds.session.Name == "xfce":
             dir =QDir("/usr/share/themes")
             lst2= dir.entryList()
-            print "girdi"
         else:
             dir = QtCore.QDir("/usr/share/themes")
             dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
@@ -103,10 +104,10 @@ class Widget(QtGui.QWidget, Screen):
                 a ="/usr/share/kde4/apps/kaptan/kaptan/xfce_themes/"
                 thumbFolder = a + themes + ".png"
             elif ctx.Pds.session.Name == "gnome":
-                a ="/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/"
+                a ="/usr/share/kaptan/kaptan/gnome_themes/"
                 thumbFolder = a +themes+ ".png"
             else:
-                a = "/usr/share/kde4/apps/kaptan/kaptan/themes/"
+                a = "/usr/share/kaptan/kaptan/themes/"
                 thumbFolder =a +themes+ ".png"
 
             if (os.path.exists(a+themes+".png")):
@@ -120,7 +121,7 @@ class Widget(QtGui.QWidget, Screen):
                 self.styleDetails[StyleName] = {
                         "description":StyleDesc
                         }
-            elif (os.path.exists("/usr/share/kde4/apps/kaptan/kaptan/gnome_themes/"+themes+".png")):
+            elif (os.path.exists("/usr/share/kaptan/kaptan/gnome_themes/"+themes+".png")):
                 self.list_themes.append(themes)
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
