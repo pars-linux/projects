@@ -25,6 +25,8 @@
             <Dependency>pango-devel</Dependency>
             <Dependency>libnotify-devel</Dependency>
             <Dependency>lua-devel</Dependency>
+            <Dependency>libxslt-devel</Dependency>
+            <Dependency>libunique-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>liferea-1.7.4-libnotify-0.7.patch</Patch>
