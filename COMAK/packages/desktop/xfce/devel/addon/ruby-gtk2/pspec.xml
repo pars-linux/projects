@@ -11,8 +11,8 @@
         <License>LLGPL-2.1</License>
         <IsA>library</IsA>
         <Summary>GNOME 2 bindings for Ruby</Summary>
-        <Description>Ruby-gtk2 is a set of bindings for the GNOME-2.x libraries to use from Ruby</Description>
-        <Archive sha1sum="2f383dbb61ecdf8c053ac8c9e468d37ad4a244f2" type="">http://downloads.sourceforge.net/sourceforge/ruby-gnome2/ruby-gtk2-0.19.3.tar.gz</Archive>
+        <Description>Ruby-gtk2 is a set of bindings for the GNOME-2.x libraries to use from Ruby.</Description>
+        <Archive sha1sum="b6cff5b15f7f89fb125a218406132c1c1170c755" type="">mirrors://sourceforge/ruby-gnome2/ruby-gtk2-0.90.8.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
             <Dependency>ruby</Dependency>
@@ -38,6 +38,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-04-25</Date>
+            <Version>0.90.8</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-15</Date>
             <Version>0.19.3</Version>
