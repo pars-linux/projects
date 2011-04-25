@@ -27,8 +27,8 @@
             <Dependency>glitz-devel</Dependency>
             <Dependency>xcb-util-devel</Dependency>
             <Dependency>json-glib-devel</Dependency>
-            <Dependency>gobject-introspection</Dependency>
-            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>gobject-introspection-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
         </BuildDependencies>
      </Source>
 
@@ -50,6 +50,7 @@
             <Dependency>json-glib</Dependency>
             <Dependency>atk</Dependency>
             <Dependency>libXi</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
