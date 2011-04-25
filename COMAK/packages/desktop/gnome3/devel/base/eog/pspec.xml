@@ -41,7 +41,6 @@
             <Dependency>python-gtk</Dependency>
             <Dependency>jpeg</Dependency>
             <Dependency>atk</Dependency>
-            <Dependency>gtk2</Dependency>
             <Dependency>gtk3</Dependency>
             <Dependency>cairo</Dependency>
             <Dependency>librsvg</Dependency>
@@ -81,7 +80,7 @@
         <Summary>Development files for eog</Summary>
         <RuntimeDependencies>
             <Dependency release="current">eog</Dependency>
-            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
         </RuntimeDependencies>
         <Files>
