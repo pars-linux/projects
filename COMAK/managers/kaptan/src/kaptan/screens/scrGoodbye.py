@@ -58,8 +58,9 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltUrl = "http://smolt.pardus.org.tr:8090"
 
     def on_buttonSystemSettings_clicked(self):
-        self.procSettings = QProcess()
-        self.procSettings.start("pcmanfm menu://applications/System")
+        if not ctx.Pds.session.Name == "xfce":
+            self.procSettings = QProcess()
+            self.procSettings.start("pcmanfm menu://applications/System")
         if ctx.Pds.session == ctx.pds.Gnome:
             import subprocess
             a=subprocess.Popen("gnome-control-center")
@@ -67,8 +68,8 @@ class Widget(QtGui.QWidget, Screen):
             a.wait()
         if ctx.Pds.session == ctx.pds.Xfce:
             import subprocess
-            cmd_code=subprocess.Popen("xfce4-settings-manager")
-            time.sleep(1)
+            process = subprocess.Popen(['xfce4-settings-manager']) 
+            #process.wait()
             #import os 
             #os.system("xfce4-settings-manager")
     def on_buttonHelpPages_clicked(self):
@@ -81,7 +82,7 @@ class Widget(QtGui.QWidget, Screen):
         #command = "openURL (" + self.smoltUrl+")"
         #self.procSettings.start(command)
 	QtGui.QDesktopServices().openUrl(QUrl(self.smoltUrl))
-    
+
     def setSmolt(self):
       # Smolt Settings
         if self.smoltSettings["profileSend"]:
