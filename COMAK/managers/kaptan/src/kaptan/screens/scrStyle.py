@@ -115,7 +115,10 @@ class Widget(QtGui.QWidget, Screen):
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
                 widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
-                item.setSizeHint(QSize(120,170))
+                if ctx.Pds.session.Name == "KDE":
+                    item.setSizeHint(QSize(120,170))
+                else:
+                    item.setSizeHint(QSize(130,160))
                 self.ui.listStyles.setItemWidget(item,widget)
                 item.setStatusTip(ThemeFile)
                 self.styleDetails[StyleName] = {
