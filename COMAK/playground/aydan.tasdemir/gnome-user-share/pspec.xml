@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-user-share</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Personal file sharing for the GNOME desktop</Summary>
+        <Description>FİXME.</Description>
+        <Archive sha1sum="7e40c7960935a7734bb20675f0917892500e6d41" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/gnome-user-share/2.30/gnome-user-share-2.30.1.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2</Dependency>
+        </BuildDependencies>
+        <!--Patches>
+            <Patch level=""></Patch>
+        </Patches-->
+    </Source>
+
+    <Package>
+        <Name>gnome-user-share</Name>
+        <!--RuntimeDependencies>
+            <Dependency versionFrom=""></Dependency>
+        </RuntimeDependencies-->
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+        <!--AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
+        </AdditionalFiles-->
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-03-24</Date>
+            <Version>2.30.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+

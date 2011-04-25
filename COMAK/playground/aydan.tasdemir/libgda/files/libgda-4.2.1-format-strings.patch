@@ -1,0 +1,13 @@
+diff -p -up libgda-4.2.1/libgda-ui/data-entries/common-bin.c.0000~ libgda-4.2.1/libgda-ui/data-entries/common-bin.c
+diff -p -up libgda-4.2.1/tests/providers/prov-test-common.h.0000~ libgda-4.2.1/tests/providers/prov-test-common.h
+--- libgda-4.2.1/tests/providers/prov-test-common.h.0000~	2010-10-08 20:37:52.000000000 +0200
++++ libgda-4.2.1/tests/providers/prov-test-common.h	2010-11-14 18:59:28.000000000 +0100
+@@ -6,7 +6,7 @@
+ #include <libgda/libgda.h>
+ #include "prov-test-util.h"
+ 
+-#define fail(x) g_warning (x)
++#define fail(x) g_warning ("%s", x)
+ #define fail_if(x,y) if (x) g_warning (y)
+ #define fail_unless(x,y) if (!(x)) g_warning (y)
+ 

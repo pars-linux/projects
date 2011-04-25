@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>libgda</Name>
+        <Summary xml:lang="tr">GNU veri erişimi</Summary>
+        <Description xml:lang="tr">libgda, GNU veri erişimi için yazılmış bir kitaplıktır.</Description>
+    </Source>
+</PISI>
