@@ -30,7 +30,17 @@ if ctx.Pds.session == ctx.pds.Kde4:
 import subprocess, sys
 
 from kaptan.screen import Screen
-from kaptan.screens.ui_scrGoodbye import Ui_goodbyeWidget
+
+FOR_LXDE = ctx.Pds.session == ctx.pds.LXDE
+FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
+FOR_FLUXBOX = ctx.Pds.session == ctx.pds.Fluxbox
+FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
+FOR_XFCE=ctx.Pds.session == ctx.pds.Xfce
+SHOW_COMAK_UI = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE
+if SHOW_COMAK_UI:
+    from kaptan.screens.ui_scrGoodbye_comak import Ui_goodbyeWidget
+else:
+    from kaptan.screens.ui_scrGoodbye import Ui_goodbyeWidget
 import kaptan.screens.scrSmolt as smoltWidget
 
 class Widget(QtGui.QWidget, Screen):

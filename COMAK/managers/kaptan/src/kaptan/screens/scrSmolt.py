@@ -24,11 +24,16 @@ from kaptan.screens.context import *
 from kaptan.plugins import Desktop
 
 from kaptan.screen import Screen
-FOR_KDE = ctx.Pds.session == ctx.pds.LXDE
-if FOR_KDE:
-    from kaptan.screens.ui_scrSmolt import Ui_smoltWidget
-else:
+FOR_LXDE = ctx.Pds.session == ctx.pds.LXDE
+FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
+FOR_FLUXBOX = ctx.Pds.session == ctx.pds.Fluxbox
+FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
+FOR_XFCE=ctx.Pds.session == ctx.pds.Xfce
+SHOW_COMAK_UI = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE
+if SHOW_COMAK_UI:
     from kaptan.screens.ui_scrSmolt_comak import Ui_smoltWidget
+else:
+    from kaptan.screens.ui_scrSmolt import Ui_smoltWidget
 
 sys.path.append('/usr/share/smolt/client')
 
