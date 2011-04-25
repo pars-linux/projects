@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="raw">
+    <file>pixmap/applications-other-comak.png</file>
+    <file>pixmap/view-pim-contacts-comak.png</file>
     <file>pixmap/milky.png</file>
     <file>pixmap/oxygen_lxde.png</file>
     <file>pixmap/oxygen.png</file>
