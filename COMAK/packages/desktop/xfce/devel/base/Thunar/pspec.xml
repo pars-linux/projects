@@ -35,6 +35,8 @@
             <Dependency>libexif-devel</Dependency>
             <Dependency>gamin-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>libxfce4ui-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">tr-po.patch</Patch>
@@ -62,6 +64,8 @@
             <Dependency>gconf</Dependency>
             <Dependency>libexif</Dependency>
             <Dependency>desktop-file-utils</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>libxfce4ui</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
