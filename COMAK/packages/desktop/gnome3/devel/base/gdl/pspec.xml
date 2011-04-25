@@ -38,6 +38,7 @@
         <Summary>Development files for gdl</Summary>
         <RuntimeDependencies>
             <Dependency release="current">gdl</Dependency>
+            <Dependency>gtk3-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
