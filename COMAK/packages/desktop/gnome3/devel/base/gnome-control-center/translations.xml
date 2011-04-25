@@ -5,5 +5,10 @@
         <Summary xml:lang="tr">GNOME yapılandırma araçları</Summary>
         <Description xml:lang="tr">gnome-control-center GNOME masaüstünüzün çeşitli ayarlarını değiştiren, GNOME'un ana arayüzüdür.</Description>
     </Source>
+
+    <Package>
+        <Name>gnome-control-center-devel</Name>
+        <Summary xml:lang="tr">gnome-control-center için geliştirme dosyaları</Summary>
+    </Package>
 </PISI>
 
