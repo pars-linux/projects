@@ -46,6 +46,8 @@
         <Summary>Development files for gucharmap</Summary>
         <RuntimeDependencies>
             <Dependency release="current">gucharmap</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
