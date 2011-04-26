@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Network-related giomodules for glib</Summary>
         <Description>glib-networking provides network-related giomodules for glib.</Description>
-        <Archive sha1sum="a429aa17bcb3aaf45707315144e92299efc1aeaf" type="tarbz2">mirrors://gnome/glib-networking/2.28/glib-networking-2.28.6.tar.bz2</Archive>
+        <Archive sha1sum="15cac2b3ca486fe568f551ec4c05e7e594861cc0" type="tarbz2">mirrors://gnome/glib-networking/2.28/glib-networking-2.28.6.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libproxy-devel</Dependency>
         </BuildDependencies>
@@ -36,6 +36,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-04-27</Date>
+            <Version>2.28.6.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-04-26</Date>
             <Version>2.28.6</Version>
