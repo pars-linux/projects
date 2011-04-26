@@ -39,6 +39,8 @@
             <Dependency release="current">libcanberra</Dependency>
             <Dependency>gconf</Dependency>
             <Dependency>gtk2</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
         </RuntimeDependencies>
         <Conflicts>
             <Package releaseTo="4">libcanberra</Package>
@@ -64,7 +66,6 @@
         <Files>
             <Path fileType="library">/usr/lib/gtk-3*</Path>
             <Path fileType="library">/usr/lib/libcanberra-gtk3*</Path>
-            <Path fileType="executable">/usr/bin/canberra-gtk-play*</Path>
         </Files>
     </Package>
 
