@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Basic GNOME libraries and dialogs</Summary>
         <Description>gnome-shell contains basic GNOME libraries and information applications.</Description>
-        <Archive sha1sum="d10cc5ff7e9004024af7dd84773e0e251af2d8e5" type="tarbz2">mirrors://gnome/gnome-shell/3.0/gnome-shell-3.0.0.2.tar.bz2</Archive>
+        <Archive sha1sum="0364c5c1cc7eb40a292e2b07a1c118a2386a8598" type="tarbz2">mirrors://gnome/gnome-shell/3.0/gnome-shell-3.0.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>mutter-devel</Dependency>
@@ -25,6 +25,9 @@
             <Dependency>telepathy-glib-devel</Dependency>
             <Dependency>telepathy-logger-devel</Dependency>
             <Dependency>clutter-devel</Dependency>
+            <Dependency>gnome-bluetooth-devel</Dependency>
+            <Dependency>libical-devel</Dependency>
+            <Dependency>evolution-data-server-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -53,10 +56,14 @@
             <Dependency>gnome-desktop</Dependency>
             <Dependency>pulseaudio-libs</Dependency>
             <Dependency>gobject-introspection</Dependency>
+            <Dependency>gnome-bluetooth</Dependency>
+            <Dependency>libical</Dependency>
+            <Dependency>evolution-data-server</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="executable">/usr/libexec</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
@@ -64,6 +71,7 @@
             <Path fileType="data">/usr/share/applications</Path>
             <Path fileType="data">/usr/share/gnome-about</Path>
             <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/glib-2.0</Path>
             <Path fileType="data">/usr/share/omf</Path>
             <Path fileType="data">/usr/share/gnome-shell</Path>
             <Path fileType="data">/usr/share/dbus-1</Path>
@@ -74,8 +82,8 @@
 
     <History>
         <Update release="1">
-            <Date>2011-04-23</Date>
-            <Version>3.0.0.2</Version>
+            <Date>2011-04-26</Date>
+            <Version>3.0.1</Version>
             <Comment>First release.</Comment>
             <Name>Mesutcan Kurt</Name>
             <Email>mesutcank@gmail.com</Email>
