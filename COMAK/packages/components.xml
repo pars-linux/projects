@@ -199,7 +199,7 @@
             </Maintainer>
         </Component>
 		<Component>
-			<Name>desktop.englihtenment</Name>
+			<Name>desktop.enlightenment</Name>
 			<LocalName xml:lang="en">FIXME</LocalName>
             <Summary xml:lang="en">FIXME</Summary>
             <Description xml:lang="en">FIXME</Description>
