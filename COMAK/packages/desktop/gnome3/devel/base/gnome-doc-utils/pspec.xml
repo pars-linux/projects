@@ -13,7 +13,7 @@
         <IsA>library</IsA>
         <Summary>A collection of documentation utilities for the Gnome project</Summary>
         <Description>gnome-doc-utils is a collection of documentation utilities for the Gnome project.</Description>
-        <Archive sha1sum="3e35ce58d82821f5894e46537f98cfbeaebd9f9f" type="tarbz2">mirrors://gnome/gnome-doc-utils/0.20/gnome-doc-utils-0.20.5.tar.bz2</Archive>
+        <Archive sha1sum="c11dda3cff4248a6918cfaf0d7b892fc20bf329e" type="tarbz2">mirrors://gnome/gnome-doc-utils/0.20/gnome-doc-utils-0.20.6.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libxslt-devel</Dependency>
             <Dependency>gnome-common</Dependency>
@@ -31,6 +31,7 @@
             <Dependency>intltool</Dependency>
             <Dependency>rarian</Dependency>
             <Dependency>docbook-xml4_4</Dependency>
+            <Dependency>libxml2-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
@@ -49,12 +50,19 @@
     </Package>
 
     <History>
+        <Update release="16">
+            <Date>2011-04-26</Date>
+            <Version>0.20.6</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="15">
             <Date>2011-04-14</Date>
             <Version>0.20.5</Version>
             <Comment>Version bump</Comment>
             <Name>Necdet Yücel</Name>
-            <Email>necdetyucel@pardus.org.tr</Email>
+            <Email>necdetyucel@gmail.com</Email>
         </Update>
         <Update release="14">
             <Date>2010-10-12</Date>
