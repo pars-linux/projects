@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>GNOME configuration tools</Summary>
         <Description>gnome-control-center is GNOME's main interface for configuration of various aspects of your GNOME desktop.</Description>
-        <Archive sha1sum="8b8d8ffd1143fb28f2821b9e41af995d3c7b491c" type="tarbz2">mirrors://gnome/gnome-control-center/3.0/gnome-control-center-3.0.0.tar.bz2</Archive>
+        <Archive sha1sum="35a0c472be743e663a7cb723451842567363a354" type="tarbz2">mirrors://gnome/gnome-control-center/3.0/gnome-control-center-3.0.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency versionFrom="0.28">libcanberra-devel</Dependency>
             <Dependency>gnome-desktop-devel</Dependency>
@@ -127,6 +127,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-04-27</Date>
+            <Version>3.0.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-04-26</Date>
             <Version>3.0.0</Version>
