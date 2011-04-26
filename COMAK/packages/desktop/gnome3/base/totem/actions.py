@@ -12,7 +12,7 @@ from pisi.actionsapi import shelltools
 shelltools.export("HOME", get.workDIR())
 
 def setup():
-    #autotools.autoreconf("-fiv")
+    autotools.autoreconf("-fiv")
     autotools.configure("--disable-static \
                          --disable-scrollkeeper \
                          --disable-silent-rules \
