@@ -6,6 +6,7 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
+from pisi.actionsapi import get
 
 def setup():
     autotools.configure("--disable-static \
@@ -16,7 +17,7 @@ def build():
     autotools.make()
 
 def install():
-    autotools.install()
+    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
 
     pisitools.insinto("/usr/lib/gio/modules/", "tls/gnutls/.libs/libgiognutls.so")
     pisitools.insinto("/usr/lib/gio/modules/", "proxy/libproxy/.libs/libgiolibproxy.so")
