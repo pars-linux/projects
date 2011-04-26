@@ -18,6 +18,7 @@
             <Dependency versionFrom="2.12.0">gnome-python-devel</Dependency>
             <Dependency versionFrom="2.6.0">python-gtk-devel</Dependency>
             <Dependency versionFrom="2.6.0">python-pygobject-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -25,6 +26,7 @@
         <Name>thunarx-python</Name>
         <RuntimeDependencies>
             <Dependency>Thunar</Dependency>
+            <Dependency>gtk2</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib</Path>
