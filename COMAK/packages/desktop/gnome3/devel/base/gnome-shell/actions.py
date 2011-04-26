@@ -13,6 +13,8 @@ shelltools.export("HOME", get.workDIR())
 
 def setup():
 
+    shelltools.export("LDFLAGS", "%s -rpath=/usr/lib" % get.LDFLAGS())
+
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static \
                          --disable-schemas-install \
@@ -24,6 +26,6 @@ def build():
     autotools.make()
 
 def install():
-    autotools.install()
+    autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     pisitools.dodoc("AUTHORS", "COPYING*", "NEWS", "README")
 
