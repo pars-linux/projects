@@ -158,6 +158,7 @@
             <Dependency>hal-libs</Dependency>
             <Dependency>avahi-libs</Dependency>
             <Dependency>libgnome-keyring</Dependency>
+            <Dependency>gnome-disk-utility</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/profile.d</Path>
