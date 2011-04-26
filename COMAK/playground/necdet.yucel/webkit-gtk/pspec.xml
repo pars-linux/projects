@@ -24,7 +24,7 @@
             <Dependency>icu4c-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
             <Dependency>pango-devel</Dependency>
-            <Dependency>libsoup-devel</Dependency>
+            <Dependency versionFrom="2.34.0">libsoup-devel</Dependency>
             <Dependency>libxslt-devel</Dependency>
             <Dependency>enchant-devel</Dependency>
             <Dependency>gstreamer-devel</Dependency>
@@ -46,7 +46,7 @@
             <Dependency>icu4c</Dependency>
             <Dependency>cairo</Dependency>
             <Dependency>pango</Dependency>
-            <Dependency>libsoup</Dependency>
+            <Dependency versionFrom="2.34.0">libsoup</Dependency>
             <Dependency>libxslt</Dependency>
             <Dependency>enchant</Dependency>
             <Dependency>gstreamer</Dependency>
