@@ -5,14 +5,14 @@
         <Name>gedit</Name>
         <Homepage>http://www.gnome.org</Homepage>
         <Packager>
-            <Name>Burak Çalışkan</Name>
-            <Email>burakclskn@gmail.com</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>Default text editor for GNOME</Summary>
         <Description>gedit is a small and lightweight text editor for the GNOME environment.</Description>
-        <Archive sha1sum="df79aaafcbd28b44ef4c495282cf7d02fcac7d29" type="tarbz2">mirrors://gnome/gedit/3.0/gedit-3.0.0.tar.bz2</Archive>
+        <Archive sha1sum="6c26881b02b43dd52bb793b36726e0343aeaadd3" type="tarbz2">mirrors://gnome/gedit/3.0/gedit-3.0.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -80,6 +80,7 @@
         <RuntimeDependencies>
             <Dependency>gtksourceview-devel</Dependency>
             <Dependency release="current">gedit</Dependency>
+            <Dependency>libpeas-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
@@ -100,6 +101,13 @@
     </Package>
 
     <History>
+        <Update release="13">
+            <Date>2011-04-27</Date>
+            <Version>3.0.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="12">
             <Date>2011-04-23</Date>
             <Version>3.0.0</Version>
