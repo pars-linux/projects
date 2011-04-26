@@ -14,7 +14,7 @@
         <Description>glib-networking provides network-related giomodules for glib.</Description>
         <Archive sha1sum="a429aa17bcb3aaf45707315144e92299efc1aeaf" type="tarbz2">mirrors://gnome/glib-networking/2.28/glib-networking-2.28.6.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency>gtk3</Dependency>
+            <Dependency>libproxy-devel</Dependency>
         </BuildDependencies>
     </Source>
 
