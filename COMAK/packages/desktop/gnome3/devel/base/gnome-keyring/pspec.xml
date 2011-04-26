@@ -69,6 +69,8 @@
         <Summary>Development files for gnome-keyring</Summary>
         <RuntimeDependencies>
             <Dependency release="current">gnome-keyring</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>libtasn1-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
