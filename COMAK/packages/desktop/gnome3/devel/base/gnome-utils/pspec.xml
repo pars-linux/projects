@@ -51,6 +51,7 @@
             <Dependency>libcanberra</Dependency>
             <Dependency>libbonoboui</Dependency>
             <Dependency>libcanberra-gtk3</Dependency>
+            <Dependency>gtk2-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
