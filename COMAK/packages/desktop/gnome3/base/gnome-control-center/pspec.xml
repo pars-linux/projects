@@ -18,7 +18,6 @@
             <Dependency>gnome-desktop-devel</Dependency>
             <Dependency>hal</Dependency>
             <Dependency>gnome-settings-daemon</Dependency>
-            <Dependency>metacity-devel</Dependency>
             <Dependency versionFrom="3.0.0">gnome-panel</Dependency>
             <Dependency>libglade</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
@@ -57,7 +56,6 @@
             <Dependency>hal</Dependency>
             <Dependency>desktop-file-utils</Dependency>
             <Dependency>gnome-settings-daemon</Dependency>
-            <Dependency>metacity</Dependency>
             <Dependency versionFrom="3.0.0">gnome-panel</Dependency>
             <Dependency>libglade</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
