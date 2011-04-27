@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-icon-theme-symbolic</Name>
+        <Summary xml:lang="tr">Gnome masaüstü sembolik simge teması</Summary>
+        <Description xml:lang="tr">Farklı uygulama , dosya , dizin ve araçların panel menüsünde kullanılabilmesi için gerekli simge teması.</Description>
+    </Source>
+</PISI>
+
