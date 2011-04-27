@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>epiphany</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A simple web browser</Summary>
+        <Description>Epiphany is a simple web browser for Gnome.</Description>
+        <Archive sha1sum="503d645d036133305385199875821ce1c291a358" type="tarbz2">mirrors://gnome/epiphany/3.0/epiphany-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-desktop-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>libcanberra-devel</Dependency>
+            <Dependency>startup-notification-devel</Dependency>
+            <Dependency>avahi-glib-devel</Dependency>
+            <Dependency>iso-codes</Dependency>
+            <Dependency>webkit-gtk-devel</Dependency>
+            <Dependency>gtk-doc</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>libxslt-devel</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>NetworkManager-devel</Dependency>
+            <Dependency>nss-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>epiphany</Name>
+        <RuntimeDependencies>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>gnome-desktop</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>startup-notification</Dependency>
+            <Dependency>avahi-glib</Dependency>
+            <Dependency>iso-codes</Dependency>
+            <Dependency>webkit-gtk</Dependency>
+            <Dependency>libxslt</Dependency>
+            <Dependency>libsoup-gnome</Dependency>
+            <Dependency>NetworkManager</Dependency>
+            <Dependency>nss</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>nspr</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libsoup</Dependency>
+            <Dependency>avahi-libs</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libgnome-keyring</Dependency>
+       </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/dbus-1</Path>
+            <Path fileType="data">/usr/share/epiphany</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/glib-2.0</Path>
+            <Path fileType="data">/usr/share/GConf</Path>
+            <Path fileType="data">/usr/share/python-gtk</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>epiphany-devel</Name>
+        <Summary>Development files for epiphany</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">epiphany</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+            <Path fileType="data">/usr/share/aclocal</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="4">
+            <Date>2011-04-27</Date>
+            <Version>3.0.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2010-10-30</Date>
+            <Version>2.30.6</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2009-06-28</Date>
+            <Version>2.26.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-08-09</Date>
+            <Version>2.22.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
