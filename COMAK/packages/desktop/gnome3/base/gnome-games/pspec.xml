@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-games</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Gnome Games</Summary>
+        <Description>gnome-games contains a collection of games for the GNOME 3 desktop.</Description>
+        <Archive sha1sum="cea6c8371fc5110b2baed787fdf7fdec0d3a002a" type="tarbz2">mirrors://gnome/gnome-games/3.0/gnome-games-3.0.1.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>mesa-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>guile-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>clutter-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libcanberra-devel</Dependency>
+            <Dependency>clutter-gtk-devel</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-games</Name>
+        <RuntimeDependencies>
+            <Dependency>atk</Dependency>
+            <Dependency>mesa</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>guile</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>clutter</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>clutter-gtk</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="data">/var/games</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-27</Date>
+            <Version>3.0.1.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
