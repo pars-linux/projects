@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>icon-theme-gnome-symbolic</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>data</IsA>
+        <Summary>GNOME 3 icon theme, symbolic icons</Summary>
+        <Description>icon-theme-gnome-symbolic contains icons for status icons.</Description>
+        <Archive sha1sum="deb0f26a75c01de89820083f2093c34fbb4c485a" type="tarbz2">mirrors://gnome/gnome-icon-theme-symbolic/3.0/gnome-icon-theme-symbolic-3.0.0.tar.bz2</Archive>
+    </Source>
+
+    <Package>
+        <Name>icon-theme-gnome-symbolic</Name>
+        <Files>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-27</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
