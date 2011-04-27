@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-games-extra-data</Name>
+        <Homepage>http://live.gnome.org/GnomeGames</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>data</IsA>
+        <Summary>Optional additional graphics for gnome-games</Summary>
+        <Description>gnome-games-extra-data provides optional additional graphics for gnome-games.</Description>
+        <Archive sha1sum="63071b2a58602a241b469b419a8891e94b7abb87" type="tarbz2">mirrors://gnome/gnome-games-extra-data/3.0/gnome-games-extra-data-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk3-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-games-extra-data</Name>
+        <Files>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/gnome-games</Path>
+            <Path fileType="data">/usr/share/gnome-games-common</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-04-27</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
