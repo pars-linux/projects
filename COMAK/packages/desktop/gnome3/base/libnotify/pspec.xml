@@ -15,7 +15,6 @@
         <Description>libnotify sends desktop notifications to a notification daemon.</Description>
         <Archive sha1sum="d3feee5290dcc8f5476439f1f66f6dc38745607b" type="tarbz2">mirrors://gnome/libnotify/0.7/libnotify-0.7.2.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency>gtk2</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
         </BuildDependencies>
     </Source>
@@ -23,7 +22,6 @@
     <Package>
         <Name>libnotify</Name>
         <RuntimeDependencies>
-            <Dependency>gtk2</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
@@ -40,7 +38,6 @@
         <RuntimeDependencies>
             <Dependency release="current">libnotify</Dependency>
             <Dependency>dbus-glib-devel</Dependency>
-            <Dependency>gtk2-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
         </RuntimeDependencies>
         <Files>
