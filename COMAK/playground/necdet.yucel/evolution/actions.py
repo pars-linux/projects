@@ -13,10 +13,14 @@ from pisi.actionsapi import get
 
 def setup():
     autotools.autoreconf("-vfi")
+
+    shelltools.system("intltoolize --force --copy --automake")
+
     autotools.configure("--disable-scrollkeeper \
                         --enable-nss=yes \
                         --with-openldap=yes \
                         --enable-smime=yes \
+                        --disable-image-inline \
                         --with-krb5=/usr")
 
 def build():
@@ -25,4 +29,4 @@ def build():
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
 
-    pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING", "MAINTAINERS", "NEWS", "README", "TODO")
+    pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING", "MAINTAINERS", "NEWS", "README")
