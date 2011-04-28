@@ -21,7 +21,11 @@ i18n = Pds.i18n
 KIconLoader = QIconLoader(Pds)
 KIcon = KIconLoader.icon
 
+
 def createMessage(self,errorTitle, errorMessage):
+    '''
+        Error message function
+    '''
     errorTitle = i18n(errorTitle)
     errorMessage= i18n(errorMessage)
     self.messageBox = QMessageBox(errorTitle, errorMessage, QMessageBox.Critical, QMessageBox.Ok, 0, 0)
