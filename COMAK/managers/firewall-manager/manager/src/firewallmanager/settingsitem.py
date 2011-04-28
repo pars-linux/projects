@@ -27,10 +27,9 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
     def __init__(self, parent, name, type_):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
-
         self.name = name
         self.type = type_
-
+        self.changed =False
         self.lineItem.hide()
         self.comboItems.hide()
         self.listItems.hide()
@@ -46,17 +45,23 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         # SIGNAL
         self.connect(self.pushAdd, QtCore.SIGNAL("clicked()"), self.addItemToList)
         self.connect(self.pushDelete, QtCore.SIGNAL("clicked()"), self.removeItemToList)
-        self.connect(self.pushUp, QtCore.SIGNAL("clicked()"), self.funcpushUp)
-        self.connect(self.pushDown, QtCore.SIGNAL("clicked()"), self.funcpushDown)
+        self.connect(self.pushUp, QtCore.SIGNAL("clicked()"), self.funcPushUp)
+        self.connect(self.pushDown, QtCore.SIGNAL("clicked()"), self.funcPushDown)
         self.connect(self.listWidget, QtCore.SIGNAL(("currentItemChanged(QListWidgetItem*,QListWidgetItem*)")), self.hideButtons)
         self.connect(self.lineEdit, QtCore.SIGNAL(("textChanged(QString)")), self.hideAdd)
-     #   self.connect(self.lineEdit, QtCore.SIGNAL(("textChanged()QString")), self.addItemToList)
+        self.connect(self.lineEdit, QtCore.SIGNAL(("textChanged(QString)")), self.changeItem)
 
         # Set Icons
         self.pushAdd.setIcon(KIcon("list-add"))
         self.pushDelete.setIcon(KIcon("list-remove"))
         self.pushUp.setIcon(KIcon("arrow-up"))
         self.pushDown.setIcon(KIcon("arrow-down"))
+
+    def count(self):
+        '''
+            Size of list
+        '''
+        return self.listWidget.count()
 
     def setDisabledAll(self):
         '''
@@ -82,22 +87,49 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         '''
         for i in range(self.listWidget.count()):
             if (self.lineEdit.text()==self.listWidget.item(i).text()):
-                return False 
-        return True
+                return True
+        return False
+
+    def alreadyInListCount(self):
+        '''
+            Check the changed item is already in list.
+        '''
+        count =0
+        for i in range(self.listWidget.count()):
+            if (self.lineEdit.text()==self.listWidget.item(i).text()):
+                count = count+1
+        return count
+
+    def changeItem(self):
+
+        if not self.changed:
+            if self.listWidget.currentItem():
+                self.listWidget.currentItem().setText(self.lineEdit.text())
+
+            if self.lineEdit.text()== "":
+                self.pushAdd.setEnabled(False)
 
     def addItemToList(self):
         '''
             Check the item is in list and  add item to list.
         '''
-        if (self.alreadyInList()):
+
+        if not self.alreadyInList():
             if self.listWidget.currentItem():
                 self.listWidget.currentItem().setText(self.lineEdit.text())
             else:
                 if not(self.lineEdit.text()== ""):
                     self.listWidget.insertItem(0,self.lineEdit.text())
+
+        if self.alreadyInListCount() > 1:
+            self.removeItemToList()
+
+        self.changed=True
         self.lineEdit.setText("")
+        self.changed=False
         self.listWidget.setCurrentItem(None)
         self.setDisabledAll()
+
 
     def removeItemToList(self):
         '''
@@ -120,6 +152,7 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
             self.lineEdit.setText("")
 
     def hideButtons(self):
+
         self.listToLineEdit()
         if not(self.lineEdit.text()==""):
             self.pushAdd.setEnabled(True)
@@ -138,9 +171,9 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
             self.pushUp.setEnabled(False)
             self.pushDown.setEnabled(False)
 
-    def funcpushDown(self):
+    def funcPushDown(self):
         '''
-        Yukarı tusuna basarak listede gezmemizi sağlar
+        Move down the selected item in list
         '''
         self.listWidget.setCurrentRow(self.listWidget.currentRow()+1)
         degisken = self.listWidget.currentItem().text()
@@ -151,9 +184,9 @@ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
         self.listWidget.currentItem().setText(degisken_)
         self.listToLineEdit()
 
-    def funcpushUp(self):
+    def funcPushUp(self):
         '''
-        Asagi tusuna basarak listede gezmemizi sağlar
+        Move up the selected item in list
         '''
         self.listWidget.setCurrentRow(self.listWidget.currentRow()-1)
         degisken = self.listWidget.currentItem().text()

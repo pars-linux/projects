@@ -48,7 +48,7 @@ if ctx.Pds.session == ctx.pds.Kde4:
 
 else :
 
-    #Pds Stuff
+    # Pds Stuff
     from context import i18n
 
     class PageDialog(QtGui.QDialog):
@@ -61,7 +61,7 @@ else :
             self.tab=QtGui.QTabWidget(self)
             self.tab.addTab(self.page_widget,i18n("Settings"))
 
-            #Buttons
+            # Buttons
             self.buttonBox = QtGui.QDialogButtonBox(self)
             self.buttonBox.setGeometry(QtCore.QRect(4, 152, 540, 25))
             self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
@@ -70,7 +70,7 @@ else :
             self.layout.addWidget(self.buttonBox)
             self.buttonBox.setObjectName(i18n("buttonBox"))
 
-            #SIGNAL
+            # SIGNAL
             QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(i18n("accepted()")), self.accept)
             QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(i18n("rejected()")),self.reject)
             QtCore.QMetaObject.connectSlotsByName(self)
