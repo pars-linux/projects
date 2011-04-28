@@ -24,7 +24,7 @@ def setup():
                         --with-krb5=/usr")
 
 def build():
-    autotools.make("-I/usr/include/evolution-data-server-2.32")
+    autotools.make("-I/usr/include/evolution-data-server-3.0")
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
