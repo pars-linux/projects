@@ -1,50 +1,1526 @@
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/about.py firewall-manager-3.0.0/src//firewallmanager/about.py
---- firewall-manager/src//firewallmanager/about.py	2011-03-12 01:44:44.028000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/about.py	2010-12-26 17:47:22.000000000 +0200
-@@ -10,32 +10,30 @@
+diff -Nuar manager//data/firewall-manager.desktop firewall-manager-3.0.0//data/firewall-manager.desktop
+--- manager//data/firewall-manager.desktop	2011-04-28 11:51:57.100000009 +0300
++++ firewall-manager-3.0.0//data/firewall-manager.desktop	2011-01-16 01:14:41.000000000 +0200
+@@ -8,13 +8,11 @@
+ Name[hu]=Tűzfal kezelő
+ Name[it]=Firewall Manager
+ Name[nl]=Firewallbeheer
+-Name[pl]=Menadżer zapory sieciowej.
+ Name[pt_BR]=Gerenciador do Firewall
+ Name[ru]=Firewall Manager
+ Name[sr]=Менаџер ватреног зида
+ Name[sv]=Brandväggshanteraren
+ Name[tr]=Güvenlik Duvarı Yöneticisi
+-Name[uk]=Керування мережевої безпеки.
+ GenericName=Firewall Manager
+ GenericName[az]=Təhlükəsizlik Divarı İdarəçisi
+ GenericName[da]=Håndtering af firewall
+@@ -24,29 +22,24 @@
+ GenericName[hu]=Tűzfal kezelő
+ GenericName[it]=Firewall Manager
+ GenericName[nl]=Firewallbeheer
+-GenericName[pl]=Menadżer zapory sieciowej.
+ GenericName[pt_BR]=Gerenciador do Firewall
+ GenericName[ru]=Firewall Manager
+ GenericName[sr]=Менаџер ватреног зида
+ GenericName[sv]=Brandväggshanteraren
+ GenericName[tr]=Güvenlik Duvarı Yöneticisi
+-GenericName[uk]=Керування мережевої безпеки.
+ Comment=An application for managing firewall.
+ Comment[az]=Təhlükəsizlik divarı idarəçilik vasitəsi
+-Comment[da]=Et program til styring firewall
+ Comment[de]=Konfiguration der Firewall.
+ Comment[es]=Programa para gerenciar el cortafuegos
+ Comment[fr]=Une application de gestion du pare-feu.
+ Comment[hu]=Tűzfal kezelő alkalmazás
+ Comment[it]=Un'applicazione per la gestione del firewall.
+ Comment[nl]=Een toepassing voor het beheren van de firewall.
+-Comment[pl]=Aplikacja do zarządzania zaporą sieciową.
+ Comment[pt_BR]=Um aplicativo para gerenciar seu Firewall
+ Comment[ru]=Приложение для управления брандмауэром.
+ Comment[sr]=Апликација за управљање ватреним зидом.
+ Comment[sv]=Ett program för hantering av brandvägg.
+ Comment[tr]=Güvenlik duvarı yönetim aracı.
+-Comment[uk]=Програма для керування мережевої безпеки.
+ Exec=firewall-manager
+ Icon=security-high
+ Type=Application
+diff -Nuar manager//data/kcm_firewall-manager.desktop firewall-manager-3.0.0//data/kcm_firewall-manager.desktop
+--- manager//data/kcm_firewall-manager.desktop	2011-04-28 11:51:57.100000009 +0300
++++ firewall-manager-3.0.0//data/kcm_firewall-manager.desktop	2011-01-16 01:14:41.000000000 +0200
+@@ -20,27 +20,22 @@
+ Name[hu]=Tűzfal kezelő
+ Name[it]=Firewall Manager
+ Name[nl]=Firewallbeheer
+-Name[pl]=Menadżer zapory sieciowej.
+ Name[pt_BR]=Gerenciador do Firewall
+ Name[ru]=Firewall Manager
+ Name[sr]=Менаџер ватреног зида
+ Name[sv]=Brandväggshanteraren
+ Name[tr]=Güvenlik Duvarı Yöneticisi
+-Name[uk]=Керування мережевої безпеки.
+ Comment=An application for managing firewall.
+ Comment[az]=Təhlükəsizlik divarı idarəçilik vasitəsi
+-Comment[da]=Et program til styring firewall
+ Comment[de]=Konfiguration der Firewall.
+ Comment[es]=Programa para gerenciar el cortafuegos
+ Comment[fr]=Une application de gestion du pare-feu.
+ Comment[hu]=Tűzfal kezelő alkalmazás
+ Comment[it]=Un'applicazione per la gestione del firewall.
+ Comment[nl]=Een toepassing voor het beheren van de firewall.
+-Comment[pl]=Aplikacja do zarządzania zaporą sieciową.
+ Comment[pt_BR]=Um aplicativo para gerenciar seu Firewall
+ Comment[ru]=Приложение для управления брандмауэром.
+ Comment[sr]=Апликација за управљање ватреним зидом.
+ Comment[sv]=Ett program för hantering av brandvägg.
+ Comment[tr]=Güvenlik duvarı yönetim aracı.
+-Comment[uk]=Програма для керування мережевої безпеки.
+ X-KDE-Keywords=python security firewall managers
+diff -Nuar manager//PKG-INFO firewall-manager-3.0.0//PKG-INFO
+--- manager//PKG-INFO	1970-01-01 02:00:00.000000000 +0200
++++ firewall-manager-3.0.0//PKG-INFO	2011-01-16 01:15:12.000000000 +0200
+@@ -0,0 +1,10 @@
++Metadata-Version: 1.0
++Name: firewall-manager
++Version: 3.0.0
++Summary: Firewall Manager
++Home-page: http://developer.pardus.org.tr/projects/firewall-manager
++Author: Pardus Developers
++Author-email: bugs@pardus.org.tr
++License: GPL
++Description: UNKNOWN
++Platform: UNKNOWN
+diff -Nuar manager//po/az.po firewall-manager-3.0.0//po/az.po
+--- manager//po/az.po	2011-04-28 11:51:57.095000009 +0300
++++ firewall-manager-3.0.0//po/az.po	2010-11-29 23:17:55.000000000 +0200
+@@ -35,7 +35,7 @@
+ 
+ #: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+@@ -43,7 +43,7 @@
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "First Developer"
+-msgstr "Ilk geliştirici"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:36
+ msgctxt "EMAIL OF TRANSLATORS"
+@@ -55,10 +55,6 @@
+ msgid "Your names"
+ msgstr "Barış Kutsal"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Xata"
+-
+ #: src/firewallmanager/main.py:96
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+@@ -84,14 +80,6 @@
+ msgid "Settings"
+ msgstr "Ayarlar"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Əvət"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "ləğv etmək"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Təhlükəsizlik divarı açıldı"
+@@ -123,19 +111,3 @@
+ #: ui/ui_main.py:82
+ msgid "Add New"
+ msgstr "Yenini əlavə et"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Əlavə et"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Aşağı Daşı"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Yuxarı Daşı"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Sil"
+diff -Nuar manager//po/da.po firewall-manager-3.0.0//po/da.po
+--- manager//po/da.po	2011-04-28 11:51:57.093000009 +0300
++++ firewall-manager-3.0.0//po/da.po	2010-11-29 23:17:55.000000000 +0200
+@@ -19,7 +19,7 @@
+ 
+ #: data/firewall-manager.desktop.in.h:1
+ msgid "An application for managing firewall."
+-msgstr "Et program til styring firewall"
++msgstr ""
+ 
+ #: data/firewall-manager.desktop.in.h:2
+ #: data/kcm_firewall-manager.desktop.in.h:1
+@@ -27,8 +27,9 @@
+ msgstr "Håndtering af firewall"
+ 
+ #: src/firewallmanager/about.py:26
++#, fuzzy
+ msgid "(c) 2006-2010 TUBITAK/UEKAE"
+-msgstr "(c) 2006-2010 TUBITAK/UEKAE"
++msgstr "(c) 2006-2009 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+ msgid "Current Maintainer"
+@@ -36,7 +37,7 @@
+ 
+ #: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+-msgstr "Gokmen Goksel"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+@@ -56,10 +57,6 @@
+ msgid "Your names"
+ msgstr ""
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Fejl"
+-
+ #: src/firewallmanager/main.py:96
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+@@ -85,14 +82,6 @@
+ msgid "Settings"
+ msgstr "Indstillinger"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Ok"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "annullere"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Firewall er aktiveret"
+@@ -124,19 +113,3 @@
+ #: ui/ui_main.py:82
+ msgid "Add New"
+ msgstr "Tilføj ny"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Tilføj"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Flyt ned"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Flyt op"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Fjern"
+diff -Nuar manager//po/de.po firewall-manager-3.0.0//po/de.po
+--- manager//po/de.po	2011-04-28 11:51:57.094000009 +0300
++++ firewall-manager-3.0.0//po/de.po	2011-01-04 22:52:32.000000000 +0200
+@@ -2,7 +2,7 @@
+ # Firewall Manager.
+ # Copyright (C) 2006-2009, TÜBİTAK/UEKAE
+ # This file is distributed under the same license as the Firewall Manager package.
+-#
++# 
+ # Stefan <sw1976de at googlemail dot com>, 2009.
+ msgid ""
+ msgstr ""
+@@ -12,10 +12,10 @@
+ "PO-Revision-Date: 2009-07-09 00:30+0100\n"
+ "Last-Translator: Stefan <sw1976de@googlemail.com>\n"
+ "Language-Team: Deutsch <pardus-translation-de@pardus.org.tr>\n"
+-"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: \n"
+ "X-Generator: KBabel 1.11.4\n"
+ 
+ #: data/firewall-manager.desktop.in.h:1
+@@ -32,13 +32,13 @@
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Aktueller Betreuer"
+-
+-#: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
++#: src/firewallmanager/about.py:34
++msgid "Current Maintainer"
++msgstr "Aktueller Betreuer"
++
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+@@ -48,18 +48,14 @@
+ msgstr "Hauptentwickler"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "sw@pardususer.de"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Stefan Wilhelm"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Fehler"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "sw@pardususer.de"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -86,14 +82,6 @@
+ msgid "Settings"
+ msgstr "Einstellungen"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Ok"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "stornieren"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Firewall ist aktiviert."
+@@ -126,21 +114,5 @@
+ msgid "Add New"
+ msgstr "Neu hinzufügen"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Hinzufügen"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Nach unten"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Nach oben"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Entfernen"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/es.po firewall-manager-3.0.0//po/es.po
+--- manager//po/es.po	2011-04-28 11:51:57.095000009 +0300
++++ firewall-manager-3.0.0//po/es.po	2010-12-20 21:01:31.000000000 +0200
+@@ -2,7 +2,7 @@
+ # Firewall Manager.
+ # Copyright (C) 2006-2009, TÜBİTAK/UEKAE
+ # This file is distributed under the same license as the Firewall Manager package.
+-#
++# 
+ # Bahadır Kandemir <bahadir@pardus.org.tr>, 2009.
+ # Klemens Häckel <click3d at linuxmail dot org>, 2009.
+ msgid ""
+@@ -13,10 +13,10 @@
+ "PO-Revision-Date: 2009-07-01 18:35-0400\n"
+ "Last-Translator: Klemens Häckel <click3d at linuxmail dot org>\n"
+ "Language-Team: spanish <es@li.org>\n"
+-"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: \n"
+ "X-Generator: KBabel 1.11.4\n"
+ 
+ #: data/firewall-manager.desktop.in.h:1
+@@ -30,37 +30,33 @@
+ 
+ #: src/firewallmanager/about.py:26
+ msgid "(c) 2006-2010 TUBITAK/UEKAE"
+-msgstr "(c) 2006-2010 TUBITAK/UEKAE"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Mantenedor actual"
++msgid "Gökmen Göksel"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
++msgid "Current Maintainer"
++msgstr "Mantenedor actual"
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+-msgstr "Bahadır Kandemir"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "First Developer"
+ msgstr "Desarrollado inicialmente por"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "click3d (at) linuxmail.org"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Klemens Häckel"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Error"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "click3d (at) linuxmail.org"
+ 
+ # favor revisar, "provide backend" ??
+ #: src/firewallmanager/main.py:96
+@@ -88,14 +84,6 @@
+ msgid "Settings"
+ msgstr "Configuración"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Bien"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "Cancelar"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Cortafuegos está activo."
+@@ -129,21 +117,5 @@
+ msgid "Add New"
+ msgstr "Agregar Nuevo"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Agregar"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Bajar"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Subir"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Eliminar"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/firewall-manager.pot firewall-manager-3.0.0//po/firewall-manager.pot
+--- manager//po/firewall-manager.pot	2011-04-28 11:51:57.094000009 +0300
++++ firewall-manager-3.0.0//po/firewall-manager.pot	2010-11-29 23:17:55.000000000 +0200
+@@ -75,10 +75,6 @@
+ msgid "Access denied."
+ msgstr ""
+ 
+-#:src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr ""
+-
+ #: src/firewallmanager/pagedialog.py:31 src/firewallmanager/pagedialog.py:35
+ msgid "Settings"
+ msgstr ""
+@@ -114,28 +110,3 @@
+ #: ui/ui_main.py:82
+ msgid "Add New"
+ msgstr ""
+-
+-#:ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr ""
+-
+-#:ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr ""
+-
+-#:ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr ""
+-
+-#:ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr ""
+-
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr ""
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr ""
+-
+diff -Nuar manager//po/fr.po firewall-manager-3.0.0//po/fr.po
+--- manager//po/fr.po	2011-04-28 11:51:57.094000009 +0300
++++ firewall-manager-3.0.0//po/fr.po	2010-11-29 23:17:55.000000000 +0200
+@@ -1,8 +1,6 @@
+-# ifndef FR.PO
+-# define FR.PO
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Philippe Svetoslavsky <philsvet@gmail.com>, 2009.
+ msgid ""
+ msgstr ""
+@@ -12,10 +10,10 @@
+ "PO-Revision-Date: 2009-08-19 09:54+0200\n"
+ "Last-Translator: Philippe Svetoslavsky <philsvet@gmail.com>\n"
+ "Language-Team: French <kde-i18n-doc@kde.org>\n"
+-"Language: fr\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: fr\n"
+ "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+ "X-Generator: Lokalize 0.3\n"
+ 
+@@ -33,13 +31,13 @@
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Mainteneur actuel"
+-
+-#: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
++#: src/firewallmanager/about.py:34
++msgid "Current Maintainer"
++msgstr "Mainteneur actuel"
++
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+@@ -49,18 +47,14 @@
+ msgstr "Premier développeur"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "Votre courriel"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Votre nom"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Erreur"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "Votre courriel"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -87,14 +81,6 @@
+ msgid "Settings"
+ msgstr "Paramètres"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Bien"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "Annuler"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Le pare-feu est activé."
+@@ -127,21 +113,5 @@
+ msgid "Add New"
+ msgstr "Ajouter un nouveau"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Ajouter"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Descendre"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Déplacer vers le haut"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Supprimer"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/hu.po firewall-manager-3.0.0//po/hu.po
+--- manager//po/hu.po	2011-04-28 11:51:57.093000009 +0300
++++ firewall-manager-3.0.0//po/hu.po	2010-11-29 23:17:55.000000000 +0200
+@@ -11,10 +11,10 @@
+ "PO-Revision-Date: 2010-11-27 22:39+0100\n"
+ "Last-Translator: Attila Siposs <sipiatti@gmail.com>\n"
+ "Language-Team: Hungarian <pardus-translators@pardus.org.tr>\n"
+-"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: \n"
+ "X-Generator: Lokalize 1.0\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ 
+@@ -32,13 +32,13 @@
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Aktuális karbantartó"
+-
+-#: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
++#: src/firewallmanager/about.py:34
++msgid "Current Maintainer"
++msgstr "Aktuális karbantartó"
++
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+@@ -48,18 +48,14 @@
+ msgstr "Fejlesztést megkezdte"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "bicskas9323@gmail.com, sipiatti@gmail.com"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Daniel Kovács, Attila Siposs"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Hiba"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "bicskas9323@gmail.com, sipiatti@gmail.com"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -67,7 +63,8 @@
+ "Please make sure that packages are installed and configured correctly."
+ msgstr ""
+ "Az alkalmazáshoz szükséges háttércsomag(ok) nem található(k). \n"
+-"Ellenőrizze, hogy a szükséges csomagok telepítésre kerültek, és megfelelően be vannak állítva."
++"Ellenőrizze, hogy a szükséges csomagok telepítésre kerültek, és "
++"megfelelően be vannak állítva."
+ 
+ #: src/firewallmanager/main.py:200
+ msgid "All"
+@@ -86,14 +83,6 @@
+ msgid "Settings"
+ msgstr "Beállítások"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "rendben"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "megszakításához"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Tűzfal aktiválva."
+@@ -126,21 +115,5 @@
+ msgid "Add New"
+ msgstr "Új hozzáadása"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Hozzáadása"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Lefelé"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "felköltözik"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Eltávolítás"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/it.po firewall-manager-3.0.0//po/it.po
+--- manager//po/it.po	2011-04-28 11:51:57.094000009 +0300
++++ firewall-manager-3.0.0//po/it.po	2010-12-16 23:42:07.000000000 +0200
+@@ -1,7 +1,7 @@
+ # translation of it.po to Italian
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Siciliano Davide <edivad95@gmail.com>, 2009.
+ # Davide Siciliano <edivad95@gmail.com>, 2010.
+ msgid ""
+@@ -12,10 +12,10 @@
+ "PO-Revision-Date: 2010-05-15 11:57+0200\n"
+ "Last-Translator: Davide Siciliano <edivad95@gmail.com>\n"
+ "Language-Team: Italian <>\n"
+-"Language: it\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: it\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ "X-Generator: Lokalize 1.0\n"
+ 
+@@ -33,12 +33,15 @@
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Mantainer corrente"
++msgid "Gökmen Göksel"
++msgstr ""
++"\t\r\n"
++"\r\n"
++"Gökmen Göksel"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Gökmen Göksel"
+-msgstr "Gökmen Göksel"
++msgid "Current Maintainer"
++msgstr "Mantainer corrente"
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+@@ -49,18 +52,14 @@
+ msgstr "Primo Sviluppatore"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "edivad95@gmail.com"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Davide Siciliano"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Errore"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "edivad95@gmail.com"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -87,14 +86,6 @@
+ msgid "Settings"
+ msgstr "Impostazioni"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "va bene"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "Annulla"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Firewall attivato."
+@@ -127,21 +118,5 @@
+ msgid "Add New"
+ msgstr "Aggiungi"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Aggiungi"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Abbassare"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Rimontare"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Rimuovere"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/nl.po firewall-manager-3.0.0//po/nl.po
+--- manager//po/nl.po	2011-04-28 11:51:57.095000009 +0300
++++ firewall-manager-3.0.0//po/nl.po	2010-11-29 23:17:55.000000000 +0200
+@@ -11,10 +11,10 @@
+ "PO-Revision-Date: 2010-09-16 09:50+0200\n"
+ "Last-Translator: Antoon Tolboom <atolboo@gmail.com>\n"
+ "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+-"Language: nl\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: nl\n"
+ "X-Generator: Lokalize 1.0\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ 
+@@ -32,13 +32,13 @@
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Huidige onderhouder"
+-
+-#: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
++#: src/firewallmanager/about.py:34
++msgid "Current Maintainer"
++msgstr "Huidige onderhouder"
++
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+@@ -48,18 +48,14 @@
+ msgstr "Eerste ontwikkelaar"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "atolboo@gmail.com"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Antoon Tolboom"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Fout"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "atolboo@gmail.com"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -86,14 +82,6 @@
+ msgid "Settings"
+ msgstr "Instellingen"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Okay"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "Annuleren"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Firewall is ingeschakeld."
+@@ -126,21 +114,5 @@
+ msgid "Add New"
+ msgstr "Nieuwe toevoegen"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Toe te voegen"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Naar beneden"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "overgaan"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Verwijder"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/pt_BR.po firewall-manager-3.0.0//po/pt_BR.po
+--- manager//po/pt_BR.po	2011-04-28 11:51:57.093000009 +0300
++++ firewall-manager-3.0.0//po/pt_BR.po	2010-12-20 21:01:31.000000000 +0200
+@@ -1,7 +1,7 @@
+ # Translation of pt_BR.po to Brazilian Portuguese
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Diogo Lima <diogo.urb@gmail.com>, 2010.
+ msgid ""
+ msgstr ""
+@@ -11,10 +11,10 @@
+ "PO-Revision-Date: 2010-05-14 00:44-0300\n"
+ "Last-Translator: Diogo Lima <diogo.urb@gmail.com>\n"
+ "Language-Team: Brazilian Portuguese <http://liste.uludag.org.tr/mailman/listinfo/pardus-translation-ptbr>\n"
+-"Language: pt_BR\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: pt_BR\n"
+ "Generated-By: pygettext.py 1.5\n"
+ 
+ #: data/firewall-manager.desktop.in.h:1
+@@ -31,13 +31,13 @@
+ msgstr "(c) 2006-2009 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Atual Mantenedor"
+-
+-#: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
++#: src/firewallmanager/about.py:34
++msgid "Current Maintainer"
++msgstr "Atual Mantenedor"
++
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+@@ -47,18 +47,14 @@
+ msgstr "Primeiro Desenvolvedor"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "Seus emails"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Seus nomes"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Erro"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "Seus emails"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -85,14 +81,6 @@
+ msgid "Settings"
+ msgstr "Configurações"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Ok"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "cancelar"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "O Firewall está ativado."
+@@ -125,21 +113,5 @@
+ msgid "Add New"
+ msgstr "Adicionar Novo"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Adicionar"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Descer"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Mover para cima"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Remover"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/ru.po firewall-manager-3.0.0//po/ru.po
+--- manager//po/ru.po	2011-04-28 11:51:57.095000009 +0300
++++ firewall-manager-3.0.0//po/ru.po	2010-11-29 23:17:55.000000000 +0200
+@@ -2,7 +2,7 @@
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+-#
++# 
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -11,10 +11,10 @@
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: LANGUAGE <LL@li.org>\n"
+-"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: \n"
+ 
+ #: data/firewall-manager.desktop.in.h:1
+ msgid "An application for managing firewall."
+@@ -30,13 +30,13 @@
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Текущий менеджер"
+-
+-#: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
++#: src/firewallmanager/about.py:34
++msgid "Current Maintainer"
++msgstr "Текущий менеджер"
++
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+@@ -46,18 +46,14 @@
+ msgstr "Первый разработчик"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "zag@vspu.ru, tribunal2000@gmail.com, neocrust@gmail.com"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Ясыров Василий, Семенов Николай, Щербаков Александр"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Ошибка"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "zag@vspu.ru, tribunal2000@gmail.com, neocrust@gmail.com"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -84,14 +80,6 @@
+ msgid "Settings"
+ msgstr "Настройки"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "хорошо"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "Отменить"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Брандмауэр включен."
+@@ -123,19 +111,3 @@
+ #: ui/ui_main.py:82
+ msgid "Add New"
+ msgstr "Добавить"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Добавить"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "спускать"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "придвигаться"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Удалить"
+diff -Nuar manager//po/sr.po firewall-manager-3.0.0//po/sr.po
+--- manager//po/sr.po	2011-04-28 11:51:57.093000009 +0300
++++ firewall-manager-3.0.0//po/sr.po	2010-11-29 23:17:55.000000000 +0200
+@@ -36,7 +36,7 @@
+ 
+ #: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+-msgstr "Гокмен Гоксел"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+@@ -44,7 +44,7 @@
+ 
+ #: src/firewallmanager/about.py:35
+ msgid "First Developer"
+-msgstr "Први Програмер"
++msgstr ""
+ 
+ #: src/firewallmanager/about.py:36
+ msgctxt "EMAIL OF TRANSLATORS"
+@@ -56,10 +56,6 @@
+ msgid "Your names"
+ msgstr "Јожеф Куруцић"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Грешка"
+-
+ #: src/firewallmanager/main.py:96
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+@@ -85,14 +81,6 @@
+ msgid "Settings"
+ msgstr "Подешавања"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "у реду"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "отказати"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Ватрени зид је активиран."
+@@ -124,19 +112,3 @@
+ #: ui/ui_main.py:82
+ msgid "Add New"
+ msgstr "Додај нови"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Додај"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Премести надоле"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Напредовати"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Уклони"
+diff -Nuar manager//po/sv.po firewall-manager-3.0.0//po/sv.po
+--- manager//po/sv.po	2011-04-28 11:51:57.093000009 +0300
++++ firewall-manager-3.0.0//po/sv.po	2010-11-29 23:17:55.000000000 +0200
+@@ -1,6 +1,6 @@
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Patrik Karlsson <patrik@pardus.nu>, 2009.
+ msgid ""
+ msgstr ""
+@@ -10,10 +10,10 @@
+ "PO-Revision-Date: 2009-06-30 18:48+0200\n"
+ "Last-Translator: Patrik Karlsson <patrik@pardus.nu>\n"
+ "Language-Team: Swedish <pardus-translators@pardus.org.tr>\n"
+-"Language: sv\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: sv\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ "X-Generator: Lokalize 0.3\n"
+ 
+@@ -31,13 +31,13 @@
+ msgstr "(c) 2006-2010 TUBITAK/UEKAE"
+ 
+ #: src/firewallmanager/about.py:34
+-msgid "Current Maintainer"
+-msgstr "Nuvarande utvecklare"
+-
+-#: src/firewallmanager/about.py:34
+ msgid "Gökmen Göksel"
+ msgstr "Gökmen Göksel"
+ 
++#: src/firewallmanager/about.py:34
++msgid "Current Maintainer"
++msgstr "Nuvarande utvecklare"
++
+ #: src/firewallmanager/about.py:35
+ msgid "Bahadır Kandemir"
+ msgstr "Bahadır Kandemir"
+@@ -47,18 +47,14 @@
+ msgstr "Förste utvecklare"
+ 
+ #: src/firewallmanager/about.py:36
+-msgctxt "EMAIL OF TRANSLATORS"
+-msgid "Your emails"
+-msgstr "patrik@trixon.se"
+-
+-#: src/firewallmanager/about.py:36
+ msgctxt "NAME OF TRANSLATORS"
+ msgid "Your names"
+ msgstr "Patrik Karlsson"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Fel"
++#: src/firewallmanager/about.py:36
++msgctxt "EMAIL OF TRANSLATORS"
++msgid "Your emails"
++msgstr "patrik@trixon.se"
+ 
+ #: src/firewallmanager/main.py:96
+ msgid ""
+@@ -85,14 +81,6 @@
+ msgid "Settings"
+ msgstr "Anpassa"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "okej"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "avbryta"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Brandväggen är aktiverad."
+@@ -125,21 +113,5 @@
+ msgid "Add New"
+ msgstr "Lägg till ny"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Lägg till"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Flytta ned"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Flytta upp"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Ta bort"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//po/tr.po firewall-manager-3.0.0//po/tr.po
+--- manager//po/tr.po	2011-04-28 11:51:57.093000009 +0300
++++ firewall-manager-3.0.0//po/tr.po	2010-11-29 23:17:55.000000000 +0200
+@@ -59,10 +59,6 @@
+ msgid "Your names"
+ msgstr "Bahadır Kandemir, Necmettin Begiter"
+ 
+-#: src/firewallmanager/main.py:94
+-msgid "Error"
+-msgstr "Hata"
+-
+ #: src/firewallmanager/main.py:96
+ msgid ""
+ "There are no packages that provide backend for this application.\n"
+@@ -88,14 +84,6 @@
+ msgid "Settings"
+ msgstr "Ayarlar"
+ 
+-#: src/firewallmanager/pagedialog.py:67
+-msgid "Ok"
+-msgstr "Tamam"
+-
+-#: src/firewallmanager/pagedialog.py:71
+-msgid "Cancel"
+-msgstr "İptal"
+-
+ #: src/firewallmanager/service.py:38
+ msgid "Firewall is activated."
+ msgstr "Güvenlik duvarı açıldı."
+@@ -128,21 +116,5 @@
+ msgid "Add New"
+ msgstr "Yeni Ekle"
+ 
+-#: ui/ui_settingsitem.py:78
+-msgid "Add"
+-msgstr "Ekle"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Down"
+-msgstr "Asağı Taşı"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Move Up"
+-msgstr "Yukarı Taşı"
+-
+-#: ui/ui_settingsitem.py:78
+-msgid "Remove"
+-msgstr "Sil"
+-
+ #~ msgid " "
+ #~ msgstr " "
+diff -Nuar manager//setup.py firewall-manager-3.0.0//setup.py
+--- manager//setup.py	2011-04-28 11:51:57.101000009 +0300
++++ firewall-manager-3.0.0//setup.py	2010-11-29 23:17:55.000000000 +0200
+@@ -26,12 +26,6 @@
+ from distutils.command.install import install
+ 
+ PROJECT = about.appName
+-FOR_KDE_4= False
+-
+-if 'kde4' in sys.argv:
+-    sys.argv.remove('kde4')
+-    FOR_KDE_4= True
+-    print 'UI files will be created for KDE 4.. '
+ 
+ def makeDirs(directory):
+     if not os.path.exists(directory):
+@@ -54,12 +48,7 @@
+     # Collect UI files
+     filelist = []
+     for filename in glob.glob1("ui", "*.ui"):
+-    # Kde4 UI files
+-        if FOR_KDE_4:
+-            os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+-    # Qt UI files
+-        else:
+-            os.system("pyuic4 -o ui/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
++        os.system("pykde4uic -o ui/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+ 
+     # Collect headers for desktop files
+     for filename in glob.glob("data/*.desktop.in"):
+@@ -76,7 +65,12 @@
+                         --keyword=N_ \
+                         --keyword=i18n \
+                         --keyword=ki18n \
+-                        -o po/%s.pot" % (PROJECT, files))
++                        --kde \
++                        -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 \
++                        -kI18N_NOOP:1 -kI18N_NOOP2:1c,2 -kaliasLocale -kki18n:1 -kki18nc:1c,2 \
++                        -kki18np:1,2 -kki18ncp:1c,2,3 \
++                        --files-from=%s \
++                        -o po/%s.pot" % (PROJECT, files, PROJECT))
+ 
+     # Update PO files
+     for item in glob.glob1("po", "*.po"):
+@@ -111,24 +105,15 @@
+ 
+         print "Generating UIs..."
+         for filename in glob.glob1("ui", "*.ui"):
+-
+-            if FOR_KDE_4:
+-            # Kde4 UI Files
+-                os.system("pykde4uic -o build/firewallmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+-
+-            else:
+-            # Qt UI Files
+-                os.system("pyuic4 -o build/firewallmanager/ui_%s.py ui/%s -g %s" % (filename.split(".")[0], filename, PROJECT))
++            os.system("pykde4uic -o build/firewallmanager/ui_%s.py ui/%s" % (filename.split(".")[0], filename))
+ 
+         print "Generating RCs..."
+         for filename in glob.glob1("data", "*.qrc"):
+             os.system("pyrcc4 data/%s -o build/%s_rc.py" % (filename, filename.split(".")[0]))
+ 
+ class Install(install):
+-
+     def run(self):
+         install.run(self)
+-
+         def rst2doc(lang):
+             if os.path.exists(os.path.join('help', lang)):
+                 for doc in ('main_help', 'preferences_help'):
+@@ -143,12 +128,9 @@
+             bin_dir = "/usr/bin"
+ 
+         locale_dir = os.path.join(root_dir, "locale")
+-        apps_dir = os.path.join(root_dir, "applications")
+-
+-        if FOR_KDE_4:
+-            services_dir = os.path.join(root_dir, "kde4/services")
+-
+-        project_dir = os.path.join(root_dir, PROJECT)
++        apps_dir = os.path.join(root_dir, "applications/kde4")
++        services_dir = os.path.join(root_dir, "kde4/services")
++        project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
+ 
+         # Make directories
+         print "Making directories..."
+@@ -156,18 +138,13 @@
+         makeDirs(locale_dir)
+         makeDirs(apps_dir)
+         makeDirs(project_dir)
+-
+-        if FOR_KDE_4:
+-            makeDirs(services_dir) 
++        makeDirs(services_dir)
+ 
+         # Install desktop files
+-
+         print "Installing desktop files..."
+-        if FOR_KDE_4:
+-            shutil.copy("data/kcm_%s.desktop" % PROJECT, apps_dir)
+ 
+-        else:
+-            shutil.copy("data/%s.desktop" % PROJECT, apps_dir)
++        shutil.copy("data/%s.desktop" % PROJECT, apps_dir)
++        shutil.copy("data/kcm_%s.desktop" % PROJECT, services_dir)
+         shutil.rmtree('build/data')
+ 
+         # Install codes
+@@ -183,11 +160,14 @@
+             makeDirs(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang))
+             shutil.copy("po/%s.mo" % lang, os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
+         rst2doc('en')
+-
+         if os.path.exists("help"):
+             print "Installing help files..."
+             os.system("cp -R help %s/" % project_dir)
+ 
++        # Rename
++        # print "Renaming application.py..."
++        # shutil.move(os.path.join(project_dir, "main.py"), os.path.join(project_dir, "%s.py" % PROJECT))
++
+         # Modes
+         print "Changing file modes..."
+         os.chmod(os.path.join(project_dir, "%s.py" % PROJECT), 0755)
+@@ -212,24 +192,14 @@
+         bin_dir = "/usr/bin"
+ 
+         locale_dir = os.path.join(root_dir, "locale")
+-
+-        if FOR_KDE_4:
+-            apps_dir = os.path.join(root_dir, "applications/kde4")
+-            services_dir = os.path.join(root_dir, "kde4/services")
+-            project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
+-        else:
+-            apps_dir = os.path.join(root_dir, "applications")
+-            project_dir = os.path.join(root_dir, PROJECT)
++        apps_dir = os.path.join(root_dir, "applications/kde4")
++        services_dir = os.path.join(root_dir, "kde4/services")
++        project_dir = os.path.join(root_dir, "kde4/apps", PROJECT)
+ 
+         print 'Uninstalling ...'
+         remove(project_dir)
+         remove(apps_dir +"/%s.desktop" % PROJECT)
+-
+-        if os.path.exists(os.path.join(bin_dir, PROJECT)):
+-            os.unlink(os.path.join(bin_dir, PROJECT))
+-
+-        if FOR_KDE_4:
+-            remove(services_dir +"/kcm_%s.desktop" % PROJECT)
++        remove(services_dir +"/kcm_%s.desktop" % PROJECT)
+         for filename in glob.glob1('po', '*.po'):
+             lang = filename.rsplit(".", 1)[0]
+             remove(os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % PROJECT))
+diff -Nuar manager//src/firewallmanager/about.py firewall-manager-3.0.0//src/firewallmanager/about.py
+--- manager//src/firewallmanager/about.py	2011-04-28 11:51:57.084000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/about.py	2010-12-26 17:47:22.000000000 +0200
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
  #
+-# Copyright (C) 2006-2011 TUBITAK/UEKAE
++# Copyright (C) 2006-2010 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -11,36 +11,29 @@
  # Please read the COPYING file.
  #
+ 
+-# Pds Stuff
 -import context as ctx
-+
 +# PyKDE
 +from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
- 
- PACKAGE = "Firewall Manager"
--appName = "firewall-manager"
--version = "3.0.0"
 +
-+# Application Data
-+appName     = "firewall-manager"
-+modName     = "firewallmanager"
++PACKAGE = "Firewall Manager"
+ 
+ # Application Data
+-PACKAGE     = "Firewall Manager"
+ appName     = "firewall-manager"
+ modName     = "firewallmanager"
 +programName = ki18n(PACKAGE)
-+version     = "3.0.0"
+ version     = "3.0.0"
 +description = ki18n(PACKAGE)
 +license     = KAboutData.License_GPL
 +copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
 +text        = ki18n(None)
  homePage    = "http://developer.pardus.org.tr/projects/firewall-manager"
  bugEmail    = "bugs@pardus.org.tr"
+-icon        = "security-high"
+ catalog     = appName
++aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
+ 
 -if ctx.Pds.session == ctx.pds.Kde4:
--    
+-
 -    # PyKDE
 -    from PyKDE4.kdecore import KAboutData, ki18n, ki18nc
 -
--    # Application Data
--    modName     = "firewallmanager"
 -    programName = ki18n(PACKAGE)
 -    description = ki18n(PACKAGE)
 -    license     = KAboutData.License_GPL
--    copyright   = ki18n("(c) 2006-2010 TUBITAK/UEKAE")
+-    copyright   = ki18n("(c) 2006-2011 TUBITAK/UEKAE")
 -    text        = ki18n(None)
--    catalog     = appName
 -    aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
-+catalog     = appName
-+aboutData   = KAboutData(appName, catalog, programName, version, description, license, copyright, text, homePage, bugEmail)
- 
+-
 -    # Author(s)
 -    aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
 -    aboutData.addAuthor(ki18n("Bahadır Kandemir"), ki18n("First Developer"))
+-    aboutData.addAuthor(ki18n("Gökhan Akgün"), ki18n("Add Pds Patch"))
 -    aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))
 +# Author(s)
 +aboutData.addAuthor(ki18n("Gökmen Göksel"), ki18n("Current Maintainer"))
@@ -52,12 +1528,21 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/about.py fire
 +aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"), ki18nc("EMAIL OF TRANSLATORS", "Your emails"))
  
 -    # Use this if icon name is different than appName
--    aboutData.setProgramIconName("security-high")
+-    aboutData.setProgramIconName(icon)
 +# Use this if icon name is different than appName
 +aboutData.setProgramIconName("security-high")
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/config.py firewall-manager-3.0.0/src//firewallmanager/config.py
---- firewall-manager/src//firewallmanager/config.py	2011-03-12 01:44:44.030000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/config.py	2010-07-06 14:16:34.000000000 +0300
+diff -Nuar manager//src/firewallmanager/config.py firewall-manager-3.0.0//src/firewallmanager/config.py
+--- manager//src/firewallmanager/config.py	2011-04-28 11:51:57.083000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/config.py	2010-07-06 14:16:34.000000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2011 TUBITAK/UEKAE
++# Copyright (C) 2006-2009 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
 @@ -11,6 +11,7 @@
  # Please read the COPYING file.
  #
@@ -66,76 +1551,149 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/config.py fir
  
  # Animation
  ANIM_SHOW, ANIM_HIDE = range(2)
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/context.py firewall-manager-3.0.0/src//firewallmanager/context.py
---- firewall-manager/src//firewallmanager/context.py	2011-03-12 01:44:44.030000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/context.py	1970-01-01 02:00:00.000000000 +0200
-@@ -1,36 +0,0 @@
+diff -Nuar manager//src/firewallmanager/context.py firewall-manager-3.0.0//src/firewallmanager/context.py
+--- manager//src/firewallmanager/context.py	2011-04-28 11:51:57.084000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/context.py	1970-01-01 02:00:00.000000000 +0200
+@@ -1,32 +0,0 @@
 -#!/usr/bin/python
 -# -*- coding: utf-8 -*-
+-#
+-# Copyright (C) 2006-2011 TUBITAK/UEKAE
+-#
+-# This program is free software; you can redistribute it and/or modify it under
+-# the terms of the GNU General Public License as published by the Free
+-# Software Foundation; either version 2 of the License, or (at your option)
+-# any later version.
+-#
+-# Please read the COPYING file.
+-#
 -
 -import pds
--import traceback
--from time import time
 -from pds.qiconloader import QIconLoader
 -from PyQt4.QtGui import QMessageBox
--from context import *
 -
 -Pds = pds.Pds('firewall-manager', debug = True)
--# Force to use Default Session for testing
--#Pds.session = pds.DefaultDe
--print 'Current session is : %s %s' % (Pds.session.Name, Pds.session.Version)
 -
 -i18n = Pds.i18n
 -KIconLoader = QIconLoader(Pds)
 -KIcon = KIconLoader.icon
 -
--time_counter = 0
--start_time = time()
--last_time = time()
--
--def _time():
--    global last_time, time_counter
--    trace = list(traceback.extract_stack())
--    diff = time() - start_time
--    print ('%s ::: %s:%s' % (time_counter, trace[-2][0].split('/')[-1], trace[-2][1])), diff, diff - last_time
--    last_time = diff
--    time_counter += 1
 -
 -def createMessage(self,errorTitle, errorMessage):
+-    '''
+-        Error message function
+-    '''
 -    errorTitle = i18n(errorTitle)
 -    errorMessage= i18n(errorMessage)
 -    self.messageBox = QMessageBox(errorTitle, errorMessage, QMessageBox.Critical, QMessageBox.Ok, 0, 0)
 -    self.messageBox.show()
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/edit.py firewall-manager-3.0.0/src//firewallmanager/edit.py
---- firewall-manager/src//firewallmanager/edit.py	2011-03-12 01:44:44.031000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/edit.py	2010-07-06 14:16:34.000000000 +0300
-@@ -15,3 +15,6 @@
- from PyQt4 import QtCore
- from PyQt4 import QtGui
- 
+diff -Nuar manager//src/firewallmanager/edit.py firewall-manager-3.0.0//src/firewallmanager/edit.py
+--- manager//src/firewallmanager/edit.py	1970-01-01 02:00:00.000000000 +0200
++++ firewall-manager-3.0.0//src/firewallmanager/edit.py	2010-07-06 14:16:34.000000000 +0300
+@@ -0,0 +1,20 @@
++#!/usr/bin/python
++# -*- coding: utf-8 -*-
++#
++# Copyright (C) 2006-2009 TUBITAK/UEKAE
++#
++# This program is free software; you can redistribute it and/or modify it under
++# the terms of the GNU General Public License as published by the Free
++# Software Foundation; either version 2 of the License, or (at your option)
++# any later version.
++#
++# Please read the COPYING file.
++#
++
++# PyQt
++from PyQt4 import QtCore
++from PyQt4 import QtGui
++
 +# PyKDE
 +from PyKDE4 import kdeui
 +from PyKDE4 import kdecore
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/item.py firewall-manager-3.0.0/src//firewallmanager/item.py
---- firewall-manager/src//firewallmanager/item.py	2011-03-12 01:44:44.029000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/item.py	2010-07-06 14:16:34.000000000 +0300
-@@ -16,7 +16,7 @@
+diff -Nuar manager//src/firewallmanager/item.py firewall-manager-3.0.0//src/firewallmanager/item.py
+--- manager//src/firewallmanager/item.py	2011-04-28 11:51:57.088000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/item.py	2010-07-06 14:16:34.000000000 +0300
+@@ -15,19 +15,14 @@
+ from PyQt4 import QtCore
  from PyQt4 import QtGui
  
- # PyKDE
--from context import *
+-# Pds vs Kde Stuff
+-import context as ctx
+-
+-if ctx.Pds.session == ctx.pds.Kde4:
+-    from PyKDE4.kdeui import KIcon
+-else:
+-    from firewallmanager.context import KIcon
++# PyKDE
 +from PyKDE4.kdeui import KIcon
  
  # UI
  from firewallmanager.ui_item import Ui_ItemWidget
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/main.py firewall-manager-3.0.0/src//firewallmanager/main.py
---- firewall-manager/src//firewallmanager/main.py	2011-03-12 01:44:44.030000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/main.py	2010-07-06 14:16:34.000000000 +0300
-@@ -14,6 +14,11 @@
- # PyQt
+ 
+-class ItemListWidgetItem(QtGui.QListWidgetItem):
+ 
++class ItemListWidgetItem(QtGui.QListWidgetItem):
+     def __init__(self, parent, widget):
+         QtGui.QListWidgetItem.__init__(self, parent)
+         self.widget = widget
+@@ -39,8 +34,8 @@
+     def getType(self):
+         return self.widget.getType()
+ 
+-class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
+ 
++class ItemWidget(QtGui.QWidget, Ui_ItemWidget):
+     def __init__(self, parent, id_, title="", description="", type_=None, icon=None, state=None):
+         QtGui.QWidget.__init__(self, parent)
+         self.setupUi(self)
+diff -Nuar manager//src/firewallmanager/kcmodule.py firewall-manager-3.0.0//src/firewallmanager/kcmodule.py
+--- manager//src/firewallmanager/kcmodule.py	2011-04-28 11:51:57.083000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/kcmodule.py	1970-01-01 02:00:00.000000000 +0200
+@@ -1,36 +0,0 @@
+-#!/usr/bin/python
+-# -*- coding: utf-8 -*-
+-#
+-# Copyright (C) 2006-2011 TUBITAK/UEKAE
+-#
+-# This program is free software; you can redistribute it and/or modify it under
+-# the terms of the GNU General Public License as published by the Free
+-# Software Foundation; either version 2 of the License, or (at your option)
+-# any later version.
+-#
+-# Please read the COPYING file.
+-#
+-
+-# PyKDE4 Stuff
+-from PyKDE4.kdeui import KCModule
+-from PyKDE4.kdecore import KGlobal
+-
+-# DBUS
+-import dbus
+-
+-# Application Stuff
+-from firewallmanager.main import MainWidget
+-from firewallmanager import about
+-
+-class Module(KCModule):
+-
+-    def __init__(self, component_data, parent):
+-        KCModule.__init__(self, component_data, parent)
+-
+-        KGlobal.locale().insertCatalog(about.catalog)
+-
+-        if not dbus.get_default_main_loop():
+-            from dbus.mainloop.qt import DBusQtMainLoop
+-            DBusQtMainLoop(set_as_default=True)
+-
+-        MainWidget(self, embed=True)
+diff -Nuar manager//src/firewallmanager/main.py firewall-manager-3.0.0//src/firewallmanager/main.py
+--- manager//src/firewallmanager/main.py	2011-04-28 11:51:57.084000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/main.py	2010-07-06 14:16:34.000000000 +0300
+@@ -15,6 +15,10 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
-+
+ 
 +# PyKDE
 +from PyKDE4 import kdeui
 +from PyKDE4 import kdecore
@@ -143,35 +1701,39 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/main.py firew
  # UI
  from firewallmanager.ui_main import Ui_MainWidget
  
-@@ -32,9 +37,6 @@
+@@ -33,13 +37,6 @@
  # Page Dialog
  from firewallmanager.pagedialog import PageDialog
  
--#Context 
+-# Context
 -import context as ctx
--from context import *
+-
+-if ctx.Pds.session == ctx.pds.Kde4:
+-    from PyKDE4.kdeui import KIcon
+-else:
+-    from firewallmanager.context import KIcon
  
  class MainWidget(QtGui.QWidget, Ui_MainWidget):
      def __init__(self, parent, embed=False):
-@@ -91,7 +93,7 @@
+@@ -96,7 +93,7 @@
              Check if there are packages that provide required backend.
          """
          if not len(self.iface.getPackages()):
--            createMessage(self,"Error","There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly.")
+-            ctx.createMessage(self,"Error","There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly.")
 +            kdeui.KMessageBox.error(self, kdecore.i18n("There are no packages that provide backend for this application.\nPlease make sure that packages are installed and configured correctly."))
              return False
          return True
  
-@@ -147,7 +149,7 @@
+@@ -152,7 +149,7 @@
          type_ = ""
  
          # Build widget and widget item
--        widget = self.makeItemWidget(id_, name, description, type_,KIcon(icon), state)
+-        widget = self.makeItemWidget(id_, name, description, type_, KIcon(icon), state)
 +        widget = self.makeItemWidget(id_, name, description, type_, kdeui.KIcon(icon), state)
          widgetItem = ItemListWidgetItem(self.listItems, widget)
  
          # Rules are static
-@@ -195,7 +197,7 @@
+@@ -200,7 +197,7 @@
              Builds item filter.
          """
          self.comboFilter.clear()
@@ -180,7 +1742,7 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/main.py firew
  
      def buildMenu(self):
          """
-@@ -206,7 +208,7 @@
+@@ -211,7 +208,7 @@
          self.pushNew.setMenu(menu)
  
          # New item
@@ -189,46 +1751,46 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/main.py firew
          action.setData(QtCore.QVariant("action"))
          menu.addAction(action)
  
-@@ -252,9 +254,9 @@
+@@ -257,9 +254,9 @@
              self.iface.setModuleState(widget.getId(), state == QtCore.Qt.Checked)
          except Exception, e:
              if "Comar.PolicyKit" in e._dbus_error_name:
--                createMessage(self,"Error","Access denied.")
+-                ctx.createMessage(self,"Error","Access denied.")
 +                kdeui.KMessageBox.error(self, kdecore.i18n("Access denied."))
              else:
--                createMessage(self,"Error", unicode(e))
+-                ctx.createMessage(self,"Error", unicode(e))
 +                kdeui.KMessageBox.error(self, unicode(e))
              self.buildItemList()
  
      def slotItemEdit(self):
-@@ -275,9 +277,9 @@
+@@ -280,9 +277,9 @@
                  self.iface.setModuleParameters(widget.getId(), dialog.getValues())
              except Exception, e:
                  if "Comar.PolicyKit" in e._dbus_error_name:
--                    createMessage(self,"Error","Access denied.")
+-                    ctx.createMessage(self,"Error","Access denied.")
 +                    kdeui.KMessageBox.error(self, kdecore.i18n("Access denied."))
                  else:
--                    createMessage(self,"Error", unicode(e))
+-                    ctx.createMessage(self,"Error", unicode(e))
 +                    kdeui.KMessageBox.error(self, unicode(e))
  
      def slotItemDelete(self):
          """
-@@ -312,9 +314,9 @@
+@@ -317,9 +314,9 @@
              self.iface.setState(state)
          except Exception, e:
              if "Comar.PolicyKit" in e._dbus_error_name:
--                createMessage(self,"Error", "Access denied.")
+-                ctx.createMessage(self,"Error", "Access denied.")
 +                kdeui.KMessageBox.error(self, kdecore.i18n("Access denied."))
              else:
--                createMessage(self,"Error", unicode(e))
+-                ctx.createMessage(self,"Error", unicode(e))
 +                kdeui.KMessageBox.error(self, unicode(e))
          self.widgetService.setEnabled(True)
  
      def slotAnimate(self, frame):
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/pagedialog.py firewall-manager-3.0.0/src//firewallmanager/pagedialog.py
---- firewall-manager/src//firewallmanager/pagedialog.py	2011-03-12 01:44:44.028000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/pagedialog.py	2010-07-06 14:16:34.000000000 +0300
-@@ -15,77 +15,30 @@
+diff -Nuar manager//src/firewallmanager/pagedialog.py firewall-manager-3.0.0//src/firewallmanager/pagedialog.py
+--- manager//src/firewallmanager/pagedialog.py	2011-04-28 11:51:57.088000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/pagedialog.py	2010-07-06 14:16:34.000000000 +0300
+@@ -15,86 +15,32 @@
  from PyQt4 import QtCore
  from PyQt4 import QtGui
  
@@ -238,27 +1800,31 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/pagedialog.py
 +
  # Settings item widget
  from firewallmanager.settingsitem import SettingsItemWidget
--#Context
--from context import *
+ 
+-# Context
 -import context as ctx
--
+ 
 -# Config
 -from firewallmanager.config import ANIM_SHOW, ANIM_HIDE, ANIM_TARGET, ANIM_DEFAULT, ANIM_TIME
--
--
++class PageDialog(kdeui.KPageDialog):
++    def __init__(self, parent, parameters, savedParameters):
++        kdeui.KPageDialog.__init__(self, parent)
+ 
 -if ctx.Pds.session == ctx.pds.Kde4:
--
++        self.setFaceType(kdeui.KPageDialog.Tabbed)
++        self.setCaption(kdecore.i18n("Settings"))
+ 
 -    # PyKDE
 -    from PyKDE4 import kdeui
 -    from PyKDE4 import kdecore
 -
 -    class PageDialog(kdeui.KPageDialog):
+-
 -        def __init__(self, parent, parameters, savedParameters):
 -            kdeui.KPageDialog.__init__(self, parent)
 -
 -            self.setFaceType(kdeui.KPageDialog.Tabbed)
 -            self.setCaption(kdecore.i18n("Settings"))
--
 -
 -            self.page_widget = PageWidget(self, parameters, savedParameters)
 -            self.page_item = kdeui.KPageWidgetItem(self.page_widget, kdecore.i18n("Settings"))
@@ -270,6 +1836,9 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/pagedialog.py
 -
 -else :
 -
+-    # Pds Stuff
+-    from context import i18n
+-
 -    class PageDialog(QtGui.QDialog):
 -        def __init__(self, parent, parameters, savedParameters):
 -            self.animationLast = ANIM_HIDE
@@ -279,6 +1848,8 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/pagedialog.py
 -            self.page_widget = PageWidget(self, parameters,savedParameters)
 -            self.tab=QtGui.QTabWidget(self)
 -            self.tab.addTab(self.page_widget,i18n("Settings"))
+-
+-            # Buttons
 -            self.buttonBox = QtGui.QDialogButtonBox(self)
 -            self.buttonBox.setGeometry(QtCore.QRect(4, 152, 540, 25))
 -            self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
@@ -286,6 +1857,8 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/pagedialog.py
 -            self.layout.addWidget(self.tab)
 -            self.layout.addWidget(self.buttonBox)
 -            self.buttonBox.setObjectName(i18n("buttonBox"))
+-
+-            # SIGNAL
 -            QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(i18n("accepted()")), self.accept)
 -            QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(i18n("rejected()")),self.reject)
 -            QtCore.QMetaObject.connectSlotsByName(self)
@@ -303,48 +1876,61 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/pagedialog.py
 -
 -        def slotCancelEdit(self):
 -            self.hideEditBox()
--        
+-
 -        def slotSaveEdit(self):
 -            # Hide edit box
 -            self.hideEditBox()
-+
-+
-+class PageDialog(kdeui.KPageDialog):
-+    def __init__(self, parent, parameters, savedParameters):
-+        kdeui.KPageDialog.__init__(self, parent)
-+
-+        self.setFaceType(kdeui.KPageDialog.Tabbed)
-+        self.setCaption(kdecore.i18n("Settings"))
-+
-+
+ 
+-class PageWidget(QtGui.QWidget):
 +        self.page_widget = PageWidget(self, parameters, savedParameters)
 +        self.page_item = kdeui.KPageWidgetItem(self.page_widget, kdecore.i18n("Settings"))
 +
 +        self.addPage(self.page_item)
-+
+ 
 +    def getValues(self):
 +        return self.page_widget.getValues()
 +
- 
- class PageWidget(QtGui.QWidget):
++
++class PageWidget(QtGui.QWidget):
      def __init__(self, parent, parameters=[], saved={}):
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/service.py firewall-manager-3.0.0/src//firewallmanager/service.py
---- firewall-manager/src//firewallmanager/service.py	2011-03-12 01:44:44.030000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/service.py	2010-07-06 14:16:34.000000000 +0300
-@@ -15,8 +15,10 @@
+         QtGui.QWidget.__init__(self, parent)
+         layout = QtGui.QVBoxLayout(self)
+diff -Nuar manager//src/firewallmanager/service.py firewall-manager-3.0.0//src/firewallmanager/service.py
+--- manager//src/firewallmanager/service.py	2011-04-28 11:51:57.084000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/service.py	2010-07-06 14:16:34.000000000 +0300
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ #
+-# Copyright (C) 2006-2011 TUBITAK/UEKAE
++# Copyright (C) 2006-2009 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -11,16 +11,19 @@
+ # Please read the COPYING file.
+ #
+ 
+-# PyQt Stuff
++# PyQt
  from PyQt4 import QtCore
  from PyQt4 import QtGui
- 
--#Context
--from context import *
+-from context import i18n, KIcon
++
 +# PyKDE
 +from PyKDE4 import kdeui
 +from PyKDE4 import kdecore
-+
+ 
  # UI
  from firewallmanager.ui_service import Ui_ServiceWidget
  
-@@ -33,15 +35,15 @@
+-class ServiceWidget(QtGui.QWidget, Ui_ServiceWidget):
+ 
++class ServiceWidget(QtGui.QWidget, Ui_ServiceWidget):
+     def __init__(self, parent):
+         QtGui.QWidget.__init__(self, parent)
+         self.setupUi(self)
+@@ -32,19 +35,18 @@
      def setState(self, state):
          self.state = state
          if state:
@@ -368,116 +1954,191 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/service.py fi
  
      def getState(self):
          return self.state
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/settingsitem.py firewall-manager-3.0.0/src//firewallmanager/settingsitem.py
---- firewall-manager/src//firewallmanager/settingsitem.py	2011-03-12 01:44:44.029000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/settingsitem.py	2010-07-06 14:16:34.000000000 +0300
-@@ -1,5 +1,3 @@
--#ifndef SETTINGSITEM.PY
--#define SETTINGSITEM.PY
+ 
+     def setEnabled(self, enabled):
+         self.pushToggle.setEnabled(enabled)
+-
+diff -Nuar manager//src/firewallmanager/settingsitem.py firewall-manager-3.0.0//src/firewallmanager/settingsitem.py
+--- manager//src/firewallmanager/settingsitem.py	2011-04-28 11:51:57.084000009 +0300
++++ firewall-manager-3.0.0//src/firewallmanager/settingsitem.py	2010-07-06 14:16:34.000000000 +0300
+@@ -1,7 +1,7 @@
  #!/usr/bin/python
  # -*- coding: utf-8 -*-
  #
-@@ -16,8 +14,10 @@
+-# Copyright (C) 2006-2011 TUBITAK/UEKAE
++# Copyright (C) 2006-2009 TUBITAK/UEKAE
+ #
+ # This program is free software; you can redistribute it and/or modify it under
+ # the terms of the GNU General Public License as published by the Free
+@@ -14,26 +14,25 @@
  # PyQt
  from PyQt4 import QtCore
  from PyQt4 import QtGui
--from context import *
 -from PyQt4.QtCore import SIGNAL
 +
 +# PyKDE
 +#from PyKDE4.kdeui import KIcon
-+
+ 
  # UI
  from firewallmanager.ui_settingsitem import Ui_SettingsItemWidget
  
-@@ -33,7 +33,7 @@
+-# Pds Stuff
+-from context import KIcon
+ 
+ class SettingsItemWidget(QtGui.QWidget, Ui_SettingsItemWidget):
+-
+     def __init__(self, parent, name, type_):
+         QtGui.QWidget.__init__(self, parent)
+         self.setupUi(self)
++
+         self.name = name
+         self.type = type_
+-        self.changed =False
++
          self.lineItem.hide()
          self.comboItems.hide()
          self.listItems.hide()
 -        self.setDisabledAll()
-+
+ 
          if type_ == "combo":
              self.comboItems.show()
-         elif type_ == "editlist":
-@@ -41,99 +41,6 @@
+@@ -42,161 +41,6 @@
          elif type_ == "text":
              self.lineItem.show()
  
+-        # SIGNAL
 -        self.connect(self.pushAdd, QtCore.SIGNAL("clicked()"), self.addItemToList)
 -        self.connect(self.pushDelete, QtCore.SIGNAL("clicked()"), self.removeItemToList)
--        self.connect(self.pushUp, QtCore.SIGNAL("clicked()"), self.funcpushUp)
--        self.connect(self.pushDown, QtCore.SIGNAL("clicked()"), self.funcpushDown)
--        QtCore.QObject.connect(self.listWidget, QtCore.SIGNAL(("currentItemChanged(QListWidgetItem*,QListWidgetItem*)")), self.HideButtons)
--        QtCore.QObject.connect(self.lineEdit, QtCore.SIGNAL(("textChanged(QString)")), self.hideAdd)
+-        self.connect(self.pushUp, QtCore.SIGNAL("clicked()"), self.funcPushUp)
+-        self.connect(self.pushDown, QtCore.SIGNAL("clicked()"), self.funcPushDown)
+-        self.connect(self.listWidget, QtCore.SIGNAL(("currentItemChanged(QListWidgetItem*,QListWidgetItem*)")), self.hideButtons)
+-        self.connect(self.lineEdit, QtCore.SIGNAL(("textChanged(QString)")), self.hideAdd)
+-        self.connect(self.lineEdit, QtCore.SIGNAL(("textChanged(QString)")), self.changeItem)
+-
+-        # Set Icons
 -        self.pushAdd.setIcon(KIcon("list-add"))
 -        self.pushDelete.setIcon(KIcon("list-remove"))
 -        self.pushUp.setIcon(KIcon("arrow-up"))
 -        self.pushDown.setIcon(KIcon("arrow-down"))
 -
+-    def count(self):
+-        '''
+-            Size of list
+-        '''
+-        return self.listWidget.count()
+-
 -    def setDisabledAll(self):
--        self.pushAdd.setEnabled(0)
--        self.pushDelete.setEnabled(0)
--        self.pushUp.setEnabled(0)
--        self.pushDown.setEnabled(0)
+-        '''
+-            Set the buttons disabled.
+-        '''
+-        self.pushAdd.setEnabled(False)
+-        self.pushDelete.setEnabled(False)
+-        self.pushUp.setEnabled(False)
+-        self.pushDown.setEnabled(False)
 -
 -    def hideAdd(self):
--        if self.lineEdit.text() <> "":
--            self.pushAdd.setEnabled(1)
+-        '''
+-            Hide all elements in list.
+-        '''
+-        if not(self.lineEdit.text()==""):
+-            self.pushAdd.setEnabled(True)
 -        else :
--            self.pushAdd.setEnabled(0)
+-            self.pushAdd.setEnabled(False)
 -
 -    def alreadyInList(self):
+-        '''
+-            Check the item is in list.
+-        '''
 -        for i in range(self.listWidget.count()):
 -            if (self.lineEdit.text()==self.listWidget.item(i).text()):
--                return False 
--        return True
+-                return True
+-        return False
+-
+-    def alreadyInListCount(self):
+-        '''
+-            Check the changed item is already in list.
+-        '''
+-        count =0
+-        for i in range(self.listWidget.count()):
+-            if (self.lineEdit.text()==self.listWidget.item(i).text()):
+-                count = count+1
+-        return count
+-
+-    def changeItem(self):
+-
+-        if not self.changed:
+-            if self.listWidget.currentItem():
+-                self.listWidget.currentItem().setText(self.lineEdit.text())
+-
+-            if self.lineEdit.text()== "":
+-                self.pushAdd.setEnabled(False)
 -
 -    def addItemToList(self):
--        if (self.alreadyInList()):
+-        '''
+-            Check the item is in list and  add item to list.
+-        '''
+-
+-        if not self.alreadyInList():
 -            if self.listWidget.currentItem():
 -                self.listWidget.currentItem().setText(self.lineEdit.text())
 -            else:
--                if self.lineEdit.text()<> "":
+-                if not(self.lineEdit.text()== ""):
 -                    self.listWidget.insertItem(0,self.lineEdit.text())
+-
+-        if self.alreadyInListCount() > 1:
+-            self.removeItemToList()
+-
+-        self.changed=True
 -        self.lineEdit.setText("")
+-        self.changed=False
 -        self.listWidget.setCurrentItem(None)
 -        self.setDisabledAll()
 -
+-
 -    def removeItemToList(self):
+-        '''
+-            Remove the selected item from list.
+-        '''
 -        self.listWidget.takeItem(self.listWidget.currentRow())
 -        if (self.listWidget.count()==0):
--            self.pushDelete.setEnabled(0)
+-            self.pushDelete.setEnabled(False)
 -        if (self.listWidget.count()<2):
--            self.pushUp.setEnabled(0)
--            self.pushDown.setEnabled(0)
+-            self.pushUp.setEnabled(False)
+-            self.pushDown.setEnabled(False)
 -
 -    def listToLineEdit(self):
+-        '''
+-            Write the selected item's text to the lineEdit.
+-        '''
 -        if (self.listWidget.currentItem()):
 -            self.lineEdit.setText(self.listWidget.currentItem().text())
 -        else:
 -            self.lineEdit.setText("")
 -
--    def HideButtons(self):
+-    def hideButtons(self):
+-
 -        self.listToLineEdit()
--        if self.lineEdit.text()<> "":
--            self.pushAdd.setEnabled(1)
+-        if not(self.lineEdit.text()==""):
+-            self.pushAdd.setEnabled(True)
 -        if self.listWidget.currentRow() == 0 :
--            self.pushUp.setEnabled(0)
--            self.pushDown.setEnabled(1)
+-            self.pushUp.setEnabled(False)
+-            self.pushDown.setEnabled(True)
 -        elif self.listWidget.currentRow() == self.listWidget.count()-1:
--            self.pushUp.setEnabled(1)
--            self.pushDown.setEnabled(0)
+-            self.pushUp.setEnabled(True)
+-            self.pushDown.setEnabled(False)
 -        else:
--            self.pushDown.setEnabled(1)
--            self.pushUp.setEnabled(1)
+-            self.pushDown.setEnabled(True)
+-            self.pushUp.setEnabled(True)
 -        if self.listWidget.currentRow :
--            self.pushDelete.setEnabled(1)
+-            self.pushDelete.setEnabled(True)
 -        if (self.listWidget.count()<2):
--            self.pushUp.setEnabled(0)
--            self.pushDown.setEnabled(0)
+-            self.pushUp.setEnabled(False)
+-            self.pushDown.setEnabled(False)
 -
--    #TODO Create backend file for listWidget 
--    def funcpushDown(self):
+-    def funcPushDown(self):
+-        '''
+-        Move down the selected item in list
+-        '''
 -        self.listWidget.setCurrentRow(self.listWidget.currentRow()+1)
 -        degisken = self.listWidget.currentItem().text()
 -        self.listWidget.setCurrentRow(self.listWidget.currentRow()-1)
@@ -487,7 +2148,10 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/settingsitem.
 -        self.listWidget.currentItem().setText(degisken_)
 -        self.listToLineEdit()
 -
--    def funcpushUp(self):
+-    def funcPushUp(self):
+-        '''
+-        Move up the selected item in list
+-        '''
 -        self.listWidget.setCurrentRow(self.listWidget.currentRow()-1)
 -        degisken = self.listWidget.currentItem().text()
 -        self.listWidget.setCurrentRow(self.listWidget.currentRow()+1)
@@ -496,10 +2160,11 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/settingsitem.
 -        self.listWidget.setCurrentRow(self.listWidget.currentRow()-1)
 -        self.listWidget.currentItem().setText(degisken_)
 -        self.listToLineEdit()
+-
      def setTitle(self, title):
          self.labelTitle.setText(unicode(title))
  
-@@ -144,7 +51,7 @@
+@@ -207,7 +51,7 @@
                      name, label = item.split("\t")
                      self.comboItems.addItem(label, QtCore.QVariant(name))
              elif key == "format" and self.type in ["editlist", "text"]:
@@ -508,7 +2173,7 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/settingsitem.
                  validator = QtGui.QRegExpValidator(QtCore.QRegExp(value), self)
                  editor.setValidator(validator)
  
-@@ -157,7 +64,7 @@
+@@ -220,7 +64,7 @@
              self.comboItems.setCurrentIndex(index)
          elif self.type == "editlist":
              for item in value.split():
@@ -517,7 +2182,7 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/settingsitem.
          elif self.type == "text":
              self.lineItem.setText(unicode(value))
  
-@@ -167,9 +74,8 @@
+@@ -230,8 +74,8 @@
              return unicode(self.comboItems.itemData(index).toString())
          elif self.type == "editlist":
              items = []
@@ -528,68 +2193,34 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/settingsitem.
              return " ".join(items)
          elif self.type == "text":
              return unicode(self.lineItem.text())
--#endif // SETTINGSITEM.PY
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewallmanager/standalone.py firewall-manager-3.0.0/src//firewallmanager/standalone.py
---- firewall-manager/src//firewallmanager/standalone.py	2011-03-12 01:44:44.028000035 +0200
-+++ firewall-manager-3.0.0/src//firewallmanager/standalone.py	1970-01-01 02:00:00.000000000 +0200
-@@ -1,29 +0,0 @@
--#!/usr/bin/python
--# -*- coding: utf-8 -*-
--
--# PyKDE4 Stuff
--from PyKDE4.kdeui import *
--from PyKDE4.kdecore import KGlobal
--from main import * 
--class FirewallManager(KMainWindow):
--    
--    def __init__(self, parent=None):
--        KMainWindow.__init__(self, parent)
--        self.setWindowIcon(KIcon("security-high"))
--        widget = MainWidget(self)
--        KGlobal.locale().insertCatalog("firewall-manager")
--        self.resize(widget.size())
--        self.setCentralWidget(widget)
--
--class Module(KCModule):
--    def __init__(self, component_data, parent):
--        KCModule.__init__(self, component_data, parent)
--
--        KGlobal.locale().insertCatalog(catalog)
--
--        if not dbus.get_default_main_loop():
--            from dbus.mainloop.qt import DBusQtMainLoop
--            DBusQtMainLoop(set_as_default=True)
--
--        MainWidget(self, embed=True)
--
-diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewall-manager.py firewall-manager-3.0.0/src//firewall-manager.py
---- firewall-manager/src//firewall-manager.py	2011-03-12 01:44:44.034000035 +0200
-+++ firewall-manager-3.0.0/src//firewall-manager.py	2010-07-06 14:16:34.000000000 +0300
-@@ -11,67 +11,52 @@
+diff -Nuar manager//src/firewall-manager.py firewall-manager-3.0.0//src/firewall-manager.py
+--- manager//src/firewall-manager.py	2011-04-28 11:51:57.090000009 +0300
++++ firewall-manager-3.0.0//src/firewall-manager.py	2010-07-06 14:16:34.000000000 +0300
+@@ -11,72 +11,52 @@
  # Please read the COPYING file.
  #
  
--#SyStem
--
+-# System
  import sys
  import dbus
  
+-# Pds Stuff
 -import firewallmanager.context as ctx
--from firewallmanager.context import *
 -
--#Qt
--
+-# Qt Stuff
  from PyQt4 import QtGui
  from PyQt4 import QtCore
--from PyQt4.QtCore import *
--class MainWindow(QtGui.QMainWindow):
-+
+ 
+-# Application Stuff
+-from firewallmanager import about
+-from firewallmanager.main import MainWidget
 +from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
 +from PyKDE4.kdecore import KCmdLineArgs, KGlobal
-+
+ 
 +from firewallmanager.about import aboutData, catalog
 +from firewallmanager.main import MainWidget
-+
+ 
+-class MainWindow(QtGui.QMainWindow):
 +class MainWindow(KMainWindow):
      def __init__(self, parent=None):
 -        QtGui.QMainWindow.__init__(self, parent)
@@ -597,56 +2228,58 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewall-manager.py firewall-
          widget = MainWidget(self)
          self.resize(widget.size())
          self.setCentralWidget(widget)
--        self.qtrans=QtCore.QTranslator()
-+
-+
+ 
+-if ctx.Pds.session == ctx.pds.Kde4:
+-
+-    def CreatePlugin(widget_parent, parent, component_data):
+-        from firewallmanager.kcmodule import Module
+-        return Module(component_data, parent)
+ 
  if __name__ == "__main__":
  
+-    # DBUS MainLoop
 +    KCmdLineArgs.init(sys.argv, aboutData)
 +    app = KApplication()
- 
++
      if not dbus.get_default_main_loop():
          from dbus.mainloop.qt import DBusQtMainLoop
          DBusQtMainLoop(set_as_default=True)
  
 -    if ctx.Pds.session == ctx.pds.Kde4:
--        
--        #PyKde4
--        from PyKDE4.kdeui import KMainWindow, KApplication, KCModule, KIcon
--        from PyKDE4.kdecore import KCmdLineArgs, KGlobal
--        from firewallmanager.about import aboutData, catalog
--        from firewallmanager.standalone import FirewallManager
--        #Set Commandline arguments
--        KCmdLineArgs.init(sys.argv, aboutData)
--        #Create a Kapplication instance
+-        # PyKDE4 Stuff
+-        from PyKDE4.kdeui import KApplication
+-        from PyKDE4.kdecore import KCmdLineArgs
+-
+-        # Set Command Line arguments
+-        KCmdLineArgs.init(sys.argv, about.aboutData)
+-
+-        # Create a KApplication instance
 -        app = KApplication()
--        window = FirewallManager()
+-
+-        # Create Main Window
+-        window = MainWindow()
 -        window.show()
 -
--        app.exec_()
 -    else:
 -
--        import gettext
--        
--        __trans = gettext.translation('firewall-manager', fallback=True)
--        i18n = __trans.ugettext
--
--        from firewallmanager.main import MainWidget
+-        # Pds Stuff
 -        from pds.quniqueapp import QUniqueApplication
+-        from firewallmanager.context import KIcon, i18n
 -
--        app = QUniqueApplication(sys.argv, catalog="firewall-manager")
+-        # Create Main Window
+-        app = QUniqueApplication(sys.argv, catalog=about.appName)
+-        window = MainWindow()
+-        window.show()
+-        window.resize(640,480)
 -
--        mainWindow = MainWidget(None)
--        mainWindow.show()
--        mainWindow.resize(640, 480)
--        mainWindow.setWindowTitle(i18n("Firewall Manager"))
--        mainWindow.setWindowIcon(KIcon("security-high"))
--        app.connect(app, SIGNAL('lastWindowClosed()'), app.quit)
--        app.exec_()
+-        # Set Main Window Title and Icon
+-        window.setWindowTitle(i18n(about.PACKAGE))
+-        window.setWindowIcon(KIcon(about.icon))
 +    window = MainWindow()
 +    window.show()
-+
-+    app.exec_()
+ 
+-    # Run the application
+     app.exec_()
 +
 +
 +class Module(KCModule):
@@ -660,6 +2293,178 @@ diff -Nuar '--exclude=*.pyc' firewall-manager/src//firewall-manager.py firewall-
 +            DBusQtMainLoop(set_as_default=True)
 +
 +        MainWidget(self, embed=True)
- 
- def CreatePlugin(widget_parent, parent, component_data):
-     return Module(component_data, parent)
++
++def CreatePlugin(widget_parent, parent, component_data):
++    return Module(component_data, parent)
+diff -Nuar manager//ui/main.ui firewall-manager-3.0.0//ui/main.ui
+--- manager//ui/main.ui	2011-04-28 11:51:57.099000009 +0300
++++ firewall-manager-3.0.0//ui/main.ui	2010-07-06 14:16:34.000000000 +0300
+@@ -55,7 +55,7 @@
+          </spacer>
+         </item>
+         <item>
+-         <widget class="QComboBox" name="comboFilter"/>
++         <widget class="KComboBox" name="comboFilter"/>
+         </item>
+        </layout>
+       </item>
+@@ -97,8 +97,8 @@
+           <rect>
+            <x>0</x>
+            <y>0</y>
+-           <width>526</width>
+-           <height>189</height>
++           <width>528</width>
++           <height>192</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+@@ -121,7 +121,15 @@
+    </item>
+   </layout>
+  </widget>
++ <customwidgets>
++  <customwidget>
++   <class>KComboBox</class>
++   <extends>QComboBox</extends>
++   <header>kcombobox.h</header>
++  </customwidget>
++ </customwidgets>
+  <tabstops>
++  <tabstop>comboFilter</tabstop>
+   <tabstop>listItems</tabstop>
+   <tabstop>buttonBox</tabstop>
+  </tabstops>
+diff -Nuar manager//ui/settingsitem.ui firewall-manager-3.0.0//ui/settingsitem.ui
+--- manager//ui/settingsitem.ui	2011-04-28 11:51:57.099000009 +0300
++++ firewall-manager-3.0.0//ui/settingsitem.ui	2010-07-06 14:16:34.000000000 +0300
+@@ -6,96 +6,52 @@
+    <rect>
+     <x>0</x>
+     <y>0</y>
+-    <width>546</width>
+-    <height>432</height>
++    <width>530</width>
++    <height>256</height>
+    </rect>
+   </property>
+   <property name="windowTitle">
+    <string notr="true">SettingsItemWidget</string>
+   </property>
+-  <layout class="QFormLayout" name="formLayout">
+-   <property name="fieldGrowthPolicy">
+-    <enum>QFormLayout::ExpandingFieldsGrow</enum>
+-   </property>
+-   <item row="0" column="0">
+-    <layout class="QHBoxLayout" name="horizontalLayout">
++  <layout class="QHBoxLayout" name="horizontalLayout">
++   <item>
++    <widget class="QLabel" name="labelTitle">
++     <property name="minimumSize">
++      <size>
++       <width>120</width>
++       <height>0</height>
++      </size>
++     </property>
++     <property name="text">
++      <string notr="true">labelTitle:</string>
++     </property>
++     <property name="wordWrap">
++      <bool>true</bool>
++     </property>
++    </widget>
++   </item>
++   <item>
++    <layout class="QVBoxLayout" name="verticalLayout">
++     <item>
++      <widget class="QLineEdit" name="lineItem"/>
++     </item>
+      <item>
+-      <widget class="QLabel" name="labelTitle">
+-       <property name="minimumSize">
+-        <size>
+-         <width>120</width>
+-         <height>0</height>
+-        </size>
+-       </property>
+-       <property name="text">
+-        <string notr="true">labelTitle:</string>
+-       </property>
+-       <property name="wordWrap">
+-        <bool>true</bool>
+-       </property>
+-      </widget>
++      <widget class="KEditListBox" name="listItems"/>
+      </item>
+      <item>
+-      <layout class="QVBoxLayout" name="verticalLayout01">
+-       <item>
+-        <widget class="QLineEdit" name="lineItem"/>
+-       </item>
+-       <item>
+-        <widget class="QGroupBox" name="listItems">
+-         <property name="title">
+-          <string/>
+-         </property>
+-         <layout class="QFormLayout" name="formLayout_2">
+-          <item row="0" column="0" colspan="2">
+-           <widget class="QLineEdit" name="lineEdit"/>
+-          </item>
+-          <item row="1" column="0">
+-           <widget class="QListWidget" name="listWidget"/>
+-          </item>
+-          <item row="1" column="1">
+-           <layout class="QVBoxLayout" name="verticalLayout_02">
+-            <item>
+-             <widget class="QPushButton" name="pushAdd">
+-              <property name="text">
+-               <string>Add</string>
+-              </property>
+-             </widget>
+-            </item>
+-            <item>
+-             <widget class="QPushButton" name="pushDelete">
+-              <property name="text">
+-               <string>Remove</string>
+-              </property>
+-             </widget>
+-            </item>
+-            <item>
+-             <widget class="QPushButton" name="pushUp">
+-              <property name="text">
+-               <string>Move Up</string>
+-              </property>
+-             </widget>
+-            </item>
+-            <item>
+-             <widget class="QPushButton" name="pushDown">
+-              <property name="text">
+-               <string>Move Down</string>
+-              </property>
+-             </widget>
+-            </item>
+-           </layout>
+-          </item>
+-         </layout>
+-        </widget>
+-       </item>
+-       <item>
+-        <widget class="QComboBox" name="comboItems"/>
+-       </item>
+-      </layout>
++      <widget class="QComboBox" name="comboItems"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
++ <customwidgets>
++  <customwidget>
++   <class>KEditListBox</class>
++   <extends>QGroupBox</extends>
++   <header>keditlistbox.h</header>
++  </customwidget>
++ </customwidgets>
+  <resources/>
+  <connections/>
+ </ui>
