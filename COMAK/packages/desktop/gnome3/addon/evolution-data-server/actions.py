@@ -6,12 +6,18 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
+from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
 #shelltools.export("CFLAGS", "%s -fPIC -fno-strict-aliasing" % get.CFLAGS())
 
+shelltools.export("HOME", get.installDIR())
+
 def setup():
-    #autotools.autoreconf("-fi")
+    autotools.autoreconf("-fiv")
+
+    shelltools.system("intltoolize --force --copy --automake")
+
     autotools.configure("--with-openldap=yes \
                          --enable-smime=yes \
                          --enable-gnome-keyring=yes \
