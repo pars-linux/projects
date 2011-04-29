@@ -5,16 +5,15 @@
         <Name>gtk3</Name>
         <Homepage>http://www.gtk.org</Homepage>
         <Packager>
-            <Name>Burak Çalışkan</Name>
-            <Email>burakclskn@gmail.com</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>LGPLv2.1</License>
         <Summary>The GIMP Toolkit version 3</Summary>
         <Description>GTK+ is a multi-platform toolkit for creating graphical user interfaces. Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off projects to complete application suites.</Description>
-        <Archive sha1sum="763827465edfa8ffa5b4e445b1e59a01b305cdd0" type="tarbz2">mirrors://gnome/gtk+/3.0/gtk+-3.0.8.tar.bz2</Archive>
+        <Archive sha1sum="b231bf1402e8868201321323941a089ad2866258" type="tarbz2">mirrors://gnome/gtk+/3.0/gtk+-3.0.9.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
-            <Dependency>glib2-devel</Dependency>
             <Dependency>cups-devel</Dependency>
             <Dependency>pango-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -36,7 +35,6 @@
         <Name>gtk3</Name>
         <RuntimeDependencies>
             <Dependency>atk</Dependency>
-            <Dependency>glib2</Dependency>
             <Dependency>cups</Dependency>
             <Dependency>pango</Dependency>
             <Dependency>cairo</Dependency>
@@ -92,6 +90,9 @@
         <Summary>GTK demo application</Summary>
         <RuntimeDependencies>
             <Dependency>gtk3</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin/gtk3-demo</Path>
@@ -109,6 +110,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-04-29</Date>
+            <Version>3.0.9</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-04-15</Date>
             <Version>3.0.8</Version>
