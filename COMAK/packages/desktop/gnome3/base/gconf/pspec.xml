@@ -5,14 +5,14 @@
         <Name>gconf</Name>
         <Homepage>http://www.gnome.org</Homepage>
         <Packager>
-            <Name>Burak Çalışkan</Name>
-            <Email>burakclskn@gmail.com</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
         <Summary>Gnome Configuration System</Summary>
         <Description>gconf is a Gnome Configuration System.</Description>
-        <Archive sha1sum="7def3d52e63f722c6ac6291cbc587ea368d866d5" type="tarbz2">mirrors://gnome/GConf/2.32/GConf-2.32.2.tar.bz2</Archive>
+        <Archive sha1sum="efc7d451c5988207f708b75c01d1d228ba3deed6" type="tarbz2">mirrors://gnome/GConf/2.32/GConf-2.32.3.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>openldap-client</Dependency>
@@ -80,6 +80,13 @@
     </Package>
 
     <History>
+        <Update release="23">
+            <Date>2011-04-29</Date>
+            <Version>2.32.3</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="22">
             <Date>2011-04-20</Date>
             <Version>2.32.2</Version>
