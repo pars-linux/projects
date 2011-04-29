@@ -9,7 +9,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
-WorkDir = "webkit-%s" % get.srcVERSION()
+shelltools.export("HOME", get.workDIR())
 
 paths = ["JavaScriptCore", "WebCore", "WebKit", "WebKitTools"]
 docs = ["AUTHORS", "ChangeLog", "COPYING.LIBS", "THANKS", \
