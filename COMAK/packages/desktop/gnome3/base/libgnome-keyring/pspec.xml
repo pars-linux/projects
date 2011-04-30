@@ -5,14 +5,14 @@
         <Name>libgnome-keyring</Name>
         <Homepage>http://live.gnome.org/GnomeKeyring</Homepage>
         <Packager>
-            <Name>Burak Çalışkan</Name>
-            <Email>burakclskn@gmail.com</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <IsA>library</IsA>
         <Summary>Compatibility library for accessing gnome-keyring</Summary>
         <Description>libgnome-keyring is a library that used by applications to integrate with the gnome-keyring system.</Description>
-        <Archive sha1sum="1b98715ab972f3af3d32639df810d018fe89bff9" type="tarbz2">mirrors://gnome/libgnome-keyring/3.0/libgnome-keyring-3.0.0.tar.bz2</Archive>
+        <Archive sha1sum="32e9a33fe9dc71be373602cd0c583abda280a300" type="tarbz2">mirrors://gnome/libgnome-keyring/3.0/libgnome-keyring-3.0.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libgcrypt-devel</Dependency>
             <Dependency>gtk-doc</Dependency>
@@ -56,6 +56,13 @@
     </Package>
 
     <History>
+        <Update release="5">
+            <Date>2011-04-30</Date>
+            <Version>3.0.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="4">
             <Date>2011-04-20</Date>
             <Version>3.0.0</Version>
