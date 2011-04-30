@@ -6,13 +6,16 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
+from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
+
+shelltools.export("HOME", get.workDIR())
 
 def setup():
     autotools.autoreconf("-fiv")
-    autotools.configure("--disable-static\
-                         --disable-packagekit\
-                         --disable-update-mimedb\
+    autotools.configure("--disable-static \
+                         --disable-packagekit \
+                         --disable-update-mimedb \
                          --enable-introspection \
                          --disable-more-warnings")
 
