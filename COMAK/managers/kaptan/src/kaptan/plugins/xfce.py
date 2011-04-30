@@ -88,15 +88,12 @@ class Wallpaper(base.Wallpaper):
             wallpaper["wallpaperFile"] =desktopFiles
             #wallpaper["wallpaperThumb"] =wallpaper["wallpaperFile"].split("images")[0]+"screenshot.png"
             wallpaper["wallpaperThumb"] = desktopFiles
-            print wallpaper["wallpaperThumb"]
             items.append(wallpaper)
         return items
 
 
     def setWallpaper(self ,wallpaper):
         if wallpaper:
-            print "a"
-            print wallpaper
             os.popen("xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -s %s" %wallpaper)
         #if color :
         #    os.popen("pcmanfm --wallpaper-mode %s" % color)
@@ -110,12 +107,28 @@ class Common(base.Common):
         var = QLocale.languageToString(locale_app.language())
         return var
 class Style(base.Style):
-    # TODO: get DesktopNumber
     def getDesktopNumber(self):
-        #desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
-        #return desktop_number
-        return 3
-
+        import os,piksemel,re
+        FILE_PATH="%s/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml"%os.environ["HOME"]
+        parse_file=piksemel.parse(FILE_PATH)
+        x = parse_file.getTag("property")
+        temp_file_path="%s/.config/.tempf.txt"%os.environ["HOME"]
+        temp_file=open(temp_file_path,"w")
+        temp_file.write(x.toString())
+        temp_file.close()
+        temp_file=open(temp_file_path)
+        a=temp_file.read()
+        x=re.search("<property name=\"workspace_count\" type=\"int\" value=\".*/>",a)
+        deger= len(x.group().split("=")[3])
+        if deger==5:
+            number= int(x.group().split("=")[3][-4])
+            os.remove(temp_file_path)
+            return number
+        else:
+            number1= int(x.group().split("=")[3][-4])
+            number2= int(x.group().split("=")[3][-5])
+            os.remove(temp_file_path)
+            return int(str(number2)+str(number1))
     # use subprocess
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
