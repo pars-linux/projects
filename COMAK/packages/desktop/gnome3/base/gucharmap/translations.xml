@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gucharmap</Name>
+        <Summary xml:lang="tr">Unicode karakter harita görüntüleyicisi</Summary>
+        <Description xml:lang="tr">gucharmap, bir unicode karakter harita görüntüleyicisidir.</Description>
+    </Source>
+</PISI>
+
