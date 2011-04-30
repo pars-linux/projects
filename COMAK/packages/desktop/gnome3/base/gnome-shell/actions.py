@@ -13,14 +13,14 @@ shelltools.export("HOME", get.workDIR())
 
 def setup():
 
-    shelltools.export("LDFLAGS", "%s -rpath=/usr/lib" % get.LDFLAGS())
+#    shelltools.export("LDFLAGS", "%s -rpath=/usr/lib" % get.LDFLAGS())
 
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static \
                          --disable-schemas-install \
                          --enable-introspection=yes \
                          --enable-compile-warnings=no")
-    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
+    pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared  -Wl,-rpath /usr/lib/gnome-bluetooth/")
 
 def build():
     autotools.make()
