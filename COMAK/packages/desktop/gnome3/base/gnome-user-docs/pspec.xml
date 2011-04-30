@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>Gnome User Documents</Summary>
         <Description>gnome-user-docs contains user documents for Gnome3 desktop.</Description>
-        <Archive sha1sum="f714cd13a763cfa4b02cfde9472cb4af5ac319da" type="tarbz2">mirrors://gnome/gnome-user-docs/3.0/gnome-user-docs-3.0.0.tar.bz2</Archive>
+        <Archive sha1sum="35c41809340577591a1b52a2f93e77403dc9982d" type="tarbz2">mirrors://gnome/gnome-user-docs/3.0/gnome-user-docs-3.0.3.tar.bz2</Archive>
     </Source>
 
     <Package>
@@ -24,6 +24,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-04-30</Date>
+            <Version>3.0.3</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-04-22</Date>
             <Version>3.0.0</Version>
