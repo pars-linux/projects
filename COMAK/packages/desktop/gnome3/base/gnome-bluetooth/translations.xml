@@ -2,8 +2,8 @@
 <PISI>
     <Source>
         <Name>gnome-bluetooth</Name>
-        <Summary xml:lang="tr">FIXME</Summary>
-        <Description xml:lang="tr">FIXME</Description>
+        <Summary xml:lang="tr">Bir bluez-gnome çatallaması</Summary>
+        <Description xml:lang="tr">gnome-bluetooth, bluez-gnome'un Gnome masaüstüne entegre edilmesine odaklanmış bir çatallamasıdır.</Description>
     </Source>
 </PISI>
 
