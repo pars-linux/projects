@@ -13,7 +13,8 @@ def setup():
     autotools.configure("--disable-schemas-install \
                          --with-pam-dir=/lib/security \
                          --with-root-certs=/etc/pki/tls/certs \
-                         --with-gtk=3.0 \
+                         --with-gtk=3 \
+                         --enable-tests=no \
                          --enable-silent-rules")
 
 def build():
