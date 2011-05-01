@@ -65,30 +65,23 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltUrl = "http://smolt.pardus.org.tr:8090"
 
     def on_buttonSystemSettings_clicked(self):
-        self.procSettings = QProcess()
-        self.procSettings.start("pcmanfm menu://applications/System")
+        if ctx.Pds.session == ctx.pds.LXDE:
+            self.procSettings = QProcess()
+            self.procSettings.start("pcmanfm menu://applications/System")
         if ctx.Pds.session == ctx.pds.Gnome:
-            import subprocess
-            a=subprocess.Popen("gnome-control-center")
-            time.sleep(1)
-            a.wait()
+            self.procSettings = QProcess()
+            self.procSettings.start("gnome-control-center")
         if ctx.Pds.session == ctx.pds.Xfce:
             self.procSettings = QProcess()
             self.procSettings.start("xfce4-settings-manager")
     def on_buttonHelpPages_clicked(self):
-        if ctx.Pds.session == ctx.pds.Xfce:
-            self.procSettings = QProcess()
-            command = "firefox " + self.helpPageUrl
-            self.procSettings.start(command)
-        else:
-	        QtGui.QDesktopServices().openUrl(QUrl(self.helpPageUrl))
+        self.procSettings = QProcess()
+        command = "firefox " + self.helpPageUrl
+        self.procSettings.start(command)
     def on_buttonSystemSettings_2_clicked(self):
-        if ctx.Pds.session == ctx.pds.Xfce:
-            self.procSettings = QProcess()
-            command = "firefox " + self.smoltUrl
-            self.procSettings.start(command)
-        else:
-	        QtGui.QDesktopServices().openUrl(QUrl(self.smoltUrl))
+        self.procSettings = QProcess()
+        command = "firefox " + self.smoltUrl
+        self.procSettings.start(command)
 
     def setSmolt(self):
       # Smolt Settings
