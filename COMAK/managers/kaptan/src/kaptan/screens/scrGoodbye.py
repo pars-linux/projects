@@ -51,9 +51,6 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_goodbyeWidget()
         self.ui.setupUi(self)
-
-       # lang = KGlobal.locale().language()
-
         lang=QLocale().language()
         locale_app = QLocale()
         locale_os = QLocale.system()
@@ -68,30 +65,30 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltUrl = "http://smolt.pardus.org.tr:8090"
 
     def on_buttonSystemSettings_clicked(self):
-        if not ctx.Pds.session.Name == "xfce":
-            self.procSettings = QProcess()
-            self.procSettings.start("pcmanfm menu://applications/System")
+        self.procSettings = QProcess()
+        self.procSettings.start("pcmanfm menu://applications/System")
         if ctx.Pds.session == ctx.pds.Gnome:
             import subprocess
             a=subprocess.Popen("gnome-control-center")
             time.sleep(1)
             a.wait()
         if ctx.Pds.session == ctx.pds.Xfce:
-            import subprocess
-            process = subprocess.Popen(['xfce4-settings-manager']) 
-            #process.wait()
-            #import os 
-            #os.system("xfce4-settings-manager")
+            self.procSettings = QProcess()
+            self.procSettings.start("xfce4-settings-manager")
     def on_buttonHelpPages_clicked(self):
-	#self.procSettings = QProcess()
-        #command = "openURL (" + self.helpPageUrl+")"
-        #self.procSettings.start(command)
-	QtGui.QDesktopServices().openUrl(QUrl(self.helpPageUrl))
+        if ctx.Pds.session == ctx.pds.Xfce:
+            self.procSettings = QProcess()
+            command = "firefox " + self.helpPageUrl
+            self.procSettings.start(command)
+        else:
+	        QtGui.QDesktopServices().openUrl(QUrl(self.helpPageUrl))
     def on_buttonSystemSettings_2_clicked(self):
-        #self.procSettings = QProcess()
-        #command = "openURL (" + self.smoltUrl+")"
-        #self.procSettings.start(command)
-	QtGui.QDesktopServices().openUrl(QUrl(self.smoltUrl))
+        if ctx.Pds.session == ctx.pds.Xfce:
+            self.procSettings = QProcess()
+            command = "firefox " + self.smoltUrl
+            self.procSettings.start(command)
+        else:
+	        QtGui.QDesktopServices().openUrl(QUrl(self.smoltUrl))
 
     def setSmolt(self):
       # Smolt Settings
@@ -111,6 +108,6 @@ class Widget(QtGui.QWidget, Screen):
 
     def execute(self):
        return True
-       
+
 
 
