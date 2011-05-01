@@ -75,19 +75,20 @@ class Widget(QtGui.QWidget, Screen):
         content.append(end)
 
         # Style Settings
-        
+
         content.append(subject % i18n("Style Settings"))
 
         if not self.styleSettings["hasChanged"]:
             content.append(item % i18n("You haven't selected any style."))
         else:
             content.append(item % i18n("Selected Style: <b>%s</b>") % unicode(self.styleSettings["summaryMessage"]))
-            content.append(item % i18n("Desktop Number: <b>%s</b>") % unicode(self.styleSettings["desktopNumber"]))
+            if not ctx.Pds.session == ctx.pds.Gnome:
+                content.append(item % i18n("Desktop Number: <b>%s</b>") % unicode(self.styleSettings["desktopNumber"]))
 
         content.append(end)
 
         # Package Settings
-        
+
         #content.append(subject % i18n("Package Settings"))
         #if not self.packageWidget.ui.checkBox.isChecked():
         #    content.append(item % i18n("You haven't added any repo."))
