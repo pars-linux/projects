@@ -246,22 +246,30 @@ if __name__ == "__main__":
         kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
         start = kaptanConfig.value("General/RunOnStart").toString()
 
-        if start != "False":
+        if not start == "False":
             if ctx.Pds.session.Name == "gnome":
                 kd= os.getenv("HOME")
                 #kaptanrc
                 QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
                 kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
-                start = kaptanConfig.value("General/RunOnStart").toString()
-            if start != "False":
-                os.popen("gconftool-2 --type=string --set /apps/metacity/general/theme Orta" )
-                os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Orta")
-                os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme Faenza-Dark")
-
+                start_gnome = kaptanConfig.value("General/RunOnStart").toString()
+                if not start_gnome == "False":
+                    os.popen("gconftool-2 --type=string --set /apps/metacity/general/theme Orta" )
+                    os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Orta")
+                    os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme Faenza-Dark")
+            elif ctx.Pds.session.Name == "xfce":
+                kd= os.getenv("HOME")
+                #kaptanrc
+                QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
+                kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
+                start_xfce = kaptanConfig.value("General/RunOnStart").toString()
+                if not start_xfce == "False":
+                    print "ilk kez calistirildi."
             kaptanConfig.setValue("General/RunOnStart","False")
         elif start == "False" and not "-t" in sys.argv:
-             exit();
- 
+            print "ilk degil"
+            exit();
+
      # attach dbus to main loop
     tools.DBus()
     if ctx.Pds.session == ctx.pds.Kde4:
@@ -298,13 +306,12 @@ if __name__ == "__main__":
 
         app = QUniqueApplication(sys.argv, catalog="kaptan")
 
-        
+
         from pds.quniqueapp import QUniqueApplication
         kaptan = Kaptan()
         kaptan.show()
         tools.centerWindow(kaptan)
 
-    
 
         app.exec_()
 
