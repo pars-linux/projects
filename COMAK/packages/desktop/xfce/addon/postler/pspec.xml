@@ -18,6 +18,7 @@
             <Dependency version="0.10.0">vala</Dependency>
             <Dependency>glib2-devel</Dependency>
             <Dependency>libindicate-devel</Dependency>
+            <Dependency>libcanberra-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>libunique-devel</Dependency>
             <Dependency>msmtp</Dependency>
