@@ -29,7 +29,7 @@
         <Name>libxfce4util-doc</Name>
         <IsA>data:doc</IsA>
         <PartOf>desktop.xfce.library</PartOf>
-        <Summary>Libxfce4util doc files</Summary>
+        <Summary>Libxfce4util documantation files</Summary>
         <RuntimeDependencies>
             <Dependency release="current">libxfce4util</Dependency>
         </RuntimeDependencies>
