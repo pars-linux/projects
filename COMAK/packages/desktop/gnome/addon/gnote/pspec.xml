@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnote</Name>
+        <Homepage>http://live.gnome.org/Gnote</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Icon>gnote</Icon>
+        <IsA>app:gui</IsA>
+        <Summary>Desktop note-taking application</Summary>
+        <Description>Gnote is a port of Tomboy to C++. It is the same note taking application, including most of the add-ins (more are to come).</Description>
+        <Archive sha1sum="3cda0d7b0c40f2baa5066b7d11b2dce6d1cc8604" type="tarbz2">mirrors://gnome/gnote/0.7/gnote-0.7.4.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>boost-devel</Dependency>
+            <Dependency>atkmm-devel</Dependency>
+            <Dependency>gtkmm-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>glibmm-devel</Dependency>
+            <Dependency>libxslt-devel</Dependency>
+            <Dependency>pangomm-devel</Dependency>
+            <Dependency>libsigc++-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnote</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>atkmm</Dependency>
+            <Dependency>gtkmm</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>glibmm</Dependency>
+            <Dependency>libxslt</Dependency>
+            <Dependency>pangomm</Dependency>
+            <Dependency>libsigc++</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-02</Date>
+            <Version>0.7.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
