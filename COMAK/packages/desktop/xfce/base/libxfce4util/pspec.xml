@@ -57,7 +57,9 @@
         <Update release="16">
             <Date>2011-05-02</Date>
             <Version>4.8.1</Version>
-            <Comment>Split doc files.</Comment>
+            <Comment>
+                * Split doc files.
+            </Comment>
             <Name>Aydan Taşdemir</Name>
             <Email>aydantasdemir@gmail.com</Email>
         </Update>
