@@ -10,4 +10,9 @@
         <Name>libxfce4util-devel</Name>
         <Summary xml:lang="tr">libxfce4util geliştirme dosyaları</Summary>
     </Package>
+
+    <Package>
+        <Name>libxfce4util-doc</Name>
+        <Summary xml:lang="tr">libxfce4util dökümantasyon dosyaları</Summary>
+    </Package>
 </PISI>
