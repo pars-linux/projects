@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-commander</Name>
+        <Homepage>http://www.nongnu.org/gcmd</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Icon>gnote</Icon>
+        <IsA>app:gui</IsA>
+        <Summary>A powerful file manager for the GNOME desktop environment</Summary>
+        <Description>GNOME Commander is a 'two-pane' graphical file manager for the GNOME desktop environment.</Description>
+        <Archive sha1sum="bd20b2b345280743df4c5237ff20738e83f57f92" type="tarbz2">mirrors://gnome/gnome-commander/1.2/gnome-commander-1.2.8.11.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>poppler-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+            <Dependency>gnome-vfs-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-commander</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>poppler</Dependency>
+            <Dependency>libgnome</Dependency>
+            <Dependency>gnome-vfs</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libgnomeui</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-02</Date>
+            <Version>1.2.8.11</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
