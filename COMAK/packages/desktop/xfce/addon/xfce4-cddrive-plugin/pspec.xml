@@ -16,6 +16,7 @@
         <BuildDependencies>
             <Dependency>xfce4-panel-devel</Dependency>
             <Dependency>exo-devel</Dependency>
+            <Dependency>hal-devel</Dependency>
         </BuildDependencies>
     </Source>
 
