@@ -1,0 +1,12 @@
+[Desktop Entry]
+Exec=wallpaper-setter
+Icon=kaptan
+Type=Application
+
+X-KDE-StartupNotify=true
+X-KDE-autostart-after=plasma-desktop
+
+Name=Wallpaper Setter
+Name[tr]=Arkaplan Degistirici
+GenericName=Wallpaper Background
+GenericName[tr]=Arkaplani degisteribilirsiniz
