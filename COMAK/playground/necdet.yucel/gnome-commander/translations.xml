@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-commander</Name>
+        <Summary xml:lang="tr">Gnome masaüstü ortamı için güçlü bir dosya yöneticisi</Summary>
+        <Description xml:lang="tr">gnome-commander, Gnome masaüstü ortamı için iki bölümlü güçlü bir dosya yöneticisidir.</Description>
+    </Source>
+</PISI>
+
