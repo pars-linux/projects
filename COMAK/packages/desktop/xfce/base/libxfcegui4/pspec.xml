@@ -66,10 +66,20 @@
         <Files>
             <Path fileType="header">/usr/include</Path>
             <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>libxfcegui4-doc</Name>
+        <IsA>data:doc</IsA>
+        <PartOf>desktop.xfce.library</PartOf>
+        <Summary>Documentation files for libxfcegui4</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">libxfcegui4</Dependency>
+        </RuntimeDependencies>
+        <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
         </Files>
     </Package>
-
     <Package>
         <Name>glade-xfce</Name>
         <Icon>glade-3</Icon>
@@ -88,6 +98,15 @@
     </Package>
 
     <History>
+        <Update release="20">
+            <Date>2011-05-02</Date>
+            <Version>4.8.1</Version>
+            <Comment>
+                * Split doc files.
+            </Comment>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Update>
         <Update release="19">
             <Date>2011-03-02</Date>
             <Version>4.8.1</Version>

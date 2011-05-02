@@ -12,6 +12,11 @@
     </Package>
 
     <Package>
+        <Name>libxfcegui4-doc</Name>
+        <Summary xml:lang="tr">Libxfcegui4 dokümantasyon dosyaları</Summary>
+    </Package>
+
+    <Package>
         <Name>glade-xfce</Name>
         <Summary xml:lang="tr">Glade için Xfce eklentileri</Summary>
     </Package>
