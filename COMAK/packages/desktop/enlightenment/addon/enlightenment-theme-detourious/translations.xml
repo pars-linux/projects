@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>enlightenment-theme-detourious</Name>
+        <Summary xml:lang="tr">e17 teması</Summary>
+        <Description xml:lang="tr">detourious, eğlenceli bir enlightenment temasıdır.</Description>
+    </Source>
+</PISI>
+
