@@ -1,0 +1,11 @@
+diff -Nuar detourious.orig//Makefile detourious/Makefile
+--- detourious.orig//Makefile	2011-05-02 11:16:51.988019003 +0300
++++ detourious/Makefile	2011-05-03 10:58:52.299207392 +0300
+@@ -2,4 +2,6 @@
+ 	edje_cc -id . -fd . main.edc -o detourious.edj
+ 
+ install:
+-	cp detourious.edj ~/.e/e/themes
++	mkdir $(prefix)/share/enlightenment/data/themes/ --parents
++	chmod 644 detourious.edj
++	cp detourious.edj $(prefix)/share/enlightenment/data/themes/
