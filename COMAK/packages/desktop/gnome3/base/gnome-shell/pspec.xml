@@ -17,7 +17,9 @@
             <Dependency>gtk3-devel</Dependency>
             <Dependency>mutter-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
+            <Dependency>libcroco-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>pulseaudio-libs-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>gjs-devel</Dependency>
@@ -37,8 +39,10 @@
             <Dependency>gtk3</Dependency>
             <Dependency>mutter</Dependency>
             <Dependency>gjs</Dependency>
+            <Dependency>pulseaudio-libs</Dependency>
             <Dependency>cairo</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libcroco</Dependency>
             <Dependency>gconf</Dependency>
             <Dependency>startup-notification</Dependency>
             <Dependency>libXrandr</Dependency>
