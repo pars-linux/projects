@@ -19,6 +19,7 @@
             <Dependency>libsoup-devel</Dependency>
             <Dependency>libxfce4util-devel</Dependency>
             <Dependency>libxfcegui4-devel</Dependency>
+            <Dependency>libXext-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">xfce4-screenshooter-1.7.9-fix-segfault-at-startup.patch</Patch>
