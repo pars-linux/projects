@@ -13,7 +13,7 @@
         <Summary>Utilities for creating and parsing messages using MIME</Summary>
         <Description>gmime contains gmime-uudecode and gmime-uuencode and will allow you to manipulate MIME messages. These utilities can also be used instead of uudecode and uuencode from the sharutils package.</Description>
         <Archive sha1sum="b1f00a3bd4dde51c5c0fc8d0503440e21e91438a" type="tarbz2">mirrors://gnome/gmime/2.4/gmime-2.4.15.tar.bz2</Archive>
-        
+
     </Source>
 
     <Package>
@@ -21,8 +21,18 @@
         <IsA>app:console</IsA>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>gmime-devel</Name>
+        <Summary>gmime development files</Summary>
+        <RuntimeDependencies>
+            <Dependency releaseFrom="current">gmime</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
             <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
@@ -32,7 +42,7 @@
         <IsA>data:doc</IsA>
         <Summary>gmime reference documents</Summary>
         <RuntimeDependencies>
-            <Dependency releaseFrom="10">gmime</Dependency>
+            <Dependency releaseFrom="current">gmime</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="doc">/usr/share/doc</Path>
