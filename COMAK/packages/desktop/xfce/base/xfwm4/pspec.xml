@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>Xfce window manager</Summary>
         <Description>The Xfce4 window manager manages the placement of application windows on the screen, provides beautiful window decorations, manages workspaces or virtual desktops, and natively supports multiscreen mode.</Description>
-        <Archive sha1sum="d3288cdf327c7c003f1af64798d887b805b5f679" type="tarbz2">http://archive.xfce.org/xfce/4.8/src/xfwm4-4.8.0.tar.bz2</Archive>
+        <Archive sha1sum="4075a689f572ae157ed80ab3ce5be85f09dac766" type="tarbz2">http://archive.xfce.org/src/xfce/xfwm4/4.8/xfwm4-4.8.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libxfce4util-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
@@ -32,9 +32,6 @@
             <Dependency>libwnck-devel</Dependency>
             <Dependency>libXdamage-devel</Dependency>
         </BuildDependencies>
-        <Patches>
-            <Patch level="1">tr-po.patch</Patch>
-        </Patches>
     </Source>
 
     <Package>
@@ -73,6 +70,13 @@
     </Package>
 
     <History>
+        <Update release="16">
+            <Date>2011-05-04</Date>
+            <Version>4.8.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="15">
             <Date>2011-03-30</Date>
             <Version>4.8.0</Version>
