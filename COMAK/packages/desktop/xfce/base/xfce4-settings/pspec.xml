@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Xfce settings plugins</Summary>
         <Description>Xfce4-settings is a configuration manager for Xfce desktop environment.</Description>
-        <Archive sha1sum="828a0c8d32c059f37195bf9b76e51fa81c34eb75" type="tarbz2">http://archive.xfce.org/xfce/4.8/src/xfce4-settings-4.8.0.tar.bz2</Archive>
+        <Archive sha1sum="71636f421eea105ff809837324ef6e9cad1e480b" type="tarbz2">http://archive.xfce.org/src/xfce/xfce4-settings/4.8/xfce4-settings-4.8.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libXi-devel</Dependency>
             <Dependency>libxklavier-devel</Dependency>
@@ -71,6 +71,13 @@
     </Package>
 
     <History>
+        <Update release="13">
+            <Date>2011-05-04</Date>
+            <Version>4.8.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="12">
             <Date>2011-03-30</Date>
             <Version>4.8.0</Version>
