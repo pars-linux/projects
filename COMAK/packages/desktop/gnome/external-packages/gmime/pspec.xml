@@ -51,6 +51,13 @@
     </Package>
 
     <History>
+        <Update release="12">
+            <Date>2011-05-04</Date>
+            <Version>2.4.15</Version>
+            <Comment>Split devel</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
         <Update release="11">
             <Date>2010-02-21</Date>
             <Version>2.4.15</Version>
