@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>GNOME configuration tools</Summary>
         <Description>gnome-control-center is GNOME's main interface for configuration of various aspects of your GNOME desktop.</Description>
-        <Archive sha1sum="7690fb77dc381cfe0c21f96e03458704fff73633" type="tarbz2">mirrors://gnome/gnome-control-center/2.32/gnome-control-center-2.32.0.tar.bz2</Archive>
+        <Archive sha1sum="1e5ba3117aba7f939de25dbed13e430b90968561" type="tarbz2">mirrors://gnome/gnome-control-center/2.32/gnome-control-center-2.32.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libcanberra</Dependency>
             <Dependency>gnome-desktop-devel</Dependency>
@@ -28,6 +28,20 @@
             <Dependency>libunique</Dependency>
             <Dependency>libXScrnSaver-devel</Dependency>
             <Dependency>libXft-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>libXi-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>freetype-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libXcursor-devel</Dependency>
+            <Dependency>gnome-menus-devel</Dependency>
+            <Dependency>libxklavier-devel</Dependency>
+            <Dependency>libgnomekbd-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -47,12 +61,27 @@
             <Dependency>docbook-xml4_1_2</Dependency>
             <Dependency>libunique</Dependency>
             <Dependency>libXft</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>libXi</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libXcursor</Dependency>
+            <Dependency>gnome-menus</Dependency>
+            <Dependency>libxklavier</Dependency>
+            <Dependency>libgnomekbd</Dependency>
+            <Dependency>libXScrnSaver</Dependency>
+            <Dependency>libcanberra-gtk</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
             <Path fileType="executable">/usr/sbin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
@@ -77,7 +106,28 @@
         </AdditionalFiles>
     </Package>
 
+    <Package>
+        <Name>gnome-control-center-devel</Name>
+        <Summary>Development files for gnome-control-center</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">gnome-control-center</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gnome-desktop-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
     <History>
+        <Update release="5">
+            <Date>2011-05-09</Date>
+            <Version>2.32.1</Version>
+            <Comment>Version bump, split headers</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="4">
             <Date>2010-09-28</Date>
             <Version>2.32.0</Version>
