@@ -15,7 +15,6 @@ def setup():
                          --libexecdir=/usr/lib/xfce4 \
                          --localstatedir=/var \
                          --disable-static \
-                         --enable-notifications \
                          --enable-python")
 
 
