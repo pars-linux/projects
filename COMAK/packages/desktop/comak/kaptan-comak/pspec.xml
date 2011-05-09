@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Kaptan, Pardus workspace configuration wizard</Summary>
         <Description>Kaptan lets you configure your workspace on first login.</Description>
-        <Archive sha1sum="a07de27e0f38beb83cc7798e48258de3899fe276" type="targz">http://comak.comu.edu.tr/source/kaptan-5.0.5.tar.gz</Archive>
+        <Archive sha1sum="6d310f9974bd5a92875aafd91a6a7d205b22097a" type="targz">http://comak.comu.edu.tr/source/kaptan-5.0.5_2464.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>python-qt-devel</Dependency>
             <Dependency>pardus-desktop-services</Dependency>
@@ -40,6 +40,14 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-05-9</Date>
+            <Version>5.0.5_2464</Version>
+            <Comment>Add XFCE support.
+                     Version bump.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>enginmanap@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-23</Date>
             <Version>5.0.5</Version>
