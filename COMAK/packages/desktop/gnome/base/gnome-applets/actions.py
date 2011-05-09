@@ -9,9 +9,9 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def setup():
-    autotools.configure("--disable-static\
-                         --disable-scrollkeeper\
-                         --disable-schemas-install\
+    autotools.configure("--disable-static \
+                         --disable-scrollkeeper \
+                         --disable-schemas-install \
                          --enable-mixer-applet")
 def build():
     autotools.make()
