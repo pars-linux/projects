@@ -78,7 +78,7 @@ class Kaptan(QtGui.QWidget):
             ####################
             #title = screen.Widget.title.toString()
             title = i18n(screen.Widget.title)
-            
+
             self.titles.append(title)
 
         # draw progress pie
@@ -245,6 +245,8 @@ if __name__ == "__main__":
         QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
         kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
         start = kaptanConfig.value("General/RunOnStart").toString()
+        if ctx.Pds.session.Name == "LXDE":
+            os.popen("cp -r /etc/xdg/lxsession %s/.config/"%os.getenv("HOME"))
 
         if not start == "False":
             if ctx.Pds.session.Name == "gnome":

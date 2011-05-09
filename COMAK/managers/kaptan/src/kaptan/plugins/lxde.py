@@ -28,6 +28,7 @@ TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
 #libfm configuration files
 CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"], QSettings.IniFormat)
+CONFIG_PCMANFM = QSettings("%s/.config/pcmanfm/LXDE/pcmanfm.conf"%os.environ["HOME"], QSettings.IniFormat)
 
 #openbox configuration files
 FILE_OPENBOXRC = "%s/.config/openbox/lxde-rc.xml"%os.environ["HOME"]
@@ -133,6 +134,9 @@ class Wallpaper(base.Wallpaper):
     def setWallpaper(self ,wallpaper):
         if wallpaper:
             os.popen("pcmanfm -w %s" %wallpaper)
+            CONFIG_PCMANFM.setValue("desktop/wallpaper",QString(wallpaper))
+            CONFIG_PCMANFM.sync()
+
         #if color :
         #    os.popen("pcmanfm --wallpaper-mode %s" % color)
 
@@ -156,8 +160,8 @@ class Style(base.Style):
         save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
-        update_lxsession()
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
+        update_lxsession()
         new_text = re.sub(r"sNet/IconThemeName[ ]?=[ ]?([a-zA-Z_1-9-]{0,100})","sNet/IconThemeName="+iconTheme, CONFIG_LXSESSION)
         save_lxsession(new_text)
 
