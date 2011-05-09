@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A remote desktop system for GNOME</Summary>
         <Description>Vino is a VNC server that allows remote users to connect to a running GNOME session using VNC.</Description>
-        <Archive sha1sum="85c0a8127545d45f3e9ab7027ef9c598f04e9d58" type="tarbz2">mirrors://gnome/vino/2.32/vino-2.32.0.tar.bz2</Archive>
+        <Archive sha1sum="e457d1c5705607c3cd18b7e6fbb8776b7483c733" type="tarbz2">mirrors://gnome/vino/2.32/vino-2.32.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>avahi-devel</Dependency>
             <Dependency>libgcrypt-devel</Dependency>
@@ -26,6 +26,12 @@
             <Dependency>libgnome-keyring-devel</Dependency>
             <Dependency>libXft-devel</Dependency>
             <Dependency>avahi-glib-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>jpeg-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -44,6 +50,13 @@
             <Dependency>libgnome-keyring</Dependency>
             <Dependency>libXft</Dependency>
             <Dependency>avahi-glib</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>jpeg</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>avahi-libs</Dependency>
        </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
@@ -60,6 +73,13 @@
     </Package>
 
     <History>
+        <Update release="4">
+            <Date>2011-05-09</Date>
+            <Version>2.32.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="3">
             <Date>2010-10-02</Date>
             <Version>2.32.0</Version>
