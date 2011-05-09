@@ -11,8 +11,8 @@
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>Extra applets for GNOME panel</Summary>
-        <Description>This package includes various gnome-applets for your panels.</Description>
-        <Archive sha1sum="7ca2bc618b57fda400efc0f1ab9b6b6f97eb9f2a" type="tarbz2">mirrors://gnome/gnome-applets/2.32/gnome-applets-2.32.0.tar.bz2</Archive>
+        <Description>gnome-applets includes various Gnome applets for your panels.</Description>
+        <Archive sha1sum="6edc3aea2bd2198b2bdbdb1fa63b481f724c8fe2" type="tarbz2">mirrors://gnome/gnome-applets/2.32/gnome-applets-2.32.1.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>icon-theme-gnome</Dependency>
             <Dependency>gtk2-devel</Dependency>
@@ -25,6 +25,14 @@
             <Dependency>docbook-xml4_1_2</Dependency>
             <Dependency>docbook-xml4_3</Dependency>
             <Dependency>NetworkManager-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>libwnck-devel</Dependency>
+            <Dependency>libbonobo-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libgweather-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -40,6 +48,15 @@
             <Dependency>gst-plugins-base</Dependency>
             <Dependency>gstreamer</Dependency>
             <Dependency>NetworkManager</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libwnck</Dependency>
+            <Dependency>hal-libs</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libgweather</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
@@ -62,6 +79,13 @@
     </Package>
 
     <History>
+        <Update release="8">
+            <Date>2011-05-09</Date>
+            <Version>2.32.1.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="7">
             <Date>2010-10-30</Date>
             <Version>2.32.0</Version>
