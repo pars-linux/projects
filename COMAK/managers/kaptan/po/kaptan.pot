@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 15:16+0200\n"
+"POT-Creation-Date: 2011-05-10 18:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,333 +17,561 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .tmp/ui_kaptan.py:357 .tmp/kaptan.desktop.in.h:1
-msgid "Kaptan"
-msgstr ""
-
-#: .tmp/ui_kaptan.py:358
-msgid "Welcome to Pardus"
-msgstr ""
-
-#: .tmp/ui_kaptan.py:359
-msgid "Cancel"
-msgstr ""
-
-#: .tmp/ui_kaptan.py:360
-msgid "Back"
-msgstr ""
-
-#: .tmp/ui_kaptan.py:361
-msgid "Next"
-msgstr ""
-
-#: .tmp/ui_kaptan.py:362
-msgid "Finish"
-msgstr ""
-
-#: .tmp/ui_kaptan.py:363
-msgid "Apply Settings"
-msgstr ""
-
-#: .tmp/scrSmolt.py:31 .tmp/ui_scrSmolt.py:154
+#: .tmp/scrSmolt.py:46 .tmp/ui_scrSmolt.py:158 .tmp/ui_scrSmolt_comak.py:158
 msgid "Smolt"
 msgstr ""
 
-#: .tmp/scrSmolt.py:32
+#: .tmp/scrSmolt.py:47
 msgid "Help Pardus Improve!"
 msgstr ""
 
-#: .tmp/scrSmolt.py:68
+#: .tmp/scrSmolt.py:83
 msgid "Label"
 msgstr ""
 
-#: .tmp/scrSmolt.py:69
+#: .tmp/scrSmolt.py:84
 msgid "Data"
 msgstr ""
 
-#: .tmp/scrSmolt.py:108
+#: .tmp/scrSmolt.py:123
 msgid "&Host Information"
 msgstr ""
 
-#: .tmp/scrSmolt.py:111 .tmp/ui_scrSmolt.py:158
+#: .tmp/scrSmolt.py:126 .tmp/ui_scrSmolt.py:162 .tmp/ui_scrSmolt_comak.py:162
 msgid "&Privacy policy"
 msgstr ""
 
-#: .tmp/scrSmolt.py:114
+#: .tmp/scrSmolt.py:129
 msgid "UUID"
 msgstr ""
 
-#: .tmp/scrSmolt.py:115
+#: .tmp/scrSmolt.py:130
 msgid "OS"
 msgstr ""
 
-#: .tmp/scrSmolt.py:116
+#: .tmp/scrSmolt.py:131
 msgid "Default Run Level"
 msgstr ""
 
-#: .tmp/scrSmolt.py:117
+#: .tmp/scrSmolt.py:132
 msgid "Language"
 msgstr ""
 
-#: .tmp/scrSmolt.py:118
+#: .tmp/scrSmolt.py:133
 msgid "Platform"
 msgstr ""
 
-#: .tmp/scrSmolt.py:119
+#: .tmp/scrSmolt.py:134
 msgid "BogoMIPS"
 msgstr ""
 
-#: .tmp/scrSmolt.py:120
+#: .tmp/scrSmolt.py:135
 msgid "CPU Vendor"
 msgstr ""
 
-#: .tmp/scrSmolt.py:121
+#: .tmp/scrSmolt.py:136
 msgid "CPU Model"
 msgstr ""
 
-#: .tmp/scrSmolt.py:122
+#: .tmp/scrSmolt.py:137
 msgid "CPU Stepping"
 msgstr ""
 
-#: .tmp/scrSmolt.py:123
+#: .tmp/scrSmolt.py:138
 msgid "CPU Family"
 msgstr ""
 
-#: .tmp/scrSmolt.py:124
+#: .tmp/scrSmolt.py:139
 msgid "CPU Model Num"
 msgstr ""
 
-#: .tmp/scrSmolt.py:125
+#: .tmp/scrSmolt.py:140
 msgid "Number of CPUs"
 msgstr ""
 
-#: .tmp/scrSmolt.py:126
+#: .tmp/scrSmolt.py:141
 msgid "CPU Speed"
 msgstr ""
 
-#: .tmp/scrSmolt.py:127
+#: .tmp/scrSmolt.py:142
 msgid "System Memory"
 msgstr ""
 
-#: .tmp/scrSmolt.py:128
+#: .tmp/scrSmolt.py:143
 msgid "System Swap"
 msgstr ""
 
-#: .tmp/scrSmolt.py:129
+#: .tmp/scrSmolt.py:144
 msgid "Vendor"
 msgstr ""
 
-#: .tmp/scrSmolt.py:130
+#: .tmp/scrSmolt.py:145
 msgid "System"
 msgstr ""
 
-#: .tmp/scrSmolt.py:131
+#: .tmp/scrSmolt.py:146
 msgid "Form Factor"
 msgstr ""
 
-#: .tmp/scrSmolt.py:132
+#: .tmp/scrSmolt.py:147
 msgid "Kernel"
 msgstr ""
 
-#: .tmp/scrSmolt.py:133
+#: .tmp/scrSmolt.py:148
 msgid "SELinux Enabled"
 msgstr ""
 
-#: .tmp/scrSmolt.py:134
+#: .tmp/scrSmolt.py:149
 msgid "SELinux Policy"
 msgstr ""
 
-#: .tmp/scrSmolt.py:135
+#: .tmp/scrSmolt.py:150
 msgid "SELinux Enforce"
 msgstr ""
 
-#: .tmp/scrSmolt.py:148
+#: .tmp/scrSmolt.py:163
 msgid "Yes"
 msgstr ""
 
-#: .tmp/scrSmolt.py:150
+#: .tmp/scrSmolt.py:165
 msgid "No"
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:236 .tmp/scrStyle.py:37
-msgid "Themes"
+#: .tmp/ui_scrStyleItem.py:74 .tmp/ui_scrAvatar.py:251
+#: .tmp/ui_wallpaperItem.py:77
+msgid "Form"
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:237
+#: .tmp/ui_scrStyleItem.py:75
+msgid "styleName"
+msgstr ""
+
+#: .tmp/ui_scrStyleItem.py:76
+msgid "styleDesc"
+msgstr ""
+
+#: .tmp/ui_scrGoodbye_comak.py:329 .tmp/scrGoodbye.py:47
+#: .tmp/ui_scrGoodbye.py:329
+msgid "More"
+msgstr ""
+
+#: .tmp/ui_scrGoodbye_comak.py:330 .tmp/ui_scrGoodbye.py:330
 msgid ""
-"Choose your favorite theme and desktop type. Customize Pardus with colorful "
-"styles and themes."
+"<b>Your settings have been applied.</b> Now you can start enjoying Pardus or "
+"you can checkout the following links and applications for more settings or "
+"for help and support. Don't forget to <b>join our community!</b>"
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:238
-msgid "KDE Themes"
+#: .tmp/ui_scrGoodbye_comak.py:331 .tmp/ui_scrGoodbye_comak.py:332
+#: .tmp/ui_scrSmolt.py:160 .tmp/ui_scrSmolt_comak.py:160
+#: .tmp/ui_scrGoodbye.py:331 .tmp/ui_scrGoodbye.py:332
+msgid "My Smolt Page"
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:239
-msgid "Icons"
+#: .tmp/ui_scrGoodbye_comak.py:333 .tmp/ui_scrGoodbye.py:333
+msgid "Go to your Smolt page and rate your hardware components."
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:242
-msgid "Oxygen - The official icon set of KDE"
+#: .tmp/ui_scrGoodbye_comak.py:334 .tmp/ui_scrGoodbye_comak.py:336
+#: .tmp/ui_scrGoodbye.py:334 .tmp/ui_scrGoodbye.py:336
+msgid "System Settings"
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:243
-msgid "Milky - The official icon set of Pardus"
+#: .tmp/ui_scrGoodbye_comak.py:335 .tmp/ui_scrGoodbye.py:335
+msgid ""
+"Configuration tools for Pardus such as the display, firewall, keyboard, user "
+"manager..."
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:245
-msgid "Desktop Type"
+#: .tmp/ui_scrGoodbye_comak.py:337 .tmp/ui_scrGoodbye_comak.py:339
+#: .tmp/ui_scrGoodbye.py:337 .tmp/ui_scrGoodbye.py:339
+msgid "Help and Support"
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:246
-msgid "Desktop view (KDE4 Style)"
+#: .tmp/ui_scrGoodbye_comak.py:338 .tmp/ui_scrGoodbye.py:338
+msgid ""
+"Pardus community, mailing lists, chat rooms, Wiki documents, help and "
+"support pages..."
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:247
-msgid "Folder view (KDE3 Style)"
+#: .tmp/ui_scrSearch.py:104
+msgid "Search"
 msgstr ""
 
-#: .tmp/ui_scrStyle.py:248
-msgid "Number of Desktops"
+#: .tmp/ui_scrSearch.py:105
+msgid ""
+"Strigi Desktop Search indexes your frequently used files. This gives you "
+"very fast file search results. Strigi also can search for files based on "
+"their contents."
 msgstr ""
 
-#: .tmp/scrPackage.py:28 .tmp/ui_scrPackage.py:132
-msgid "Packages"
+#: .tmp/ui_scrSearch.py:106
+msgid "Allow Strigi to index my files"
 msgstr ""
 
-#: .tmp/scrPackage.py:29
-msgid "Install / Remove Programs"
+#: .tmp/ui_scrSearch.py:107
+msgid "Search Options"
 msgstr ""
 
-#: .tmp/ui_scrSummary.py:85 .tmp/scrSummary.py:35
+#: .tmp/scrAvatar.py:43
+msgid "User Picture"
+msgstr ""
+
+#: .tmp/scrAvatar.py:55
+msgid "Create Your User Picture"
+msgstr ""
+
+#: .tmp/ui_scrSummary.py:89 .tmp/scrSummary.py:40
 msgid "Summary"
 msgstr ""
 
-#: .tmp/ui_scrSummary.py:86
+#: .tmp/ui_scrSummary.py:90
 msgid ""
 "You have successfully finished all steps. Here's a summary of the settings "
 "you want to apply. Click <b>Apply Settings</b> to save them now. You are now "
 "ready to enjoy Pardus!"
 msgstr ""
 
-#: .tmp/ui_scrSummary.py:87
+#: .tmp/ui_scrSummary.py:91
 msgid "The following settings will be applied"
 msgstr ""
 
-#: .tmp/scrMouse.py:29 .tmp/ui_scrMouse.py:202
+#: .tmp/scrWelcome.py:32 .tmp/ui_scrWelcome.py:81
+msgid "Welcome"
+msgstr ""
+
+#: .tmp/scrWelcome.py:33
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:207 .tmp/scrMouse.py:42 .tmp/ui_scrMouse_lxde.py:194
 msgid "Mouse"
 msgstr ""
 
-#: .tmp/scrMouse.py:30
+#: .tmp/ui_scrMouse.py:208 .tmp/ui_scrMouse_lxde.py:195
+msgid ""
+"The <b>clicking behavior</b> defines how many times you want to click when "
+"you are opening a file. If you are <b>left handed</b>, you may prefer to "
+"swap the left and right buttons of your pointing device."
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:209
+msgid "Clicking Behaviour"
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:210
+msgid "Single-click to open files and folders"
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:211
+msgid "Dou&ble-click to open files and folders"
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:212 .tmp/ui_scrMouse_lxde.py:199
+msgid "Button Order"
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:213 .tmp/ui_scrMouse_lxde.py:200
+msgid "Right Hand"
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:214 .tmp/ui_scrMouse_lxde.py:201
+msgid "Left Hand"
+msgstr ""
+
+#: .tmp/ui_scrMouse.py:215 .tmp/ui_scrMouse_lxde.py:202
+msgid "Reverse scrolling"
+msgstr ""
+
+#: .tmp/ui_scrMenu.py:127 .tmp/scrMenu.py:29
+msgid "Menu"
+msgstr ""
+
+#: .tmp/ui_scrMenu.py:128
+msgid ""
+"You can also customize your <b>KDE menu</b> as you like. Please choose one "
+"from the following styles."
+msgstr ""
+
+#: .tmp/ui_scrMenu.py:129 .tmp/scrMenu.py:40
+msgid "Kick-off Menu"
+msgstr ""
+
+#: .tmp/ui_scrMenu.py:130 .tmp/scrMenu.py:46
+msgid "Simple Menu"
+msgstr ""
+
+#: .tmp/ui_scrMenu.py:131 .tmp/scrMenu.py:52
+msgid "Lancelot Menu"
+msgstr ""
+
+#: .tmp/ui_scrMenu.py:132
+msgid "Sample"
+msgstr ""
+
+#: .tmp/kaptan.desktop.in.h:1 .tmp/ui_kaptan.py:362
+msgid "Kaptan"
+msgstr ""
+
+#: .tmp/kaptan.desktop.in.h:2
+msgid "Welcome Wizard"
+msgstr ""
+
+#: .tmp/scrMouse.py:43
 msgid "Setup Mouse Behavior"
 msgstr ""
 
-#: .tmp/scrMouse.py:140
+#: .tmp/scrMouse.py:164
 msgid "Left Handed"
 msgstr ""
 
-#: .tmp/scrMouse.py:140
+#: .tmp/scrMouse.py:164
 msgid "Right Handed"
 msgstr ""
 
-#: .tmp/scrMouse.py:141
+#: .tmp/scrMouse.py:165
 msgid "Single Click "
 msgstr ""
 
-#: .tmp/scrMouse.py:141
+#: .tmp/scrMouse.py:165
 msgid "Double Click"
 msgstr ""
 
-#: .tmp/ui_scrAvatar.py:247 .tmp/ui_wallpaperItem.py:72
-#: .tmp/ui_scrStyleItem.py:69
-msgid "Form"
+#: .tmp/scrGoodbye.py:48
+msgid "Congratulations!"
 msgstr ""
 
-#: .tmp/ui_scrAvatar.py:248
+#: .tmp/ui_kaptan.py:363
+msgid "Welcome to Pardus"
+msgstr ""
+
+#: .tmp/ui_kaptan.py:364
+msgid "Cancel"
+msgstr ""
+
+#: .tmp/ui_kaptan.py:365
+msgid "Back"
+msgstr ""
+
+#: .tmp/ui_kaptan.py:366
+msgid "Next"
+msgstr ""
+
+#: .tmp/ui_kaptan.py:367
+msgid "Finish"
+msgstr ""
+
+#: .tmp/ui_kaptan.py:368
+msgid "Apply Settings"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:244 .tmp/scrStyle.py:46
+msgid "Themes"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:245
+msgid ""
+"Choose your favorite theme and desktop type. Customize Pardus with colorful "
+"styles and themes."
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:246
+msgid "KDE Themes"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:247
+msgid "Icons"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:250 .tmp/ui_scrStyle.py:251
+msgid "Oxygen"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:252
+msgid "Milky"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:254
+msgid "Desktop Type"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:255
+msgid "Desktop view (KDE4 Style)"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:256
+msgid "Folder view (KDE3 Style)"
+msgstr ""
+
+#: .tmp/ui_scrStyle.py:257
+msgid "Number of Desktops"
+msgstr ""
+
+#: .tmp/scrStyle.py:47
+msgid "Customize Your Desktop"
+msgstr ""
+
+#: .tmp/ui_scrPackage_lxde.py:130 .tmp/ui_scrPackage.py:136
+#: .tmp/scrPackage.py:30
+msgid "Packages"
+msgstr ""
+
+#: .tmp/ui_scrPackage_lxde.py:131
+msgid "Add Enlightenment Repository"
+msgstr ""
+
+#: .tmp/ui_scrPackage_lxde.py:132 .tmp/ui_scrPackage.py:140
+msgid ""
+"To install and remove programs to Pardus, use Package-Manager. Package-"
+"Manager also can automatically install the latest updates available. You can "
+"set the period for checking new updates."
+msgstr ""
+
+#: .tmp/ui_scrPackage_lxde.py:133
+msgid "Updates and Add Repository"
+msgstr ""
+
+#: .tmp/ui_scrAvatar.py:252
 msgid ""
 "This screen helps you set your <b>user picture</b>. You can either choose an "
 "image from a file or you can capture an image from your camera. Select an "
 "option from the <b>options</b> menu."
 msgstr ""
 
-#: .tmp/ui_scrAvatar.py:249
+#: .tmp/ui_scrAvatar.py:253
 msgid "Options"
 msgstr ""
 
-#: .tmp/ui_scrAvatar.py:250
+#: .tmp/ui_scrAvatar.py:254
 msgid "Choose an image"
 msgstr ""
 
-#: .tmp/ui_scrAvatar.py:251
+#: .tmp/ui_scrAvatar.py:255
 msgid "Capture"
 msgstr ""
 
-#: .tmp/ui_scrAvatar.py:252
+#: .tmp/ui_scrAvatar.py:256
 msgid "Recapture"
 msgstr ""
 
-#: .tmp/scrMenu.py:26 .tmp/ui_scrMenu.py:123
-msgid "Menu"
+#: .tmp/ui_scrPackage.py:137
+msgid "Show updates in the system tray"
 msgstr ""
 
-#: .tmp/scrMenu.py:27
+#: .tmp/ui_scrPackage.py:138
+msgid "Check updates automatically every"
+msgstr ""
+
+#: .tmp/ui_scrPackage.py:139
+msgid " hours"
+msgstr ""
+
+#: .tmp/ui_scrPackage.py:141
+msgid "Updates"
+msgstr ""
+
+#: .tmp/ui_scrKeyboard.py:97 .tmp/scrKeyboard.py:35
+msgid "Keyboard"
+msgstr ""
+
+#: .tmp/ui_scrKeyboard.py:98
+msgid ""
+"Kaptan automatically selects the best keyboard layout according to your "
+"system language. If you want to use another layout other than the default "
+"keyboard layout, you can make your selection and test it instantly."
+msgstr ""
+
+#: .tmp/ui_scrKeyboard.py:99
+msgid "Test Layout"
+msgstr ""
+
+#: .tmp/scrMenu.py:30
 msgid "Choose a Menu Style"
 msgstr ""
 
-#: .tmp/scrMenu.py:41 .tmp/ui_scrMenu.py:125
-msgid "Kick-off Menu"
-msgstr ""
-
-#: .tmp/scrMenu.py:43
+#: .tmp/scrMenu.py:42
 msgid ""
 "Kick-off menu is the default menu of Pardus.<br><br>The program shortcuts "
 "are easy to access and well organized."
 msgstr ""
 
-#: .tmp/scrMenu.py:47 .tmp/ui_scrMenu.py:126
-msgid "Simple Menu"
-msgstr ""
-
-#: .tmp/scrMenu.py:49
+#: .tmp/scrMenu.py:48
 msgid ""
 "Simple menu is an old style menu from KDE 3.<br><br>It is a very lightweight "
 "menu thus it is recommended for slower PC's."
 msgstr ""
 
-#: .tmp/scrMenu.py:53 .tmp/ui_scrMenu.py:127
-msgid "Lancelot Menu"
-msgstr ""
-
-#: .tmp/scrMenu.py:55
+#: .tmp/scrMenu.py:54
 msgid ""
 "Lancelot is an advanced and highly customizable menu for Pardus.<br><br>The "
 "program shortcuts are easy to access and well organized."
 msgstr ""
 
-#: .tmp/scrAvatar.py:36
-msgid "User Picture"
+#: .tmp/ui_scrMouse_lxde.py:196
+msgid "Mouse Speed"
 msgstr ""
 
-#: .tmp/scrAvatar.py:48
-msgid "Create Your User Picture"
+#: .tmp/ui_scrMouse_lxde.py:197
+msgid "Sensitivity:    Low                     High"
 msgstr ""
 
-#: .tmp/ui_scrSmolt.py:155
+#: .tmp/ui_scrMouse_lxde.py:198
+msgid "Acceleration:Slow                     Fast"
+msgstr ""
+
+#: .tmp/scrWallpaper.py:36 .tmp/ui_scrWallpaper.py:135
+msgid "Wallpaper"
+msgstr ""
+
+#: .tmp/scrWallpaper.py:37
+msgid "Choose a Wallpaper"
+msgstr ""
+
+#: .tmp/ui_scrWallpaper.py:136
+msgid ""
+"Choose your favorite wallpaper for Pardus. Don't forget to check out "
+"<b>Desktop Settings</b> for downloading new and cool wallpapers."
+msgstr ""
+
+#: .tmp/ui_scrWallpaper.py:137
+msgid "Wallpapers"
+msgstr ""
+
+#: .tmp/ui_scrWallpaper.py:139
+msgid "Choose wallpaper from file"
+msgstr ""
+
+#: .tmp/ui_scrWallpaper.py:140
+msgid "Don't change wallpaper"
+msgstr ""
+
+#: .tmp/ui_scrWelcome.py:82
+msgid "What is Pardus?"
+msgstr ""
+
+#: .tmp/ui_scrWelcome.py:83
+msgid ""
+"<b>Pardus</b> is a reliable, secure, fast and user friendly operating "
+"system. <br /><br />With Pardus, you can connect to the internet, read your "
+"e-mails, work with your office documents, watch movies, play music, develop "
+"applications, play games and much more! <br /><br /><b>Kaptan</b> will help "
+"you personalize your Pardus workspace easily and quickly. Please click "
+"<b>next</b> in order to begin."
+msgstr ""
+
+#: .tmp/ui_scrSmolt.py:159 .tmp/ui_scrSmolt_comak.py:159
 msgid ""
 "<b>Smolt</b> is a tool that collects the information in the following table "
 "and sends it to us for which lets us improve Pardus according to the user "
 "profile statistics."
 msgstr ""
 
-#: .tmp/ui_scrSmolt.py:156 .tmp/ui_scrGoodbye.py:327 .tmp/ui_scrGoodbye.py:328
-msgid "My Smolt Page"
-msgstr ""
-
-#: .tmp/ui_scrSmolt.py:157
+#: .tmp/ui_scrSmolt.py:161 .tmp/ui_scrSmolt_comak.py:161
 msgid "&Send my profile"
 msgstr ""
 
-#: .tmp/ui_scrSmolt.py:159
+#: .tmp/ui_scrSmolt.py:163 .tmp/ui_scrSmolt_comak.py:163
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
 "REC-html40/strict.dtd\">\n"
@@ -387,54 +615,33 @@ msgid ""
 "body></html>"
 msgstr ""
 
-#: .tmp/kaptan.desktop.in.h:2
-msgid "Welcome Wizard"
-msgstr ""
-
-#: .tmp/ui_wallpaperItem.py:73
-msgid "wallPaperName"
-msgstr ""
-
-#: .tmp/ui_wallpaperItem.py:74
-msgid "wallpaperDesc"
-msgstr ""
-
-#: .tmp/scrSummary.py:36
+#: .tmp/scrSummary.py:41
 msgid "Save Your Settings"
 msgstr ""
 
-#: .tmp/scrSummary.py:59
+#: .tmp/scrSummary.py:62
 msgid "Mouse Settings"
 msgstr ""
 
-#: .tmp/scrSummary.py:61
+#: .tmp/scrSummary.py:64
 #, python-format
 msgid "Selected Mouse configuration: <b>%s</b>"
 msgstr ""
 
-#: .tmp/scrSummary.py:62
+#: .tmp/scrSummary.py:65
 #, python-format
-msgid "Selected clicking behaviour: <b>%s</b>"
+msgid "Selected clicking behavior: <b>%s</b>"
 msgstr ""
 
-#: .tmp/scrSummary.py:66
-msgid "Menu Settings"
-msgstr ""
-
-#: .tmp/scrSummary.py:67
-#, python-format
-msgid "Selected Menu: <b>%s</b>"
-msgstr ""
-
-#: .tmp/scrSummary.py:71
+#: .tmp/scrSummary.py:70
 msgid "Wallpaper Settings"
 msgstr ""
 
-#: .tmp/scrSummary.py:73
+#: .tmp/scrSummary.py:72
 msgid "You haven't selected any wallpaper."
 msgstr ""
 
-#: .tmp/scrSummary.py:75
+#: .tmp/scrSummary.py:74
 #, python-format
 msgid "Selected Wallpaper: <b>%s</b>"
 msgstr ""
@@ -452,229 +659,56 @@ msgstr ""
 msgid "Selected Style: <b>%s</b>"
 msgstr ""
 
-#: .tmp/scrSummary.py:91
+#: .tmp/scrSummary.py:86
+#, python-format
+msgid "Desktop Number: <b>%s</b>"
+msgstr ""
+
+#: .tmp/scrSummary.py:102
 msgid "Smolt Settings"
 msgstr ""
 
-#: .tmp/scrSummary.py:92
+#: .tmp/scrSummary.py:103
 #, python-format
 msgid "Send my profile: <b>%s</b>"
 msgstr ""
 
-#: .tmp/scrSummary.py:117
+#: .tmp/scrSummary.py:128
 msgid "Error"
 msgstr ""
 
-#: .tmp/scrSummary.py:117
+#: .tmp/scrSummary.py:128
 msgid "Cannot restart plasma-desktop. Kaptan will now shutdown."
 msgstr ""
 
-#: .tmp/ui_scrWelcome.py:77 .tmp/scrWelcome.py:27
-msgid "Welcome"
+#: .tmp/scrPackage.py:31
+msgid "Install / Remove Programs"
 msgstr ""
 
-#: .tmp/ui_scrWelcome.py:78
-msgid "What is Pardus?"
+#: .tmp/scrPackage.py:53
+msgid "Add COMAK Repository"
 msgstr ""
 
-#: .tmp/ui_scrWelcome.py:79
-msgid ""
-"<b>Pardus</b> is a reliable, secure, fast and user friendly operating "
-"system. <br /><br />With Pardus, you can connect to the internet, read your "
-"e-mails, work with your office documents, watch movies, play music, develop "
-"applications, play games and much more! <br /><br /><b>Kaptan</b> will help "
-"you personalize your Pardus workspace easily and quickly. Please click "
-"<b>next</b> in order to begin."
+#: .tmp/scrPackage.py:59 .tmp/scrPackage.py:65
+msgid "comak-repo is already available on your system."
 msgstr ""
 
-#: .tmp/ui_scrPackage.py:133
-msgid "Show updates in the system tray"
+#: .tmp/scrPackage.py:87
+msgid "Authentication Error"
 msgstr ""
 
-#: .tmp/ui_scrPackage.py:134
-msgid "Check updates automatically every"
+#: .tmp/scrPackage.py:88
+msgid "You are not authorized for this operation."
 msgstr ""
 
-#: .tmp/ui_scrPackage.py:135
-msgid " hours"
+#: .tmp/ui_wallpaperItem.py:78
+msgid "wallPaperName"
 msgstr ""
 
-#: .tmp/ui_scrPackage.py:136
-msgid ""
-"To install and remove programs to Pardus, use Package-Manager. Package-"
-"Manager also can automatically install the latest updates available. You can "
-"set the period for checking new updates."
+#: .tmp/ui_wallpaperItem.py:79
+msgid "wallpaperDesc"
 msgstr ""
 
-#: .tmp/ui_scrPackage.py:137
-msgid "Updates"
-msgstr ""
-
-#: .tmp/ui_scrMenu.py:124
-msgid ""
-"You can also customize your <b>KDE menu</b> as you like. Please choose one "
-"from the following styles."
-msgstr ""
-
-#: .tmp/ui_scrMenu.py:128
-msgid "Sample"
-msgstr ""
-
-#: .tmp/ui_scrStyleItem.py:70
-msgid "styleName"
-msgstr ""
-
-#: .tmp/ui_scrStyleItem.py:71
-msgid "styleDesc"
-msgstr ""
-
-#: .tmp/scrGoodbye.py:24 .tmp/ui_scrGoodbye.py:325
-msgid "More"
-msgstr ""
-
-#: .tmp/scrGoodbye.py:25
-msgid "Congratulations!"
-msgstr ""
-
-#: .tmp/ui_scrSearch.py:100
-msgid "Search"
-msgstr ""
-
-#: .tmp/ui_scrSearch.py:101
-msgid ""
-"Strigi Desktop Search indexes your frequently used files. This gives you "
-"very fast file search results. Strigi also can search for files based on "
-"their contents."
-msgstr ""
-
-#: .tmp/ui_scrSearch.py:102
-msgid "Allow Strigi to index my files"
-msgstr ""
-
-#: .tmp/ui_scrSearch.py:103
-msgid "Search Options"
-msgstr ""
-
-#: .tmp/scrWelcome.py:28
-#, python-format
-msgid "Welcome to %s"
-msgstr ""
-
-#: .tmp/scrWallpaper.py:34 .tmp/ui_scrWallpaper.py:131
-msgid "Wallpaper"
-msgstr ""
-
-#: .tmp/scrWallpaper.py:35
-msgid "Choose a Wallpaper"
-msgstr ""
-
-#: .tmp/ui_scrGoodbye.py:326
-msgid ""
-"<b>Your settings have been applied.</b> Now you can start enjoying Pardus or "
-"you can checkout the following links and applications for more settings or "
-"for help and support. Don't forget to <b>join our community!</b>"
-msgstr ""
-
-#: .tmp/ui_scrGoodbye.py:329
-msgid "Go to your Smolt page and rate your hardware components."
-msgstr ""
-
-#: .tmp/ui_scrGoodbye.py:330 .tmp/ui_scrGoodbye.py:332
-msgid "System Settings"
-msgstr ""
-
-#: .tmp/ui_scrGoodbye.py:331
-msgid ""
-"Configuration tools for Pardus such as the display, firewall, keyboard, user "
-"manager..."
-msgstr ""
-
-#: .tmp/ui_scrGoodbye.py:333 .tmp/ui_scrGoodbye.py:335
-msgid "Help and Support"
-msgstr ""
-
-#: .tmp/ui_scrGoodbye.py:334
-msgid ""
-"Pardus community, mailing lists, chat rooms, Wiki documents, help and "
-"support pages..."
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:203
-msgid ""
-"The <b>clicking behavior</b> defines how many times you want to click when "
-"you are opening a file. If you are <b>left handed</b>, you may prefer to "
-"swap the left and right buttons of your pointing device."
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:204
-msgid "Clicking Behaviour"
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:205
-msgid "Single-click to open files and folders"
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:206
-msgid "Dou&ble-click to open files and folders"
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:207
-msgid "Button Order"
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:208
-msgid "Right Hand"
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:209
-msgid "Left Hand"
-msgstr ""
-
-#: .tmp/ui_scrMouse.py:210
-msgid "Reverse scrolling"
-msgstr ""
-
-#: .tmp/scrStyle.py:38
-msgid "Customize Your Desktop"
-msgstr ""
-
-#: .tmp/scrKeyboard.py:31 .tmp/ui_scrKeyboard.py:93
-msgid "Keyboard"
-msgstr ""
-
-#: .tmp/scrKeyboard.py:32
+#: .tmp/scrKeyboard.py:36
 msgid "Keyboard Layout Language"
 msgstr ""
-
-#: .tmp/ui_scrWallpaper.py:132
-msgid ""
-"Choose your favorite wallpaper for Pardus. Don't forget to check out "
-"<b>Desktop Settings</b> for downloading new and cool wallpapers."
-msgstr ""
-
-#: .tmp/ui_scrWallpaper.py:133
-msgid "Wallpapers"
-msgstr ""
-
-#: .tmp/ui_scrWallpaper.py:135
-msgid "Choose wallpaper from file"
-msgstr ""
-
-#: .tmp/ui_scrWallpaper.py:136
-msgid "Don't change wallpaper"
-msgstr ""
-
-#: .tmp/ui_scrKeyboard.py:94
-msgid ""
-"Kaptan automatically selects the best keyboard layout according to your "
-"system language. If you want to use another layout other than the default "
-"keyboard layout, you can make your selection and test it instantly."
-msgstr ""
-
-#: .tmp/ui_scrKeyboard.py:95
-msgid "Test Layout"
-msgstr ""
-
-
-
-
