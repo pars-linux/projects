@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>pardus-default-settings-gnome3</Name>
+        <Summary xml:lang="tr">Pardus gnome3 öntanımlı ayarları</Summary>
+        <Description xml:lang="tr">Bu paket, Pardus gnome3 için öntanımlı ayarları içerir.</Description>
+    </Source>
+</PISI>
