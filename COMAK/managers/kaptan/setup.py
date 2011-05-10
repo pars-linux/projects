@@ -92,17 +92,14 @@ class Build(build):
         print "Copying themes..."
 
         # Gnome Themes
-        if ctx.Pds.session.Name =="gnome":
-            os.system("cp -R data/gnome_themes build/kaptan/")
-            os.system("cp -R data/gnome_previews build/kaptan/")
+        os.system("cp -R data/gnome_themes build/kaptan/")
+        os.system("cp -R data/gnome_previews build/kaptan/")
 
         # Xfce Themes
-        else:
-            if ctx.Pds.session.Name == "xfce":
-                os.system("cp -R data/xfce_themes build/kaptan/" )
-            else :
-                # Other Themes
-                os.system("cp -R data/themes build/kaptan/")
+        os.system("cp -R data/xfce_themes build/kaptan/" )
+
+        #Others
+        os.system("cp -R data/themes build/kaptan/")
 
         # update_messages()
 
