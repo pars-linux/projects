@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kaptan.trunk.hu.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 15:16+0200\n"
+"POT-Creation-Date: 2011-05-10 18:56+0300\n"
 "PO-Revision-Date: 2011-01-04 20:30+0100\n"
 "Last-Translator: Attila Siposs <sipiatti@gmail.com>\n"
 "Language-Team: Hungarian <pardus-translators@pardus.org.tr>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-Country: HUNGARY\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: .tmp/kaptan.desktop.in.h:1 .tmp/ui_kaptan.py:357
+#: .tmp/kaptan.desktop.in.h:1 .tmp/ui_kaptan.py:362
 msgid "Kaptan"
 msgstr "Kaptan"
 
@@ -25,262 +25,272 @@ msgstr "Kaptan"
 msgid "Welcome Wizard"
 msgstr "Első Indítás Varázsló"
 
-#: .tmp/scrAvatar.py:36
+#: .tmp/scrAvatar.py:43
 msgid "User Picture"
 msgstr "Felhasználó képe"
 
-#: .tmp/scrAvatar.py:48
+#: .tmp/scrAvatar.py:55
 msgid "Create Your User Picture"
 msgstr "Felhasználó kép készítése"
 
-#: .tmp/scrGoodbye.py:24 .tmp/ui_scrGoodbye.py:325
+#: .tmp/scrGoodbye.py:47 .tmp/ui_scrGoodbye.py:329
+#: .tmp/ui_scrGoodbye_comak.py:329
 msgid "More"
 msgstr "Továbbiak"
 
-#: .tmp/scrGoodbye.py:25
+#: .tmp/scrGoodbye.py:48
 msgid "Congratulations!"
 msgstr "Gratulálunk"
 
-#: .tmp/scrKeyboard.py:31 .tmp/ui_scrKeyboard.py:93
+#: .tmp/scrKeyboard.py:35 .tmp/ui_scrKeyboard.py:97
 msgid "Keyboard"
 msgstr "Billentyűzet"
 
-#: .tmp/scrKeyboard.py:32
+#: .tmp/scrKeyboard.py:36
 msgid "Keyboard Layout Language"
 msgstr "Billentyűzet kiosztása"
 
-#: .tmp/scrMenu.py:26 .tmp/ui_scrMenu.py:123
+#: .tmp/scrMenu.py:29 .tmp/ui_scrMenu.py:127
 msgid "Menu"
 msgstr "Menü"
 
-#: .tmp/scrMenu.py:27
+#: .tmp/scrMenu.py:30
 msgid "Choose a Menu Style"
 msgstr "Válassza ki a menü stílusát"
 
-#: .tmp/scrMenu.py:41 .tmp/ui_scrMenu.py:125
+#: .tmp/scrMenu.py:40 .tmp/ui_scrMenu.py:129
 msgid "Kick-off Menu"
 msgstr "Kick-off menü"
 
-#: .tmp/scrMenu.py:43
+#: .tmp/scrMenu.py:42
 msgid "Kick-off menu is the default menu of Pardus.<br><br>The program shortcuts are easy to access and well organized."
 msgstr "Kick-off menü a Pardus alapértelmezett menüje.<br><br>A programok elérési útja egyszerű és jól áttekinthető."
 
-#: .tmp/scrMenu.py:47 .tmp/ui_scrMenu.py:126
+#: .tmp/scrMenu.py:46 .tmp/ui_scrMenu.py:130
 msgid "Simple Menu"
 msgstr "Egyszerű menü"
 
-#: .tmp/scrMenu.py:49
+#: .tmp/scrMenu.py:48
 msgid "Simple menu is an old style menu from KDE 3.<br><br>It is a very lightweight menu thus it is recommended for slower PC's."
 msgstr "Az egyszerű menü a régi stílusú KDE 3 menü megfelelője.<br><br> Ez egy pehelysúlyú menü amit lassabb PC-kre javaslunk."
 
-#: .tmp/scrMenu.py:53 .tmp/ui_scrMenu.py:127
+#: .tmp/scrMenu.py:52 .tmp/ui_scrMenu.py:131
 msgid "Lancelot Menu"
 msgstr "Lancelot menü"
 
-#: .tmp/scrMenu.py:55
+#: .tmp/scrMenu.py:54
 msgid "Lancelot is an advanced and highly customizable menu for Pardus.<br><br>The program shortcuts are easy to access and well organized."
 msgstr "Lancelot egy fejlettebb és nagymértékben testre szabható menü a Pardushoz.<br><br>A programok elérése könnyű és jól áttekinthető"
 
-#: .tmp/scrMouse.py:29 .tmp/ui_scrMouse.py:202
+#: .tmp/scrMouse.py:42 .tmp/ui_scrMouse.py:207 .tmp/ui_scrMouse_lxde.py:194
 msgid "Mouse"
 msgstr "Egér"
 
-#: .tmp/scrMouse.py:30
+#: .tmp/scrMouse.py:43
 msgid "Setup Mouse Behavior"
 msgstr "Egér működésének beállítása"
 
-#: .tmp/scrMouse.py:140
+#: .tmp/scrMouse.py:164
 msgid "Left Handed"
 msgstr "Bal kezes"
 
-#: .tmp/scrMouse.py:140
+#: .tmp/scrMouse.py:164
 msgid "Right Handed"
 msgstr "Jobb kezes"
 
-#: .tmp/scrMouse.py:141
+#: .tmp/scrMouse.py:165
 msgid "Double Click"
 msgstr "Dupla kattintás"
 
-#: .tmp/scrMouse.py:141
+#: .tmp/scrMouse.py:165
 msgid "Single Click "
 msgstr "Egy kattintás"
 
-#: .tmp/scrPackage.py:28 .tmp/ui_scrPackage.py:132
+#: .tmp/scrPackage.py:30 .tmp/ui_scrPackage.py:136
+#: .tmp/ui_scrPackage_lxde.py:130
 msgid "Packages"
 msgstr "Csomagok"
 
-#: .tmp/scrPackage.py:29
+#: .tmp/scrPackage.py:31
 msgid "Install / Remove Programs"
 msgstr "Programok telepítése/eltávolítása"
 
-#: .tmp/scrSmolt.py:31 .tmp/ui_scrSmolt.py:154
+#: .tmp/scrPackage.py:53
+#, fuzzy
+msgid "Add COMAK Repository"
+msgstr "Contrib tároló hozzáadása"
+
+#: .tmp/scrPackage.py:59 .tmp/scrPackage.py:65
+msgid "comak-repo is already available on your system."
+msgstr ""
+
+#: .tmp/scrPackage.py:87
+msgid "Authentication Error"
+msgstr ""
+
+#: .tmp/scrPackage.py:88
+msgid "You are not authorized for this operation."
+msgstr ""
+
+#: .tmp/scrSmolt.py:46 .tmp/ui_scrSmolt.py:158 .tmp/ui_scrSmolt_comak.py:158
 msgid "Smolt"
 msgstr "Smolt"
 
-#: .tmp/scrSmolt.py:32
+#: .tmp/scrSmolt.py:47
 msgid "Help Pardus Improve!"
 msgstr "Segítse a Pardus fejlesztését!"
 
-#: .tmp/scrSmolt.py:68
+#: .tmp/scrSmolt.py:83
 msgid "Label"
 msgstr "Címke"
 
-#: .tmp/scrSmolt.py:69
+#: .tmp/scrSmolt.py:84
 msgid "Data"
 msgstr "Adat"
 
-#: .tmp/scrSmolt.py:108
+#: .tmp/scrSmolt.py:123
 msgid "&Host Information"
 msgstr "&Gép információ"
 
-#: .tmp/scrSmolt.py:111 .tmp/ui_scrSmolt.py:158
+#: .tmp/scrSmolt.py:126 .tmp/ui_scrSmolt.py:162 .tmp/ui_scrSmolt_comak.py:162
 msgid "&Privacy policy"
 msgstr "&Adatvédelmi irányelv"
 
-#: .tmp/scrSmolt.py:114
+#: .tmp/scrSmolt.py:129
 msgid "UUID"
 msgstr "UUID"
 
-#: .tmp/scrSmolt.py:115
+#: .tmp/scrSmolt.py:130
 msgid "OS"
 msgstr "Operációs rendszer"
 
-#: .tmp/scrSmolt.py:116
+#: .tmp/scrSmolt.py:131
 msgid "Default Run Level"
 msgstr "Alapértelmezett futási szint"
 
-#: .tmp/scrSmolt.py:117
+#: .tmp/scrSmolt.py:132
 msgid "Language"
 msgstr "Nyelv"
 
-#: .tmp/scrSmolt.py:118
+#: .tmp/scrSmolt.py:133
 msgid "Platform"
 msgstr "Platform"
 
-#: .tmp/scrSmolt.py:119
+#: .tmp/scrSmolt.py:134
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: .tmp/scrSmolt.py:120
+#: .tmp/scrSmolt.py:135
 msgid "CPU Vendor"
 msgstr "CPU forgalmazó"
 
-#: .tmp/scrSmolt.py:121
+#: .tmp/scrSmolt.py:136
 msgid "CPU Model"
 msgstr "CPU modell"
 
-#: .tmp/scrSmolt.py:122
+#: .tmp/scrSmolt.py:137
 msgid "CPU Stepping"
 msgstr "CPU Stepping"
 
-#: .tmp/scrSmolt.py:123
+#: .tmp/scrSmolt.py:138
 msgid "CPU Family"
 msgstr "CPU család"
 
-#: .tmp/scrSmolt.py:124
+#: .tmp/scrSmolt.py:139
 msgid "CPU Model Num"
 msgstr "CPU modell szám"
 
-#: .tmp/scrSmolt.py:125
+#: .tmp/scrSmolt.py:140
 msgid "Number of CPUs"
 msgstr "CPU-k száma"
 
-#: .tmp/scrSmolt.py:126
+#: .tmp/scrSmolt.py:141
 msgid "CPU Speed"
 msgstr "CPU sebessége"
 
-#: .tmp/scrSmolt.py:127
+#: .tmp/scrSmolt.py:142
 msgid "System Memory"
 msgstr "Rendszer memória"
 
-#: .tmp/scrSmolt.py:128
+#: .tmp/scrSmolt.py:143
 msgid "System Swap"
 msgstr "Rendszer Swap"
 
-#: .tmp/scrSmolt.py:129
+#: .tmp/scrSmolt.py:144
 msgid "Vendor"
 msgstr "Forgalmazó"
 
-#: .tmp/scrSmolt.py:130
+#: .tmp/scrSmolt.py:145
 msgid "System"
 msgstr "Rendszer"
 
-#: .tmp/scrSmolt.py:131
+#: .tmp/scrSmolt.py:146
 msgid "Form Factor"
 msgstr "Form factor"
 
-#: .tmp/scrSmolt.py:132
+#: .tmp/scrSmolt.py:147
 msgid "Kernel"
 msgstr "Kernel"
 
-#: .tmp/scrSmolt.py:133
+#: .tmp/scrSmolt.py:148
 msgid "SELinux Enabled"
 msgstr "SELinux engedélyezve"
 
-#: .tmp/scrSmolt.py:134
+#: .tmp/scrSmolt.py:149
 msgid "SELinux Policy"
 msgstr "SELinux szabályok"
 
-#: .tmp/scrSmolt.py:135
+#: .tmp/scrSmolt.py:150
 msgid "SELinux Enforce"
 msgstr "SELinux kikényszerítés"
 
-#: .tmp/scrSmolt.py:148
+#: .tmp/scrSmolt.py:163
 msgid "Yes"
 msgstr "Igen"
 
-#: .tmp/scrSmolt.py:150
+#: .tmp/scrSmolt.py:165
 msgid "No"
 msgstr "Nem"
 
-#: .tmp/scrStyle.py:37 .tmp/ui_scrStyle.py:236
+#: .tmp/scrStyle.py:46 .tmp/ui_scrStyle.py:244
 msgid "Themes"
 msgstr "Témák"
 
-#: .tmp/scrStyle.py:38
+#: .tmp/scrStyle.py:47
 msgid "Customize Your Desktop"
 msgstr "Asztal beállítása"
 
-#: .tmp/scrSummary.py:35 .tmp/ui_scrSummary.py:85
+#: .tmp/scrSummary.py:40 .tmp/ui_scrSummary.py:89
 msgid "Summary"
 msgstr "Összegzés"
 
-#: .tmp/scrSummary.py:36
+#: .tmp/scrSummary.py:41
 msgid "Save Your Settings"
 msgstr "Beállítások mentése"
 
-#: .tmp/scrSummary.py:59
+#: .tmp/scrSummary.py:62
 msgid "Mouse Settings"
 msgstr "Egér beállítások"
 
-#: .tmp/scrSummary.py:61
+#: .tmp/scrSummary.py:64
 #, python-format
 msgid "Selected Mouse configuration: <b>%s</b>"
 msgstr "Kiválasztott egér beállítás: <b>%s</b>"
 
-#: .tmp/scrSummary.py:62
-#, python-format
-msgid "Selected clicking behaviour: <b>%s</b>"
+#: .tmp/scrSummary.py:65
+#, fuzzy, python-format
+msgid "Selected clicking behavior: <b>%s</b>"
 msgstr "Kiválasztott kattintás viselkedésének beállítása: <b>%s</b>"
 
-#: .tmp/scrSummary.py:66
-msgid "Menu Settings"
-msgstr "Menü beállítások"
-
-#: .tmp/scrSummary.py:67
-#, python-format
-msgid "Selected Menu: <b>%s</b>"
-msgstr "Kiválasztott menü: <b>%s</b>"
-
-#: .tmp/scrSummary.py:71
+#: .tmp/scrSummary.py:70
 msgid "Wallpaper Settings"
 msgstr "Háttérkép beállítások"
 
-#: .tmp/scrSummary.py:73
+#: .tmp/scrSummary.py:72
 msgid "You haven't selected any wallpaper."
 msgstr "Nem választott ki egyetlen háttérképet sem."
 
-#: .tmp/scrSummary.py:75
+#: .tmp/scrSummary.py:74
 #, python-format
 msgid "Selected Wallpaper: <b>%s</b>"
 msgstr "Választott háttérkép: <b>%s</b>"
@@ -298,210 +308,241 @@ msgstr "Egyetlen stílust sem választott ki"
 msgid "Selected Style: <b>%s</b>"
 msgstr "Kiválasztott stílus: <b>%s</b>"
 
-#: .tmp/scrSummary.py:91
+#: .tmp/scrSummary.py:86
+#, fuzzy, python-format
+msgid "Desktop Number: <b>%s</b>"
+msgstr "Asztal keresés: <b>%s</b>"
+
+#: .tmp/scrSummary.py:102
 msgid "Smolt Settings"
 msgstr "Smolt beállítások"
 
-#: .tmp/scrSummary.py:92
+#: .tmp/scrSummary.py:103
 #, python-format
 msgid "Send my profile: <b>%s</b>"
 msgstr "Küldje el a profilomat: <b>%s</b>"
 
-#: .tmp/scrSummary.py:117
+#: .tmp/scrSummary.py:128
 msgid "Cannot restart plasma-desktop. Kaptan will now shutdown."
 msgstr "Plasma desktop újraindítása sikertelen. A Kaptan most leáll."
 
-#: .tmp/scrSummary.py:117
+#: .tmp/scrSummary.py:128
 msgid "Error"
 msgstr "Hiba"
 
-#: .tmp/scrWallpaper.py:34 .tmp/ui_scrWallpaper.py:131
+#: .tmp/scrWallpaper.py:36 .tmp/ui_scrWallpaper.py:135
 msgid "Wallpaper"
 msgstr "Háttérkép"
 
-#: .tmp/scrWallpaper.py:35
+#: .tmp/scrWallpaper.py:37
 msgid "Choose a Wallpaper"
 msgstr "Válasszon háttérképet"
 
-#: .tmp/scrWelcome.py:27 .tmp/ui_scrWelcome.py:77
+#: .tmp/scrWelcome.py:32 .tmp/ui_scrWelcome.py:81
 msgid "Welcome"
 msgstr "Üdvözöljük"
 
-#: .tmp/scrWelcome.py:28
+#: .tmp/scrWelcome.py:33
 #, python-format
 msgid "Welcome to %s"
 msgstr "%s üdvözli Önt!"
 
-#: .tmp/ui_kaptan.py:358
+#: .tmp/ui_kaptan.py:363
 msgid "Welcome to Pardus"
 msgstr "Üdvözöljük a Pardusban!"
 
-#: .tmp/ui_kaptan.py:359
+#: .tmp/ui_kaptan.py:364
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: .tmp/ui_kaptan.py:360
+#: .tmp/ui_kaptan.py:365
 msgid "Back"
 msgstr "Vissza"
 
-#: .tmp/ui_kaptan.py:361
+#: .tmp/ui_kaptan.py:366
 msgid "Next"
 msgstr "Következő"
 
-#: .tmp/ui_kaptan.py:362
+#: .tmp/ui_kaptan.py:367
 msgid "Finish"
 msgstr "Befejezés"
 
-#: .tmp/ui_kaptan.py:363
+#: .tmp/ui_kaptan.py:368
 msgid "Apply Settings"
 msgstr "Beállítások alkalmazása"
 
-#: .tmp/ui_scrAvatar.py:247 .tmp/ui_scrStyleItem.py:69
-#: .tmp/ui_wallpaperItem.py:72
+#: .tmp/ui_scrAvatar.py:251 .tmp/ui_scrStyleItem.py:74
+#: .tmp/ui_wallpaperItem.py:77
 msgid "Form"
 msgstr "Forma"
 
-#: .tmp/ui_scrAvatar.py:248
+#: .tmp/ui_scrAvatar.py:252
 msgid "This screen helps you set your <b>user picture</b>. You can either choose an image from a file or you can capture an image from your camera. Select an option from the <b>options</b> menu."
 msgstr "Ez a képernyő segít Önnek beállítani a <b>saját képét</b>. Választhat egy meglévő képet, vagy rögzíthet egy képet a kameráról. Válasszon egyet a <b>Lehetőségek</b> menüből."
 
-#: .tmp/ui_scrAvatar.py:249
+#: .tmp/ui_scrAvatar.py:253
 msgid "Options"
 msgstr "Lehetőségek"
 
-#: .tmp/ui_scrAvatar.py:250
+#: .tmp/ui_scrAvatar.py:254
 msgid "Choose an image"
 msgstr "Válasszon egy képet"
 
-#: .tmp/ui_scrAvatar.py:251
+#: .tmp/ui_scrAvatar.py:255
 msgid "Capture"
 msgstr "Felvétel"
 
-#: .tmp/ui_scrAvatar.py:252
+#: .tmp/ui_scrAvatar.py:256
 msgid "Recapture"
 msgstr "Új felvétel"
 
-#: .tmp/ui_scrGoodbye.py:326
+#: .tmp/ui_scrGoodbye.py:330 .tmp/ui_scrGoodbye_comak.py:330
 msgid "<b>Your settings have been applied.</b> Now you can start enjoying Pardus or you can checkout the following links and applications for more settings or for help and support. Don't forget to <b>join our community!</b>"
 msgstr "<b>A beállítások mentésre kerültek.</b> Legyen öreme új Pardus rendszerében! Az alábbi linkek használatával további beállításokat végezhet, vagy segítséget és támogatást vehet igénybe. Ne felejtsen el <b>csatlakozni közösségünkhöz!</b>"
 
-#: .tmp/ui_scrGoodbye.py:327 .tmp/ui_scrGoodbye.py:328 .tmp/ui_scrSmolt.py:156
+#: .tmp/ui_scrGoodbye.py:331 .tmp/ui_scrGoodbye.py:332
+#: .tmp/ui_scrGoodbye_comak.py:331 .tmp/ui_scrGoodbye_comak.py:332
+#: .tmp/ui_scrSmolt.py:160 .tmp/ui_scrSmolt_comak.py:160
 msgid "My Smolt Page"
 msgstr "Smolt oldalam"
 
-#: .tmp/ui_scrGoodbye.py:329
+#: .tmp/ui_scrGoodbye.py:333 .tmp/ui_scrGoodbye_comak.py:333
 msgid "Go to your Smolt page and rate your hardware components."
 msgstr "Látogasson el a Smolt oldalára és minősítse a hardver összetevőit."
 
-#: .tmp/ui_scrGoodbye.py:330 .tmp/ui_scrGoodbye.py:332
+#: .tmp/ui_scrGoodbye.py:334 .tmp/ui_scrGoodbye.py:336
+#: .tmp/ui_scrGoodbye_comak.py:334 .tmp/ui_scrGoodbye_comak.py:336
 msgid "System Settings"
 msgstr "Rendszer beállítások"
 
-#: .tmp/ui_scrGoodbye.py:331
+#: .tmp/ui_scrGoodbye.py:335 .tmp/ui_scrGoodbye_comak.py:335
 msgid "Configuration tools for Pardus such as the display, firewall, keyboard, user manager..."
 msgstr "Beállító eszközök Pardushoz - kijelző, tűzfal, billentyűzet, felhasználó kezelés..."
 
-#: .tmp/ui_scrGoodbye.py:333 .tmp/ui_scrGoodbye.py:335
+#: .tmp/ui_scrGoodbye.py:337 .tmp/ui_scrGoodbye.py:339
+#: .tmp/ui_scrGoodbye_comak.py:337 .tmp/ui_scrGoodbye_comak.py:339
 msgid "Help and Support"
 msgstr "Segítség és támogatás"
 
-#: .tmp/ui_scrGoodbye.py:334
+#: .tmp/ui_scrGoodbye.py:338 .tmp/ui_scrGoodbye_comak.py:338
 msgid "Pardus community, mailing lists, chat rooms, Wiki documents, help and support pages..."
 msgstr "Pardus közösség, levelező listák, chat szobák, Wiki dokumentációk, segítségnyújtó és támogató oldalak..."
 
-#: .tmp/ui_scrKeyboard.py:94
+#: .tmp/ui_scrKeyboard.py:98
 msgid "Kaptan automatically selects the best keyboard layout according to your system language. If you want to use another layout other than the default keyboard layout, you can make your selection and test it instantly."
 msgstr "Kaptan automatikusan kiválasztja az Ön számára legjobb billentyűzetkiosztást a rendszer nyelvének megfelelően. Amennyiben az alapértelmezettől eltérő billentyűzetkiosztást szeretne használni, kiválaszthatja és a lenti mezőben ellenőrizheti."
 
-#: .tmp/ui_scrKeyboard.py:95
+#: .tmp/ui_scrKeyboard.py:99
 msgid "Test Layout"
 msgstr "Teszt kimenet"
 
-#: .tmp/ui_scrMenu.py:124
+#: .tmp/ui_scrMenu.py:128
 msgid "You can also customize your <b>KDE menu</b> as you like. Please choose one from the following styles."
 msgstr "Igénye szerint állíthatja be a <b>KDE menüt<b>. Kérem válasszon egyet az alábbi stílusok közül."
 
-#: .tmp/ui_scrMenu.py:128
+#: .tmp/ui_scrMenu.py:132
 msgid "Sample"
 msgstr "Minta"
 
-#: .tmp/ui_scrMouse.py:203
+#: .tmp/ui_scrMouse.py:208 .tmp/ui_scrMouse_lxde.py:195
 msgid "The <b>clicking behavior</b> defines how many times you want to click when you are opening a file. If you are <b>left handed</b>, you may prefer to swap the left and right buttons of your pointing device."
 msgstr "A <b> kattintás beállítása</b> meghatározza hányszor kelljen kattintani fájlok megnyitásakor. Ha Ön <b>bal kezes</b>, előnyben részesítheti, ha az egér bal és jobb gombja fel van cserélve."
 
-#: .tmp/ui_scrMouse.py:204
+#: .tmp/ui_scrMouse.py:209
 msgid "Clicking Behaviour"
 msgstr "Kattintás beállításai"
 
-#: .tmp/ui_scrMouse.py:205
+#: .tmp/ui_scrMouse.py:210
 msgid "Single-click to open files and folders"
 msgstr "Egy kattintás a fájlok és mappák megnyitásához"
 
-#: .tmp/ui_scrMouse.py:206
+#: .tmp/ui_scrMouse.py:211
 msgid "Dou&ble-click to open files and folders"
 msgstr "Dupla kattintás a fájlok és mappák megnyitásához."
 
-#: .tmp/ui_scrMouse.py:207
+#: .tmp/ui_scrMouse.py:212 .tmp/ui_scrMouse_lxde.py:199
 msgid "Button Order"
 msgstr "Gombok sorrendje"
 
-#: .tmp/ui_scrMouse.py:208
+#: .tmp/ui_scrMouse.py:213 .tmp/ui_scrMouse_lxde.py:200
 msgid "Right Hand"
 msgstr "Jobb kezes"
 
-#: .tmp/ui_scrMouse.py:209
+#: .tmp/ui_scrMouse.py:214 .tmp/ui_scrMouse_lxde.py:201
 msgid "Left Hand"
 msgstr "Bal kezes"
 
-#: .tmp/ui_scrMouse.py:210
+#: .tmp/ui_scrMouse.py:215 .tmp/ui_scrMouse_lxde.py:202
 msgid "Reverse scrolling"
 msgstr "Görgetés megfordítása"
 
-#: .tmp/ui_scrPackage.py:133
+#: .tmp/ui_scrMouse_lxde.py:196
+#, fuzzy
+msgid "Mouse Speed"
+msgstr "Egér beállítások"
+
+#: .tmp/ui_scrMouse_lxde.py:197
+msgid "Sensitivity:    Low                     High"
+msgstr ""
+
+#: .tmp/ui_scrMouse_lxde.py:198
+msgid "Acceleration:Slow                     Fast"
+msgstr ""
+
+#: .tmp/ui_scrPackage.py:137
 msgid "Show updates in the system tray"
 msgstr "Frissítések megjelenítése a rendszertálcán"
 
-#: .tmp/ui_scrPackage.py:134
+#: .tmp/ui_scrPackage.py:138
 msgid "Check updates automatically every"
 msgstr "Frissítések automatikus ellenőrzése minden"
 
-#: .tmp/ui_scrPackage.py:135
+#: .tmp/ui_scrPackage.py:139
 msgid " hours"
 msgstr "órában"
 
-#: .tmp/ui_scrPackage.py:136
+#: .tmp/ui_scrPackage.py:140 .tmp/ui_scrPackage_lxde.py:132
 msgid "To install and remove programs to Pardus, use Package-Manager. Package-Manager also can automatically install the latest updates available. You can set the period for checking new updates."
 msgstr "Programok hozzáadásához és eltávolításához Pardus alatt használja a csomagkezelőt. A csomagkezelő automatikusan telepíti az elérhető legújabb frissítéseket. Beállíthatja az új frissítések keresésének gyakoriságát."
 
-#: .tmp/ui_scrPackage.py:137
+#: .tmp/ui_scrPackage.py:141
 msgid "Updates"
 msgstr "Frissítések"
 
-#: .tmp/ui_scrSearch.py:100
+#: .tmp/ui_scrPackage_lxde.py:131
+#, fuzzy
+msgid "Add Enlightenment Repository"
+msgstr "Contrib tároló hozzáadása"
+
+#: .tmp/ui_scrPackage_lxde.py:133
+msgid "Updates and Add Repository"
+msgstr ""
+
+#: .tmp/ui_scrSearch.py:104
 msgid "Search"
 msgstr "Keresés"
 
-#: .tmp/ui_scrSearch.py:101
+#: .tmp/ui_scrSearch.py:105
 msgid "Strigi Desktop Search indexes your frequently used files. This gives you very fast file search results. Strigi also can search for files based on their contents."
 msgstr "Strigi Desktop Search indexeli a leggyakrabban használt fájljait. Ez rendkívül gyors keresést eredményez. A Strigi a fájlok tartalmában is képes keresni."
 
-#: .tmp/ui_scrSearch.py:102
+#: .tmp/ui_scrSearch.py:106
 msgid "Allow Strigi to index my files"
 msgstr "Engedélyezem, hogy a Strigi indexelje a fájljaimat"
 
-#: .tmp/ui_scrSearch.py:103
+#: .tmp/ui_scrSearch.py:107
 msgid "Search Options"
 msgstr "Keresési beállítások"
 
-#: .tmp/ui_scrSmolt.py:155
+#: .tmp/ui_scrSmolt.py:159 .tmp/ui_scrSmolt_comak.py:159
 msgid "<b>Smolt</b> is a tool that collects the information in the following table and sends it to us for which lets us improve Pardus according to the user profile statistics."
 msgstr "<b>Smolt</b> az az eszköz ami összegyűjti az információkat az alábbi táblázatba és elküldi nekünk, amivel tovább fejleszthetjük a Pardust a felhasználói profil statisztikáknak megfelelően."
 
-#: .tmp/ui_scrSmolt.py:157
+#: .tmp/ui_scrSmolt.py:161 .tmp/ui_scrSmolt_comak.py:161
 msgid "&Send my profile"
 msgstr "&Profil elküldése"
 
-#: .tmp/ui_scrSmolt.py:159
+#: .tmp/ui_scrSmolt.py:163 .tmp/ui_scrSmolt_comak.py:163
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -522,89 +563,101 @@ msgstr ""
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; text-decoration: underline;\">IP naplózás:</span><span style=\" font-size:9pt;\">  A Pardusból minden smolt adatforgalom először egy proxy szerverre kerül. Ez az egyetlen hely, ahol a küldő IP címe eltárolódik, de itt is maximum 4 hétig tároljuk. Ezután a címek a naplófájlok forgatásával kikerülnek a rendszerből. A Párdus nem tárolja az IP címeket a smolt adatbázisban, illetve ezek a naplófáljok publikusan nem elérhetők.</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">   Azon felhasználóinknak, akiknek ez az adattárolási módszer nem felel meg, azt tanácsoljuk, hogy ne használják a smolt adatbázist. Ha további kérdéseik vannak az adatvédelemmel kapcsolatban, kérjük keressék meg a Pardus Infrastruktúra Csapatát az admin [kukac] pardus.org.tr  email címen. Minden felhasználó bármikor törölheti a smolt adatait a &quot;</span><span style=\" font-size:9pt; font-style:italic;\">smoltDeleteProfile</span><span style=\" font-size:9pt;\">&quot;</span> parancs segítségével.</p></body></html>"
 
-#: .tmp/ui_scrStyle.py:237
+#: .tmp/ui_scrStyle.py:245
 msgid "Choose your favorite theme and desktop type. Customize Pardus with colorful styles and themes."
 msgstr "Válassza ki kedvenc témáját és asztal típusát. Tegye egyedivé a Pardust színes stílusokkal és témákkal."
 
-#: .tmp/ui_scrStyle.py:238
+#: .tmp/ui_scrStyle.py:246
 msgid "KDE Themes"
 msgstr "KDE témák"
 
-#: .tmp/ui_scrStyle.py:239
+#: .tmp/ui_scrStyle.py:247
 msgid "Icons"
 msgstr "Ikonok"
 
-#: .tmp/ui_scrStyle.py:242
-msgid "Oxygen - The official icon set of KDE"
-msgstr "Oxygen - A KDE hivatalos ikon témája"
+#: .tmp/ui_scrStyle.py:250 .tmp/ui_scrStyle.py:251
+msgid "Oxygen"
+msgstr ""
 
-#: .tmp/ui_scrStyle.py:243
-msgid "Milky - The official icon set of Pardus"
-msgstr "Milky - A Pardus hivatalos ikon témája"
+#: .tmp/ui_scrStyle.py:252
+msgid "Milky"
+msgstr ""
 
-#: .tmp/ui_scrStyle.py:245
+#: .tmp/ui_scrStyle.py:254
 msgid "Desktop Type"
 msgstr "Asztal típusa"
 
-#: .tmp/ui_scrStyle.py:246
+#: .tmp/ui_scrStyle.py:255
 msgid "Desktop view (KDE4 Style)"
 msgstr "Asztal nézet (KDE4 stílus)"
 
-#: .tmp/ui_scrStyle.py:247
+#: .tmp/ui_scrStyle.py:256
 msgid "Folder view (KDE3 Style)"
 msgstr "Mappa nézet (KDE3 stílus)"
 
-#: .tmp/ui_scrStyle.py:248
+#: .tmp/ui_scrStyle.py:257
 msgid "Number of Desktops"
 msgstr "Asztalok száma"
 
-#: .tmp/ui_scrStyleItem.py:70
+#: .tmp/ui_scrStyleItem.py:75
 msgid "styleName"
 msgstr "stílusnév"
 
-#: .tmp/ui_scrStyleItem.py:71
+#: .tmp/ui_scrStyleItem.py:76
 msgid "styleDesc"
 msgstr "stílus leírása"
 
-#: .tmp/ui_scrSummary.py:86
+#: .tmp/ui_scrSummary.py:90
 msgid "You have successfully finished all steps. Here's a summary of the settings you want to apply. Click <b>Apply Settings</b> to save them now. You are now ready to enjoy Pardus!"
 msgstr "Sikeresen befejezett minden lépést. Itt egy összegzés az elfogadásra váró beállításokról. Kattintson a <b>Beállítások alkalmazása</b> gombra az elfogadásukhoz. Most már készen áll a Pardus használatára! "
 
-#: .tmp/ui_scrSummary.py:87
+#: .tmp/ui_scrSummary.py:91
 msgid "The following settings will be applied"
 msgstr "A következő beállítások kerülnek alkalmazásra"
 
-#: .tmp/ui_scrWallpaper.py:132
+#: .tmp/ui_scrWallpaper.py:136
 msgid "Choose your favorite wallpaper for Pardus. Don't forget to check out <b>Desktop Settings</b> for downloading new and cool wallpapers."
 msgstr "Válassza ki kedvenc háttérképét a Pardushoz. Az <b>Asztal beállítás</b>okban további új és izgalmas háttérképeket tölthet le."
 
-#: .tmp/ui_scrWallpaper.py:133
+#: .tmp/ui_scrWallpaper.py:137
 msgid "Wallpapers"
 msgstr "Háttérképek"
 
-#: .tmp/ui_scrWallpaper.py:135
+#: .tmp/ui_scrWallpaper.py:139
 msgid "Choose wallpaper from file"
 msgstr "Válasszon háttérképet fájlból"
 
-#: .tmp/ui_scrWallpaper.py:136
+#: .tmp/ui_scrWallpaper.py:140
 msgid "Don't change wallpaper"
 msgstr "Ne változtassa meg a háttérképet"
 
-#: .tmp/ui_scrWelcome.py:78
+#: .tmp/ui_scrWelcome.py:82
 msgid "What is Pardus?"
 msgstr "Mi a Pardus?"
 
-#: .tmp/ui_scrWelcome.py:79
+#: .tmp/ui_scrWelcome.py:83
 msgid "<b>Pardus</b> is a reliable, secure, fast and user friendly operating system. <br /><br />With Pardus, you can connect to the internet, read your e-mails, work with your office documents, watch movies, play music, develop applications, play games and much more! <br /><br /><b>Kaptan</b> will help you personalize your Pardus workspace easily and quickly. Please click <b>next</b> in order to begin."
 msgstr "<b>Pardus</b> egy megbízható, biztonságos. gyors és felhasználóbarát operációs rendszer. <br /><br />Pardus-szal csatlakozhat az internetre, olvashatja e-mailjeit, dolgozhat dokumentumaival, filmet nézhet, zenét hallgathat, alkalmazásokat fejleszthet, játékokkal játszhat és ímég sok mást is tehet! <br /><br />A <b>Kaptan</b> segít abban, hogy könnyen és gyorsan személyessé tegye a Pardus rendszerét. Kérem kattintson a <b>tovább</b> gombra a kezdéshez."
 
-#: .tmp/ui_wallpaperItem.py:73
+#: .tmp/ui_wallpaperItem.py:78
 msgid "wallPaperName"
 msgstr "háttérkép neve"
 
-#: .tmp/ui_wallpaperItem.py:74
+#: .tmp/ui_wallpaperItem.py:79
 msgid "wallpaperDesc"
 msgstr "háttérkép leírása"
+
+#~ msgid "Menu Settings"
+#~ msgstr "Menü beállítások"
+
+#~ msgid "Selected Menu: <b>%s</b>"
+#~ msgstr "Kiválasztott menü: <b>%s</b>"
+
+#~ msgid "Oxygen - The official icon set of KDE"
+#~ msgstr "Oxygen - A KDE hivatalos ikon témája"
+
+#~ msgid "Milky - The official icon set of Pardus"
+#~ msgstr "Milky - A Pardus hivatalos ikon témája"
 
 #~ msgid "Welcome to Pardus 2011 Alpha 1"
 #~ msgstr "Üdvözlöm a Pardus 2009.2-ben"
@@ -623,9 +676,6 @@ msgstr "háttérkép leírása"
 
 #~ msgid "&Back"
 #~ msgstr "&Vissza"
-
-#~ msgid "Desktop search: <b>%s</b>"
-#~ msgstr "Asztal keresés: <b>%s</b>"
 
 #~ msgid "color: #642437;"
 #~ msgstr "szín: #642437;"
@@ -659,9 +709,6 @@ msgstr "háttérkép leírása"
 
 #~ msgid "Repositories"
 #~ msgstr "Tárolók"
-
-#~ msgid "Add contrib repository"
-#~ msgstr "Contrib tároló hozzáadása"
 
 #~ msgid "Contrib repository includes extra and handy programs."
 #~ msgstr "A Contrib tároló további hasznos programokat tartalmaz."
