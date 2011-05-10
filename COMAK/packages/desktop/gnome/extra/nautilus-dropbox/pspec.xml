@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Dropbox extension for Nautilus</Summary>
         <Description>Nautilus-dropbox is a Dropbox extension for Nautilus.</Description>
-        <Archive sha1sum="77ce777bd342eaf7ada3e3a4f6664f66ca4189fb" type="tarbz2">http://www.dropbox.com/download?dl=packages/nautilus-dropbox-0.6.7.tar.bz2</Archive>
+        <Archive sha1sum="028ec06fa2035582ecfae4de557e66b9a199142c" type="tarbz2">http://comak.comu.edu.tr/source/nautilus-dropbox-0.6.7.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>nautilus-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
