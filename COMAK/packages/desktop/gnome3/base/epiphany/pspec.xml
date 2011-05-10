@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A simple web browser</Summary>
         <Description>Epiphany is a simple web browser for Gnome.</Description>
-        <Archive sha1sum="25a4b35b1beb854f305e62d626843245085e9fca" type="tarbz2">mirrors://gnome/epiphany/3.0/epiphany-3.0.1.tar.bz2</Archive>
+        <Archive sha1sum="73a3f0dd16648bd081d4f8628be5c8e9bd639c10" type="tarbz2">mirrors://gnome/epiphany/3.0/epiphany-3.0.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gnome-desktop-devel</Dependency>
             <Dependency>libnotify-devel</Dependency>
@@ -95,6 +95,13 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-05-10</Date>
+            <Version>3.0.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="5">
             <Date>2011-04-29</Date>
             <Version>3.0.1</Version>
