@@ -286,5 +286,38 @@
                 <Email>alper.tekinalp@gmail.com</Email>
             </Maintainer>
         </Component>
+		<Component>
+			<Name>desktop.gnome3</Name>
+			<LocalName xml:lang="en">FIXME</LocalName>
+            <Summary xml:lang="en">FIXME</Summary>
+            <Description xml:lang="en">FIXME</Description>
+            <Group>desktop</Group>
+            <Maintainer>
+                <Name>COMAK TEAM</Name>
+                <Email>comak@comu.edu.tr</Email>
+            </Maintainer>
+        </Component>
+		<Component>
+			<Name>desktop.gnome3.base</Name>
+			<LocalName xml:lang="en">FIXME</LocalName>
+            <Summary xml:lang="en">FIXME</Summary>
+            <Description xml:lang="en">FIXME</Description>
+            <Group>desktop</Group>
+            <Maintainer>
+                <Name>COMAK TEAM</Name>
+                <Email>comak@comu.edu.tr</Email>
+            </Maintainer>
+        </Component>
+		<Component>
+			<Name>desktop.gnome3.addon</Name>
+			<LocalName xml:lang="en">FIXME</LocalName>
+            <Summary xml:lang="en">FIXME</Summary>
+            <Description xml:lang="en">FIXME</Description>
+            <Group>desktop</Group>
+            <Maintainer>
+                <Name>COMAK TEAM</Name>
+                <Email>comak@comu.edu.tr</Email>
+            </Maintainer>
+        </Component>
 	</Components>
 </PISI>
