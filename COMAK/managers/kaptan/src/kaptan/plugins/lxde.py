@@ -174,10 +174,12 @@ class Style(base.Style):
         pass
 
     def reconfigure(self):
-        commands = ["pcmanfm --desktop-off",
-                    "pcmanfm -d --desktop",
+        commands = [
+                    #"pcmanfm --desktop-off",
+                    #"pcmanfm --desktop",
                     "lxsession -r",
-                    "openbox --restart"]
+                    "openbox --restart"
+                    ]
         command = ";".join(commands)
         os.system(command)
 
