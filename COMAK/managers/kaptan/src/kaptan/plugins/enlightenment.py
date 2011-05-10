@@ -200,7 +200,10 @@ class Style(base.Style):
 
     def getDesktopNumber(self):
         try:
-            return CONFIG_KAPTANRC.value("Desktop/DesktopNumber").toInt()[0]
+            desktopNumber = CONFIG_KAPTANRC.value("Desktop/DesktopNumber").toInt()[0]
+            if not desktopNumber:
+                return 2
+            return desktopNumber
         except:
             return 2
 
