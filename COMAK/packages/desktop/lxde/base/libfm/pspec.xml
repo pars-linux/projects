@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Library for file management</Summary>
         <Description>libfm is a LXDE library for file management.</Description>
-        <Archive sha1sum="24c1c0cdf27509eb05f89bdac8b79d6253e14837" type="tarbz2">http://comak.comu.edu.tr/source/libfm-0.1.14_20110202.tar.bz2</Archive>
+        <Archive sha1sum="d523cc693e42037a04025de171a8fbded5e39758" type="targz">http://comak.comu.edu.tr/source/libfm-0.1.14_10052011.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>lxde-menu-cache-devel</Dependency>
             <Dependency>fontconfig-devel</Dependency>
@@ -24,7 +24,6 @@
         </BuildDependencies>
         <Patches>
             <Patch level="1">01-lxde-conf.patch</Patch>
-            <Patch level="1">libfm-tr.patch</Patch>
         </Patches>
     </Source>
 
@@ -62,6 +61,15 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-05-20</Date>
+            <Version>0.1.14_20110510</Version>
+            <Comment>Version bump to git HEAD.
+                     Removetranslations due they are in officially now.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2011-03-21</Date>
             <Version>0.1.14_20110202</Version>
