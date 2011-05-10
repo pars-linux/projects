@@ -21,4 +21,7 @@ def build():
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
 
+    #workaround to run gnome-shell
+    pisitools.remove("/%s/usr/lib/girepository-1.0/GConf-2.0.typelib" % get.installDIR())
+
     pisitools.dodoc("README", "COPYING", "TODO", "NEWS", "ChangeLog", "AUTHORS")

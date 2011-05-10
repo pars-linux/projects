@@ -49,6 +49,7 @@
         </Files>
         <AdditionalFiles>
             <AdditionalFile owner="root" permission="0644" target="/etc/gconf/2/path">gconf2.path</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/lib/girepository-1.0/GConf-2.0.typelib">GConf-2.0.typelib</AdditionalFile>
         </AdditionalFiles>
         <Provides>
             <COMAR script="pakhandler.py">System.PackageHandler</COMAR>
