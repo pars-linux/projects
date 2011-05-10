@@ -44,9 +44,9 @@
            [exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|xmessage -file - -center} </usr/share/fluxbox/icons/flux-x11.png>
         [end]
         [submenu] (Backgrounds) {Set the Background} </usr/share/fluxbox/icons/flux-wallpaper.png>
-           [exec] (Random System) {wpsetters=feh fbsetbg -r /usr/kde/3.5/share/wallpapers} </usr/share/fluxbox/icons/flux-wallpaper.png>
-           [exec] (Random Background) {wpsetters=feh fbsetbg -r ~/.fluxbox/backgrounds} </usr/share/fluxbox/icons/flux-wallpaper.png>
-           [exec] (Default) {wpsetters=feh fbsetbg -f "/usr/share/fluxbox/backgrounds/default.png" } </usr/share/fluxbox/icons/flux-wallpaper.png>
+           [exec] (Random System) {fbsetbg -r /usr/share/wallpapers} </usr/share/fluxbox/icons/flux-wallpaper.png>
+           [exec] (Random Background) {fbsetbg -r /usr/share/fluxbox/backgrounds} </usr/share/fluxbox/icons/flux-wallpaper.png>
+           [exec] (Default) {fbsetbg -f "/usr/share/fluxbox/backgrounds/default.png" } </usr/share/fluxbox/icons/flux-wallpaper.png>
         [end]
         [submenu] (Menu Style) </usr/share/fluxbox/icons/flux-start.png>
 #        [submenu] (Regen Menu)

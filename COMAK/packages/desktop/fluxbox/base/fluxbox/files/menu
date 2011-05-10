@@ -47,8 +47,8 @@
            [exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|xmessage -file - -center} </usr/share/fluxbox/icons/flux-x11.png>
         [end]
         [submenu] (Backgrounds) {Set the Background} </usr/share/fluxbox/icons/flux-wallpaper.png>
-           [exec] (Random Background) {wpsetters=feh fbsetbg -r ~/.fluxbox/backgrounds} </usr/share/fluxbox/icons/flux-wallpaper.png>
-           [exec] (Default) {wpsetters=feh fbsetbg -f "/usr/share/fluxbox/backgrounds/default.png" } </usr/share/fluxbox/icons/flux-wallpaper.png>
+           [exec] (Random Background) {fbsetbg -r /usr/share/fluxbox/backgrounds} </usr/share/fluxbox/icons/flux-wallpaper.png>
+           [exec] (Default) {fbsetbg -f "/usr/share/fluxbox/backgrounds/default.png" } </usr/share/fluxbox/icons/flux-wallpaper.png>
         [end]
         [workspaces] (Workspaces) </usr/share/fluxbox/icons/flux-settings.png>
         [submenu] (Styles) </usr/share/fluxbox/icons/flux-style.png>
