@@ -67,7 +67,9 @@ class Widget(QtGui.QWidget, Screen):
     def on_buttonSystemSettings_clicked(self):
         if ctx.Pds.session == ctx.pds.LXDE:
             self.procSettings = QProcess()
-            self.procSettings.start("pcmanfm menu://applications/System")
+            #self.procSettings.start("pcmanfm menu://applications/System")
+            self.procSettings.start("obconf")
+
         if ctx.Pds.session == ctx.pds.Gnome:
             self.procSettings = QProcess()
             self.procSettings.start("gnome-control-center")
