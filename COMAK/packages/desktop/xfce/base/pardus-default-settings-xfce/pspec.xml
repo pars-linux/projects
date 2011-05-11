@@ -23,6 +23,7 @@
             <Dependency versionFrom="1.0.0">gtk-style-oxygen</Dependency>
             <Dependency>icon-theme-oxygen-png</Dependency>
             <Dependency>xdg-user-dirs</Dependency>
+            <Dependency>gdm</Dependency>
         </RuntimeDependencies>
         <Conflicts>
             <Package>pardus-default-settings-lxde</Package>
