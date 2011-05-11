@@ -12,7 +12,7 @@
     </Package>
 
     <Package>
-        <Name>libxfcegui4-doc</Name>
+        <Name>libxfcegui4-docs</Name>
         <Summary xml:lang="tr">Libxfcegui4 dokümantasyon dosyaları</Summary>
     </Package>
 

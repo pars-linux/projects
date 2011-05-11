@@ -26,7 +26,7 @@
     </Package>
 
     <Package>
-        <Name>libxfce4util-doc</Name>
+        <Name>libxfce4util-docs</Name>
         <IsA>data:doc</IsA>
         <PartOf>desktop.xfce.library</PartOf>
         <Summary>Libxfce4util documantation files</Summary>
