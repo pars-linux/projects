@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Gnome Games</Summary>
         <Description>gnome-games contains a collection of games for the GNOME 3 desktop.</Description>
-        <Archive sha1sum="cea6c8371fc5110b2baed787fdf7fdec0d3a002a" type="tarbz2">mirrors://gnome/gnome-games/3.0/gnome-games-3.0.1.1.tar.bz2</Archive>
+        <Archive sha1sum="3f9112f23f46acee952fab9d081fc675af7e4afd" type="tarbz2">mirrors://gnome/gnome-games/3.1/gnome-games-3.1.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
             <Dependency>mesa-devel</Dependency>
@@ -66,6 +66,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-04-27</Date>
+            <Version>3.1.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-04-27</Date>
             <Version>3.0.1.1</Version>
