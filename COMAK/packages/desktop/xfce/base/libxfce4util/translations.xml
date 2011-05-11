@@ -12,7 +12,7 @@
     </Package>
 
     <Package>
-        <Name>libxfce4util-doc</Name>
+        <Name>libxfce4util-docs</Name>
         <Summary xml:lang="tr">libxfce4util dökümantasyon dosyaları</Summary>
     </Package>
 </PISI>

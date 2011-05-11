@@ -69,7 +69,7 @@
         </Files>
     </Package>
     <Package>
-        <Name>libxfcegui4-doc</Name>
+        <Name>libxfcegui4-docs</Name>
         <IsA>data:doc</IsA>
         <PartOf>desktop.xfce.library</PartOf>
         <Summary>Documentation files for libxfcegui4</Summary>
