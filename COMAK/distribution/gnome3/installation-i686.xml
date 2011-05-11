@@ -85,6 +85,7 @@
         <SelectedPackage>libreoffice-help-tr</SelectedPackage>
         <SelectedPackage>libreoffice-langpack-tr</SelectedPackage>
         <SelectedPackage>libreoffice-python</SelectedPackage>
+        <SelectedPackage>libudev</SelectedPackage>
         <SelectedPackage>libvisual-plugins</SelectedPackage>
         <SelectedPackage>lm_sensors</SelectedPackage>
         <SelectedPackage>logrotate</SelectedPackage>
@@ -147,7 +148,6 @@
         <SelectedPackage>python-networkmanager</SelectedPackage>
         <SelectedPackage>python-qt</SelectedPackage>
         <SelectedPackage>python-qt-webkit</SelectedPackage>
-        <SelectedPackage>python-udev</SelectedPackage>
         <SelectedPackage>qt-l10n</SelectedPackage>
         <SelectedPackage>rdate</SelectedPackage>
         <SelectedPackage>rdesktop</SelectedPackage>
@@ -1162,13 +1162,13 @@
         <SelectedPackage>NetworkManager</SelectedPackage>
         <SelectedPackage>cursor-theme-oxygen-white</SelectedPackage>
         <SelectedPackage>kernel</SelectedPackage>
+        <SelectedPackage>libudev</SelectedPackage>
         <SelectedPackage>mdadm-static</SelectedPackage>
         <SelectedPackage>memtest86</SelectedPackage>
         <SelectedPackage>microcode-ctl</SelectedPackage>
         <SelectedPackage>plymouth</SelectedPackage>
         <SelectedPackage>plymouth-theme-pardus</SelectedPackage>
         <SelectedPackage>python-networkmanager</SelectedPackage>
-        <SelectedPackage>python-udev</SelectedPackage>
         <SelectedPackage>virtualbox-guest-utils</SelectedPackage>
         <SelectedPackage>xorg-input-acecad</SelectedPackage>
         <SelectedPackage>xorg-input-aiptek</SelectedPackage>
@@ -1296,7 +1296,6 @@
         <Package>glibc-locales-sv</Package>
         <Package>glitz</Package>
         <Package>gnutls</Package>
-        <Package>gobject-introspection</Package>
         <Package>gperf</Package>
         <Package>grep</Package>
         <Package>groff</Package>
@@ -1449,7 +1448,6 @@
         <Package>python-decorator</Package>
         <Package>python-pyaspects</Package>
         <Package>python-pyblock</Package>
-        <Package>python-pygobject</Package>
         <Package>python-pyliblzma</Package>
         <Package>python-qt</Package>
         <Package>qt</Package>
