@@ -35,6 +35,18 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     fileassociations.write("application/x-pisi=package-manager.desktop;\n")
     fileassociations.close()
 
+    desktop = open("/usr/share/gdm/BuiltInSessions/default.desktop","r")
+    satirlar = desktop.readlines()
+    for i in range(len(satirlar)):
+        if (satirlar[i].find("Exec=default")==0):
+            satirlar[i] = satirlar[i].replace("default","startxfce4")
+    desktop.close()
+    desktop = open("/usr/share/gdm/BuiltInSessions/default.desktop","w")
+    for i in satirlar:
+        desktop.write(i)
+    desktop.close()
+
+
     #FIXME:
     try:
         os.unlink("/usr/share/xsessions/gnome.desktop")
