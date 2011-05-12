@@ -6,14 +6,22 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
+from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
+shelltools.export("HOME", get.workDIR())
+
 def setup():
-    autotools.configure("--disable-static\
-                         --disable-scrollkeeper\
-                         --disable-schemas-install\
-                         --enable-pixbuf\
-                         --enable-impress")
+    autotools.autoreconf("-fiv")
+
+    autotools.configure("--disable-static \
+                         --disable-scrollkeeper \
+                         --enable-djvu \
+                         --enable-dvi \
+                         --enable-comics \
+                         --enable-t1lib \
+                         --enable-nautilus \
+                         --enable-introspection")
     pisitools.dosed("libtool", " -shared ", " -Wl,--as-needed -shared ")
 
 def build():
