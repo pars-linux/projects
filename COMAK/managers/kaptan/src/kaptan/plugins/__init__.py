@@ -22,7 +22,7 @@ __plugins = {
             pds.Gnome: "gnome",
             pds.Fluxbox: "fluxbox",
             pds.Xfce: "xfce",
-            pds.Gnome3: "gnome3"
+            #pds.Gnome3: "gnome3"
             #pds.DefaultDe:"kde", #FIXME: temporary
             }
 
