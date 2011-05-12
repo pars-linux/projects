@@ -12,7 +12,7 @@
         <IsA>data</IsA>
         <Summary>COMAK Branding files for YALI</Summary>
         <Description>yali-branding includes COMAK branding files for YALI(Yet Another Linux Installer).</Description>
-        <Archive sha1sum="e068859556af2ba1515d9d8dbcee6d4a34fd998d" type="targz">http://comak.comu.edu.tr/source/yali-branding-comak-1.1.tar.gz</Archive>
+        <Archive sha1sum="28d7af0d53f3322336c8ec5d9a4ec798561ca8cb" type="targz">http://comak.comu.edu.tr/source/yali-branding-comak-1.1.tar.gz</Archive>
     </Source>
 
     <Package>
