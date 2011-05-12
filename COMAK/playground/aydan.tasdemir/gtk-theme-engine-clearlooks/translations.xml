@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gtk-theme-engine-clearlooks</Name>
+        <Summary xml:lang="tr">Clearlooks GTK+ Tema Motoru</Summary>
+        <Description xml:lang="tr">Clearlooks C dilinde yazılmış GNOME/XFCE masaüstü ortamını modern görünümlü bir ortama dönüştüren GTK+ 2.x motorudur.</Description>
+    </Source>
+</PISI>
+
