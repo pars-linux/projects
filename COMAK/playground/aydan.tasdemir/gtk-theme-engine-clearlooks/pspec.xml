@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Clearlooks GTK+ Theme Engine</Summary>
         <Description>Clearlooks is a GTK+ 2.x engine written in C that transforms your GNOME/XFCE desktop into a modern looking environment.</Description>
-        <Archive sha1sum="da63edfde412201191fef9c4cb57a77525b2ae37" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/gtk-theme-engine-clearlooks/2.91/gtk-theme-engine-clearlooks-2.91.5.tar.gz</Archive>
+        <Archive sha1sum="da63edfde412201191fef9c4cb57a77525b2ae37" type="targz">mirrors://gnome/gtk-theme-engine-clearlooks/2.91/gtk-theme-engine-clearlooks-2.91.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
         </BuildDependencies>
