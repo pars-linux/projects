@@ -10,11 +10,8 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def setup():
-    autotools.aclocal()
-    autotools.autoconf()
-    autotools.automake("-ac")
-    autotools.configure("--disable-docs \
-                        --disable-static")
+    autotools.autoreconf("-vif")
+    autotools.configure("--disable-docs")
 
 def build():
     autotools.make()

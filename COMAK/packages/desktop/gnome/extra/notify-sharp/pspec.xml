@@ -14,6 +14,7 @@
         <Description>notify-sharp contains C# bindings for desktop notification.</Description>
         <Archive sha1sum="15dd867179922131369340dbf82154d88006a4c3" type="tarbz2">http://comak.comu.edu.tr/source/notify-sharp-0.0_20110323.tar.bz2</Archive>
         <BuildDependencies>
+            <Dependency>mono-devel</Dependency>
             <Dependency>gtk-sharp-devel</Dependency>
             <Dependency>ndesk-dbus-glib</Dependency>
         </BuildDependencies>
