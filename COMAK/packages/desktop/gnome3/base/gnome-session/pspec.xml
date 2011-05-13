@@ -23,6 +23,7 @@
             <Dependency>upower-devel</Dependency>
             <Dependency>libXtst-devel</Dependency>
             <Dependency>libXext-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>libXrender-devel</Dependency>
             <Dependency>libXcomposite-devel</Dependency>
