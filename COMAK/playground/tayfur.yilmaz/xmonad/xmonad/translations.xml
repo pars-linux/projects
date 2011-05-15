@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name></Name>
+        <Summary xml:lang="tr">Konsol tabanlı pencere yöneticisi</Summary>
+        <Description xml:lang="tr">xmonad dinamik olarak kullanabileceğiniz Haskell ile kodlanan ve düzenlenen bir pencere yöneticisidir.Normalde Pencere Yöneticinizi kullanırken pencereleri hizalamak ve arama işlemi yapmak zamanınızın yarısını size kazandıracaktır.Xmonad bunu kolaylıkla sağlar ve otomatik şekilde yapar.  </Description>
+    </Source>
+</PISI>
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>XMonad</Name>
+        <Homepage>http://xmonad.org</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:console</IsA>
+        <Summary>A tiling window manager</Summary>
+        <Description>xmonad is a dynamically tiling X11 window manager that is written and configured in Haskell. In a normal WM, you spend half your time aligning and searching for windows. xmonad makes work easier, by automating this. 
+        </Description>
+        <Archive sha1sum="c319229fb6d3ef4864a6b177d96368bd9d978283" type="targz">http://hackage.haskell.org/packages/archive/xmonad/0.9/xmonad-0.9.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>haskell-devel</Dependency>
+            <Dependency>ghc-devel</Dependency>
+            <Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level=""></Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>Xmonad</Name>
+        <RuntimeDependencies>
+            <Dependency>haskell</Dependency>
+            <Dependency versionFrom="6.6.1">ghc</Dependency>
+            <Dependency versionFrom="1.2">cabal</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
+        </AdditionalFiles>
+        <Provides>
+            <COMAR script=""></COMAR>
+        </Provides>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-15</Date>
+            <Version>0.9</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
