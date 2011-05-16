@@ -98,6 +98,7 @@
         <SelectedPackage>mdadm-static</SelectedPackage>
         <SelectedPackage>mercurial</SelectedPackage>
         <SelectedPackage>mesa-utils</SelectedPackage>
+        <SelectedPackage>metacity</SelectedPackage>
         <SelectedPackage>microcode-ctl</SelectedPackage>
         <SelectedPackage>min12xxw</SelectedPackage>
         <SelectedPackage>module-alsa-driver</SelectedPackage>
@@ -398,6 +399,7 @@
         <Package>glade</Package>
         <Package>glade-devel</Package>
         <Package>glade-docs</Package>
+        <Package>glade-xfce</Package>
         <Package>glew</Package>
         <Package>glib2</Package>
         <Package>glib2-devel</Package>
@@ -784,6 +786,8 @@
         <Package>libx86</Package>
         <Package>libxcb</Package>
         <Package>libxcb-devel</Package>
+        <Package>libxfce4util</Package>
+        <Package>libxfcegui4</Package>
         <Package>libxkbfile</Package>
         <Package>libxklavier</Package>
         <Package>libxklavier-devel</Package>
@@ -867,7 +871,6 @@
         <Package>openjpeg</Package>
         <Package>openldap-client</Package>
         <Package>openslp</Package>
-        <Package>openssh</Package>
         <Package>openssl</Package>
         <Package>orbit2</Package>
         <Package>orbit2-devel</Package>
@@ -888,6 +891,7 @@
         <Package>perl</Package>
         <Package>perl-Crypt-PasswdMD5</Package>
         <Package>perl-Digest-SHA1</Package>
+        <Package>perl-Glib</Package>
         <Package>perl-HTML-Parser</Package>
         <Package>perl-HTML-Tagset</Package>
         <Package>perl-XML-Parser</Package>
@@ -963,6 +967,7 @@
         <Package>rpcbind</Package>
         <Package>rsyslog</Package>
         <Package>rtkit</Package>
+        <Package>rtmpdump</Package>
         <Package>ruby</Package>
         <Package>samba</Package>
         <Package>sane-backends</Package>
@@ -1067,6 +1072,7 @@
         <Package>xdg-user-dirs</Package>
         <Package>xdg-utils</Package>
         <Package>xdm</Package>
+        <Package>xfconf</Package>
         <Package>xfsprogs</Package>
         <Package>xine-lib</Package>
         <Package>xinit</Package>
@@ -1422,7 +1428,6 @@
         <Package>openjpeg</Package>
         <Package>openldap-client</Package>
         <Package>openslp</Package>
-        <Package>openssh</Package>
         <Package>openssl</Package>
         <Package>pam</Package>
         <Package>panda</Package>
