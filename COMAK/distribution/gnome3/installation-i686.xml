@@ -21,10 +21,12 @@
         <SelectedPackage>bash-completion</SelectedPackage>
         <SelectedPackage>bind-tools</SelectedPackage>
         <SelectedPackage>bogofilter</SelectedPackage>
+        <SelectedPackage>boot-manager-comak</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
         <SelectedPackage>chromium-browser</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
+        <SelectedPackage>cnazar</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
         <SelectedPackage>cursor-theme-oxygen-black</SelectedPackage>
@@ -34,6 +36,7 @@
         <SelectedPackage>dejavu-fonts</SelectedPackage>
         <SelectedPackage>device-mapper</SelectedPackage>
         <SelectedPackage>device-mapper-static</SelectedPackage>
+        <SelectedPackage>disk-manager-comak</SelectedPackage>
         <SelectedPackage>djvu-plugin</SelectedPackage>
         <SelectedPackage>droid-fonts</SelectedPackage>
         <SelectedPackage>dvd+rw-tools</SelectedPackage>
@@ -43,6 +46,7 @@
         <SelectedPackage>example-content</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
+        <SelectedPackage>firewall-manager-comak</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
@@ -114,6 +118,7 @@
         <SelectedPackage>ntp-client</SelectedPackage>
         <SelectedPackage>nvidia-settings</SelectedPackage>
         <SelectedPackage>p7zip</SelectedPackage>
+        <SelectedPackage>package-manager-pds</SelectedPackage>
         <SelectedPackage>paprefs</SelectedPackage>
         <SelectedPackage>pardus-desktop-services</SelectedPackage>
         <SelectedPackage>pavucontrol</SelectedPackage>
@@ -167,6 +172,7 @@
         <SelectedPackage>sdl-sound</SelectedPackage>
         <SelectedPackage>sdl-ttf</SelectedPackage>
         <SelectedPackage>sdparm</SelectedPackage>
+        <SelectedPackage>service-manager-comak</SelectedPackage>
         <SelectedPackage>shared-desktop-ontologies</SelectedPackage>
         <SelectedPackage>shared-mime-info</SelectedPackage>
         <SelectedPackage>smplayer</SelectedPackage>
@@ -186,6 +192,7 @@
         <SelectedPackage>unrar</SelectedPackage>
         <SelectedPackage>upower-devel</SelectedPackage>
         <SelectedPackage>usb-modeswitch</SelectedPackage>
+        <SelectedPackage>user-manager-pds</SelectedPackage>
         <SelectedPackage>vim</SelectedPackage>
         <SelectedPackage>vim-colorschemes</SelectedPackage>
         <SelectedPackage>virtualbox-guest-utils</SelectedPackage>
@@ -299,6 +306,7 @@
         <Package>devhelp-devel</Package>
         <Package>device-mapper</Package>
         <Package>device-mapper-event</Package>
+        <Package>dhcp</Package>
         <Package>dhcpcd</Package>
         <Package>dialog</Package>
         <Package>diffutils</Package>
