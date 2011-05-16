@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>ghc</Name>
+        <Summary xml:lang="tr">Glasgow Haskell Derleyicisi</Summary>
+        <Description xml:lang="tr">GHC türünün en iyisi olan fonksiyonel Haskell programlama dili için oluşturulmuş açık kaynaklı ve etkileşimli çevre birimi olan bir yapıya sahiptir. </Description>
+    </Source>
+</PISI>
+

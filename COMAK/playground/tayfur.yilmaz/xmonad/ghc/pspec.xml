@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>ghc</Name>
+        <Homepage>http://www.haskell.org/ghc</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:console</IsA>
+        <Summary>The Glasgow Haskell Compiler</Summary>
+        <Description>GHC is a state-of-the-art, open source, compiler and interactive environment for the functional language Haskell.
+        </Description>
+        <Archive sha1sum="" type="tarbz2">http://www.haskell.org/ghc/dist/7.0.2/ghc-7.0.2-i386-unknown-linux.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>perl-devel</Dependency>
+            <Dependency>gmp-devel</Dependency>
+        </BuildDependencies>
+        <!--
+        <Patches>
+            <Patch level=""></Patch>
+        </Patches>
+        -->
+    </Source>
+
+    <Package>
+        <Name>ghc</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="5.0.1">gmp</Dependency>
+            <Dependency>perl</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+       </Files>
+       <!-- 
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
+        </AdditionalFiles>
+        <Provides>
+            <COMAR script=""></COMAR>
+        </Provides>
+        -->
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-16</Date>
+            <Version>7.0.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
