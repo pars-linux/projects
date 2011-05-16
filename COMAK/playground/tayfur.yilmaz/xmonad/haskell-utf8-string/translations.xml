@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-utf8-string</Name>
+        <Summary xml:lang="tr">UTF8 string ifadeleri için okuma ve yazma desteği sağlar.</Summary>
+        <Description xml:lang="tr">UTF8 katmanı IO ve String ifadeler içindir. utf8-string paketi Utf8 string ifadeleri Word8 listeleriyle tersinir çalışmayı sağlamaktadır. Ve okuma ve yazma işlemlerini UTF8 haricinde kesmektedir.</Description>
+    </Source>
+</PISI>
+
