@@ -1,5 +1,5 @@
 <PardusmanProject type="install" media="custom" compression="lzo">
-    <Title>COMAK - GNOME3 i686</Title>
+    <Title>COMAK - GNOME3 i686 [22 Agu]</Title>
     <WorkDir>/root/pardusman/work/gnome3/workDir</WorkDir>
     <ReleaseFiles>/root/pardusman/work/gnome3/releaseNotes</ReleaseFiles>
     <PackageSelection repo_uri="http://gnome3.comu.edu.tr/repo/pisi-index.xml.xz">
