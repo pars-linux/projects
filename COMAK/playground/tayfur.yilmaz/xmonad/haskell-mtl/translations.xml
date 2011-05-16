@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-mtl</Name>
+        <Summary xml:lang="tr">Monad transformer kitaplığı</Summary>
+        <Description xml:lang="tr">Monad sınıfları örneklendirilmiş çeşitli monad transformer'ları, fonksiyonel bağımlılıklar şeklinde kullanır,Bu yapı Fonksiyonel Programlamanın Yüksek seviyede Çok Biçimcilik özelliğinden ilham almaktadır.</Description>
+    </Source>
+</PISI>
+
