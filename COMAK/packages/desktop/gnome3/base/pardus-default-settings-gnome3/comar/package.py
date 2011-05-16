@@ -34,17 +34,3 @@ def postInstall(fromVersion, fromRelease, toVersion, toRelease):
     fileassociations.write("text/plain=gedit.desktop;\n")
     fileassociations.write("application/x-pisi=package-manager.desktop;\n")
     fileassociations.close()
-
-    #FIXME:
-    try:
-        os.unlink("/usr/share/xsessions/gnome.desktop")
-    except:
-        pass
-    try:
-        os.unlink("/usr/share/xsessions/openbox-gnome.desktop")
-    except:
-        pass
-    try:
-        os.unlink("/usr/share/xsessions/openbox-kde.desktop")
-    except:
-        pass
