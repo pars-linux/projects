@@ -14,7 +14,7 @@
         <Summary>A lightweight web browser that is based GTK+</Summary>
         <Description>Midori is a lightweight GTK+ web browser based on WebkitGtk. It features tabs, windows and session management, bookmarks stored with XBEL, searchbox based on OpenSearch, and user script support.</Description>
         <!--Archive sha1sum="01baf6243f7b00af5e5b4eb6ac5d3233e60bc993" type="tarbz2">http://archive.xfce.org/src/apps/midori/0.3/midori-0.3.3.tar.bz2</Archive-->
-        <Archive sha1sum="69940049ea98c06b2a6444e9a837e2bf472ba949" type="tarbz2">http://archive.xfce.org/src/apps/midori/0.3/midori-0.3.5.tar.bz2</Archive>
+        <Archive sha1sum="b790f33b72520e6910061a933f879b74482f801c" type="tarbz2">http://archive.xfce.org/src/apps/midori/0.3/midori-0.3.6.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency version="0.10.0">vala-devel</Dependency>
             <Dependency>libunique-devel</Dependency>
@@ -27,6 +27,7 @@
             <Dependency>cairo-devel</Dependency>
             <Dependency>libnotify-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libtasn1-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>default-homepage.patch</Patch>
@@ -63,6 +64,13 @@
     </Package>
 
     <History>
+        <Update release="13">
+            <Date>2011-05-16</Date>
+            <Version>0.3.6</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="12">
             <Date>2011-05-02</Date>
             <Version>0.3.5</Version>
