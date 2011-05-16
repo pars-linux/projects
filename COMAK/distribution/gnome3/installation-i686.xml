@@ -23,6 +23,7 @@
         <SelectedPackage>bogofilter</SelectedPackage>
         <SelectedPackage>ccid</SelectedPackage>
         <SelectedPackage>cdrtools</SelectedPackage>
+        <SelectedPackage>chromium-browser</SelectedPackage>
         <SelectedPackage>clementine</SelectedPackage>
         <SelectedPackage>command-not-found</SelectedPackage>
         <SelectedPackage>crda</SelectedPackage>
@@ -42,7 +43,6 @@
         <SelectedPackage>example-content</SelectedPackage>
         <SelectedPackage>extundelete</SelectedPackage>
         <SelectedPackage>ffmpeg</SelectedPackage>
-        <SelectedPackage>firefox</SelectedPackage>
         <SelectedPackage>flashplugin</SelectedPackage>
         <SelectedPackage>foomatic-db</SelectedPackage>
         <SelectedPackage>foomatic-db-hpijs</SelectedPackage>
@@ -72,8 +72,6 @@
         <SelectedPackage>kernel</SelectedPackage>
         <SelectedPackage>liberation-fonts</SelectedPackage>
         <SelectedPackage>libgnomeprint</SelectedPackage>
-        <SelectedPackage>libgnomeprintui</SelectedPackage>
-        <SelectedPackage>libgsf-gnome</SelectedPackage>
         <SelectedPackage>libgudev1</SelectedPackage>
         <SelectedPackage>libproxy-gnome</SelectedPackage>
         <SelectedPackage>libreoffice</SelectedPackage>
@@ -212,7 +210,6 @@
         <Package>DirectFB</Package>
         <Package>ModemManager</Package>
         <Package>NetworkManager</Package>
-        <Package>QtCurve-Gtk2</Package>
         <Package>a52dec</Package>
         <Package>aalib</Package>
         <Package>accountsservice</Package>
@@ -228,13 +225,11 @@
         <Package>anjuta-docs</Package>
         <Package>apr</Package>
         <Package>apr-util</Package>
-        <Package>aspell</Package>
         <Package>atk</Package>
         <Package>atk-devel</Package>
         <Package>atkmm</Package>
         <Package>atkmm-devel</Package>
         <Package>atmel-firmware</Package>
-        <Package>attica</Package>
         <Package>attr</Package>
         <Package>audiofile</Package>
         <Package>audit</Package>
@@ -257,8 +252,6 @@
         <Package>bluez-firmware</Package>
         <Package>bluez-libs</Package>
         <Package>boost</Package>
-        <Package>brasero</Package>
-        <Package>brasero-devel</Package>
         <Package>build-docbook-catalog</Package>
         <Package>busybox</Package>
         <Package>bzip2</Package>
@@ -341,7 +334,6 @@
         <Package>evolution-data-server-devel</Package>
         <Package>evolution-data-server-docs</Package>
         <Package>exempi</Package>
-        <Package>exiv2-libs</Package>
         <Package>expat</Package>
         <Package>faac</Package>
         <Package>faad2</Package>
@@ -368,7 +360,6 @@
         <Package>ftgl</Package>
         <Package>fuse</Package>
         <Package>fxload</Package>
-        <Package>gamin</Package>
         <Package>gawk</Package>
         <Package>gcalctool</Package>
         <Package>gconf</Package>
@@ -399,7 +390,6 @@
         <Package>glade</Package>
         <Package>glade-devel</Package>
         <Package>glade-docs</Package>
-        <Package>glade-xfce</Package>
         <Package>glew</Package>
         <Package>glib2</Package>
         <Package>glib2-devel</Package>
@@ -419,7 +409,6 @@
         <Package>glibmm-devel</Package>
         <Package>glitz</Package>
         <Package>glitz-devel</Package>
-        <Package>gmime</Package>
         <Package>gmp</Package>
         <Package>gnome-backgrounds</Package>
         <Package>gnome-bluetooth</Package>
@@ -462,14 +451,12 @@
         <Package>gnome-utils-docs</Package>
         <Package>gnome-vfs</Package>
         <Package>gnu-gs-fonts-std</Package>
-        <Package>gnupg</Package>
         <Package>gnutls</Package>
         <Package>gnutls-devel</Package>
         <Package>gobject-introspection</Package>
         <Package>gobject-introspection-devel</Package>
         <Package>gpac</Package>
         <Package>gperf</Package>
-        <Package>gpgme</Package>
         <Package>gpm</Package>
         <Package>graphviz</Package>
         <Package>grep</Package>
@@ -486,26 +473,16 @@
         <Package>gst-plugins-good</Package>
         <Package>gst-plugins-ugly</Package>
         <Package>gstreamer</Package>
-        <Package>gtk+extra</Package>
-        <Package>gtk+extra-devel</Package>
         <Package>gtk-engines</Package>
-        <Package>gtk-qt-engine</Package>
         <Package>gtk-style-oxygen</Package>
         <Package>gtk2</Package>
         <Package>gtk2-devel</Package>
-        <Package>gtk2-themes-kde4oxygen</Package>
         <Package>gtk3</Package>
         <Package>gtk3-devel</Package>
-        <Package>gtkhtml3</Package>
-        <Package>gtkimageview</Package>
-        <Package>gtkimageview-devel</Package>
-        <Package>gtkimageview-docs</Package>
         <Package>gtkmm</Package>
-        <Package>gtkmm-devel</Package>
         <Package>gtksourceview</Package>
         <Package>gtksourceview-devel</Package>
         <Package>gtkspell</Package>
-        <Package>gtkspell-devel</Package>
         <Package>gucharmap</Package>
         <Package>gucharmap-devel</Package>
         <Package>guile</Package>
@@ -554,7 +531,6 @@
         <Package>json-glib</Package>
         <Package>json-glib-devel</Package>
         <Package>kbd</Package>
-        <Package>kdelibs</Package>
         <Package>kernel</Package>
         <Package>keyutils</Package>
         <Package>ladspa-sdk</Package>
@@ -607,7 +583,6 @@
         <Package>libarchive</Package>
         <Package>libart_lgpl</Package>
         <Package>libass</Package>
-        <Package>libassuan</Package>
         <Package>libasyncns</Package>
         <Package>libatasmart</Package>
         <Package>libavc1394</Package>
@@ -628,7 +603,6 @@
         <Package>libdaemon</Package>
         <Package>libdbusmenu-common</Package>
         <Package>libdbusmenu-glib</Package>
-        <Package>libdbusmenu-qt</Package>
         <Package>libdc1394</Package>
         <Package>libdca</Package>
         <Package>libdiscid</Package>
@@ -664,10 +638,7 @@
         <Package>libgee</Package>
         <Package>libgfortran</Package>
         <Package>libglade</Package>
-        <Package>libglade-devel</Package>
-        <Package>libglade-docs</Package>
         <Package>libglademm</Package>
-        <Package>libglademm-devel</Package>
         <Package>libgnome</Package>
         <Package>libgnome-keyring</Package>
         <Package>libgnome-keyring-devel</Package>
@@ -675,8 +646,6 @@
         <Package>libgnomecanvas</Package>
         <Package>libgnomecups</Package>
         <Package>libgnomekbd</Package>
-        <Package>libgnomekbd-devel</Package>
-        <Package>libgnomeprint</Package>
         <Package>libgnomeui</Package>
         <Package>libgpg-error</Package>
         <Package>libgpg-error-devel</Package>
@@ -686,6 +655,8 @@
         <Package>libgssglue</Package>
         <Package>libgtop</Package>
         <Package>libgweather</Package>
+        <Package>libgweather-devel</Package>
+        <Package>libgweather-docs</Package>
         <Package>libical</Package>
         <Package>libical-devel</Package>
         <Package>libid3tag</Package>
@@ -698,7 +669,6 @@
         <Package>libiodbc</Package>
         <Package>libkate</Package>
         <Package>libkms</Package>
-        <Package>libksba</Package>
         <Package>liblastfm</Package>
         <Package>liblrdf</Package>
         <Package>libmad</Package>
@@ -744,8 +714,6 @@
         <Package>librsvg</Package>
         <Package>libsamplerate</Package>
         <Package>libsdl</Package>
-        <Package>libsexy</Package>
-        <Package>libsexy-devel</Package>
         <Package>libshout</Package>
         <Package>libsigc++</Package>
         <Package>libsigc++-devel</Package>
@@ -786,8 +754,6 @@
         <Package>libx86</Package>
         <Package>libxcb</Package>
         <Package>libxcb-devel</Package>
-        <Package>libxfce4util</Package>
-        <Package>libxfcegui4</Package>
         <Package>libxkbfile</Package>
         <Package>libxklavier</Package>
         <Package>libxklavier-devel</Package>
@@ -866,11 +832,11 @@
         <Package>nvidia-xconfig</Package>
         <Package>openal</Package>
         <Package>opencore-amr</Package>
-        <Package>openexr</Package>
         <Package>openexr-libs</Package>
         <Package>openjpeg</Package>
         <Package>openldap-client</Package>
         <Package>openslp</Package>
+        <Package>openssh</Package>
         <Package>openssl</Package>
         <Package>orbit2</Package>
         <Package>orbit2-devel</Package>
@@ -880,7 +846,6 @@
         <Package>pango</Package>
         <Package>pango-devel</Package>
         <Package>pangomm</Package>
-        <Package>pangomm-devel</Package>
         <Package>pardus-default-settings-gnome3</Package>
         <Package>pardus-desktop-services</Package>
         <Package>pardus-python</Package>
@@ -891,7 +856,6 @@
         <Package>perl</Package>
         <Package>perl-Crypt-PasswdMD5</Package>
         <Package>perl-Digest-SHA1</Package>
-        <Package>perl-Glib</Package>
         <Package>perl-HTML-Parser</Package>
         <Package>perl-HTML-Tagset</Package>
         <Package>perl-XML-Parser</Package>
@@ -914,7 +878,6 @@
         <Package>pm-utils</Package>
         <Package>pnm2ppa</Package>
         <Package>polkit</Package>
-        <Package>polkit-qt_1</Package>
         <Package>poppler</Package>
         <Package>poppler-data</Package>
         <Package>poppler-glib</Package>
@@ -924,7 +887,6 @@
         <Package>ppp</Package>
         <Package>procps</Package>
         <Package>psmisc</Package>
-        <Package>pth</Package>
         <Package>pulseaudio</Package>
         <Package>pulseaudio-gconf</Package>
         <Package>pulseaudio-libs</Package>
@@ -950,7 +912,6 @@
         <Package>python-qt</Package>
         <Package>python-setuptools</Package>
         <Package>python-zope-interface</Package>
-        <Package>qca2</Package>
         <Package>qt</Package>
         <Package>qt-sql-sqlite</Package>
         <Package>qt-webkit</Package>
@@ -967,7 +928,6 @@
         <Package>rpcbind</Package>
         <Package>rsyslog</Package>
         <Package>rtkit</Package>
-        <Package>rtmpdump</Package>
         <Package>ruby</Package>
         <Package>samba</Package>
         <Package>sane-backends</Package>
@@ -980,7 +940,6 @@
         <Package>sg3_utils</Package>
         <Package>sgml-common</Package>
         <Package>shadow</Package>
-        <Package>shared-desktop-ontologies</Package>
         <Package>shared-mime-info</Package>
         <Package>sip</Package>
         <Package>skey</Package>
@@ -998,9 +957,6 @@
         <Package>sqlite-devel</Package>
         <Package>startup-notification</Package>
         <Package>startup-notification-devel</Package>
-        <Package>strigi</Package>
-        <Package>strigi-common</Package>
-        <Package>strigi-libs</Package>
         <Package>subversion</Package>
         <Package>sun-jre</Package>
         <Package>sysfsutils</Package>
@@ -1029,11 +985,6 @@
         <Package>timidity</Package>
         <Package>timidity-shompatches</Package>
         <Package>tomcat-servlet-api</Package>
-        <Package>totem</Package>
-        <Package>totem-devel</Package>
-        <Package>totem-docs</Package>
-        <Package>totem-pl-parser</Package>
-        <Package>totem-pl-parser-devel</Package>
         <Package>twolame</Package>
         <Package>udev</Package>
         <Package>udisks</Package>
@@ -1072,7 +1023,6 @@
         <Package>xdg-user-dirs</Package>
         <Package>xdg-utils</Package>
         <Package>xdm</Package>
-        <Package>xfconf</Package>
         <Package>xfsprogs</Package>
         <Package>xine-lib</Package>
         <Package>xinit</Package>
@@ -1428,6 +1378,7 @@
         <Package>openjpeg</Package>
         <Package>openldap-client</Package>
         <Package>openslp</Package>
+        <Package>openssh</Package>
         <Package>openssl</Package>
         <Package>pam</Package>
         <Package>panda</Package>
