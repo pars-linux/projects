@@ -15,8 +15,9 @@
         </Description>
         <Archive sha1sum="c319229fb6d3ef4864a6b177d96368bd9d978283" type="targz">http://hackage.haskell.org/packages/archive/xmonad/0.9/xmonad-0.9.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency>haskell-devel</Dependency>
             <Dependency>ghc-devel</Dependency>
+            <Dependency>gmp-devel</Dependency>
+            <Dependency>haskell-devel</Dependency>
             <Dependency>
         </BuildDependencies>
         <Patches>
@@ -28,8 +29,12 @@
         <Name>Xmonad</Name>
         <RuntimeDependencies>
             <Dependency>haskell</Dependency>
-            <Dependency versionFrom="6.6.1">ghc</Dependency>
-            <Dependency versionFrom="1.2">cabal</Dependency>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+            <Dependency versionFrom="5.0.1">gmp</Dependency>
+      <!--  <Dependency versionFrom="1.2">cabal</Dependency> -->
+            <Dependency versionFrom="2.0.1.0">haskell-mtl</Dependency>
+            <Dependency versionFrom="0.3.6">haskell-utf8-string</Dependency>
+            <Dependency versionFrom="1.5.0.0">haskell-x11</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
