@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>GNOME system monitor</Summary>
         <Description>gnome-system-monitor is a process viewer and system monitor for the GNOME desktop.</Description>
-        <Archive sha1sum="60f492eea26dc25c6891dbe7bcb63757341188e3" type="tarbz2">mirrors://gnome/gnome-system-monitor/3.0/gnome-system-monitor-3.0.0.tar.bz2</Archive>
+        <Archive sha1sum="9bd4f9cc743a1cf8be1047b098ff59e3772be7f5" type="tarbz2">mirrors://gnome/gnome-system-monitor/3.1/gnome-system-monitor-3.1.1.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>icon-theme-gnome</Dependency>
@@ -62,6 +62,13 @@
     </Package>
 
     <History>
+        <Update release="10">
+            <Date>2011-05-17</Date>
+            <Version>3.1.1.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="9">
             <Date>2011-04-20</Date>
             <Version>3.0.0</Version>
