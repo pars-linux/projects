@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-x11</Name>
+        <Summary xml:lang="tr">X11 grafik kitaplığı için Haskell bağlayucuları</Summary>
+        <Description xml:lang="tr">X11 grafik kitaplığı için Haskell bağlayıcıları. Bu bağlayıcı direkt olarak C bağlayıcılarına çevirme işini yapar;Belgelendirme için yapılan bu çağrılar,X11 Programlara manuel olarak erişim sağlar.</Description>
+    </Source>
+</PISI>
+
