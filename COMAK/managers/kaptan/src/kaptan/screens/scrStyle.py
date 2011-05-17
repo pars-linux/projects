@@ -143,7 +143,7 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.label_3.hide()
         self.ui.listIcon.connect(self.ui.listIcon, SIGNAL("itemClicked(QListWidgetItem *)"), self.setIcon)
         self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
-        if ctx.Pds.session.Name =="gnome" or  ctx.Pds.session == ctx.pds.LXDE:
+        if ctx.Pds.session.Name =="gnome" or  ctx.Pds.session == ctx.pds.LXDE or ctx.Pds.session == ctx.pds.Gnome3:
             self.ui.spinBoxDesktopNumbers.hide()
             self.ui.labelDesktopNumbers.hide()
         self.ui.spinBoxDesktopNumbers.connect(self.ui.spinBoxDesktopNumbers, SIGNAL("valueChanged(const QString &)"), self.addDesktop)
