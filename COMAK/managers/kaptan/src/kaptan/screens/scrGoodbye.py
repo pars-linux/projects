@@ -36,7 +36,9 @@ FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
 FOR_FLUXBOX = ctx.Pds.session == ctx.pds.Fluxbox
 FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
 FOR_XFCE=ctx.Pds.session == ctx.pds.Xfce
-SHOW_COMAK_UI = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE
+FOR_GNOME3=ctx.Pds.session == ctx.pds.Gnome3
+
+SHOW_COMAK_UI = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE | FOR_GNOME3
 if SHOW_COMAK_UI:
     from kaptan.screens.ui_scrGoodbye_comak import Ui_goodbyeWidget
 else:
@@ -70,7 +72,7 @@ class Widget(QtGui.QWidget, Screen):
             #self.procSettings.start("pcmanfm menu://applications/System")
             self.procSettings.start("obconf")
 
-        if ctx.Pds.session == ctx.pds.Gnome:
+        if ctx.Pds.session == ctx.pds.Gnome or ctx.Pds.session == ctx.pds.Gnome3:
             self.procSettings = QProcess()
             self.procSettings.start("gnome-control-center")
         if ctx.Pds.session == ctx.pds.Xfce:
@@ -78,11 +80,17 @@ class Widget(QtGui.QWidget, Screen):
             self.procSettings.start("xfce4-settings-manager")
     def on_buttonHelpPages_clicked(self):
         self.procSettings = QProcess()
-        command = "firefox " + self.helpPageUrl
+        if ctx.Pds.session == ctx.pds.Gnome3:
+            command = "chromium-browser " + self.helpPageUrl
+        else:
+            command = "firefox " + self.helpPageUrl
         self.procSettings.start(command)
     def on_buttonSystemSettings_2_clicked(self):
         self.procSettings = QProcess()
-        command = "firefox " + self.smoltUrl
+        if ctx.Pds.session == ctx.pds.Gnome3:
+            command = "chromium-browser " + self.helpPageUrl
+        else:
+            command = "firefox " + self.smoltUrl
         self.procSettings.start(command)
 
     def setSmolt(self):

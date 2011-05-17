@@ -29,7 +29,8 @@ FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
 FOR_FLUXBOX = ctx.Pds.session == ctx.pds.Fluxbox
 FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
 FOR_XFCE=ctx.Pds.session == ctx.pds.Xfce
-SHOW_COMAK_UI = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE
+FOR_GNOME3 = ctx.Pds.session == ctx.pds.Gnome3
+SHOW_COMAK_UI = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE | FOR_GNOME3
 if SHOW_COMAK_UI:
     from kaptan.screens.ui_scrSmolt_comak import Ui_smoltWidget
 else:

@@ -57,7 +57,7 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.checkBox.setEnabled(0)
             errorMessage= i18n("comak-repo is already available on your system.")
             self.ui.information_label.setText(errorMessage)
-    
+
     def controlRepo(self):
         if self.repodb.has_repo_url(self.repoAddress):
             self.ui.checkBox.setCheckState(False)
