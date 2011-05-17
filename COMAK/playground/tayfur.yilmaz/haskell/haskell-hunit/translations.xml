@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-hunit</Name>
+        <Summary xml:lang="tr">Haskell programlama dili için test frameworkü</Summary>
+        <Description xml:lang="tr">HUnit,Haskell için yapılmış test güdümlü bir frameworktür. Java araçlarından JUnit'den esinlenilerek hazırlanmıştır. bknz: http://www.junit.org
+        </Description>
+    </Source>
+</PISI>
+

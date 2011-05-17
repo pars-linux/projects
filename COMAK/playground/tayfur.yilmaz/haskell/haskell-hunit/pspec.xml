@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-hunit</Name>
+        <Homepage>http://hackage.haskell.org/package/HUnit</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>custom:BSD3</License>
+        <IsA>app:console</IsA>
+        <Summary>A unit testing framework for Haskell</Summary>
+        <Description>HUnit is a unit testing framework for Haskell, inspired by the JUnit tool for Java, see: http://www.junit.org. 
+        </Description>
+        <Archive sha1sum="669c1a658c667f1ecd7cad1ee35a2e2aff788f41" type="targz">http://hackage.haskell.org/packages/archive/HUnit/1.2.2.3/HUnit-1.2.2.3.tar.gz
+        </Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+    <Package>
+        <Name>haskell-hunit</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-18</Date>
+            <Version>1.2.2.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
