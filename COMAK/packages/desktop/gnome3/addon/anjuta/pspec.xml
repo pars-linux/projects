@@ -31,7 +31,7 @@
             <Dependency>gtksourceview</Dependency>
             <Dependency>subversion</Dependency>
             <Dependency>valgrind</Dependency>
-            <Dependency>vte</Dependency>
+            <Dependency>vte-devel</Dependency>
             <Dependency>webkit-gtk-devel</Dependency>
             <Dependency>libgda-devel</Dependency>
         </BuildDependencies>
