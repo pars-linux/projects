@@ -8,14 +8,13 @@
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
-from pisi.actionsapi import pythonmodules
 
 def setup():
-    pass
+    autotools.configure()
 
 def build():
-    pythonmodules.compile()
+    autotools.make()
 
 def install():
-    pythonmodules.install()
+    autotools.install()
 
