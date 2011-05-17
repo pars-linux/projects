@@ -13,9 +13,9 @@
         <Summary>The Glasgow Haskell Compiler</Summary>
         <Description>GHC is a state-of-the-art, open source, compiler and interactive environment for the functional language Haskell.
         </Description>
-        <Archive sha1sum="" type="tarbz2">http://www.haskell.org/ghc/dist/7.0.2/ghc-7.0.2-i386-unknown-linux.tar.bz2</Archive>
+        <Archive sha1sum="6ce91fee267b43779d590efc8c037c83b4fe69be" type="tarbz2">http://www.haskell.org/ghc/dist/7.0.2/ghc-7.0.2-i386-unknown-linux.tar.bz2</Archive>
+        <!--Archive sha1sum="222eed949413723b1f45218a908d5ee6930fda1b" type="tarbz2">http://www.haskell.org/ghc/dist/7.0.3/ghc-7.0.3-src.tar.bz2</Archive-->
         <BuildDependencies>
-            <Dependency>perl-devel</Dependency>
             <Dependency>gmp-devel</Dependency>
         </BuildDependencies>
         <!--
