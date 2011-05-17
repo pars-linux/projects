@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-http</Name>
+        <Summary xml:lang="tr">istemci taraflı Http kitaplığı</Summary>
+        <Description xml:lang="tr">Http paketi Haskell dilinde istemci tabanlı web programlama yapılmasına imkan sağlar. Http bağlantıları yapmanıza izin verir,isteklerinizi karşı tarafa iletir ve cevapların geri dönüş olarak size sunar,tüm bunların hepsini Haskell dilinin size sağladığı konfor ile yapabilirsiniz. İşlemleri gerçekleştirmek için network paketine gereksinim duyacaksınız ama diğer yandan tüm gerçekleştirimler Haskell diliyle kodlanmıştır.</Description>
+    </Source>
+</PISI>
+

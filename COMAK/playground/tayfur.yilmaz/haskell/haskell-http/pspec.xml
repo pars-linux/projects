@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-http</Name>
+        <Homepage>http://projects.haskell.org/http/</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>custom:BSD3</License>
+        <IsA>app:console</IsA>
+        <Summary>A library for client-side HTTP</Summary>
+        <Description>The HTTP package supports client-side web programming in Haskell. It lets you set up HTTP connections, transmitting requests and processing the responses coming back, all from within the comforts of Haskell. It's dependent on the network package to operate, but other than that, the implementation is all written in Haskell. 
+        </Description>
+        <Archive sha1sum="cdb8ae29b8524a912545059e4ec4a2b25ada88c5" type="targz">http://hackage.haskell.org/packages/archive/HTTP/4000.1.1/HTTP-4000.1.1.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-http</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+            <Dependency versionFrom="2.0.1.0">haskell-mtl</Dependency>
+            <Dependency versionFrom="2.3.0.2">haskell-network</Dependency>
+            <Dependency versionFrom="3.1.1">haskell-parsec</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-18</Date>
+            <Version>1.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
