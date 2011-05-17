@@ -11,8 +11,7 @@ from pisi.actionsapi import shelltools
 def setup():
     autotools.autoreconf("-fiv")
     shelltools.system("intltoolize --force --copy --automake")
-    autotools.configure("--disable-schemas-install \
-                         --disable-scrollkeeper \
+    autotools.configure("--disable-scrollkeeper \
                          --enable-gtk-doc")
 
 def build():
