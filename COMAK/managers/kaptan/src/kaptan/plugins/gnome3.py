@@ -72,11 +72,8 @@ class Wallpaper(base.Wallpaper):
             #    screenshot.jpg, screnshot.jpg, screenshot.png, screnshot.png
             #    """
             if string.find(desktopFiles, "background-default")<0:
-                if string.find(desktopFiles, "jpg") > -1 :
-                    desktopFiles=desktopFiles.replace("jpg","png")
-                    wallpaper["wallpaperThumb"] ="/usr/share/kaptan/kaptan/gnome3_previews/%s"%desktopFiles.split("/")[-1]
-                else :
-                    wallpaper["wallpaperThumb"] ="/usr/share/kaptan/kaptan/gnome_previews/%s"%desktopFiles.split("/")[-1]
+                desktopFiles=desktopFiles.replace("jpg","png")
+                wallpaper["wallpaperThumb"] ="/usr/share/kaptan/kaptan/gnome3_previews/%s"%desktopFiles.split("/")[-1]
                 wallpaper["wallpaperFile"] = desktopFiles
                 items.append(wallpaper)
         return items
@@ -85,10 +82,10 @@ class Wallpaper(base.Wallpaper):
         wallpaper = str(wallpaper)
         last = wallpaper.split("/")[-1]
 
-        if string.find(wallpaper,"/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/abstract")>-1:
+        if string.find(wallpaper,"/usr/share/kaptan/kaptan/gnome_previews/abstract")>-1:
             os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/abstract/%s" %last)
         else:
-            if string.find(wallpaper,"/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/") > -1:
+            if string.find(wallpaper,"/usr/share/kaptan/kaptan/gnome_previews/") > -1:
                 last=last.replace("png","jpg")
                 os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/nature/%s" %last)
             else:

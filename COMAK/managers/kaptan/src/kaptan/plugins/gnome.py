@@ -22,25 +22,6 @@ from kaptan.screens.scrStyle import Widget as scrStyleWidget
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
-def save_openboxrc(tree):
-    fl = open(FILE_OPENBOXRC, "w")
-    fl.write(tree.toString())
-    fl.close()
-
-def save_lxsession(new):
-    fl = open(FILE_LXSESSION, "w")
-    fl.write(new)
-    fl.close()
-
-def update_lxsession():
-    global CONFIG_LXSESSION
-    CONFIG_LXSESSION = open(FILE_LXSESSION).read()
-
-#openbox configuration files
-FILE_OPENBOXRC = "%s/.config/openbox/rc.xml"%os.environ["HOME"]
-#CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
-
-
 class Keyboard(base.Keyboard):
     pass
 
@@ -102,11 +83,11 @@ class Wallpaper(base.Wallpaper):
     def setWallpaper(self ,wallpaper):
         wallpaper = str(wallpaper)
         last = wallpaper.split("/")[-1]
-        
-        if string.find(wallpaper,"/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/abstract")>-1:
+
+        if string.find(wallpaper,"/usr/share/kaptan/kaptan/gnome_previews/abstract")>-1:
             os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/abstract/%s" %last)
         else:
-            if string.find(wallpaper,"/usr/share/kde4/apps/kaptan/kaptan/gnome_previews/") > -1:
+            if string.find(wallpaper,"/usr/share/kaptan/kaptan/gnome_previews/") > -1:
                 last=last.replace("png","jpg")
                 os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/nature/%s" %last)
             else:
@@ -128,13 +109,11 @@ class Style(base.Style):
 
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
-        #CONFIG_OPENBOX.getTag("desktops").getTag("number").setData(dn)
-        #save_openboxrc(CONFIG_OPENBOX)
 
     def setThemeSettings(self):
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
         os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme %s" %iconTheme)
-    
+
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
         os.popen("gconftool-2 --type=string -s /apps/metacity/general/theme %s" %styleName)

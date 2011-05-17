@@ -76,7 +76,7 @@ class Widget(QtGui.QWidget, Screen):
         elif ctx.Pds.session.Name == "fluxbox":
             dir = QDir("/usr/share/fluxbox/styles")
             lst2 =dir.entryList()
-        elif ctx.Pds.session.Name == "gnome":
+        elif ctx.Pds.session.Name == "gnome" or ctx.Pds.session.Name == "gnome3":
             #lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
             dir = QDir("/usr/share/themes")
             lst2 =dir.entryList()
@@ -103,7 +103,7 @@ class Widget(QtGui.QWidget, Screen):
             if ctx.Pds.session.Name == "xfce":
                 a ="/usr/share//kaptan/kaptan/xfce_themes/"
                 thumbFolder = a + themes + ".png"
-            elif ctx.Pds.session.Name == "gnome":
+            elif ctx.Pds.session.Name == "gnome" or  ctx.Pds.session.Name == "gnome3":
                 a ="/usr/share/kaptan/kaptan/gnome_themes/"
                 thumbFolder = a +themes+ ".png"
             else:
