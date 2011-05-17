@@ -81,15 +81,10 @@ class Wallpaper(base.Wallpaper):
     def setWallpaper(self ,wallpaper):
         wallpaper = str(wallpaper)
         last = wallpaper.split("/")[-1]
-
-        if string.find(wallpaper,"/usr/share/kaptan/kaptan/gnome_previews/abstract")>-1:
-            os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/abstract/%s" %last)
-        else:
-            if string.find(wallpaper,"/usr/share/kaptan/kaptan/gnome_previews/") > -1:
-                last=last.replace("png","jpg")
-                os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename /usr/share/pixmaps/backgrounds/gnome/nature/%s" %last)
-            else:
-                os.popen("gconftool-2 --type str --set /desktop/gnome/background/picture_filename %s" %wallpaper)
+        if last.split(".")[-1] == "png" and not last.split(".")[-2] == "FootFall":
+            last= last.replace("png","jpg")
+        if string.find(wallpaper,"/usr/share/kaptan/kaptan/gnome3_previews/")>-1:
+            os.popen("GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/gnome'/%s" %last)
 
 class Common(base.Common):
 
