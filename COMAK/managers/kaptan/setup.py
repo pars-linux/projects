@@ -94,7 +94,7 @@ class Build(build):
         # Gnome Themes
         os.system("cp -R data/gnome_themes build/kaptan/")
         os.system("cp -R data/gnome_previews build/kaptan/")
-
+        os.system("cp -R data/gnome3_previews build/kaptan/")
         # Xfce Themes
         os.system("cp -R data/xfce_themes build/kaptan/" )
 
