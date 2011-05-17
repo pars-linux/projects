@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name></Name>
+        <Summary xml:lang="tr">İstemci tabanlı Http kitaplığı</Summary>
+        <Description xml:lang="tr"></Description>
+    </Source>
+</PISI>
+
