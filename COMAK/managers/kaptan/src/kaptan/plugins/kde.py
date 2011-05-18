@@ -26,7 +26,7 @@ from . import base
 from kaptan.tools.desktop_parser import DesktopParser
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
-HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrMenu', 'scrWallpaper']
+HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrMenu', 'scrWallpaper','scrAvatar']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
 
@@ -326,6 +326,10 @@ class Package(base.Package):
         self.group.writeEntry(option, QVariant(value))
         self.config.sync()
 
+
+class Avatar(base.Avatar):
+
+    pass
 
 class Goodbye(base.Goodbye):
 
