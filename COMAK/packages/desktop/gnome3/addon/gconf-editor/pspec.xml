@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gconf-editor</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>Graphical gconf registry editor</Summary>
+        <Description>gconf-editor is a graphical gconf registry editor.</Description>
+        <Archive sha1sum="087f07b77a1dc07034401487035bb1f49b22351b" type="tarbz2">mirrors://gnome/gconf-editor/3.0/gconf-editor-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>docbook-xml4_1_2</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gconf-editor</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gconf-editor</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="3">
+            <Date>2009-05-17</Date>
+            <Version>3.0.0</Version>
+            <Comment>Release bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2009-01-01</Date>
+            <Version>2.24.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-06-03</Date>
+            <Version>2.22.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
