@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-network</Name>
+        <Summary xml:lang="tr">Düşük seviyeli ağ arayüzü</Summary>
+        <Description xml:lang="tr">Düşük seviyeli ağ arayüzü</Description>
+    </Source>
+</PISI>
+
