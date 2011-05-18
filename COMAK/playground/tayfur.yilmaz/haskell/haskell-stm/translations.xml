@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-stm</Name>
+        <Summary xml:lang="tr">Bu modül bileşimi eş zamanlı soyutlama sağlar.</Summary>
+        <Description xml:lang="tr">Bu modul bileşimi eş zamanlı soyutlama sağlar.</Description>
+    </Source>
+</PISI>
+
