@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>rhythmbox</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A music player</Summary>
+        <Description>Rhythmbox is an integrated music management application, originally inspired by Apple's iTunes. GStreamer media framework.</Description>
+        <Archive sha1sum="1c6e83972dcd7de8fc1a71586843e29092a0c706" type="tarbz2">mirrors://gnome/rhythmbox/0.13/rhythmbox-0.13.3.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>libgpod-devel</Dependency>
+            <Dependency>totem-pl-parser</Dependency>
+            <!--Dependency>gnome-media-devel</Dependency-->
+            <Dependency>libgnome-keyring-devel</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
+            <Dependency>gst-python-devel</Dependency>
+            <Dependency>musicbrainz-devel</Dependency>
+            <Dependency>python-gtk</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>avahi-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+            <Dependency>json-glib-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libgnome-media-profiles-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <!--Patch level="1">rhythmbox-0.12.8-namespace-conflict.patch</Patch-->
+            <!--Patch level="1">rhythmbox-0.12-python-initialization.patch</Patch-->
+            <Patch level="1">libgnome-media-profiles.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>rhythmbox</Name>
+        <RuntimeDependencies>
+            <Dependency>libgpod</Dependency>
+            <Dependency>totem-pl-parser</Dependency>
+            <Dependency>gnome-media</Dependency>
+            <Dependency>libgnome-keyring</Dependency>
+            <Dependency>libsoup-gnome</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
+            <Dependency>gst-python</Dependency>
+            <Dependency>musicbrainz</Dependency>
+            <Dependency>python-gtk</Dependency>
+            <Dependency>gnome-python</Dependency>
+            <Dependency>libsoup-gnome</Dependency>
+            <Dependency>avahi-glib</Dependency>
+            <Dependency>avahi-libs</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>libsoup</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>json-glib</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libgnome-media-profiles</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/dbus-1</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/rhythmbox</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>rhythmbox-docs</Name>
+        <IsA>data:doc</IsA>
+        <Summary>rhythmbox reference documents</Summary>
+        <Files>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="5">
+            <Date>2011-05-18</Date>
+            <Version>0.13.3</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2010-09-18</Date>
+            <Version>0.12.8</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+         <Update release="3">
+            <Date>2009-06-04</Date>
+            <Version>0.12.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2008-07-18</Date>
+            <Version>0.11.6</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-05-25</Date>
+            <Version>0.11.5</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
