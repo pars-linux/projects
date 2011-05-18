@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>mx</Name>
+        <Summary xml:lang="tr">Clutter kullanan bir uygulama seti</Summary>
+        <Description xml:lang="tr">mx, clutter kullanan bir programcık araç setidir.</Description>
+    </Source>
+
+    <Package>
+        <Name>cheese-docs</Name>
+        <Summary xml:lang="tr">mx için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+
