@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-opengl</Name>
+        <Summary xml:lang="tr">OpenGL grafik sistemi için bağlayıcılar</Summary>
+        <Description xml:lang="tr">OpenGL grafik sistemi için Haskell bağlayıcıları(GL, versiyon 3.2) ve yararlı kitaplıklarlar beraberdir.(GLU, versiyon 1.3). OpenGL Endüstri tarafında  geniş ölçüde kullanılan ve desteklenen 2D ve 3D grafiklerin uygulamala programlama arayüzü(API),geniş bir yelpazede olan rendering,texture mapping,special effects ve diğer güçlü görsel fonksiyonlar içermektedir.Daha fazla bilgi için OpenGL ve çeşitli eklentiler içeren http://www.opengl.org/ ve http://www.opengl.org/registry/ adreslerinden yararlanabilirsiniz. </Description>
+    </Source>
+</PISI>
+
