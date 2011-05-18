@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-parsec</Name>
+        <Summary xml:lang="tr">Ağ-bağlantılı özellikler</Summary>
+        <Description xml:lang="tr">Parsec scratch ile tasarımı yapılan endüstriyel-güç çözümleyici kitaplıktır. Haskell-parsec basit,güvenli ve belgelendirilmesi güzel olan(paket anasayfasında) geniş kitaplıkları bulunan ve iyi hata mesajları içeren bir yapısı vardır,ve son olarak hızlıdır. Monad transformer'ları ile tanımlanan bu kitaplık Monads'da keyfi olarak yayılmış ve giriş akış tiplerinde parametric biçimini almıştır.</Description>
+    </Source>
+</PISI>
+
