@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A remote desktop system for GNOME</Summary>
         <Description>Vino is a VNC server that allows remote users to connect to a running GNOME session using VNC.</Description>
-        <Archive sha1sum="a3239730c96d0f066b20b88a07a5af9b677f09b7" type="tarbz2">mirrors://gnome/vino/3.0/vino-3.0.1.tar.bz2</Archive>
+        <Archive sha1sum="847be1f0729a1185632c950aad9a5d6765b6bd3d" type="tarbz2">mirrors://gnome/vino/3.1/vino-3.1.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>avahi-devel</Dependency>
             <Dependency>libgcrypt-devel</Dependency>
@@ -76,6 +76,13 @@
     </Package>
 
     <History>
+        <Update release="6">
+            <Date>2011-05-18</Date>
+            <Version>3.1.1</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="5">
             <Date>2011-04-30</Date>
             <Version>3.0.1</Version>
