@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>mx</Name>
+        <Homepage>http://www.clutter-project.org</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>LGPL</License>
+        <Summary>A widget toolkit using Clutter</Summary>
+        <Description>mx is a widget toolkit using Clutter.</Description>
+        <Archive sha1sum="b82b5a1395b7c2dd9461da10032849895927a70a" type="tarbz2">http://source.clutter-project.org/sources/mx/1.0/mx-1.0.4.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>libXrandr-devel</Dependency>
+            <Dependency>clutter-devel</Dependency>
+            <Dependency>dbus-glib-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>startup-notification-devel</Dependency>
+            <Dependency>gobject-introspection-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>mx</Name>
+        <RuntimeDependencies>
+            <Dependency>libXrandr</Dependency>
+            <Dependency>clutter</Dependency>
+            <Dependency>dbus-glib</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>startup-notification</Dependency>
+            <Dependency>gobject-introspection</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="library">/usr/lib</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>mx-devel</Name>
+        <Summary>Development files for mx</Summary>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-19</Date>
+            <Version>1.0.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
