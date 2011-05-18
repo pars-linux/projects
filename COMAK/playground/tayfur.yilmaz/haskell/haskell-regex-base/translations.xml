@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-regex-base</Name>
+        <Summary xml:lang="tr">regex-posix,pcre,tdfa,dfa için Api arayüzü</Summary>
+        <Description xml:lang="tr">regex-posix,pcre,tdfa,dfa için Api arayüzü</Description>
+    </Source>
+</PISI>
+
