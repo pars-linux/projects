@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-terminfo</Name>
+        <Homepage>http://hackage.haskell.org/package/terminfo</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>BSD3</License>
+        <IsA>library</IsA>
+        <Summary>Haskell bindings to the terminfo library.</Summary>
+        <Description>This library provides an interface to the terminfo database (via bindings to the curses library). Terminfo allows POSIX systems to interact with a variety of terminals using a standard set of capabilities. </Description>
+        <Archive sha1sum="3485c5a7c892b66b817fc28846678f5369d53d89" type="targz">http://hackage.haskell.org/packages/archive/terminfo/0.3.1.3/terminfo-0.3.1.3.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+    <Package>
+        <Name>haskell-terminfo</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="ghc">7.0.2</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-19</Date>
+            <Version>0.3.1.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
