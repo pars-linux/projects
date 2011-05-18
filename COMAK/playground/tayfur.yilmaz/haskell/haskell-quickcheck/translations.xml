@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-quickcheck</Name>
+        <Summary xml:lang="tr">Haskell programları için otomatik test sağlayan kitaplık</Summary>
+        <Description xml:lang="tr">QuickCheck program özelliklerinde rastgele tes yapmamızı sağlayan bir kitaplıktır. Form özelliklerinde tamamlanan fonksiyonlar programda programcılar tarafından ayrıntılı olarak belirlenir. ve daha sonra QuickCheck farklı varyasyonlarda rastgele testler üreterek bunları teste sokmaktadır. Belirtimler Haskell'de ifade edilmiştir farklı kombinasyonlar QuickCheck kitaplığında tanımlanmıştır. OuickCheck özellikleri tanımlamada bu kombinasyonlardan faydalanır,ve dağıtımdaki test verilerine dikkat etmek zorundadır ve test için veri sağlamayı amaçlar.</Description>
+    </Source>
+</PISI>
+
