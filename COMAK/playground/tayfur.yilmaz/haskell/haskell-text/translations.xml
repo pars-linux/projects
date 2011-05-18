@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-text</Name>
+        <Summary xml:lang="tr">Unicode yazı tipleri için verimli bir paket.</Summary>
+        <Description xml:lang="tr">Değişmez unicode tipleri için güçlü döngüsel bileşimi olan optimizasyon framework'ü yapısında verimli bir paket(Hem sıkı hem tembel), </Description>
+    </Source>
+</PISI>
+
