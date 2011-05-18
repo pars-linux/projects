@@ -23,7 +23,7 @@ from kaptan.screens.scrStyle import Widget as scrStyleWidget
 #CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
 #CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
 
-HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
+HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper','scrAvatar']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
 #libfm configuration files
@@ -185,7 +185,10 @@ class Style(base.Style):
 
 class Package(base.Package):
 
-    def example(self):
+        pass
+
+class Avatar(base.Avatar):
+
         pass
 
 class Menu(base.Menu):

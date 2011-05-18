@@ -19,7 +19,7 @@ from . import base
 from kaptan.tools.desktop_parser import DesktopParser
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
-HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper']
+HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper','scrAvatar']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
 #libfm configuration files
@@ -168,10 +168,14 @@ class Style(base.Style):
 
     def reconfigure(self):
         os.popen('fluxbox-remote "Reconfigure"')
+
 class Package(base.Package):
 
-    def example(self):
-        pass
+    pass
+
+class Avatar(base.Avatar):
+
+    pass
 
 class Menu(base.Menu):
 

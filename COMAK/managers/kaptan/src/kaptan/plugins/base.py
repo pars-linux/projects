@@ -18,6 +18,9 @@ class Wallpaper:
 class Style:
     pass
 
+class Avatar:
+    pass
+
 class Package:
     pass
 
