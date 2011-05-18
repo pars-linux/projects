@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-mmap</Name>
+        <Summary xml:lang="tr">Posix ve Windows için Bellek Haritası</Summary>
+        <Description xml:lang="tr">Bu kitaplık mmap ya da MapViewOfFile için bir sarmalayıcı yapısı ile dosyalara izin verir ya da aygıtlara ağır bir yük binmiş olur veya lazy ByteStrings,ForeignPtr'ler ya da plain Ptr'ler Yükleme,Modifiye Etme gibi işlemleri desteklerler ve talep edilen bir işlem olursa  sanal bellek kullanmaktadırlar.  </Description>
+    </Source>
+</PISI>
+
