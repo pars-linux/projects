@@ -1,0 +1,134 @@
+diff -Naur rhythmbox-0.13.3.orig/backends/gstreamer/rb-encoder-gst.c rhythmbox-0.13.3/backends/gstreamer/rb-encoder-gst.c
+--- rhythmbox-0.13.3.orig/backends/gstreamer/rb-encoder-gst.c	2011-01-16 11:10:39.000000000 +0200
++++ rhythmbox-0.13.3/backends/gstreamer/rb-encoder-gst.c	2011-05-18 21:00:50.802000053 +0300
+@@ -35,7 +35,7 @@
+ #include <gst/gst.h>
+ #include <gst/tag/tag.h>
+ #include <string.h>
+-#include <profiles/gnome-media-profiles.h>
++#include <libgnome-media-profiles/gnome-media-profiles.h>
+ #include <gtk/gtk.h>
+ #include <gio/gio.h>
+ #include <gst/pbutils/missing-plugins.h>
+diff -Naur rhythmbox-0.13.3.orig/configure rhythmbox-0.13.3/configure
+--- rhythmbox-0.13.3.orig/configure	2011-01-16 11:54:28.000000000 +0200
++++ rhythmbox-0.13.3/configure	2011-05-18 20:46:37.711000052 +0300
+@@ -14482,7 +14482,7 @@
+ 		  glib-2.0 >= \$GLIB_REQS		\\
+ 		  gio-2.0 >= \$GLIB_REQS			\\
+ 		  gio-unix-2.0 >= \$GLIB_REQS		\\
+-		  gnome-media-profiles >= \$GNOME_MEDIA_PROFILES_REQS \\
++		  libgnome-media-profiles-3.0 >= \$GNOME_MEDIA_PROFILES_REQS \\
+ 		  libsoup-2.4 >= \$LIBSOUP_REQS		\\
+ 		  libsoup-gnome-2.4 >= \$LIBSOUP_REQS\""; } >&5
+   ($PKG_CONFIG --exists --print-errors "\
+@@ -14490,7 +14490,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS") 2>&5
+   ac_status=$?
+@@ -14501,7 +14501,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS" 2>/dev/null`
+ else
+@@ -14519,7 +14519,7 @@
+ 		  glib-2.0 >= \$GLIB_REQS		\\
+ 		  gio-2.0 >= \$GLIB_REQS			\\
+ 		  gio-unix-2.0 >= \$GLIB_REQS		\\
+-		  gnome-media-profiles >= \$GNOME_MEDIA_PROFILES_REQS \\
++		  libgnome-media-profiles-3.0 >= \$GNOME_MEDIA_PROFILES_REQS \\
+ 		  libsoup-2.4 >= \$LIBSOUP_REQS		\\
+ 		  libsoup-gnome-2.4 >= \$LIBSOUP_REQS\""; } >&5
+   ($PKG_CONFIG --exists --print-errors "\
+@@ -14527,7 +14527,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS") 2>&5
+   ac_status=$?
+@@ -14538,7 +14538,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS" 2>/dev/null`
+ else
+@@ -14565,7 +14565,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS" 2>&1`
+         else
+@@ -14574,7 +14574,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS" 2>&1`
+         fi
+@@ -14586,7 +14586,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS) were not met:
+ 
+diff -Naur rhythmbox-0.13.3.orig/configure.ac rhythmbox-0.13.3/configure.ac
+--- rhythmbox-0.13.3.orig/configure.ac	2011-01-16 11:12:24.000000000 +0200
++++ rhythmbox-0.13.3/configure.ac	2011-05-18 20:46:42.305000053 +0300
+@@ -91,7 +91,7 @@
+ 		  glib-2.0 >= $GLIB_REQS		\
+ 		  gio-2.0 >= $GLIB_REQS			\
+ 		  gio-unix-2.0 >= $GLIB_REQS		\
+-		  gnome-media-profiles >= $GNOME_MEDIA_PROFILES_REQS \
++		  libgnome-media-profiles-3.0 >= $GNOME_MEDIA_PROFILES_REQS \
+ 		  libsoup-2.4 >= $LIBSOUP_REQS		\
+ 		  libsoup-gnome-2.4 >= $LIBSOUP_REQS)
+ 
+diff -Naur rhythmbox-0.13.3.orig/rhythmbox.pc.in rhythmbox-0.13.3/rhythmbox.pc.in
+--- rhythmbox-0.13.3.orig/rhythmbox.pc.in	2011-01-16 11:10:41.000000000 +0200
++++ rhythmbox-0.13.3/rhythmbox.pc.in	2011-05-18 20:46:46.251000053 +0300
+@@ -8,7 +8,7 @@
+ Name: rhythmbox
+ Description: plugin API for rhythmbox
+ Version: @VERSION@
+-Requires: glib-2.0 gobject-2.0 gio-2.0 gtk+-2.0 libsoup-2.4 libsoup-gnome-2.4 gnome-media-profiles totem-plparser gstreamer-0.10
++Requires: glib-2.0 gobject-2.0 gio-2.0 gtk+-2.0 libsoup-2.4 libsoup-gnome-2.4 libgnome-media-profiles-3.0 totem-plparser gstreamer-0.10
+ Requires.private: libxml-2.0
+ Libs: -L${libdir} -lrhythmbox-core
+ Cflags: -I${includedir}/rhythmbox
+diff -Naur rhythmbox-0.13.3.orig/sources/rb-library-source.c rhythmbox-0.13.3/sources/rb-library-source.c
+--- rhythmbox-0.13.3.orig/sources/rb-library-source.c	2011-01-16 11:10:41.000000000 +0200
++++ rhythmbox-0.13.3/sources/rb-library-source.c	2011-05-18 21:00:31.555000052 +0300
+@@ -54,8 +54,8 @@
+ 
+ #include "rb-track-transfer-batch.h"
+ #include "rb-track-transfer-queue.h"
+-#include <profiles/gnome-media-profiles.h>
+-#include <profiles/audio-profile-choose.h>
++#include <libgnome-media-profiles/gnome-media-profiles.h>
++#include <libgnome-media-profiles/audio-profile-choose.h>
+ 
+ #include "rhythmdb.h"
+ #include "rb-debug.h"
