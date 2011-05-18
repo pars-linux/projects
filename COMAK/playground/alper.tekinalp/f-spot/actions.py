@@ -10,12 +10,9 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def setup():
-    autotools.configure("--prefix=/usr \
-                        --libdir=/usr/lib \
-                        --disable-static \
+    autotools.configure("--disable-static \
                         --disable-scrollkeeper \
-                        --disable-schemas-install \
-                        --enable-release")
+                        --disable-schemas-install")
 
 def build():
     autotools.make()
