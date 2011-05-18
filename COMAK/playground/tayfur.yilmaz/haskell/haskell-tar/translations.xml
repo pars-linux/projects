@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-tar</Name>
+        <Summary xml:lang="tr">".tar" arjiv dosyaları okuma,yazma,manipule etmeye yarar.</Summary>
+        <Description xml:lang="tr">Bu kitaplık ".tar" arjiv dosyaları ile çalışmayı sağlar. V7,USTAR,POSİX ve GNU formatlarını içeren bu kitaplık arjiv formatlarında ortak bir varyasyon oluşturmamız sağlayarak arjiv dosyalarına okuyabilir ve yazabiliriz. Portatif arjivleri paketleme ya da paketten çıkarma için destek sağlar. Bu dağıtımlar için uygun bir yapı olabilir fakat geri yükleme işi için değil;Bunun nedeni alınmış izinler korunmuş olarak tutulmamaktadır,Detaylar dosyanın sahiplerindedir.</Description>
+    </Source>
+</PISI>
+
