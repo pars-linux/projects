@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-parallel</Name>
+        <Summary xml:lang="tr">Pararel programlama kitaplığı</Summary>
+        <Description xml:lang="tr">Bu paket Pararel programlama için bir kitaplık niteliğindedir. </Description>
+    </Source>
+</PISI>
+
