@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-mmap</Name>
+        <Homepage>http://hackage.haskell.org/package/mmap</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>custom:BSD3</License>
+        <IsA>app:console</IsA>
+        <Summary>Memory mapped files for POSIX and Windows</Summary>
+        <Description>This library provides a wrapper to mmap(2) or MapViewOfFile, allowing files or devices to be lazily loaded into memory as strict or lazy ByteStrings, ForeignPtrs or plain Ptrs, using the virtual memory subsystem to do on-demand loading. Modifications are also supported. </Description>
+        <Archive sha1sum="" type6bae1f511caeba32cf7e50f0409152f8384f93="targz">http://hackage.haskell.org/packages/archive/mmap/0.5.7/mmap-0.5.7.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-mmap</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-18</Date>
+            <Version>0.5.7</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
