@@ -12,15 +12,17 @@
         <IsA>app:gui</IsA>
         <Summary>A personal photo management program for GNOME</Summary>
         <Description>A personal photo management program for GNOME</Description>
-        <Archive sha1sum="258e30a11ac24f963a47ead19c3d14bf755816e5" type="tarbz2">http://ftp.acc.umu.se/pub/gnome/sources/f-spot/0.8/f-spot-0.8.2.tar.bz2</Archive>
+        <Archive sha1sum="258e30a11ac24f963a47ead19c3d14bf755816e5" type="tarbz2">mirrors://gnome/f-spot/0.8/f-spot-0.8.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>mono-devel</Dependency>
             <Dependency>gtk-sharp-devel</Dependency>
             <Dependency>flickrnet</Dependency>
             <Dependency>mono-addins</Dependency>
             <Dependency>ndesk-dbus</Dependency>
+            <Dependency>gnome-sharp</Dependency>
             <Dependency>ndesk-dbus-glib</Dependency>
             <Dependency>gnome-keyring-sharp-devel</Dependency>
+            <Dependency>lcms-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">f-spot-0.8.1-mono2.8.patch</Patch>
