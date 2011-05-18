@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-terminfo</Name>
+        <Summary xml:lang="tr">terminfo kitaplığı için Haskell bağlayıcıları</Summary>
+        <Description xml:lang="tr">Bu kitaplık terminfo veritabanına bir arayüz sağlamaktadır. (via curses kitaplığına sağlanan bağlayıcılar).Terminfo çeşitli terminallere olağan yeteneklerini kullanarak etkileşimli bir şekilde POSIX sistemlere izin vermektedir.</Description>
+    </Source>
+</PISI>
+
