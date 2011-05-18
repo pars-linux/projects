@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gconf-editor</Name>
+        <Summary xml:lang="tr">Görsel gconf kayıt düzenleyicisi</Summary>
+        <Description xml:lang="tr">gconf-editor gconf kayıtlarını düzenlemek için görsel bir araçtır.</Description>
+    </Source>
+</PISI>
+
