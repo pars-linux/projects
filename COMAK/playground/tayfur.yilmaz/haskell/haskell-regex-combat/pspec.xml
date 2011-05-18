@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-regex-combat</Name>
+        <Homepage>http://hackage.haskell.org/package/regex-compat</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>BSD3</License>
+        <IsA>library</IsA>
+        <Summary>Replaces and enhances Text.Regex </Summary>
+        <Description>One module layer over regex-posix to replace Text.Regex </Description>
+        <Archive sha1sum="2f9745bd396018e7f8ba644baad4a55e7c70d54" type="targz">http://hackage.haskell.org/packages/archive/regex-compat/0.95.1/regex-compat-0.95.1.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-regex-combat</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+            <Dependency>haskell-regex-base</Dependency>
+            <Dependency versionFrom="0.94.4">haskell-regex-posix</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-18</Date>
+            <Version>0.95.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
