@@ -1,0 +1,9 @@
+--- grecord/gnome-sound-recorder.desktop.in.in	2008-09-23 07:00:15.000000000 +0300
+@@ -9,6 +9,7 @@
+ Type=Application
+ X-GNOME-DocPath=grecord/grecord.xml
+ Categories=GNOME;GTK;AudioVideo;Audio;Recorder;
++OnlyShowIn=GNOME;
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=gnome-media
+ X-GNOME-Bugzilla-Component=Gnome-Sound-Recorder
