@@ -1,0 +1,11 @@
+--- gst-mixer/gnome-volume-control.desktop.in.in	2008-03-10 22:21:04.000000000 +0200
+@@ -8,7 +8,8 @@
+ X-Info=Gnome Mixer
+ Terminal=false
+ Type=Application
+-Categories=GNOME;GTK;AudioVideo;Settings;HardwareSettings;
++Categories=Settings;X-GNOME-SystemSettings;
++OnlyShowIn=GNOME;
+ X-GNOME-DocPath=gst-mixer/gnome-volume-control.xml
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=gnome-media
