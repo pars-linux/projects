@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-regex-combat</Name>
+        <Summary xml:lang="tr">Text.Regex için geliştirme kitaplığı</Summary>
+        <Description xml:lang="tr">regex-posix üzerindeki katmansal modullerin Text.Regex'e uyarlanması</Description>
+    </Source>
+</PISI>
+
