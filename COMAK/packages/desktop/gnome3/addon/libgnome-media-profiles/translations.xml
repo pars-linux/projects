@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>libgnome-media-profiles</Name>
+        <Summary xml:lang="tr">libgnome-media-profiles</Summary>
+        <Description xml:lang="tr">libgnome-media-profiles</Description>
+    </Source>
+</PISI>

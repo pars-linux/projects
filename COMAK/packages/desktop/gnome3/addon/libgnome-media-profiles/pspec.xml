@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>libgnome-media-profiles</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>LGPLv2</License>
+        <IsA>library</IsA>
+        <Summary>libgnome-media-profiles</Summary>
+        <Description>libgnome-media-profiles</Description>
+        <Archive sha1sum="926a5b8ac083d14cb4269cb2dfef36c251eac51c" type="tarbz2">mirrors://gnome/libgnome-media-profiles/3.0/libgnome-media-profiles-3.0.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>gst-plugins-base-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>libgnome-media-profiles</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>gst-plugins-base</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>gstreamer</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>libgnome-media-profiles-devel</Name>
+        <Summary>Development files for libgnome-media-profiles</Summary>
+        <RunTimeDependencies>
+            <Dependency release="current">libgnome-media-profiles</Dependency>
+        </RunTimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-18</Date>
+            <Version>3.0.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
