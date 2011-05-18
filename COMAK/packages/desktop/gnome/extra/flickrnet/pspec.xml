@@ -13,6 +13,9 @@
         <Summary>Flickr.Net API Library</Summary>
         <Description>The Flickr.Net API Library is a .Net Library for accessing the Flickr API</Description>
         <Archive sha1sum="97094110a660a2a9285877f83c63d61e87c5b5d2" type="zip" target="FlickrNet2">http://www.mirrorservice.org/sites/www.ibiblio.org/gentoo/distfiles/FlickrNet2.2.zip</Archive>
+        <BuildDependencies>
+            <Dependency>mono-devel</Dependency>
+        </BuildDependencies>
     </Source>
 
     <Package>
