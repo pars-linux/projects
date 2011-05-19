@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-zlib</Name>
+        <Homepage>http://hackage.haskell.org/package/zlib</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>BSD3</License>
+        <IsA>library</IsA>
+        <Summary>Compression and decompression in the gzip and zlib formats.</Summary>
+        <Description>This package provides a pure interface for compressing and decompressing streams of data represented as lazy ByteStrings. It uses the zlib C library so it has high performance. It supports the "zlib", "gzip" and "raw" compression formats. </Description>
+        <Archive sha1sum="249056a6e97372b00dfd8657fc50667fb1152169" type="targz">http://hackage.haskell.org/packages/archive/zlib/0.5.3.1/zlib-0.5.3.1.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+            <Dependency>zlib-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-zlib</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">haskell-zlib</Dependency>
+            <Dependency>zlib</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-19</Date>
+            <Version>0.5.3.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
