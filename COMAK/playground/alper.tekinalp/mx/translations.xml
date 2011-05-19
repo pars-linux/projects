@@ -7,7 +7,7 @@
     </Source>
 
     <Package>
-        <Name>cheese-docs</Name>
+        <Name>mx-devel</Name>
         <Summary xml:lang="tr">mx için geliştirme dosyaları</Summary>
     </Package>
 </PISI>
