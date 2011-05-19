@@ -10,12 +10,13 @@
         </Packager>
         <License>GPLv2+</License>
         <Icon>cheese</Icon>
+        <IsA>app:gui</IsA>
         <Summary>Webcam application</Summary>
         <Description>Cheese is a webcam application that uses your webcam to take photos and videos, apply fancy special effects and share fun with others.</Description>
         <Archive sha1sum="1c93d87a0d41a87545d85ea019718345f614d066" type="targz">mirrors://gnome/cheese/3.0/cheese-3.0.1.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gnome-desktop-devel</Dependency>
-            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
             <Dependency>hal</Dependency>
             <Dependency>evolution-data-server-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -25,16 +26,36 @@
             <Dependency>pango-devel</Dependency>
             <Dependency>gtk-doc</Dependency>
             <Dependency>docbook-xml4_3</Dependency>
-            <Dependency>gst-plugins-base</Dependency>
+            <Dependency>gst-plugins-base-devel</Dependency>
+            <Dependency>mx-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>mesa-devel</Dependency>
+            <Dependency>libXi-devel</Dependency>
+            <Dependency>libdrm-devel</Dependency>
+            <Dependency>libgee-devel</Dependency>
+            <Dependency>libXext-devel</Dependency>
+            <Dependency>clutter-devel</Dependency>
+            <Dependency>freetype-devel</Dependency>
+            <Dependency>json-glib-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+            <Dependency>libXdamage-devel</Dependency>
+            <Dependency>clutter-gtk-devel</Dependency>
+            <Dependency>clutter-gst-devel</Dependency>
+            <Dependency>libcanberra-devel</Dependency>
+            <Dependency>libXcomposite-devel</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
+            <Dependency>startup-notification-devel</Dependency>
+            <Dependency>gnome-video-effects</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>cheese</Name>
-        <IsA>app:gui</IsA>
         <RuntimeDependencies>
             <Dependency>gnome-desktop</Dependency>
-            <Dependency>gtk2</Dependency>
+            <Dependency>gtk3</Dependency>
             <Dependency>hal</Dependency>
             <Dependency>evolution-data-server</Dependency>
             <Dependency>cairo</Dependency>
@@ -44,20 +65,51 @@
             <Dependency>pango</Dependency>
             <Dependency>docbook-xml4_3</Dependency>
             <Dependency>gst-plugins-base</Dependency>
+            <Dependency>mx</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>mesa</Dependency>
+            <Dependency>libXi</Dependency>
+            <Dependency>libdrm</Dependency>
+            <Dependency>libgee</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>clutter</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>json-glib</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>libXdamage</Dependency>
+            <Dependency>clutter-gtk</Dependency>
+            <Dependency>clutter-gst</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>libXcomposite</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
+            <Dependency>startup-notification</Dependency>
+            <Dependency>gnome-video-effects</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="executable">/usr/libexec</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
+            <Path fileType="library">/usr/lib</Path>
         </Files>
     </Package>
 
     <Package>
+        <Name>cheese-devel</Name>
+        <Summary>Development files for cheese</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">cheese</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>"
+
+    <Package>
         <Name>cheese-docs</Name>
-        <IsA>data:doc</IsA>
         <Summary>Help files and API documents for cheese library</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gnome/help</Path>
@@ -68,7 +120,10 @@
         <Update release="3">
             <Date>2011-05-19</Date>
             <Version>3.0.1</Version>
-            <Comment>Release bump.</Comment>
+            <Comment>
+                -Release bump.
+                -Split devel package.
+            </Comment>
             <Name>Alper Tekinalp</Name>
             <Email>alper.tekinalp@gmail.com</Email>
         </Update>
