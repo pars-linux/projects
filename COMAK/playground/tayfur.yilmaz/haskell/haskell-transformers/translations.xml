@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-transformers</Name>
+        <Summary xml:lang="tr">Functor'ları birleştiricilerve monad dönüştürücüleri sağlay kitaplık</Summary>
+        <Description xml:lang="tr">monod dönüştürücü kitalığının bir parçası olan Haskell 98,Aşırı Yüklenmiş Fonksiyonel Programlama ve Yüksek seviyeli ÇokBiçimcilikten esinlenilmiş olan bir kitaplıktır.</Description>
+    </Source>
+</PISI>
+
