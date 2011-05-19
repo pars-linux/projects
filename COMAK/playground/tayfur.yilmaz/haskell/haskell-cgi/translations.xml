@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-cgi</Name>
+        <Summary xml:lang="tr">CGI programlar yazmak için Haskell kitaplığı</Summary>
+        <Description xml:lang="tr">CGI programlar yazmak için Haskell kitaplığı</Description>
+    </Source>
+</PISI>
+
