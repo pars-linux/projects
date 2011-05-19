@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-xhtml</Name>
+        <Summary xml:lang="tr">XHTML 1.0 üretmek için sıkı,Geçiş ve FrameSet türevleri olan Bağdaştırıcı.</Summary>
+        <Description xml:lang="tr">XHTML 1.0 üretmek için sıkı,Geçiş ve FrameSet türevleri olan Bağdaştırıcı.</Description>
+    </Source>
+</PISI>
+
