@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-zlib</Name>
+        <Summary xml:lang="tr">gzip ve zlib formatlarında sıkıştırma ve açma</Summary>
+        <Description xml:lang="tr">Bu paket lazy ByteStrings'de olduğu gibi çok basit bir arayüze sunarak veri temsilindeki akışları sıkıştırma ve açma görevini üstlenir. zlib C kütüphanesini kullanır bu sayede yüksek performanslar elde edilir. Sıkıştırma formatlarından "zlib","gzip","raw" sıkıştırma formatlarını destekler. </Description>
+    </Source>
+</PISI>
+
