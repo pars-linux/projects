@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-dbus</Name>
+        <Summary xml:lang="tr">DBus bağlayıcıları</Summary>
+        <Description xml:lang="">D-Bus Api bağlayıcıları. D-Bus için detaylı bilgi wiki sayfasında mevcuttur: http://www.freedesktop.org/wiki/Software/dbus</Description>
+    </Source>
+</PISI>
+
