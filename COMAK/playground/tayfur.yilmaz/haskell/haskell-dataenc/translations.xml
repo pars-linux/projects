@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-dataenc</Name>
+        <Summary xml:lang="tr">Veri kodlama kitaplığı</Summary>
+        <Description xml:lang="tr">Veri kodlama kitaplığı şu anda Base16, Base32, Base32Hex, Base64, Base64Url, Base85, Python kaçış cümlecikleri,Quoted-Printable, URL encoding, uuencode, xxencode ve yEncoding desteği sağlar.</Description>
+    </Source>
+</PISI>
+
