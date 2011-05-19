@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-cgi</Name>
+        <Homepage>http://hackage.haskell.org/package/cgi</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>BSD3</License>
+        <IsA>library</IsA>
+        <Summary>A library for writing CGI programs</Summary>
+        <Description>This is a Haskell library for writing CGI programs. </Description>
+        <Archive sha1sum="bd98e75676b77003fb7024396208f55d9dfe61f0" type="targz">http://hackage.haskell.org/packages/archive/cgi/3001.1.8.2/cgi-3001.1.8.2.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-cgi</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.02">ghc</Dependency>
+            <Dependency versionFrom="2.0.1.0">haskell-mtl</Dependency>
+            <Dependency versionFrom="2.3.0.2">haskell-network</Dependency>
+            <Dependency versionFrom="3.1.1">haskell-parsec</Dependency>
+            <Dependency versionFrom="2.0.1">haskell-xhtml</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-20</Date>
+            <Version>1.8.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
