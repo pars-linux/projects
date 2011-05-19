@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-x11-xft</Name>
+        <Homepage>http://hackage.haskell.org/package/X11-xft</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>BSD3</License>
+        <IsA>library</IsA>
+        <Summary>Bindings to the Xft, X Free Type interface library, and some Xrender parts</Summary>
+        <Description>Bindings to the Xft, X Free Type interface library, and some Xrender parts </Description>
+        <Archive sha1sum="5d2504ec9e89a57383d4363dc51e094b53f55996" type="targz">http://hackage.haskell.org/packages/archive/X11-xft/0.3/X11-xft-0.3.tar.gz</Archive>
+        <BuildDependencies>
+            <!--      <Dependency>ghc-devel</Dependency> -->
+            <Dependency>libXft-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-x11-xft</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+            <Dependency versionFrom="0.3.6">haskell-utf8-string</Dependency>
+            <Dependency versionFrom="1.5.0.0">haskell-x11</Dependency>
+            <Dependency>libXft</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-19</Date>
+            <Version>0.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
