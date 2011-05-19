@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-x11-xft</Name>
+        <Summary xml:lang="tr"> Xft,X Free arayüz kitaplığı ve XRender kitaplığı parçaları bağlayucıları.</Summary>
+        <Description xml:lang="tr">Xft,X Free arayüz kitaplığı ve XRender kitaplığı parçaları bağlayucıları.</Description>
+    </Source>
+</PISI>
+
