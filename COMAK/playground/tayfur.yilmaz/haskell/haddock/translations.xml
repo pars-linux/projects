@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haddock</Name>
+        <Summary xml:lang="tr">Haskell kütüphaneleri için belgelendirme üretmeye yarayan araç</Summary>
+        <Description xml:lang="tr">Haskell kütüphaneleri için belgelendirme üretmeye yarayan araç</Description>
+    </Source>
+</PISI>
+
