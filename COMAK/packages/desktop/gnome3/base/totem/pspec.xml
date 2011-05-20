@@ -30,6 +30,7 @@
             <Dependency versionFrom="0.20.3">gnome-doc-utils</Dependency>
             <Dependency>libgdata-devel</Dependency>
             <Dependency>python-pygobject-devel</Dependency>
+            <Dependency>libXtst-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-check-gstreamer.patch</Patch>
@@ -92,8 +93,6 @@
         <Summary>Development files for totem</Summary>
         <RuntimeDependencies>
             <Dependency release="current">totem</Dependency>
-            <Dependency>gtk3-devel</Dependency>
-            <Dependency>totem-pl-parser-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
