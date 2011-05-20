@@ -41,9 +41,11 @@
     <Package>
         <Name>libgnome-media-profiles-devel</Name>
         <Summary>Development files for libgnome-media-profiles</Summary>
-        <RunTimeDependencies>
+        <RuntimeDependencies>
             <Dependency release="current">libgnome-media-profiles</Dependency>
-        </RunTimeDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+        </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib/pkgconfig</Path>
