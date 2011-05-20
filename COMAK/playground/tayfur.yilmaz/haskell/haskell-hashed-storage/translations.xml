@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-hashed-storage</Name>
+        <Summary xml:lang="tr">Kod desteği olan karma dosya depoları</Summary>
+        <Description xml:lang="tr"> Karma dosya depolarını(Hash kriptografileri Her dosya ve dizin ile  ilişkili) okumayı ve yönetmeyi sağlamak  için kod desteği. Desteklenen depo formatları saf hashed darcs,ağaç yapısındaki düz dosyasistemleri ve indexli düz ağaç yapıları içermektedir.</Description>
+    </Source>
+</PISI>
+
