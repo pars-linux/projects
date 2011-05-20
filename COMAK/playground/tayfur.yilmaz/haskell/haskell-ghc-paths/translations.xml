@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-ghc-paths</Name>
+        <Summary xml:lang="tr">GHC'in yükleme dizinleri bilgisi</Summary>
+        <Description xml:lang="tr">GHC'in yükleme dizinleri bilgisi</Description>
+    </Source>
+</PISI>
+
