@@ -27,6 +27,8 @@
             <Dependency>gconf-devel</Dependency>
             <Dependency>libcanberra-gtk</Dependency>
             <Dependency>totem-pl-parser-devel</Dependency>
+            <Dependency>nautilus-devel</Dependency>
+            <Dependency>libisofs-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">brasero-2.32.0-build-plugins-against-local-library.patch</Patch>
@@ -55,6 +57,9 @@
             <Dependency>gst-plugins-base</Dependency>
             <Dependency>totem-pl-parser</Dependency>
             <Dependency>gmime</Dependency>
+            <Dependency>libburn</Dependency>
+            <Dependency>nautilus</Dependency>
+            <Dependency>libisofs</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
@@ -69,10 +74,12 @@
         <Name>brasero-devel</Name>
         <RuntimeDependencies>
             <Dependency release="current">brasero</Dependency>
+            <Dependency>gtk2-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
             <Path fileType="data">/usr/lib/pkgconfig</Path>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
         </Files>
     </Package>
 
