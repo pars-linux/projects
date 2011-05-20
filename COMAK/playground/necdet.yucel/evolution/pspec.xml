@@ -42,6 +42,7 @@
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>libcanberra-devel</Dependency>
             <Dependency versionFrom="2.90.0">libgweather-devel</Dependency>
+            <Dependency>NetworkManager-devel</Dependency>
         </BuildDependencies>
     </Source>
 
