@@ -14,7 +14,7 @@
         <IsA>app:gui</IsA>
         <Summary>Audio player for GNU/Linux systems with X11</Summary>
         <Description>DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux systems with X11 (though now it also runs in plain console without X, in FreeBSD, and in OpenSolaris).</Description>
-        <Archive sha1sum="7981179dfaa2037d1b1fb803c58853bf5cea8764" type="tarbz2">mirrors://sourceforge/deadbeef/deadbeef-0.4.4.tar.bz2</Archive>
+        <Archive sha1sum="c43dcae8b9aa4f1c82aac56f009d9976dbc21e13" type="tarbz2">mirrors://sourceforge/deadbeef/deadbeef-0.5.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>alsa-lib-devel</Dependency>
             <Dependency>atk-devel</Dependency>
@@ -38,12 +38,10 @@
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>fontconfig-devel</Dependency>
             <Dependency>pulseaudio-libs-devel</Dependency>
+            <Dependency>jpeg-devel</Dependency>
         </BuildDependencies>
         <Patches>
-            <!--<Patch level="1">fix-flags.patch</Patch>-->
-            <Patch level="1">deadbeef-0.4.4-fix-return-values.patch</Patch>
             <Patch level="1">deadbeef-0.4.4-fix-undefined-assignments.patch</Patch>
-            <Patch level="1">deadbeef-tr.patch</Patch>
         </Patches>
     </Source>
 
@@ -72,6 +70,7 @@
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>fontconfig</Dependency>
             <Dependency>pulseaudio-libs</Dependency>
+            <Dependency>jpeg</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
@@ -86,6 +85,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-05-20</Date>
+            <Version>0.5.0</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-03-28</Date>
             <Version>0.4.4</Version>
