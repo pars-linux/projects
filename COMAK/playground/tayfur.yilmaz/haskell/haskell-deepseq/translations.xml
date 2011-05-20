@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-deepseq</Name>
+        <Summary xml:lang="tr">Veri yapılarının tam olarak ölçeklendirilmesi</Summary>
+        <Description xml:lang="tr">Bu paket veri yapılarının("derinlemesine değerlendirme") sağlayan metotlardan oluşmaktadır. Derinlemesine değerlendirme sıklıkla sıkıorogramlara sıkı bir disiplin katar, Örneğin istisnalar beklemeyi zorlaştırmak, kaçak alanları silmek ya da yavaş olan I/0'ları tetiklemek maksadıyla kullanılmaktadır. Pararel programlamada böylelikle yarar sağlar ve yanlış süreçlere göç etmenin önüne geçilmesini sağlamaktadır.</Description>
+    </Source>
+</PISI>
+
