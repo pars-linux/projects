@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE PISI SYSTEM "http://www.uludag.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>ptlib</Name>
+        <Homepage>http://www.opalvoip.org/</Homepage>
+        <Packager>
+            <Name>Fahri Tuğrul Gürkaynak</Name>
+            <Email>tugrul@pardus.org.tr</Email>
+        </Packager>
+        <License>MPL-1.0</License>
+        <IsA>library</IsA>
+        <Summary>Portable Windows Libaray</Summary>
+        <Description>A Portable Text and GUI C/C++ Class Libarary.</Description>
+        <Archive type="tarbz2" sha1sum="cd2df5b45952112058cc85fabbe4d64bf0d68fc3">mirrors://gnome/ptlib/2.8/ptlib-2.8.3.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>openldap-client</Dependency>
+            <Dependency>sdl-sound-devel</Dependency>
+            <Dependency>alsa-lib-devel</Dependency>
+            <Dependency>aalib-devel</Dependency>
+            <Dependency>expat-devel</Dependency>
+            <Dependency>gpm</Dependency>
+            <Dependency>cyrus-sasl-devel</Dependency>
+            <Dependency>libXrender-devel</Dependency>
+            <Dependency>libXrandr-devel</Dependency>
+            <Dependency>libXdmcp-devel</Dependency>
+            <Dependency>libcaca-devel</Dependency>
+            <Dependency>libxcb-devel</Dependency>
+            <Dependency>libv4l-devel</Dependency>
+            <Dependency>libXt-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>ptlib</Name>
+        <RuntimeDependencies>
+            <Dependency>openldap-client</Dependency>
+            <Dependency>sdl-sound</Dependency>
+            <Dependency>alsa-lib</Dependency>
+            <Dependency>aalib</Dependency>
+            <Dependency>gpm</Dependency>
+            <Dependency>cyrus-sasl</Dependency>
+            <Dependency>libXrender</Dependency>
+            <Dependency>libXrandr</Dependency>
+            <Dependency>libXdmcp</Dependency>
+            <Dependency>libcaca</Dependency>
+            <Dependency>libxcb</Dependency>
+            <Dependency>libv4l</Dependency>
+            <Dependency>libXt</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+   </Package>
+
+    <Package>
+        <Name>ptlib-devel</Name>
+        <Summary>Development files for ptlib</Summary>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+   <History>
+        <Update release="1">
+            <Date>2009-10-03</Date>
+            <Version>2.6.5</Version>
+            <Comment>First release.</Comment>
+            <Name>Fahri Tuğrul Gürkaynak</Name>
+            <Email>tugrul@pardus.org.tr</Email>
+        </Update>
+     </History>
+</PISI>
