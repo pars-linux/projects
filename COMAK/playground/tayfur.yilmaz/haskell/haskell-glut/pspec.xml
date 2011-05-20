@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-glut</Name>
+        <Homepage>http://hackage.haskell.org/package/GLUT</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>BSD3</License>
+        <IsA>library</IsA>
+        <Summary>A binding for the OpenGL Utility Toolkit</Summary>
+        <Description>A Haskell binding for the OpenGL Utility Toolkit, a window system independent toolkit for writing OpenGL programs. For more information about the C library on which this binding is based, please see: http://www.opengl.org/resources/libraries/glut/. </Description>
+        <Archive sha1sum="f99c372da9f770c85c1d75106d1198190db027b3" type="targz">http://hackage.haskell.org/packages/archive/GLUT/2.2.2.0/GLUT-2.2.2.0.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+            <Dependency>freeglut-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-glut</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+            <Dependency versionFrom="2.2.3.0">haskell-opengl</Dependency>
+            <Dependency>freeglut</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-20</Date>
+            <Version>2.2.2.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
