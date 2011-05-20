@@ -12,10 +12,10 @@ from pisi.actionsapi import get
 shelltools.export("HOME", get.workDIR())
 
 def setup():
-    #autotools.autoreconf("-fiv")
+    autotools.autoreconf("-fiv")
     autotools.configure("--disable-caches \
                          --disable-dependency-tracking \
-                         --with-gtk=3.0 \
+                         --enable-introspection=yes \
                          --disable-search \
                          --enable-cdrtools \
                          --enable-cdrkit \
