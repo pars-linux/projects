@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>A library of handy utility functions</Summary>
         <Description>glib2 is the low-level core library that forms the basis for projects such as GTK+ and GNOME. It provides data structure handling for C, portability wrappers, and interfaces for such runtime functionality as an event loop, threads, dynamic loading, and an object system.</Description>
-        <Archive sha1sum="51996339c823cf36ba28c774c4afad933d5f5744" type="tarbz2">mirrors://gnome/glib/2.28/glib-2.28.6.tar.bz2</Archive>
+        <Archive sha1sum="9cf943d611de84df7ebcf46a2492adb71f75a125" type="tarbz2">mirrors://gnome/glib/2.29/glib-2.29.4.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libpcre-devel</Dependency>
             <Dependency>zlib-devel</Dependency>
@@ -112,6 +112,13 @@
     </Package>
 
     <History>
+        <Update release="55">
+            <Date>2011-05-21</Date>
+            <Version>2.29.4</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="54">
             <Date>2011-04-30</Date>
             <Version>2.28.6</Version>
