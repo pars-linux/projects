@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-glut</Name>
+        <Summary xml:lang="tr">OpenGL yardımcı aracları için bağlayıcılar</Summary>
+        <Description xml:lang="">OpenGL yardımcı araçları için olan Haskell bağlayıcıları, OpenGL programlar yazarken pencere sistemi bağımlı araçlar bulundurmaktadır. C kütüphanesi ile ilgili hangi bağlayıcı tabanlı olduğu ile ilgili daha fazla bilgi için: http://www.opengl.org/resources/libraries/glut/ adresine bakınız. </Description>
+    </Source>
+</PISI>
+
