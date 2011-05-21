@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-src</Name>
+        <Summary xml:lang="tr">Haskell kaynak kod manipulasyonu için kolaylıklar: soyut syntex,lexer,parser ve pretty-priter.</Summary>
+        <Description xml:lang="tr">haskell-src paketi Haskell kaynak kodu manipulasyonu için destek sağlamaktadır. Bu paket ile lexer,parser ve pretty-printer ve Haskell soyu syntax ağacı(AST). Parse veya Haskell 98 kodu üretmede haskell-src paketi yaygın olarak kullanılmaktadır.</Description>
+    </Source>
+</PISI>
+
