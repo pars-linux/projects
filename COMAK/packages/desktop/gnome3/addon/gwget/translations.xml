@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gwget</Name>
+        <Summary xml:lang="tr">Gnome için indirme yöneticisi</Summary>
+        <Description xml:lang="tr">Gwget, wget için yazılmış bi arayüzdür. Paralel indirme gibi wget 'in temel özelliklerini destekler.</Description>
+    </Source>
+</PISI>
+
