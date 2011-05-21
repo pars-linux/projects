@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>CPU temperature</Summary>
         <Description>An applet for the GNOME panel to monitor hardware sensor readings.</Description>
-        <Archive sha1sum="82f5b9176f81aa7060b302d9f50b2a76564ad7b5" type="targz">http://heanet.dl.sourceforge.net/sourceforge/sensors-applet/sensors-applet-2.2.7.tar.gz</Archive>
+        <Archive sha1sum="82f5b9176f81aa7060b302d9f50b2a76564ad7b5" type="targz">mirrors://sourceforge/sensors-applet/sensors-applet-2.2.7.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gnome-panel</Dependency>
             <Dependency>libnotify</Dependency>
