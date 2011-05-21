@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-hslogger</Name>
+        <Summary xml:lang="tr">Çok yönlü logging framework'u</Summary>
+        <Description xml:lang="tr">hslogger Haskell için yazılmış bir framework olmakla beraber,aşağı yukarı Python dilinin logging modulüne benzemektedir. Hslogger öncelikli olarak log mesajlarına izin vermekte ve kaynak ile ilgilenmektedfir. Programcı global handler'lar tanımlayarak bunu yönlendirir veya öncelikli olarak mesajları filtreleyebilir. Hslogger ayrıca syslog handler ile inşa edilmektedir. </Description>
+    </Source>
+</PISI>
+
