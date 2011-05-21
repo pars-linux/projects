@@ -8,11 +8,9 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 
 def setup():
-    autotools.configure('--enable-extensions="example \
-                                              alternate-tab \
+    autotools.configure('--enable-extensions="alternate-tab \
                                               alternative-status-menu \
                                               dock \
-                                              example \
                                               gajim \
                                               windowsNavigator"')
 
