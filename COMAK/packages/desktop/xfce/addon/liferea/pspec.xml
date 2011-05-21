@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>News Aggregator for RDF/RSS/CDF/Atom/Echo/etc feeds</Summary>
         <Description>Liferea (abbreviation of Linux Feed Reader) is a news aggreagator for RSS/RDF feeds which also supports CDF channels, Atom/Echo/PIE feeds and OCS or OPML directories. It is a simple FeedReader clone for Unix.</Description>
-        <Archive sha1sum="b86278fbae45762b2b39499492374c666d59fc1c" type="targz">http://sourceforge.net/projects/liferea/files/Liferea%20Unstable/1.7.5/liferea-1.7.5.tar.gz/download</Archive>
+        <Archive sha1sum="b86278fbae45762b2b39499492374c666d59fc1c" type="targz">mirrors://sourceforge/liferea/liferea-1.7.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>libglade-devel</Dependency>
