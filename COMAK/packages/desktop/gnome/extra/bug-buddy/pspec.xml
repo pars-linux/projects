@@ -20,6 +20,8 @@
             <Dependency>libgtop-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>orbit2-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -32,6 +34,9 @@
             <Dependency>libgtop</Dependency>
             <Dependency>gconf</Dependency>
             <Dependency>evolution-data-server</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>orbit2</Dependency>
+            <Dependency>elfutils</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
