@@ -1,0 +1,12 @@
+diff -Nuar geany-0.17.orig/plugins/Makefile.in geany-0.17/plugins/Makefile.in
+--- geany-0.17.orig/plugins/Makefile.in	2009-06-06 04:13:12.000000000 +0300
++++ geany-0.17/plugins/Makefile.in	2009-06-06 04:13:44.000000000 +0300
+@@ -351,7 +351,7 @@
+ @MINGW_FALSE@@PLUGINS_TRUE@demoplugin_la_LIBADD = $(GTK_LIBS)
+ @MINGW_FALSE@@PLUGINS_TRUE@classbuilder_la_LIBADD = $(GTK_LIBS)
+ @MINGW_FALSE@@PLUGINS_TRUE@htmlchars_la_LIBADD = $(GTK_LIBS)
+-@MINGW_FALSE@@PLUGINS_TRUE@export_la_LIBADD = $(GTK_LIBS)
++@MINGW_FALSE@@PLUGINS_TRUE@export_la_LIBADD = $(GTK_LIBS) -lm
+ @MINGW_FALSE@@PLUGINS_TRUE@saveactions_la_LIBADD = $(GTK_LIBS)
+ @MINGW_FALSE@@PLUGINS_TRUE@filebrowser_la_LIBADD = $(GTK_LIBS)
+ @MINGW_FALSE@@PLUGINS_TRUE@splitwindow_la_LIBADD = $(GTK_LIBS)

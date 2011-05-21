@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>geany</Name>
+        <Summary xml:lang="tr">GTK+ kullanan, hızlı ve hafif bir programlama aracı</Summary>
+        <Description xml:lang="tr">Geany, bir bütünleşik geliştirme ortamında yer alan temel özellikleri içeren basit bir GTK+ arayüzlü programlama aracıdır. Kod renklendirme, kod tamamlama, çağrı tipleri gibi özellikleri desteklmekte; birçok dosya tiplerini (C, Java, PHP, HTML, DocBook, Perl, LateX, and Bash) ve sembol listelerini içermektedir.</Description>
+    </Source>
+
+    <Package>
+        <Name>geany-devel</Name>
+        <Summary xml:lang="tr">Geany için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>

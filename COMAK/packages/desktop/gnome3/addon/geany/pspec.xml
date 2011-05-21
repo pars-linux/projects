@@ -1,0 +1,235 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>geany</Name>
+        <Homepage>http://www.geany.org</Homepage>
+        <Packager>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Icon>geany</Icon>
+        <IsA>app:gui</IsA>
+        <Summary>Fast and lightweight programming tool using GTK+</Summary>
+        <Description>Geany is a small C editor using GTK+ with basic features of an integrated development environment. It features syntax highlighting, code completion, call tips, many supported filetypes (including C, Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.</Description>
+        <Archive sha1sum="eb8dd15faf8281b346d06ea3231af379c8a758e0" type="tarbz2">http://download.geany.org/geany-0.20.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>geany</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>xterm</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/geany</Path>
+            <Path fileType="data">/usr/share/pixmaps</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>geany-devel</Name>
+        <Summary>Development files for geany</Summary>
+        <RuntimeDependencies>
+            <Dependency>geany</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include/geany</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="17">
+            <Date>2011-05-21</Date>
+            <Version>0.20</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="16">
+            <Date>2010-11-25</Date>
+            <Version>0.19.1</Version>
+            <Comment>
+              * Version bump
+              * Fix build deps
+              * Move to Pardus 2011
+              * Split devel package
+            </Comment>
+            <Name>Aşkın Yollu</Name>
+            <Email>askin@askin.ws</Email>
+        </Update>
+        <Update release="15">
+            <Date>2010-05-04</Date>
+            <Version>0.18.1</Version>
+            <Comment>
+              * Version bump:
+                - Remove filetypes.common invert_all option - use 'Invert syntax highlighting colors' pref instead.
+                - Fix 'Open Selected File' for unsaved new documents.
+                - Fix updating main menu accelerators after changing keybindings
+                - Fix using 'Insert date' keybinding when a custom date string has not been set.
+                - Set the cursor color for the split window plugin.
+                - Remove plugin from plugin manager dialog on unloading if it no longer exists or is incompatible.
+                - Fix 'Reflow block' command when at the last paragraph and there's no last newline.
+                - Fix opening filenames beginning with two dots (closes #2858487).
+                - Show Find in Files stderr output in messages window instead of debug window so that invalid regex messages can be seen easily.
+                - Speed up sorting in utils_get_file_list().
+                - Fix a bug with not w3c compatible HTML code on export plugin
+                - Fix non-working Home and End keys on numpads.
+                - Fix loading of files on network resources on Windows.
+                - Fix wrong alignment of printed pages when page headers are disabled (closes #2856822).
+                - Extend auto_latex() function to check whether an environment has been closed within the next lines to avoid auto adding double \end{}.
+                - Replace some icons which could cause licensing problems by icons from the Rodent icon theme.
+                - Parse contents of D extern{} and version{} blocks.
+                - Fix creating D interface tags properly.
+                - Parse D functions with contracts (fixes #1885480).
+                - Parse D alias statement like typedef.
+                - Improve parsing of LaTeX, PHP and Python files.
+                - Add 'Scope autocompletion' section.
+                - Add 'Tools menu items' section to explain configuration files submenu, reload configuration item.
+                - Minor updates/fixes.
+                - Added translations: gl
+            </Comment>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Update>
+        <Update release="14">
+            <Date>2009-08-17</Date>
+            <Version>0.18</Version>
+            <Comment>
+                * Version bump:
+                - Fix scrolling horizontally after finding a search match with the search bar or Find Next / Previous which is off-screen.
+                - Remove relative / untidy path elements from filenames when opening documents.
+                - Create initial template files with proper platform-specific line ending characters.
+                - Improve inserting of comment templates like File header or licence notices.
+            </Comment>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Update>
+        <Update release="13">
+            <Date>2009-08-03</Date>
+            <Version>0.17</Version>
+            <Comment>
+                * Remove vte dependency, it's not required for compiling or running Geany. Thanks to Enrico.
+                * Fix dependencies for lddtree.sh.
+                * Update homepage URL.
+            </Comment>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Update>
+        <Update release="12">
+            <Date>2009-06-06</Date>
+            <Version>0.17</Version>
+            <Comment>
+                * Version bump.
+                * Fix underlinking.
+                * Purge unused direct dependencies.
+            </Comment>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Update>
+        <Update release="11">
+            <Date>2009-03-31</Date>
+            <Version>0.16</Version>
+            <Comment>
+                * Add missing dependency (#9260). Thanks to Ozan Çağlayan.
+                * Added Icon and Description tag.
+            </Comment>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Update>
+        <Update release="10">
+            <Date>2009-02-21</Date>
+            <Version>0.16</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="9">
+            <Date>2008-12-06</Date>
+            <Version>0.15</Version>
+            <Comment>
+                * Version bump,
+                * Include I18N support instead of gi18n,
+                * Update Scintilla to version 1.77,
+                * Add net styles about some plugins.
+            </Comment>
+            <Name>Gökmen Görgen</Name>
+            <Email>gkmngrgn@gmail.com</Email>
+        </Update>
+        <Update release="8">
+            <Date>2008-04-19</Date>
+            <Version>0.14</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+        <Update release="7">
+            <Date>2008-02-05</Date>
+            <Version>0.13</Version>
+            <Comment>Version bump. Enable vte.</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+        <Update release="6">
+            <Date>2008-01-29</Date>
+            <Version>0.12</Version>
+            <Comment>Remove temporary file (/usr/share/icons/hicolor/icon-theme.cache), it should not be installed because it conflicts other icon-theme.cache files from other packages.</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+        <Update release="5">
+            <Date>2007-10-10</Date>
+            <Version>0.12</Version>
+            <Comment>Version bump</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+        <Update release="4">
+            <Date>2007-05-22</Date>
+            <Version>0.11</Version>
+            <Comment>Version bump</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2007-02-25</Date>
+            <Version>0.10.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2007-02-23</Date>
+            <Version>0.10.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2007-02-18</Date>
+            <Version>0.10</Version>
+            <Comment>First release.</Comment>
+            <Name>Eren Türkay</Name>
+            <Email>turkay.eren@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
