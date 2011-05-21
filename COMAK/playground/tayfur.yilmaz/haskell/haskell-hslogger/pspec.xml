@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>haskell-hslogger</Name>
+        <Homepage>http://hackage.haskell.org/package/hslogger</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>LGPL</License>
+        <IsA>library</IsA>
+        <Summary>Versatile logging framework</Summary>
+        <Description>hslogger is a logging framework for Haskell, roughly similar to Python's logging module. hslogger lets each log message have a priority and source be associated with it. The programmer can then define global handlers that route or filter messages based on the priority and source. hslogger also has a syslog handler built in. </Description>
+        <Archive sha1sum="ac40ec87f3af4abd3388ccc0c1a17070a2b0e156" type="targz">http://hackage.haskell.org/packages/archive/hslogger/1.1.4/hslogger-1.1.4.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>ghc-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>haskell-hslogger</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="7.0.2">ghc</Dependency>
+            <Dependency versionFrom="2.0.1.0">haskell-mtl</Dependency>
+            <Dependency versionFrom="2.3.0.2">haskell-network</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-21</Date>
+            <Version>1.1.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
