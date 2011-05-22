@@ -13,12 +13,11 @@
 from PyQt4 import QtGui
 from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import *
-        
+
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-
+from kaptan.screens.ui_scrPackage_comak import Ui_packageWidget
 from kaptan.screen import Screen
-from kaptan.screens.ui_scrPackage_lxde import Ui_packageWidget
 
 import subprocess
 import pisi
@@ -27,6 +26,7 @@ import platform
 isUpdateOn = False
 
 class Widget(QtGui.QWidget, Screen):
+    screenSettings = {}
     title = i18n("Packages")
     desc = i18n("Install / Remove Programs")
 
@@ -38,8 +38,23 @@ class Widget(QtGui.QWidget, Screen):
         self.ui = Ui_packageWidget()
         self.ui.setupUi(self)
         self.ui.checkBox.setChecked(False)
+        self.ui.showTray_2.setChecked(False)
+
+        self.ui.checkUpdate_2.setVisible(False)
+        self.ui.updateInterval_2.setVisible(False)
+        self.ui.checkUpdate_2.setChecked(False)
+        self.ui.updateInterval_2.setEnabled(False)
+
+        self.ui.checkUpdate_2.connect(self.ui.showTray_2 , SIGNAL("toggled(bool)"),self.visibleCheckUpdates)
+        self.ui.checkUpdate_2.connect(self.ui.checkUpdate_2 , SIGNAL("toggled(bool)"),self.enabledUpdateInterval)
+
+        self.__class__.screenSettings["hasChanged_repo"] = self.ui.checkBox.isChecked()
+        self.__class__.screenSettings["hasChanged_showTray"] = False
+
+
         self.flagRepo = 0
         self.repoName = "comak-repo"
+        self.ui.showTray_2.setChecked(False)
         if platform.machine() == "x86_64":
             platform_machine = "64"
         if platform.machine() == "i686":
@@ -49,7 +64,7 @@ class Widget(QtGui.QWidget, Screen):
         # create a db object
         self.repodb = pisi.db.repodb.RepoDB()
         n = 1 # temporary index variable for repo names
-        self.connect(self.ui.checkBox,SIGNAL("stateChanged(int)"),self.slotEnlightenmentRepo)
+        self.connect(self.ui.checkBox,SIGNAL("stateChanged(int)"),self.comakRepo)
         self.ui.add_repo.setText("Add COMAK Repository")
         # control if we already have lxden repo
         if self.repodb.has_repo(self.repoName):
@@ -57,6 +72,13 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.checkBox.setEnabled(0)
             errorMessage= i18n("comak-repo is already available on your system.")
             self.ui.information_label.setText(errorMessage)
+
+    def visibleCheckUpdates(self):
+        self.ui.checkUpdate_2.setVisible(self.ui.showTray_2.isChecked())
+        self.ui.updateInterval_2.setVisible(self.ui.showTray_2.isChecked())
+
+    def enabledUpdateInterval(self):
+        self.ui.updateInterval_2.setEnabled(self.ui.checkUpdate_2.isChecked())
 
     def controlRepo(self):
         if self.repodb.has_repo_url(self.repoAddress):
@@ -78,7 +100,7 @@ class Widget(QtGui.QWidget, Screen):
                 self.repoName = tmpRepoName
             return True
 
-    def slotEnlightenmentRepo(self):
+    def comakRepo(self):
         if self.ui.checkBox.isChecked():
             if not self.addRepo(self.repoName, self.repoAddress):
                 self.flagRepo = 1
@@ -97,6 +119,7 @@ class Widget(QtGui.QWidget, Screen):
                 link.setLocale()
                 link.System.Manager["pisi"].addRepository(r_name, r_address)
                 self.ui.information_label.setText("comak-repo added to your repo list.")
+                self.__class__.screenSettings["hasChanged_repo"] = True
                 return True
             except:
                 return False
@@ -116,5 +139,13 @@ class Widget(QtGui.QWidget, Screen):
         pass
 
     def execute(self):
+        self.__class__.screenSettings["hasChanged_showTray"] = self.ui.showTray_2.isChecked()
+
+        self.__class__.screenSettings["summaryMessage"] ={}
+
+        self.__class__.screenSettings["summaryMessage"].update({"Show in System Tray": i18n("No") if self.ui.showTray_2.isChecked()==False  else i18n("Yes")})
+        self.__class__.screenSettings["summaryMessage"].update({"time limit": self.ui.updateInterval_2.value()})
+        self.__class__.screenSettings["summaryMessage"].update({"addRepo": i18n("No") if self.ui.checkBox.isChecked()==False  else i18n("Yes")})
+
         return True
 
