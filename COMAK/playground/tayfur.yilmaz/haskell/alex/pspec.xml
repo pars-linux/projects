@@ -10,7 +10,7 @@
         </Packager>
         <License>BSD3</License>
         <IsA>library</IsA>
-        <Summary>< lexical analyser generator for Haskell. </Summary>
+        <Summary>lexical analyser generator for Haskell.</Summary>
         <Description>Alex is a tool for generating lexical analysers in Haskell, given a description of the tokens to be recognised in the form of regular expressions. It is similar to the tool lex or flex for C/C++.</Description>
         <Archive sha1sum="fa6420b08256d374a92e2bbe0f0193789b91e90b" type="targz">http://hackage.haskell.org/packages/archive/alex/2.3.5/alex-2.3.5.tar.gz</Archive>
         <BuildDependencies>
