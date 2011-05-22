@@ -14,7 +14,7 @@
         <Archive sha1sum="17eaf74fa49eeda85fc6cd9e2db7a11720c45e34" type="tarbz2">mirrors://gnome/vinagre/2.30/vinagre-2.30.3.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
-            <Dependency>libgnome-keyring-devel</Dependency>           
+            <Dependency>libgnome-keyring-devel</Dependency>
             <Dependency>gnome-panel-devel</Dependency>
             <Dependency>gtk-vnc-devel</Dependency>
             <Dependency>vino</Dependency>
@@ -28,16 +28,15 @@
         <Name>vinagre</Name>
         <RuntimeDependencies>
             <Dependency>gconf</Dependency>
-            <Dependency>libgnome-keyring</Dependency>           
+            <Dependency>libgnome-keyring</Dependency>
             <Dependency>gnome-panel</Dependency>
-            <Dependency>gtk-vnc</Dependency>          
+            <Dependency>gtk-vnc</Dependency>
             <Dependency>vino</Dependency>
             <Dependency>avahi-ui</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="executable">/usr/libexec</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
@@ -52,7 +51,27 @@
         </Files>
     </Package>
 
+    <Package>
+        <Name>vinagre-devel</Name>
+        <Summary>Development files for vinagre</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">vinagre</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
     <History>
+        <Update release="4">
+            <Date>2011-05-22</Date>
+            <Version>2.30.3</Version>
+            <Comment>Split headers</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="3">
             <Date>2010-10-03</Date>
             <Version>2.30.3</Version>
