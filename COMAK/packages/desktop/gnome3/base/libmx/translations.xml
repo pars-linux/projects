@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>libmx</Name>
+        <Summary xml:lang="tr">Mx Widget Araç Takımı</Summary>
+        <Description xml:lang="tr">Libmx, Clutter kullanarak butonlar, ilerleme çubukları, kaydırma çubukları gibi standart arayüz elemanlarının bir kümesini sunar.</Description>
+    </Source>
+    <Package>
+        <Name>libmx-devel</Name>
+        <Summary xml:lang="tr">libmx için geliştirme dosyaları</Summary>
+    </Package>
+    <Package>
+        <Name>libmx-docs</Name>
+        <Summary xml:lang="tr">libmx için referans dosyaları</Summary>
+    </Package>
+</PISI>
+
