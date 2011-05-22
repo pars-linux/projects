@@ -68,7 +68,7 @@
         <Summary>Development files for libgda</Summary>
         <RuntimeDependencies>
             <Dependency release="current">libgda</Dependency>
-            <Dependency release="current">libxslt-devel</Dependency>
+            <Dependency>libxslt-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
