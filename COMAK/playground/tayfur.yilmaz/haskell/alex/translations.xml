@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>alex</Name>
+        <Summary xml:lang="tr">Haskell dili için lexical analyzer üretimi</Summary>
+        <Description xml:lang="tr">Alex, Haskell dili için lexical analyser'lar üretmeye yarayan bir araçtır, Düzenli ifadeler şeklinde tanımlanmış belirteçlerle ifade edilmektedir. C/C++ dilindeki lex ya da flex araçlarına benzeyen tarafları bulunmaktadır. </Description>
+    </Source>
+</PISI>
+
