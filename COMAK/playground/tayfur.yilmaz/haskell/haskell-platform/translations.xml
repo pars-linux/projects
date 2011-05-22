@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>haskell-platform</Name>
+        <Summary xml:lang="tr">Haskell platformu</Summary>
+        <Description xml:lang="tr">Haskell ile programlamaya başlamanının en kolay yolu bu paket ile sağlanır. Haskell Platform ihtiyaç duyabileceğiniz herşeyi size sunmakta ve çalıştırabilmektedir.</Description>
+    </Source>
+</PISI>
+
