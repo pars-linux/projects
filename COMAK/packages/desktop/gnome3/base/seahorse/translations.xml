@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>seahorse</Name>
+        <Summary xml:lang="tr">GNOME anahtarlık yöneticisi</Summary>
+        <Description xml:lang="tr">Seahorse, parolaları yönetmek ve kullanmak için bir grafiksel arayüzdür.</Description>
+    </Source>
+
+    <Package>
+        <Name>seahorse-docs</Name>
+        <Summary xml:lang="tr">seahorse başvuru belgeleri</Summary>
+    </Package>
+
+    <Package>
+        <Name>seahorse-devel</Name>
+        <Summary xml:lang="tr">seahorse için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+
