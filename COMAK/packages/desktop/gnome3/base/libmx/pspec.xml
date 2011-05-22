@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>libmx</Name>
+        <Homepage>http://clutter-project.org/</Homepage>
+        <Packager>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Mx Widget Toolkit</Summary>
+        <Description>Mx is a widget toolkit using Clutter that provides a set of standard interface elements, including buttons, progress bars, scroll bars and others.</Description>
+        <Archive sha1sum="4f4a55c9c4a3ac7e4014fc76c51b2940e6522ada" type="targz">http://source.clutter-project.org/sources/mx/1.1/mx-1.1.9.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>libXrandr-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>mesa-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>libXi-devel</Dependency>
+            <Dependency>libdrm-devel</Dependency>
+            <Dependency>clutter-devel</Dependency>
+            <Dependency>freetype-devel</Dependency>
+            <Dependency>json-glib-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libXdamage-devel</Dependency>
+            <Dependency>libXcomposite-devel</Dependency>
+            <Dependency>startup-notification-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>libmx</Name>
+        <RuntimeDependencies>
+            <Dependency>atk</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>mesa</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>libXi</Dependency>
+            <Dependency>libdrm</Dependency>
+            <Dependency>clutter</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>json-glib</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libXrandr</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libXdamage</Dependency>
+            <Dependency>libXcomposite</Dependency>
+            <Dependency>startup-notification</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>libmx-devel</Name>
+        <Summary>Development headers for libmx</Summary>
+        <RuntimeDependencies>
+            <Dependency>libmx</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>libmx-docs</Name>
+        <Summary>Reference files for libmx</Summary>
+        <Files>
+            <Path fileType="doc">/usr/share/gtk-doc/</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-05-22</Date>
+            <Version>1.1.9</Version>
+            <Comment>First release.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
