@@ -13,14 +13,13 @@
 from PyQt4 import QtGui
 from PyQt4.QtCore import QString,QProcess
 from PyQt4.QtGui import QMessageBox
-
 import subprocess,os, dbus
 
 #Context Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
-
+from kaptan.screens import config
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrSummary import Ui_summaryWidget
 
@@ -51,6 +50,8 @@ class Widget(QtGui.QWidget, Screen):
         self.styleSettings = styleWidget.Widget.screenSettings
         self.smoltSettings = smoltWidget.Widget.screenSettings
         self.avatarSettings = avatarWidget.Widget.screenSettings
+        self.packageSettings = packageWidget.Widget.screenSettings
+        self.config = config.PMConfig()
         subject = "<p><li><b>%s</b></li><ul>"
         item    = "<li>%s</li>"
         end     = "</ul></p>"
@@ -88,13 +89,16 @@ class Widget(QtGui.QWidget, Screen):
         content.append(end)
 
         # Package Settings
+        if self.packageSettings["summaryMessage"]:
+            content.append(subject % i18n("Package Settings"))
 
-        #content.append(subject % i18n("Package Settings"))
-        #if not self.packageWidget.ui.checkBox.isChecked():
-        #    content.append(item % i18n("You haven't added any repo."))
-        #else:
-        #    content.append(item % i18n("You have add "+ctx.Pds.session.Name +" repo."))
-        #content.append(end)
+        if not self.packageSettings["summaryMessage"]["addRepo"] == i18n("Yes"):
+            content.append(item % i18n("You haven't added any repo."))
+        else:
+            content.append(item % i18n("You have add "+ctx.Pds.session.Name +" repo."))
+
+        content.append(item % i18n("Package Manager show in System Tray: <b>%s [every %s hours]</b>") % (self.packageSettings["summaryMessage"]["Show in System Tray"] ,  self.packageSettings["summaryMessage"]["time limit"]))
+        content.append(end)
 
         # Smolt Settings
         try:
@@ -157,6 +161,11 @@ class Widget(QtGui.QWidget, Screen):
 
         Desktop.style.reconfigure()
 
+        #Package Settings
+        if self.packageSettings["hasChanged_repo"] or self.packageSettings["hasChanged_showTray"]:
+            #TODO : show package manager in system tray
+            pass
+
         # Smolt Settings
         if self.smoltSettings["profileSend"]:
             self.procSettings = QProcess()
@@ -170,5 +179,4 @@ self.avatarSettings]:
             if (ctx.Pds.session==ctx.pds.Kde4) and settings.get("hasChanged",False):
                 self.killPlasma()
                 break
-
         return True

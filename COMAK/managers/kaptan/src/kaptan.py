@@ -57,7 +57,7 @@ class Kaptan(QtGui.QWidget):
         tools.loadScreens(self.screensPath, globals())
 
         # kaptan screen settings
-        availableScreens = [scrWelcome, scrMouse, scrStyle, scrMenu, scrWallpaper, scrSummary, scrGoodbye]
+        availableScreens = [scrWelcome, scrMouse, scrStyle, scrMenu, scrWallpaper,scrAvatar, scrSummary, scrGoodbye]
         self.headScreens = []
         self.tailScreens = []
         for screen in availableScreens:

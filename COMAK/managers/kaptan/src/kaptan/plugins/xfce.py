@@ -153,7 +153,7 @@ class Package(base.Package):
         pass
 class Avatar(base.Avatar):
 
-    pass
+        pass
 class Menu(base.Menu):
 
     def getMenuStyle(self):
