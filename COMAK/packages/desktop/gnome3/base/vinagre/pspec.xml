@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>vinagre</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Summary>A VNC and SSH client</Summary>
+        <Description>Vinagre is a remote desktop viewer and SSH client for the GNOME Desktop.</Description>
+        <Archive sha1sum="c38f798f5e9d3cfd9e3602ab09f5c9ce6f3fbbed" type="tarbz2">mirrors://gnome/vinagre/3.1/vinagre-3.1.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libgnome-keyring-devel</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency versionFrom="0.4.3">gtk-vnc-devel</Dependency>
+            <Dependency>vino</Dependency>
+            <Dependency>gnome-doc-utils</Dependency>
+            <Dependency>avahi-ui-devel</Dependency>
+            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>vte-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>libpeas-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>avahi-glib-devel</Dependency>
+            <Dependency>telepathy-glib-devel</Dependency>
+            <Dependency>gobject-introspection-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>vinagre</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>libgnome-keyring</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency versionFrom="0.4.3">gtk-vnc</Dependency>
+            <Dependency>vino</Dependency>
+            <Dependency>avahi-ui</Dependency>
+            <Dependency>vte</Dependency>
+            <Dependency>gtk3</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>libpeas</Dependency>
+            <Dependency>avahi-libs</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>avahi-glib</Dependency>
+            <Dependency>telepathy-glib</Dependency>
+            <Dependency>gobject-introspection</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/vinagre</Path>
+            <Path fileType="data">/usr/share/vinagre-1</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>vinagre-devel</Name>
+        <Summary>Development files for vinagre</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">vinagre</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="4">
+            <Date>2011-05-22</Date>
+            <Version>3.1.1</Version>
+            <Comment>Version bump, split headers</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="3">
+            <Date>2010-10-03</Date>
+            <Version>2.30.3</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2009-06-28</Date>
+            <Version>2.26.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2008-06-30</Date>
+            <Version>0.5.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Burak Çalışkan</Name>
+            <Email>burakclskn@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
