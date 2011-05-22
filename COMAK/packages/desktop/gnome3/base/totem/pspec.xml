@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Video player for the GNOME desktop</Summary>
         <Description>Totem is default video player for the GNOME desktop.</Description>
-        <Archive sha1sum="34aa2e3bff071562f7603e1a72cb6da65ce0ba8b" type="tarbz2">mirrors://gnome/totem/3.0/totem-3.0.1.tar.bz2</Archive>
+        <Archive sha1sum="a25f97055417991fb776a55412e6666d8e1c700b" type="tarbz2">mirrors://gnome/totem/3.1/totem-3.1.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>libpeas-devel</Dependency>
@@ -31,6 +31,10 @@
             <Dependency>libgdata-devel</Dependency>
             <Dependency>python-pygobject-devel</Dependency>
             <Dependency>libXtst-devel</Dependency>
+            <Dependency>clutter-gst-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>libmx-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-check-gstreamer.patch</Patch>
@@ -111,6 +115,13 @@
     </Package>
 
     <History>
+        <Update release="9">
+            <Date>2011-05-23</Date>
+            <Version>3.1.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
         <Update release="8">
             <Date>2011-04-27</Date>
             <Version>3.0.1</Version>
