@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gnome-tweak-tool</Name>
-        <Homepage>http://www.gnome.org/</Homepage>
+        <Homepage>http://live.gnome.org/GnomeTweakTool</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A tool to customize advanced GNOME 3 options</Summary>
         <Description>gnome-tweak-tool is a tool to customize advanced GNOME 3 options.</Description>
-        <Archive sha1sum="74481d3d53b116a2386071083c48a095f442cf35" type="tarbz2">mirrors://gnome/gnome-tweak-tool/3.0/gnome-tweak-tool-3.0.3.tar.bz2</Archive>
+        <Archive sha1sum="ad7440226447041726ad338455061e782f2b5a85" type="tarbz2">mirrors://gnome/gnome-tweak-tool/3.0/gnome-tweak-tool-3.0.4.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
         </BuildDependencies>
@@ -35,6 +35,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-05-22</Date>
+            <Version>3.0.4</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-05-11</Date>
             <Version>3.0.3</Version>
