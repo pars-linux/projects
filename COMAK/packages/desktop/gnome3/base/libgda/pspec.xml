@@ -13,11 +13,10 @@
         <IsA>app:gui</IsA>
         <Summary>Gnome Database Access Library</Summary>
         <Description>GNU data access is an attempt to provide uniform access to different kinds of data sources (databases, information serverse, mail spools, etc). It is a complete architecture that provides all you need to access your data. Libgda was part of the GNOME-DB project, but has been separated from it to allow non-GNOME applications to be developed based on it.</Description>
-        <Archive sha1sum="37ed6221f7cf162ac6df574d111f248e66d3aa4a" type="tarbz2">mirrors://gnome/libgda/4.2/libgda-4.2.6.tar.bz2</Archive>
+        <Archive sha1sum="62c8a3b4bfb924d74025c15f4e57c0c161188f0b" type="targz">http://ftp.acc.umu.se/pub/GNOME/sources/libgda/4.2/libgda-4.2.7.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>mysql-lib</Dependency>
             <Dependency>gtk3-devel</Dependency>
-            <Dependency>libunique-devel</Dependency>
             <Dependency>libxslt-devel</Dependency>
             <Dependency>gnome-vfs-devel</Dependency>
             <Dependency>unixODBC-devel</Dependency>
@@ -69,6 +68,7 @@
         <Summary>Development files for libgda</Summary>
         <RuntimeDependencies>
             <Dependency release="current">libgda</Dependency>
+            <Dependency release="current">libxslt-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
@@ -87,6 +87,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-05-22</Date>
+            <Version>4.2.7</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-04-24</Date>
             <Version>4.2.6</Version>
