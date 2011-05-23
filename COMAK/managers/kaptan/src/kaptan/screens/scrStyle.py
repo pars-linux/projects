@@ -13,7 +13,7 @@
 #
 
 from PyQt4 import QtGui,QtCore
-from PyQt4.QtCore import *
+from PyQt4.QtCore import QString,QDir,QStringList, QSize,SIGNAL,Qt
 from PyQt4.QtGui import QListWidgetItem
 
 # Pds Stuff

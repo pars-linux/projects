@@ -11,17 +11,15 @@
 #
 
 from PyQt4 import QtGui
-from PyQt4.QtCore import *
+from PyQt4.QtCore import QProcess, QLocale
 
 #Pds Stuff
 import kaptan.screens.context as ctx
-from kaptan.screens.context import *
 
 #Context
 from kaptan.screens.context import *
 import kaptan.screens.context as ctx
 from kaptan.plugins import Desktop
-from PyQt4.QtCore import *
 
 
 if ctx.Pds.session == ctx.pds.Kde4:

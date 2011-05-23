@@ -12,7 +12,7 @@
 import os,subprocess
 from Xlib import display
 from PyQt4 import QtGui
-from PyQt4.QtCore import *
+from PyQt4.QtCore import SIGNAL, QString
 
 from kaptan.screen import Screen
 

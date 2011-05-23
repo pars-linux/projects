@@ -12,11 +12,11 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtGui import QFileDialog,QPalette
-#Context
+# Context
 from kaptan.screens.context import * 
 import kaptan.screens.context as ctx
 from kaptan.plugins import Desktop
-from PyQt4.QtCore import *
+from PyQt4.QtCore import SIGNAL, Qt,QSize
 
 import os, sys, subprocess
 
