@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>happy</Name>
+        <Summary xml:lang="tr">Haskell dili için parser üreticisi</Summary>
+        <Description xml:lang="tr">Happy, Haskell dili için parser üretim sistemidir, C dilindeki 'yacc' ile benzer yanları bulunmaktadır. 'yacc' da olduğu gibi dilbilgisindeki  BNF özelliklerini açıklayan dosya içeriklerini alır ve Dilbilgisi için Haskell modullerini içeren parser'lar üretirler.</Description>
+    </Source>
+</PISI>
+
