@@ -264,7 +264,6 @@ if __name__ == "__main__":
                 QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
                 kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
                 start_xfce = kaptanConfig.value("General/RunOnStart").toString()
-                if not start_xfce == "False":
             kaptanConfig.setValue("General/RunOnStart","False")
         elif start == "False" and not "-t" in sys.argv:
             exit();
