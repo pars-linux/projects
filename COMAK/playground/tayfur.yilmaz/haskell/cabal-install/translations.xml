@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>cabal-install</Name>
+        <Summary xml:lang="tr">Cabal ve Hackage için komut satırı arayüzü</Summary>
+        <Description xml:lang="tr">'cabal' komut satırı Haskell yazılımların yönetilme sürecini otomatik olarak yapmayı,yapılandırmayı,derlemeyi ve Haskell kütüphaneleri ve programlarını kurmayı basitleştirmektedir. </Description>
+    </Source>
+</PISI>
+
