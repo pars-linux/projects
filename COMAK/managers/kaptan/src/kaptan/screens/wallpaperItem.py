@@ -12,7 +12,6 @@
 #
 
 from PyQt4 import QtGui
-from PyQt4.QtCore import *
 
 from kaptan.screens.ui_wallpaperItem import Ui_ServiceItemWidget
 

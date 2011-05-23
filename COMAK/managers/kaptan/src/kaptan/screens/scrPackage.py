@@ -12,17 +12,14 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtGui import QMessageBox
-from PyQt4.QtCore import *
+from PyQt4.QtCore import SIGNAL,QSettings
 
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.screens.ui_scrPackage_comak import Ui_packageWidget
 from kaptan.screen import Screen
 
-import subprocess
-import pisi
-import comar
-import platform
+import subprocess, os, pisi, comar, platform
 isUpdateOn = False
 
 class Widget(QtGui.QWidget, Screen):
@@ -32,25 +29,31 @@ class Widget(QtGui.QWidget, Screen):
 
     # min update time
     updateTime = 12
+    CONFIG_packagemanager = QSettings("%s/.config/Pardus/Package-Manager.conf" %os.environ["HOME"], QSettings.IniFormat)
+
 
     def __init__(self, *args):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_packageWidget()
         self.ui.setupUi(self)
         self.ui.checkBox.setChecked(False)
-        self.ui.showTray_2.setChecked(False)
-
+        if self.CONFIG_packagemanager.value("SystemTray")=="true":
+            self.ui.showTray_2.setChecked(True)
+        else:
+            self.ui.showTray_2.setChecked(False)
+        if self.CONFIG_packagemanager.value("UpdateCheck")=="true":
+            self.ui.checkUpdate_2.setChecked(True)
+        else:
+            self.ui.checkUpdate_2.setChecked(False)
         self.ui.checkUpdate_2.setVisible(False)
         self.ui.updateInterval_2.setVisible(False)
-        self.ui.checkUpdate_2.setChecked(False)
-        self.ui.updateInterval_2.setEnabled(False)
+        self.ui.updateInterval_2.setValue(int(self.CONFIG_packagemanager.value("UpdateCheckInterval").toString())/60)
 
         self.ui.checkUpdate_2.connect(self.ui.showTray_2 , SIGNAL("toggled(bool)"),self.visibleCheckUpdates)
         self.ui.checkUpdate_2.connect(self.ui.checkUpdate_2 , SIGNAL("toggled(bool)"),self.enabledUpdateInterval)
 
         self.__class__.screenSettings["hasChanged_repo"] = self.ui.checkBox.isChecked()
         self.__class__.screenSettings["hasChanged_showTray"] = False
-
 
         self.flagRepo = 0
         self.repoName = "comak-repo"
@@ -143,9 +146,10 @@ class Widget(QtGui.QWidget, Screen):
 
         self.__class__.screenSettings["summaryMessage"] ={}
 
-        self.__class__.screenSettings["summaryMessage"].update({"Show in System Tray": i18n("No") if self.ui.showTray_2.isChecked()==False  else i18n("Yes")})
-        self.__class__.screenSettings["summaryMessage"].update({"time limit": self.ui.updateInterval_2.value()})
-        self.__class__.screenSettings["summaryMessage"].update({"addRepo": i18n("No") if self.ui.checkBox.isChecked()==False  else i18n("Yes")})
+        self.__class__.screenSettings["summaryMessage"].update({"Show in System Tray": "false" if not self.ui.showTray_2.isChecked()  else "true"})
+        self.__class__.screenSettings["summaryMessage"].update({"checkUpdate": "false" if not self.ui.checkUpdate_2.isChecked() else "true"})
+        self.__class__.screenSettings["summaryMessage"].update({"time limit": self.ui.updateInterval_2.value()*60})
+        self.__class__.screenSettings["summaryMessage"].update({"addRepo": "false" if not self.ui.checkBox.isChecked()  else "true"})
 
         return True
 

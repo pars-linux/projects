@@ -13,7 +13,6 @@
 
 # Qt Stuff
 from PyQt4 import QtGui
-from PyQt4.QtCore import *
 
 # Application Stuff
 from kaptan.screens.ui_scrStyleItem import Ui_StyleItemWidget
