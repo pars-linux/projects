@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>happy</Name>
+        <Homepage>http://www.haskell.org/happy/</Homepage>
+        <Packager>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Packager>
+        <License>BSD3</License>
+        <IsA>library</IsA>
+        <Summary>The Parser Generator for Haskell</Summary>
+        <Description>Happy is a parser generator system for Haskell, similar to the tool `yacc' for C. Like `yacc', it takes a file containing an annotated BNF specification of a grammar and produces a Haskell module containing a parser for the grammar.</Description>
+        <Archive sha1sum="728821fb7c8c4754d20ab240626c17a2c0528828" type="targz">http://hackage.haskell.org/packages/archive/happy/1.18.6/happy-1.18.6.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gmp-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>happy</Name>
+        <RuntimeDependencies>
+            <Dependency>gmp</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-23</Date>
+            <Version>1.18.6</Version>
+            <Comment>First release.</Comment>
+            <Name>Tayfur Yilmaz</Name>
+            <Email>yilmaz.tayfur@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
