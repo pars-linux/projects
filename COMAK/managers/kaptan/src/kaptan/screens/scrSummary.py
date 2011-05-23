@@ -19,7 +19,6 @@ import subprocess,os, dbus
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
-#from kaptan.screens import config
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrSummary import Ui_summaryWidget
 
@@ -51,7 +50,6 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltSettings = smoltWidget.Widget.screenSettings
         self.avatarSettings = avatarWidget.Widget.screenSettings
         self.packageSettings = packageWidget.Widget.screenSettings
-#        self.config = config.PMConfig()
         subject = "<p><li><b>%s</b></li><ul>"
         item    = "<li>%s</li>"
         end     = "</ul></p>"

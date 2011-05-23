@@ -4,14 +4,15 @@
 import sys
 import os
 
-#Pds Stuff
+# Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
-#Qt Stuff
+
+# Qt Stuff
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QTimeLine,QSettings
 
-#Kaptan Stuff
+# Kaptan Stuff
 from kaptan.screens.ui_kaptan import Ui_kaptan
 from kaptan.tools import tools
 from kaptan.tools.progress_pie import DrawPie
@@ -34,7 +35,7 @@ class Kaptan(QtGui.QWidget):
         self.descriptions = []
         self.currentDir = os.path.dirname(os.path.realpath(__file__))
         self.screensPath = self.currentDir + "/kaptan/screens/scr*py"
-        #Config
+        # Config
         if ctx.Pds.session == ctx.pds.Kde4:
             self.kaptanConfig = KConfig("kaptanrc")
             self.plasmaConfig = KConfig("plasma-desktop-appletsrc")
@@ -75,10 +76,8 @@ class Kaptan(QtGui.QWidget):
 
         # Get Screen Titles
         for screen in self.screens:
-            ####################
-            #title = screen.Widget.title.toString()
-            title = i18n(screen.Widget.title)
 
+            title = i18n(screen.Widget.title)
             self.titles.append(title)
 
         # draw progress pie
@@ -206,7 +205,6 @@ class Kaptan(QtGui.QWidget):
             _scr = screen.Widget()
 
             # Append screen descriptions to list
-            #self.descriptions.append(_scr.desc.toString())
             self.descriptions.append(_scr.desc)
 
             # Append screens to stack widget
@@ -235,45 +233,45 @@ class Kaptan(QtGui.QWidget):
 
     def __del__(self):
         self.kaptanConfig.setValue("General/RunOnStart",False)
-        #group = self.kaptanConfig.group("General")
-        #group.writeEntry("RunOnStart", "False")
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "-a":
         kd= os.getenv("HOME")
-        #kaptanrc
+        # kaptanrc
         QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
         kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
         start = kaptanConfig.value("General/RunOnStart").toString()
+
         if ctx.Pds.session.Name == "LXDE":
             os.popen("cp -r /etc/xdg/lxsession %s/.config/"%os.getenv("HOME"))
 
         if not start == "False":
             if ctx.Pds.session.Name == "gnome":
                 kd= os.getenv("HOME")
-                #kaptanrc
+                # kaptanrc
                 QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
                 kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
                 start_gnome = kaptanConfig.value("General/RunOnStart").toString()
+
                 if not start_gnome == "False":
                     os.popen("gconftool-2 --type=string --set /apps/metacity/general/theme Orta" )
                     os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Orta")
                     os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme Faenza-Dark")
             elif ctx.Pds.session.Name == "xfce":
+
                 kd= os.getenv("HOME")
-                #kaptanrc
+                # kaptanrc
                 QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
                 kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
                 start_xfce = kaptanConfig.value("General/RunOnStart").toString()
                 if not start_xfce == "False":
-                    print "ilk kez calistirildi."
             kaptanConfig.setValue("General/RunOnStart","False")
         elif start == "False" and not "-t" in sys.argv:
-            print "ilk degil"
             exit();
 
      # attach dbus to main loop
     tools.DBus()
+
     if ctx.Pds.session == ctx.pds.Kde4:
         from PyKDE4 import kdeui
         from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KConfig
@@ -299,7 +297,9 @@ if __name__ == "__main__":
         kaptan.show()
         tools.centerWindow(kaptan)
         app.exec_()
+
     else:
+
         import gettext
         __trans = gettext.translation('kaptan', fallback=True)
         i18n = __trans.ugettext

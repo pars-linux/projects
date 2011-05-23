@@ -13,8 +13,6 @@
 
 from PyQt4 import QtGui
 from PyQt4.QtCore import QVariant
-#from PyKDE4.kdecore import ki18n
-#from PyKDE4.kdecore import i18n
 
 #Pds Stuff
 import kaptan.screens.context as ctx
