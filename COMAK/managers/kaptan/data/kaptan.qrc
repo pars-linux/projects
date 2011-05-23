@@ -1,5 +1,11 @@
 <RCC>
   <qresource prefix="raw">
+    <file>pixmap/oxygen_gnome.png</file>
+    <file>pixmap/Crux.png</file>
+    <file>pixmap/Mist.png</file>
+    <file>pixmap/milky_gnome.png</file>
+    <file>pixmap/Faenza.png</file>
+    <file>pixmap/gnome.png</file>
     <file>pixmap/applications-other-comak.png</file>
     <file>pixmap/view-pim-contacts-comak.png</file>
     <file>pixmap/milky.png</file>
