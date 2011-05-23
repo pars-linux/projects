@@ -47,8 +47,10 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.checkUpdate_2.setChecked(False)
         self.ui.checkUpdate_2.setVisible(False)
         self.ui.updateInterval_2.setVisible(False)
-        self.ui.updateInterval_2.setValue(int(self.CONFIG_packagemanager.value("UpdateCheckInterval").toString())/60)
-
+        try:
+            self.ui.updateInterval_2.setValue(int(self.CONFIG_packagemanager.value("UpdateCheckInterval").toString())/60)
+        except:
+            self.ui.updateInterval_2.setValue(2)
         self.ui.checkUpdate_2.connect(self.ui.showTray_2 , SIGNAL("toggled(bool)"),self.visibleCheckUpdates)
         self.ui.checkUpdate_2.connect(self.ui.checkUpdate_2 , SIGNAL("toggled(bool)"),self.enabledUpdateInterval)
 
