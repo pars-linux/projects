@@ -83,8 +83,7 @@ class Widget(QtGui.QWidget, Screen):
             content.append(item % i18n("You haven't selected any style."))
         else:
             content.append(item % i18n("Selected Style: <b>%s</b>") % unicode(self.styleSettings["summaryMessage"]))
-            if not ctx.Pds.session == ctx.pds.Gnome:
-                content.append(item % i18n("Desktop Number: <b>%s</b>") % unicode(self.styleSettings["desktopNumber"]))
+            content.append(item % i18n("Desktop Number: <b>%s</b>") % unicode(self.styleSettings["desktopNumber"]))
 
         content.append(end)
 
