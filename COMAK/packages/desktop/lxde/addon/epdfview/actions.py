@@ -12,7 +12,8 @@ from pisi.actionsapi import shelltools
 def setup():
     shelltools.touch("ChangeLog")
     autotools.autoreconf("-vfi")
-    autotools.configure()
+    autotools.configure("--with-cups \
+                         --disable-dependency-tracking")
 
 def build():
     autotools.make()
