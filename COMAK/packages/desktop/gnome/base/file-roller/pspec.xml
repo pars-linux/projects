@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>GNOME archive manager</Summary>
         <Description>File-manager is a archive manager that create, modify and extract various archive formats with compression support</Description>
-        <Archive sha1sum="48eb7e1cac561804a2f9ad4fdeef8e5cce8adc62" type="tarbz2">mirrors://gnome/file-roller/2.32/file-roller-2.32.1.tar.bz2</Archive>
+        <Archive sha1sum="38ce495a27b482f1e9983304f95959393674676e" type="tarbz2">mirrors://gnome/file-roller/2.32/file-roller-2.32.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>nautilus-devel</Dependency>
@@ -49,6 +49,13 @@
     </Package>
 
     <History>
+        <Update release="10">
+            <Date>2011-05-23</Date>
+            <Version>2.32.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="9">
             <Date>2010-12-09</Date>
             <Version>2.32.1</Version>
