@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>GNOME display manager</Summary>
         <Description>GDM provides log into different sessions on local or remote machines.</Description>
-        <Archive sha1sum="f3890176f8b10022ed25f6155a98833ae8ce1ca4" type="tarbz2">mirrors://gnome/gdm/2.32/gdm-2.32.0.tar.bz2</Archive>
+        <Archive sha1sum="75017d6acfc8e158e0df848629431021b25998a5" type="tarbz2">mirrors://gnome/gdm/2.32/gdm-2.32.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>libbonoboui-devel</Dependency>
@@ -21,6 +21,12 @@
             <Dependency>libcanberra-devel</Dependency>
             <Dependency>gnome-panel-devel</Dependency> <!-- for libpanelapplet -->
             <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>libbonobo-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libxklavier-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">force-vt7.patch</Patch>
@@ -43,6 +49,12 @@
             <Dependency>gnome-panel</Dependency> <!-- for libpanelapplet -->
             <Dependency>gnome-settings-daemon</Dependency>
             <Dependency>gnome-session</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>fontconfig</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libxklavier</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/dbus-1</Path>
@@ -82,6 +94,13 @@
     </Package>
 
     <History>
+        <Update release="7">
+            <Date>2011-05-23</Date>
+            <Version>2.32.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="6">
             <Date>2010-10-18</Date>
             <Version>2.32.0</Version>
