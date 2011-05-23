@@ -87,6 +87,13 @@ class Widget(QtGui.QWidget, Screen):
         elif ctx.Pds.session.Name == "xfce":
             dir =QDir("/usr/share/themes")
             lst2= dir.entryList()
+        elif ctx.Pds.session.Name == "LXDE":
+            dir =QDir("/usr/share/themes")
+            lst= dir.entryList()
+            lst2=[]
+            for previews in lst:
+                if not previews=="Crux":
+                    lst2.append(previews)
         else:
             dir = QtCore.QDir("/usr/share/themes")
             dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
