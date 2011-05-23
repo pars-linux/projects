@@ -95,14 +95,31 @@ class Common(base.Common):
         var = QLocale.languageToString(locale_app.language())
         return var
 class Style(base.Style):
-
     def getDesktopNumber(self):
-        #desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
-        return 4
-
+        FILE_PATH="%s/.gconf/apps/metacity/general/"%os.environ["HOME"]+"%gconf.xml"
+        parse_file=piksemel.parse(FILE_PATH)
+        x = parse_file.getTag("entry")
+        temp_file_path="%s/.tempf.txt"%os.environ["HOME"]
+        temp_file=open(temp_file_path,"w")
+        temp_file.write(x.toString())
+        temp_file.close()
+        temp_file=open(temp_file_path)
+        a=temp_file.read()
+        x=re.search("<entry name=\"num_workspaces\".*/>",a)
+        deger= len(x.group().split("=")[4])
+        if deger==5:
+            number= int(x.group()[-4])
+            os.remove(temp_file_path)
+            return number
+        else:
+            number1= int(x.group()[-4])
+            number2= int(x.group()[-5])
+            os.remove(temp_file_path)
+            a= int(str(number2)+str(number1))
+            return a
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
-
+        os.popen("gconftool-2 -s /apps/metacity/general/num_workspaces --type int %s"%dn)
     def setThemeSettings(self):
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
         os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme %s" %iconTheme)
