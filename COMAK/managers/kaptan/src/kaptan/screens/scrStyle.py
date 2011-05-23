@@ -24,10 +24,11 @@ from kaptan.plugins import Desktop
 import os, sys, Image, dbus, glob
 
 FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
+FOR_GNOME3 = ctx.Pds.session == ctx.pds.Gnome3
 
 from kaptan.screen import Screen
 
-if FOR_GNOME:
+if FOR_GNOME or FOR_GNOME3:
     from kaptan.screens.ui_scrStyle_gnome import Ui_styleWidget
 else:
     from kaptan.screens.ui_scrStyle import Ui_styleWidget
