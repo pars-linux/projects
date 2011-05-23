@@ -25,8 +25,14 @@ from kaptan.plugins import Desktop
 
 import os, sys, Image, dbus, glob
 
+FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
+
 from kaptan.screen import Screen
-from kaptan.screens.ui_scrStyle import Ui_styleWidget
+if FOR_GNOME:
+    from kaptan.screens.ui_scrStyle_gnome import Ui_styleWidget
+else:
+    from kaptan.screens.ui_scrStyle import Ui_styleWidget
+
 from kaptan.screens.styleItem import StyleItemWidget
 
 from kaptan.tools.desktop_parser import DesktopParser
@@ -51,9 +57,6 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_styleWidget()
         self.ui.setupUi(self)
-        if not ctx.Pds.session.Name == "KDE":
-            self.ui.labelDesktopType.setVisible(False)
-            self.ui.comboBoxDesktopType.setVisible(False)
         if not ctx.Pds.session.Name == "KDE":
             self.ui.listIcon.item(0).setHidden(1)
         elif ctx.Pds.session.Name == "KDE":
@@ -142,8 +145,9 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.iconContainer.hide()
             self.ui.label_3.hide()
         self.ui.listIcon.connect(self.ui.listIcon, SIGNAL("itemClicked(QListWidgetItem *)"), self.setIcon)
-        self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
-        if ctx.Pds.session.Name =="gnome" or  ctx.Pds.session == ctx.pds.LXDE or ctx.Pds.session == ctx.pds.Gnome3:
+        #self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
+        #if ctx.Pds.session.Name =="gnome" or  ctx.Pds.session == ctx.pds.LXDE or ctx.Pds.session == ctx.pds.Gnome3:
+        if ctx.Pds.session == ctx.pds.LXDE:
             self.ui.spinBoxDesktopNumbers.hide()
             self.ui.labelDesktopNumbers.hide()
         self.ui.spinBoxDesktopNumbers.connect(self.ui.spinBoxDesktopNumbers, SIGNAL("valueChanged(const QString &)"), self.addDesktop)
