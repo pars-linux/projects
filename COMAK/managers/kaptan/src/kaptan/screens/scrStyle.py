@@ -56,10 +56,14 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_styleWidget()
         self.ui.setupUi(self)
+
         if not ctx.Pds.session.Name == "KDE":
             self.ui.listIcon.item(0).setHidden(1)
+            self.ui.labelDesktopType.setVisible(False)
+            self.ui.comboBoxDesktopType.setVisible(False)
         elif ctx.Pds.session.Name == "KDE":
             self.ui.listIcon.item(1).setHidden(1)
+
         self.ui.label.setText(str(ctx.Pds.session.Name)+" Themes")
         self.styleDetails = {}
         self.catLang = Desktop.common.getLanguage()
