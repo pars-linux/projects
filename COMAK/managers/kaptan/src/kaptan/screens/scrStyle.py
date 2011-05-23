@@ -15,10 +15,8 @@
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import *
 from PyQt4.QtGui import QListWidgetItem
-#from PyKDE4.kdecore import ki18n, KStandardDirs, KGlobal, KConfig
-#from PyKDE4 import kdeui
 
-#Pds Stuff
+# Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
@@ -28,17 +26,18 @@ import os, sys, Image, dbus, glob
 FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
 
 from kaptan.screen import Screen
+
 if FOR_GNOME:
     from kaptan.screens.ui_scrStyle_gnome import Ui_styleWidget
 else:
     from kaptan.screens.ui_scrStyle import Ui_styleWidget
 
 from kaptan.screens.styleItem import StyleItemWidget
-
 from kaptan.tools.desktop_parser import DesktopParser
 from ConfigParser import ConfigParser
 
 class Widget(QtGui.QWidget, Screen):
+
     list_themes = []
     screenSettings = {}
     screenSettings["hasChanged"] = False
@@ -64,8 +63,6 @@ class Widget(QtGui.QWidget, Screen):
         self.ui.label.setText(str(ctx.Pds.session.Name)+" Themes")
         self.styleDetails = {}
         self.catLang = Desktop.common.getLanguage()
-        #config = KConfig("kwinrc")
-        #group = config.group("Desktops")
         defaultDesktopNumber = Desktop.style.getDesktopNumber()
         self.__class__.screenSettings["desktopNumber"]= defaultDesktopNumber
         self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
