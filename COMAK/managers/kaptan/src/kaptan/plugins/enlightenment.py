@@ -20,7 +20,7 @@ import tempfile
 import piksemel
 import shutil
 import Image
-from PyQt4.QtCore import *
+from PyQt4.QtCore import QProcess,QLocale,QStringList,QDir,QString,QSettings
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
