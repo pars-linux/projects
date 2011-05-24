@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>nautilus-sendto</Name>
+        <Summary xml:lang="tr">Dosyaları göndermek için kullanılan nautilus eklentisi</Summary>
+        <Description xml:lang="tr">Nautilus-sendto, dosyaları göndermek için kullanılan bir Nautilus eklentisidir.</Description>
+    </Source>
+
+    <Package>
+        <Name>nautilus-sendto-devel</Name>
+        <Summary xml:lang="tr">nautilus-sendto için geliştirme dosyaları</Summary>
+    </Package>
+</PISI>
+
