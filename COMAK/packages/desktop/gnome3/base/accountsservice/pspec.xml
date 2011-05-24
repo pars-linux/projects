@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>D-Bus Service to Manipulate User Account Information</Summary>
         <Description>accountsservice server provides a set of D-Bus interfaces for querying and manipulating user account information.</Description>
-        <Archive sha1sum="ab442e283c3a5af11809fbaeba331d4e98d9b767" type="tarbz2">http://www.freedesktop.org/software/accountsservice/accountsservice-0.6.10.tar.bz2</Archive>
+        <Archive sha1sum="8bdf4134505a77c7088e8dfd4bff8b44aff35031" type="tarbz2">http://www.freedesktop.org/software/accountsservice/accountsservice-0.6.12.tar.bz2</Archive>
     </Source>
 
     <Package>
@@ -39,6 +39,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-05-24</Date>
+            <Version>0.6.12</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-05-17</Date>
             <Version>0.6.10</Version>
