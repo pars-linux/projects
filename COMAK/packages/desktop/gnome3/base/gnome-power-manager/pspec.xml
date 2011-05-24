@@ -5,14 +5,14 @@
         <Name>gnome-power-manager</Name>
         <Homepage>http://www.gnome.org</Homepage>
         <Packager>
-            <Name>Burak Çalışkan</Name>
-            <Email>burakclskn@gmail.com</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>GNOME power manager</Summary>
         <Description>GNOME Power Manager is a session daemon that acts as a policy agent on top of UPower.</Description>
-        <Archive sha1sum="7637b6a163302d07abeebb236fec9686c05341a4" type="tarbz2">mirrors://gnome/gnome-power-manager/3.0/gnome-power-manager-3.0.0.tar.bz2</Archive>
+        <Archive sha1sum="dbbce43c1b418f6d9d8b5b80ac6ba741e2e6efbf" type="tarbz2">mirrors://gnome/gnome-power-manager/3.0/gnome-power-manager-3.0.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libgnome-keyring-devel</Dependency>
             <Dependency>hal-devel</Dependency>
@@ -81,6 +81,13 @@
     </Package>
 
     <History>
+       <Update release="6">
+            <Date>2011-05-24</Date>
+            <Version>3.0.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
        <Update release="5">
             <Date>2011-04-15</Date>
             <Version>3.0.0</Version>
