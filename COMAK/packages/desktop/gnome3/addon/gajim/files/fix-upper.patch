@@ -1,0 +1,24 @@
+diff -Naur gajim-0.14.1.orig//src/common/xmpp/protocol.py gajim-0.14.1//src/common/xmpp/protocol.py
+--- gajim-0.14.1.orig//src/common/xmpp/protocol.py	2010-10-01 23:16:15.000000000 +0300
++++ gajim-0.14.1//src/common/xmpp/protocol.py	2011-05-24 10:17:55.756000001 +0300
+@@ -22,6 +22,11 @@
+ 
+ from simplexml import Node, NodeBuilder
+ import time
++import string
++
++def ascii_upper(s):
++    trans_table = string.maketrans(string.ascii_lowercase, string.ascii_uppercase)
++    return s.translate(trans_table)
+ 
+ NS_ACTIVITY      ='http://jabber.org/protocol/activity'                           # XEP-0108
+ NS_ADDRESS        ='http://jabber.org/protocol/address'                            # XEP-0033
+@@ -200,7 +205,7 @@
+                                                    (NS_SASL, 'SASL', sasl_error_conditions)):
+     for err in errpool.split('\n')[1:]:
+         cond, code, typ, text = err.split(' -- ')
+-        name = errname + '_' + cond.upper().replace('-', '_')
++        name = errname + '_' + ascii_upper(cond).replace('-', '_')
+         locals()[name] = ns + ' ' + cond
+         ERRORS[ns + ' ' + cond] = [code, typ, text]
+         if code:
