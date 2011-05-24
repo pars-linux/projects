@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>GNOME display manager</Summary>
         <Description>GDM provides log into different sessions on local or remote machines.</Description>
-        <Archive sha1sum="c88e0ea1af99982928cd12beb5efa52e587fe128" type="tarbz2">mirrors://gnome/gdm/3.0/gdm-3.0.0.tar.bz2</Archive>
+        <Archive sha1sum="35ffa5984e8f991b289a380f60455cd1918f475f" type="tarbz2">mirrors://gnome/gdm/3.0/gdm-3.0.2.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -20,7 +20,7 @@
             <Dependency>libXrandr-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>fontconfig-devel</Dependency>
-            <Dependency>accountsservice-devel</Dependency>
+            <Dependency versionFrom="0.6.12">accountsservice-devel</Dependency>
             <Dependency>libcanberra-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>upower-devel</Dependency>
@@ -36,7 +36,7 @@
             <Dependency>libXrandr</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>fontconfig</Dependency>
-            <Dependency>accountsservice</Dependency>
+            <Dependency versionFrom="0.6.12">accountsservice</Dependency>
             <Dependency>libcanberra-gtk3</Dependency>
             <Dependency>libcanberra</Dependency>
             <Dependency>gconf</Dependency>
@@ -78,6 +78,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-05-24</Date>
+            <Version>3.0.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-03-13</Date>
             <Version>3.0.0</Version>
