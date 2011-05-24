@@ -14,7 +14,6 @@ shelltools.export("HOME", get.workDIR())
 def setup():
     autotools.autoreconf("-fiv")
     autotools.configure("--disable-static \
-                         --enable-ssl \
                          --without-apache-httpd \
                          --without-apache-module-dir")
 
