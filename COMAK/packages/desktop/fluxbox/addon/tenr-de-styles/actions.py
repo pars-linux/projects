@@ -7,8 +7,6 @@
 from pisi.actionsapi import get
 from pisi.actionsapi import pisitools
 
-WorkDir="tenr.de-styles-pkg"
-
 def install():
     for d in ["bora_green", "bora_blue", "bora_black", "zimek_green", "zimek_bisque", \
               "zimek_darkblue", "green_tea", "ostrich", "carp", "arch", "bloe"]:
