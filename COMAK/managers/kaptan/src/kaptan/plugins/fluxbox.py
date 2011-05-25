@@ -110,7 +110,11 @@ class Common(base.Common):
         info = []
         var = QLocale.languageToString(locale_app.language())
         return var
-
+    def systemSettingsButton(self):
+        # self.procSettings=QProcess
+        # TODO:FIX PROGRAM
+        # self.procSettings.start("PROGRAM NAME")
+        pass
 class Style(base.Style):
     file_directory = os.environ["HOME"]+"/.fluxbox/"
     desktop_number_temp = 0
