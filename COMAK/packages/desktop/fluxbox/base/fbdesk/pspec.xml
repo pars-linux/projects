@@ -15,6 +15,9 @@
         <Archive sha1sum="b5a2f446fa27406d9adb9a9608f1dc3c638d37ff" type="targz">http://fluxbox.sourceforge.net/download/fbdesk-1.4.1.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>imlib2-devel</Dependency>
+            <Dependency>libXft-devel</Dependency>
+            <Dependency>libXpm-devel</Dependency>
+            <Dependency>libXrender-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">fbdesk-gcc43.patch</Patch>
@@ -27,6 +30,9 @@
         <RuntimeDependencies>
             <Dependency>imlib2</Dependency>
             <Dependency>fluxbox</Dependency>
+            <Dependency>libXft</Dependency>
+            <Dependency>libXpm</Dependency>
+            <Dependency>libXrender</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
