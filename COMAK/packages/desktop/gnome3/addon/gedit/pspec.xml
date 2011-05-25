@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Default text editor for GNOME</Summary>
         <Description>gedit is a small and lightweight text editor for the GNOME environment.</Description>
-        <Archive sha1sum="6c26881b02b43dd52bb793b36726e0343aeaadd3" type="tarbz2">mirrors://gnome/gedit/3.0/gedit-3.0.2.tar.bz2</Archive>
+        <Archive sha1sum="eb18658b7c361e9b81a92bbc89cdaa944092db19" type="tarbz2">mirrors://gnome/gedit/3.0/gedit-3.0.3.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -101,6 +101,13 @@
     </Package>
 
     <History>
+        <Update release="14">
+            <Date>2011-05-25</Date>
+            <Version>3.0.3</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="13">
             <Date>2011-04-27</Date>
             <Version>3.0.2</Version>
