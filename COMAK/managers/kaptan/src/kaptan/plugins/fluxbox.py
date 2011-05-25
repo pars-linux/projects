@@ -13,7 +13,7 @@ import os,sys
 import time
 import re
 import piksemel
-from PyQt4.QtCore import QSettings,QString,QDir,QStringList,QLocale
+from PyQt4.QtCore import QSettings,QString,QDir,QStringList,QLocale,QProcess
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
@@ -98,12 +98,10 @@ class Wallpaper(base.Wallpaper):
             items.append(wallpaper)
         return items
 
-
     def setWallpaper(self ,wallpaper):
         if wallpaper:
             os.popen("fbsetbg %s" %wallpaper)
-        #if color :
-        #    os.popen("pcmanfm --wallpaper-mode %s" % color)
+
 class Common(base.Common):
 
     def getLanguage(self):
@@ -112,6 +110,7 @@ class Common(base.Common):
         info = []
         var = QLocale.languageToString(locale_app.language())
         return var
+
 class Style(base.Style):
     file_directory = os.environ["HOME"]+"/.fluxbox/"
     desktop_number_temp = 0
@@ -145,6 +144,7 @@ class Style(base.Style):
 
     def setThemeSettings(self):
         pass
+
     def setStyleSettings(self):
         file_= open(self.file_directory + "init",'r')
         file_temp =open(self.file_directory + "init~",'w')
@@ -163,6 +163,7 @@ class Style(base.Style):
         file_.close()
         os.remove(self.file_directory + "init")
         os.rename(self.file_directory + "init~",self.file_directory + "init")
+
     def setDesktopType(self):
         pass
 
