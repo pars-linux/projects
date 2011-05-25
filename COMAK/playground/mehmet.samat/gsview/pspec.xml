@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gsview</Name>
+        <Homepage>http://www.cs.wisc.edu/~ghost/gsview/</Homepage>
+        <Packager>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Packager>
+        <License>Aladdin</License>
+        <IsA>app:gui</IsA>
+        <Summary>gsView PostScript and PDF viewer</Summary>
+        <Description>gsView PostScript and PDF viewer</Description>
+        <Archive sha1sum="c918fbb038939bf183bc05fd86f59c179a9b0dd9" type="targz">http://mirror.cs.wisc.edu/pub/mirrors/ghost/ghostgum/gsview-4.9.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>gcc</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch level="1">makefile.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>gsview</Name>
+        <RuntimeDependencies>
+            <Dependency>gcc</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-21</Date>
+            <Version>4.9</Version>
+            <Comment>First release.</Comment>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
