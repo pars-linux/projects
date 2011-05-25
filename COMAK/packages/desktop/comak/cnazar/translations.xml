@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>cnazar</Name>
+        <Summary xml:lang="tr">Kem Gözlerden Korur</Summary>
+        <Description xml:lang="tr">CNazar, sizi ve Pardus'unuzu kem gözlerden korur.</Description>
+    </Source>
+</PISI>
+
