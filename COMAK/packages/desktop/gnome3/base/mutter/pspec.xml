@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A window manager which is replacing Metacity</Summary>
         <Description>Mutter is the window manager for which GNOME Shell is a plugin in GNOME 3, replacing Metacity.</Description>
-        <Archive sha1sum="82dfc1709521148bf77b7db71d8a3543fde911a2" type="tarbz2">mirrors://gnome/mutter/3.0/mutter-3.0.2.tar.bz2</Archive>
+        <Archive sha1sum="b56afa27f615ed77c66d4d3afd1f440188e07c81" type="tarbz2">mirrors://gnome/mutter/3.0/mutter-3.0.2.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
             <Dependency>mesa-devel</Dependency>
@@ -94,7 +94,7 @@
     <History>
         <Update release="3">
             <Date>2011-05-25</Date>
-            <Version>3.0.2</Version>
+            <Version>3.0.2.1</Version>
             <Comment>Version bump</Comment>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
