@@ -49,16 +49,8 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltUrl = "http://smolt.pardus.org.tr:8090"
 
     def on_buttonSystemSettings_clicked(self):
-        #if ctx.Pds.session == ctx.pds.LXDE:
-        #    self.procSettings = QProcess()
-        #    self.procSettings.start("obconf")
         Desktop.common.systemSettingsButton()
-        #if ctx.Pds.session == ctx.pds.Gnome3:
-            #self.procSettings = QProcess()
-            #self.procSettings.start("gnome-control-center")
-        #if ctx.Pds.session == ctx.pds.Xfce:
-        #    self.procSettings = QProcess()
-        #    self.procSettings.start("xfce4-settings-manager")
+
     def on_buttonHelpPages_clicked(self):
         self.procSettings = QProcess()
         if ctx.Pds.session == ctx.pds.Gnome3:
@@ -66,6 +58,7 @@ class Widget(QtGui.QWidget, Screen):
         else:
             command = "firefox " + self.helpPageUrl
         self.procSettings.start(command)
+
     def on_buttonSystemSettings_2_clicked(self):
         self.procSettings = QProcess()
         if ctx.Pds.session == ctx.pds.Gnome3:

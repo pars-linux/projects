@@ -20,15 +20,12 @@ import tempfile
 import piksemel
 import shutil
 import Image
-from PyQt4.QtCore import QProcess,QLocale,QStringList,QDir,QString,QSettings
+from PyQt4.QtCore import QProcess,QLocale,QStringList,QDir,QString,QSettings,QProcess
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
-#CONFIG_KEYBOARD = QSettings("lxsession/LXDE","desktop")
-#CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
-#CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
 
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper','scrAvatar']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
@@ -214,7 +211,7 @@ class Style(base.Style):
         desks_pat = r'value "zone_desks_y_count" int: ([0-9]*)[;]'
         data = re.sub(desks_pat, 'value "zone_desks_x_count" int: %s;'%str(dn),data)
         data = re.sub(desks_pat, 'value "zone_desks_y_count" int: 1;',data)
-        
+
         encrypt_conf("e.cfg", data)
         CONFIG_KAPTANRC.setValue("Desktop/DesktopNumber",dn)
         CONFIG_KAPTANRC.sync()

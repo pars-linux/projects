@@ -13,7 +13,7 @@ import os,sys
 import time
 import re
 import piksemel
-from PyQt4.QtCore import QLocale
+from PyQt4.QtCore import QLocale,QProcess
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
@@ -42,6 +42,7 @@ class Mouse(base.Mouse):
     def getMouseSingleClick(self):
         '''get if single/double click is choiced'''
         pass
+
     def setReverseScrollPolarity(self,isChecked):
         '''set reverse scroll polarity'''
         if isChecked:
@@ -95,8 +96,6 @@ class Wallpaper(base.Wallpaper):
     def setWallpaper(self ,wallpaper):
         if wallpaper:
             os.popen("xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -s %s" %wallpaper)
-        #if color :
-        #    os.popen("pcmanfm --wallpaper-mode %s" % color)
 
 class Common(base.Common):
 
@@ -110,6 +109,7 @@ class Common(base.Common):
     def systemSettingsButton(self):
         self.procSettings = QProcess()
         self.procSettings.start("xfce4-settings-manager")
+
 class Style(base.Style):
     def getDesktopNumber(self):
         import os,piksemel,re
@@ -133,7 +133,7 @@ class Style(base.Style):
             number2= int(x.group().split("=")[3][-5])
             os.remove(temp_file_path)
             return int(str(number2)+str(number1))
-    # use subprocess
+
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
         os.system("xfconf-query -c xfwm4 -p /general/workspace_count -s %s" %dn)

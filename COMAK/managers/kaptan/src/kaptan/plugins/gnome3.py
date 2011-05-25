@@ -13,7 +13,7 @@ import os,sys,string
 import time
 import re
 import piksemel
-from PyQt4.QtCore import QLocale
+from PyQt4.QtCore import QLocale,QProcess
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
@@ -38,6 +38,7 @@ class Mouse(base.Mouse):
         pass
     def setReverseScrollPolarity(self,isChecked):
         pass
+
 class Wallpaper(base.Wallpaper):
 
     def getWallpaperSettings(self):
@@ -122,6 +123,7 @@ class Style(base.Style):
             os.remove(temp_file_path)
             a= int(str(number2)+str(number1))
             return a
+
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
         os.popen("gconftool-2 -s /apps/metacity/general/num_workspaces --type int %s"%dn)

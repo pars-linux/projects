@@ -13,7 +13,7 @@ import os,sys
 import time
 import re
 import piksemel
-from PyQt4.QtCore import QSettings, QLocale, QDir, QString, QStringList
+from PyQt4.QtCore import QSettings, QLocale, QDir, QString, QStringList,QProcess
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
