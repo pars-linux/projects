@@ -9,11 +9,10 @@
             <Email>kaanozdincer@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
-        <PartOf>Pardus</PartOf>
         <Icon>cnazar</Icon>
         <IsA>app:gui</IsA>
-        <Summary>Kem Gözlerden Korur</Summary>
-        <Description>CNazar Pardus'u kem gözlerden korur.</Description>
+        <Summary>An application to protect your computer from evil eyes</Summary>
+        <Description>CNazar, is an application to protect you and your Pardus Linux from evil looks.</Description>
         <Archive sha1sum="8c9819ec99a764bead61c807945387cd58ffe337" type="targz">http://comak.comu.edu.tr/source/cnazar-0.0.2.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>python-qt-devel</Dependency>
