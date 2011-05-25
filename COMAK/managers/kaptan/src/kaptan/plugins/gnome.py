@@ -58,10 +58,10 @@ class Wallpaper(base.Wallpaper):
                 wallpaper["wallpaperDesc"] = desktopFiles.split('/') [-1]
             except:
                 wallpaper["wallpaperDesc"] = "Unknown"
-    
+
                 # Get all files in the wallpaper's directory
             thumbFolder = desktopFiles
-    
+
             #    """
             #    Appearantly the thumbnail names doesn't have a standart.
             #    So we get the file list from the contents folder and
@@ -101,6 +101,11 @@ class Common(base.Common):
         info = []
         var = QLocale.languageToString(locale_app.language())
         return var
+
+    def systemSettingsButton(self):
+        self.procSettings = QProcess()
+        self.procSettings.start("gnome-control-center")
+
 class Style(base.Style):
 
     def getDesktopNumber(self):

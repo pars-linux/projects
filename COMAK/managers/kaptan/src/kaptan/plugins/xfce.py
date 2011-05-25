@@ -106,6 +106,10 @@ class Common(base.Common):
         info = []
         var = QLocale.languageToString(locale_app.language())
         return var
+
+    def systemSettingsButton(self):
+        self.procSettings = QProcess()
+        self.procSettings.start("xfce4-settings-manager")
 class Style(base.Style):
     def getDesktopNumber(self):
         import os,piksemel,re
