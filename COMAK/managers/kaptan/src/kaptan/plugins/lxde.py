@@ -148,6 +148,11 @@ class Common(base.Common):
         info = []
         var = QLocale.languageToString(locale_app.language())
         return var
+
+    def systemSettingsButton(self):
+        self.procSettings = QProcess()
+        self.procSettings.start("obconf")
+
 class Style(base.Style):
 
     def getDesktopNumber(self):

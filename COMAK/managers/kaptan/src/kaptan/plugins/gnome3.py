@@ -94,6 +94,11 @@ class Common(base.Common):
         info = []
         var = QLocale.languageToString(locale_app.language())
         return var
+
+    def systemSettingsButton(self):
+        self.procSettings = QProcess()
+        self.procSettings.start("gnome-control-center")
+
 class Style(base.Style):
     def getDesktopNumber(self):
         FILE_PATH="%s/.gconf/apps/metacity/general/"%os.environ["HOME"]+"%gconf.xml"

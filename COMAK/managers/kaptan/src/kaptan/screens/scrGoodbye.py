@@ -29,18 +29,7 @@ import subprocess, sys
 
 from kaptan.screen import Screen
 
-FOR_LXDE = ctx.Pds.session == ctx.pds.LXDE
-FOR_ENLIGHTENMENT = ctx.Pds.session == ctx.pds.Enlightenment
-FOR_FLUXBOX = ctx.Pds.session == ctx.pds.Fluxbox
-FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
-FOR_XFCE=ctx.Pds.session == ctx.pds.Xfce
-FOR_GNOME3=ctx.Pds.session == ctx.pds.Gnome3
-
-SHOW_COMAK_UI = FOR_LXDE | FOR_ENLIGHTENMENT | FOR_FLUXBOX | FOR_GNOME | FOR_XFCE | FOR_GNOME3
-if SHOW_COMAK_UI:
-    from kaptan.screens.ui_scrGoodbye_comak import Ui_goodbyeWidget
-else:
-    from kaptan.screens.ui_scrGoodbye import Ui_goodbyeWidget
+from kaptan.screens.ui_scrGoodbye import Ui_goodbyeWidget
 import kaptan.screens.scrSmolt as smoltWidget
 
 class Widget(QtGui.QWidget, Screen):
@@ -51,12 +40,7 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_goodbyeWidget()
         self.ui.setupUi(self)
-        lang=QLocale().language()
-        locale_app = QLocale()
-        locale_os = QLocale.system()
-        info = []
-        var = QLocale.languageToString(locale_app.language())
-
+        var=Desktop.common.getLanguage()
         if var == "Turkish":
             self.helpPageUrl = "http://www.pardus.org.tr/destek"
         else:
@@ -65,17 +49,16 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltUrl = "http://smolt.pardus.org.tr:8090"
 
     def on_buttonSystemSettings_clicked(self):
-        if ctx.Pds.session == ctx.pds.LXDE:
-            self.procSettings = QProcess()
-            #self.procSettings.start("pcmanfm menu://applications/System")
-            self.procSettings.start("obconf")
-
-        if ctx.Pds.session == ctx.pds.Gnome or ctx.Pds.session == ctx.pds.Gnome3:
-            self.procSettings = QProcess()
-            self.procSettings.start("gnome-control-center")
-        if ctx.Pds.session == ctx.pds.Xfce:
-            self.procSettings = QProcess()
-            self.procSettings.start("xfce4-settings-manager")
+        #if ctx.Pds.session == ctx.pds.LXDE:
+        #    self.procSettings = QProcess()
+        #    self.procSettings.start("obconf")
+        Desktop.common.systemSettingsButton()
+        #if ctx.Pds.session == ctx.pds.Gnome3:
+            #self.procSettings = QProcess()
+            #self.procSettings.start("gnome-control-center")
+        #if ctx.Pds.session == ctx.pds.Xfce:
+        #    self.procSettings = QProcess()
+        #    self.procSettings.start("xfce4-settings-manager")
     def on_buttonHelpPages_clicked(self):
         self.procSettings = QProcess()
         if ctx.Pds.session == ctx.pds.Gnome3:
