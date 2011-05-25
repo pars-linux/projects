@@ -28,6 +28,7 @@
             <Dependency>libXcomposite-devel</Dependency>
             <Dependency>libXi-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency versionFrom="0.10.8">gobject-introspection-devel</Dependency>
         </BuildDependencies>
     </Source>
 
