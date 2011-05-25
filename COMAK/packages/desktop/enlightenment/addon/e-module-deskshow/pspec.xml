@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Show Desktop Module</Summary>
         <Description>e-module-deskshow is a gadget to allow you to quickly uncover your desktop.</Description>
-        <Archive sha1sum="a39a0bff4df425cca4dd911290795f7c0453ee12" type="targz">http://comak.comu.edu.tr/source/e-module-deskshow-0.0.1_58042.tar.gz</Archive>
+        <Archive sha1sum="58a90afa3f0c78494e1d8a7bb2996d86c68c78c4" type="targz">http://comak.comu.edu.tr/source/e-module-deskshow-0.0.1_59667.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>edje-devel</Dependency>
             <Dependency>evas-devel</Dependency>
@@ -39,6 +39,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-05-25</Date>
+            <Version>0.0.1_55225</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Özge Barbaros</Name>
+            <Email>ozgebarbaros@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-03-27</Date>
             <Version>0.0.1_58042</Version>
