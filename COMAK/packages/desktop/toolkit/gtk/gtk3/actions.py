@@ -15,6 +15,7 @@ shelltools.export("HOME", get.workDIR())
 def setup():
     autotools.autoreconf("-fiv")
     autotools.configure("--enable-xinerama \
+                         --enable-introspection=yes \
                          --enable-xkb \
                          --enable-silent-rules")
 
