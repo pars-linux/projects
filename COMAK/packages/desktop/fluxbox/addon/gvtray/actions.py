@@ -10,12 +10,6 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 import os
 
-def setup():
-    pass
-
-def build():
-    pass
-
 def install():
     pisitools.dobin("gvtray")
     pisitools.dodir("/usr/share/%s/gvtray_about" % get.srcNAME())
