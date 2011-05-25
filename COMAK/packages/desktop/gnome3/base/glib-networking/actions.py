@@ -25,5 +25,5 @@ def install():
     pisitools.insinto("/usr/lib/gio/modules/", "tls/gnutls/.libs/libgiognutls.so")
     pisitools.insinto("/usr/lib/gio/modules/", "proxy/libproxy/.libs/libgiolibproxy.so")
 
-    pisitools.dodoc("COPYING")
+    pisitools.dodoc("COPYING", "NEWS", "README")
 

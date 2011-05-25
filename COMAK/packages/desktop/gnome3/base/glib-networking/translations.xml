@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>glib-networking</Name>
+        <Summary xml:lang="tr">Glib için ağ eklentileri</Summary>
+        <Description xml:lang="tr">glib-networking, Glib için giomodules ağ eklentileri sunar.</Description>
+    </Source>
+</PISI>
+
