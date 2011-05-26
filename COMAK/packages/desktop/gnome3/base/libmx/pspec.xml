@@ -16,7 +16,7 @@
         <BuildDependencies>
             <Dependency>libXrandr-devel</Dependency>
             <Dependency>atk-devel</Dependency>
-            <Dependency>gtk3-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
             <Dependency>mesa-devel</Dependency>
             <Dependency>pango-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -38,7 +38,7 @@
         <Name>libmx</Name>
         <RuntimeDependencies>
             <Dependency>atk</Dependency>
-            <Dependency>gtk3</Dependency>
+            <Dependency>gtk2</Dependency>
             <Dependency>mesa</Dependency>
             <Dependency>pango</Dependency>
             <Dependency>cairo</Dependency>
