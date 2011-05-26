@@ -23,6 +23,7 @@
             <Dependency>freetype-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>fontconfig-devel</Dependency>
+            <Dependency versionFrom="2.28.0">python-pygobject-devel</Dependency>
         </BuildDependencies>
     </Source>
 
