@@ -30,6 +30,9 @@
             <Dependency>gnome-bluetooth-devel</Dependency>
             <Dependency>libical-devel</Dependency>
             <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency versionFrom="0.13.12">telepathy-glib-devel</Dependency>
+            <Dependency>telepathy-logger-devel</Dependency>
+            <Dependency>mesa-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -63,6 +66,7 @@
             <Dependency>gnome-bluetooth</Dependency>
             <Dependency>libical</Dependency>
             <Dependency>evolution-data-server</Dependency>
+            <Dependency>mesa</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
