@@ -33,6 +33,8 @@
             <Dependency>libnotify-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>libgweather-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gucharmap-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -57,6 +59,8 @@
             <Dependency>libnotify</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>libgweather</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gucharmap</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
