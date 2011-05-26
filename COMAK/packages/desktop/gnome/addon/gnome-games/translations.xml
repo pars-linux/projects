@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-games</Name>
+        <Summary xml:lang="tr">Gnome Oyunları</Summary>
+        <Description xml:lang="tr">gnome-games, Gnome 3 masaüstü için bir oyunlar koleksiyonu sunar.</Description>
+    </Source>
+</PISI>
+
