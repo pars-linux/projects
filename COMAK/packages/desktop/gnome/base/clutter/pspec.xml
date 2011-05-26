@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>clutter</Name>
+        <Homepage>http://www.clutter-project.org/</Homepage>
+        <Packager>
+            <Name>Onur Küçük</Name>
+            <Email>onur@pardus.org.tr</Email>
+        </Packager>
+        <License>LGPLv2.1</License>
+        <IsA>library</IsA>
+        <Summary>OpenGL GUI toolkit</Summary>
+        <Description>clutter is an open source software library for creating fast, visually rich graphical user interfaces. The most obvious example of potential usage is in media center type applications.</Description>
+        <Archive sha1sum="2638eed8901e132d99ca276f122bed18b211c645" type="targz">http://www.clutter-project.org/sources/clutter/1.6/clutter-1.6.14.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>mesa-devel</Dependency>
+            <Dependency>zenity</Dependency>
+            <Dependency>libXext-devel</Dependency>
+            <Dependency>libXrender-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>libXdamage-devel</Dependency>
+            <Dependency versionFrom="0.4.0">libXcomposite-devel</Dependency>
+            <Dependency>glitz-devel</Dependency>
+            <Dependency>xcb-util-devel</Dependency>
+            <Dependency>json-glib-devel</Dependency>
+            <Dependency>gobject-introspection-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+        </BuildDependencies>
+     </Source>
+
+    <Package>
+        <Name>clutter</Name>
+        <RuntimeDependencies>
+            <Dependency>pango</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>mesa</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>zenity</Dependency>
+            <Dependency>libXrender</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libXdamage</Dependency>
+            <Dependency versionFrom="0.4.0">libXcomposite</Dependency>
+            <Dependency>glitz</Dependency>
+            <Dependency>xcb-util</Dependency>
+            <Dependency>json-glib</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>libXi</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc/clutter</Path>
+            <Path fileType="doc">/usr/share/gtk-doc</Path>
+            <Path fileType="data">/usr/share/locale</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>clutter-devel</Name>
+        <Summary>Development files for clutter</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">clutter</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>mesa-devel</Dependency>
+            <Dependency>libXi-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>libX11-devel</Dependency>
+            <Dependency>libdrm-devel</Dependency>
+            <Dependency>libXext-devel</Dependency>
+            <Dependency>json-glib-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libXdamage-devel</Dependency>
+            <Dependency>libXcomposite-devel</Dependency>
+            <Dependency>libX11-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/share/gir-1.0</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="3">
+            <Date>2011-04-20</Date>
+            <Version>1.6.14</Version>
+            <Comment>Version bump, split headers</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="2">
+            <Date>2011-04-13</Date>
+            <Version>1.6.8</Version>
+            <Comment>Version bump</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2009-10-02</Date>
+            <Version>1.1.2</Version>
+            <Comment>First release</Comment>
+            <Name>Onur Küçük</Name>
+            <Email>onur@pardus.org.tr</Email>
+        </Update>
+    </History>
+</PISI>
