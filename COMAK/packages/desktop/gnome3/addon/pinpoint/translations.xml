@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>pinpoint</Name>
+        <Summary xml:lang="tr">Basit bir sunum aracı</Summary>
+        <Description xml:lang="tr">Pinpoint, güzel resimler ve az miktarda metin içeren slaytlar hazırlamak için kullanılan basit bir sunum aracıdır.</Description>
+    </Source>
+</PISI>

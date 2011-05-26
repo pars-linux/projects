@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>pinpoint</Name>
+        <Homepage>http://live.gnome.org/Pinpoint</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>LGPLv2.1</License>
+        <IsA>app:gui</IsA>
+        <Summary>A simple presentation tool</Summary>
+        <Description>Pinpoint a simple presentation tool that encourage presentations containing beautiful images and small amounts of concise text in slides.</Description>
+        <Archive sha1sum="3c22b446234fc8cd307aa6829303ace13e6a7f76" type="targz">mirrors://gnome/pinpoint/0.1/pinpoint-0.1.2.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>clutter-devel</Dependency>
+            <Dependency>clutter-gst-devel</Dependency> 
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>pinpoint</Name>
+        <RuntimeDependencies>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>clutter</Dependency>
+            <Dependency>clutter-gst</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/pinpoint</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-05-26</Date>
+            <Version>0.1.2</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
