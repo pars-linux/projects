@@ -1,29 +1,32 @@
 Index: pds/__init__.py
 ===================================================================
---- pds/__init__.py	(revision 36496)
+--- pds/__init__.py	(revision 37015)
 +++ pds/__init__.py	(working copy)
 @@ -30,7 +30,8 @@
  
  class Pds:
  
 -    SupportedDesktops = (DefaultDe, Kde4, Kde3, Xfce, Enlightenment)
-+    SupportedDesktops = (DefaultDe, Kde4, Kde3, Xfce, Enlightenment, LXDE, 
-+                        Fluxbox, Gnome)
++    SupportedDesktops = (DefaultDe, Kde4, Kde3, Xfce, Enlightenment, LXDE,
++                        Fluxbox, Gnome, Gnome3)
  
      def __init__(self, catalogName='', debug=False):
          self._session           = None
-@@ -146,7 +147,7 @@
+@@ -146,9 +147,10 @@
      def session(self):
          if not self._session:
              env = getenv('DESKTOP_SESSION')
 -            if env == 'default':
-+            if env == 'default' or not env:
++            if env == 'default' or not env or env == 'gnome':
                  session = readfile('/etc/default/desktop', DefaultDe.Name)
                  env     = session.split('=')[1].strip()
++                print "adasdsadada" , env
              for de in Pds.SupportedDesktops:
+                 if env:
+                     if env in de.SessionTypes or env == de.Name:
 Index: pds/qiconloader.py
 ===================================================================
---- pds/qiconloader.py	(revision 36496)
+--- pds/qiconloader.py	(revision 37015)
 +++ pds/qiconloader.py	(working copy)
 @@ -61,7 +61,7 @@
              dataDirs = QString('/usr/local/share/:/usr/share/')
@@ -36,9 +39,18 @@ Index: pds/qiconloader.py
              dirs = QFile.decodeName(
 Index: pds/environments.py
 ===================================================================
---- pds/environments.py	(revision 36496)
+--- pds/environments.py	(revision 37015)
 +++ pds/environments.py	(working copy)
-@@ -74,3 +74,29 @@
+@@ -62,7 +62,7 @@
+     Version              = '4'
+     ConfigPath           = '$HOME/.config/xfce4/'
+     ConfigFile           = 'xfconf/xfce-perchannel-xml/xsettings.xml'
+-    ConfigType           = 'xml'
++    ConfigType           = ''
+     DefaultIconTheme     = 'hicolor'
+     DefaultConfigPath    = '/etc/xdg/xfce4/%s' % ConfigFile
+     IconKey              = 'IconThemeName'
+@@ -76,3 +76,39 @@
      DefaultIconTheme     = 'hicolor'
      IconKey              = 'E_ICON_THEME'
  
@@ -63,6 +75,16 @@ Index: pds/environments.py
 +class Gnome(DefaultDe):
 +    Name                 = 'gnome'
 +    Version              = '2.32'
++    ConfigPath           = '$HOME/.gnome2'
++    ConfigFile           = ''
++    ConfigType           = None
++    DefaultIconTheme     = 'oxygen'
++
++
++class Gnome3(DefaultDe):
++    Name                 = 'gnome3'
++    SessionTypes         = ('gnome-shell')
++    Version              = '3.0'
 +    ConfigPath           = '$HOME/.gnome2'
 +    ConfigFile           = ''
 +    ConfigType           = None
