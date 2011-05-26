@@ -9,13 +9,11 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
-WorkDir = "clutter-gst-%s" % get.srcVERSION().split("_")[0]
-
 def setup():
     # guess we should update to new autoconf
     shelltools.system("gtkdocize")
     autotools.autoreconf("-vfi")
-    autotools.configure("--disable-introspection")
+    autotools.configure("--enable-introspection")
 
 def build():
     autotools.make()
@@ -27,4 +25,4 @@ def install():
         if i.endswith(".png") or i.endswith(".c"):
             pisitools.insinto("/%s/%s/examples/" % (get.docDIR(), get.srcNAME()), "examples/%s" % i)
 
-    pisitools.dodoc("AUTHORS", "README*", "NEWS")
+    pisitools.dodoc("AUTHORS", "COPYING", "README", "NEWS")
