@@ -14,10 +14,12 @@ shelltools.export("HOME", get.workDIR())
 
 def setup():
     autotools.autoreconf("-vfi")
-    autotools.configure("--enable-gtk-doc")
+    autotools.configure("--enable-gtk-doc \
+                         --enable-introspection")
 
 def build():
     autotools.make()
+
 def install():
     autotools.rawInstall('DESTDIR=%s INSTALL="install -p -c"' % get.installDIR())
-    pisitools.dodoc("AUTHORS", "ChangeLog*","README*", "NEWS")
+    pisitools.dodoc("AUTHORS", "COPYING.LIB", "ChangeLog", "README", "NEWS")
