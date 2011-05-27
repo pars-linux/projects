@@ -84,6 +84,13 @@
     </Package>
 
     <History>
+        <Update release="17">
+            <Date>2011-05-27</Date>
+            <Version>1.4.0</Version>
+            <Comment>Add symlink /usr/lib/libwebkit-1.0.so.2</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
         <Update release="16">
             <Date>2011-04-29</Date>
             <Version>1.4.0</Version>
