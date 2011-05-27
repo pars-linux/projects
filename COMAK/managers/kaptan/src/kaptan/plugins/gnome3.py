@@ -133,7 +133,7 @@ class Style(base.Style):
         os.popen("gconftool-2 -s /apps/metacity/general/num_workspaces --type int %s"%dn)
     def setThemeSettings(self):
         iconTheme = scrStyleWidget.screenSettings["iconTheme"]
-        os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme %s" %iconTheme)
+        os.popen("gsettings set org.gnome.desktop.interface icon-theme %s" %iconTheme)
 
     def setStyleSettings(self):
         styleName = scrStyleWidget.screenSettings["styleName"]
