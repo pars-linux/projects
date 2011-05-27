@@ -8,8 +8,11 @@ from pds.qiconloader import QIconLoader
 
 Pds = pds.Pds('kaptan', debug = True)
 # Force to use Default Session for testing
-
-#Pds.session = pds.Gnome3
+#for checking gnome-shell
+import os
+#FIXME
+if os.path.exists("/usr/share/gnome-shell"):
+    Pds.session = pds.Gnome3
 #print Pds.session
 
 i18n = Pds.i18n
