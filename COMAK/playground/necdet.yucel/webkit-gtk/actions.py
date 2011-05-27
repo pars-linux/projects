@@ -41,3 +41,5 @@ def install():
                                   "%s/%s" % (path, doc))
 
     pisitools.dodoc("ChangeLog", "README")
+
+    pisitools.dosym("/usr/lib/libwebkitgtk-3.0.so", "/usr/lib/libwebkit-1.0.so.2")
