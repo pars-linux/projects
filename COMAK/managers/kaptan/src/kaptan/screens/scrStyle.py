@@ -82,9 +82,13 @@ class Widget(QtGui.QWidget, Screen):
             dir = QDir("/usr/share/fluxbox/styles")
             lst2 =dir.entryList()
         elif ctx.Pds.session.Name == "gnome" or ctx.Pds.session.Name == "gnome3":
-            #lst2=["Crux","Glider","HighContrast","Clearlooks","glossy","HighContrastInverse"]
             dir = QDir("/usr/share/themes")
-            lst2 =dir.entryList()
+            lst =dir.entryList()
+            lst2=[]
+            for previews in lst:
+                if not previews == "HighContrast" and not previews == "HighContrastInverse":
+                    lst2.append(previews)
+
         elif ctx.Pds.session.Name == "xfce":
             dir =QDir("/usr/share/themes")
             lst2= dir.entryList()
