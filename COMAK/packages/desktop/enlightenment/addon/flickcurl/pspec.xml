@@ -9,10 +9,11 @@
             <Email>ozgebarbaros@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
+        <IsA>app:console</IsA>
         <IsA>library</IsA>
         <Summary>C library for the Flickr API</Summary>
         <Description>Flickcurl is a C library for the Flickr API, handling creating the requests, signing, token management, calling the API, marshalling request parameters and decoding responses.</Description>
-        <Archive sha1sum="135d86b26aa47d94bcf75003f7387096d6720fc2" type="targz">http://download.dajobe.org/flickcurl/flickcurl-1.20.tar.gz</Archive>
+        <Archive sha1sum="42f73733e750a54758bd07db81fdd12b91c430dd" type="targz">http://download.dajobe.org/flickcurl/flickcurl-1.21.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>raptor-devel</Dependency>
         </BuildDependencies>
@@ -45,6 +46,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-05-29</Date>
+            <Version>1.21</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-02-18</Date>
             <Version>1.20</Version>

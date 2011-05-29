@@ -8,11 +8,12 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 
 def setup():
-        autotools.configure("--disable-static")
+    autotools.autoreconf("-fiv")
+    autotools.configure("--disable-static")
 
 def build():
-        autotools.make()
+    autotools.make()
 
 def install():
-        autotools.install()
-        pisitools.dodoc("LICENSE-2.0.txt", "ChangeLog", "AUTHORS", "COPYING", "*.html", "NEWS")
+    autotools.install()
+    pisitools.dodoc("LICENSE-2.0.txt", "ChangeLog", "AUTHORS", "COPYING", "NEWS")
