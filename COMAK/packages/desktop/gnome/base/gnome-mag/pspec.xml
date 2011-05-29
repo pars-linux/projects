@@ -52,9 +52,12 @@
         <Isa>library</Isa>
         <RuntimeDependencies>
             <Dependency release="current">gnome-mag</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>libbonobo-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
 
