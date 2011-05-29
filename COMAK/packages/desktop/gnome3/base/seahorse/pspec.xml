@@ -73,7 +73,7 @@
             <Path fileType="data">/usr/share/seahorse</Path>
         </Files>
     </Package>
-    
+
     <Package>
         <Name>seahorse-docs</Name>
         <IsA>data:doc</IsA>

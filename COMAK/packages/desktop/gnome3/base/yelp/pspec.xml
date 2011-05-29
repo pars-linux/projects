@@ -60,6 +60,7 @@
 
     <Package>
         <Name>yelp-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Documents for yelp</Summary>
         <Files>
             <Path fileType="header">/usr/share/gtk-doc</Path>

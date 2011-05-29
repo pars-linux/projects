@@ -80,6 +80,7 @@
 
     <Package>
         <Name>libgda-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Documentary files for libgda</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>

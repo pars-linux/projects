@@ -53,6 +53,7 @@
 
     <Package>
         <Name>clutter-gst-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Referece files for clutter-gst</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
