@@ -3,6 +3,6 @@
     <Source>
         <Name>eterm-bg</Name>
         <Summary xml:lang="tr">Eterm için arkaplan dosyaları</Summary>
-        <Description xml:lang="tr">Eterm için arkaplan dosyaları</Description>
+        <Description xml:lang="tr">eterm-bg, Eterm için arkaplan dosyalarını içerir.</Description>
     </Source>
 </PISI>
