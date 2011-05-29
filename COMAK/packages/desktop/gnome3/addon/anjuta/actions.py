@@ -12,6 +12,8 @@ def setup():
     autotools.autoreconf("-fiv")
     shelltools.system("intltoolize --force --copy --automake")
     autotools.configure("--disable-scrollkeeper \
+                         --enable-introspection=yes \
+                         --enable-plugin-subversion \
                          --enable-gtk-doc")
 
 def build():
