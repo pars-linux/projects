@@ -18,6 +18,10 @@
             <Dependency>libgnomeui-devel</Dependency>
             <Dependency>libglade-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libXcursor-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">gcursor-0.6-xorg-x11.patch</Patch>
@@ -32,14 +36,14 @@
             <Dependency>libgnomeui</Dependency>
             <Dependency>libglade</Dependency>
             <Dependency>gconf</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>libgnome</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libXcursor</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
-            <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
-            <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
