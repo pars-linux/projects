@@ -5,7 +5,7 @@ diff -Nuar epdfview-0.1.7.orig//data/epdfview.desktop epdfview-0.1.7//data/epdfv
  Comment=Lightweight PDF document viewer
  Comment[ca]=Visor de documents PDF lleuger
  Comment[es]=Visor de documentos PDF ligero
-+Comment[tr]=Hafif bir PDF döküman okuyucu
++Comment[tr]=Hafif bir PDF okuyucu
  Exec=epdfview %f
  GenericName=PDF Viewer
  GenericName[ca]=Visor PDF
