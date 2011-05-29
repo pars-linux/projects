@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>glabels</Name>
+        <Summary xml:lang="tr">Etiket ve kartvizit hazırlama programı</Summary>
+        <Description xml:lang="tr">glabels, kullanışlı bir etiket ve kartvizit hazırlama programıdır.</Description>
+    </Source>
+</PISI>
+
