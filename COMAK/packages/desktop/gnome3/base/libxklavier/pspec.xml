@@ -51,6 +51,7 @@
 
     <Package>
         <Name>libxklavier-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Reference documents for libxklavier</Summary>
         <Files>
             <Path fileType="data">/usr/share/gtk-doc</Path>

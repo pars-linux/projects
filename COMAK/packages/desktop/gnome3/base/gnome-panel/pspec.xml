@@ -84,6 +84,7 @@
 
    <Package>
         <Name>gnome-panel-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Reference documents for gnome-panel</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>

@@ -49,6 +49,7 @@
 
     <Package>
         <Name>libgnome-keyring-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Referance documents for libgnome-keyring</Summary>
         <Files>
             <Path fileType="data">/usr/share/gtk-doc</Path>

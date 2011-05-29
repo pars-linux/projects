@@ -49,6 +49,7 @@
 
     <Package>
         <Name>gdl-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>gdl reference documents</Summary>
         <Files>
             <Path fileType="data">/usr/share/gtk-doc</Path>

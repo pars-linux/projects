@@ -64,6 +64,7 @@
             <Path fileType="data">/usr/share</Path>
         </Files>
     </Package>
+
     <Package>
         <Name>libmx-devel</Name>
         <Summary>Development headers for libmx</Summary>
@@ -75,13 +76,16 @@
             <Path fileType="library">/usr/lib/pkgconfig</Path>
         </Files>
     </Package>
+
     <Package>
         <Name>libmx-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Reference files for libmx</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc/</Path>
         </Files>
     </Package>
+
     <History>
         <Update release="1">
             <Date>2011-05-22</Date>

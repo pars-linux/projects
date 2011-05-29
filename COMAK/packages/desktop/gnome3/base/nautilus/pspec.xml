@@ -69,6 +69,8 @@
 
     <Package>
         <Name>nautilus-docs</Name>
+        <IsA>data:doc</IsA>
+        <Summary>Reference files for nautilus</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
         </Files>

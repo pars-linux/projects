@@ -9,7 +9,7 @@
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>CCPL-Attribution-ShareAlike-3.0</License>
-        <IsA>data</IsA>
+        <IsA>data:doc</IsA>
         <Summary>Gnome User Documents</Summary>
         <Description>gnome-user-docs contains user documents for Gnome3 desktop.</Description>
         <Archive sha1sum="bb5527e5466c423f7046e44f3d541357d400d71f" type="tarbz2">mirrors://gnome/gnome-user-docs/3.0/gnome-user-docs-3.0.4.tar.bz2</Archive>

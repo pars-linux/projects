@@ -52,6 +52,7 @@
 
     <Package>
         <Name>gnome-desktop-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Documentary files for gnome-desktop</Summary>
         <Files>
             <Path fileType="doc">/usr/share/gtk-doc</Path>

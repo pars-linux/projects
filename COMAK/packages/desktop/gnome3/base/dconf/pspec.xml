@@ -51,6 +51,7 @@
 
     <Package>
         <Name>dconf-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>Reference files for dconf</Summary>
         <RuntimeDependencies>
             <Dependency release="current">dconf</Dependency>

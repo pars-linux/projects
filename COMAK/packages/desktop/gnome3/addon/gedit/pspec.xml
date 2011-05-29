@@ -91,6 +91,7 @@
 
     <Package>
         <Name>gedit-docs</Name>
+        <IsA>data:doc</IsA>
         <Summary>gedit reference documents</Summary>
         <RuntimeDependencies>
             <Dependency release="current">gedit</Dependency>

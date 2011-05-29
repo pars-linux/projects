@@ -9,7 +9,7 @@
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GFDLv1.1</License>
-        <IsA>data</IsA>
+        <IsA>data:doc</IsA>
         <Summary>Gnome Developer Documents</Summary>
         <Description>gnome-devel-docs provides documentation for developing for the GNOME desktop environment.</Description>
         <Archive sha1sum="48450ade061263f5ed55c4ed03d207894bce11e0" type="tarbz2">mirrors://gnome/gnome-devel-docs/3.0/gnome-devel-docs-3.0.2.tar.bz2</Archive>
