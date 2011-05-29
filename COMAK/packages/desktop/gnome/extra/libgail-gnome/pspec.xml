@@ -20,6 +20,7 @@
             <Dependency>libgnomeui-devel</Dependency>
             <Dependency>gnome-panel-devel</Dependency>
             <Dependency>at-spi-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
         </BuildDependencies>
     </Source>
     <Package>
@@ -31,6 +32,7 @@
             <Dependency>libbonobo</Dependency>
             <Dependency>gnome-panel</Dependency>
             <Dependency>libbonoboui</Dependency>
+            <Dependency>gtk2</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
@@ -43,6 +45,9 @@
         <Summary>Development files for libgail-gnome</Summary>
         <RuntimeDependencies>
             <Dependency release="current">libgail-gnome</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>libbonoboui-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="library">/usr/lib/pkgconfig</Path>
