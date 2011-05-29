@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Xfce settings plugins</Summary>
         <Description>Xfce4-settings is a configuration manager for Xfce desktop environment.</Description>
-        <Archive sha1sum="402afe308944a315c385d2b1ed567f997d016b61" type="tarbz2">http://archive.xfce.org/src/xfce/xfce4-settings/4.8/xfce4-settings-4.8.2.tar.bz2</Archive>
+        <Archive sha1sum="6aa1d13e682e31a636d9dccedf75d819d2881998" type="tarbz2">http://archive.xfce.org/src/xfce/xfce4-settings/4.9/xfce4-settings-4.9.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>libXi-devel</Dependency>
             <Dependency>libxklavier-devel</Dependency>
@@ -55,6 +55,7 @@
             <Dependency>libwnck</Dependency>
             <Dependency>cairo</Dependency>
             <Dependency>pango</Dependency>
+            <Dependency>fontconfig</Dependency>
         </RuntimeDependencies>
         <Replaces>
             <Package>xfce-mcs-manager</Package>
