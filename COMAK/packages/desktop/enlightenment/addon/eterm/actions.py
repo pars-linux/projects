@@ -8,9 +8,8 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
-WorkDir="Eterm-0.9.5"
-
 def setup():
+    autotools.autoreconf("-fiv")
     autotools.configure("--prefix=/usr \
                          --with-x \
                          --disable-mmx \
@@ -28,9 +27,12 @@ def setup():
                          --with-delete=execute \
                          --with-backspace=auto")
 
+    pisitools.dosed('libtool', '^hardcode_libdir_flag_spec=.*', 'hardcode_libdir_flag_spec=""')
+    pisitools.dosed('libtool', '^runpath_var=LD_RUN_PATH', 'runpath_var=DIE_RPATH_DIE')
+
 def build():
     autotools.make()
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-    pisitools.dodoc("README", "ReleaseNotes*", "bg/README.backgrounds")
+    pisitools.dodoc("LICENSE", "README", "ReleaseNotes*", "bg/README.backgrounds")
