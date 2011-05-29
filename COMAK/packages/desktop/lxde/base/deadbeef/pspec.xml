@@ -14,7 +14,7 @@
         <IsA>app:gui</IsA>
         <Summary>Audio player for GNU/Linux systems with X11</Summary>
         <Description>DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux systems with X11 (though now it also runs in plain console without X, in FreeBSD, and in OpenSolaris).</Description>
-        <Archive sha1sum="c43dcae8b9aa4f1c82aac56f009d9976dbc21e13" type="tarbz2">mirrors://sourceforge/deadbeef/deadbeef-0.5.0.tar.bz2</Archive>
+        <Archive sha1sum="82cbdeb3cdd5303c75d668d3d238e68b442c6db1" type="tarbz2">mirrors://sourceforge/deadbeef/deadbeef-0.5.1.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>alsa-lib-devel</Dependency>
             <Dependency>atk-devel</Dependency>
@@ -85,6 +85,41 @@
     </Package>
 
     <History>
+        <Update release="4">
+            <Date>2011-05-29</Date>
+            <Version>0.5.1</Version>
+            <Comment>Version bump:
+                * fixed crash bug after deleting playlists
+                * fixed importing fb2k EQ presets
+                * fixed bug causing garbage output when DSP plugins were changing channels count
+                * added oggenc --ignorelength bug workaround to converter
+                * added new mono2stereo DSP plugin
+                * fixed numerous bugs in multichannel support, down/upmixing, sampleformat conversions, etc
+                * fixed updating window titlebar after editing current track metadata
+                * fixed wrong middle mouse button double-click reaction in tray icon
+                * fixed scrobbling last track in "don't loop" mode
+                * fixed shuffle albums mode when user starts album from the middle
+                * added connection timeout to libmms to prevent several-minutes freezes on unresolved hosts
+                * fixed inconsistent gui reaction when going from 1st track to previos in "don't loop" mode
+                * removed -s option from bundled AAC encoder preset, for compatibility with older versions of FAAC
+                * fixed multiple selection "sticking" when pressing left+right mouse buttons, or trying to play missing file
+                * fixed syncing converter DSP preset list with the list from Preferences DSP tab
+                * FLAC plugin can now play files which report zero size, but have samples in them
+                * fixed playback of U8 wav files, and all the libsndfile formats that were not working in raw reading mode
+                * added option (on by default) to convert 8 bit samples to 16 bit
+                * added automatic samplerate option to SRC plugin
+                * restored "use ALSA resampling" option in ALSA plugin
+                * fixed several output format bugs in ALSA plugin
+                * added support for creating directory tree in converter plugin (Jan D. Behrens)
+                * set converter output folder to $HOME when it's empty
+                * added new DSP plugin method "can_bypass", to detect when DSP plugins can be bypassed by streamer
+                * improved check for multiple instances
+                * fixed loading cuesheets from archives
+                * added automatic resampler setup on 1st run with empty dsp chain, to simulate 0.4.4 behaviour
+            </Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="3">
             <Date>2011-05-20</Date>
             <Version>0.5.0</Version>
