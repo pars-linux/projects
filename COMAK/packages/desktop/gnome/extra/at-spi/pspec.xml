@@ -12,18 +12,15 @@
         <IsA>library</IsA>
         <Summary>GNOME accessibility toolkit</Summary>
         <Description>Service Provider Interface for the Assistive Technologies available on the GNOME platform, and a library against which applications can be linked.</Description>
-        <Archive sha1sum="9c1349e27617d7a2006e76101e5b12c721e07e1a" type="tarbz2">mirrors://gnome/at-spi/1.24/at-spi-1.24.0.tar.bz2</Archive>
+        <Archive sha1sum="0cc1403dde2f62f7254b32ff305984ed091cc9c7" type="tarbz2">mirrors://gnome/at-spi/1.32/at-spi-1.32.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency releaseFrom="36">gtk2</Dependency>
             <Dependency>popt</Dependency>
             <Dependency>libbonobo-devel</Dependency>
             <Dependency>libXtst-devel</Dependency>
             <Dependency>orbit2-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
         </BuildDependencies>
-        <Patches>
-            <Patch>fix-tab.patch</Patch>
-            <Patch>do-not-compile-pyo.patch</Patch>
-        </Patches>
     </Source>
 
     <Package>
@@ -41,6 +38,7 @@
             <Dependency>fontconfig</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>libbonobo</Dependency>
+            <Dependency>gconf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc/gconf</Path>
@@ -50,6 +48,7 @@
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share/gtk-doc</Path>
             <Path fileType="data">/usr/share/idl</Path>
+            <Path fileType="data">/etc/xdg/autostart</Path>
         </Files>
     </Package>
 
@@ -68,6 +67,13 @@
     </Package>
 
     <History>
+        <Update release="4">
+            <Date>2011-05-29</Date>
+            <Version>1.32.0</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="3">
             <Date>2011-03-23</Date>
             <Version>1.24.0</Version>
