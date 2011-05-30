@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gtksourceview</Name>
-        <Homepage>http://www.gnome.org/</Homepage>
+        <Homepage>http://live.gnome.org/GtkSourceView</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>A text widget implementing syntax highlighting and other features</Summary>
         <Description>Gtksourceview improves the gtk+ text widget by implementing syntax highlighting and other features typical of a source editor.</Description>
-        <Archive sha1sum="e8f51a59a2927f0fd21a9ec4bebc39529609bd2f" type="tarbz2">mirrors://gnome/gtksourceview/3.0/gtksourceview-3.0.2.tar.bz2</Archive>
+        <Archive sha1sum="2774712359fa78f581f22fca2d99c924d0c1abf8" type="tarbz2">mirrors://gnome/gtksourceview/3.0/gtksourceview-3.0.3.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -62,6 +62,13 @@
     </Package>
 
     <History>
+        <Update release="16">
+            <Date>2011-05-30</Date>
+            <Version>3.0.3</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="15">
             <Date>2011-05-25</Date>
             <Version>3.0.2</Version>
