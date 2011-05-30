@@ -41,14 +41,6 @@
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
        </Files>
-       <!-- 
-        <AdditionalFiles>
-            <AdditionalFile owner="root" permission="0644" target=""></AdditionalFile>
-        </AdditionalFiles>
-        <Provides>
-            <COMAR script=""></COMAR>
-        </Provides>
-        -->
     </Package>
 
     <History>
