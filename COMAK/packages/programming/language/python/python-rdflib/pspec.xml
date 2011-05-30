@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>RDF library</Summary>
         <Description>RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information.</Description>
-        <Archive sha1sum="e2ee371fda48739724800064763d03449abb0f5a" type="targz">http://pypi.python.org/packages/source/r/rdflib/rdflib-3.1.0.tar.gz#md5=3b2ef246c6875290524a12888a3cf4af</Archive>
+        <Archive sha1sum="e2ee371fda48739724800064763d03449abb0f5a" type="targz">http://pypi.python.org/packages/source/r/rdflib/rdflib-3.1.0.tar.gz</Archive>
     </Source>
 
     <Package>
