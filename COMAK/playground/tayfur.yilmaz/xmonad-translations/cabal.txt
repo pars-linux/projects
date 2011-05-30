@@ -1,0 +1,21 @@
+Cabal (Yazilim)
+
+Haskell Cabal Uygulamaları ve Kütüphaneleri derlemek için var olan Ortak bir
+Mimaridir.Dağıtımın yazılım paketlerinin paketlenmesine yardım
+etmektedir.Haskell Platform'uda içermektedir..
+
+Cabalizing
+
+Cabal kütüphane altyapısını sağlamak için Haskell programlama dili ile yazılan
+uygun araçlar kütüphane yaratma işlevini yapmaktadır.Bu kütüphaneler öncelikle
+uygun araçlar kullanılmadan geliştirilir ya da önce Haskell Komitesindeki
+Cabal'a giriş ile sağlanır.
+
+Kullanım
+
+Cabal paketleri standart metadata ayarı ya da derleme işlemi
+sağlamaktadır.Yazılımda CPAN tarzı topluluk deposu,Cabal paketlerini upload
+etmenize yarayan geliştirme araçlarına imkan vermektedir.[Hackage] ya da
+Hackage ile otomatik download işlemine,derlemeye ve dilediğiniz paketi
+yüklemeye izin vermektedir.([Cabal yükleme] aracı)
+
