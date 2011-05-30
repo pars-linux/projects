@@ -10,7 +10,7 @@
         </Packager>
         <License>custom:BSD3</License>
         <IsA>app:console</IsA>
-        <Summary></Summary>
+        <Summary>Monadic parser combinators</Summary>
         <Description>Parsec is designed from scratch as an industrial-strength parser library. It is simple, safe, well documented (on the package homepage), has extensive libraries and good error messages, and is also fast. It is defined as a monad transformer that can be stacked on arbitrary monads, and it is also parametric in the input stream type. </Description>
         <Archive sha1sum="d42d9e888f7432baa9dd2cf6417f9dbe915f48a7" type="targz">http://hackage.haskell.org/packages/archive/parsec/3.1.1/parsec-3.1.1.tar.gz</Archive>
         <BuildDependencies>
