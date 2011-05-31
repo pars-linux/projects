@@ -12,12 +12,17 @@
         <IsA>library</IsA>
         <Summary>Utilities for creating and parsing messages using MIME</Summary>
         <Description>gmime contains gmime-uudecode and gmime-uuencode and will allow you to manipulate MIME messages. These utilities can also be used instead of uudecode and uuencode from the sharutils package.</Description>
-        <Archive sha1sum="b1f00a3bd4dde51c5c0fc8d0503440e21e91438a" type="tarbz2">mirrors://gnome/gmime/2.4/gmime-2.4.15.tar.bz2</Archive>
-
+        <Archive sha1sum="aa27f2131315ddbcfb29bbc73d31d63eef54d5fc" type="tarbz2">mirrors://gnome/gmime/2.5/gmime-2.5.7.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gpgme-devel</Dependency>
+        </BuildDependencies>
     </Source>
 
     <Package>
         <Name>gmime</Name>
+        <RuntimeDependencies>
+            <Dependency>gpgme</Dependency>
+        </RuntimeDependencies>
         <IsA>app:console</IsA>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
@@ -41,9 +46,6 @@
         <Name>gmime-docs</Name>
         <IsA>data:doc</IsA>
         <Summary>gmime reference documents</Summary>
-        <RuntimeDependencies>
-            <Dependency releaseFrom="current">gmime</Dependency>
-        </RuntimeDependencies>
         <Files>
             <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="doc">/usr/share/gtk-doc</Path>
@@ -51,6 +53,13 @@
     </Package>
 
     <History>
+        <Update release="13">
+            <Date>2011-05-31</Date>
+            <Version>2.5.7</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="12">
             <Date>2011-05-04</Date>
             <Version>2.4.15</Version>

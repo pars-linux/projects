@@ -8,8 +8,8 @@
     </Source>
 
     <Package>
-        <Name>gmime-sharp</Name>
-        <Summary xml:lang="tr">Mono için gmime bağlayıcısı</Summary>
+        <Name>gmime-devel</Name>
+        <Summary xml:lang="tr">gmime için geliştirme dosyaları</Summary>
     </Package>
 
     <Package>
