@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>gnome-lirc-properties</Name>
+        <Homepage>http://live.gnome.org/gnome-lirc-properties</Homepage>
+        <Packager>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>GTK+ based utilty to configure LIRC remotes</Summary>
+        <Description>gnome-lirc-properties contains GTK+ based utilties to configure LIRC remotes.</Description>
+        <Archive sha1sum="76816d98a4d8a74c1094af6d10bfb1a365b406b8" type="tarbz2">mirrors://gnome/gnome-lirc-properties/0.5/gnome-lirc-properties-0.5.1.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>lirc-devel</Dependency>
+            <Dependency>lirc-remotes</Dependency>
+            <Dependency>python-gtk-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>gnome-lirc-properties</Name>
+        <RuntimeDependencies>
+            <Dependency>lirc</Dependency>
+            <Dependency>python-gtk</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-24</Date>
+            <Version>0.5.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
