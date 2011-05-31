@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-audio</Name>
+        <Summary xml:lang="tr">Gnome Masaüstü Ses Efektleri Paketi</Summary>
+        <Description xml:lang="tr">gnome-audio paketi GNOME ile kullanmak için ses koleksiyonu içerir.</Description>
+    </Source>
+</PISI>

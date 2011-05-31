@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>evolution-webcal</Name>
+        <Homepage>http://www.gnome.org/</Homepage>
+        <Packager>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A GNOME URL handler for web-published ical calendar files</Summary>
+        <Description>A GNOME URL handler for web-published ical calendar files</Description>
+        <Archive sha1sum="331a5decba0f0b2ac47887982c2d79e62a19cdb9" type="tarbz2">mirrors://gnome/evolution-webcal/2.32/evolution-webcal-2.32.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libsoup-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>libical-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>evolution-webcal</Name>
+        <RuntimeDependencies>
+            <Dependency>gconf</Dependency>
+            <Dependency>libsoup</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>libical</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-17</Date>
+            <Version>2.32.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Mehmet Zahit Şamat</Name>
+            <Email>m.z.samat@gmial.com</Email>
+        </Update>
+    </History>
+</PISI>

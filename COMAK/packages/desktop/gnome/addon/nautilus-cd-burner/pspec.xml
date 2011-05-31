@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>nautilus-cd-burner</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A nautilus extension for burning cd</Summary>
+        <Description>Nautilus-cd-burner is a Nautilus context menu for burning cd.</Description>
+        <Archive sha1sum="11aa200220da9e746294c3bcf44cfdc26a2aeb78" type="targz">mirrors://gnome/nautilus-cd-burner/2.25/nautilus-cd-burner-2.25.3.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>nautilus-devel</Dependency>
+            <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>libglade-devel</Dependency>
+            <Dependency>hal-libs</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>freetype-devel</Dependency>
+            <Dependency>fontconfig-devel</Dependency>
+        </BuildDependencies>
+        <Patches>
+            <Patch>compile-warnings-fix-svn-commit-2269.patch</Patch>
+        </Patches>
+    </Source>
+
+    <Package>
+        <Name>nautilus-cd-burner</Name>
+        <RuntimeDependencies>
+            <Dependency>nautilus</Dependency>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libgnome</Dependency>
+            <Dependency>libgnomeui</Dependency>
+            <Dependency>libglade</Dependency>
+            <Dependency>hal-libs</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>freetype</Dependency>
+            <Dependency>fontconfig</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path> 
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path> 
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>nautilus-cd-burner-devel</Name>
+        <Summary>Development files for nautilus-cd-burner</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">nautilus-cd-burner</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include/</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-28</Date>
+            <Version>2.25.3</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+

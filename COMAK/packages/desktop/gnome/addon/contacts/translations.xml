@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>contacts</Name>
+        <Summary xml:lang="tr">Gnome için küçük bir adres defteri</Summary>
+        <Description xml:lang="tr">Contacts, EDS'nin bir parçası olan libebook kullanan adres defteri uygulamasıdır.</Description>
+    </Source>
+</PISI>
+

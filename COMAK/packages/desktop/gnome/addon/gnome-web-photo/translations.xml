@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gnome-web-photo</Name>
+        <Summary xml:lang="tr">Html dosyalarından resimleri ve küçük resimleri üreten bir araç</Summary>
+        <Description xml:lang="tr">gnome-web-photo komut satırından web sayfaları yazdırmaya ve anlık görüntü resimleri oluşturan bir araçtır.</Description>
+    </Source>
+</PISI>
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>nautilus-sendto</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:gui</IsA>
+        <Summary>A nautilus extension for sending files to locations</Summary>
+        <Description>Nautilus-sendto is a Nautilus context menu for sending files.</Description>
+        <Archive sha1sum="d02d13896bbb6ea4ee358401359b1c51eaa5c898" type="tarbz2">mirrors://gnome/nautilus-sendto/2.32/nautilus-sendto-2.32.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>nautilus-devel</Dependency>
+            <Dependency>evolution-data-server-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>nautilus-sendto</Name>
+        <RuntimeDependencies>
+            <Dependency>nautilus</Dependency>
+            <Dependency>evolution-data-server</Dependency>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path> 
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>nautilus-sendto-devel</Name>
+        <Summary>Development files for nautilus-sendto</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">nautilus-sendto</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include/nautilus-sendto</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-03-22</Date>
+            <Version>2.32.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Merve Yüzbaşıoğlu</Name>
+            <Email>merveyuzbasioglu89@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+

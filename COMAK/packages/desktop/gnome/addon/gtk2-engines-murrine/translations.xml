@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gtk2-engines-murrine</Name>
+        <Summary xml:lang="tr">Murrine GTK+2 Cairo Motoru</Summary>
+        <Description xml:lang="tr">gtk2-engines-murrine masaüstünüzün görünüşünü güzel bir Murrina gibi yapan bir GTK2 motorudur.</Description>
+    </Source>
+</PISI>

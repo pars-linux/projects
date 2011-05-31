@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>libgail-gnome</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>Gail libraries for GNOME</Summary>
+        <Description>GNOME Accessibility Implementation library additions which implement ATK interfaces for libbonoboui and libgnomeui widgets.</Description>
+        <Archive sha1sum="47390fe9482972b4f0e478a460a99e0b47c14b59" type="targz">mirrors://gnome/libgail-gnome/1.20/libgail-gnome-1.20.4.tar.gz</Archive>
+        <BuildDependencies>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>orbit2-devel</Dependency>
+            <Dependency>libbonoboui-devel</Dependency>
+            <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>gnome-panel-devel</Dependency>
+            <Dependency>at-spi-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+    <Package>
+        <Name>libgail-gnome</Name>
+        <RuntimeDependencies>
+            <Dependency>atk</Dependency>
+            <Dependency>orbit2</Dependency>
+            <Dependency>at-spi</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>gnome-panel</Dependency>
+            <Dependency>libbonoboui</Dependency>
+            <Dependency>gtk2</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+        </Files>
+    </Package>
+    <Package>
+        <Name>libgail-gnome-devel</Name>
+        <Summary>Development files for libgail-gnome</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">libgail-gnome</Dependency>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>libbonoboui-devel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>1.20.4</Version>
+            <Comment>First release.</Comment>
+            <Name>Aydan Taşdemir</Name>
+            <Email>aydantasdemir@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
