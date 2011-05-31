@@ -5,8 +5,8 @@
         <Name>poedit</Name>
         <Homepage>http://www.poedit.net</Homepage>
         <Packager>
-            <Name>Gökmen Görgen</Name>
-            <Email>gkmngrgn@gmail.com</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>as-is</License>
         <Icon>poedit</Icon>
@@ -15,6 +15,7 @@
         <Description>This program is GUI frontend to GNU Gettext utilities and catalogs editor/source code parser. It helps with translating application into another language. For details on principles of the solution used, see GNU Gettext documentation or wxWidgets' wxLocale class reference.</Description>
         <Archive sha1sum="8c4d61aef7695aa48607e9367df4c5899ad3bf83" type="targz">mirrors://sourceforge/poedit/poedit-1.4.6.1.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
             <Dependency>wxGTK-devel</Dependency>
             <Dependency>gtkspell-devel</Dependency>
         </BuildDependencies>
@@ -26,6 +27,7 @@
     <Package>
         <Name>poedit</Name>
         <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
             <Dependency>wxGTK</Dependency>
             <Dependency>gtkspell</Dependency>
         </RuntimeDependencies>
