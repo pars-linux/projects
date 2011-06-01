@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>almanah</Name>
+        <Summary xml:lang="tr">Günlük tutabilmenizi sağlayan bir uygulama</Summary>
+        <Description xml:lang="tr">Almanah Diary (eski adıyla “Diary”) günlük tutmanıza imkan veren küçük bir uygulamadır.</Description>
+    </Source>
+</PISI>
+
