@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gnome-control-center</Name>
-        <Homepage>http://www.gnome.org</Homepage>
+        <Homepage>https://live.gnome.org/ControlCenter</Homepage>
         <Packager>
             <Name>Mesutcan kurt</Name>
             <Email>mesutcank@gmail.com</Email>

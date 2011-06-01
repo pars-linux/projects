@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gdm3</Name>
-        <Homepage>http://www.gnome.org/</Homepage>
+        <Homepage>https://live.gnome.org/GDM</Homepage>
         <Packager>
             <Name>Mesutcan Kurt</Name>
             <Email>mesutcank@gmail.com</Email>

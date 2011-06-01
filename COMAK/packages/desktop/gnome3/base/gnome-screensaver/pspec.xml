@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gnome-screensaver</Name>
-        <Homepage>http://www.gnome.org</Homepage>
+        <Homepage>https://live.gnome.org/GnomeScreensaver</Homepage>
         <Packager>
             <Name>Burak Çalışkan</Name>
             <Email>burakclskn@gmail.com</Email>
