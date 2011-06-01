@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>almanah</Name>
+        <Homepage>http://live.gnome.org/Almanah_Diary</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Icon>almanah</Icon>
+        <IsA>app:gui</IsA>
+        <Summary>A small application to keep a diary of your life</Summary>
+        <Description>Almanah Diary (previously just “Diary”) is a small application to allow you to keep a diary of your life.</Description>
+        <Archive sha1sum="b82566237c5bccd39cf6a22fe30cd9a829e53d3f" type="tarbz2">mirrors://gnome/almanah/0.8/almanah-0.8.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>gpgme-devel</Dependency>
+            <Dependency>libical-devel</Dependency>
+            <Dependency>seahorse-devel</Dependency>
+            <Dependency>gtkspell-devel</Dependency>
+            <Dependency>evolution-data-server-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>almanah</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk3</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>gpgme</Dependency>
+            <Dependency>libical</Dependency>
+            <Dependency>seahorse</Dependency>
+            <Dependency>gtkspell</Dependency>
+            <Dependency>evolution-data-server</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="data">/usr/share/icons</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/almanah</Path>
+            <Path fileType="data">/usr/share/GConf</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-06-01</Date>
+            <Version>0.8.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
