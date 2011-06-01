@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gnome-power-manager</Name>
-        <Homepage>http://www.gnome.org</Homepage>
+        <Homepage>http://projects.gnome.org/gnome-power-manager</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>

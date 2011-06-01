@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>file-roller</Name>
-        <Homepage>http://www.gnome.org</Homepage>
+        <Homepage>http://fileroller.sourceforge.net</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>

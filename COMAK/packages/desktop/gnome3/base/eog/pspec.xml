@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>eog</Name>
-        <Homepage>http://www.gnome.org</Homepage>
+        <Homepage>http://projects.gnome.org/eog</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>

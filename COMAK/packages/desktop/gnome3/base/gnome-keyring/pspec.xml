@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gnome-keyring</Name>
-        <Homepage>http://www.gnome.org/</Homepage>
+        <Homepage>https://live.gnome.org/GnomeKeyring</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
