@@ -17,7 +17,7 @@
             <Dependency>pulseaudio-libs-devel</Dependency>
             <Dependency>gst-plugins-base-devel</Dependency>
             <Dependency>libcanberra-devel</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>pardus-menus-mixer.patch</Patch>

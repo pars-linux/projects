@@ -20,7 +20,7 @@
             <Dependency>libgnome-keyring-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>icon-theme-gnome</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>t1lib-devel</Dependency>
             <Dependency>ghostscript-devel</Dependency>
             <Dependency>libspectre-devel</Dependency>

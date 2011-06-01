@@ -20,7 +20,7 @@
             <Dependency>gconf-devel</Dependency>
             <Dependency>libcanberra-devel</Dependency>
             <Dependency>gnome-panel-devel</Dependency> <!-- for libpanelapplet -->
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>cairo-devel</Dependency>
             <Dependency>pango-devel</Dependency>
             <Dependency>libbonobo-devel</Dependency>

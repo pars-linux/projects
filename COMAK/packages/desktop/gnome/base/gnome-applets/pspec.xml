@@ -22,8 +22,7 @@
             <Dependency>gstreamer-devel</Dependency>
             <Dependency>gst-plugins-base-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>NetworkManager-devel</Dependency>
             <Dependency>atk-devel</Dependency>
             <Dependency>gconf-devel</Dependency>

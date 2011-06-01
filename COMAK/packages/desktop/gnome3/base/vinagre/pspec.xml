@@ -20,7 +20,7 @@
             <Dependency>vino</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>avahi-ui-devel</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>vte-devel</Dependency>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>cairo-devel</Dependency>

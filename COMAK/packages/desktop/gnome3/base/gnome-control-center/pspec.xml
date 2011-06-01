@@ -22,7 +22,7 @@
             <Dependency>libglade</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>desktop-file-utils</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>libunique</Dependency>
             <Dependency>libXScrnSaver-devel</Dependency>
             <Dependency>libXft-devel</Dependency>
@@ -60,7 +60,7 @@
             <Dependency>libglade</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>desktop-file-utils</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>libunique</Dependency>
             <Dependency>libXft</Dependency>
             <Dependency>cups</Dependency>
