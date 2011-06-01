@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>byzanz</Name>
+        <Summary xml:lang="tr">Ekran görüntüsü yakalama programı</Summary>
+        <Description xml:lang="tr">Byzanz, mevcut masaüstünüzü veya onun bir parçasını hareketli GIF dosyası olarak kaydetmenize imkan veren bir araçtır.</Description>
+    </Source>
+</PISI>
+
