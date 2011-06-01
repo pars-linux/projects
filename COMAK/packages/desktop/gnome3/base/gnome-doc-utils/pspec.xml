@@ -18,7 +18,7 @@
             <Dependency>libxslt-devel</Dependency>
             <Dependency>gnome-common</Dependency>
             <Dependency>rarian-devel</Dependency>
-            <Dependency>docbook-xml4_4</Dependency>
+            <Dependency>docbook-xml</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">do-not-update-scrollkeeper-database.patch</Patch>
@@ -30,7 +30,7 @@
         <RuntimeDependencies>
             <Dependency>intltool</Dependency>
             <Dependency>rarian</Dependency>
-            <Dependency>docbook-xml4_4</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>libxml2-devel</Dependency>
         </RuntimeDependencies>
         <Files>

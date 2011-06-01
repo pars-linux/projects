@@ -20,7 +20,7 @@
             <Dependency>libglade-devel</Dependency>
             <Dependency>startup-notification-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>libSM-devel</Dependency>
             <Dependency>libICE-devel</Dependency>
             <Dependency>atk-devel</Dependency>

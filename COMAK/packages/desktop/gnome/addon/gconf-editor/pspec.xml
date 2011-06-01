@@ -15,7 +15,7 @@
         <Archive sha1sum="62a31ed551345fa3340334a828bd22502eb60911" type="tarbz2">mirrors://gnome/gconf-editor/2.32/gconf-editor-2.32.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>pango-devel</Dependency>
         </BuildDependencies>

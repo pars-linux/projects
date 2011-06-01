@@ -24,7 +24,7 @@
             <Dependency>gstreamer-devel</Dependency>
             <Dependency>libXext-devel</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>libunique-devel</Dependency>
             <Dependency>upower-devel</Dependency>
         </BuildDependencies>

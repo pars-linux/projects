@@ -15,7 +15,7 @@
         <Archive sha1sum="087f07b77a1dc07034401487035bb1f49b22351b" type="tarbz2">mirrors://gnome/gconf-editor/3.0/gconf-editor-3.0.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
         </BuildDependencies>
     </Source>
 

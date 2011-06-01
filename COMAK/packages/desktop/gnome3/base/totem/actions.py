@@ -17,7 +17,7 @@ def setup():
                          --disable-scrollkeeper \
                          --disable-silent-rules \
                          --enable-nautilus \
-                         --enable-gtk-doc \
+                         --disable-gtk-doc \
                          --enable-easy-codec-installation \
                          --enable-introspection=yes \
                          --enable-gmp-plugin")

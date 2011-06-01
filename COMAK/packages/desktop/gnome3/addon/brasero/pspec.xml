@@ -27,7 +27,7 @@
             <Dependency>gconf-devel</Dependency>
             <Dependency>libcanberra-gtk3</Dependency>
             <Dependency>totem-pl-parser-devel</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
         </BuildDependencies>
     </Source>
 

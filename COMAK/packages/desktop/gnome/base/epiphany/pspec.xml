@@ -23,7 +23,7 @@
             <Dependency>webkit-gtk-devel</Dependency>
             <Dependency>gtk-doc</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>libxslt-devel</Dependency>
             <Dependency>libsoup-devel</Dependency>
             <Dependency>NetworkManager-devel</Dependency>

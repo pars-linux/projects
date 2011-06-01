@@ -25,7 +25,7 @@
             <Dependency>gconf-devel</Dependency>
             <Dependency>pango-devel</Dependency>
             <Dependency>gtk-doc</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>gst-plugins-base-devel</Dependency>
             <Dependency>mx-devel</Dependency>
             <Dependency>atk-devel</Dependency>
@@ -63,7 +63,7 @@
             <Dependency>librsvg</Dependency>
             <Dependency>gconf</Dependency>
             <Dependency>pango</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>gst-plugins-base</Dependency>
             <Dependency>mx</Dependency>
             <Dependency>atk</Dependency>

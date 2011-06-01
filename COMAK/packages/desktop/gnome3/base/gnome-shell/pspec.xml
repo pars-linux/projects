@@ -23,7 +23,7 @@
             <Dependency>gnome-doc-utils</Dependency>
             <Dependency>gconf-devel</Dependency>
             <Dependency>gjs-devel</Dependency>
-            <Dependency>docbook-xml4_1_2</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>telepathy-glib-devel</Dependency>
             <Dependency>telepathy-logger-devel</Dependency>
             <Dependency>clutter-devel</Dependency>
