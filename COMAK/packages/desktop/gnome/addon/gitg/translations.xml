@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>gitg</Name>
+        <Summary xml:lang="tr">Git depo görüntüleyici</Summary>
+        <Description xml:lang="tr">Gitg, gtk+/GNOME için bir git depo görüntüleyicisidir.</Description>
+    </Source>
+</PISI>
+
