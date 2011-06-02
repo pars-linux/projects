@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>frogr</Name>
+        <Summary xml:lang="tr">Flickr Uzaktan Düzenleyicisi</Summary>
+        <Description xml:lang="tr">Frogr, Flickr hesaplarına fotoğraf yüklemeye ve düzenlemeye imkan veren bir programdır.</Description>
+    </Source>
+</PISI>
+

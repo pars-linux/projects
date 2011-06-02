@@ -11,8 +11,8 @@
         <License>GPLv2</License>
         <Icon>frogr</Icon>
         <IsA>app:gui</IsA>
-        <Summary>a small application that allows users to manage their accounts in the Flickr image hosting website</Summary>
-        <Description>Frogr is a small application for the GNOME desktop that allows users to manage their accounts in the Flickr image hosting website..</Description>
+        <Summary>Flickr Remote Organizer</Summary>
+        <Description>Frogr is Flickr Remote Organizer for GNOME.</Description>
         <Archive sha1sum="90df1bf9e5cdd62ebc1a31db7e03956ed4a03cb0" type="tarxz">mirrors://gnome/frogr/0.5/frogr-0.5.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gtk2-devel</Dependency>
