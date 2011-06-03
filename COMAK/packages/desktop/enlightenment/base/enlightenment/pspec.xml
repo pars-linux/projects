@@ -14,15 +14,15 @@
         <Description>Enlightenment is a window manager for the X Window System that is designed to be powerful, extensible, configurable and pretty darned good looking! It is one of the more graphically intense window managers.</Description>
         <Archive sha1sum="f32554c7b9ae119b9162a5abce3c96ef6bb435c8" type="targz">http://comak.comu.edu.tr/source/enlightenment-0.16.999_58042.tar.gz</Archive>
         <BuildDependencies>
-            <Dependency versionFrom="1.0.0">eina-devel</Dependency>
-            <Dependency versionFrom="1.4.0">eet-devel</Dependency>
-            <Dependency versionFrom="1.0.0">evas-devel</Dependency>
-            <Dependency versionFrom="1.0.0">ecore-devel</Dependency>
-            <Dependency versionFrom="1.0.0">edje-devel</Dependency>
+            <Dependency versionFrom="1.0.1">eina-devel</Dependency>
+            <Dependency versionFrom="1.4.1">eet-devel</Dependency>
+            <Dependency versionFrom="1.0.1">evas-devel</Dependency>
+            <Dependency versionFrom="1.0.1">ecore-devel</Dependency>
+            <Dependency versionFrom="1.0.1">edje-devel</Dependency>
             <Dependency versionFrom="1.0.0">embryo-devel</Dependency>
-            <Dependency versionFrom="1.0.0">efreet-devel</Dependency>
-            <Dependency versionFrom="1.0.0">e_dbus-devel</Dependency>
-            <Dependency versionFrom="1.0.0">eeze-devel</Dependency>
+            <Dependency versionFrom="1.0.1">efreet-devel</Dependency>
+            <Dependency versionFrom="1.0.1">e_dbus-devel</Dependency>
+            <Dependency versionFrom="1.0.1">eeze-devel</Dependency>
             <Dependency>libXext-devel</Dependency>
             <!--mixer module's dependency-->
             <Dependency>alsa-lib-devel</Dependency>
@@ -39,15 +39,15 @@
     <Package>
         <Name>enlightenment</Name>
         <RuntimeDependencies>
-            <Dependency versionFrom="1.0.0">eina</Dependency>
-            <Dependency versionFrom="1.4.0">eet</Dependency>
-            <Dependency versionFrom="1.0.0">evas</Dependency>
-            <Dependency versionFrom="1.0.0">ecore</Dependency>
-            <Dependency versionFrom="1.0.0">edje</Dependency>
+            <Dependency versionFrom="1.0.1">eina</Dependency>
+            <Dependency versionFrom="1.4.1">eet</Dependency>
+            <Dependency versionFrom="1.0.1">evas</Dependency>
+            <Dependency versionFrom="1.0.1">ecore</Dependency>
+            <Dependency versionFrom="1.0.1">edje</Dependency>
             <Dependency versionFrom="1.0.0">embryo</Dependency>
-            <Dependency versionFrom="1.0.0">efreet</Dependency>
-            <Dependency versionFrom="1.0.0">e_dbus</Dependency>
-            <Dependency versionFrom="1.0.0">eeze</Dependency>
+            <Dependency versionFrom="1.0.1">efreet</Dependency>
+            <Dependency versionFrom="1.0.1">e_dbus</Dependency>
+            <Dependency versionFrom="1.0.1">eeze</Dependency>
             <Dependency>libXext</Dependency>
             <!--mixer module's dependency-->
             <Dependency>alsa-lib</Dependency>
