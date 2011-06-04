@@ -22,7 +22,15 @@
             <Dependency>gnome-vfs-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>libgnomeui-devel</Dependency>
+            <Dependency>libgsf-devel</Dependency>
+            <Dependency>exiv2-libs</Dependency>
         </BuildDependencies>
+        <Patches>
+            <Patch level="1">0001-update_bookmarks_on_panes_add_current.patch</Patch>
+            <Patch level="1">0002-crash_when_cancel_a_search.patch</Patch>
+            <Patch level="1">0005-python26.patch</Patch>
+            <Patch level="1">1001-invalid_menu_item_edit_mime.patch</Patch>
+        </Patches>
     </Source>
 
     <Package>
@@ -35,6 +43,8 @@
             <Dependency>gnome-vfs</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
             <Dependency>libgnomeui</Dependency>
+            <Dependency>libgsf</Dependency>
+            <Dependency>exiv2-libs</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
