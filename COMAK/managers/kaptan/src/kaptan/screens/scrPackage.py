@@ -22,6 +22,8 @@ from kaptan.screen import Screen
 import subprocess, os, pisi, comar, platform
 isUpdateOn = False
 
+FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome or ctx.Pds.session == ctx.pds.Gnome3
+
 class Widget(QtGui.QWidget, Screen):
     screenSettings = {}
     title = i18n("Packages")
@@ -60,11 +62,19 @@ class Widget(QtGui.QWidget, Screen):
         self.flagRepo = 0
         self.repoName = "comak-repo"
         self.ui.showTray_2.setChecked(False)
-        if platform.machine() == "x86_64":
-            platform_machine = "64"
-        if platform.machine() == "i686":
-            platform_machine ="32"
-        self.repoAddress ="http://comak%s.comu.edu.tr/comak/pisi-index.xml.xz" % platform_machine
+        ####
+        if not FOR_GNOME:
+            if platform.machine() == "x86_64":
+                platform_machine = "64"
+            if platform.machine() == "i686":
+                platform_machine ="32"
+            self.repoAddress ="http://comak%s.comu.edu.tr/comak/pisi-index.xml.xz" % platform_machine
+        else:
+            if platform.machine() == "x86_64":
+                platform_machine = "64"
+            if platform.machine() == "i686":
+                platform_machine = ""
+            self.repoAddress ="http://gnome3.comu.edu.tr/comak%s/pisi-index.xml.xz" % platform_machine
         self.ui.information_label.setText("")
         # create a db object
         self.repodb = pisi.db.repodb.RepoDB()
