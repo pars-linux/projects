@@ -1,0 +1,28 @@
+Description: Remove "MIME Types" item from the "Settings" menu.
+ When clicking on "Settings -> MIME Types" a "No such file or directory"
+ error gets raised since the gnome-file-types-properties tool was removed
+ in GNOME >> 2.6.
+From: https://bugzilla.novell.com/attachment.cgi?id=191786
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=347852
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/701848
+Bug-openSUSE: https://bugzilla.novell.com/show_bug.cgi?id=356181
+Bug-Fedora: https://bugzilla.redhat.com/show_bug.cgi?id=458667
+---
+ src/gnome-cmd-main-menu.cc |    6 ------
+ 1 file changed, 6 deletions(-)
+
+--- gnome-commander.orig/src/gnome-cmd-main-menu.cc
++++ gnome-commander/src/gnome-cmd-main-menu.cc
+@@ -716,12 +716,6 @@ static void init (GnomeCmdMainMenu *main
+             GNOME_APP_PIXMAP_STOCK, GTK_STOCK_ITALIC,
+             NULL
+         },
+-        {
+-            MENU_TYPE_ITEM, _("_MIME Types..."), "", NULL,
+-            (gpointer) options_edit_mime_types, NULL,
+-            GNOME_APP_PIXMAP_NONE, 0,
+-            NULL
+-        },
+         MENUTYPE_END
+     };
+ 
