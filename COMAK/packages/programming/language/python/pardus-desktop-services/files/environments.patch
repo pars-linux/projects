@@ -1,6 +1,6 @@
 Index: pds/__init__.py
 ===================================================================
---- pds/__init__.py	(revision 37015)
+--- pds/__init__.py	(revision 37129)
 +++ pds/__init__.py	(working copy)
 @@ -30,7 +30,8 @@
  
@@ -12,7 +12,7 @@ Index: pds/__init__.py
  
      def __init__(self, catalogName='', debug=False):
          self._session           = None
-@@ -146,9 +147,10 @@
+@@ -146,7 +147,7 @@
      def session(self):
          if not self._session:
              env = getenv('DESKTOP_SESSION')
@@ -20,13 +20,10 @@ Index: pds/__init__.py
 +            if env == 'default' or not env or env == 'gnome':
                  session = readfile('/etc/default/desktop', DefaultDe.Name)
                  env     = session.split('=')[1].strip()
-+                print "adasdsadada" , env
              for de in Pds.SupportedDesktops:
-                 if env:
-                     if env in de.SessionTypes or env == de.Name:
 Index: pds/qiconloader.py
 ===================================================================
---- pds/qiconloader.py	(revision 37015)
+--- pds/qiconloader.py	(revision 37129)
 +++ pds/qiconloader.py	(working copy)
 @@ -61,7 +61,7 @@
              dataDirs = QString('/usr/local/share/:/usr/share/')
@@ -39,7 +36,7 @@ Index: pds/qiconloader.py
              dirs = QFile.decodeName(
 Index: pds/environments.py
 ===================================================================
---- pds/environments.py	(revision 37015)
+--- pds/environments.py	(revision 37129)
 +++ pds/environments.py	(working copy)
 @@ -62,7 +62,7 @@
      Version              = '4'
