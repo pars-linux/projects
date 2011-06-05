@@ -3,7 +3,17 @@
     <Source>
         <Name>ghc</Name>
         <Summary xml:lang="tr">Glasgow Haskell Derleyicisi</Summary>
-        <Description xml:lang="tr">GHC türünün en iyisi olan fonksiyonel Haskell programlama dili için oluşturulmuş açık kaynaklı ve etkileşimli çevre birimi olan bir yapıya sahiptir. </Description>
+        <Description xml:lang="tr">GHC türünün en iyisi olan fonksiyonel Haskell programlama dili için oluşturulmuş açık kaynaklı ve etkileşimli çevre birimi olan bir yapıya sahiptir.</Description>
     </Source>
+
+    <Package>
+        <Name>ghc-devel</Name>
+        <Summary xml:lang="tr">ghc için geliştirme başlıkları</Summary>
+    </Package>
+
+    <Package>
+        <Name>ghc-docs</Name>
+        <Summary xml:lang="tr">ghc için belgelendirme dosyaları</Summary>
+    </Package>
 </PISI>
 

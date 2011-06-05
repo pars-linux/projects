@@ -8,45 +8,77 @@
             <Name>Tayfur Yilmaz</Name>
             <Email>yilmaz.tayfur@gmail.com</Email>
         </Packager>
-        <License>GPLv2</License>
+        <License>GHCL</License>
         <IsA>app:console</IsA>
         <Summary>The Glasgow Haskell Compiler</Summary>
-        <Description>GHC is a state-of-the-art, open source, compiler and interactive environment for the functional language Haskell.
-        </Description>
-        <Archive sha1sum="6303f73daa3ef2c4df1bd24b2d97ae81d7944e63" type="tarbz2">http://www.haskell.org/ghc/dist/7.0.2/ghc-7.0.2-src.tar.bz2</Archive>
-        <!--Archive sha1sum="222eed949413723b1f45218a908d5ee6930fda1b" type="tarbz2">http://www.haskell.org/ghc/dist/7.0.3/ghc-7.0.3-src.tar.bz2</Archive-->
-        <BuildDependencies>
-            <Dependency>gmp-devel</Dependency>
-        </BuildDependencies>
-        <!--
+        <Description>GHC is a state-of-the-art, open source, compiler and interactive environment for the functional language Haskell.</Description>
+        <Archive sha1sum="222eed949413723b1f45218a908d5ee6930fda1b" type="tarbz2">http://www.haskell.org/ghc/dist/7.0.3/ghc-7.0.3-src.tar.bz2</Archive>
         <Patches>
-            <Patch level=""></Patch>
+            <Patch level="1">getallinfo-nothing-ghci-566331</Patch>
+            <Patch level="1">haddock-hardcode-ghc-paths</Patch>
+            <Patch level="1">use-debian-gen_contents_index</Patch>
+            <Patch level="1">haddock-no-library</Patch>
+            <Patch level="1">do_not_use_epoll_create1</Patch>
+            <Patch level="1">lpthread-bootstrap-workaround</Patch>
+            <Patch level="1">autoconf</Patch>
+            <Patch level="1">haddock-expose-interface-version</Patch>
         </Patches>
-        -->
     </Source>
 
     <Package>
         <Name>ghc</Name>
         <RuntimeDependencies>
             <Dependency versionFrom="5.0.1">gmp</Dependency>
-            <Dependency>perl</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
-            <Path fileType="doc">/usr/share/doc</Path>
             <Path fileType="data">/usr/share</Path>
        </Files>
     </Package>
 
+    <Package>
+        <Name>ghc-devel</Name>
+        <Summary>Development headers for ghc</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">ghc</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/base-4.3.1.0/include</Path>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/bytestring-0.9.1.10/include</Path>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/directory-1.1.0.0/include</Path>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/ghc-7.0.3/include</Path>
+            <Path fileType="header">/usr/lib/ghc-*/include</Path>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/old-time-1.0.0.6/include</Path>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/process-1.0.1.5/include</Path>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/time-1.2.0.3/include</Path>
+            <Path fileType="header">/usr/lib/ghc-7.0.3/unix-2.4.2.0/include</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>ghc-docs</Name>
+        <IsA>data:doc</IsA>
+        <Summary>Documentation files for ghc</Summary>
+        <Files>
+            <Path fileType="doc">/usr/share/doc/ghc/html</Path>
+        </Files>
+    </Package>
+
     <History>
+        <Update release="2">
+            <Date>2011-06-05</Date>
+            <Version>7.0.3</Version>
+            <Comment>Split headers and docs</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-05-16</Date>
-            <Version>7.0.2</Version>
+            <Version>7.0.3</Version>
             <Comment>First release.</Comment>
             <Name>Tayfur Yilmaz</Name>
             <Email>yilmaz.tayfur@gmail.com</Email>
