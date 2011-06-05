@@ -16,4 +16,4 @@ def build():
 def install():
     autotools.install()
 
-    pisitools.dodoc("TODO", "README", "NEWS", "AUTHORS")
+    pisitools.dodoc("COPYING*", "TODO", "README", "NEWS", "AUTHORS")
