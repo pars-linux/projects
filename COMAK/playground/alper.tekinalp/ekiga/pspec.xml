@@ -24,6 +24,8 @@
             <Dependency>avahi-devel</Dependency>
             <Dependency>boost-devel</Dependency>
             <Dependency>libXv-devel</Dependency>
+            <Dependency>ptlib-devel</Dependency>
+            <Dependency>opal-devel</Dependency>
         </BuildDependencies>
     </Source>
 
