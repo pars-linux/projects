@@ -21,6 +21,7 @@
             <Dependency>pango-devel</Dependency>
             <Dependency>atk-devel</Dependency>
             <Dependency>gtk-doc</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch level="1">01-lxde-conf.patch</Patch>
@@ -36,6 +37,7 @@
             <Dependency>fontconfig</Dependency>
             <Dependency>gtk2</Dependency>
             <Dependency>pango</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
