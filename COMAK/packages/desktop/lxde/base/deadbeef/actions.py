@@ -10,7 +10,6 @@ from pisi.actionsapi import shelltools
 from pisi.actionsapi import get
 
 def setup():
-
     shelltools.makedirs("%s/%s/m4" % (get.workDIR(), get.srcDIR()))
     autotools.autoreconf("-vfi")
     autotools.configure("--disable-static")
