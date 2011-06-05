@@ -14,6 +14,8 @@
         <Description>The standard session edit manager, with ability to turn on disabled applications in LXDE.</Description>
         <Archive sha1sum="3814f0ff849e63f06bffafd31e364605fc88870c" type="targz">mirrors://sourceforge/lxde/lxsession-edit-0.1.1.tar.gz</Archive>
         <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>lxde-common</Dependency>
             <Dependency>lxsession</Dependency>
         </BuildDependencies>
@@ -27,6 +29,7 @@
         <Name>lxsession-edit</Name>
         <RuntimeDependencies>
             <Dependency>gtk2</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
             <Dependency>lxde-common</Dependency>
             <Dependency>lxsession</Dependency>
         </RuntimeDependencies>
