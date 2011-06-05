@@ -23,11 +23,11 @@
             <Dependency>cyrus-sasl-devel</Dependency>
             <Dependency>libXrender-devel</Dependency>
             <Dependency>libXrandr-devel</Dependency>
-            <Dependency>libXdmcp-devel</Dependency>
             <Dependency>libcaca-devel</Dependency>
-            <Dependency>libxcb-devel</Dependency>
             <Dependency>libv4l-devel</Dependency>
             <Dependency>libXt-devel</Dependency>
+            <Dependency>unixODBC-devel</Dependency>
+            <Dependency>pulseaudio-libs-devel</Dependency>
         </BuildDependencies>
     </Source>
 
@@ -42,11 +42,11 @@
             <Dependency>cyrus-sasl</Dependency>
             <Dependency>libXrender</Dependency>
             <Dependency>libXrandr</Dependency>
-            <Dependency>libXdmcp</Dependency>
             <Dependency>libcaca</Dependency>
-            <Dependency>libxcb</Dependency>
             <Dependency>libv4l</Dependency>
             <Dependency>libXt</Dependency>
+            <Dependency>unixODBC</Dependency>
+            <Dependency>pulseaudio-libs</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
