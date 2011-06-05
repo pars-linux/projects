@@ -12,4 +12,4 @@ def setup():
 
 def install():
     autotools.install()
-    pisitools.dodoc("AUTHORS")
+    pisitools.dodoc("AUTHORS", "COPYING")
