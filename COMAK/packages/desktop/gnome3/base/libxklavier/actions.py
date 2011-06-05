@@ -20,4 +20,4 @@ def build():
 def install():
     autotools.install()
 
-    pisitools.dodoc("NEWS", "README", "CREDITS", "AUTHORS", "ChangeLog")
+    pisitools.dodoc("NEWS", "README", "COPYING*", "CREDITS", "AUTHORS", "ChangeLog")
