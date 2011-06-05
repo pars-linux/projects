@@ -38,11 +38,6 @@
             <Dependency>libXpm</Dependency>
             <Dependency>lxmenu-data</Dependency>
             <Dependency>lxde-menu-cache</Dependency>
-            <Dependency>atk</Dependency>
-            <Dependency>cairo</Dependency>
-            <Dependency>pango</Dependency>
-            <Dependency>fontconfig</Dependency>
-            <Dependency>freetype</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
