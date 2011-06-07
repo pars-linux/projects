@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>goobox</Name>
+        <Summary xml:lang="tr">Gnome için CD oynatıcı</Summary>
+        <Description xml:lang="tr">goobox, Gnome masaüstü ortamı için bir CD oynatıcıdır.</Description>
+    </Source>
+</PISI>
+
