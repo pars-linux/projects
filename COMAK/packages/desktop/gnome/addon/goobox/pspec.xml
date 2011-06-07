@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>goobox</Name>
+        <Homepage>http://www.gnome.org</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <Icon>goobox</Icon>
+        <IsA>app:gui</IsA>
+        <Summary>A CD player for GNOME</Summary>
+        <Description>Goobox is a Cd player for Gnome.</Description>
+        <Archive sha1sum="be3a9b32a677abb4c5cee9dcfde643bd9c9026bf" type="tarbz2">mirrors://gnome/goobox/2.2/goobox-2.2.0.tar.bz2</Archive>
+        <BuildDependencies>
+            <Dependency>gtk2-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>brasero-devel</Dependency>
+            <Dependency>gstreamer-devel</Dependency>
+            <Dependency>libunique-devel</Dependency>
+            <Dependency>libnotify-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>musicbrainz-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>goobox</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk2</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>brasero</Dependency>
+            <Dependency>gstreamer</Dependency>
+            <Dependency>libunique</Dependency>
+            <Dependency>libnotify</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>musicbrainz</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc/gconf</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share/omf/goobox</Path>
+            <Path fileType="data">/usr/share/icons/hicolor</Path>
+            <Path fileType="data">/usr/share/gnome/help/goobox</Path>
+            <Path fileType="data">/usr/share/goobox/ui</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+        </Files>
+    </Package>
+
+    <!--Package>
+        <Name>gedit-devel</Name>
+        <Summary>Development files for gedit</Summary>
+        <RuntimeDependencies>
+            <Dependency>gtksourceview-devel</Dependency>
+            <Dependency release="current">gedit</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="library">/usr/lib/pkgconfig</Path>
+            <Path fileType="man">/usr/share/man/man3</Path>
+        </Files>
+    </Package-->
+
+    <History>
+        <Update release="1">
+            <Date>2011-06-07</Date>
+            <Version>2.2.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
