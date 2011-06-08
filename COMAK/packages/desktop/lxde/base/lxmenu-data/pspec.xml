@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>lxmenu-data</Name>
-        <Homepage>http://lxde.sourceforge.net</Homepage>
+        <Homepage>www.lxde.org</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
