@@ -12,7 +12,7 @@
         <Icon>lxsession</Icon>
         <IsA>app:gui</IsA>
         <Summary>LXDE session manager</Summary>
-        <Description>The default X11 session manager of LXDE.</Description>
+        <Description>lxsession is the default X11 session manager of LXDE.</Description>
         <Archive sha1sum="e66fd5d1f239f4cea6195218fbfab7bce19cd884" type="targz">mirrors://sourceforge/lxde/lxsession-0.4.5.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gtk2-devel</Dependency>

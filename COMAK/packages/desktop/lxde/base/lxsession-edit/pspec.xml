@@ -11,7 +11,7 @@
         <License>GPLv2</License>
         <IsA>app:gui</IsA>
         <Summary>LXDE session autostart editor</Summary>
-        <Description>The standard session edit manager, with ability to turn on disabled applications in LXDE.</Description>
+        <Description>lxsession-edit is the standard session edit manager, with ability to turn on disabled applications in LXDE.</Description>
         <Archive sha1sum="3814f0ff849e63f06bffafd31e364605fc88870c" type="targz">mirrors://sourceforge/lxde/lxsession-edit-0.1.1.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gtk2-devel</Dependency>
