@@ -3,7 +3,7 @@
 <PISI>
     <Source>
         <Name>gpicview</Name>
-        <Homepage>http://www.lxde.org</Homepage>
+        <Homepage>http://wiki.lxde.org/en/GPicView</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
