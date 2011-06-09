@@ -8,7 +8,7 @@
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
-        <License>GPLv2</License>
+        <License>GPLv3</License>
         <IsA>app:gui</IsA>
         <Summary>LXDE tool to edit desktop entry files</Summary>
         <Description>lxshortcut is a LXDE tool to edit desktop entry files.</Description>

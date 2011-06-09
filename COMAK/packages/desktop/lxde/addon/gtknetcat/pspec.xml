@@ -8,7 +8,7 @@
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
-        <License>GPLv2</License>
+        <License>GPLv3</License>
         <IsA>app:gui</IsA>
         <Summary>A Graphic User Interface for netcat</Summary>
         <Description>GtkNetCat is a Graphic User Interface for netcat. Netcat provides system functions as a computer networking utility for reading from and writing to network connections on either TCP or UDP.</Description>
