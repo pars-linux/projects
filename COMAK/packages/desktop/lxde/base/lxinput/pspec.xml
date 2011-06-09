@@ -8,7 +8,7 @@
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
-        <License>GPLv2</License>
+        <License>GPLv3</License>
         <IsA>app:gui</IsA>
         <Summary>LXDE keyboard and mouse configuration tool</Summary>
         <Description>lxinput is tool for LXDE keyboard and mouse configuration.</Description>
