@@ -2,7 +2,7 @@
 <!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
 <PISI>
     <Source>
-        <Name>lxde-icon-theme</Name>
+        <Name>icon-theme-lxde</Name>
         <Homepage>http://www.lxde.org</Homepage>
         <Packager>
             <Name>Necdet Yücel</Name>
@@ -16,10 +16,9 @@
     </Source>
 
     <Package>
-        <Name>lxde-icon-theme</Name>
+        <Name>icon-theme-lxde</Name>
         <RuntimeDependencies>
             <Dependency>lxde-common</Dependency>
-            <Dependency>gtk2</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="data">/usr/share/icons/nuoveXT2</Path>
