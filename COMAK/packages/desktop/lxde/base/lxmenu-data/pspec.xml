@@ -25,6 +25,13 @@
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-06-11</Date>
+            <Version>0.1.1</Version>
+            <Comment>Empty translations removed.</Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="2">
             <Date>2011-03-21</Date>
             <Version>0.1.1</Version>
