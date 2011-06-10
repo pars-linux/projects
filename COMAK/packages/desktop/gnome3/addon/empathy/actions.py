@@ -11,14 +11,10 @@ from pisi.actionsapi import get
 def setup():
     autotools.autoreconf("-fiv")
     autotools.configure("--disable-static \
-                        --disable-control-center-embedding \
-                        --disable-Werror \
-                        --enable-silent-rules \
-                        --disable-coding-style-checks \
-                        --disable-schemas-compile \
-                        --disable-call \
-                        --disable-location \
-                         --enable-spell=yes")
+                         --with-pic \
+                         --disable-Werror \
+                         --enable-silent-rules \
+                         --disable-coding-style-checks")
 
 def build():
     autotools.make()
