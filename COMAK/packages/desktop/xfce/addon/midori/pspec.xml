@@ -13,10 +13,8 @@
         <IsA>app:gui</IsA>
         <Summary>A lightweight web browser that is based GTK+</Summary>
         <Description>Midori is a lightweight GTK+ web browser based on WebkitGtk. It features tabs, windows and session management, bookmarks stored with XBEL, searchbox based on OpenSearch, and user script support.</Description>
-        <!--Archive sha1sum="01baf6243f7b00af5e5b4eb6ac5d3233e60bc993" type="tarbz2">http://archive.xfce.org/src/apps/midori/0.3/midori-0.3.3.tar.bz2</Archive-->
         <Archive sha1sum="b790f33b72520e6910061a933f879b74482f801c" type="tarbz2">http://archive.xfce.org/src/apps/midori/0.3/midori-0.3.6.tar.bz2</Archive>
         <BuildDependencies>
-            <Dependency version="0.10.0">vala-devel</Dependency>
             <Dependency>libunique-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>pango-devel</Dependency>
@@ -28,6 +26,7 @@
             <Dependency>libnotify-devel</Dependency>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>libtasn1-devel</Dependency>
+            <Dependency>libXScrnSaver-devel</Dependency>
         </BuildDependencies>
         <Patches>
             <Patch>default-homepage.patch</Patch>
@@ -38,7 +37,6 @@
     <Package>
         <Name>midori</Name>
         <RuntimeDependencies>
-            <Dependency>vala</Dependency>
             <Dependency>cairo</Dependency>
             <Dependency>libnotify</Dependency>
             <Dependency>gdk-pixbuf</Dependency>
@@ -47,6 +45,7 @@
             <Dependency>pango</Dependency>
             <Dependency>libsoup</Dependency>
             <Dependency>webkit-gtk</Dependency>
+            <Dependency>libXScrnSaver</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>

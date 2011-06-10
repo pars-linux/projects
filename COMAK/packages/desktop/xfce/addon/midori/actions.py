@@ -23,7 +23,7 @@ def setup():
                        --enable-apidocs  \
                        --enable-unique \
                        --enable-libidn \
-                       --enable-vala \
+                       --disable-vala \
                        --enable-libnotify \
                        --enable-addons \
                        --disable-hildon")
