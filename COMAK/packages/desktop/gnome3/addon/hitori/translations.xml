@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>hitori</Name>
+        <Summary xml:lang="tr">Bir bulmaca oyunu</Summary>
+        <Description xml:lang="tr">Hitori, sudoku benzeri bir bulmaca oyunudur.</Description>
+    </Source>
+</PISI>
+
