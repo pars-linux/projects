@@ -9,6 +9,7 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 
+WorkDir = "libfm-0.1.14"
 def setup():
     autotools.configure("--disable-static \
                         --sysconfdir=/etc \
