@@ -9,6 +9,7 @@ from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 
+WorkDir = "pcmanfm-0.9.8"
 def setup():
     autotools.configure()
 
