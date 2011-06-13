@@ -15,15 +15,16 @@
         <Description>LaTeXila is an Integrated LaTeX Environment for the GNOME desktop, written in Vala.</Description>
         <Archive sha1sum="51b7d8e083774288e7f246f629bd2f4584aa9841" type="tarxz">mirrors://gnome/latexila/2.1/latexila-2.1.0.tar.xz</Archive>
         <BuildDependencies>
-            <Dependency>gtk3-devel</Dependency>
+            <Dependency>gtk2-devel</Dependency>
             <Dependency>vala</Dependency>
+            <Dependency>libgee-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>latexila</Name>
         <RuntimeDependencies>
-            <Dependency>gtk3</Dependency>
+            <Dependency>gtk2</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
