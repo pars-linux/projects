@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>PCMan File Manager</Summary>
         <Description>PCMan File Manager is an extremly fast and lightweight file manager for LXDE.</Description>
-        <Archive sha1sum="ae9ed787cc15b87d3a078dac2691ee19b2c11974" type="targz">http://comak.comu.edu.tr/source/pcmanfm-0.9.8_10052011.tar.gz</Archive>
+        <Archive sha1sum="7317181c4b2bc13c8efd4d78a58c60f380c4290f" type="targz">http://comak.comu.edu.tr/source/pcmanfm-0.9.8_20110613.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gdk-pixbuf-devel</Dependency>
             <Dependency>gtk2-devel</Dependency>
@@ -21,9 +21,6 @@
             <Dependency>cairo-devel</Dependency>
             <Dependency releaseFrom="3">libfm-devel</Dependency>
         </BuildDependencies>
-        <Patches>
-            <Patch level="2">pcmanfm2-alt-fix-rmb-selection.patch</Patch>
-        </Patches> 
     </Source>
 
     <Package>
@@ -46,6 +43,15 @@
     </Package>
 
     <History>
+        <Update release="5">
+            <Date>2011-06-13</Date>
+            <Version>0.9.8_20110613</Version>
+            <Comment>Version bump to git HEAD.
+                    *Added tree view.
+            </Comment>
+            <Name>Engin Manap</Name>
+            <Email>engin@comu.edu.tr</Email>
+        </Update>
         <Update release="4">
             <Date>2011-05-10</Date>
             <Version>0.9.8_20110510</Version>
