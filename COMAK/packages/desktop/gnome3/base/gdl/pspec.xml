@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>GNOME devtool libraries</Summary>
         <Description>Gdl contains components and libraries that are intended to be shared between GNOME development tools.</Description>
-        <Archive sha1sum="70c0fee04d0983d3c75e8df22840583e3df02b45" type="tarbz2">mirrors://gnome/gdl/3.1/gdl-3.1.1.tar.bz2</Archive>
+        <Archive sha1sum="8f2463ad00ca668aafd5143351046be8b548ee4d" type="tarxz">mirrors://gnome/gdl/3.1/gdl-3.1.2.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>cairo-devel</Dependency>
             <Dependency>gtk3-devel</Dependency>
@@ -57,6 +57,13 @@
     </Package>
 
     <History>
+        <Update release="10">
+            <Date>2011-06-14</Date>
+            <Version>3.1.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="9">
             <Date>2011-05-17</Date>
             <Version>3.1.1</Version>
