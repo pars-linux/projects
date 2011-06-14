@@ -14,11 +14,11 @@ shelltools.export("HOME", get.workDIR())
 def setup():
     autotools.autoreconf("-fiv")
     shelltools.system("intltoolize --force --copy --automake")
-    autotools.configure("--disable-static\
-                         --disable-scrollkeeper\
-                         --enable-ssh\
-                         --disable-schemas-install")
+    autotools.configure("--disable-scrollkeeper \
+                         --enable-ssh")
 
+    pisitools.dosed('libtool', '^hardcode_libdir_flag_spec=.*', 'hardcode_libdir_flag_spec=""')
+    pisitools.dosed('libtool', '^runpath_var=LD_RUN_PATH', 'runpath_var=DIE_RPATH_DIE')
 def build():
     autotools.make()
 
@@ -26,5 +26,5 @@ def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
     pisitools.removeDir("/usr/share/mime")
 
-    pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING*", "NEWS", "README")
+    pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING", "NEWS", "README")
 
