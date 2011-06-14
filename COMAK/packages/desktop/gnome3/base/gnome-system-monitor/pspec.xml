@@ -5,15 +5,15 @@
         <Name>gnome-system-monitor</Name>
         <Homepage>http://www.gnome.org</Homepage>
         <Packager>
-            <Name>Burak Çalışkan</Name>
-            <Email>burakclskn@gmail.com</Email>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
         <Icon>gnome-system-monitor</Icon>
         <IsA>app:gui</IsA>
         <Summary>GNOME system monitor</Summary>
         <Description>gnome-system-monitor is a process viewer and system monitor for the GNOME desktop.</Description>
-        <Archive sha1sum="9bd4f9cc743a1cf8be1047b098ff59e3772be7f5" type="tarbz2">mirrors://gnome/gnome-system-monitor/3.1/gnome-system-monitor-3.1.1.1.tar.bz2</Archive>
+        <Archive sha1sum="0ad4efcb1a3c54c7c26bcdf1a40f03af44bc6663" type="tarxz">mirrors://gnome/gnome-system-monitor/3.1/gnome-system-monitor-3.1.2.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>icon-theme-gnome</Dependency>
@@ -62,6 +62,13 @@
     </Package>
 
     <History>
+        <Update release="11">
+            <Date>2011-06-14</Date>
+            <Version>3.1.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="10">
             <Date>2011-05-17</Date>
             <Version>3.1.1.1</Version>
