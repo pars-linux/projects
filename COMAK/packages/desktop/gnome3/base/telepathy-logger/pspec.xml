@@ -13,7 +13,7 @@
         <IsA>library</IsA>
         <Summary>Logging utility Telepathy</Summary>
         <Description>telepathy-logger is a logging utility for Telepathy communication framework.</Description>
-        <Archive sha1sum="b7d2f93adf8aeee3548adacd664d927ec60fc4e8" type="tarbz2">http://telepathy.freedesktop.org/releases/telepathy-logger/telepathy-logger-0.2.9.tar.bz2</Archive>
+        <Archive sha1sum="3381e46e52c48f41c5e89488df540c4ce0b93d43" type="tarbz2">http://telepathy.freedesktop.org/releases/telepathy-logger/telepathy-logger-0.2.10.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>telepathy-glib-devel</Dependency>
             <Dependency>gconf-devel</Dependency>
@@ -58,6 +58,13 @@
     </Package>
 
     <History>
+        <Update release="5">
+            <Date>2011-06-14</Date>
+            <Version>0.2.10</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="4">
             <Date>2011-05-18</Date>
             <Version>0.2.9</Version>
