@@ -9,9 +9,11 @@
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
+        <Icon>vinagre</Icon>
+        <IsA>app:gui</IsA>
         <Summary>A VNC and SSH client</Summary>
         <Description>Vinagre is a remote desktop viewer and SSH client for the GNOME Desktop.</Description>
-        <Archive sha1sum="c38f798f5e9d3cfd9e3602ab09f5c9ce6f3fbbed" type="tarbz2">mirrors://gnome/vinagre/3.1/vinagre-3.1.1.tar.bz2</Archive>
+        <Archive sha1sum="eab21c80d415f3f2a08025f8576900f1536befc4" type="tarxz">mirrors://gnome/vinagre/3.1/vinagre-3.1.2.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>libgnome-keyring-devel</Dependency>
@@ -83,6 +85,13 @@
     </Package>
 
     <History>
+        <Update release="5">
+            <Date>2011-06-14</Date>
+            <Version>3.1.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="4">
             <Date>2011-05-22</Date>
             <Version>3.1.1</Version>
