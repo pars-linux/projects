@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>Basic GNOME libraries and dialogs</Summary>
         <Description>gnome-desktop contains basic GNOME libraries and information applications.</Description>
-        <Archive sha1sum="11d8198e97a42d0e5e66deed3ea1982146d9cfaa" type="tarbz2">mirrors://gnome/gnome-desktop/3.1/gnome-desktop-3.1.1.tar.bz2</Archive>
+        <Archive sha1sum="5776ed20f856a3699230f7eb8224121f4d52d0e2" type="tarxz">mirrors://gnome/gnome-desktop/3.1/gnome-desktop-3.1.2.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -76,6 +76,13 @@
     </Package>
 
     <History>
+        <Update release="5">
+            <Date>2011-06-14</Date>
+            <Version>3.1.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="4">
             <Date>2011-05-11</Date>
             <Version>3.1.1</Version>
