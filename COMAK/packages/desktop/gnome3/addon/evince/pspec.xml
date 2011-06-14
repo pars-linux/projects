@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>Simple document viewer for GNOME</Summary>
         <Description>Evince is a simple document viewer for GNOME.</Description>
-        <Archive sha1sum="e87435d6cb42b9663c414691603bdfb426dfe640" type="tarbz2">mirrors://gnome/evince/3.0/evince-3.0.2.tar.bz2</Archive>
+        <Archive sha1sum="137d81c3ccd9b68822e345187e067faa510e0b2c" type="tarxz">mirrors://gnome/evince/3.1/evince-3.1.2.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>djvu-devel</Dependency>
@@ -93,6 +93,13 @@
     </Package>
 
    <History>
+        <Update release="13">
+            <Date>2011-06-14</Date>
+            <Version>3.1.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="12">
             <Date>2011-05-24</Date>
             <Version>3.0.2</Version>
