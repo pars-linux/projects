@@ -9,10 +9,10 @@
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
-        <IsA>app:gui</IsA>
+        <IsA>data</IsA>
         <Summary>Default wallpapers for the GNOME desktop</Summary>
         <Description>gnome-backgrounds contains default wallpapers for the GNOME desktop.</Description>
-        <Archive sha1sum="15739cf20e4a64670f7783d13625b3b060250829" type="tarbz2">mirrors://gnome/gnome-backgrounds/3.0/gnome-backgrounds-3.0.2.tar.bz2</Archive>
+        <Archive sha1sum="14077018a0bd7349e79f30af39160d2777f80651" type="tarxz">mirrors://gnome/gnome-backgrounds/3.1/gnome-backgrounds-3.1.2.tar.xz</Archive>
     </Source>
 
     <Package>
@@ -27,6 +27,13 @@
     </Package>
 
     <History>
+        <Update release="7">
+            <Date>2011-06-14</Date>
+            <Version>3.1.2</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="6">
             <Date>2011-05-24</Date>
             <Version>3.0.2</Version>
