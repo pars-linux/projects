@@ -7,11 +7,6 @@
     </Source>
 
     <Package>
-        <Name>empathy-devel</Name>
-        <Summary xml:lang="tr">Empathy için geliştirme başlıkları</Summary>
-    </Package>
-
-    <Package>
         <Name>empathy-docs</Name>
         <Summary xml:lang="tr">Empathy anlık mesajlaşma istemcisine ait yardım dosyaları</Summary>
     </Package>
