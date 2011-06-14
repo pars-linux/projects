@@ -14,7 +14,7 @@
         <IsA>library</IsA>
         <Summary>An opensource web browser engine for GTK+ applications</Summary>
         <Description>The GTK+ port of WebKit is intended to provide a browser component primarily for users of the portable GTK+ UI toolkit on platforms like Linux.</Description>
-        <Archive sha1sum="990df2a72dac94a1abc26441283b822b17473724" type="targz">http://www.webkitgtk.org/webkit-1.4.0.tar.gz</Archive>
+        <Archive sha1sum="7caa60358e610ad2b08aa1f81fd05bef87d15b09" type="targz">http://www.webkitgtk.org/webkit-1.5.1.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>gtk-doc</Dependency>
@@ -57,6 +57,7 @@
             <Dependency>freetype</Dependency>
         </RuntimeDependencies>
         <Files>
+            <Path fileType="library">/usr/lib/libjavascriptcoregtk*</Path>
             <Path fileType="library">/usr/lib/libwebkit*</Path>
             <Path fileType="library">/usr/lib/girepository-1.0</Path>
             <Path fileType="data">/usr/share</Path>
@@ -84,6 +85,13 @@
     </Package>
 
     <History>
+        <Update release="17">
+            <Date>2011-06-14</Date>
+            <Version>1.5.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="17">
             <Date>2011-05-27</Date>
             <Version>1.4.0</Version>
