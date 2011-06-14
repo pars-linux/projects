@@ -14,7 +14,6 @@ shelltools.export("HOME", get.workDIR())
 def setup():
     autotools.autoreconf("-fiv")
     autotools.configure("--disable-static\
-                         --disable-schemas-install\
                          --with-distributor-name=Pardus\
                          --disable-introspection\
                          --enable-network-manager")
