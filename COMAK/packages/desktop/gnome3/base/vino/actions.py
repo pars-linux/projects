@@ -9,9 +9,7 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import get
 
 def setup():
-    autotools.configure("--disable-static\
-                         --enable-avahi\
-                         --enable-gnome-keyring\
+    autotools.configure("--disable-static \
                          --enable-http-server")
 
 def build():
@@ -19,6 +17,6 @@ def build():
 
 def install():
     autotools.rawInstall("DESTDIR=%s" % get.installDIR())
-    
+
     pisitools.dodoc("AUTHORS", "ChangeLog", "COPYING*", "NEWS", "README")
 
