@@ -18,7 +18,6 @@ def setup():
 
     autotools.configure("--disable-static \
                          --enable-spell \
-                         --disable-schemas-install \
                          --enable-introspection=yes")
 
 def build():
