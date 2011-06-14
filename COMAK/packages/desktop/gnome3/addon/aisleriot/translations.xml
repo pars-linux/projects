@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>aisleriot</Name>
+        <Summary xml:lang="tr">Bir grup kart oyunu</Summary>
+        <Description xml:lang="tr">Aisleriot, (Solitaire veya sol olarak da bilinir) fare ile kolayca oynayabileceğiniz bir grup kart oyunu sunar.</Description>
+    </Source>
+</PISI>
+
