@@ -9,10 +9,11 @@
             <Email>necdetyucel@gmail.com</Email>
         </Packager>
         <License>GPLv2</License>
+        <Icon>gedit</Icon>
         <IsA>app:gui</IsA>
         <Summary>Default text editor for GNOME</Summary>
         <Description>gedit is a small and lightweight text editor for the GNOME environment.</Description>
-        <Archive sha1sum="8b0b92289f9b71d762b8afef3a8ff8b936f47937" type="tarxz">mirrors://gnome/gedit/3.0/gedit-3.0.4.tar.xz</Archive>
+        <Archive sha1sum="3b913b894c7d94d0ff4aeec5af2614aa7c081403" type="tarxz">mirrors://gnome/gedit/3.1/gedit-3.1.1.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>atk-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -102,6 +103,13 @@
     </Package>
 
     <History>
+        <Update release="16">
+            <Date>2011-06-14</Date>
+            <Version>3.1.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="15">
             <Date>2011-05-31</Date>
             <Version>3.0.4</Version>
