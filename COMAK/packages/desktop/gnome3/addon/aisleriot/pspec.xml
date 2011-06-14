@@ -15,24 +15,47 @@
         <Description>Aisleriot (also known as Solitaire or sol) is a collection of card games which are easy to play with the aid of a mouse.</Description>
         <Archive sha1sum="42702294fea0b9a2c1f2fe2eb8d94bbc9450486a" type="tarxz">mirrors://gnome/aisleriot/3.1/aisleriot-3.1.0.tar.xz</Archive>
         <BuildDependencies>
+            <Dependency>atk-devel</Dependency>
             <Dependency>gtk3-devel</Dependency>
+            <Dependency>guile-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>libSM-devel</Dependency>
+            <Dependency>libICE-devel</Dependency>
+            <Dependency>librsvg-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libcanberra-devel</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>aisleriot</Name>
         <RuntimeDependencies>
+            <Dependency>atk</Dependency>
             <Dependency>gtk3</Dependency>
+            <Dependency>guile</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>libSM</Dependency>
+            <Dependency>libICE</Dependency>
+            <Dependency>librsvg</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>libcanberra</Dependency>
+            <Dependency>libcanberra-gtk3</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="config">/etc</Path>
             <Path fileType="executable">/usr/bin</Path>
-            <Path fileType="header">/usr/include</Path>
             <Path fileType="library">/usr/lib</Path>
             <Path fileType="localedata">/usr/share/locale</Path>
             <Path fileType="man">/usr/share/man</Path>
             <Path fileType="doc">/usr/share/doc</Path>
-            <Path fileType="data">/usr/share</Path>
+            <Path fileType="data">/usr/share/omf</Path>
+            <Path fileType="data">/usr/share/gnome</Path>
+            <Path fileType="data">/usr/share/applications</Path>
+            <Path fileType="data">/usr/share/aisleriot</Path>
+            <Path fileType="data">/usr/share/icons/hicolor</Path>
         </Files>
     </Package>
 
