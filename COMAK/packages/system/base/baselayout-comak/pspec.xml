@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>baselayout-comak</Name>
+        <Homepage>http://comak.comu.edu.tr</Homepage>
+        <Packager>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>app:console</IsA>
+        <IsA>library</IsA>
+        <IsA>data</IsA>
+        <Summary>Files, groups and users for COMAK.</Summary>
+        <Description>baselayout creates the files, groups and users for COMAK</Description>
+        <Archive sha1sum="bf13baa55a6ee4fcfd2fd623cab383796974a777" type="targz">http://comak.comu.edu.tr/source/baselayout-comak-0.1.tar.gz</Archive>
+    </Source>
+
+    <Package>
+        <Name>baselayout-comak</Name>
+        <Files>
+            <Path fileType="data">/usr/share/doc</Path>
+        </Files>
+        <Provides>
+            <COMAR script="package.py">System.Package</COMAR>
+        </Provides>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-06-15</Date>
+            <Version>0.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Mesutcan Kurt</Name>
+            <Email>mesutcank@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
