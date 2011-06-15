@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<PISI>
+    <Source>
+        <Name>baselayout-comak</Name>
+        <Summary xml:lang="tr">ÇOMAK için gerekli dosyalar, gruplar ve kullanıcılar</Summary>
+        <Description xml:lang="tr">Bu paket, ÇOMAK için gerekli dosyaları, grupları ve kullanıcıları içerir.</Description>
+    </Source>
+</PISI>
