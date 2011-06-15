@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>mousetweaks</Name>
+        <Homepage>http://live.gnome.org/Mousetweaks/Home</Homepage>
+        <Packager>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Packager>
+        <License>GPLv3</License>
+        <IsA>app:gui</IsA>
+        <Summary>Mouse accessibility enhancements for the GNOME desktop</Summary>
+        <Description>Mousetweaks contains a daemon and some panel applets to improve mouse usability on the GNOME desktop.</Description>
+        <Archive sha1sum="9cb823230a487edf0e6263793a81c8719fa5be34" type="tarxz">mirrors://gnome/mousetweaks/3.1/mousetweaks-3.1.2.tar.xz</Archive>
+        <BuildDependencies>
+            <Dependency>gnome-common</Dependency>
+            <Dependency>intltool</Dependency>
+            <Dependency>gconf-devel</Dependency>
+            <Dependency>gtk3-devel</Dependency>
+            <Dependency>libgnome-devel</Dependency>
+            <Dependency>libXcursor-devel</Dependency>
+            <Dependency>libXtst-devel</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>mousetweaks</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk3</Dependency>
+            <Dependency>gconf</Dependency>
+            <Dependency>atk</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libXtst</Dependency>
+            <Dependency>libbonobo</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libXcursor</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
+            <Dependency>gnome-panel</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="2">
+            <Date>2011-06-15</Date>
+            <Version>3.1.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+        <Update release="1">
+            <Date>2011-03-23</Date>
+            <Version>2.32.1</Version>
+            <Comment>First release.</Comment>
+            <Name>Kaan Özdinçer</Name>
+            <Email>kaanozdincer@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
