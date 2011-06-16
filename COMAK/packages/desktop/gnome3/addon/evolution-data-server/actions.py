@@ -20,7 +20,6 @@ def setup():
 
     autotools.configure("--with-openldap=yes \
                          --enable-smime=yes \
-                         --enable-gnome-keyring=yes \
                          --with-krb5=/usr \
                          --with-libdb=/usr \
                          --enable-calendar=yes")
