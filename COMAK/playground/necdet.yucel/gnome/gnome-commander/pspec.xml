@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>A powerful file manager for the GNOME desktop environment</Summary>
         <Description>GNOME Commander is a 'two-pane' graphical file manager for the GNOME desktop environment.</Description>
-        <Archive sha1sum="bd20b2b345280743df4c5237ff20738e83f57f92" type="tarbz2">mirrors://gnome/gnome-commander/1.2/gnome-commander-1.2.8.11.tar.bz2</Archive>
+        <Archive sha1sum="d99bca36ccd4b37426b696c5ab911f79b3fbf6a9" type="tarxz">mirrors://gnome/gnome-commander/1.2/gnome-commander-1.2.8.12.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gtk2-devel</Dependency>
             <Dependency>pango-devel</Dependency>
@@ -26,9 +26,6 @@
             <Dependency>exiv2-libs</Dependency>
         </BuildDependencies>
         <Patches>
-            <Patch level="1">0001-update_bookmarks_on_panes_add_current.patch</Patch>
-            <Patch level="1">0002-crash_when_cancel_a_search.patch</Patch>
-            <Patch level="1">0005-python26.patch</Patch>
             <Patch level="1">1001-invalid_menu_item_edit_mime.patch</Patch>
         </Patches>
     </Source>
@@ -60,8 +57,8 @@
 
     <History>
         <Update release="1">
-            <Date>2011-05-02</Date>
-            <Version>1.2.8.11</Version>
+            <Date>2011-06-16</Date>
+            <Version>1.2.8.12</Version>
             <Comment>First release.</Comment>
             <Name>Necdet Yücel</Name>
             <Email>necdetyucel@gmail.com</Email>
