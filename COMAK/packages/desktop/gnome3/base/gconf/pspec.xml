@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>Gnome Configuration System</Summary>
         <Description>gconf is a Gnome Configuration System.</Description>
-        <Archive sha1sum="efc7d451c5988207f708b75c01d1d228ba3deed6" type="tarbz2">mirrors://gnome/GConf/2.32/GConf-2.32.3.tar.bz2</Archive>
+        <Archive sha1sum="ff48bf293c59140f6bc585f2b036033c668fc38b" type="tarxz">mirrors://gnome/GConf/2.32/GConf-2.32.4.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>openldap-client</Dependency>
@@ -81,6 +81,13 @@
     </Package>
 
     <History>
+        <Update release="24">
+            <Date>2011-05-17</Date>
+            <Version>2.32.4</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="23">
             <Date>2011-04-29</Date>
             <Version>2.32.3</Version>
