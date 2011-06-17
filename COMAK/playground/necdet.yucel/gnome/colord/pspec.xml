@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>colord</Name>
+        <Homepage>http://colord.hughsie.com</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>service</IsA>
+        <Summary>A system service that makes it easy to manage, install and generate color profiles</Summary>
+        <Description>Colord is a system service that makes it easy to manage, install and generate color profiles to accurately color manage input and output devices.</Description>
+        <Archive sha1sum="a1fa767c16bed7b5746cb3a193be54002d79a07b" type="tarxz">http://people.freedesktop.org/~hughsient/releases/colord-0.1.9.tar.xz</Archive>
+        <BuildDependencies>
+            <Dependency>lcms-devel</Dependency>
+            <Dependency>sane-backends-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>colord</Name>
+        <RuntimeDependencies>
+            <Dependency>lcms</Dependency>
+            <Dependency>sane-backends</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="config">/etc</Path>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="executable">/usr/libexec</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="library">/var/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+            <Path fileType="data">/lib/udev/rules.d</Path>
+        </Files>
+    </Package>
+
+    <Package>
+        <Name>colord-devel</Name>
+        <Summary>Development headers for colord</Summary>
+        <RuntimeDependencies>
+            <Dependency release="current">colord</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
+        </Files>
+    </Package>
+
+    <History>
+        <Update release="1">
+            <Date>2011-06-17</Date>
+            <Version>0.1.9</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
