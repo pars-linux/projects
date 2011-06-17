@@ -13,7 +13,7 @@
         <IsA>library</IsA>
         <Summary>A lightweight, speed optimized color management engine</Summary>
         <Description>LittleCMS intends to be a small-footprint, speed optimized color management engine in open source form.</Description>
-        <Archive sha1sum="0ce856a004068ff6e22f9f2d7b94a11b9b469bf9" type="targz">mirrors://sourceforge/project/lcms/lcms/2.1/lcms2-2.1.tar.gz</Archive>
+        <Archive sha1sum="55ae4884a92c7fbd491c118aa3b356814b1014df" type="targz">mirrors://sourceforge/project/lcms/lcms/2.2/lcms2-2.2.tar.gz</Archive>
         <BuildDependencies>
             <Dependency>tiff-devel</Dependency>
             <Dependency>jpeg-devel</Dependency>
@@ -47,6 +47,13 @@
     </Package>
 
     <History>
+        <Update release="14">
+            <Date>2011-06-17</Date>
+            <Version>2.2</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="13">
             <Date>2011-04-29</Date>
             <Version>2.1</Version>

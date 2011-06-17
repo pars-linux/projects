@@ -27,6 +27,4 @@ def install():
                           BINDIR=%s/usr/bin \
                           includedir=/usr/include' % (get.installDIR(), get.installDIR()))
 
-    pisitools.insinto("/usr/share/lcms/profiles", "testbed/*.icm")
-
     pisitools.dodoc("AUTHORS", "README*", "NEWS", "doc/*")
