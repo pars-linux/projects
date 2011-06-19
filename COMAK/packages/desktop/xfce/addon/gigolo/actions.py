@@ -9,7 +9,9 @@ from pisi.actionsapi import pisitools
 from pisi.actionsapi import shelltools
 
 def setup():
-    shelltools.system("./autogen.sh prefix=/usr")
+    autotools.autoreconf("-fiv")
+    shelltools.system("intltoolize --force --copy --automake")
+    autotools.configure()
 
 def build():
     autotools.make()
