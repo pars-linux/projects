@@ -2,7 +2,7 @@
 <PISI>
     <Source>
         <Name>xfce4-xfapplet-plugin</Name>
-        <Summary xml:lang="tr">DUZELT</Summary>
-        <Description xml:lang="tr">xfce4-xfapplet-plugin bir Xfce modülüdür.</Description>
+        <Summary xml:lang="tr">Xfce Paneli içinden Gnome Panel için yazılmış uygulamaları kullanmanıza izin verem bir modül</Summary>
+        <Description xml:lang="tr">xfce4-xfapplet-plugin, Gnome Panel için yazılmış uygulamaları Xfce Paneli içinden kullanmanıza izin verem bir modüldür.</Description>
     </Source>
 </PISI>
