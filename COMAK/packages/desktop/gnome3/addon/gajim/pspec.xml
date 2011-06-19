@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>A Jabber client written in PyGTK</Summary>
         <Description>Gajim is a jabber client written in PyGTK. The goal of Gajim's developers is to provide a full featured and easy to use xmpp client for the GTK+ users. Gajim does not require GNOME to run, eventhough it exists with it nicely. Gajim is released under the GNU General Public License.</Description>
-        <Archive sha1sum="d2fdf32ded4a5fb3c7a277a765f84a5453931f34" type="tarbz2">http://www.gajim.org/downloads/0.14/gajim-0.14.1.tar.bz2</Archive>
+        <Archive sha1sum="d3e5a16fdaf4eb907a102df3376a68b237a53bf2" type="tarbz2">http://www.gajim.org/downloads/0.14/gajim-0.14.3.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>python-gtk-devel</Dependency>
             <Dependency>gtkspell-devel</Dependency>
@@ -21,7 +21,6 @@
         </BuildDependencies>
         <Patches>
             <Patch>desktop-tr.patch</Patch>
-            <Patch level="1">fix-upper.patch</Patch>
         </Patches>
     </Source>
 
@@ -53,6 +52,13 @@
     </Package>
 
     <History>
+        <Update release="10">
+            <Date>2011-06-19</Date>
+            <Version>0.14.3</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="9">
             <Date>2011-05-21</Date>
             <Version>0.14.1</Version>
