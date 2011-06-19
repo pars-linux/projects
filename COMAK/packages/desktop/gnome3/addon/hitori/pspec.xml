@@ -13,7 +13,7 @@
         <IsA>app:gui</IsA>
         <Summary>A puzzle game</Summary>
         <Description>Hitori is a small application written to allow one to play the eponymous puzzle game, which is similar in theme to more popular puzzles such as Sudoku.</Description>
-        <Archive sha1sum="665189305608dd65b4e17e7add6c8153baa4b0df" type="tarxz">mirrors://gnome/hitori/0.3/hitori-0.3.0.tar.xz</Archive>
+        <Archive sha1sum="d66485e21c7bb7a8835e9a0db741a5d48085db17" type="tarxz">mirrors://gnome/hitori/0.3/hitori-0.3.1.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
             <Dependency>cairo-devel</Dependency>
@@ -40,6 +40,13 @@
     </Package>
 
     <History>
+        <Update release="2">
+            <Date>2011-06-19</Date>
+            <Version>0.3.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-06-12</Date>
             <Version>0.3.0</Version>
