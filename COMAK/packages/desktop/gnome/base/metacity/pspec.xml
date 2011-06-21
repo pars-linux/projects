@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>GTK+ based window manager</Summary>
         <Description>Metacity is a GTK+ baded window manager that controls placement of windows.</Description>
-        <Archive sha1sum="b25add2c1fb0c05babb341bd631c180fd82e7039" type="tarbz2">mirrors://gnome/metacity/2.34/metacity-2.34.0.tar.bz2</Archive>
+        <Archive sha1sum="c6f0f31e2691a79a52948d9d378e072d9cee289e" type="tarxz">mirrors://gnome/metacity/2.34/metacity-2.34.1.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gconf-devel</Dependency>
             <Dependency>startup-notification-devel</Dependency>
@@ -95,6 +95,13 @@
     </Package>
 
     <History>
+        <Update release="8">
+            <Date>2011-06-21</Date>
+            <Version>2.34.1</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="7">
             <Date>2011-05-09</Date>
             <Version>2.34.0</Version>
