@@ -12,7 +12,7 @@
         <IsA>app:gui</IsA>
         <Summary>A tool to customize advanced GNOME 3 options</Summary>
         <Description>gnome-tweak-tool is a tool to customize advanced GNOME 3 options.</Description>
-        <Archive sha1sum="ad7440226447041726ad338455061e782f2b5a85" type="tarbz2">mirrors://gnome/gnome-tweak-tool/3.0/gnome-tweak-tool-3.0.4.tar.bz2</Archive>
+        <Archive sha1sum="d9ead6b827462203047eb285914d6d2dc70d9694" type="tarxz">mirrors://gnome/gnome-tweak-tool/3.0/gnome-tweak-tool-3.0.5.tar.xz</Archive>
         <BuildDependencies>
             <Dependency>gtk3-devel</Dependency>
         </BuildDependencies>
@@ -35,6 +35,13 @@
     </Package>
 
     <History>
+        <Update release="4">
+            <Date>2011-06-22</Date>
+            <Version>3.0.5</Version>
+            <Comment>Version bump</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
         <Update release="3">
             <Date>2011-05-22</Date>
             <Version>3.0.4</Version>
