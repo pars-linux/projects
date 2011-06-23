@@ -14,14 +14,26 @@
         <Description>Cogl is a low level OpenGL abstraction library developed for (and part of) Clutter.</Description>
         <Archive sha1sum="9f6d4aa4d75e1503100fbc3116d31a59ff6dd9bb" type="tarxz">mirrors://gnome/cogl/1.7/cogl-1.7.0.tar.xz</Archive>
         <BuildDependencies>
-            <Dependency>gtk3-devel</Dependency>
+            <Dependency>mesa-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>libXext-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>libXdamage-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
         </BuildDependencies>
     </Source>
 
     <Package>
         <Name>cogl</Name>
         <RuntimeDependencies>
-            <Dependency>gtk3</Dependency>
+            <Dependency>mesa</Dependency>
+            <Dependency>cairo</Dependency>
+            <Dependency>pango</Dependency>
+            <Dependency>libXext</Dependency>
+            <Dependency>libXfixes</Dependency>
+            <Dependency>libXdamage</Dependency>
+            <Dependency>gdk-pixbuf</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
@@ -33,15 +45,16 @@
         </Files>
     </Package>
 
-    <!--Package>
+    <Package>
         <Name>cogl-devel</Name>
         <RuntimeDependencies>
             <Dependency versionFrom="current">cogl</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
+            <Path fileType="data">/usr/lib/pkgconfig</Path>
         </Files>
-    </Package-->
+    </Package>
 
     <History>
         <Update release="1">
