@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PISI SYSTEM "http://www.pardus.org.tr/projeler/pisi/pisi-spec.dtd">
+<PISI>
+    <Source>
+        <Name>cogl</Name>
+        <Homepage>http://developer.gnome.org/cogl</Homepage>
+        <Packager>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Packager>
+        <License>GPLv2</License>
+        <IsA>library</IsA>
+        <Summary>A low level OpenGL abstraction library</Summary>
+        <Description>Cogl is a low level OpenGL abstraction library developed for (and part of) Clutter.</Description>
+        <Archive sha1sum="9f6d4aa4d75e1503100fbc3116d31a59ff6dd9bb" type="tarxz">mirrors://gnome/cogl/1.7/cogl-1.7.0.tar.xz</Archive>
+        <BuildDependencies>
+            <Dependency>gtk3-devel</Dependency>
+        </BuildDependencies>
+    </Source>
+
+    <Package>
+        <Name>cogl</Name>
+        <RuntimeDependencies>
+            <Dependency>gtk3</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="executable">/usr/bin</Path>
+            <Path fileType="library">/usr/lib</Path>
+            <Path fileType="localedata">/usr/share/locale</Path>
+            <Path fileType="man">/usr/share/man</Path>
+            <Path fileType="doc">/usr/share/doc</Path>
+            <Path fileType="data">/usr/share</Path>
+        </Files>
+    </Package>
+
+    <!--Package>
+        <Name>cogl-devel</Name>
+        <RuntimeDependencies>
+            <Dependency versionFrom="current">cogl</Dependency>
+        </RuntimeDependencies>
+        <Files>
+            <Path fileType="header">/usr/include</Path>
+        </Files>
+    </Package-->
+
+    <History>
+        <Update release="1">
+            <Date>2011-06-23</Date>
+            <Version>1.7.0</Version>
+            <Comment>First release.</Comment>
+            <Name>Necdet Yücel</Name>
+            <Email>necdetyucel@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>
+
