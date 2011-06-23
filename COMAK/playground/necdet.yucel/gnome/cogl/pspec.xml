@@ -49,6 +49,18 @@
         <Name>cogl-devel</Name>
         <RuntimeDependencies>
             <Dependency versionFrom="current">cogl</Dependency>
+            <Dependency>atk-devel</Dependency>
+            <Dependency>mesa-devel</Dependency>
+            <Dependency>pango-devel</Dependency>
+            <Dependency>cairo-devel</Dependency>
+            <Dependency>libXi-devel</Dependency>
+            <Dependency>libdrm-devel</Dependency>
+            <Dependency>libXext-devel</Dependency>
+            <Dependency>libXfixes-devel</Dependency>
+            <Dependency>json-glib-devel</Dependency>
+            <Dependency>gdk-pixbuf-devel</Dependency>
+            <Dependency>libXdamage-devel</Dependency>
+            <Dependency>libXcomposite-devel</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include</Path>
