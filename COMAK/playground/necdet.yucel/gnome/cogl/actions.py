@@ -6,11 +6,8 @@
 
 from pisi.actionsapi import autotools
 from pisi.actionsapi import pisitools
-from pisi.actionsapi import shelltools
-from pisi.actionsapi import get
 
 def setup():
-    shelltools.export("CXXFLAGS", "%s -fPIC" % get.CFLAGS())
     autotools.autoreconf("-fiv")
     autotools.configure("--disable-static \
                          --enable-introspection=yes")
@@ -21,5 +18,5 @@ def build():
 def install():
     autotools.install()
 
-    pisitools.dodoc("AUTHORS", "COPYING", "README")
+    pisitools.dodoc("COPYING", "README")
 
