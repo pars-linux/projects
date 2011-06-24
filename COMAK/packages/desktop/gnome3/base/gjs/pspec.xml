@@ -12,7 +12,7 @@
         <IsA>library</IsA>
         <Summary>JavaScript bindings based on gobject-introspection and Mozilla</Summary>
         <Description>Gjs contains JavaScript bindings based on gobject-introspection and the Mozilla SpiderMonkey JavaScript engine.</Description>
-        <Archive sha1sum="780bc1f72ac4435d356e622cff66e2f554117269" type="targz">mirrors://gnome/gjs/0.7/gjs-0.7.14.tar.gz</Archive>
+        <Archive sha1sum="288e8628e751023e4178d76aad24718ddbc1e23b" type="tarbz2">mirrors://gnome/gjs/1.29/gjs-1.29.0.tar.bz2</Archive>
         <BuildDependencies>
             <Dependency>xulrunner-devel</Dependency>
             <Dependency>gobject-introspection-devel</Dependency>
@@ -48,8 +48,14 @@
         </Files>
     </Package>
 
-
     <History>
+        <Update release="2">
+            <Date>2011-06-24</Date>
+            <Version>1.29.0</Version>
+            <Comment>Version bump.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="1">
             <Date>2011-04-15</Date>
             <Version>0.7.14</Version>
