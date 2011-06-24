@@ -19,7 +19,7 @@
             <Dependency>rarian</Dependency>
             <Dependency>sgml-common</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>docbook-xsl</Dependency>
             <!-- <Dependency>dblatex</Dependency> -->
         </BuildDependencies>
@@ -30,7 +30,7 @@
         <RuntimeDependencies>
             <Dependency>rarian</Dependency>
             <Dependency>gnome-doc-utils</Dependency>
-            <Dependency>docbook-xml4_3</Dependency>
+            <Dependency>docbook-xml</Dependency>
             <Dependency>sgml-common</Dependency>
             <Dependency>vim</Dependency>
         </RuntimeDependencies>
