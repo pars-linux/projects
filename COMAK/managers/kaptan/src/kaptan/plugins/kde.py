@@ -12,10 +12,10 @@
 import os
 import dbus
 
-#QT Stuff
+# QT Stuff
 from PyQt4.QtCore import QString,QVariant,QProcess
 
-#PyKDE4 Stuff
+# PyKDE4 Stuff
 from PyKDE4.kdeui import KGlobalSettings
 from PyKDE4.kdecore import KStandardDirs, KGlobal, KConfig
 from PyKDE4 import kdeui
@@ -240,7 +240,7 @@ class Style(base.Style):
 
         groupIconTheme = CONFIG_KDEGLOBALS.group("Icons")
         groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["iconTheme"])
-        #groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["iconTheme"])
+        # groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["iconTheme"])
 
         CONFIG_KDEGLOBALS.sync()
 
@@ -252,7 +252,7 @@ class Style(base.Style):
 
         CONFIG_KDEGLOBALS.sync()
 
-        #emit change style
+        # emit change style
         kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.StyleChanged)
 
         # config plasmarc
@@ -266,7 +266,7 @@ class Style(base.Style):
             subgroup = group.group(each)
             subcomponent = subgroup.readEntry('plugin')
             if subcomponent == 'panel':
-                #print subcomponent
+                # print subcomponent
                 subgroup.writeEntry('location', scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["panelPosition"])
 
         CONFIG_APPLETSRC.sync()
@@ -285,7 +285,7 @@ class Style(base.Style):
             if subcomponent == 'desktop' or subcomponent == 'folderview':
                 if int(subcomponent2) == 0:
                     subgroup.writeEntry('plugin', scrStyleWidget.screenSettings["desktopType"])
-             # Remove folder widget - normally this would be done over dbus but thanks to improper naming of the plasma interface
+            # Remove folder widget - normally this would be done over dbus but thanks to improper naming of the plasma interface
             # this is not possible
             # ValueError: Invalid interface or error name 'org.kde.plasma-desktop': contains invalid character '-'
             #

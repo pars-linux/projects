@@ -19,22 +19,22 @@ from . import base
 from kaptan.tools.desktop_parser import DesktopParser
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
-#CONFIG_KEYBOARD = QSettings("lxsession/LXDE","desktop")
-#CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
-#CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
+# CONFIG_KEYBOARD = QSettings("lxsession/LXDE","desktop")
+# CONFIG_MOUSE_lefthanded = QSettings("lxsession/LXDE","desktop")
+# CONFIG_WALLPAPER = QSettings("pcmanfm/LXDE","pcmanfm")
 
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper','scrAvatar']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
-#libfm configuration files
+# libfm configuration files
 CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"], QSettings.IniFormat)
 CONFIG_PCMANFM = QSettings("%s/.config/pcmanfm/LXDE/pcmanfm.conf"%os.environ["HOME"], QSettings.IniFormat)
 
-#openbox configuration files
+# openbox configuration files
 FILE_OPENBOXRC = "%s/.config/openbox/lxde-rc.xml"%os.environ["HOME"]
 CONFIG_OPENBOX = piksemel.parse(FILE_OPENBOXRC)
 
-#lxsession configuration files
+# lxsession configuration files
 FILE_LXSESSION = "%s/.config/lxsession/LXDE/desktop.conf"%os.environ["HOME"]
 CONFIG_LXSESSION = ""
 
@@ -137,7 +137,7 @@ class Wallpaper(base.Wallpaper):
             CONFIG_PCMANFM.setValue("desktop/wallpaper",QString(wallpaper))
             CONFIG_PCMANFM.sync()
 
-        #if color :
+        # if color :
         #    os.popen("pcmanfm --wallpaper-mode %s" % color)
 
 class Common(base.Common):
@@ -180,8 +180,8 @@ class Style(base.Style):
 
     def reconfigure(self):
         commands = [
-                    #"pcmanfm --desktop-off",
-                    #"pcmanfm --desktop",
+                    # "pcmanfm --desktop-off",
+                    # "pcmanfm --desktop",
                     "lxsession -r",
                     "openbox --restart"
                     ]

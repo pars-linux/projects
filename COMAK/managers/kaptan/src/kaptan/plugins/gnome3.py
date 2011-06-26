@@ -124,7 +124,7 @@ class Style(base.Style):
                 os.remove(temp_file_path)
                 a= int(str(number2)+str(number1))
         except:
-            #4 is the default desktop number
+            # 4 is the default desktop number
             a = 4
         return a
 

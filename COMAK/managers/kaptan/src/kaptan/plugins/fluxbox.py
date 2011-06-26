@@ -22,7 +22,7 @@ from kaptan.screens.scrStyle import Widget as scrStyleWidget
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrWallpaper','scrAvatar']
 TAIL_SCREENS = ['scrSummary', 'scrGoodbye']
 
-#libfm configuration files
+# libfm configuration files
 CONFIG_LIBFM = QSettings("%s/.config/libfm/libfm.conf"%os.environ["HOME"], QSettings.IniFormat)
 
 class Keyboard(base.Keyboard):
@@ -175,11 +175,9 @@ class Style(base.Style):
         os.popen('fluxbox-remote "Reconfigure"')
 
 class Package(base.Package):
-
     pass
 
 class Avatar(base.Avatar):
-
     pass
 
 class Menu(base.Menu):

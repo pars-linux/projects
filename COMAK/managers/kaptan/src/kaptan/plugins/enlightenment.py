@@ -1,7 +1,3 @@
-#ifndef ENLIGHTENMENT.PY
-#define ENLIGHTENMENT.PY
-#ifndef ENLIGHTENMENT.PY
-#define ENLIGHTENMENT.PY
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2005-2009, TUBITAK/UEKAE
@@ -35,6 +31,7 @@ CONFIG_KAPTANRC = QSettings("%s/.kaptanrc"%os.environ["HOME"], QSettings.IniForm
 
 # config files
 TEMP_FILE = tempfile.mkdtemp(prefix = 'Kaptan-')+"/enlightenment.temp"
+
 def decrypt_conf(fl):
     fl = "%s/.e/e/config/standard/%s" % (os.environ["HOME"],fl)
     os.system("eet -d %s config %s" % (fl, TEMP_FILE))
@@ -190,7 +187,7 @@ class Common(base.Common):
 
     def on_buttonSystemSettings_clicked(self):
         self.procSettings = QProcess()
-        #TODO: fix program 
+        # TODO: fix program 
         self.procSettings.start("program name")
 
 class Style(base.Style):
@@ -267,7 +264,3 @@ class Menu(base.Menu):
 
     def setMenuSettings(self):
         pass
-
-
-#endif // ENLIGHTENMENT.PY
-#endif // ENLIGHTENMENT.PY
