@@ -83,11 +83,11 @@ class Wallpaper(base.Wallpaper):
 
             wallpaper["wallpaperThumb"] = ""
 
-            #for thumb in thumbFolder:
-                #if thumb.startswith('scre'):
-                    #wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/%s" % thumb)
+            # for thumb in thumbFolder:
+                # if thumb.startswith('scre'):
+                    # wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/%s" % thumb)
             wallpaper["wallpaperFile"] =desktopFiles
-            #wallpaper["wallpaperThumb"] =wallpaper["wallpaperFile"].split("images")[0]+"screenshot.png"
+            # wallpaper["wallpaperThumb"] =wallpaper["wallpaperFile"].split("images")[0]+"screenshot.png"
             wallpaper["wallpaperThumb"] = desktopFiles
             items.append(wallpaper)
         return items
