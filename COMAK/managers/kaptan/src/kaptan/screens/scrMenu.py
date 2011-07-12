@@ -9,10 +9,12 @@
 #
 # Please read the COPYING file.
 #
-#PyQt4 Stuff
+
+# PyQt4 Stuff
 from PyQt4 import QtGui
 from PyQt4.QtCore import SIGNAL
-#Pds Stuff
+
+# Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop

@@ -16,9 +16,9 @@ import pardus.netutils
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
-#from PyKDE4 import kdecore
+# from PyKDE4 import kdecore
 
-#Pds Stuff
+# Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
@@ -88,7 +88,7 @@ class Widget(QtGui.QWidget, Screen):
         item = QtGui.QTableWidgetItem(colData)
         self.ui.tableWidget.setHorizontalHeaderItem(1, item)
 
-        #self.ui.tableWidget.setHorizontalHeaderLabels(labels)
+        # self.ui.tableWidget.setHorizontalHeaderLabels(labels)
         self.ui.tableWidget.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
         self.ui.tableWidget.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.Stretch)
 

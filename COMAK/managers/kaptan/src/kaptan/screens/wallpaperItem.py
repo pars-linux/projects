@@ -11,6 +11,7 @@
 # Please read the COPYING file.
 #
 
+# PyQt4 Stuff
 from PyQt4 import QtGui
 
 from kaptan.screens.ui_wallpaperItem import Ui_ServiceItemWidget

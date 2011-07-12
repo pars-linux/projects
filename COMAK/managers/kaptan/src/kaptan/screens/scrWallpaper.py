@@ -10,22 +10,21 @@
 # Please read the COPYING file.
 #
 
+# PyQt4 Stuff
 from PyQt4 import QtGui
 from PyQt4.QtGui import QFileDialog,QPalette
+from PyQt4.QtCore import SIGNAL, Qt,QSize
+
 # Context
 from kaptan.screens.context import * 
 import kaptan.screens.context as ctx
 from kaptan.plugins import Desktop
-from PyQt4.QtCore import SIGNAL, Qt,QSize
 
 import os, sys, subprocess
 
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrWallpaper import Ui_wallpaperWidget
 from kaptan.screens.wallpaperItem import WallpaperItemWidget
-
-from kaptan.tools.desktop_parser import DesktopParser
-from ConfigParser import ConfigParser
 
 class Widget(QtGui.QWidget, Screen):
     file_directory = os.environ["HOME"] + "/.fluxbox/"
@@ -40,14 +39,16 @@ class Widget(QtGui.QWidget, Screen):
         QtGui.QWidget.__init__(self,None)
         self.ui = Ui_wallpaperWidget()
         self.ui.setupUi(self)
+
         # Get system locale
         self.catLang = Desktop.common.getLanguage()
+
         # Get screen resolution
         self.rect =  QtGui.QDesktopWidget().screenGeometry()
 
         # Get metadata.desktop files from shared wallpaper directory
-        
         lst = Desktop.wallpaper.getWallpaperSettings()
+
         self.lst = lst
         for wallpaper in lst:
             # Insert wallpapers to listWidget.
@@ -60,7 +61,7 @@ class Widget(QtGui.QWidget, Screen):
                 item.setSizeHint(QSize(130,160))
             self.ui.listWallpaper.setItemWidget(item, widget)
             # Add a hidden value to each item for detecting selected wallpaper's path.
-            item.setStatusTip(wallpaper["wallpaperThumb"])
+            item.setStatusTip(wallpaper["wallpaperFile"])
 
         self.ui.listWallpaper.connect(self.ui.listWallpaper, SIGNAL("itemSelectionChanged()"), self.setWallpaper)
         self.ui.checkBox.connect(self.ui.checkBox, SIGNAL("stateChanged(int)"), self.disableWidgets)
@@ -100,6 +101,7 @@ class Widget(QtGui.QWidget, Screen):
             item = QtGui.QListWidgetItem(self.ui.listWallpaper)
             wallpaperName = os.path.splitext(os.path.split(str(selectedFile))[1])[0]
             widget = WallpaperItemWidget(unicode(wallpaperName), unicode("Unknown"), selectedFile, self.ui.listWallpaper)
+
             if ctx.Pds.session.Name == "KDE":
                 item.setSizeHint(QSize(120,170))
             else:

@@ -9,15 +9,17 @@
 #
 # Please read the COPYING file.
 #
-#PyQt4 Stuff
+
+# PyQt4 Stuff
 from PyQt4 import QtGui
 from PyQt4.QtCore import QString,QProcess,QSettings
 from PyQt4.QtGui import QMessageBox
 import subprocess,os, dbus
 
-#Context Stuff
+# Context Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
+
 from kaptan.plugins import Desktop
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrSummary import Ui_summaryWidget
@@ -104,7 +106,7 @@ class Widget(QtGui.QWidget, Screen):
             if self.smoltSettings["summaryMessage"]:
                 content.append(subject %i18n("Smolt Settings"))
                 content.append(item % i18n("Send my profile: <b>%s</b>") % self.smoltSettings["summaryMessage"])
-                #content.append(i18n("(<i><u>Warning:</u> Sending profile requires to set up communication with Smolt server and can take between 30 seconds to a minute. Kaptan may freeze during this time.</i>)"))
+                # content.append(i18n("(<i><u>Warning:</u> Sending profile requires to set up communication with Smolt server and can take between 30 seconds to a minute. Kaptan may freeze during this time.</i>)"))
                 content.append(end)
         except:
             print "WARNING: Your Smolt profile is already sent."
@@ -160,7 +162,7 @@ class Widget(QtGui.QWidget, Screen):
 
         Desktop.style.reconfigure()
 
-        #Package Settings
+        # Package Settings
         if self.packageSettings["hasChanged_repo"] or self.packageSettings["hasChanged_showTray"]:
             CONFIG_packagemanager = QSettings("%s/.config/Pardus/Package-Manager.conf" %os.environ["HOME"], QSettings.IniFormat)
             CONFIG_packagemanager.setValue("SystemTray",self.packageSettings["hasChanged_showTray"])

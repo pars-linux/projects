@@ -13,10 +13,10 @@
 from PyQt4 import QtGui
 from PyQt4.QtCore import QProcess, QLocale
 
-#Pds Stuff
+# Pds Stuff
 import kaptan.screens.context as ctx
 
-#Context
+# Context
 from kaptan.screens.context import *
 import kaptan.screens.context as ctx
 from kaptan.plugins import Desktop
@@ -28,7 +28,6 @@ if ctx.Pds.session == ctx.pds.Kde4:
 import subprocess, sys
 
 from kaptan.screen import Screen
-
 from kaptan.screens.ui_scrGoodbye import Ui_goodbyeWidget
 import kaptan.screens.scrSmolt as smoltWidget
 

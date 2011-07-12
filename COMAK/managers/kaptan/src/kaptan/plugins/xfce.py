@@ -9,11 +9,13 @@
 #
 # Please read the COPYING file.
 
-import os,sys
-import time
+import os
 import re
 import piksemel
+
+# PyQt4 Stuff
 from PyQt4.QtCore import QLocale,QProcess
+
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
@@ -51,7 +53,9 @@ class Mouse(base.Mouse):
             os.system("xfconf-query -c xfwm4 -p /general/scroll_workspaces -s False")
 
 class Wallpaper(base.Wallpaper):
+
     def getWallpaperSettings(self):
+
         import fnmatch
         matches = []
         for root, dirnames, filenames in os.walk('/usr/share/xfce4/backdrops'):
@@ -111,28 +115,39 @@ class Common(base.Common):
         self.procSettings.start("xfce4-settings-manager")
 
 class Style(base.Style):
+
+    themesPreviewFile = "/usr/share/kaptan/kaptan/xfce_themes/"
+
     def getDesktopNumber(self):
-        import os,piksemel,re
-        FILE_PATH="%s/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml"%os.environ["HOME"]
-        parse_file=piksemel.parse(FILE_PATH)
-        x = parse_file.getTag("property")
-        temp_file_path="%s/.config/.tempf.txt"%os.environ["HOME"]
-        temp_file=open(temp_file_path,"w")
-        temp_file.write(x.toString())
-        temp_file.close()
-        temp_file=open(temp_file_path)
-        a=temp_file.read()
-        x=re.search("<property name=\"workspace_count\" type=\"int\" value=\".*/>",a)
-        deger= len(x.group().split("=")[3])
-        if deger==5:
-            number= int(x.group().split("=")[3][-4])
-            os.remove(temp_file_path)
-            return number
-        else:
-            number1= int(x.group().split("=")[3][-4])
-            number2= int(x.group().split("=")[3][-5])
-            os.remove(temp_file_path)
-            return int(str(number2)+str(number1))
+
+        try:
+            FILE_PATH="%s/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml"%os.environ["HOME"]
+            parse_file=piksemel.parse(FILE_PATH)
+            x = parse_file.getTag("property")
+            temp_file_path="%s/.config/.tempf.txt"%os.environ["HOME"]
+            temp_file=open(temp_file_path,"w")
+            temp_file.write(x.toString())
+            temp_file.close()
+            temp_file=open(temp_file_path)
+            a=temp_file.read()
+            x=re.search("<property name=\"workspace_count\" type=\"int\" value=\".*/>",a)
+            deger= len(x.group().split("=")[3])
+            if deger==5:
+                number= int(x.group().split("=")[3][-4])
+                os.remove(temp_file_path)
+                return number
+            else:
+                number1= int(x.group().split("=")[3][-4])
+                number2= int(x.group().split("=")[3][-5])
+                os.remove(temp_file_path)
+                return int(str(number2)+str(number1))
+        except:
+            # default desktop number value is 4
+            return 4
+    def getThemeList(self):
+
+        dir =QDir("/usr/share/themes")
+        return dir.entryList()
 
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]

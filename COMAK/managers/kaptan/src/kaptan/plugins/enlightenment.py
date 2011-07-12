@@ -9,11 +9,9 @@
 #
 # Please read the COPYING file.
 
-import os,sys
-import time
+import os
 import re
 import tempfile
-import piksemel
 import shutil
 import Image
 from PyQt4.QtCore import QProcess,QLocale,QStringList,QDir,QString,QSettings,QProcess
@@ -93,7 +91,6 @@ class Wallpaper(base.Wallpaper):
         lst = dir.entryList()
         items = []
         for desktopFile in lst:
-            #print desktopFile
             wallpaper = {}
             try:
                 wallpaper["wallpaperTitle"] = "picture"
@@ -192,6 +189,8 @@ class Common(base.Common):
 
 class Style(base.Style):
 
+    themesPreviewFile "/usr/share/kaptan/kaptan/themes/"
+
     def getDesktopNumber(self):
         try:
             desktopNumber = CONFIG_KAPTANRC.value("Desktop/DesktopNumber").toInt()[0]
@@ -200,6 +199,15 @@ class Style(base.Style):
             return desktopNumber
         except:
             return 2
+
+    def getThemeList(self):
+
+        dir = QDir("/usr/share/enlightenment/data/themes")
+        dir.setFilter( QDir.NoSymLinks | QDir.Files )
+        a = QStringList()
+        a.append("*.edj")
+        dir.setNameFilters(a)
+        return dir.entryList()
 
     def setDesktopNumber(self):
         data = decrypt_conf("e.cfg")

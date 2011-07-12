@@ -9,16 +9,15 @@
 #
 #TODO:
 #- left right position duzelecek
-#- kamera yoksa gorunmeyebilir
 # Please read the COPYING file.
 #
 
-
+# PyQt4 Stuff
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import SIGNAL,QVariant
 from PyQt4.QtGui import QFileDialog
 
-#Pds Stuff
+# Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
