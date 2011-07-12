@@ -10,7 +10,6 @@
 # Please read the COPYING file.
 
 import os,sys
-import time
 import re
 import piksemel
 from PyQt4.QtCore import QSettings, QLocale, QDir, QString, QStringList,QProcess
@@ -150,14 +149,31 @@ class Common(base.Common):
         return var
 
     def systemSettingsButton(self):
+
         self.procSettings = QProcess()
         self.procSettings.start("obconf")
 
 class Style(base.Style):
 
+    themesPreviewFile = "/usr/share/kaptan/kaptan/themes/"
+
     def getDesktopNumber(self):
-        desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
-        return desktop_number
+        try:
+            desktop_number = int(CONFIG_OPENBOX.getTag("desktops").getTag("number").firstChild().data())
+            return desktop_number
+        except:
+            #default desktop number value is 4
+            return 4
+
+    def getThemeList(self):
+
+        dir =QDir("/usr/share/themes")
+        lst= dir.entryList()
+        lst2=[]
+        for previews in lst:
+            if not previews=="Crux":
+                lst2.append(previews)
+        return lst2
 
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]

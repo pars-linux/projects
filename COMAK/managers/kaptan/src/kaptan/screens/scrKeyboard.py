@@ -14,13 +14,14 @@
 from PyQt4 import QtGui
 
 from PyQt4.QtCore import *
-#from PyKDE4.kdecore import ki18n, KConfig
+# from PyKDE4.kdecore import ki18n, KConfig
 
 from kaptan.screen import Screen
 from kaptan.screens.ui_scrKeyboard import Ui_keyboardWidget
-#Pds Stuff
+# Pds Stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
+
 from kaptan.plugins import Desktop
 
 import subprocess

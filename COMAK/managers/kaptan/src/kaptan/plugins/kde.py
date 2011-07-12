@@ -10,7 +10,7 @@
 # Please read the COPYING file.
 
 import os
-import dbus
+import dbus,glob
 
 # QT Stuff
 from PyQt4.QtCore import QString,QVariant,QProcess
@@ -24,6 +24,8 @@ from PyQt4 import QtGui
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
+from ConfigParser import ConfigParser
+
 from kaptan.screens.scrStyle import Widget as scrStyleWidget
 
 HEAD_SCREENS = ['scrWelcome', 'scrMouse', 'scrStyle', 'scrMenu', 'scrWallpaper','scrAvatar']
@@ -149,7 +151,7 @@ class Menu(base.Menu):
 
 class Wallpaper(base.Wallpaper):
 
-    def getWallpaperSettings(self): 
+    def getWallpaperSettings(self):
         lst = KStandardDirs().findAllResources("wallpaper", "*metadata.desktop", KStandardDirs.Recursive)
 
         items = []
@@ -187,6 +189,7 @@ class Wallpaper(base.Wallpaper):
                     wallpaper["wallpaperThumb"] = os.path.join(os.path.split(str(desktopFiles))[0], "contents/" + thumb)
 
             wallpaper["wallpaperFile"] = os.path.split(str(desktopFiles))[0]
+
             items.append(wallpaper)
 
         return items
@@ -205,9 +208,93 @@ class Wallpaper(base.Wallpaper):
 
 class Style(base.Style):
 
+    themesPreviewFile = "/usr/share/kaptan/kaptan/kde_themes/"
+
     def getDesktopNumber(self):
-        group = CONFIG_KWINRC.group("Desktops")
-        return int(group.readEntry("Number"))
+        try:
+            group = CONFIG_KWINRC.group("Desktops")
+            return int(group.readEntry("Number"))
+        except:
+            #default desktop number value is 4
+            return 4
+
+    def getThemeList(self):
+        lst2 = glob.glob1("/usr/share/kaptan/kaptan/kde_themes", "*.style")
+        return lst2
+
+    def getThemeDetails(self,desktopFiles):
+
+        self.styleDetails = {}
+        parser = DesktopParser()
+        parser.read("/usr/share/kaptan/kaptan/kde_themes/" +str(desktopFiles))
+
+        try:
+            styleName = unicode(parser.get_locale('Style', 'name[%s]'%self.catLang, ''))
+        except:
+            styleName = unicode(parser.get_locale('Style', 'name', ''))
+        try:
+            styleDesc = unicode(parser.get_locale('Style', 'description[%s]'%self.catLang, ''))
+        except:
+            styleDesc = unicode(parser.get_locale('Style', 'description', ''))
+
+        self.styleName = styleName
+        self.styleDesc = styleDesc
+
+        # TODO find a fallback values for these & handle exceptions seperately.
+        #styleApplet = parser.get_locale('Style', 'applets', '')
+        panelPosition = parser.get_locale('Style', 'panelPosition', '')
+        #styleColorScheme = parser.get_locale('Style', 'colorScheme', '')
+        widgetStyle = unicode(parser.get_locale('Style', 'widgetStyle', ''))
+        desktopTheme = unicode(parser.get_locale('Style', 'desktopTheme', ''))
+        colorScheme = unicode(parser.get_locale('Style', 'colorScheme', ''))
+
+        #FIXME : Make me dynamic
+        self.iconTheme = "oxygen"
+
+        windowDecoration = unicode(parser.get_locale('Style', 'windowDecoration', ''))
+        styleThumb = unicode(os.path.join("/usr/share/kaptan/kaptan/kde_themes/",  parser.get_locale('Style', 'thumbnail','')))
+
+        colorDict = {}
+        colorDir = "/usr/share/kde4/apps/color-schemes/"
+
+        self.Config = ConfigParser()
+        self.Config.optionxform = str
+        color = colorDir + colorScheme + ".colors"
+        if not os.path.exists(color):
+            color = colorDir + "Oxygen.colors"
+
+        self.Config.read(color)
+        #colorConfig= KConfig("kdeglobals")
+        for i in self.Config.sections():
+            #colorGroup = colorConfig.group(str(i))
+            colorDict[i] = {}
+            for key, value in self.ConfigSectionMap(i).items():
+                colorDict[i][key] = value
+                #colorGroup.writeEntry(str(key), str(value))
+
+        self.styleDetails[styleName] = {
+                "description": styleDesc,
+                "widgetStyle": widgetStyle,
+                "colorScheme": colorDict,
+                "desktopTheme": desktopTheme,
+                "iconTheme": self.iconTheme,
+                "windowDecoration": windowDecoration,
+                "panelPosition": panelPosition
+                }
+        return self.styleDetails[styleName]
+
+    def ConfigSectionMap(self,section):
+        dict1 = {}
+        options = self.Config.options(section)
+        for option in options:
+            try:
+                dict1[option] = self.Config.get(section, option)
+                if dict1[option] == -1:
+                    DebugPrint("skip: %s" % option)
+            except:
+                print("exception on %s!" % option)
+                dict1[option] = None
+        return dict1
 
     def setDesktopNumber(self):
         group = CONFIG_KWINRC.group("Desktops")
@@ -235,17 +322,18 @@ class Style(base.Style):
         kdeui.KIconCache.deleteCache()
 
     def setStyleSettings(self):
+
         group = CONFIG_KDEGLOBALS.group("General")
-        group.writeEntry("widgetStyle", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["widgetStyle"])
+#        group.writeEntry("widgetStyle" , unicode(scrStyleWidget.screenSettings["summaryMessage"]["widgetStyle"]))
+        group.writeEntry("widgetStyle", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["widgetStyle"])
 
         groupIconTheme = CONFIG_KDEGLOBALS.group("Icons")
-        groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["iconTheme"])
         # groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["iconTheme"])
 
         CONFIG_KDEGLOBALS.sync()
 
         # set color scheme
-        for key, value in scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["colorScheme"].items():
+        for key, value in scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["colorScheme"].items():
                 colorGroup = CONFIG_KDEGLOBALS.group(key)
                 for key2, value2 in value.items():
                         colorGroup.writeEntry(str(key2), str(value2))
@@ -257,7 +345,7 @@ class Style(base.Style):
 
         # config plasmarc
         groupDesktopTheme = CONFIG_PLASMARC.group("Theme")
-        groupDesktopTheme.writeEntry("name", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["desktopTheme"])
+        groupDesktopTheme.writeEntry("name", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["desktopTheme"])
         CONFIG_PLASMARC.sync()
 
         # set plasma
@@ -266,14 +354,13 @@ class Style(base.Style):
             subgroup = group.group(each)
             subcomponent = subgroup.readEntry('plugin')
             if subcomponent == 'panel':
-                # print subcomponent
-                subgroup.writeEntry('location', scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["panelPosition"])
+                subgroup.writeEntry('location', scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["panelPosition"])
 
         CONFIG_APPLETSRC.sync()
 
         # config kwinrc
         groupWindowDecoration = CONFIG_KWINRC.group("Style")
-        groupWindowDecoration.writeEntry("PluginLib", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["windowDecoration"])
+        groupWindowDecoration.writeEntry("PluginLib", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["windowDecoration"])
         CONFIG_KWINRC.sync()
 
     def setDesktopType(self):

@@ -9,10 +9,8 @@
 #
 # Please read the COPYING file.
 
-import os,sys
-import time
+import os
 import re
-import piksemel
 from PyQt4.QtCore import QSettings,QString,QDir,QStringList,QLocale,QProcess
 from . import base
 
@@ -116,6 +114,9 @@ class Common(base.Common):
         # self.procSettings.start("PROGRAM NAME")
         pass
 class Style(base.Style):
+
+    themesPreviewFile = "/usr/share/kaptan/kaptan/themes/"
+
     file_directory = os.environ["HOME"]+"/.fluxbox/"
     desktop_number_temp = 0
     def getDesktopNumber(self):
@@ -128,6 +129,11 @@ class Style(base.Style):
                 return int(desktop_num)
         file_.close()
         return 4
+
+    def getThemeList(self):
+
+        dir = QDir("/usr/share/fluxbox/styles")
+        return dir.entryList()
 
     def setDesktopNumber(self):
         file_ = open(self.file_directory + "init" , 'r')

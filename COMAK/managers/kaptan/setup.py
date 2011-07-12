@@ -16,7 +16,9 @@ import glob
 import shutil
 import sys
 import fnmatch
+
 sys.path.append(os.path.join(os.path.split(__file__)[0],"src","kaptan","screens"))
+
 from distutils.core import setup
 from distutils.cmd import Command
 from distutils.command.build import build
@@ -95,6 +97,7 @@ class Build(build):
         os.system("cp -R data/gnome_themes build/kaptan/")
         os.system("cp -R data/gnome_previews build/kaptan/")
         os.system("cp -R data/gnome3_previews build/kaptan/")
+
         # Xfce Themes
         os.system("cp -R data/xfce_themes build/kaptan/" )
 
@@ -121,6 +124,7 @@ class Build(build):
         os.system("sed -i 's/kaptan_rc/kaptan.\kaptan_rc/g' build/kaptan/screens/ui_*")
 
 class Install(install):
+
     def run(self):
         os.system("./setup.py build")
 
@@ -161,10 +165,6 @@ class Install(install):
         print "Installing codes..."
         os.system("cp -R build/* %s/" % project_dir)
 
-        #print "Installing custom themes..."
-        #os.system("cp -R data/themes/* /usr/share/themes")
-        #os.system("cp -R data/gnome_themes/* /usr/share/themes")
-
         # Install locales
         print "Installing locales..."
         for filename in glob.glob1("po", "*.po"):
@@ -175,12 +175,15 @@ class Install(install):
             except OSError:
                 pass
             shutil.copy("po/%s.mo" % lang, os.path.join(locale_dir, "%s/LC_MESSAGES" % lang, "%s.mo" % about.catalog))
+
         # Rename
         print "Renaming application.py..."
         # shutil.move(os.path.join(project_dir, "application.py"), os.path.join(project_dir, "%s.py" % about.appName))
+
         # Modes
         print "Changing file modes..."
         os.chmod(os.path.join(project_dir, "%s.py" % about.appName), 0755)
+
         # Symlink
         try:
             try:

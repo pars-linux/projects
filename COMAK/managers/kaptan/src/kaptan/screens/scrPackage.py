@@ -10,11 +10,14 @@
 # Please read the COPYING file.
 #
 
+#PyQt4 Stuff
 from PyQt4 import QtGui
 from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import SIGNAL,QSettings
 
+# Pds
 import kaptan.screens.context as ctx
+
 from kaptan.screens.context import *
 from kaptan.screens.ui_scrPackage_comak import Ui_packageWidget
 from kaptan.screen import Screen
@@ -83,8 +86,8 @@ class Widget(QtGui.QWidget, Screen):
         self.ui.add_repo.setText("Add COMAK Repository")
         # control if we already have lxden repo
         if self.repodb.has_repo(self.repoName):
-            #self.pushDelete.setEnabled(0)
-            self.ui.checkBox.setEnabled(0)
+            #self.pushDelete.setEnabled(False)
+            self.ui.checkBox.setEnabled(False)
             errorMessage= i18n("comak-repo is already available on your system.")
             self.ui.information_label.setText(errorMessage)
 

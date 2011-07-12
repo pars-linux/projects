@@ -1,5 +1,3 @@
-#ifndef SCRSTYLE.PY
-#define SCRSTYLE.PY
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2005-2009, TUBITAK/UEKAE
@@ -12,30 +10,30 @@
 # Please read the COPYING file.
 #
 
+# PyQt4 stuff
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import QString,QDir,QStringList, QSize,SIGNAL,Qt
 from PyQt4.QtGui import QListWidgetItem
 
-# Pds Stuff
+# Pds stuff
 import kaptan.screens.context as ctx
 from kaptan.screens.context import *
 from kaptan.plugins import Desktop
 
-import os, sys, Image, dbus, glob
+import os
 
 FOR_GNOME = ctx.Pds.session == ctx.pds.Gnome
 FOR_GNOME3 = ctx.Pds.session == ctx.pds.Gnome3
 
 from kaptan.screen import Screen
 
+# gnome2, gnome3 has different user interface style screen
 if FOR_GNOME or FOR_GNOME3:
     from kaptan.screens.ui_scrStyle_gnome import Ui_styleWidget
 else:
     from kaptan.screens.ui_scrStyle import Ui_styleWidget
 
 from kaptan.screens.styleItem import StyleItemWidget
-from kaptan.tools.desktop_parser import DesktopParser
-from ConfigParser import ConfigParser
 
 class Widget(QtGui.QWidget, Screen):
 
@@ -58,112 +56,77 @@ class Widget(QtGui.QWidget, Screen):
         self.ui = Ui_styleWidget()
         self.ui.setupUi(self)
 
-        if not ctx.Pds.session.Name == "KDE":
-            self.ui.listIcon.item(0).setHidden(1)
+        self.styleDetails = {}
+
+        # listIcon widget show  Kde's desktop types
+        if not ctx.Pds.session.Name == "kde":
+            self.ui.listIcon.item(0).setHidden(True)
             self.ui.labelDesktopType.setVisible(False)
             self.ui.comboBoxDesktopType.setVisible(False)
-        elif ctx.Pds.session.Name == "KDE":
-            self.ui.listIcon.item(1).setHidden(1)
+
+        elif ctx.Pds.session.Name == "kde":
+            self.ui.listIcon.item(1).setHidden(True)
 
         self.ui.label.setText(str(ctx.Pds.session.Name)+" Themes")
-        self.styleDetails = {}
         self.catLang = Desktop.common.getLanguage()
+
+        # Get desktop number
         defaultDesktopNumber = Desktop.style.getDesktopNumber()
         self.__class__.screenSettings["desktopNumber"]= defaultDesktopNumber
         self.ui.spinBoxDesktopNumbers.setValue(defaultDesktopNumber)
-        if ctx.Pds.session.Name =="enlightenment":
-            dir = QDir("/usr/share/enlightenment/data/themes")
-            dir.setFilter( QDir.NoSymLinks | QDir.Files )
-            a = QStringList()
-            a.append("*.edj")
-            dir.setNameFilters(a)
-            lst2 = dir.entryList()
-        elif ctx.Pds.session.Name == "fluxbox":
-            dir = QDir("/usr/share/fluxbox/styles")
-            lst2 =dir.entryList()
-        elif ctx.Pds.session.Name == "gnome" or ctx.Pds.session.Name == "gnome3":
-            dir = QDir("/usr/share/themes")
-            lst =dir.entryList()
-            lst2=[]
-            for previews in lst:
-                if not previews == "HighContrast" and not previews == "HighContrastInverse":
-                    lst2.append(previews)
 
-        elif ctx.Pds.session.Name == "xfce":
-            dir =QDir("/usr/share/themes")
-            lst2= dir.entryList()
-        elif ctx.Pds.session.Name == "LXDE":
-            dir =QDir("/usr/share/themes")
-            lst= dir.entryList()
-            lst2=[]
-            for previews in lst:
-                if not previews=="Crux":
-                    lst2.append(previews)
-        else:
-            dir = QtCore.QDir("/usr/share/themes")
-            dir.setFilter(QtCore.QDir.Dirs| QtCore.QDir.NoDotAndDotDot)
-            lst2 = dir.entryList()
+        # Get theme list
+        lst2 = Desktop.style.getThemeList()
+
         for themes in lst2:
+
+            ThemeFile = themes
+            themes = themes.split(".")[0]
+            thumbFolder = Desktop.style.themesPreviewFile + themes + ".png"
             try:
                 try:
-                    StyleName = themes.split(".")[0]
+                    StyleName = themes
                 except :
-                    StyleName = themes+"title"
-                try:
-                    StyleDesc = themes.split(".")[0]+"Desc"
-                except:
-                    StyleDesc = "unknown"
+                    StyleName = "title"
+
+                StyleDesc = "theme"
+
             except:
                 print "Warning! Invalid syntax in ", themes
-            ThemeFile = themes
-            if ctx.Pds.session.Name == "xfce":
-                a ="/usr/share//kaptan/kaptan/xfce_themes/"
-                thumbFolder = a + themes + ".png"
-            elif ctx.Pds.session.Name == "gnome" or  ctx.Pds.session.Name == "gnome3":
-                a ="/usr/share/kaptan/kaptan/gnome_themes/"
-                thumbFolder = a +themes+ ".png"
-            else:
-                a = "/usr/share/kaptan/kaptan/themes/"
-                thumbFolder =a +themes+ ".png"
 
-            if (os.path.exists(a+themes+".png")):
+            if (os.path.exists(thumbFolder)):
                 self.list_themes.append(themes)
                 styleThumb = thumbFolder
                 item = QtGui.QListWidgetItem(self.ui.listStyles)
                 widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
-                if ctx.Pds.session.Name == "KDE":
+
+                if ctx.Pds.session.Name == "kde":
                     item.setSizeHint(QSize(120,170))
                 else:
                     item.setSizeHint(QSize(130,160))
                 self.ui.listStyles.setItemWidget(item,widget)
                 item.setStatusTip(ThemeFile)
-                self.styleDetails[StyleName] = {
-                        "description":StyleDesc
-                        }
-            elif (os.path.exists("/usr/share/kaptan/kaptan/gnome_themes/"+themes+".png")):
-                self.list_themes.append(themes)
-                styleThumb = thumbFolder
-                item = QtGui.QListWidgetItem(self.ui.listStyles)
-                widget = StyleItemWidget(unicode(StyleName),unicode(StyleDesc),thumbFolder,self.ui.listStyles)
-                item.setSizeHint(QSize(120,170))
-                self.ui.listStyles.setItemWidget(item,widget)
-                item.setStatusTip(ThemeFile)
-                self.styleDetails[StyleName] = {
-                        "description":StyleDesc
-                        }
+
+                # Kde need to know details of theme
+                if ctx.Pds.session.Name == "kde":
+                    self.styleDetails[StyleName] = Desktop.style.getThemeDetails(ThemeFile)
+                    self.__class__.screenSettings["iconTheme"] = Desktop.style.iconTheme
 
         self.ui.listStyles.connect(self.ui.listStyles, SIGNAL("itemSelectionChanged()"), self.setStyle)
+
         if ctx.Pds.session.Name =="fluxbox":
             self.ui.listIcon.setVisible(False)
             self.ui.iconContainer.hide()
             self.ui.label_3.hide()
+
         self.ui.listIcon.connect(self.ui.listIcon, SIGNAL("itemClicked(QListWidgetItem *)"), self.setIcon)
-        #self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
-        #if ctx.Pds.session.Name =="gnome" or  ctx.Pds.session == ctx.pds.LXDE or ctx.Pds.session == ctx.pds.Gnome3:
+
         if ctx.Pds.session == ctx.pds.LXDE:
             self.ui.spinBoxDesktopNumbers.hide()
             self.ui.labelDesktopNumbers.hide()
+
         self.ui.spinBoxDesktopNumbers.connect(self.ui.spinBoxDesktopNumbers, SIGNAL("valueChanged(const QString &)"), self.addDesktop)
+
         #self.ui.previewButton.connect(self.ui.previewButton, SIGNAL("clicked()"), self.previewStyle)
 
     def ConfigSectionMap(self,section):
@@ -199,8 +162,7 @@ class Widget(QtGui.QWidget, Screen):
             self.ui.listStyles.item(wallpaper_index).setBackground(Qt.gray);
             self.ui.listStyles.currentItem().setBackground(Qt.blue)
 
-
-        self.__class__.screenSettings["summaryMessage"] = unicode(styleName)
+        self.__class__.screenSettings["summaryMessage"] = unicode(styleName.split(".")[0])
         self.__class__.screenSettings["hasChanged"] = True
         self.__class__.screenSettings["styleChanged"] = True
 
@@ -223,5 +185,3 @@ class Widget(QtGui.QWidget, Screen):
     def execute(self):
         return True
 
-
-#endif // SCRSTYLE.PY

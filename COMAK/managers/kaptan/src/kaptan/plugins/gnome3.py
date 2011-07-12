@@ -9,11 +9,10 @@
 #
 # Please read the COPYING file.
 
-import os,sys,string
-import time
+import os,string
 import re
 import piksemel
-from PyQt4.QtCore import QLocale,QProcess
+from PyQt4.QtCore import QLocale,QProcess,QDir
 from . import base
 
 from kaptan.tools.desktop_parser import DesktopParser
@@ -101,6 +100,9 @@ class Common(base.Common):
         self.procSettings.start("gnome-control-center")
 
 class Style(base.Style):
+
+    themesPreviewFile = "/usr/share/kaptan/kaptan/gnome_themes/"
+
     def getDesktopNumber(self):
         try:
             FILE_PATH="%s/.gconf/apps/metacity/general/"%os.environ["HOME"]+"%gconf.xml"
@@ -125,8 +127,18 @@ class Style(base.Style):
                 a= int(str(number2)+str(number1))
         except:
             # 4 is the default desktop number
-            a = 4
-        return a
+        return 4
+
+    def getThemeList(self):
+
+        dir = QDir("/usr/share/themes")
+        lst =dir.entryList()
+        lst2=[]
+        for previews in lst:
+            if not previews == "HighContrast" and not previews == "HighContrastInverse":
+                lst2.append(previews)
+        return lst2
+
 
     def setDesktopNumber(self):
         dn = scrStyleWidget.screenSettings["desktopNumber"]
