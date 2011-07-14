@@ -40,7 +40,7 @@ class Widget(QtGui.QWidget, Screen):
         self.ui = Ui_goodbyeWidget()
         self.ui.setupUi(self)
         var=Desktop.common.getLanguage()
-        if var == "Turkish":
+        if var == "Turkish" or var == "tr":
             self.helpPageUrl = "http://www.pardus.org.tr/destek"
         else:
             self.helpPageUrl = "http://www.pardus.org.tr/eng/support"

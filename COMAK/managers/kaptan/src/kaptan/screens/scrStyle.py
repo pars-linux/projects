@@ -58,7 +58,7 @@ class Widget(QtGui.QWidget, Screen):
 
         self.styleDetails = {}
 
-        # listIcon widget show  Kde's desktop types
+        # listIcon widget shows Kde's desktop types
         if not ctx.Pds.session.Name == "kde":
             self.ui.listIcon.item(0).setHidden(True)
             self.ui.labelDesktopType.setVisible(False)
@@ -83,13 +83,23 @@ class Widget(QtGui.QWidget, Screen):
             ThemeFile = themes
             themes = themes.split(".")[0]
             thumbFolder = Desktop.style.themesPreviewFile + themes + ".png"
+
+            # Kde need to know details of theme
+            if ctx.Pds.session.Name == "kde":
+                StyleName = themes
+                self.styleDetails[StyleName] = Desktop.style.getThemeDetails(ThemeFile)
+                self.__class__.screenSettings["iconTheme"] = Desktop.style.iconTheme
+
             try:
                 try:
-                    StyleName = themes
+                    StyleName = Desktop.style.styleName
                 except :
-                    StyleName = "title"
+                    StyleName = theme
 
-                StyleDesc = "theme"
+                try:
+                    StyleDesc = Desktop.style.styleDesc
+                except:
+                    StyleDesc = "theme"
 
             except:
                 print "Warning! Invalid syntax in ", themes
@@ -105,12 +115,8 @@ class Widget(QtGui.QWidget, Screen):
                 else:
                     item.setSizeHint(QSize(130,160))
                 self.ui.listStyles.setItemWidget(item,widget)
-                item.setStatusTip(ThemeFile)
+                item.setStatusTip(themes)
 
-                # Kde need to know details of theme
-                if ctx.Pds.session.Name == "kde":
-                    self.styleDetails[StyleName] = Desktop.style.getThemeDetails(ThemeFile)
-                    self.__class__.screenSettings["iconTheme"] = Desktop.style.iconTheme
 
         self.ui.listStyles.connect(self.ui.listStyles, SIGNAL("itemSelectionChanged()"), self.setStyle)
 
@@ -127,7 +133,8 @@ class Widget(QtGui.QWidget, Screen):
 
         self.ui.spinBoxDesktopNumbers.connect(self.ui.spinBoxDesktopNumbers, SIGNAL("valueChanged(const QString &)"), self.addDesktop)
 
-        #self.ui.previewButton.connect(self.ui.previewButton, SIGNAL("clicked()"), self.previewStyle)
+        self.ui.comboBoxDesktopType.connect(self.ui.comboBoxDesktopType, SIGNAL("activated(const QString &)"), self.setDesktopType)
+       #self.ui.previewButton.connect(self.ui.previewButton, SIGNAL("clicked()"), self.previewStyle)
 
     def ConfigSectionMap(self,section):
         dict1 = {}
