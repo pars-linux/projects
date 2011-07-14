@@ -19,6 +19,10 @@ from kaptan.tools.progress_pie import DrawPie
 from kaptan.tools.kaptan_menu import Menu
 from kaptan.plugins import Desktop
 
+if ctx.Pds.session.Name == "kde" :
+    from PyKDE4 import kdeui
+    from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KConfig
+
 class Kaptan(QtGui.QWidget):
     def __init__(self, parent = None):
         QtGui.QWidget.__init__(self, parent)
@@ -36,11 +40,8 @@ class Kaptan(QtGui.QWidget):
         self.currentDir = os.path.dirname(os.path.realpath(__file__))
         self.screensPath = self.currentDir + "/kaptan/screens/scr*py"
         # Config
-        if ctx.Pds.session == ctx.pds.Kde4:
-            self.kaptanConfig = KConfig("kaptanrc")
-            self.plasmaConfig = KConfig("plasma-desktop-appletsrc")
-        else:
-            self.kaptanConfig = QSettings(".kde4/share/config/kaptanrc",QSettings.IniFormat)
+        self.kaptanConfig = QSettings(".kde4/share/config/kaptanrc",QSettings.IniFormat)
+
     def signalHandler(self):
         ''' connects signals to slots '''
         self.connect(self.ui.buttonNext, QtCore.SIGNAL("clicked()"), self.slotNext)
@@ -235,7 +236,9 @@ class Kaptan(QtGui.QWidget):
         self.kaptanConfig.setValue("General/RunOnStart",False)
 
 if __name__ == "__main__":
+
     if len(sys.argv) > 1 and sys.argv[1] == "-a":
+
         kd= os.getenv("HOME")
         # kaptanrc
         QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
@@ -246,6 +249,7 @@ if __name__ == "__main__":
             os.popen("cp -r /etc/xdg/lxsession %s/.config/"%os.getenv("HOME"))
 
         if not start == "False":
+
             if ctx.Pds.session.Name == "gnome":
                 kd= os.getenv("HOME")
                 # kaptanrc
@@ -258,20 +262,18 @@ if __name__ == "__main__":
                     os.popen("gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme Orta")
                     os.popen("gconftool-2 --type string --set /desktop/gnome/interface/icon_theme Faenza-Dark")
             elif ctx.Pds.session.Name == "xfce":
-
                 kd= os.getenv("HOME")
                 # kaptanrc
                 QSettings.setPath(QSettings.IniFormat, QSettings.UserScope,kd+"/.kaptanrc" )
                 kaptanConfig = QSettings(kd+"/.kaptanrc" ,QSettings.IniFormat)
                 start_xfce = kaptanConfig.value("General/RunOnStart").toString()
-            kaptanConfig.setValue("General/RunOnStart","False")
+                kaptanConfig.setValue("General/RunOnStart","False")
+
         elif start == "False" and not "-t" in sys.argv:
             exit();
 
-     # attach dbus to main loop
-    tools.DBus()
+    if ctx.Pds.session.Name == "kde":
 
-    if ctx.Pds.session == ctx.pds.Kde4:
         from PyKDE4 import kdeui
         from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KConfig
 
@@ -292,6 +294,9 @@ if __name__ == "__main__":
         KCmdLineArgs.init(sys.argv, aboutData)
         app =  kdeui.KApplication()
 
+        # attach dbus to main loop
+        tools.DBus()
+
         kaptan = Kaptan()
         kaptan.show()
         tools.centerWindow(kaptan)
@@ -299,6 +304,8 @@ if __name__ == "__main__":
 
     else:
 
+     # attach dbus to main loop
+        tools.DBus()
         import gettext
         __trans = gettext.translation('kaptan', fallback=True)
         i18n = __trans.ugettext
@@ -306,14 +313,10 @@ if __name__ == "__main__":
         from pds.quniqueapp import QUniqueApplication
 
         app = QUniqueApplication(sys.argv, catalog="kaptan")
-
-
         from pds.quniqueapp import QUniqueApplication
         kaptan = Kaptan()
         kaptan.show()
         tools.centerWindow(kaptan)
-
-
         app.exec_()
 
 

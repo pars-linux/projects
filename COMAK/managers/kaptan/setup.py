@@ -30,7 +30,7 @@ import context as ctx
 import about
 PROJECT = about.appName
 
-FOR_KDE_4 = ctx.Pds.session == ctx.pds.Kde4
+FOR_KDE_4 = ctx.Pds.session.Name == "kde"
 
 def update_messages():
     # Create empty directory
@@ -91,18 +91,26 @@ class Build(build):
         os.system("cp -R src build/")
 
         # Copy theme files
-        print "Copying themes..."
+        print "Copying %s themes..." %(ctx.Pds.session.Name)
 
+        if ctx.Pds.session.Name == "gnome" or ctx.Pds.session.Name == "gnome3":
         # Gnome Themes
-        os.system("cp -R data/gnome_themes build/kaptan/")
-        os.system("cp -R data/gnome_previews build/kaptan/")
-        os.system("cp -R data/gnome3_previews build/kaptan/")
+            os.system("cp -R data/gnome_themes build/kaptan/")
+            os.system("cp -R data/gnome_previews build/kaptan/")
+            os.system("cp -R data/gnome3_previews build/kaptan/")
+
+        #Kde Themes
+        print FOR_KDE_4 
+        if FOR_KDE_4:
+            os.system("cp -R data/kde_themes build/kaptan/")
 
         # Xfce Themes
-        os.system("cp -R data/xfce_themes build/kaptan/" )
+        if ctx.Pds.session.Name == "xfce":
+            os.system("cp -R data/xfce_themes build/kaptan/" )
 
         #Others
-        os.system("cp -R data/themes build/kaptan/")
+        if ctx.Pds.session.Name == "":
+            os.system("cp -R data/themes build/kaptan/")
 
         # update_messages()
 

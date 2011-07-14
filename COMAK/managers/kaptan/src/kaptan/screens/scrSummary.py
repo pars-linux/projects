@@ -35,6 +35,8 @@ from kaptan.tools import tools
 
 if ctx.Pds.session == ctx.pds.Kde4:
     from PyKDE4 import kdeui
+    import kaptan.screens.scrMenu as menuWidget
+    from PyKDE4.kdecore import KConfig, ki18n
 
 class Widget(QtGui.QWidget, Screen):
     title = i18n("Summary")
@@ -52,6 +54,9 @@ class Widget(QtGui.QWidget, Screen):
         self.smoltSettings = smoltWidget.Widget.screenSettings
         self.avatarSettings = avatarWidget.Widget.screenSettings
         self.packageSettings = packageWidget.Widget.screenSettings
+        #Show only Kde
+        self.menuSettings = menuWidget.Widget.screenSettings
+
         subject = "<p><li><b>%s</b></li><ul>"
         item    = "<li>%s</li>"
         end     = "</ul></p>"
@@ -65,6 +70,11 @@ class Widget(QtGui.QWidget, Screen):
         content.append(item % i18n("Selected Mouse configuration: <b>%s</b>") % self.mouseSettings["summaryMessage"]["selectedMouse"])
         content.append(item % i18n("Selected clicking behavior: <b>%s</b>")% self.mouseSettings["summaryMessage"]["clickBehavior"])
         content.append(end)
+
+        if ctx.Pds.session == ctx.pds.Kde4:
+            content.append(subject % ki18n("Menu Settings").toString())
+            content.append(item % ki18n("Selected Menu: <b>%s</b>").toString() % self.menuSettings["summaryMessage"].toString())
+            content.append(end)
 
 
         # Wallpaper Settings
@@ -138,27 +148,45 @@ class Widget(QtGui.QWidget, Screen):
 
     def execute(self):
 
+        # This variable is used for KDE
+        hasChanged = False
+
         # Wallpaper Settings
         if self.wallpaperSettings["hasChanged"]:
+            hasChanged = True
             Desktop.wallpaper.setWallpaper(self.wallpaperSettings["selectedWallpaper"])
 
+        # Menu Settings
+        if self.menuSettings["hasChanged"]:
+            hasChanged = True
+            config = KConfig("plasma-desktop-appletsrc")
+            group = config.group("Containments")
+
+            for each in list(group.groupList()):
+                subgroup = group.group(each)
+                subcomponent = subgroup.readEntry('plugin')
+                if subcomponent == 'panel':
+                    subg = subgroup.group('Applets')
+                    for i in list(subg.groupList()):
+                        subg2 = subg.group(i)
+                        launcher = subg2.readEntry('plugin')
+                        if str(launcher).find('launcher') >= 0:
+                            subg2.writeEntry('plugin', self.menuSettings["selectedMenu"] )
 
         # Desktop Type
         if self.styleSettings["hasChangedDesktopType"]:
+            hasChanged = True
             Desktop.style.setDesktopType()
 
         # Number of Desktops
         if self.styleSettings["hasChangedDesktopNumber"]:
+            hasChanged = True
             Desktop.style.setDesktopNumber()
 
         # Theme Settings
         if self.styleSettings["hasChanged"]:
-
-            if self.styleSettings["iconChanged"]:
-                Desktop.style.setThemeSettings()
-
-            if self.styleSettings["styleChanged"]:
-                Desktop.style.setStyleSettings()
+            hasChanged = True
+            Desktop.style.setStyleSettings()
 
         Desktop.style.reconfigure()
 
@@ -179,10 +207,11 @@ class Widget(QtGui.QWidget, Screen):
             arguments = ["-a", "--submitOnly"]
             self.procSettings.startDetached(command, arguments)
 
-        for settings in [self.wallpaperSettings, self.mouseSettings,\
- self.styleSettings, self.smoltSettings,\
-self.avatarSettings]:
-            if (ctx.Pds.session==ctx.pds.Kde4) and settings.get("hasChanged",False):
-                self.killPlasma()
-                break
+        # Avatar Settings
+        if self.avatarSettings["hasChanged"]:
+            hasChanged = True
+
+        if hasChanged and ctx.Pds.session == ctx.pds.Kde4:
+            self.killPlasma()
+
         return True

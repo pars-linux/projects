@@ -208,7 +208,7 @@ class Wallpaper(base.Wallpaper):
 
 class Style(base.Style):
 
-    themesPreviewFile = "/usr/share/kaptan/kaptan/kde_themes/"
+    themesPreviewFile = "/usr/share/kde4/apps/kaptan/kaptan/kde_themes/"
 
     def getDesktopNumber(self):
         try:
@@ -219,14 +219,14 @@ class Style(base.Style):
             return 4
 
     def getThemeList(self):
-        lst2 = glob.glob1("/usr/share/kaptan/kaptan/kde_themes", "*.style")
+        lst2 = glob.glob1("/usr/share/kde4/apps/kaptan/kaptan/kde_themes", "*.style")
         return lst2
 
     def getThemeDetails(self,desktopFiles):
 
         self.styleDetails = {}
         parser = DesktopParser()
-        parser.read("/usr/share/kaptan/kaptan/kde_themes/" +str(desktopFiles))
+        parser.read("/usr/share/kde4/apps/kaptan/kaptan/kde_themes/" +str(desktopFiles))
 
         try:
             styleName = unicode(parser.get_locale('Style', 'name[%s]'%self.catLang, ''))
@@ -244,7 +244,7 @@ class Style(base.Style):
         #styleApplet = parser.get_locale('Style', 'applets', '')
         panelPosition = parser.get_locale('Style', 'panelPosition', '')
         #styleColorScheme = parser.get_locale('Style', 'colorScheme', '')
-        widgetStyle = unicode(parser.get_locale('Style', 'widgetStyle', ''))
+        widgetStyle = parser.get_locale('Style', 'widgetStyle', '')
         desktopTheme = unicode(parser.get_locale('Style', 'desktopTheme', ''))
         colorScheme = unicode(parser.get_locale('Style', 'colorScheme', ''))
 
@@ -252,7 +252,7 @@ class Style(base.Style):
         self.iconTheme = "oxygen"
 
         windowDecoration = unicode(parser.get_locale('Style', 'windowDecoration', ''))
-        styleThumb = unicode(os.path.join("/usr/share/kaptan/kaptan/kde_themes/",  parser.get_locale('Style', 'thumbnail','')))
+        styleThumb = unicode(os.path.join("/usr/share/kde4/apps/kaptan/kaptan/kde_themes/",  parser.get_locale('Style', 'thumbnail','')))
 
         colorDict = {}
         colorDir = "/usr/share/kde4/apps/color-schemes/"
@@ -262,7 +262,6 @@ class Style(base.Style):
         color = colorDir + colorScheme + ".colors"
         if not os.path.exists(color):
             color = colorDir + "Oxygen.colors"
-
         self.Config.read(color)
         #colorConfig= KConfig("kdeglobals")
         for i in self.Config.sections():
@@ -309,59 +308,79 @@ class Style(base.Style):
 
         CONFIG_KWINRC.sync()
 
-    def setThemeSettings(self):
-        group = CONFIG_KDEGLOBALS.group("General")
-
-        groupIconTheme = CONFIG_KDEGLOBALS.group("Icons")
-        groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["iconTheme"])
-
-        CONFIG_KDEGLOBALS.sync()
-
-        deleteIconCache()
-        kdeui.KIconTheme.reconfigure()
-        kdeui.KIconCache.deleteCache()
-
     def setStyleSettings(self):
 
-        group = CONFIG_KDEGLOBALS.group("General")
-#        group.writeEntry("widgetStyle" , unicode(scrStyleWidget.screenSettings["summaryMessage"]["widgetStyle"]))
-        group.writeEntry("widgetStyle", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["widgetStyle"])
+        if scrStyleWidget.screenSettings["iconChanged"]:
+            hasChanged = True
+            configKdeGlobals = KConfig("kdeglobals")
+            group = configKdeGlobals.group("General")
 
-        groupIconTheme = CONFIG_KDEGLOBALS.group("Icons")
-        # groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["iconTheme"])
+            groupIconTheme = configKdeGlobals.group("Icons")
+            groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["iconTheme"])
 
-        CONFIG_KDEGLOBALS.sync()
+            configKdeGlobals.sync()
 
-        # set color scheme
-        for key, value in scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["colorScheme"].items():
-                colorGroup = CONFIG_KDEGLOBALS.group(key)
+            # Change Icon theme
+            kdeui.KIconTheme.reconfigure()
+            kdeui.KIconCache.deleteCache()
+            deleteIconCache()
+
+        if scrStyleWidget.screenSettings["styleChanged"]:
+            hasChanged = True
+            configKdeGlobals = KConfig("kdeglobals")
+            group = configKdeGlobals.group("General")
+            group.writeEntry("widgetStyle", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["widgetStyle"])
+            groupIconTheme = configKdeGlobals.group("Icons")
+            groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["iconTheme"])
+            #groupIconTheme.writeEntry("Theme", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["iconTheme"])
+
+            configKdeGlobals.sync()
+
+            # Change Icon theme
+            kdeui.KIconTheme.reconfigure()
+            kdeui.KIconCache.deleteCache()
+            deleteIconCache()
+
+            for i in range(kdeui.KIconLoader.LastGroup):
+                kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.IconChanged, i)
+
+            # Change widget style & color
+            for key, value in scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["colorScheme"].items():
+                colorGroup = configKdeGlobals.group(key)
                 for key2, value2 in value.items():
                         colorGroup.writeEntry(str(key2), str(value2))
 
-        CONFIG_KDEGLOBALS.sync()
+            configKdeGlobals.sync()
+            kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.StyleChanged)
 
-        # emit change style
-        kdeui.KGlobalSettings.self().emitChange(kdeui.KGlobalSettings.StyleChanged)
+            configPlasmaRc = KConfig("plasmarc")
+            groupDesktopTheme = configPlasmaRc.group("Theme")
+            groupDesktopTheme.writeEntry("name", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["desktopTheme"])
+            configPlasmaRc.sync()
 
-        # config plasmarc
-        groupDesktopTheme = CONFIG_PLASMARC.group("Theme")
-        groupDesktopTheme.writeEntry("name", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["desktopTheme"])
-        CONFIG_PLASMARC.sync()
+            configPlasmaApplet = KConfig("plasma-desktop-appletsrc")
+            group = configPlasmaApplet.group("Containments")
+            for each in list(group.groupList()):
+                subgroup = group.group(each)
+                subcomponent = subgroup.readEntry('plugin')
+                if subcomponent == 'panel':
+                    #print subcomponent
+                    subgroup.writeEntry('location', scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["panelPosition"])
 
-        # set plasma
-        group = CONFIG_APPLETSRC.group("Containments")
-        for each in list(group.groupList()):
-            subgroup = group.group(each)
-            subcomponent = subgroup.readEntry('plugin')
-            if subcomponent == 'panel':
-                subgroup.writeEntry('location', scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["panelPosition"])
+            configPlasmaApplet.sync()
 
-        CONFIG_APPLETSRC.sync()
+            configKwinRc = KConfig("kwinrc")
+            groupWindowDecoration = configKwinRc.group("Style")
+            groupWindowDecoration.writeEntry("PluginLib", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["styleName"])]["windowDecoration"])
+            configKwinRc.sync()
 
-        # config kwinrc
-        groupWindowDecoration = CONFIG_KWINRC.group("Style")
-        groupWindowDecoration.writeEntry("PluginLib", scrStyleWidget.screenSettings["styleDetails"][unicode(scrStyleWidget.screenSettings["summaryMessage"])]["windowDecoration"])
-        CONFIG_KWINRC.sync()
+        session = dbus.SessionBus()
+
+        try:
+            proxy = session.get_object('org.kde.kwin', '/KWin')
+            proxy.reconfigure()
+        except dbus.DBusException:
+            pass
 
     def setDesktopType(self):
         group = CONFIG_APPLETSRC.group("Containments")
@@ -428,6 +447,12 @@ class Goodbye(base.Goodbye):
 
 class Common(base.Common):
 
+    def systemSettingsButton(self):
+        self.procSettings = QProcess()
+        self.procSettings.start("systemsettings")
+
 
     def getLanguage(self):
-        return "tr"
+        lang = KGlobal.locale().language()
+        return lang
+
