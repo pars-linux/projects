@@ -10,7 +10,7 @@ TARGET = f5
 
 all: $(TARGET)
 
-$(TARGET):
+$(TARGET): $(SOURCES)
 	$(CC) $(CFLAGS) $(SOURCES) $(LIBS) -o $(TARGET)
 
 clean:
