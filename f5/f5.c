@@ -21,6 +21,37 @@ int repeat = 10;
 int sleepinterval = 2;
 
 
+static void sendPointerMotion(Display * disp, int motionX, int motionY, int relative) {
+    XEvent event;
+
+    /* Get the current pointer position */
+    XQueryPointer (disp, RootWindow (disp, 0),
+                   &event.xbutton.root, &event.xbutton.window,
+                   &event.xbutton.x_root, &event.xbutton.y_root,
+                   &event.xbutton.x, &event.xbutton.y,
+                   &event.xbutton.state);
+
+    if (relative) {
+        /* Fake the pointer movement to new relative position */
+        XTestFakeMotionEvent(disp, 0, event.xbutton.x + motionX,
+                             event.xbutton.y + motionY, 0);
+
+    } else {
+        /* Fake the pointer movement to new absolute position */
+        XTestFakeMotionEvent (disp, 0, motionX, motionY, 0);
+    }
+
+    XSync(disp, False);
+}
+
+static void sendPointerClick(Display * disp, int pointerButton) {
+    /* Fake the mouse button Press and Release events */
+    XTestFakeButtonEvent (disp, pointerButton, True,  0);
+    XTestFakeButtonEvent (disp, pointerButton, False, 0);
+
+    XSync(disp, False);
+}
+
 /* Send Fake Key Event */
 static void sendKey (Display * disp, KeySym keysym, KeySym modsym) {
     KeyCode keycode = 0, modcode = 0;
@@ -75,11 +106,16 @@ int main (int argc, char *argv[]) {
 
     for (i = 0; i < repeat; i++) {
         sleep (sleepinterval);
-        //SendKey (disp, XK_F5, XK_Alt_L);
-        sendKey (disp, XK_F5, 0);
+        //sendKey (disp, XK_F5, XK_Alt_L);    /* press Alt-F5 */
+        //sendPointerClick(disp, 3);          /* click right mouse button */
+        //sendPointerMotion(disp, 50, 50, 1); /* move mouse to 50 pixels right and 50 pixel below */
+
+        sendKey (disp, XK_F5, 0);           /* press F5 */
+
         printf("pressing f5\n");
     }
 
+    XCloseDisplay (disp);
     printf("\n");
     return 0;
 
