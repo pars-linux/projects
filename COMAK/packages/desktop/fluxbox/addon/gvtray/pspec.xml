@@ -14,7 +14,7 @@
         <Description>gvtray is a volume mixer in the system tray which enables you to control volume.</Description>
         <Archive sha1sum="cae51a932a0e89c2166b9d65dbab59541908b310" type="targz">http://gtk-tray-utils.googlecode.com/svn/trunk/gvtray-1.1.tar.gz</Archive>
         <Patches>
-            <Patch level="1">42.patch</Patch>
+            <Patch level="1">icon-support.patch</Patch>
         </Patches>
     </Source>
 
@@ -23,14 +23,29 @@
         <RuntimeDependencies>
             <Dependency>gnome-python-extras</Dependency>
             <Dependency>python-pyalsaaudio</Dependency>
+            <Dependency>python-gtk</Dependency>
+            <Dependency>gtk2</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin</Path>
             <Path fileType="data">/usr/share</Path>
         </Files>
+        <AdditionalFiles>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/gvtray/icons/media-volume-0.png">media-volume-0.png</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/gvtray/icons/media-volume-1.png">media-volume-1.png</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/gvtray/icons/media-volume-2.png">media-volume-2.png</AdditionalFile>
+            <AdditionalFile owner="root" permission="0644" target="/usr/share/gvtray/icons/media-volume-3.png">media-volume-3.png</AdditionalFile>
+        </AdditionalFiles>
     </Package>
 
     <History>
+        <Update release="3">
+            <Date>2011-09-15</Date>
+            <Version>1.1</Version>
+            <Comment>Add volume icon support.</Comment>
+            <Name>Alper Tekinalp</Name>
+            <Email>alper.tekinalp@gmail.com</Email>
+        </Update>
         <Update release="2">
             <Date>2011-03-15</Date>
             <Version>1.1</Version>
